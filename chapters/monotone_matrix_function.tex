@@ -33,3 +33,16 @@ That was easy. It's not very easy to come up with other examples, though. Most o
 \begin{proof}
 	TODO
 \end{proof}
+
+One thing one immediately sees is that all the matrix monotone functions are monotone as real functions.
+
+\begin{prop}
+	If $f \in P_{n}(a, b)$, $f$ is increasing, that is $f \in P_{1}(a, b)$.
+\end{prop}
+\begin{proof}
+	Take any $a < x \leq y < b$. Now $x I_{n} \leq y I_{n}$ and $xI_{n}, yI_{n} \in \H_{(a, b)}$ so by definition
+	\[
+		f(x) I = f(xI) \leq f(y I) = f(y) I,
+	\]
+	from which it follows that $f(x) \leq f(y)$. This is what we wanted.
+\end{proof}
