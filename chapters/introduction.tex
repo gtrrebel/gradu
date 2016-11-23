@@ -1,0 +1,190 @@
+\chapter{Introduction}
+
+\section{Foreword}
+
+This master's thesis is about matrix monotone and convex functions. Matrix monotonicity and convexity are generalizations of standard monotonicity and convexity of real functions: now we are just having functions mapping matrices to matrices. Formally, $f$ is \textit{matrix monotone} if for any two matrices $A$ and $B$ such that
+\begin{align}
+	A \leq B
+\end{align}
+we should also have
+\begin{align}
+	f(A) \leq f(B).
+\end{align}
+
+This kind of function might be more properly called \textit{matrix increasing} but we will mostly stick to the monotonicity for couple of reasons:
+\begin{itemize}
+	\item For some reason, that is what people have been doing in the field.
+	\item It doesn't make much difference whether we talk about increasing or decreasing functions, so we might just ignore the latter but try to symmetrize our thinking by choice of words.
+	\item Somehow I can't satisfactorily fill the following table:
+	\begin{center}
+	\begin{tabular}{| c | c |}
+		\hline
+		monotonic & monotonicity \\
+		\hline
+		increasing & ? \\
+		\hline
+	\end{tabular}
+	\end{center}
+	How very inconvenient.
+\end{itemize}
+
+Matrix convexity, as you might have guessed by now, is defined as follows. A function $f$ is \textit{matrix convex} if for any two matrices $A$ and $B$ and $0 \leq t \leq 1$ we have
+\begin{align}
+	f(t A + (1 - t) B) \leq t f(A) + (1 - t) f(B).
+\end{align}
+
+Of course, it's not really obvious how one should make any sense of these ``definitions''. One quickly realizes that there two things to understand.
+\begin{itemize}
+	\item How should matrices be ordered?
+	\item How should functions act on matrices?
+\end{itemize}
+Both of these questions can be (of course) answered in many ways, but for both of them, there's is in a way very natural answer. In both cases we can get something more general: instead of comparing matrices we can compare linear maps, and we can apply function to linear mapping.
+
+Just to give a short glimpse of how these things might be defined, we should definitely first fix our ground field: let's say it's $\R$, at least for now.
+
+TODO (Brief explanations)
+
+As it turns out, much of the study of matrix monotone and convex functions is all about understanding these definitions of positive maps and matrix functions.
+
+Lastly, one might wonder why should one be interested in the whole business of monotone and convex functions? It's all about point of view. Let's consider a very simple inequality:
+
+For any real numbers $0 < x \leq y$ we have
+\[
+	y^{-1} \leq x^{-1}.
+\]
+Of course, this is quite close to the axioms of the real numbers, but there's a rather fruitful interpretation. The function $(x \mapsto \frac{1}{x})$ is decreasing.
+
+Now there's this matrix version of the previous inequality:
+
+For any two matrices $0 < A \leq B$ we have
+\[
+	B^{-1} \leq A^{-1}.
+\]
+This is already not trivial, and with previous interpretation in mind, could this be interpreted as the functions $(x \mapsto \frac{1}{x})$ could be \textit{matrix decreasing}? And is this just a special case of something bigger? Yes, and that's exactly what this thesis is about.
+
+\section{Plan of attack}
+
+This master's thesis is a comprehensive review of the rich theory of matrix monotone and convex functions.
+
+Master's thesis is to be structured roughly as follows.
+
+\begin{enumerate}
+	\item Introduction
+		\begin{itemize}
+			\item Introduction to the problem, motivation
+			\item Brief definition of the matrix monotonicity and convexity
+			\item Past and present
+				\begin{itemize}
+					\item Loewner's original work, Loewner-Heinz -inequality
+					\item Students: Dobsch' and Krauss'
+					\item Subsequent simplifications and further results: Bendat-Sherman, Wigner-Neumann, Koranyi, etc.
+					\item Donoghue's work
+					\item Later proofs: Krein-Milman, general spectral theorem, interpolation spaces, short proofs etc.
+					\item Development of the convex case
+					\item Recent simplifications, integral representations
+					\item Operator inequalities
+					\item Multivariate case, other variants
+					\item Further open problems?
+				\end{itemize}
+			\item Scope of the thesis
+		\end{itemize}
+	\item Preliminaries (partially to be dumped to appendix?)
+		\begin{itemize}
+			\item Positive matrices
+				\begin{itemize}
+					\item Setup: finite (vs infinite) dimensional inner product spaces over $\C$ (vs $\R$), basic facts
+					\item Linear maps, adjoint, congruence, self-adjoint maps, spectral theorem: finite and infinite dimensional
+					\item Good properties of spectrum
+					\item Positive maps: basic properties (cone structure, Sylvester's criterion etc.)
+				\end{itemize}
+			\item Matrix functions
+				\begin{itemize}
+					\item Several definitions
+					\item Derivatives of matrix functions
+				\end{itemize}
+			\item Pick functions
+				\begin{itemize}
+					\item Basic definitions and properties
+					\item Pick-Nevanlinna representations theorem
+					\item Pick matrices/ determinants
+					\item Compactness
+					\item Pick-Nevanlinna interpolation theorem
+				\end{itemize}
+			\item Divided differences: basic definition, properties, representations and smoothness
+			\item Regularizations
+				\begin{itemize}
+					\item Basic properties
+					\item Lemmas needed for some of the proofs
+				\end{itemize}
+		\end{itemize}
+	\item Monotonic and convex matrix functions
+		\begin{itemize}
+			\item Basics
+				\begin{itemize}
+					\item Basic definitions and properties (cone structure, pointwise limits, compositions etc.)
+					\item Classes $P_{n}, K_{n}$ and their properties
+					\item $-1/x$
+					\item One directions of Loewner's theorem
+					\item Examples and non-examples
+				\end{itemize}
+			\item Pick matrices/determinants vs matrix monotone and convex functions
+				\begin{itemize}
+					\item Proofs for (sufficiently) smooth functions
+				\end{itemize}
+			\item Smoothness properties
+				\begin{itemize}
+					\item Ideas, simple cases
+					\item General case by induction and regularizations
+				\end{itemize}
+			\item Global characterizations
+				\begin{itemize}
+					\item Putting everything together: we get original characterization of Loewner and determinant characterization
+				\end{itemize}
+		\end{itemize}
+	\item Local characterizations
+		\begin{itemize}
+			\item Dobsch (Hankel) matrix: basic properties, easy direction (original and new proof)
+			\item Integral representations
+				\begin{itemize}
+					\item Introducing the general weight functions for monotonicity and convexity (and beyond?)
+					\item Non-negativity of the weights
+					\item Proof of integral representations
+				\end{itemize}
+			\item Proof of local characterizations
+		\end{itemize}
+	\item Structure of the classes $P_{n}$ and $K_{n}$, interpolating properties (?)
+		\begin{itemize}
+			\item Strict inclusions, strict smoothness conditions
+			\item Strictly increasing functions
+			\item Extreme values
+			\item Interpolating properties
+		\end{itemize}
+	\item Loewner's theorem
+		\begin{itemize}
+			\item Preliminary discussion, relation to operator monotone functions
+			\item Loewner's original proof
+			\item Pick-Nevanlinna proof
+			\item Bendat-Sherman proof
+			\item Krein-Milman proof
+			\item Koranyi proof
+			\item Discussion of the proofs
+			\item Convex case
+		\end{itemize}
+	\item Alternative characterizations (?)
+		\begin{itemize}
+			\item Some discussion, maybe proofs
+		\end{itemize}
+	\item Bounded variations (?)
+		\begin{itemize}
+			\item Dobsch' definition, basic properties
+			\item Decomposition, Dobsch' theorems
+		\end{itemize}
+\end{enumerate}
+
+\section{Some random ideas}
+\begin{enumerate}
+	\item It's easy to see that [Something]. Actually, it's so so easy that we have no excuse for not doing it.
+	\item TODO: Maximum of two matrices (at least as big), (a + b)/2 + abs(a - b)/2
+\end{enumerate}
+
+

@@ -1,0 +1,67 @@
+\chapter{Preliminaries}
+
+As mentioned in the introduction, in order to understand matrix monotone and convex functions we first have to undestand positive matrices and matrix functions (and some other things).
+
+\section{Positive matrices}
+
+This section is titled ``positive matrices", although ``positive maps" might be more appropriate title. We are mostly going to deal with finite-dimensional objects, but many of the ideas could be generalized infinite-dimensional settings, where matrices lose their edge. Also, one should always ask whether it really clarifies the situation to introduce concrete matrices: matrices are good at hiding the truly important properties of linear mappings. The words ``matrix" and ``linear map" are used somewhat synonymously, although one should always remember that the former are just special representations for the latter.
+
+How should one order matrices? What should we require from ordering anyway?
+
+We would definitely like to have natural total order on the space of matrices, but it turns out that are no natural choices for that. Partial order is next best thing. Recall that a partial order on a set $X$ is a binary relation $\leq$ on such that
+\begin{enumerate}
+	\item $x \leq x$ for any $x \in X$.
+	\item For any $x, y \in X$ for which $x \leq y$ and $y \leq x$, necessarily $x = y$.
+	\item If for some $x, y, z \in X$ we have both $x \leq y$ and $y \leq z$, also $x \leq z$.
+\end{enumerate}
+
+The third point is the main point, the first two are just there preventing us from doing something crazy. But we can do better: this partial order on matrices should also respect addition.
+\begin{enumerate}
+\item[4.] For any $x, y, z \in X$ such that $x \leq y$, we should also have $x + z \leq y + z$.
+\end{enumerate}
+
+There's another way to think about this last point. Instead of specifying order among all the pairs, we just say which matrices are positive: matrix is positive if and only it's at least $0$.
+
+If we know all the positive matrices, we know all the ``orderings". To figure out whether $x \leq y$, we just check whether $0 = x - x \leq y - x$, i.e. whether $y - x$ is positive. Also, positive matrices are just differences of the form $y - x$ where $x \leq y$. Now, conditions on the partial order are reflected to the set of positive matrices.
+\begin{enumerate}
+	\item[1'.] $0$ (zero matrix) is positive.
+	\item[2'.] If both $x$ and $-x$ are positive, then $x = 0$.
+	\item[3'.] If both $x$ and $y$ are positive, so is their sum $x + y$.
+\end{enumerate}
+Here $3'$ is kind of combination of $3$ and $4$.
+
+The terminology here is rather unfortunate. Natural ordering of the reals satisfies all of the above with obvius interpretation of positive numbers, which however differs from the standard definition: $0$ is itself positive in our above definition. This is undoubtedly confusing, but what can you do? For real numbers we total order, so every number is either zero, strictly positive or strictly negative, so when we say non-negative, it literally means ``not negative": we get all the positive numbers and zero. But with partial orders we might get more. For a cheap fix, we could say that matrix is strictly positive if it's positive but not zero. But won't do that for reasons to be explained later.
+
+TODO (jotain vaan väliin, ehkä)
+
+It of course depends on the ground field. It hardly makes any sense to order matrices over $\F_{p}$: even $1 \times 1$ matrices, namely (canonically) the elements of $\F_{p}$ defy reasonable ordering. But real numbers, for instance, have ordering, so there's a serious change that all real matrices could be ordered.
+
+We will first try to order all real square matrices. (Actually, we won't even try to order non-square matrices.) $1 \times 1$ matrices are easy to order, but as soon one moves to larger matrices, one faces difficult decisions:
+
+\[
+	\text{Is }
+	\begin{bmatrix}
+		0 & 1 \\
+		0 & 0 \\
+	\end{bmatrix}
+	\leq
+	\begin{bmatrix}
+		0 & 0 \\
+		1 & 0 \\
+	\end{bmatrix}
+	\text{ or }
+	\begin{bmatrix}
+		0 & 1 \\
+		0 & 0 \\
+	\end{bmatrix}
+	\geq
+	\begin{bmatrix}
+		0 & 0 \\
+		1 & 0 \\
+	\end{bmatrix}
+	\text{?}
+\]
+
+That's okay, we don't necessarily have to order all pairs of matrices. But there are other problems. We would like the ordering of the matrices to be independent of the choice matrix representation. 
+
+\subsection{Hermitian matrices}

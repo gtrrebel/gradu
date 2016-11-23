@@ -1,0 +1,35 @@
+\chapter{Monotone and Convex matrix functions}
+
+We already introduced monotone and convex matrix functions in the introduction, but now that we have properly defined and discussed underlying structures we should take a deeper look. As mentioned, monotone and convex matrix functions are sort of generalizations for the standard properties of reals, and this is why we should undestand which of the phenomena for the real functions carry to matrix functions and which do not.
+
+We will start with the matrix monotone functions; much of the discussion carries quite directly to the convex case.
+
+\section{Basic properties of the matrix monotone functions}
+
+We first state the definition.
+
+\begin{maar}
+	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
+\end{maar}
+
+We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. Let us first have some examples.
+
+\begin{prop}
+	For any positive integer $n$, open interval $(a, b)$ and $\alpha, \beta \in \R$ such that $\alpha \geq 0$ we have that $(x \mapsto \alpha x + \beta) \in P_{n}(a, b)$.
+\end{prop}
+\begin{proof}
+	Assume that for $A, B \in \H_{(a, b)}$ we have $A \leq B$. Now
+	\[
+		f(B) - f(A) = (\alpha B + \beta I) - (\alpha A + \beta I) = \alpha (B - A).
+	\]
+	Since by assumption $B - A \geq $ and $\alpha \geq 0$, also $\alpha (B - A) \geq 0$, so by definition $f(B) \geq f(A)$. This is exactly what we wanted.
+\end{proof}
+
+That was easy. It's not very easy to come up with other examples, though. Most of the common monotone functions fail to be matrix monotone. Let's try some non-examples.
+
+\begin{prop}
+	Function $(x \mapsto x^2)$ is not $n$-monotone for any $n \geq 2$ and any open interval $(a, b) \subset \R$.
+\end{prop}
+\begin{proof}
+	TODO
+\end{proof}
