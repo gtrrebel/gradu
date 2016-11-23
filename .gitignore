@@ -1,0 +1,5 @@
+*.log
+*.aux
+*.tex
+*.toc
+.DS_store
