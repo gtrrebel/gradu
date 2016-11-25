@@ -74,4 +74,61 @@ That was easy. It's not very easy to come up with other examples, though. Most o
 		\item Product of two positive matrices need not be positive.
 	\end{itemize}
 	Note that both of these objections result from the non-commutativity and indeed, both would be fixed should $A$ and $B$ commute.
+
+	Let's write $B = A + H$ ($H \geq 0$). Now we are to investigate
+	\[
+		(A + H)^2-A^2 = A H + H A + H^2.
+	\]
+	Note that $H^2 \geq 0$, but as we have seen in TODO, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. We are ready to formulate our proof strategy: find $A \in \H^{n}_{a, b}$ and $\Hp^{n}$ such that $A H + H A \ngeq 0$. Then choose parameter $t > 0$ so small that $A + t H \in \H^{n}(a,b)$ and
+	\[
+		(A + t H)^2 - A^2 = t (A H + H A + t H^2) \ngeq 0
+	\]
+	and set the pair $(A, A + t H)$ as the counterexample.
+
+	TODO
 \end{proof}
+
+In a similar manner one could show the similar statement for the functions $(x \mapsto x^k)$.
+
+At this point several other important properties of the matrix monotone functions should be clear.
+
+\begin{prop}
+	For any positive integer $n$ and open interval $(a, b)$ the set $P_{n}(a, b)$ is a convex cone, i.e. it is closed under taking summation and multiplication by non-negative scalars.
+\end{prop}
+
+\begin{proof}
+	This is easy: closedness under summation and scalar multiplication with non-negative scalars correspond exaclty to the same property of positive matrices.
+\end{proof}
+
+We should be a bit careful though. As we saw with the square function example, product of two $n$-monotone functions need not be n-monotone in general, even if they are both positive functions; similar statement holds for increasing functions. Similarly, taking maximums doesn't preserve monotonicity.
+
+\begin{prop}
+	Maximum of two $n$-monotone functions need not be $n$-monotone for $n \geq 2$.
+\end{prop}
+\begin{proof}
+	Again, let's think what goes wrong with the standard proof for $n = 1$.
+
+	Fix open interval $(a, b)$, positive integer $n \geq 2$ and two functions $f, g \in P^{n}(a, b)$. Take any two $A, B \in \H_{(a, b)}^{n}$ with $A \leq B$. Now $f(A) \leq f(B) \leq \max(f, g)(B)$ and Now $f(A) \leq f(B) \leq \max(f, g)(B)$. It follows that
+	\[
+		\max(f, g)(A) = \max(f(A), g(A)) \leq \max(f, g)(B),
+	\]
+	as we wanted.
+
+	Here the flaw is in the expression $\max(f(A), g(A))$: what is maximum of two matrices? This is an interesting question and we will come back to it a bit later, but it turns out that however you try to define it, you can't satisfy the above inequality.
+
+	We still need proper counterexamples though. Let's try $f \equiv 0$ and $g = \id$. So far the only $n$-monotone functions we know are affine functions so that's essentially our only hope for counterexamples.
+
+	TODO
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
