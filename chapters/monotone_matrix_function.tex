@@ -121,7 +121,40 @@ We should be a bit careful though. As we saw with the square function example, p
 	TODO
 \end{proof}
 
+Similarly we have composition and pointwise limits.
 
+\begin{prop}
+	If $f : (a, b) \to (c, d)$ and $g : (c, d) \to \R$ are $n$-monotone, so is $g \circ f : (a, b) \to \R$.
+\end{prop}
+\begin{proof}
+	Fix any $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. By assumption $f(A) \leq f(B)$ and $f(A), f(B) \in \H^{n}_{(c, d)}$ so again by assumption, $g(f(A)) \leq g(f(B))$, our claim.
+\end{proof}
+
+\begin{prop}
+	If $n$-monotone functions $f_{i} : (a, b) \to \R$ converge pointwise to $f : (a, b) \to \R$ as $i \to \infty$, also $f$ is $n$-monotone.
+\end{prop}
+\begin{proof}
+	As always, fix $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. Now by assumption
+	\[
+		f(B) - f(A) = \lim_{i \to \infty} f_{i}(B) - \lim_{i \to \infty} f_{i}(A) = \lim_{i \to \infty} \left(f_{i}(B) - f_{i}(A)\right) \geq 0,
+	\]
+	so also $f \in P_{n}(a, b)$.
+\end{proof}
+
+We shall be using especially the previous result a lot.
+
+One of the main properties of the classes of matrix monotone functions has still avoided our discussion, namely the relationship between classes of different orders. We already noticed that matrix monotone functions of all orders all monotonic, or $P_{n}(a,b) \subset P_{1}(a, b)$ for any $n \geq 1$. It should not be very surprising that we can make much more precise inclusions.
+
+\begin{prop}
+	For any open interval $(a, b)$ and positive integer $n$ we have $P_{n + 1}(a, b) \subset P_{n}(a, b)$.
+\end{prop}
+\begin{proof}
+	TODO
+\end{proof}
+
+One might ask whether these inclusions are strict. It turns out they are, as long as our interval is not the whole $\R$. We will come back to this.
+
+There are also more trivial inclusions: $P_{n}(a, b) \subset P_{n}(c, d)$ for any $(a, b) \supset (c, d)$. More interval, more matrices, more restrictions, less functions. To be precise, we only allowed functions with domain $(a, b)$ to the class $P_{n}(a, b)$, so maybe one should say instead something like: if $(a, b) \supset (c, d)$ and $f \in P_{n}(a, b)$, then also $\restr{f}{(c, d)} \in P_{n}(c, d)$. We will try not to worry too much about these technicalities.
 
 
 
