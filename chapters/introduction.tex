@@ -40,9 +40,11 @@ Of course, it's not really obvious how one should make any sense of these ``defi
 \end{itemize}
 Both of these questions can be (of course) answered in many ways, but for both of them, there's in a way very natural answer. In both cases we can get something more general: instead of comparing matrices we can compare linear maps, and we can apply function to linear mapping.
 
-Just to give a short glimpse of how these things might be defined, we should definitely first fix our ground field: let's say it's $\R$, at least for now.
+Just to give a short glimpse of how these things might be defined, we should first fix our ground field (for matrices): let's say it's $\R$, at least for now.
 
-TODO (Brief explanations)
+For matrix ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We say that matrix is positive if all it's eigenvalues are non-negative. Having done this, we immediately restrict ourselves to (symmetric) diagonalizable matrices with real eigenvalues, but we will later see that we can't do much ``better". Also, since sum of positive matrices should be positive, we should further restrict ourselves to even stricter class of matrices, called Hermitian matrices, which correspond self-adjoint linear maps. Now everything works nicely but we still preserve non-trivial non-commutative structure.
+
+Matrix functions, i.e. ``how to apply function to matrix" is bit simpler to explain. Instead of doing something arbitrary the idea is to take real function (a function $f : \R \to \R$, say) and intepret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, and similarly analytic functions, or at least entire. Now, a perverse definition for matrix function for continuous functions would be some kind of a limit when function is uniformly approximated by polynomials (using Weierstrass approximation theorem). This works for Hermitian matrices, but one can do better: apply the function to the eigenvalues of the mapping to get another linear map.
 
 As it turns out, much of the study of matrix monotone and convex functions is all about understanding these definitions of positive maps and matrix functions.
 
@@ -90,6 +92,7 @@ Master's thesis is to be structured roughly as follows.
 		\end{itemize}
 	\item Preliminaries (partially to be dumped to appendix?)
 		\begin{itemize}
+			\item Divided differences: basic definition, properties, representations and smoothness
 			\item Positive matrices
 				\begin{itemize}
 					\item Setup: finite (vs infinite) dimensional inner product spaces over $\C$ (vs $\R$), basic facts

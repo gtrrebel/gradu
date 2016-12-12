@@ -30,38 +30,62 @@ If we know all the positive matrices, we know all the ``orderings". To figure ou
 \end{enumerate}
 Here $3'$ is kind of combination of $3$ and $4$.
 
-The terminology here is rather unfortunate. Natural ordering of the reals satisfies all of the above with obvius interpretation of positive numbers, which however differs from the standard definition: $0$ is itself positive in our above definition. This is undoubtedly confusing, but what can you do? For real numbers we total order, so every number is either zero, strictly positive or strictly negative, so when we say non-negative, it literally means ``not negative": we get all the positive numbers and zero. But with partial orders we might get more. For a cheap fix, we could say that matrix is strictly positive if it's positive but not zero. But won't do that for reasons to be explained later.
+The terminology here is rather unfortunate. Natural ordering of the reals satisfies all of the above with obvious interpretation of positive numbers, which however differs from the standard definition: $0$ is itself positive in our above definition. This is undoubtedly confusing, but what can you do? For real numbers we have total order, so every number is either zero, strictly positive or strictly negative, so when we say non-negative, it literally means ``not negative": we get all the positive numbers and zero. But with partial orders we might get more. So the main reason why we are using this terminology is
+\begin{enumerate}
+	\item It's short.
+\end{enumerate}
+Also, now that we have decided to preserve the word ``positive" for ``at least zero" one might be tempted to preserve ``strictly positive" for ``at least zero, but not zero". We won't do that, we save that phrase for something more important.
 
-TODO (jotain vaan väliin, ehkä)
-
-It of course depends on the ground field. It hardly makes any sense to order matrices over $\F_{p}$: even $1 \times 1$ matrices, namely (canonically) the elements of $\F_{p}$ defy reasonable ordering. But real numbers, for instance, have ordering, so there's a serious change that all real matrices could be ordered.
+Back to business. When we try to define ordering of the matrices, everything of course depends on the ground field. It hardly makes any sense to order matrices over $\F_{p}$: even $1 \times 1$ matrices, namely (canonically) the elements of $\F_{p}$ defy reasonable ordering. But real numbers, for instance, have ordering, so there's a serious change that all real matrices could be ordered.
 
 We will first try to order all real square matrices. (Actually, we won't even try to order non-square matrices.) $1 \times 1$ matrices are easy to order, but as soon one moves to larger matrices, one faces difficult decisions:
 
 \[
 	\text{Is }
 	\begin{bmatrix}
-		0 & 1 \\
-		0 & 0 \\
+		1 & 0 \\
+		0 & -1 \\
 	\end{bmatrix}
 	\leq
 	\begin{bmatrix}
 		0 & 0 \\
-		1 & 0 \\
+		0 & 0 \\
 	\end{bmatrix}
 	\text{ or }
 	\begin{bmatrix}
-		0 & 1 \\
-		0 & 0 \\
+		1 & 0 \\
+		0 & -1 \\
 	\end{bmatrix}
 	\geq
 	\begin{bmatrix}
 		0 & 0 \\
-		1 & 0 \\
+		0 & 0 \\
 	\end{bmatrix}
 	\text{?}
 \]
 
-That's okay, we don't necessarily have to order all pairs of matrices. But there are other problems. We would like the ordering of the matrices to be independent of the choice matrix representation. 
+That's okay, we don't necessarily have to order all pairs of matrices. But there are other problems. We would like the ordering of the matrices to be independent of the choice matrix representation. If we flip basis vectors we change the rows and colums of the matrix, so change it's sign! So if we want
+\begin{itemize}
+	\item Positivity is readable from the matrix w.r.t arbitrary basis, alone.
+	\item Positivity doesn't depend on the chosen basis.
+\end{itemize}
+there is no way to assign sign to the previous matrix.
+
+Let's first try to order diagonal matrices.
+
+TODO
+
+\begin{comment}
+
+For matrix ordering, very reasonable properties we'd like it to satisfy are
+\begin{itemize}
+	\item If $A \leq B$ and $0 < \alpha (\in \R)$, we also have $\alpha A \leq \alpha B$.
+	\item If $A \leq B$, and $C$ is arbitrary, then also $A + C \leq B + C$.
+	\item If $A \leq B$ and $B \leq A$, then necessarily $A = B$.
+\end{itemize}
+Right? Here $A, B$ and $C$ are real matrices, and of same size, of course.
+
+Given these conditions it suffices to understand which matrices are ``at least zero", of $\geq 0$, we will call these matrices possibly bit confusingly \textit{positive}. As mentioned, we would like the positivity only to depend on the linear map itself, and not the basis fixing the matrix representation. Also the positivity should be readable from the matrix, e.g. table of real numbers, alone. These means that positivity is independent of all the changes of basis. Now, it only makes sense to consider linear self-maps (square matrices) since otherwise there's no way to make sense of change of basis conditions: if we flip the basis vectors on one space, we negate the matrix, so we should do something to compensate. And even worse: what if we flipped only some the vectors.
+\end{comment}
 
 \subsection{Hermitian matrices}

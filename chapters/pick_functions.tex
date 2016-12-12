@@ -6,6 +6,34 @@ Pick functions have many interesting properties related to positive matrices and
 
 \section{Basic properties and examples}
 
-Most obvious examples of Pick functions might be functions of the form $\alpha x + \beta$ where $\alpha, \beta \in \R$ and $\alpha \geq 0$. Of course one could also take $\beta \in \Hpc$.
+Most obvious examples of Pick functions might be functions of the form $\alpha x + \beta$ where $\alpha, \beta \in \R$ and $\alpha \geq 0$. Of course one could also take $\beta \in \Hpc$. Actually real constants are the only Pick functions failing to map $\Hp \to \Hp$: non-constant analytic functions are open mappings.
 
-Sum of two Pick functions is a Pick function and one can multiply a Pick function by non-negative constant to get a new Pick function.
+Sum of two Pick functions is a Pick function and one can multiply a Pick function by non-negative constant to get a new Pick function. Same is true for composition.
+
+The map $z \mapsto -\frac{1}{z}$ is evidently a Pick function. Hence are also all functions of the form
+\[
+	\alpha z + \beta + \sum_{i = 1}^{N} \frac{m_{i}}{\lambda_{i}- z},
+\]
+where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$, $\beta \in \Hp$ and $\lambda_{1}, \ldots, \lambda_{N} \in \Hp$. So far we have constructed our function by adding simple poles to the closure of lower half-plane. We could further add poles of higher order at lower half plane, and change residues and so on, but then we have to be a bit more careful.
+
+There are (luckily) more interesting examples: all the functions of the form $x^{p}$ where $0 < p < 1$ are Pick functions. To be precise, one should choose branch for the previous so that they are real at positive real axis. Also $\log$ yields Pick function when branch is chosen properly i.e. naturally again. Another classic example is $tan$. Indeed, by the addition formula
+\begin{eqnarray*}
+	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
+	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
+\end{eqnarray*}
+and $y$ and $\tanh(y)$ have the same sign.
+
+We observe the following useful fact.
+
+\begin{prop}
+	If $(\varphi_{i})_{i = 1}^{n}$ is a sequence of Pick functions converging locally uniformly, the limit function is also a Pick function.
+\end{prop}
+\begin{proof}
+	Locally uniform limits of analytic functions are analytic. Also the limit function has evidently non-negative imaginary part.
+\end{proof}
+
+Note that for any $z \in \Hp$ we have $\log(z) = \lim_{p \to 0^{+}}(z^p - 1)/p$: $\log$ can be understood as a limit of Pick functions.
+
+As we have noticed, Pick functions need not be injections or surjections.
+
+Schwarz lemma TODO
