@@ -1,6 +1,6 @@
 \chapter{Pick-Nevanlinna functions}
 
-Pick-Nevanlinna function is an analytic function defined in upper half-plane with a non-negative real part. Such functions are sometimes also called Herglotz or $\R$ but we will often call them just Pick functions. The class of Pick functions is denoted by $P$.
+\textit{Pick-Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative real part. Such functions are sometimes also called Herglotz or $\R$ functions but we will often call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
 
 Pick functions have many interesting properties related to positive matrices and that is why they are central objects to the theory of matrix monotone functions.
 
@@ -32,8 +32,33 @@ We observe the following useful fact.
 	Locally uniform limits of analytic functions are analytic. Also the limit function has evidently non-negative imaginary part.
 \end{proof}
 
-Note that for any $z \in \Hp$ we have $\log(z) = \lim_{p \to 0^{+}}(z^p - 1)/p$: $\log$ can be understood as a limit of Pick functions.
+Note that for any $z \in \Hp$ we have $\log(z) = \lim_{p \to 0^{+}}(z^p - 1)/p$: $\log$ can be understood as a limit of Pick functions. There's actually a considerable strengthening of the previous result.
 
-As we have noticed, Pick functions need not be injections or surjections.
+\begin{prop}
+	If $(\varphi_{i})_{i = 1}^{n}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
+\end{prop}
 
-Schwarz lemma TODO
+We will not prove this quite surprising result yet.
+
+\section{Schur functions}
+
+As we have noticed, Pick functions need not be injections or surjections. Some are both: simple examples are functions of the form $\alpha z + \beta$ and $\frac{\alpha}{\lambda - z} + \beta$ for $\alpha > 0$ and $\beta, \lambda \in \R$. And that's all.
+
+Before trying to understand why is that, we have to change the point of view. All the previous functions are rational functions, but even more is true: they are all Möbius transformations. Möbius transformations are analytic bijections of extended complex plane i.e. Riemann sphere, to itself. Our examples all exactly those Möbius transformation which map the extended real axis to itself, and don't change the orientation, so the upper half-plane is mapped to itself and not to the lower half-plane. When viewed as a part of the Riemann sphere, upper half-plane is just a hemisphere. Of course it shouldn't matter too much which hemisphere we are looking at, so we could also consider mappings from unit disc to itself (or closed unit disc, to be precise). These mappings are called \textit{Schur functions} and class of Schur functions is denoted by $\schurclass$. It's then natural to conjecture that bijective Schur functions are exactly the Möbius transformations which map unit circle to unit circle, and don't change the orientation so that the inside is mapped to the inside.
+
+These claims are easily derivable from each other as follows. Consider the pair of Möbius transformations
+\begin{eqnarray*}
+	\toplane : \D \to \Hp & & \toplane (z) = i \frac{1 - z}{1 + z} \\
+	\tocircle : \Hp \to \D & & \tocircle (z) = \frac{i - z}{i + z}.
+\end{eqnarray*}
+They are inverses of each other and map the (open) unit disc to upper half-plane and back, respectively. Now take any bijective Schur function $\psi : \D \to \D$. Then $\varphi = \toplane \circ \psi \circ \tocircle$ is bijective Pick function. Similarly one could invert $\psi = \tocircle \circ \varphi \circ \toplane$. This means that bijections can be paired: if all bijective Pick functions are Möbius transformations, so are all bijective Schur functions, since non-Möbiusness on one side would give rise to non-Möbiusness on the other side.
+
+Still before proving anything we should think about this relation a bit further. We noticed that every bijective Pick function has a corresponding Schur function pair. This correspondence is however by no means unique, it was merely our choice to choose such $\toplane$ and $\tocircle$. Still, there is need to restrict ourselves to bijections anymore. If one takes \textbf{any} Schur function $\psi : \D \to \D$ we can form the corresponding Pick function by taking $\varphi = \toplane \circ \psi \circ \tocircle$. This gives rise to bijection $\schurclass \to \pickclass$, and the inverse should be rather obvious by now. Of course, it's not a big surprise that there would be such bijection, that is to say that the sets are equal in size, but our bijection preserves composition of functions. All this is to say that in some sense these classes are almost the same.
+
+One should be a bit more careful here though: we have included also real constant functions to our class $\pickclass$ and we should also add unimodular constants to $\schurclass$. For these the bijection doesn't quite work; we can mostly do a natural extension, but then one would be forced to map the constant function $-1$ to the constant $\infty$. This means that we should add the constant infinity function to our Pick functions. We will not do this, as it would change the whole business to Riemann sphere, since it will bring other technical problems, but we will try to indicate when you should think about this extension.
+
+If one only thinks about composition one can of course do lot more. Take any simply connected domain in $U \subset \C$. By Riemann mapping theorem there's a analytic bijection $\toplane_{U} \D \to U$. For the domain $U$ we could define similar class of functions, and via $\toplane_{U}$ and it's inverse we could connect the classes. Again, one should be a bit careful with the boundary.
+
+In many ways Pick and Schur functions are most natural of these classes: they are closed under addition and multiplication, respectively. Also, they both contain the identity of the respective operations, so these properties are barely true. 
+
+\section{Schwarz lemma}
