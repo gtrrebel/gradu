@@ -90,7 +90,7 @@ There is however very special class of matrices, correponding to special class o
 
 \subsection{Hermitian matrices}
 
-Hermitian matrices/mappings will be our non-commutative playing ground in which we can define rather natural partial order. Fix any finite-dimensional inner-product space $(V, \langle \cdot \rangle )$ over $\R$ or $\C$. For any $v \in V \setminus \{0\}$ we may define the corresponding projection, denoted by $P_{v}$ by setting $P_{v}(x) = \langle x , v \rangle /\langle v, v \rangle v$.
+Hermitian matrices/mappings will be our non-commutative playing ground in which we can define rather natural partial order. Fix any finite-dimensional inner-product space $(V, \langle \cdot, \cdot \rangle )$ over $\R$ or $\C$. For any $v \in V \setminus \{0\}$ we may define the corresponding projection, denoted by $P_{v}$ by setting $P_{v}(x) = \langle x , v \rangle /\langle v, v \rangle v$. Also if $T$ is any subspace of $V$, we may define $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$ where $(e_{i})_{i = 1}^{m}$ is a basis of $T$. It is well known that such definition is well defined.
 
 \begin{maar}
 	Let $V$ be an finite-dimensional innerproduct space over $\R$ or $\C$. Now set of \textit{Hermitian maps} of $V$, denoted by $\H(V)$, is defined as
@@ -104,26 +104,30 @@ Hermitian matrices/mappings will be our non-commutative playing ground in which 
 	for some positive integer $m$, $v_{i} \in V$ and $\lambda_{i} \in \R$.
 \end{maar}
 
-This is not the standard definition, and in a way it's horrible, but it very directly answers our needs. Also note that since for any non-zero $\alpha$ and $v \in V \setminus \{0\}$ we have $P_{v} = P_{\alpha v}$, we could just as well only allow vectors of norm one in our definition of Hermitian maps. This is of course just to simplify notation. Remember that we want to have diagonalizable maps with real eigenvalues. Projections are very prototypical examples of such maps and since we want real eigenvalues that is simply what we require in the definition. Lastly, one of course wants now to take the span to have linear structure.
+Also note that since for any non-zero $\alpha$ and $v \in V \setminus \{0\}$ we have $P_{v} = P_{\alpha v}$, we could just as well only allow vectors of norm one in our definition of Hermitian maps. This is of course just to simplify notation. This is not the standard definition, and in a way it's horrible, but it very directly answers our needs. Remember that we want to have diagonalizable maps with real eigenvalues. Projections are very prototypical examples of such maps and since we want real eigenvalues that is simply what we require in the definition (span over $\R$). Lastly, one of course wants to take the span to have any linear structure in the first place.
 
 It is however very surprising that such construction works: basis vectors (projections) satisfy our requirements, but there are no reasons to expect that these would be preserved in addition. This is guaranteed by the following theorem.
 
 \begin{lause}[Spectral theorem]
 	Let $V$ be an $n$-dimensional inner-product space over $\R$ or $\C$, and $A \in \H(V)$. Then there exists real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and orthonormal vectors $v_{1}, v_{2}, \ldots, v_{n}$ such that
-	\[
+	\begin{align}\label{spectralrepr}
 		A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}.
-	\]
+	\end{align}
 \end{lause}
 
 It follows that vectors $v_{1}, v_{2}, \ldots, v_{n}$ are eigenvectors of $A$ with corresponding eigenvalues $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$. Indeed, for any $v_{j}$ we have
-\[
+\begin{align}
 	A v_{j} = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}} v_{j} = \sum_{i = 1}^{n} \lambda_{i} \langle v_{j}, v_{i}\rangle v_{i} = \sum_{i = 1}^{n} \lambda_{i} \delta_{ij} v_{i} = \lambda_{j} v_{j}.
-\]
+\end{align}
 
 \begin{proof}[Proof (of the Spectral theorem)]
 	We proof the statement by induction on the dimension of the space $V$. The case $n = 0$ is trivial: the span itself is trivial, and it's very easy to express $0$-mapping as a empty sum.
 
-	Now fix a positive integer $n$. First note $A$ has at least one eigenvector over $\C$, as every other linear mapping. Let $v_{1}$ be that eigenvector (of lenght one) with corresponding eigenvalue $\lambda_{1}$. Write $A = \sum_{i = 1}^{m} c_{i} P_{u_{i}}$ for $c_{1}, c_{2}, \ldots, c_{m} \in \R$ and $u_{1}, u_{2}, \ldots, u_{m} \in V \setminus \{0\}$ are of norm $1$. Now the definition of the eigenvector and eigenvalue rewrites to
+	Now fix a positive integer $n$. 
+
+	\textit{Step 1.} First note $A$ has at least one eigenvector over $\C$, as every other linear mapping. Let $v_{1}$ be that eigenvector (of lenght one) with corresponding eigenvalue $\lambda_{1}$.
+
+	\textit{Step 2.} Write $A = \sum_{i = 1}^{m} c_{i} P_{u_{i}}$ for $c_{1}, c_{2}, \ldots, c_{m} \in \R$ and $u_{1}, u_{2}, \ldots, u_{m} \in V \setminus \{0\}$ are of norm $1$. Now the definition of the eigenvector and eigenvalue rewrites to
 	\[
 		A v_{1} = \sum_{i = 1}^{m} c_{i} \langle v_{1}, u_{i}\rangle u_{i} = \lambda_{i} v_{1}.
 	\]
@@ -133,8 +137,91 @@ It follows that vectors $v_{1}, v_{2}, \ldots, v_{n}$ are eigenvectors of $A$ wi
 	\]
 	Since $\langle v_{1}, u_{i}\rangle \langle u_{i}, v_{1} \rangle = |\langle v_{1}, u_{i}\rangle|^{2}$, the left-hand side is real, so is right-hand side, and finally so is $\lambda_{1}$.
 
-	The idea is then to factorize $A$ to two parts: projection corresponding to $v_{1}$ and an orthogonal part living in $v_{1}^{\perp}$.
+	\textit{Step 3.} Now we have found $\lambda_{1}$ and $v_{1}$ as in the theorem statement. The idea is then to factorize $A$ to two parts: projection corresponding to $v_{1}$ and an orthogonal part living in $v_{1}^{\perp}$. If our choices for $\lambda_{1}$ and $v_{1}$ work, anything orthogonal to $v_{1}$ maps to something orthogonal to $v_{1}$. We verify this.
+
+	Take any $v \perp v_{1}$. Now,
+	\begin{eqnarray*}
+		\langle A v, v_{1} \rangle &=& \langle \sum_{i = 1}^{m} c_{i} \langle v, u_{i}\rangle u_{i}, v_{1} \rangle \\
+		= \sum_{i = 1}^{m} c_{i} \langle v, u_{i}\rangle \langle u_{i}, v_{1} \rangle &=& \overline{\sum_{i = 1}^{m} c_{i} \langle v_{1}, u_{i}\rangle \langle u_{i}, v \rangle} \\
+		= \overline{\langle \sum_{i = 1}^{m} c_{i} \langle v_{1}, u_{i}\rangle u_{i}, v \rangle} &=& \overline{\langle A v_{1}, v \rangle} \\
+		= \overline{\langle \lambda_{1} v_{1}, v \rangle} &=& 0,
+	\end{eqnarray*}
+	so also $A v \perp v_{1}$. It follows that we get a map $A' : v_{1}^{\perp} \to v_{1}^{\perp}$ which extends to $A$.
+
+	\textit{Step 4.} We would naturally like to use our induction hypothesis for this map, but for that we need it to be of special form: although the map is well defined, there is no reason to expect that we could just pick some of the $u_{i}$:s for our representation. But we can do something else.
+
+	Write $u_{i} = u_{i}' + \alpha_{i} v_{1} = P_{v_{1}^{\perp}} + P_{v_{1}}$. Now if $v \perp v_{1}$, we have
+	\begin{eqnarray*}
+		A v &=& \sum_{i = 1}^{m} c_{i} \langle v, u_{i}\rangle u_{i} \\
+		&=& \sum_{i = 1}^{m} c_{i} \langle v, u_{i}' + \alpha_{i} v_{1}\rangle (u_{i}' + \alpha_{i} v_{1}) \\
+		&=& \sum_{i = 1}^{m} c_{i} \langle v, u_{i}'\rangle u_{i}' +  v_{1} \sum_{i = 1}^{m} c_{i} \langle v, u_{i}'\rangle \alpha_{i}.
+	\end{eqnarray*}
+	Now since $u_{i}' \perp v_{1}$, the latter sum vanishes, and
+	\[
+		A' = \sum_{i = 1}^{m} c_{i} P_{u_{i}'}.
+	\]
+	This representation meets our requirements, so we can write $A' = \sum_{i = 2}^{n} \lambda_{i} P_{v_{i}}$, for some $\lambda_{2}, \ldots, \lambda_{n} \in \R$ and $v_{2}, \ldots, v_{n} \in v_{1}^{\perp}$, and adjoining $v_{1}$ and $\lambda_{1}$, we get the required representation.
 \end{proof}
+
+It should be noted that we only used one special property of ($\R$ linear combination of) projections $A$ in the proof:
+\[
+	\langle A v, w \rangle = \overline{\langle A w, v \rangle} = \langle v, A w \rangle,
+\]
+for any $v, w \in V$. In the first step we didn't use any properties of $A$. In the step 3 this is exactly what we do in the manipulation. Also in the step 2 the idea is to show that
+\[
+	\lambda_{1} \langle v_{1}, v_{2} \rangle = \langle A v_{1}, v_{1} \rangle \in \R,
+\]
+but $\langle A v_{1}, v_{1} \rangle = \overline{\langle A v_{1}, v_{1} \rangle}$ so $\langle A v_{1}, v_{1} \rangle \in \R$. Of course here we didn't need the fact that $v_{1}$ is an eigenvector in any way. Step 4 is just simpler: once we have constructed $A'$, it will obviously have the same property as $A$.
+
+In all of the above it doesn't make much difference whether we have $\R$ or $\C$ as the ground field, since the eigenvalues will be anyway real. Especially when one is working over $\R$, one might whether there is a more straightforward way to get through step $1$: get rid of the complex numbers. There is. Another way to find the eigenvector and eigenvalue is to look at the so called \textit{Rayleigh quotient}
+\[
+	R(A, v) = \frac{\langle A v, v \rangle}{\langle v, v \rangle},
+\]
+when $v \in V \setminus \{0\}$. This is scale-invariant bounded real quantity so it attains maximum somewhere outside zero, say at $v$. We claim that $v$ is an eigenvector of $A$. Looking at $v_{t} = v + t w$ and differentiating at zero yields
+\begin{eqnarray*}
+	0 = \frac{d}{dt} R(A, v_{t})\Big|_{t = 0} &=& \frac{(\langle A v, w \rangle + \langle A w, v \rangle) \langle v, v \rangle - (\langle v, w \rangle + \langle w, v \rangle) \langle Av, v \rangle}{\langle v, v \rangle^2} \\
+	&=& \frac{\Re\left(\langle A v, w \rangle \langle v, v \rangle -  \langle v, w \rangle \langle Av, v \rangle \right)}{\langle v, v \rangle^2}.
+\end{eqnarray*}
+We write $A v = \lambda v + v'$ where $v \perp v'$ and set $w = v'$. Now
+\begin{eqnarray*}
+	0 &=& \frac{\Re\left(\langle \lambda v + v', v' \rangle \langle v, v \rangle -  \langle v, v' \rangle \langle \lambda v + v', v \rangle \right)}{\langle v, v \rangle^2} \\
+	&=& \frac{\Re\langle v', v' \rangle \langle v, v \rangle}{\langle v, v \rangle^2},
+\end{eqnarray*}
+so $v' = 0$ and $v$ is an eigenvector.
+
+\subsection{Self-adjoint maps}
+
+\begin{maar}
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an finite-dimensional inner-product space. \textit{Adjoint} of a linear map $A : V \to V$ is a linear map $A^{*} : V \to V$ such that
+	\[
+		\langle A v, w \rangle = \langle v, A^{*} w \rangle
+	\]
+	for any $v, w \in V$.
+\end{maar}
+
+\begin{maar}
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an finite-dimensional inner-product space. A linear map $A : V \to V$ is \textit{self-adjoint} if it is its own adjoint, i.e.
+	\[
+		\langle A v, w \rangle = \langle v, A w \rangle
+	\]
+	for any $v, w \in V$.
+\end{maar}
+
+Self-adjointness was the good property of projections that made the Spectral theorem work: we got to move mappings from one side of inner-product to another. Generally the mapping changes, and adjoint is what comes out. We gather here many of the important properties of adjoint.
+
+\begin{lause}
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an finite-dimensional inner-product space and $A, B : V \to V$ linear, and $\lambda \in \R$. Then
+	\begin{enumerate}[i)]
+		\item $A$ has an unique adjoint
+		\item Matrix TODO
+		\item $(A^{*})^{*} = A$
+		\item $(A + B)^{*} = A^{*} + B^{*}$
+		\item $(\lambda A)^{*} = \overline{\lambda} A^{*}$
+		\item $(AB)^{*} = B^{*}A^{*}$.
+	\end{enumerate}
+\end{lause}
+
+
 
 
 
