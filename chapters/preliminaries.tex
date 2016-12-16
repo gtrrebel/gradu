@@ -88,9 +88,9 @@ There is however very special class of matrices, correponding to special class o
 	\item They are closed under sum, and (real) scalar multiplication.
 \end{itemize}
 
-\subsection{Hermitian matrices}
+\subsection{Hermitian maps}
 
-Hermitian matrices/mappings will be our non-commutative playing ground in which we can define rather natural partial order. Fix any finite-dimensional inner-product space $(V, \langle \cdot, \cdot \rangle )$ over $\R$ or $\C$. For any $v \in V \setminus \{0\}$ we may define the corresponding projection, denoted by $P_{v}$ by setting $P_{v}(x) = \langle x , v \rangle /\langle v, v \rangle v$. Also if $T$ is any subspace of $V$, we may define $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$ where $(e_{i})_{i = 1}^{m}$ is a basis of $T$. It is well known that such definition is well defined.
+Hermitian mappings will be our non-commutative playing ground in which we can define rather natural partial order. Fix any finite-dimensional inner-product space $(V, \langle \cdot, \cdot \rangle )$ over $\R$ or $\C$. For any $v \in V \setminus \{0\}$ we may define the corresponding projection, denoted by $P_{v}$ by setting $P_{v}(x) = \langle x , v \rangle /\langle v, v \rangle v$. Also if $T$ is any subspace of $V$, we may define $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$ where $(e_{i})_{i = 1}^{m}$ is a basis of $T$. It is well known that such definition is well defined.
 
 \begin{maar}
 	Let $V$ be an finite-dimensional innerproduct space over $\R$ or $\C$. Now set of \textit{Hermitian maps} of $V$, denoted by $\H(V)$, is defined as
@@ -210,16 +210,43 @@ so $v' = 0$ and $v$ is an eigenvector.
 Self-adjointness was the good property of projections that made the Spectral theorem work: we got to move mappings from one side of inner-product to another. Generally the mapping changes, and adjoint is what comes out. We gather here many of the important properties of adjoint.
 
 \begin{lause}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an finite-dimensional inner-product space and $A, B : V \to V$ linear, and $\lambda \in \R$. Then
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an $n$-dimensional inner-product space, $A, B : V \to V$ linear, and $\lambda \in \C$. Then
 	\begin{enumerate}[i)]
 		\item $A$ has an unique adjoint
-		\item Matrix TODO
+		\item Matrix of $A^{*}$ with respect to any basis is conjugate transpose of $A$, i.e. $A^{*}_{i, j} = \overline{A_{j, i}}$.
 		\item $(A^{*})^{*} = A$
 		\item $(A + B)^{*} = A^{*} + B^{*}$
 		\item $(\lambda A)^{*} = \overline{\lambda} A^{*}$
 		\item $(AB)^{*} = B^{*}A^{*}$.
 	\end{enumerate}
 \end{lause}
+\begin{proof}
+	\begin{enumerate}[i)]
+		\item Fix any orthonormal basis of $V$, $(e_{i})_{i = 1}^{n}$. Now for any $v, w \in V$
+		\begin{eqnarray*}
+			\langle A v, w \rangle &=& \langle A \sum_{i = 1}^{n} \langle v, e_{i} \rangle e_{i}, w\rangle\\
+			&=& \sum_{i = 1}^{n} \langle A e_{i}, w \rangle \langle v, e_{i} \rangle \\
+			&=& \langle v, \sum_{i = 1}^{n} \langle w, A e_{i} \rangle e_{i} \rangle,
+		\end{eqnarray*}
+		so we should set $A^{*} w = \sum_{i = 1}^{n} \langle w, A e_{i} \rangle e_{i}$. This clearly defines an linear mapping $A^{*}$. Also, if $A$ has two adjoints, their difference $C$ is linear map such that $\langle v, C w \rangle = 0$ for any $v, w \in V$. Setting $v = C w$ we get that $C w = 0$ for any $w \in V$ so the adjoints are equal.
+		\item Observe that $A^{*}_{i, j} = \langle A^{*}e_{j}, e_{i} \rangle = \overline{\langle e_{i}, A^{*} e_{j} \rangle} = \overline{ \langle A e_{i}, e_{j} \rangle} = \overline{A_{j, i}}$.
+		\item We have for any $v, w \in V$ that $\langle A^{*} v, w \rangle = \overline{\langle w, A^{*} v \rangle} = \overline{\langle A w, v \rangle} = \langle v, A w \rangle$, so $A$ is adjoint of $A^{*}$.
+		\item Since $\langle (A + B) v, w \rangle = \langle A v, w \rangle + \langle B v, w \rangle = \langle v, A^{*} w \rangle + \langle v, B^{*} w \rangle = \langle v, (A^{*} + B^{*})w \rangle$, $A^{*} + B^{*}$ is adjoint of $A + B$.
+		\item We simply calculate that $\langle \lambda A v, w \rangle = \lambda \langle v, A^{*} w \rangle = \langle v, \overline{\lambda} A^{*}v \rangle$.
+		\item Note that $\langle A B v, w \rangle = \langle B v, A^{*}w \rangle = \langle v, B^{*} A^{*} w \rangle$.
+	\end{enumerate}
+\end{proof}
+
+\begin{huom}
+	One way to understand adjoints is to look at bit more general case. Fix any two finite-dimensional inner-product spaces, $(V, \langle \cdot, \cdot \rangle_{V})$ and $(W, \langle \cdot, \cdot \rangle_{W})$, not necessarily of the same dimension, over, say, $\C$.
+	Now given any linear $A : V \to W$, adjoint is a linear map $A^{*} : W \to V$ such that for any $v \in V$ and $w \in W$ we have
+	\[
+		\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
+	\]
+	Now again, adjoint exists and it's unique: fix any $w \in W$. This vector induces linear mapping $W \to \C$ by $w' \mapsto \langle w', w \rangle_{W}$. For every such map we can compose linear mapping $V \to \C$ just by setting $v' \to \langle Av', w\rangle_{W}$. Now the idea is to simply intepret this as map like one we started with: we'd like to find vector $v \in V$ such that this map is same $v' \to \langle v', v \rangle$. Now $v = A^{*}w$.
+
+	TODO 
+\end{huom}
 
 
 
