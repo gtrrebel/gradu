@@ -1,12 +1,8 @@
-\chapter{Preliminaries}
+\chapter{Positive matrices}
 
-As mentioned in the introduction, in order to understand matrix monotone and convex functions we first have to undestand positive matrices and matrix functions (and some other things).
+This chapter is titled ``positive matrices", although ``positive maps" might be more appropriate title. We are mostly going to deal with finite-dimensional objects, but many of the ideas could be generalized infinite-dimensional settings, where matrices lose their edge. Also, one should always ask whether it really clarifies the situation to introduce concrete matrices: matrices are good at hiding the truly important properties of linear mappings. The words ``matrix" and ``linear map" are used somewhat synonymously, although one should always remember that the former are just special representations for the latter.
 
-\section{Positive matrices}
-
-This section is titled ``positive matrices", although ``positive maps" might be more appropriate title. We are mostly going to deal with finite-dimensional objects, but many of the ideas could be generalized infinite-dimensional settings, where matrices lose their edge. Also, one should always ask whether it really clarifies the situation to introduce concrete matrices: matrices are good at hiding the truly important properties of linear mappings. The words ``matrix" and ``linear map" are used somewhat synonymously, although one should always remember that the former are just special representations for the latter.
-
-\subsection{Motivation}
+\section{Motivation}
 
 How should one order matrices? What should we require from ordering anyway?
 
@@ -88,7 +84,7 @@ There is however very special class of matrices, correponding to special class o
 	\item They are closed under sum, and (real) scalar multiplication.
 \end{itemize}
 
-\subsection{Hermitian maps}
+\section{Hermitian maps}
 
 Hermitian mappings will be our non-commutative playing ground in which we can define rather natural partial order. Fix any finite-dimensional inner-product space $(V, \langle \cdot, \cdot \rangle )$ over $\R$ or $\C$. For any $v \in V \setminus \{0\}$ we may define the corresponding projection, denoted by $P_{v}$ by setting $P_{v}(x) = \langle x , v \rangle /\langle v, v \rangle v$.
 
@@ -189,7 +185,7 @@ We write $A v = \lambda v + v'$ where $v \perp v'$ and set $w = v'$. Now
 \end{eqnarray*}
 so $v' = 0$ and $v$ is an eigenvector.
 
-\subsection{Self-adjoint maps}
+\section{Self-adjoint maps}
 
 \begin{maar}
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an finite-dimensional inner-product space. \textit{Adjoint} of a linear map $A : V \to V$ is a linear map $A^{*} : V \to V$ such that
