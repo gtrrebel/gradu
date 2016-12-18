@@ -90,7 +90,7 @@ There is however very special class of matrices, correponding to special class o
 
 \subsection{Hermitian maps}
 
-Hermitian mappings will be our non-commutative playing ground in which we can define rather natural partial order. Fix any finite-dimensional inner-product space $(V, \langle \cdot, \cdot \rangle )$ over $\R$ or $\C$. For any $v \in V \setminus \{0\}$ we may define the corresponding projection, denoted by $P_{v}$ by setting $P_{v}(x) = \langle x , v \rangle /\langle v, v \rangle v$. Also if $T$ is any subspace of $V$, we may define $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$ where $(e_{i})_{i = 1}^{m}$ is a basis of $T$. It is well known that such definition is well defined.
+Hermitian mappings will be our non-commutative playing ground in which we can define rather natural partial order. Fix any finite-dimensional inner-product space $(V, \langle \cdot, \cdot \rangle )$ over $\R$ or $\C$. For any $v \in V \setminus \{0\}$ we may define the corresponding projection, denoted by $P_{v}$ by setting $P_{v}(x) = \langle x , v \rangle /\langle v, v \rangle v$.
 
 \begin{maar}
 	Let $V$ be an finite-dimensional innerproduct space over $\R$ or $\C$. Now set of \textit{Hermitian maps} of $V$, denoted by $\H(V)$, is defined as
@@ -210,10 +210,10 @@ so $v' = 0$ and $v$ is an eigenvector.
 Self-adjointness was the good property of projections that made the Spectral theorem work: we got to move mappings from one side of inner-product to another. Generally the mapping changes, and adjoint is what comes out. We gather here many of the important properties of adjoint.
 
 \begin{lause}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an $n$-dimensional inner-product space, $A, B : V \to V$ linear, and $\lambda \in \C$. Then
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an $n$-dimensional inner-product space, $A, B \in \L(V)$ linear, and $\lambda \in \C$. Then
 	\begin{enumerate}[i)]
 		\item $A$ has an unique adjoint
-		\item Matrix of $A^{*}$ with respect to any basis is conjugate transpose of $A$, i.e. $A^{*}_{i, j} = \overline{A_{j, i}}$.
+		\item Matrix of $A^{*}$ with respect to any orthonormal basis is conjugate transpose of matrix of $A$, i.e. $A^{*}_{i, j} = \overline{A_{j, i}}$.
 		\item $(A^{*})^{*} = A$
 		\item $(A + B)^{*} = A^{*} + B^{*}$
 		\item $(\lambda A)^{*} = \overline{\lambda} A^{*}$
@@ -238,15 +238,29 @@ Self-adjointness was the good property of projections that made the Spectral the
 \end{proof}
 
 \begin{huom}
-	One way to understand adjoints is to look at bit more general case. Fix any two finite-dimensional inner-product spaces, $(V, \langle \cdot, \cdot \rangle_{V})$ and $(W, \langle \cdot, \cdot \rangle_{W})$, not necessarily of the same dimension, over, say, $\C$.
+	One way to understand adjoints is to look at a bit more general case. Fix any two finite-dimensional inner-product spaces, $(V, \langle \cdot, \cdot \rangle_{V})$ and $(W, \langle \cdot, \cdot \rangle_{W})$, not necessarily of the same dimension, over, say, $\C$.
 	Now given any linear $A : V \to W$, adjoint is a linear map $A^{*} : W \to V$ such that for any $v \in V$ and $w \in W$ we have
 	\[
 		\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
 	\]
-	Now again, adjoint exists and it's unique: fix any $w \in W$. This vector induces linear mapping $W \to \C$ by $w' \mapsto \langle w', w \rangle_{W}$. For every such map we can compose linear mapping $V \to \C$ just by setting $v' \to \langle Av', w\rangle_{W}$. Now the idea is to simply intepret this as map like one we started with: we'd like to find vector $v \in V$ such that this map is same $v' \to \langle v', v \rangle$. Now $v = A^{*}w$.
+	Again, adjoint exists and it's unique. Fix any $w \in W$. Vector $w$ induces a linear mapping $W \to \C$ by $w' \mapsto \langle w', w \rangle_{W}$. Hence we get a map $T_{W} : W \to W^{*}$ where $V^{*}$ is the dual of $V$. It turns out that $T$ is anti-linear bijection. Anti-linearity and injectivity are easy to check, and since both spaces have same dimension, map has to be also surjection.
 
-	TODO 
+	Composing with $A$, $T_{W}$ induces a map $W \to V^{*}$ given by $w \mapsto T_{W}(w) \circ A$. Now we finally compose this with $T^{-1}_{V}$ to get a map $W \to V$, the adjoint. So $A^{*}(w) = T^{-1}_{V}(T_{W}(w) \circ A)$.
 \end{huom}
+
+Adjoint behaves in many ways like conjugate.
+\begin{itemize}
+	\item Notions agree in $1$-dimensional spaces.
+	\item Taking adjoint is an anti-linear involution.
+	\item Eigenvalues of the adjoint are conjugates of the eigenvalues of the original map.
+	\item If $A \in \L(V)$ has an orthonormal eigenbasis, $A^{*}$ has the same eigenbasis with conjugated eigenvalues.
+	\item Self-adjoint maps have real eigenvalues.
+\end{itemize}
+
+Maps for which the fourth point holds are called \textit{normal}. TODO
+
+As we noticed, if $A \in \L(V)$ is self-adjoint $\langle A v, v \rangle \in \R$ for any $v \in V$. This motivates us to define the quadratic form of $A$, a map $Q_{A} : V \to \R$, by setting $Q_{A}(v) = \langle A v, v \rangle$. Similarly, if $Q_{A}$ is real, $A$ is self-adjoint. Indeed, looking at $Q_{A}(v + t w) = Q_{A}(v) + |t|^2 Q_{A}(w) + \overline{t} \langle A v, w \rangle + t \langle A w, v \rangle$ we see that $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle \in \R$ for any $v, w \in V$ and $t \in \C$. Still $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle = \overline{t} \langle A v, w \rangle + t \overline{\langle A v, w \rangle} - t \langle w, A v \rangle   + t \langle A w, v \rangle = \Re(\overline{t} \langle A v, w \rangle) + t (\langle A w, v \rangle  - \langle w, A v \rangle) $ so we must have $\langle A w, v \rangle  = \langle w, A v \rangle$.
+
 
 
 
