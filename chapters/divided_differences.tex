@@ -1,3 +1,44 @@
 \chapter{Divided differences}
 
-Divided differences are cheap versions of derivatives.
+Divided differences are derivatives without limits.
+
+Consider a function $f : \R \to \R$. It's (first) divided difference is defined as
+\begin{align*}
+	[\cdot , \cdot]_{f} : \R^{2} \setminus \{x \neq y\} &\to \R \\
+	[x, y]_{f} &= \frac{f(x) - f(y)}{x - y}.
+\end{align*}
+
+If $f$ is sufficiently smooth, we should also define $[x, x]_{f} = f'(x)$: if $f \in C^{1}(\R)$, this gives continuous extension to $[\cdot, \cdot]_{f}$. Much of the power of divided differences comes however from the fact that they conveniently carry same information even if we do not do such extension.
+
+Consider the case of increasing $f$. This information is exactly carried by the inequality $[x, y]_{f} \geq 0$. Again, if $f$ is differentiable, this is equivalent to $f'(x) = [x, x]_{f} \geq 0$. There are many ways to see this fact, one of the more standard being the mean value theorem: If $x \neq y$, for some $\xi$ between $x$ and $y$ we have
+\[
+	\frac{f(x) - f(y)}{x - y} = f'(\xi).
+\]
+Now if the derivative is everywhere non-negative, so are divided differences. Also divided differences are sort of approximations for derivative.
+
+It gets better: consider case of convex $f$. Convexity is usually defined using a real parameter $0 \leq t \leq 1$: we require the inequality $t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y)$ to hold for any $x$ and $y$. For real two times differentiable functions this equivalent to second derivative being at least zero. There is however more symmetric form for convexity. First divided difference corresponds somewhat to first derivative, so second divided difference, defined for three distinct $x, y, z$ as
+\[
+	[x, y, z]_{f} = \frac{[x, y]_{f} - [y, z]_{f}}{x - z} = \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)},
+\]
+should correspond to second derivative. And indeed it does. Assume first that $x < y < z$. We have $f'(\xi_{x}) = [x, y]_{f}$ for some $x < \xi_{x} < y$ and $f'(\xi_{z}) = [y, z]_{f}$ for some $y < \xi_{z} < z$. Now
+\[
+	[x, y, z]_{f} = \frac{[x, y]_{f} - [y, z]_{f}}{x - z} = \frac{f'(\xi_{x}) - f'(\xi_{z})}{x - z} = \frac{\xi_{x} - \xi_{z}}{x - z} \frac{f'(\xi_{x}) - f'(\xi_{z})}{\xi_{x} - \xi_{z}} = \frac{\xi_{x} - \xi_{z}}{x - z} [\xi_{x}, \xi_{z}]_{f'}
+\]
+Applying mean value theorem again for $f'$, we get that $[\xi_{x}, \xi_{z}]_{f'} = f''(\xi)$ for some $\xi_{x} < \xi < \xi_{z}$. Finally
+\[
+	[x, y, z]_{f} = \frac{\xi_{x} - \xi_{z}}{x - z} f''(\xi).
+\]
+Since second divided difference is evidently symmetric in its entries, we can get rid of the assumption on the order of $x, y$ and $z$. This isn't quite as good as the mean value theorem anymore, but it is sufficient to connect second derivative to second divided differences: if the second derivative is always non-negative, so is the second divided difference. Implication goes the other way too, but that's not really clear from our computation. Non-negativity of the second divided difference however corresponds exactly to the standard definition for convexity by change of variables. Fix $x \neq y$, choose $0 < t < 1$ and set $z = t x + (1 - t) y$. We compute that
+\begin{eqnarray*}
+	[x, y, z]_{f} &=& \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \\
+	&=& \frac{f(x)}{(x - y)(x - (t x + (1 - t) y))} + \frac{f(y)}{(y - (t x + (1 - t) y))(y - x)} \\
+	& &+ \frac{f(t x + (1 - t) y)}{((t x + (1 - t) y) - x)((t x + (1 - t) y) - y)} \\
+	&=& \frac{f(x)}{(1 - t)(y - x)^2} + \frac{f(y)}{t (y - x)^2} - \frac{f(t x + (1 - t) y)}{t (1 - t) (y - x)^2} \\
+	&=& \frac{t f(x) + (1 - t) f(y) - f(t x + (1 - t) y)}{t (1 - t) (y - x)^2}.
+\end{eqnarray*}
+
+As expected, the general $n$:th order divided differences, defined for distinct real numbers $x_{0}, x_{1}, \ldots, x_{n}$ is defined recursively as
+\[
+[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}}.
+\]
+Again, $n$:th divided difference corresponds to $n$:th derivative. TODO
