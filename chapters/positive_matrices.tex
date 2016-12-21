@@ -159,13 +159,19 @@ It follows that vectors $v_{1}, v_{2}, \ldots, v_{n}$ are eigenvectors of $A$ wi
 	This representation meets our requirements, so we can write $A' = \sum_{i = 2}^{n} \lambda_{i} P_{v_{i}}$, for some $\lambda_{2}, \ldots, \lambda_{n} \in \R$ and $v_{2}, \ldots, v_{n} \in v_{1}^{\perp}$, and adjoining $v_{1}$ and $\lambda_{1}$, we get the required representation.
 \end{proof}
 
+Representation \ref{spectralrepr}, which we will call \textit{spectral representation} is by no means unique. If $A = I$ for instance, we could choose the vectors $v_{i}$ rather arbitrarily. It also should be made clear why such representation is useful. First of all, calculating with spectral representation is easy. If $A = \sum_{i = 1} \lambda_{i} P_{v_{i}}$,
+\[
+	A^{2} = \left(\sum_{i = 1} \lambda_{i} P_{v_{i}}\right) \left(\sum_{j = 1} \lambda_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n} \sum_{j = 1}^{n}\lambda_{i} \lambda_{j} P_{v_{i}} P_{v_{j}} = \sum_{i = 1}^{n} \lambda_{i}^2 P_{v_{i}},
+\]
+since $P_{v}P_{w}$ for any orthogonal $v, w \in V$. There is an obvious generalization for higher powers, and polynomials too. Similar identities work for more general diagonalizable maps, but now we have additionally projection representation. Spectral representation has however many other nice properties not shared with the more general diagonalizable maps: operator norm of map is determined by its eigenvalues only. More precisely $\|A\| = \max_{i = 1}^{n} |\lambda_{i}|$. We will come back to this in a minute. TODO
+
 It should be noted that we only used one special property of ($\R$ linear combination of) projections $A$ in the proof:
 \[
 	\langle A v, w \rangle = \overline{\langle A w, v \rangle} = \langle v, A w \rangle,
 \]
 for any $v, w \in V$. In the first step we didn't use any properties of $A$. In the step 3 this is exactly what we do in the manipulation. Also in the step 2 the idea is to show that
 \[
-	\lambda_{1} \langle v_{1}, v_{2} \rangle = \langle A v_{1}, v_{1} \rangle \in \R,
+	\lambda_{1} \langle v_{1}, v_{1} \rangle = \langle A v_{1}, v_{1} \rangle \in \R,
 \]
 but $\langle A v_{1}, v_{1} \rangle = \overline{\langle A v_{1}, v_{1} \rangle}$ so $\langle A v_{1}, v_{1} \rangle \in \R$. Of course here we didn't need the fact that $v_{1}$ is an eigenvector in any way. Step 4 is just simpler: once we have constructed $A'$, it will obviously have the same property as $A$.
 
@@ -184,6 +190,16 @@ We write $A v = \lambda v + v'$ where $v \perp v'$ and set $w = v'$. Now
 	&=& \frac{\Re\langle v', v' \rangle \langle v, v \rangle}{\langle v, v \rangle^2},
 \end{eqnarray*}
 so $v' = 0$ and $v$ is an eigenvector.
+
+Rayleigh quotient is also a good way to think about the operator norm of a linear map. Take any $\H(V) \ni A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$ and also any $V \setminus \{0\} \ni x = \sum_{i = 1}^{n} x_{i} v_{i}$. Now
+\[
+	R(A, x) = \frac{\langle A x, x \rangle}{\langle x, x \rangle} = \frac{\sum_{i = 1}^{n} \lambda_{i} |x_{i}|^2}{\sum_{i = 1}^{n} |x_{i}|^2},
+\]
+the Rayleigh quotient is a weighted average of the eigenvalues of $A$. Now if $A$ is any linear map, and $x \in V \setminus \{0\}$
+\[
+	\|A x\| = \langle A x, A x \rangle = \langle A^{*} A x, x \rangle = R(A^{*} A, x) \|x\|
+\]
+Now $A^{*} A$ is self-adjoint. Also its eigenvalues must be non-negative, since the Rayleigh quotient is: these values are called the \text{singular values} of $A$. These considerations make it also clear that the largest singular value of $A$ is the operator norm of $A$. If $A$ is self-adjoint itself, singular values are simply the absolute values of the eigenvalues, and the operator norm is the maximum of these absolute values, as claimed before.
 
 \section{Self-adjoint maps}
 
@@ -257,11 +273,19 @@ Maps for which the fourth point holds are called \textit{normal}. TODO
 
 As we noticed, if $A \in \L(V)$ is self-adjoint $\langle A v, v \rangle \in \R$ for any $v \in V$. This motivates us to define the quadratic form of $A$, a map $Q_{A} : V \to \R$, by setting $Q_{A}(v) = \langle A v, v \rangle$. Similarly, if $Q_{A}$ is real, $A$ is self-adjoint. Indeed, looking at $Q_{A}(v + t w) = Q_{A}(v) + |t|^2 Q_{A}(w) + \overline{t} \langle A v, w \rangle + t \langle A w, v \rangle$ we see that $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle \in \R$ for any $v, w \in V$ and $t \in \C$. Still $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle = \overline{t} \langle A v, w \rangle + t \overline{\langle A v, w \rangle} - t \langle w, A v \rangle   + t \langle A w, v \rangle = \Re(\overline{t} \langle A v, w \rangle) + t (\langle A w, v \rangle  - \langle w, A v \rangle) $ so we must have $\langle A w, v \rangle  = \langle w, A v \rangle$.
 
+\section{Commuting self-adjoint maps}
+
 \textbf{Warning!} Composition of self-adjoint maps need not be self-adjoint!
 
 It's rather surprising that they are closed under sums in the first place. Of course both Hermitian and self-adjoint maps are by definition, but it's rather surprising that such class has such nice properties (most of which are left to discuss).
 
-The problem is that even if $A, B \in \H(V)$, $(AB)^{*} = B^{*} A^{*} = B A$, which is in general different from $A B$: two self-adjoint maps need not commute. Again, one should have a counterexample and almost anything works. We need to have $n > 1$. Also we should be able to find counterexamples that are projetions, since if any two projections commute, so do maps in their span, Hermitian maps. Finally we should not take parallel or orthogonal vectors: projections are idemponent and if one applies two orthogonal projections, result if the zero map. Actually anything else works as a counterexample. Indeed, when $v$ and $w$ are not parallel or orthogonal. Now $P_{w} P_{v} v = P_{w} v =$ something non-zero parallel to $w$, while $P_{v} P_{w}$ is something non-zero parallel to $v$ or at least not parallel to $w$. Hence $P_{v}$ and $P_{w}$ do not commute.
+The problem is that even if $A, B \in \H(V)$, $(AB)^{*} = B^{*} A^{*} = B A$, which is in general different from $A B$: two self-adjoint maps need not commute. Again, one should have a counterexample and almost anything works for that. We need to have $n > 1$. Also we should be able to find counterexamples that are projetions, since if any two projections commute, so do maps in their span, Hermitian maps. Finally we should not take parallel or orthogonal vectors: projections are idemponent and if one applies two orthogonal projections, result if the zero map. Actually anything else works as a counterexample. Indeed, when $v$ and $w$ are not parallel or orthogonal. Now $P_{w} P_{v} v = P_{w} v =$ something non-zero parallel to $w$, while $P_{v} P_{w}$ is something non-zero parallel to $v$ or at least not parallel to $w$. Hence $P_{v}$ and $P_{w}$ do not commute.
+
+From the previous we see that projections commute exactly when the corresponding vectors are parallel or orthogonal. More generally one would like to determine exactly which products of self-adjoint maps are self-adjoint, i.e. which products commute. Large family of examples is given by pairs of self-adjoint maps with the same eigenvectors. Namely if $A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} \lambda'_{i} P_{v_{i}}$,
+\[
+	A B = \left(\sum_{i = 1}^{n} \lambda_{i} P_{v_{i}} \right) \left(\sum_{j = 1}^{n} \lambda'_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n} \sum_{j = 1}^{n}\left(\lambda_{i} P_{v_{i}}\right)\left(\lambda'_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n}\lambda_{i}\lambda'_{i} P_{v_{i}} = BA.
+\]
+It turns out that that's all. TODO
 
 \section{Unitary maps}
 
