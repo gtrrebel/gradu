@@ -203,7 +203,7 @@ so $v' = 0$ and $v$ is an eigenvector.
 	for any $v, w \in V$.
 \end{maar}
 
-Self-adjointness was the good property of projections that made the Spectral theorem work: we got to move mappings from one side of inner-product to another. Generally the mapping changes, and adjoint is what comes out. We gather here many of the important properties of adjoint.
+The spectral theorem shows that Hermitian maps correspond exactly to the self-adjoint maps. It is the good property of projections that made the Spectral theorem work: we got to move mappings from one side of inner-product to another. Generally the mapping changes, and adjoint is what comes out. We gather here many of the important properties of adjoint.
 
 \begin{lause}
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an $n$-dimensional inner-product space, $A, B \in \L(V)$ linear, and $\lambda \in \C$. Then
@@ -257,7 +257,15 @@ Maps for which the fourth point holds are called \textit{normal}. TODO
 
 As we noticed, if $A \in \L(V)$ is self-adjoint $\langle A v, v \rangle \in \R$ for any $v \in V$. This motivates us to define the quadratic form of $A$, a map $Q_{A} : V \to \R$, by setting $Q_{A}(v) = \langle A v, v \rangle$. Similarly, if $Q_{A}$ is real, $A$ is self-adjoint. Indeed, looking at $Q_{A}(v + t w) = Q_{A}(v) + |t|^2 Q_{A}(w) + \overline{t} \langle A v, w \rangle + t \langle A w, v \rangle$ we see that $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle \in \R$ for any $v, w \in V$ and $t \in \C$. Still $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle = \overline{t} \langle A v, w \rangle + t \overline{\langle A v, w \rangle} - t \langle w, A v \rangle   + t \langle A w, v \rangle = \Re(\overline{t} \langle A v, w \rangle) + t (\langle A w, v \rangle  - \langle w, A v \rangle) $ so we must have $\langle A w, v \rangle  = \langle w, A v \rangle$.
 
+\textbf{Warning!} Composition of self-adjoint maps need not be self-adjoint!
 
+It's rather surprising that they are closed under sums in the first place. Of course both Hermitian and self-adjoint maps are by definition, but it's rather surprising that such class has such nice properties (most of which are left to discuss).
+
+The problem is that even if $A, B \in \H(V)$, $(AB)^{*} = B^{*} A^{*} = B A$, which is in general different from $A B$: two self-adjoint maps need not commute. Again, one should have a counterexample and almost anything works. We need to have $n > 1$. Also we should be able to find counterexamples that are projetions, since if any two projections commute, so do maps in their span, Hermitian maps. Finally we should not take parallel or orthogonal vectors: projections are idemponent and if one applies two orthogonal projections, result if the zero map. Actually anything else works as a counterexample. Indeed, when $v$ and $w$ are not parallel or orthogonal. Now $P_{w} P_{v} v = P_{w} v =$ something non-zero parallel to $w$, while $P_{v} P_{w}$ is something non-zero parallel to $v$ or at least not parallel to $w$. Hence $P_{v}$ and $P_{w}$ do not commute.
+
+\section{Unitary maps}
+
+As mentioned, normal maps are exactly those linear maps that have eigendecomposition with orthogonal eigenvectors. These maps, however, don't have that many good properties anymore. TODO
 
 
 
