@@ -117,7 +117,7 @@ It follows that vectors $v_{1}, v_{2}, \ldots, v_{n}$ are eigenvectors of $A$ wi
 \end{align}
 
 \begin{proof}[Proof (of the Spectral theorem)]
-	We proof the statement by induction on the dimension of the space $V$. The case $n = 0$ is trivial: the span itself is trivial, and it's very easy to express $0$-mapping as a empty sum.
+	We prove the statement by induction on $n$ the dimension of the space $V$. The case $n = 0$ is trivial: the span itself is trivial, and it's very easy to express $0$-mapping as a empty sum.
 
 	Now fix a positive integer $n$. 
 
@@ -191,16 +191,6 @@ We write $A v = \lambda v + v'$ where $v \perp v'$ and set $w = v'$. Now
 \end{eqnarray*}
 so $v' = 0$ and $v$ is an eigenvector.
 
-Rayleigh quotient is also a good way to think about the operator norm of a linear map. Take any $\H(V) \ni A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$ and also any $V \setminus \{0\} \ni x = \sum_{i = 1}^{n} x_{i} v_{i}$. Now
-\[
-	R(A, x) = \frac{\langle A x, x \rangle}{\langle x, x \rangle} = \frac{\sum_{i = 1}^{n} \lambda_{i} |x_{i}|^2}{\sum_{i = 1}^{n} |x_{i}|^2},
-\]
-the Rayleigh quotient is a weighted average of the eigenvalues of $A$. Now if $A$ is any linear map, and $x \in V \setminus \{0\}$
-\[
-	\|A x\| = \langle A x, A x \rangle = \langle A^{*} A x, x \rangle = R(A^{*} A, x) \|x\|
-\]
-Now $A^{*} A$ is self-adjoint. Also its eigenvalues must be non-negative, since the Rayleigh quotient is: these values are called the \text{singular values} of $A$. These considerations make it also clear that the largest singular value of $A$ is the operator norm of $A$. If $A$ is self-adjoint itself, singular values are simply the absolute values of the eigenvalues, and the operator norm is the maximum of these absolute values, as claimed before.
-
 \section{Self-adjoint maps}
 
 \begin{maar}
@@ -249,18 +239,18 @@ The spectral theorem shows that Hermitian maps correspond exactly to the self-ad
 	\end{enumerate}
 \end{proof}
 
-\begin{huom}
-	One way to understand adjoints is to look at a bit more general case. Fix any two finite-dimensional inner-product spaces, $(V, \langle \cdot, \cdot \rangle_{V})$ and $(W, \langle \cdot, \cdot \rangle_{W})$, not necessarily of the same dimension, over, say, $\C$.
-	Now given any linear $A : V \to W$, adjoint is a linear map $A^{*} : W \to V$ such that for any $v \in V$ and $w \in W$ we have
-	\[
-		\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
-	\]
-	Again, adjoint exists and it's unique. Fix any $w \in W$. Vector $w$ induces a linear mapping $W \to \C$ by $w' \mapsto \langle w', w \rangle_{W}$. Hence we get a map $T_{W} : W \to W^{*}$ where $V^{*}$ is the dual of $V$. It turns out that $T$ is anti-linear bijection. Anti-linearity and injectivity are easy to check, and since both spaces have same dimension, map has to be also surjection.
+\section{Intuition}
 
-	Composing with $A$, $T_{W}$ induces a map $W \to V^{*}$ given by $w \mapsto T_{W}(w) \circ A$. Now we finally compose this with $T^{-1}_{V}$ to get a map $W \to V$, the adjoint. So $A^{*}(w) = T^{-1}_{V}(T_{W}(w) \circ A)$.
-\end{huom}
+One way to understand adjoints is to look at a bit more general case. Fix any two finite-dimensional inner-product spaces, $(V, \langle \cdot, \cdot \rangle_{V})$ and $(W, \langle \cdot, \cdot \rangle_{W})$, not necessarily of the same dimension, over, say, $\C$.
+Now given any linear $A : V \to W$, adjoint is a linear map $A^{*} : W \to V$ such that for any $v \in V$ and $w \in W$ we have
+\[
+	\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
+\]
+Again, adjoint exists and it's unique. Fix any $w \in W$. Vector $w$ induces a linear mapping $W \to \C$ by $w' \mapsto \langle w', w \rangle_{W}$. Hence we get a map $T_{W} : W \to W^{*}$ where $V^{*}$ is the dual of $V$. It turns out that $T$ is anti-linear bijection. Anti-linearity and injectivity are easy to check, and since both spaces have same dimension, map has to be also surjection.
 
-Adjoint behaves in many ways like conjugate.
+Composing with $A$, $T_{W}$ induces a map $W \to V^{*}$ given by $w \mapsto T_{W}(w) \circ A$. Now we finally compose this with $T^{-1}_{V}$ to get a map $W \to V$, the adjoint. So $A^{*}(w) = T^{-1}_{V}(T_{W}(w) \circ A)$.
+
+Adjoint also behaves in many ways like conjugate.
 \begin{itemize}
 	\item Notions agree in $1$-dimensional spaces.
 	\item Taking adjoint is an anti-linear involution.
@@ -271,7 +261,25 @@ Adjoint behaves in many ways like conjugate.
 
 Maps for which the fourth point holds are called \textit{normal}. TODO
 
+\section{Operator norm}
+
 As we noticed, if $A \in \L(V)$ is self-adjoint $\langle A v, v \rangle \in \R$ for any $v \in V$. This motivates us to define the quadratic form of $A$, a map $Q_{A} : V \to \R$, by setting $Q_{A}(v) = \langle A v, v \rangle$. Similarly, if $Q_{A}$ is real, $A$ is self-adjoint. Indeed, looking at $Q_{A}(v + t w) = Q_{A}(v) + |t|^2 Q_{A}(w) + \overline{t} \langle A v, w \rangle + t \langle A w, v \rangle$ we see that $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle \in \R$ for any $v, w \in V$ and $t \in \C$. Still $\overline{t} \langle A v, w \rangle + t \langle A w, v \rangle = \overline{t} \langle A v, w \rangle + t \overline{\langle A v, w \rangle} - t \langle w, A v \rangle   + t \langle A w, v \rangle = \Re(\overline{t} \langle A v, w \rangle) + t (\langle A w, v \rangle  - \langle w, A v \rangle) $ so we must have $\langle A w, v \rangle  = \langle w, A v \rangle$.
+
+Rayleigh quotient is sort of a scale-invariant version of the quadratic form, and that's why it captures many of the properties of self-adjoint maps. It is also a good way to think about the operator norm of a linear map. Take any $\H(V) \ni A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$ and also any $V \setminus \{0\} \ni x = \sum_{i = 1}^{n} x_{i} v_{i}$. Now
+\[
+	R(A, x) = \frac{\langle A x, x \rangle}{\langle x, x \rangle} = \frac{\sum_{i = 1}^{n} \lambda_{i} |x_{i}|^2}{\sum_{i = 1}^{n} |x_{i}|^2},
+\]
+the Rayleigh quotient is a weighted average of the eigenvalues of $A$. Now if $A$ is any linear map, and $x \in V \setminus \{0\}$
+\[
+	\|A x\|^{2} = \langle A x, A x \rangle = \langle A^{*} A x, x \rangle = R(A^{*} A, x) \|x\|^{2}
+\]
+Now $A^{*} A$ is self-adjoint. Also its eigenvalues must be non-negative, since the Rayleigh quotient is: square roots of these values are called the \textit{singular values} of $A$. These considerations make it also clear that the largest singular value of $A$ is the operator norm of $A$. If $A$ is self-adjoint itself, singular values are simply the absolute values of the eigenvalues, and the operator norm is the maximum of these absolute values, as claimed before. More generally, if $A$ is normal, i.e. we can write $A = \sum_{i = 1}^{n}\lambda_{i} P_{v_{i}}$ with $\lambda_{i} \in \C$ and $v_{i}$'s orthonormal, we have
+\[
+	A^{*} A = \left(\sum_{i = 1}^{n} \overline{\lambda_{i}} P_{v_{i}}\right) \left( \sum_{j = 1}^{n} \lambda_{j} P_{v_{j}} \right) = \sum_{i = 1}^{n} |\lambda_{i}|^2 P_{v_{i}},
+\]
+so again singular values are the absulute values of the eigenvalues and $\|A\| = \max_{i = 1}^{n} |\lambda_{i}|$. Rayleigh quotient also has interpratation for normal maps, it is again weighted average of the eigenvalues. When $x$ ranges over non-zero vectors, or equivalently over some sphere, $R(A, x)$ ranges over the convex full of the eigenvalues.
+
+TODO
 
 \section{Commuting self-adjoint maps}
 
@@ -285,7 +293,46 @@ From the previous we see that projections commute exactly when the corresponding
 \[
 	A B = \left(\sum_{i = 1}^{n} \lambda_{i} P_{v_{i}} \right) \left(\sum_{j = 1}^{n} \lambda'_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n} \sum_{j = 1}^{n}\left(\lambda_{i} P_{v_{i}}\right)\left(\lambda'_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n}\lambda_{i}\lambda'_{i} P_{v_{i}} = BA.
 \]
-It turns out that that's all. TODO
+
+It turns out that that's all. Before going through the proof, let's get back to the spectral theorem. One of the unfortunate aspects of it is that the spectral representation is not unique. We can however make it unique. Essentially only choices we get to make in the representation are the choices for the orthonormal bases of the eigenspaces of the map, so if we replace the projections to vectors with projections to the eigenspaces, we have the uniqueness.
+
+Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $T$, denoted by $P_{T}$ is the unique linear map such that $P_{T} V = T$, $P_{T} T^{\perp} = \{0\}$ and $P_{T}^2 = P_{T}$. Equivalently for any $v \in V$ $P_{T}v$ is the unique vector in $T$, such that $v - P_{T} v \perp T$. Or still equivalently, $P_{T} v$ is the unique vector in $T$ closest to $v$. Equivalence of these definitions is easy to check, and also the fact that projections to vectors used before are just projections to corresponding subspaces. Finally, if $e_{1}, e_{2}, \ldots, e_{m}$ is an orthonormal basis for an subspace $T$, $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$.
+
+\begin{lause}[Spectral theorem]
+	Let $V$ be an $n$-dimensional inner-product space and $A \in \H(V)$. Then there exists unique non-negative integer $m$, real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ and non-trivial orthonormal subspace of $V$, $E_{\lambda_{1}}, E_{\lambda_{2}}, \ldots E_{\lambda_{m}}$ with $E_{\lambda_{1}} + E_{\lambda_{2}} + \ldots + E_{\lambda_{m}} = V$, such that
+	\[
+		A = \sum_{i = 1}^{m} \lambda_{i} P_{E_{\lambda_{i}}}.
+	\]
+	Moreover, this representation is unique.
+\end{lause}
+
+Here $m$ is the number of distinct eigenvalues of $A$, $\lambda_{i}$'s are the eigenvalues, and $E_{\lambda_{i}}$'s are the corresponding eigenspaces: representation is necessarily unique. Existence of such representation is immediate from the previous version of the spectral theorem.
+
+We can also reinterpret the original proof a a bit further. One of the key facts we used was that if $v$ is an eigenvector, $v^{\perp}$ is mapped to itself. This fact has rather natural generalization: if $A \in \H(V)$ and $T$ is a subspace of $V$ which maps to itself, so does its orthocomplement. Now we can decompose $A$ to $A_{T}$ and $A_{T^{\perp}}$. Put a bit differently: every self-adjoint map is canonically a product of real multiplication maps.
+
+\begin{lause}
+	Let $V$ be an $n$-dimensional inner-product space and $A_{j} \in \H(V)$ for $j \in J$ be an arbitrary family of (pairwise) commuting self-adjoint maps on $V$. Then there exists on-negative integer $m$, non-trivial orthogonal subspaces $T_{1}, T_{2}, \ldots, T_{m}$ of $V$ with $T_{1} + T_{2} + \ldots + T_{m} = V$, and sequences of real numbers $(\lambda_{i, j})_{i = 1}^{m}$ for $j \in J$ such that for any $j \in J$ we have
+	\[
+		A_{j} = \sum_{i = 1}^{m} \lambda_{i, j} P_{T_{i}}
+	\]
+	and if $i \neq i'$, for some $j \in J$ we have $\lambda_{i, j} \neq \lambda_{i', j}$. Moreover, this representation is unique.
+\end{lause}
+
+We again see that the $\lambda_{i, j}$'s are eigenvalues of the corresponding $A_{j}$'s. The last requirement on the subspaces and $\lambda_{i, j}$'s is just technical minimality condition to ensure uniqueness. If we have any representation ignoring this constraint, we can just combine the subspaces if all the eigenvalues are equal.
+
+\begin{proof}
+	We proceed by induction on $n$, the dimension of the space. The case $n = 0$ is trivial. When $n > 0$ if we look at the spectral representations of the maps $A_{j}$. If all of them simple representation ($m = 1$), i.e. they are multiples of identity map, we can also choose $m = 1$, let $\lambda_{1, j}$'s be the corresponding unique eigenvalue of $A_{j}$ and let $T_{1} = V$.
+
+	Assume then that some $A_{j}$ has non-trivial decomposition and let $T$ be an subspace in the decomposition, eigenspace of $A_{j}$, with eigenvalue $\lambda$. We know that $A_{j}$ itself can be decomposed into maps living in $T$ and $T^{\perp}$: we shall prove that same is true about all the other maps $A_{j'}$.
+
+	Take any $j' \in J$. We want to prove that $A_{j'} T \subset T$ Since $A_{j'}$ and $A_{j}$, for any $v \in T$ we have
+	\[
+		\lambda A_{j'} v = A_{j'} A_{j} v = A_{j} A_{j'} v.
+	\]
+	If $A_{j'} v = 0$, everything's fine. If not, $A_{j'}v$ is an eigenvector of $A_{j}$ with eigenvalue $\lambda$: it lives by definition in $T$. It follows that also $A_{j'} T^{\perp} \subset T^{\perp}$, and $A_{j'}$ factorizes to maps in $T$ and $T^{\perp}$.
+
+	Once we perform this factorization for all the maps, we have reduced our problem to smaller case: $T$ was a proper non-trivial subspace of $V$. It follows by induction that we can find factorizations as in the statement of the theorem for both sides, and we simply put them together to get final representation. This representation is also minimal, as is rather is easy to check, put even if it wasn't, we could cook up such as explained before the proof.
+\end{proof}
 
 \section{Unitary maps}
 
