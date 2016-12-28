@@ -73,9 +73,17 @@ there is no way to assign sign to the previous matrix.
 
 Let's consider diagonalizable matrices: by change of basis these can be written as diagonal matrices, but these diagonal values, eigenvalues, need not be real anymore. One could try to ignore the complex bases, but how often really is ignoring the complex structure satisfactory. Another approach would be only to consider matrices with real eigenvalues. There's problem here though: sum of two matrices with real eigenvalues need not have real eigenvalues, even if the former are diagonalizable! Sad as it may sound, it shouldn't be too surprising since it's not very clear that eigenvalues should have any reasonable behaviour with respect to addition. Of course, one shouldn't just take my word for it: here are congrete examples:
 \[
-	MATRIX A and B
+	\begin{bmatrix}
+		0 & 4 \\
+		1 & 0
+	\end{bmatrix}
+	\text{ and }
+	\begin{bmatrix}
+		0 & -1 \\
+		-4 & 0
+	\end{bmatrix}
 \]
-First two matrices have eigenvalues TODO, TODO and TODO, TODO, respectively, but their sum has characteristic polynomial TODO, that most definitely has no real zeros.
+The two matrices have both distinct eigenvalues $- 2$ and $2$ and are hence diagonlizable, but their sum has characteristic polynomial $x^2 + 9$, which most definitely has no real zeros.
 
 There is however very special class of matrices, correponding to special class of linear mappings, which satisfy our requirements.
 \begin{itemize}
@@ -97,7 +105,7 @@ Hermitian mappings will be our non-commutative playing ground in which we can de
 	\[
 		\sum_{i = 1}^{m} \lambda_{i} P_{v_{i}},
 	\]
-	for some positive integer $m$, $v_{i} \in V$ and $\lambda_{i} \in \R$.
+	for some positive integer $m$, $v_{i} \in V \setminus \{0\}$ and $\lambda_{i} \in \R$.
 \end{maar}
 
 Also note that since for any non-zero $\alpha$ and $v \in V \setminus \{0\}$ we have $P_{v} = P_{\alpha v}$, we could just as well only allow vectors of norm one in our definition of Hermitian maps. This is of course just to simplify notation. This is not the standard definition, and in a way it's horrible, but it very directly answers our needs. Remember that we want to have diagonalizable maps with real eigenvalues. Projections are very prototypical examples of such maps and since we want real eigenvalues that is simply what we require in the definition (span over $\R$). Lastly, one of course wants to take the span to have any linear structure in the first place.
@@ -279,7 +287,7 @@ Now $A^{*} A$ is self-adjoint. Also its eigenvalues must be non-negative, since 
 \]
 so again singular values are the absulute values of the eigenvalues and $\|A\| = \max_{i = 1}^{n} |\lambda_{i}|$. Rayleigh quotient also has interpratation for normal maps, it is again weighted average of the eigenvalues. When $x$ ranges over non-zero vectors, or equivalently over some sphere, $R(A, x)$ ranges over the convex full of the eigenvalues.
 
-TODO
+Many of the previous properties don't hold for general linear maps. Also, singular values are absolute values of eigenvalues exactly for the normal maps.
 
 \section{Commuting self-adjoint maps}
 
@@ -306,9 +314,9 @@ Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $
 	Moreover, this representation is unique.
 \end{lause}
 
-Here $m$ is the number of distinct eigenvalues of $A$, $\lambda_{i}$'s are the eigenvalues, and $E_{\lambda_{i}}$'s are the corresponding eigenspaces: representation is necessarily unique. Existence of such representation is immediate from the previous version of the spectral theorem.
+When such a representation exists, we call the family $\{ A_{j} | j \in J \}$ \textit{simultaneously diagonalizable}. Here $m$ is the number of distinct eigenvalues of $A$, $\lambda_{i}$'s are the eigenvalues, and $E_{\lambda_{i}}$'s are the corresponding eigenspaces: representation is necessarily unique. Existence of such representation is immediate from the previous version of the spectral theorem.
 
-We can also reinterpret the original proof a a bit further. One of the key facts we used was that if $v$ is an eigenvector, $v^{\perp}$ is mapped to itself. This fact has rather natural generalization: if $A \in \H(V)$ and $T$ is a subspace of $V$ which maps to itself, so does its orthocomplement. Now we can decompose $A$ to $A_{T}$ and $A_{T^{\perp}}$. Put a bit differently: every self-adjoint map is canonically a product of real multiplication maps.
+We can also reinterpret the original proof a bit further. One of the key facts we used was that if $v$ is an eigenvector, $v^{\perp}$ is mapped to itself. This fact has rather natural generalization: if $A \in \H(V)$ and $T$ is a subspace of $V$ which maps to itself, so does its orthocomplement. Now we can decompose $A$ to $A_{T}$ and $A_{T^{\perp}}$. Put a bit differently: every self-adjoint map is canonically a product of real multiplication maps.
 
 \begin{lause}
 	Let $V$ be an $n$-dimensional inner-product space and $A_{j} \in \H(V)$ for $j \in J$ be an arbitrary family of (pairwise) commuting self-adjoint maps on $V$. Then there exists on-negative integer $m$, non-trivial orthogonal subspaces $T_{1}, T_{2}, \ldots, T_{m}$ of $V$ with $T_{1} + T_{2} + \ldots + T_{m} = V$, and sequences of real numbers $(\lambda_{i, j})_{i = 1}^{m}$ for $j \in J$ such that for any $j \in J$ we have
@@ -334,10 +342,27 @@ We again see that the $\lambda_{i, j}$'s are eigenvalues of the corresponding $A
 	Once we perform this factorization for all the maps, we have reduced our problem to smaller case: $T$ was a proper non-trivial subspace of $V$. It follows by induction that we can find factorizations as in the statement of the theorem for both sides, and we simply put them together to get final representation. This representation is also minimal, as is rather is easy to check, put even if it wasn't, we could cook up such as explained before the proof.
 \end{proof}
 
+Previous theorem also sheds some light to the normal maps. Take any normal map $A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$. When the eigenvalues are split to real and imaginary parts $\lambda_{i} = a_{i} + i b_{i}$, we can write $A = \sum_{i = 1}^{n}a_{i} P_{v_{i}} + i \sum_{i = 1}^{n}b_{i} P_{v_{i}}$, where now $B := \sum_{i = 1}^{n}a_{i} P_{v_{i}}$ and $\sum_{i = 1}^{n}b_{i} P_{v_{i}}$ are self-adjoint: we have decomposed normal map itself to its real and imaginary part. This construction can be done in general too. For general linear map $A$, we can write $A = \frac{1}{2}(A + A^{*}) + \frac{1}{2} (A - A^{*}) = \frac{1}{2}(A + A^{*}) + \frac{i}{2} (A/i + \left(A/i\right)^{*})$. While again both $\frac{1}{2}(A + A^{*})$ and $\frac{1}{2}(A/i + \left(A/i\right)^{*})$ are self-adjoint, $\frac{i}{2}(A/i + \left(A/i\right)^{*})$ is ``purely imaginary": such maps are called \textit{skew-Hermitian}: they are maps satisfying $A^{*} = -A$.
+
+For any linear map $A$ we can definitely find spectral representation for its real and imaginary parts. If they are simultaneously diagonalizable, they give rise to the spectral representation of the original map. By the previous theorem this is equivalent to real and imaginary parts commuting, which by short computation is equivalent to $A^{*}A = A A^{*}$: $A$ commutes with its adjoint. It follows that if $A$ commutes with its adjoint, $A$ is normal. Also if $A$ is normal, $A$ definitely commutes with its adjoint, so these conditions are equivalent. The previous is actually a very common definition of normal map.
+
 \section{Unitary maps}
 
-As mentioned, normal maps are exactly those linear maps that have eigendecomposition with orthogonal eigenvectors. These maps, however, don't have that many good properties anymore. TODO
+Besides self-adjoint maps, there is other very nice subfamily of normal maps: unitary maps. Unitary maps are normal maps with eigenvalues on unit circle. Such maps satisfy
+\[
+	A^{*} A = \sum_{i = 1}^{n} \overline{\lambda_{i}} P_{v_{i}} \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}} = \sum_{i = 1}^{n} |\lambda_{i}|^{2} P_{v_{i}} = I,
+\]
+On the other hand, if $A \in \L(V)$ with $A^{*}A = I$, then $A^{*}$ is inverse of $A^{-1}$, and $A^{*}$ commutes with $A$: $A$ is normal. By previous computation we see that all the eigenvalues of $A$ are on unit circle, hence map is unitary, if and only if $A^{*} A = I$. Finally if $A$ is unitary, for any $v, w \in V$ we have
+\[
+	\langle A v, A w \rangle = \langle v, A^{*}A w \rangle = \langle v, w \rangle,
+\]
+so $A$ preserves innerproduct. Again, if $A$ preserves innerproducts, for any $v, w \in V$ we have
+\[
+	\langle v, w \rangle = \langle A v, A w \rangle = \langle v, A^{*} A w \rangle,
+\]
+so $A^{*}A = I$: we have third equivalent definition for unitary maps. This definition might be also most enlightening: unitary maps are exactly the automorphisms of the inner-product space $V$.
 
+TODO isometyy
 
 
 
