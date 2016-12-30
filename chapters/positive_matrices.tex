@@ -362,10 +362,30 @@ so $A$ preserves innerproduct. Again, if $A$ preserves innerproducts, for any $v
 \]
 so $A^{*}A = I$: we have third equivalent definition for unitary maps. This definition might be also most enlightening: unitary maps are exactly the automorphisms of the inner-product space $V$.
 
-TODO isometyy
+There is also fourth equivalent definition for unitary maps: they are the isometries of $V$. It's clear that any unitary map is isometry, but the other direction might not be entirely obvious. The innerproduct can however be recovered from the norm. If $V$ is over $\R$, we have
+\[
+\langle v, w \rangle = \frac{1}{4} \left(\|v + w\|^{2} - \|v - w\|^{2} \right).
+\]
+It follows that if $A$ is an isometry, for any $v, w \in V$ we have
+\[
+\langle Av, Aw \rangle = \frac{1}{4} \left(\|Av + Aw\|^{2} - \|Av - Aw\|^{2} \right) = \frac{1}{2} \left(\|v + w\|^{2} - \|v - w\|^{2} \right) = \langle v, w \rangle.
+\]
+If $V$ is over $\C$ instead, we have to modify our polarization identity a little:
+\[
+\langle v, w \rangle = \frac{1}{4} \left(\|v + w\|^{2} - \|v - w\|^{2} + i \|v + i w \|^{2} - i \|v - i w\|^{2}\right).
+\]
 
+TODO: Unitary maps and matrices
 
+TODO: Cayley transform
 
+\section{Positive maps}
+
+\section{Congruence and Sylvesters criterion}
+
+\section{Fake products}
+
+\section{Positivity without inner-product}
 
 
 
