@@ -302,7 +302,7 @@ From the previous we see that projections commute exactly when the corresponding
 	A B = \left(\sum_{i = 1}^{n} \lambda_{i} P_{v_{i}} \right) \left(\sum_{j = 1}^{n} \lambda'_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n} \sum_{j = 1}^{n}\left(\lambda_{i} P_{v_{i}}\right)\left(\lambda'_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n}\lambda_{i}\lambda'_{i} P_{v_{i}} = BA.
 \]
 
-It turns out that that's all. Before going through the proof, let's get back to the spectral theorem. One of the unfortunate aspects of it is that the spectral representation is not unique. We can however make it unique. Essentially only choices we get to make in the representation are the choices for the orthonormal bases of the eigenspaces of the map, so if we replace the projections to vectors with projections to the eigenspaces, we have the uniqueness.
+In this case eigenvalues of the product are also products of the eigenvalus of $A$ and $B$, but not necessarily all of them. It turns out that that's all. Before going through the proof, let's get back to the spectral theorem. One of the unfortunate aspects of it is that the spectral representation is not unique. We can however make it unique. Essentially only choices we get to make in the representation are the choices for the orthonormal bases of the eigenspaces of the map, so if we replace the projections to vectors with projections to the eigenspaces, we have the uniqueness.
 
 Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $T$, denoted by $P_{T}$ is the unique linear map such that $P_{T} V = T$, $P_{T} T^{\perp} = \{0\}$ and $P_{T}^2 = P_{T}$. Equivalently for any $v \in V$ $P_{T}v$ is the unique vector in $T$, such that $v - P_{T} v \perp T$. Or still equivalently, $P_{T} v$ is the unique vector in $T$ closest to $v$. Equivalence of these definitions is easy to check, and also the fact that projections to vectors used before are just projections to corresponding subspaces. Finally, if $e_{1}, e_{2}, \ldots, e_{m}$ is an orthonormal basis for an subspace $T$, $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$.
 
@@ -314,7 +314,7 @@ Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $
 	Moreover, this representation is unique.
 \end{lause}
 
-When such a representation exists, we call the family $\{ A_{j} | j \in J \}$ \textit{simultaneously diagonalizable}. Here $m$ is the number of distinct eigenvalues of $A$, $\lambda_{i}$'s are the eigenvalues, and $E_{\lambda_{i}}$'s are the corresponding eigenspaces: representation is necessarily unique. Existence of such representation is immediate from the previous version of the spectral theorem.
+Here $m$ is the number of distinct eigenvalues of $A$, $\lambda_{i}$'s are the eigenvalues, and $E_{\lambda_{i}}$'s are the corresponding eigenspaces: representation is necessarily unique. Existence of such representation is immediate from the previous version of the spectral theorem.
 
 We can also reinterpret the original proof a bit further. One of the key facts we used was that if $v$ is an eigenvector, $v^{\perp}$ is mapped to itself. This fact has rather natural generalization: if $A \in \H(V)$ and $T$ is a subspace of $V$ which maps to itself, so does its orthocomplement. Now we can decompose $A$ to $A_{T}$ and $A_{T^{\perp}}$. Put a bit differently: every self-adjoint map is canonically a product of real multiplication maps.
 
@@ -326,9 +326,12 @@ We can also reinterpret the original proof a bit further. One of the key facts w
 	and if $i \neq i'$, for some $j \in J$ we have $\lambda_{i, j} \neq \lambda_{i', j}$. Moreover, this representation is unique.
 \end{lause}
 
-We again see that the $\lambda_{i, j}$'s are eigenvalues of the corresponding $A_{j}$'s. The last requirement on the subspaces and $\lambda_{i, j}$'s is just technical minimality condition to ensure uniqueness. If we have any representation ignoring this constraint, we can just combine the subspaces if all the eigenvalues are equal.
+When such a representation exists, we call the family $\{ A_{j} | j \in J \}$ \textit{simultaneously diagonalizable}. We again see that the $\lambda_{i, j}$'s are eigenvalues of the corresponding $A_{j}$'s. The last requirement on the subspaces and $\lambda_{i, j}$'s is just technical minimality condition to ensure uniqueness. If we have any representation ignoring this constraint, we can just combine the subspaces if all the eigenvalues are equal.
 
 \begin{proof}
+
+	Let us first check the uniqueness. It is clear that if two representations share subspaces, also the corresponding $\lambda_{i, j}$'s are equal. So we may assume to the contrary that there are two such representations with subspaces $T_{1}, T_{2}, \ldots, T_{m}$ and $T'_{1}, T'_{2}, \ldots, T'_{m'}$ and $T_{1} \not\subset T_{1}'$, but $T_{1}$ and $T_{1}'$ are not orthogonal. Take $v \in T_{1}' \setminus (T_{1} \cup T_{1}^{\perp})$ and write it in the form $v_{1} + v_{1}'$ where $v_{1} \in T_{1}$ and $v_{1}' \in T_{1}^{\perp}$. For any $A_{j}$ both $v$ and $v_{1}'$ are eigenvalues not orthogonal, so they correspond to the same eigenvalue. Hence $v_{1}'$ is also a eigenvector for any $A_{j}$ corresponding to the same eigenvalue. Now $v_{1}'$ can't be orthogonal to everything in $T_{1}'$ so it is not orthogonal to some vector $v_{2}$ in $T_{2}$, say. As before we see that for any $A_{j}$ the eigenvalue corresponding to $T_{1}$ is same as the eigenvalue corresponding to $v_{2}$, and so $T_{2}$. This means that the first representation is not minimal, we could have combined the $T_{1}$ and $T_{2}$, a contradiction.
+ 
 	We proceed by induction on $n$, the dimension of the space. The case $n = 0$ is trivial. When $n > 0$ if we look at the spectral representations of the maps $A_{j}$. If all of them simple representation ($m = 1$), i.e. they are multiples of identity map, we can also choose $m = 1$, let $\lambda_{1, j}$'s be the corresponding unique eigenvalue of $A_{j}$ and let $T_{1} = V$.
 
 	Assume then that some $A_{j}$ has non-trivial decomposition and let $T$ be an subspace in the decomposition, eigenspace of $A_{j}$, with eigenvalue $\lambda$. We know that $A_{j}$ itself can be decomposed into maps living in $T$ and $T^{\perp}$: we shall prove that same is true about all the other maps $A_{j'}$.
@@ -341,6 +344,8 @@ We again see that the $\lambda_{i, j}$'s are eigenvalues of the corresponding $A
 
 	Once we perform this factorization for all the maps, we have reduced our problem to smaller case: $T$ was a proper non-trivial subspace of $V$. It follows by induction that we can find factorizations as in the statement of the theorem for both sides, and we simply put them together to get final representation. This representation is also minimal, as is rather is easy to check, put even if it wasn't, we could cook up such as explained before the proof.
 \end{proof}
+
+From the proof we also see that any representation ignoring the minimality condition is just a subdivision of a minimal one: the subspaces are further divided to subspaces.
 
 Previous theorem also sheds some light to the normal maps. Take any normal map $A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$. When the eigenvalues are split to real and imaginary parts $\lambda_{i} = a_{i} + i b_{i}$, we can write $A = \sum_{i = 1}^{n}a_{i} P_{v_{i}} + i \sum_{i = 1}^{n}b_{i} P_{v_{i}}$, where now $B := \sum_{i = 1}^{n}a_{i} P_{v_{i}}$ and $\sum_{i = 1}^{n}b_{i} P_{v_{i}}$ are self-adjoint: we have decomposed normal map itself to its real and imaginary part. This construction can be done in general too. For general linear map $A$, we can write $A = \frac{1}{2}(A + A^{*}) + \frac{1}{2} (A - A^{*}) = \frac{1}{2}(A + A^{*}) + \frac{i}{2} (A/i + \left(A/i\right)^{*})$. While again both $\frac{1}{2}(A + A^{*})$ and $\frac{1}{2}(A/i + \left(A/i\right)^{*})$ are self-adjoint, $\frac{i}{2}(A/i + \left(A/i\right)^{*})$ is ``purely imaginary": such maps are called \textit{skew-Hermitian}: they are maps satisfying $A^{*} = -A$.
 
@@ -380,6 +385,39 @@ TODO: Unitary maps and matrices
 TODO: Cayley transform
 
 \section{Positive maps}
+
+\begin{maar}
+	Hermitian map is said to be \textit{positive} if all of its eigenvalues are non-negative.
+\end{maar}
+
+Such maps are usually called \textit{positive semi-definite}: the term \textit{positive definite} is usually preserved for the following class.
+
+\begin{maar}
+	Hermitian map is said to be \textit{strictly positive} if all of its eigenvalues are positive.
+\end{maar}
+
+``$A$ is positive" is denoted by $A \geq 0$, and ``$A$ is stricly positive" by $A > 0$. Here is a big list of important facts and equivalent definitions for the previous.
+
+\begin{itemize}
+	\item A map is positive if and only if its quadratic form, or equivalently the Rayleigh quotient is non-negative. This is clear since we noticed the Rayleigh is just a weighted average of the eigenvalues, and quadratic form is just a positively scaled version of Rayleigh quotient. Similarly, a map is strictly positive if and only if the Rayleigh quotient is positive, of the quadratic form is positive, except at $0$.
+	\item Previous point makes it clear that sum of (strictly) positive maps is (stricly) positive. Analogous claim is true for positive scalar multiple.
+	\item Composition of positive maps need not be positive, but this is just because it need not be even Hermitian. If it is, however, by our previous results, the maps commute, are simultaneosly diagonalizable and they're composition is positive: its eigenvalues are (some of the) products of the eigenvalues of the original maps. Similar statement holds for striclty positive maps.
+	\item The class of positive maps is topological closure (with operator norm topology) of the class of stricly positive maps. This is clear, and the closedness is very useful. Also, the class of stricly positive maps is the interior the class of positive maps. This requires a bit explanation, and we'll get back to it.
+	\item Squares are positive, i.e. $A^{2} \geq 0$ for any Hermitian $A$. Also, any positive map is a square, and has an unique positive square root. These claims follows easily from the better version of the spectral theorem. Positive square root of $A \geq 0$ is denoted by $A^{\frac{1}{2}}$, as one would hope.
+	\item Projections are positive: their eigenvalues belong to $\{0, 1\}$.
+	\item We already noticed that maps of the form $A^{*}A$ are positive: their Rayleigh quotient is non-negative. Every positive map is also of this form (square root fits the bill), but not uniquely. 
+	\item Inner products are induced by strictly positive matrices. Take any inner product $\langle \cdot, \cdot \rangle'$. For any fixed $w \in V$, the map $v \mapsto \langle v, w \rangle'$ is linear. This linear map is induced by some vector $w' \in V$ in that $\langle v, w \rangle' = \langle v, w' \rangle$. It is clear that $w'$ depends linearly on $w$ so may write this in the form $\langle v, w \rangle' = \langle v, A w \rangle = \langle A^{*}v, w \rangle$ for some $A \in \L(V)$. Now when $v = w$, $\langle v, w \rangle'$ is real and positive, except at $0$, so $A^{*}$, and hence also $A$ is necessarily stricly positive. Inversely, any strictly positive $A$ induces a inner product as a map $V^{2} \to \C$ given by $(v, w) \mapsto \langle A v, w \rangle$. Since all stricly positive maps are invertible, this also means that all the inner products are in the sense same, even if there is no canonical choice for one.
+
+	Positive map don't necessarily lead to inner-products, but more so called semi-definite sesquilinear forms.
+	\item Strictly positive maps are central at the study of the local maxima and mimima of multivariate functions. Let $V$ be real inner-product space and $f : V \to \R$ be a twice continuously differentiable. Now me write $f(x + y) = f(x) + \langle y, \nabla f (x) \rangle  + \langle \nabla^{2} f (x) y, y \rangle + o(\|y\|^{2})$, where $\nabla f (x)$ is the gradient of $f$ at $x$, and $\nabla^{2} f(x)$ it the hessian, interpreted as a linear map in $\L(V)$ given by $\nabla^{2} f(x) v = \nabla \langle v, \nabla f \rangle (x)$. Now if $\nabla f (x) = 0$ the Hessian $\nabla^{2}f(x)$ is strictly positive, the functions $f$ has a local minimum at $x$. If $\nabla^{2} f (x)$ is merely positive, such conclusions can't be drawn. If, however, $\nabla^{2} f$ is positive in a neighbourhood of $x$, $f$ has again a local minimum at $x$.
+
+	\item One way to think about positive maps is that they don't turn vectors too much. If we are working in real inner product space, the angle between two non-zero vectors $v$ and $w$ is the unique real number $\alpha \in [0, \pi]$ such that
+	\[
+		\cos(\alpha) = \frac{\langle v, w\rangle}{\|v\| \|w\|}.
+	\]
+	The angle is less than $\frac{\pi}{2}$ if and only if $\cos(\alpha) > 0$, or equivalently if $\langle v, w \rangle > 0$. This means that a Hermitian map is positive if and only if the angle between $v$ and $A v$ is less than $\frac{\pi}{2}$: positive map doesn't turn a vector too much. This intuition can be somewhat pushed to complex spaces, but then the concept of an angle is harder to grasp.
+\end{itemize}
+
 
 \section{Congruence and Sylvesters criterion}
 
