@@ -219,7 +219,7 @@ so $v' = 0$ and $v$ is an eigenvector.
 
 The spectral theorem shows that Hermitian maps correspond exactly to the self-adjoint maps. It is the good property of projections that made the Spectral theorem work: we got to move mappings from one side of inner-product to another. Generally the mapping changes, and adjoint is what comes out. We gather here many of the important properties of adjoint.
 
-\begin{lause}
+\begin{lause}\label{basic_adjoint}
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an $n$-dimensional inner-product space, $A, B \in \L(V)$ linear, and $\lambda \in \C$. Then
 	\begin{enumerate}[i)]
 		\item $A$ has an unique adjoint
@@ -258,16 +258,25 @@ Again, adjoint exists and it's unique. Fix any $w \in W$. Vector $w$ induces a l
 
 Composing with $A$, $T_{W}$ induces a map $W \to V^{*}$ given by $w \mapsto T_{W}(w) \circ A$. Now we finally compose this with $T^{-1}_{V}$ to get a map $W \to V$, the adjoint. So $A^{*}(w) = T^{-1}_{V}(T_{W}(w) \circ A)$.
 
+It should be noted that all parts of the theorem \ref{basic_adjoint} carry directly to this more general setup with obvious modifications.
+
 Adjoint also behaves in many ways like conjugate.
 \begin{itemize}
 	\item Notions agree in $1$-dimensional spaces.
 	\item Taking adjoint is an anti-linear involution.
 	\item Eigenvalues of the adjoint are conjugates of the eigenvalues of the original map.
 	\item If $A \in \L(V)$ has an orthonormal eigenbasis, $A^{*}$ has the same eigenbasis with conjugated eigenvalues.
-	\item Self-adjoint maps have real eigenvalues.
+	\item Self-adjoint maps correspond to real numbers: they have real eigenvalues.
 \end{itemize}
 
-Maps for which the fourth point holds are called \textit{normal}. TODO
+Maps for which the fourth point holds are called \textit{normal}.
+
+One of the very good properties of conjugation is that it commutes with many operations, taking inverse, for instance. The same carries to adjoints:
+\[
+	I = (A^{-1}A)^{*} = A^{*} (A^{-1})^{*},
+\]
+so $(A^{-1})^{*} = (A^{*})^{-1}$. There's a natural generalization we'll come back to later.
+
 
 \section{Operator norm}
 
@@ -304,7 +313,7 @@ From the previous we see that projections commute exactly when the corresponding
 
 In this case eigenvalues of the product are also products of the eigenvalus of $A$ and $B$, but not necessarily all of them. It turns out that that's all. Before going through the proof, let's get back to the spectral theorem. One of the unfortunate aspects of it is that the spectral representation is not unique. We can however make it unique. Essentially only choices we get to make in the representation are the choices for the orthonormal bases of the eigenspaces of the map, so if we replace the projections to vectors with projections to the eigenspaces, we have the uniqueness.
 
-Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $T$, denoted by $P_{T}$ is the unique linear map such that $P_{T} V = T$, $P_{T} T^{\perp} = \{0\}$ and $P_{T}^2 = P_{T}$. Equivalently for any $v \in V$ $P_{T}v$ is the unique vector in $T$, such that $v - P_{T} v \perp T$. Or still equivalently, $P_{T} v$ is the unique vector in $T$ closest to $v$. Equivalence of these definitions is easy to check, and also the fact that projections to vectors used before are just projections to corresponding subspaces. Finally, if $e_{1}, e_{2}, \ldots, e_{m}$ is an orthonormal basis for an subspace $T$, $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$.
+Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $T$, denoted by $P_{T}$ is the unique linear map such that $P_{T}^2 = P_{T}$, $\image(P_{T}) = T$, $\kernel(P_{T}) = \image(P_{T})^{\perp}$. The first condition is the projection part, the second projetion being to $T$ and the third is the orthogonality. Equivalently for any $v \in V$ $P_{T}v$ is the unique vector in $T$, such that $v - P_{T} v \perp T$. Or still equivalently, $P_{T} v$ is the unique vector in $T$ closest to $v$. Equivalence of these definitions is easy to check, and also the fact that projections to vectors used before are just projections to corresponding subspaces. Finally, if $e_{1}, e_{2}, \ldots, e_{m}$ is an orthonormal basis for an subspace $T$, $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$.
 
 \begin{lause}[Spectral theorem]
 	Let $V$ be an $n$-dimensional inner-product space and $A \in \H(V)$. Then there exists unique non-negative integer $m$, real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ and non-trivial orthonormal subspace of $V$, $E_{\lambda_{1}}, E_{\lambda_{2}}, \ldots E_{\lambda_{m}}$ with $E_{\lambda_{1}} + E_{\lambda_{2}} + \ldots + E_{\lambda_{m}} = V$, such that
@@ -404,9 +413,10 @@ Such maps are usually called \textit{positive semi-definite}: the term \textit{p
 	\item Composition of positive maps need not be positive, but this is just because it need not be even Hermitian. If it is, however, by our previous results, the maps commute, are simultaneosly diagonalizable and they're composition is positive: its eigenvalues are (some of the) products of the eigenvalues of the original maps. Similar statement holds for striclty positive maps.
 	\item The class of positive maps is topological closure (with operator norm topology) of the class of stricly positive maps. This is clear, and the closedness is very useful. Also, the class of stricly positive maps is the interior the class of positive maps. This requires a bit explanation, and we'll get back to it.
 	\item Squares are positive, i.e. $A^{2} \geq 0$ for any Hermitian $A$. Also, any positive map is a square, and has an unique positive square root. These claims follows easily from the better version of the spectral theorem. Positive square root of $A \geq 0$ is denoted by $A^{\frac{1}{2}}$, as one would hope.
+	\item One can rewrite $Q_{A}(v) = \langle A v, v \rangle = \langle A^{\frac{1}{2}} A^{\frac{1}{2}} v, v \rangle = \langle A^{\frac{1}{2}} v, A^{\frac{1}{2}} v \rangle= \|A^{\frac{1}{2}} v\|^{2}$.
 	\item Projections are positive: their eigenvalues belong to $\{0, 1\}$.
 	\item We already noticed that maps of the form $A^{*}A$ are positive: their Rayleigh quotient is non-negative. Every positive map is also of this form (square root fits the bill), but not uniquely. 
-	\item Inner products are induced by strictly positive matrices. Take any inner product $\langle \cdot, \cdot \rangle'$. For any fixed $w \in V$, the map $v \mapsto \langle v, w \rangle'$ is linear. This linear map is induced by some vector $w' \in V$ in that $\langle v, w \rangle' = \langle v, w' \rangle$. It is clear that $w'$ depends linearly on $w$ so may write this in the form $\langle v, w \rangle' = \langle v, A w \rangle = \langle A^{*}v, w \rangle$ for some $A \in \L(V)$. Now when $v = w$, $\langle v, w \rangle'$ is real and positive, except at $0$, so $A^{*}$, and hence also $A$ is necessarily stricly positive. Inversely, any strictly positive $A$ induces a inner product as a map $V^{2} \to \C$ given by $(v, w) \mapsto \langle A v, w \rangle$. Since all stricly positive maps are invertible, this also means that all the inner products are in the sense same, even if there is no canonical choice for one.
+	\item Inner products are induced by strictly positive matrices. Take any inner product $\langle \cdot, \cdot \rangle'$. For any fixed $w \in V$, the map $v \mapsto \langle v, w \rangle'$ is linear. This linear map is induced by some vector $w' \in V$ in that $\langle v, w \rangle' = \langle v, w' \rangle$. It is clear that $w'$ depends linearly on $w$ so may write this in the form $\langle v, w \rangle' = \langle v, A w \rangle = \langle A^{*}v, w \rangle$ for some $A \in \L(V)$. Now when $v = w$, $\langle v, w \rangle'$ is real and positive, except at $0$, so $A^{*}$, and hence also $A$ is necessarily stricly positive. Inversely, any strictly positive $A$ induces a inner product as a map $V^{2} \to \C$ given by $(v, w) \mapsto \langle A v, w \rangle$, which can be rewritten as $(v, w) \to \langle A^{\frac{1}{2}} v, A^{\frac{1}{2}} w \rangle$. Since all stricly positive maps are invertible, this also means that all the inner products are in a sense same, we get to others by invertible mappings.
 
 	Positive map don't necessarily lead to inner-products, but more so called semi-definite sesquilinear forms.
 	\item Strictly positive maps are central at the study of the local maxima and mimima of multivariate functions. Let $V$ be real inner-product space and $f : V \to \R$ be a twice continuously differentiable. Now me write $f(x + y) = f(x) + \langle y, \nabla f (x) \rangle  + \langle \nabla^{2} f (x) y, y \rangle + o(\|y\|^{2})$, where $\nabla f (x)$ is the gradient of $f$ at $x$, and $\nabla^{2} f(x)$ it the hessian, interpreted as a linear map in $\L(V)$ given by $\nabla^{2} f(x) v = \nabla \langle v, \nabla f \rangle (x)$. Now if $\nabla f (x) = 0$ the Hessian $\nabla^{2}f(x)$ is strictly positive, the functions $f$ has a local minimum at $x$. If $\nabla^{2} f (x)$ is merely positive, such conclusions can't be drawn. If, however, $\nabla^{2} f$ is positive in a neighbourhood of $x$, $f$ has again a local minimum at $x$.
@@ -423,7 +433,21 @@ Such maps are usually called \textit{positive semi-definite}: the term \textit{p
 
 \section{Fake products}
 
+\section{Polar and Cholesky decompositions}
+
 \section{Positivity without inner-product}
+
+TODO:
+\begin{itemize}
+	\item linear maps vs. bilinear forms
+	\item adjoint commutes with inverse
+	\item Left and right absolute values
+	\item (canonical, löwdin) orthogonalization, polar decomposition and orthogonal Procrustes problem
+	\item projection matrices
+	\item matrices and computation
+	\item Hilbert-Schmidt norm ($\to$ matrix functions?) and inner product
+	\item Real vs. complex
+\end{itemize}
 
 
 
