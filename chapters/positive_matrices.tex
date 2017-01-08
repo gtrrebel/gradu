@@ -226,8 +226,9 @@ The spectral theorem shows that Hermitian maps correspond exactly to the self-ad
 		\item Matrix of $A^{*}$ with respect to any orthonormal basis is conjugate transpose of matrix of $A$, i.e. $A^{*}_{i, j} = \overline{A_{j, i}}$.
 		\item $(A^{*})^{*} = A$
 		\item $(A + B)^{*} = A^{*} + B^{*}$
-		\item $(\lambda A)^{*} = \overline{\lambda} A^{*}$
+		\item $(\lambda I)^{*} = \overline{\lambda} I$
 		\item $(AB)^{*} = B^{*}A^{*}$.
+		\item $\kernel(A) = \image(A)^{\perp}$
 	\end{enumerate}
 \end{lause}
 \begin{proof}
@@ -242,41 +243,11 @@ The spectral theorem shows that Hermitian maps correspond exactly to the self-ad
 		\item Observe that $A^{*}_{i, j} = \langle A^{*}e_{j}, e_{i} \rangle = \overline{\langle e_{i}, A^{*} e_{j} \rangle} = \overline{ \langle A e_{i}, e_{j} \rangle} = \overline{A_{j, i}}$.
 		\item We have for any $v, w \in V$ that $\langle A^{*} v, w \rangle = \overline{\langle w, A^{*} v \rangle} = \overline{\langle A w, v \rangle} = \langle v, A w \rangle$, so $A$ is adjoint of $A^{*}$.
 		\item Since $\langle (A + B) v, w \rangle = \langle A v, w \rangle + \langle B v, w \rangle = \langle v, A^{*} w \rangle + \langle v, B^{*} w \rangle = \langle v, (A^{*} + B^{*})w \rangle$, $A^{*} + B^{*}$ is adjoint of $A + B$.
-		\item We simply calculate that $\langle \lambda A v, w \rangle = \lambda \langle v, A^{*} w \rangle = \langle v, \overline{\lambda} A^{*}v \rangle$.
+		\item We simply calculate that $\langle \lambda v, w \rangle = \lambda \langle v, w \rangle = \langle v, \overline{\lambda} v \rangle$.
 		\item Note that $\langle A B v, w \rangle = \langle B v, A^{*}w \rangle = \langle v, B^{*} A^{*} w \rangle$.
+		\item We have $v \in \kernel(A)$ i.e. $A v = 0$ if and only $\langle A v, w \rangle = \langle v, A w \rangle$ for any $w \in V$, which is to say that $v \perp \image(A)$.
 	\end{enumerate}
 \end{proof}
-
-\section{Intuition}
-
-One way to understand adjoints is to look at a bit more general case. Fix any two finite-dimensional inner-product spaces, $(V, \langle \cdot, \cdot \rangle_{V})$ and $(W, \langle \cdot, \cdot \rangle_{W})$, not necessarily of the same dimension, over, say, $\C$.
-Now given any linear $A : V \to W$, adjoint is a linear map $A^{*} : W \to V$ such that for any $v \in V$ and $w \in W$ we have
-\[
-	\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
-\]
-Again, adjoint exists and it's unique. Fix any $w \in W$. Vector $w$ induces a linear mapping $W \to \C$ by $w' \mapsto \langle w', w \rangle_{W}$. Hence we get a map $T_{W} : W \to W^{*}$ where $V^{*}$ is the dual of $V$. It turns out that $T$ is anti-linear bijection. Anti-linearity and injectivity are easy to check, and since both spaces have same dimension, map has to be also surjection.
-
-Composing with $A$, $T_{W}$ induces a map $W \to V^{*}$ given by $w \mapsto T_{W}(w) \circ A$. Now we finally compose this with $T^{-1}_{V}$ to get a map $W \to V$, the adjoint. So $A^{*}(w) = T^{-1}_{V}(T_{W}(w) \circ A)$.
-
-It should be noted that all parts of the theorem \ref{basic_adjoint} carry directly to this more general setup with obvious modifications.
-
-Adjoint also behaves in many ways like conjugate.
-\begin{itemize}
-	\item Notions agree in $1$-dimensional spaces.
-	\item Taking adjoint is an anti-linear involution.
-	\item Eigenvalues of the adjoint are conjugates of the eigenvalues of the original map.
-	\item If $A \in \L(V)$ has an orthonormal eigenbasis, $A^{*}$ has the same eigenbasis with conjugated eigenvalues.
-	\item Self-adjoint maps correspond to real numbers: they have real eigenvalues.
-\end{itemize}
-
-Maps for which the fourth point holds are called \textit{normal}.
-
-One of the very good properties of conjugation is that it commutes with many operations, taking inverse, for instance. The same carries to adjoints:
-\[
-	I = (A^{-1}A)^{*} = A^{*} (A^{-1})^{*},
-\]
-so $(A^{-1})^{*} = (A^{*})^{-1}$. There's a natural generalization we'll come back to later.
-
 
 \section{Operator norm}
 
@@ -298,6 +269,50 @@ so again singular values are the absulute values of the eigenvalues and $\|A\| =
 
 Many of the previous properties don't hold for general linear maps. Also, singular values are absolute values of eigenvalues exactly for the normal maps.
 
+
+\section{Intuition}
+
+One way to understand adjoints is to look at a bit more general case. Fix any two finite-dimensional inner-product spaces, $(V, \langle \cdot, \cdot \rangle_{V})$ and $(W, \langle \cdot, \cdot \rangle_{W})$, not necessarily of the same dimension, over, say, $\C$.
+Now given any linear $A \in \L(V, W)$, adjoint is a linear map $A^{*} \in \L(W, V)$ such that for any $v \in V$ and $w \in W$ we have
+\[
+	\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
+\]
+Again, adjoint exists and it's unique. Fix any $w \in W$. Vector $w$ induces a linear mapping $W \to \C$ by $w' \mapsto \langle w', w \rangle_{W}$. Hence we get a map $\Phi_{W} : W \to W^{*}$ where $V^{*}$ is the dual of $V$. It turns out that $\Phi_{W}$ is anti-linear bijection. Anti-linearity and injectivity are easy to check, and since both spaces have same dimension, map has to be also surjection.
+
+Composing with $A$, $\Phi_{W}$ induces a map $W \to V^{*}$ given by $w \mapsto \Phi_{W}(w) \circ A$. Now we finally compose this with $\Phi^{-1}_{V}$ to get a map $W \to V$, the adjoint. So $A^{*}(w) = \Phi^{-1}_{V}(\Phi_{W}(w) \circ A)$.
+
+We can still clean the definition a bit. Any linear map $A \in \L(V, W)$ induces a mapping between the correponding duals (with the order reversed) ${}^{t}A : W^{*} \to V^{*}$, given by $({}^{t}A)(\phi) = \phi \circ A$ for any $\phi \in W^{*}$. With this interpretation in mind we rewrite $w \mapsto \Phi_{W}(w) \circ A = {}^{t}A \circ \Phi_{W}$, and finally
+\[
+	A^{*} = \Phi^{-1}_{V} \circ {}^{t} A \circ \Phi_{W}.
+\]
+So the point is: from map $A \in \L(V, W)$ we (canonically) get a map ${}^{t}A : W^{*} \to V^{*}$ and since we can, thanks to the inner product, identify inner-product spaces with their duals, this gives us a map $A^{*} \in \L(W,V)$.
+
+It should be noted that all parts of the theorem \ref{basic_adjoint} carry directly to this more general setup with obvious modifications.
+
+Inner products give also other canonical isomorphism: one between linear maps and sesquilinear forms. Sesquilinear forms are complex generalizations of bilinear forms. Sesquilinear form $B : V \times W \to \C$ is a mapping linear in its first entry and anti-linear in the second. The vector space of all sesquilinear forms on $V \times W$ is denoted by $\sesqui(V, W)$. Any linear mapping $A \in \L(V, W)$ gives rise to a sesquilinear form given by $\langle A \cdot, \cdot \rangle_{W}$. This gives us a map $\Psi_{V, W} : \L(V, W) \to \sesqui(V, W)$, and we also denote $\Psi_{V, W} A = B_{A}$. This map is an isomorphism: it can be easily seen that is linear, and injection, and since both spaces are of dimension $\dim(V) \cdot \dim(W)$, the map is also an surjection.
+
+
+We also have a natural map $(\cdot)^{H} : \sesqui(V, W) \to \sesqui(W, V)$, \textit{conjugate transpose} given by $B^{H}(w, v) = \overline{B(v, w)}$: we simply exchange the arguments, and conjugate to preserve the sesquilinearity. Now it's not hard to check that $(\cdot)^{*} = \Psi^{-1}_{W, V} \circ (\cdot)^{H} \circ \Psi_{V, W}$, so we get an another route to adjoint.
+
+Self-adjoint maps of course only make sense when $V = W$. When $A \in \L(V)$ is a self-adjoint, $B_{A}^{H} = B_{A}$: such sesquilinear forms are called Hermitian. The diagonal of $B$ is the of course just the quadratic form, i.e. $B(v, v) = Q_{A}(v)$ for any $v \in V$.
+
+Adjoint also behaves in many ways like conjugate.
+\begin{itemize}
+	\item Notions agree in $1$-dimensional spaces.
+	\item Taking adjoint is an anti-linear involution.
+	\item Eigenvalues of the adjoint are conjugates of the eigenvalues of the original map.
+	\item If $A \in \L(V)$ has an orthonormal eigenbasis, $A^{*}$ has the same eigenbasis with conjugated eigenvalues.
+	\item Self-adjoint maps correspond to real numbers: they have real eigenvalues.
+\end{itemize}
+
+Maps for which the fourth point holds are called \textit{normal}. The class of normal maps on $V$ is denoted by $\normal(V)$
+
+One of the very good properties of conjugation is that it commutes with many operations, taking inverse, for instance. The same carries to adjoints:
+\[
+	I = (A^{-1}A)^{*} = A^{*} (A^{-1})^{*},
+\]
+so $(A^{-1})^{*} = (A^{*})^{-1}$. There's a natural generalization we'll come back to later.
+
 \section{Commuting self-adjoint maps}
 
 \textbf{Warning!} Composition of self-adjoint maps need not be self-adjoint!
@@ -313,7 +328,7 @@ From the previous we see that projections commute exactly when the corresponding
 
 In this case eigenvalues of the product are also products of the eigenvalus of $A$ and $B$, but not necessarily all of them. It turns out that that's all. Before going through the proof, let's get back to the spectral theorem. One of the unfortunate aspects of it is that the spectral representation is not unique. We can however make it unique. Essentially only choices we get to make in the representation are the choices for the orthonormal bases of the eigenspaces of the map, so if we replace the projections to vectors with projections to the eigenspaces, we have the uniqueness.
 
-Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $T$, denoted by $P_{T}$ is the unique linear map such that $P_{T}^2 = P_{T}$, $\image(P_{T}) = T$, $\kernel(P_{T}) = \image(P_{T})^{\perp}$. The first condition is the projection part, the second projetion being to $T$ and the third is the orthogonality. Equivalently for any $v \in V$ $P_{T}v$ is the unique vector in $T$, such that $v - P_{T} v \perp T$. Or still equivalently, $P_{T} v$ is the unique vector in $T$ closest to $v$. Equivalence of these definitions is easy to check, and also the fact that projections to vectors used before are just projections to corresponding subspaces. Finally, if $e_{1}, e_{2}, \ldots, e_{m}$ is an orthonormal basis for an subspace $T$, $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$.
+Recall that for arbitrary subspace of $V$, say $T$, (orthogonal) projection to $T$, denoted by $P_{T}$ is the unique linear map such that $P_{T}^2 = P_{T}$, $\image(P_{T}) = T$, $\kernel(P_{T}) = \image(P_{T})^{\perp}$. The first condition is the projection part, the second projetion being to $T$ and the third is the orthogonality. Orthogonality can be also replaced by requiring $P_{T}$ to be self-adjoint. Equivalently for any $v \in V$ $P_{T}v$ is the unique vector in $T$, such that $v - P_{T} v \perp T$. Or still equivalently, $P_{T} v$ is the unique vector in $T$ closest to $v$. Equivalence of these definitions is easy to check, and also the fact that projections to vectors used before are just projections to corresponding subspaces. Finally, if $e_{1}, e_{2}, \ldots, e_{m}$ is an orthonormal basis for an subspace $T$, $P_{T} = \sum_{i = 1}^{m} P_{e_{i}}$.
 
 \begin{lause}[Spectral theorem]
 	Let $V$ be an $n$-dimensional inner-product space and $A \in \H(V)$. Then there exists unique non-negative integer $m$, real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ and non-trivial orthonormal subspace of $V$, $E_{\lambda_{1}}, E_{\lambda_{2}}, \ldots E_{\lambda_{m}}$ with $E_{\lambda_{1}} + E_{\lambda_{2}} + \ldots + E_{\lambda_{m}} = V$, such that
@@ -389,6 +404,10 @@ If $V$ is over $\C$ instead, we have to modify our polarization identity a littl
 \langle v, w \rangle = \frac{1}{4} \left(\|v + w\|^{2} - \|v - w\|^{2} + i \|v + i w \|^{2} - i \|v - i w\|^{2}\right).
 \]
 
+Both the third and the fourth definitions make it clear that the unitary maps on $V$ form a group. This group is often denoted by $\text{Hilb}(V)$, but we will use $\unitary(V)$, for brevity, and because $\H$ is preserved.
+
+TODO: sesquilinear forms vs. quadratic form correspondence.
+
 TODO: Unitary maps and matrices
 
 TODO: Cayley transform
@@ -405,21 +424,21 @@ Such maps are usually called \textit{positive semi-definite}: the term \textit{p
 	Hermitian map is said to be \textit{strictly positive} if all of its eigenvalues are positive.
 \end{maar}
 
-``$A$ is positive" is denoted by $A \geq 0$, and ``$A$ is stricly positive" by $A > 0$. Here is a big list of important facts and equivalent definitions for the previous.
+``$A$ is positive" is denoted by $A \geq 0$, and ``$A$ is stricly positive" by $A > 0$. The set of positive maps is denoted by $\H_{+}(V)$, shortened to $\H_{+}$. Here is a big list of important facts and equivalent definitions for the previous.
 
 \begin{itemize}
-	\item A map is positive if and only if its quadratic form, or equivalently the Rayleigh quotient is non-negative. This is clear since we noticed the Rayleigh is just a weighted average of the eigenvalues, and quadratic form is just a positively scaled version of Rayleigh quotient. Similarly, a map is strictly positive if and only if the Rayleigh quotient is positive, of the quadratic form is positive, except at $0$.
+	\item A map is positive if and only if its quadratic form, or equivalently the Rayleigh quotient is non-negative. This is clear since we noticed the Rayleigh is just a weighted average of the eigenvalues, and quadratic form is just a positively scaled version of Rayleigh quotient. Similarly, a map is strictly positive if and only if the Rayleigh quotient is positive, of the quadratic form is positive, except at $0$. In both instances one could replace the non-negativity/positivity on everywhere/outside zero by requiring it only on unit sphere, for instance.
 	\item Previous point makes it clear that sum of (strictly) positive maps is (stricly) positive. Analogous claim is true for positive scalar multiple.
+	\item A map is strictly positive if and only if the respective sesquilinear form is inner-product. Inner-products can hence also be naturally called stricly positive.
+
+	Positive map don't necessarily lead to inner-products, but to a so called semi-definite sesquilinear forms, which are here also called positive (sesquilinear) forms.
 	\item Composition of positive maps need not be positive, but this is just because it need not be even Hermitian. If it is, however, by our previous results, the maps commute, are simultaneosly diagonalizable and they're composition is positive: its eigenvalues are (some of the) products of the eigenvalues of the original maps. Similar statement holds for striclty positive maps.
-	\item The class of positive maps is topological closure (with operator norm topology) of the class of stricly positive maps. This is clear, and the closedness is very useful. Also, the class of stricly positive maps is the interior the class of positive maps. This requires a bit explanation, and we'll get back to it.
+	\item The class of positive maps is topological closure (with operator norm topology) of the class of stricly positive maps. This is clear, and the closedness is very useful. Also, the class of stricly positive maps is the interior the class of positive maps. The reason is the following: if $A \geq 0$, $Q_{A} \geq \delta_{K} > 0$ for any compact set $K \subset V$ not containing $0$, so in particular on unit sphere. Now if $B \in \L(V)$ has operator norm $< \delta$, $Q_{A + B}(v) \geq Q(A)(v) - |Q_{B}(v)| > \delta - \delta$, so $Q$ is positive on unit circle, and thus outside zero. 
 	\item Squares are positive, i.e. $A^{2} \geq 0$ for any Hermitian $A$. Also, any positive map is a square, and has an unique positive square root. These claims follows easily from the better version of the spectral theorem. Positive square root of $A \geq 0$ is denoted by $A^{\frac{1}{2}}$, as one would hope.
-	\item One can rewrite $Q_{A}(v) = \langle A v, v \rangle = \langle A^{\frac{1}{2}} A^{\frac{1}{2}} v, v \rangle = \langle A^{\frac{1}{2}} v, A^{\frac{1}{2}} v \rangle= \|A^{\frac{1}{2}} v\|^{2}$.
+	%\item One can rewrite $Q_{A}(v) = \langle A v, v \rangle = \langle A^{\frac{1}{2}} A^{\frac{1}{2}} v, v \rangle = \langle A^{\frac{1}{2}} v, A^{\frac{1}{2}} v \rangle= \|A^{\frac{1}{2}} v\|^{2}$.
 	\item Projections are positive: their eigenvalues belong to $\{0, 1\}$.
 	\item We already noticed that maps of the form $A^{*}A$ are positive: their Rayleigh quotient is non-negative. Every positive map is also of this form (square root fits the bill), but not uniquely. 
-	\item Inner products are induced by strictly positive matrices. Take any inner product $\langle \cdot, \cdot \rangle'$. For any fixed $w \in V$, the map $v \mapsto \langle v, w \rangle'$ is linear. This linear map is induced by some vector $w' \in V$ in that $\langle v, w \rangle' = \langle v, w' \rangle$. It is clear that $w'$ depends linearly on $w$ so may write this in the form $\langle v, w \rangle' = \langle v, A w \rangle = \langle A^{*}v, w \rangle$ for some $A \in \L(V)$. Now when $v = w$, $\langle v, w \rangle'$ is real and positive, except at $0$, so $A^{*}$, and hence also $A$ is necessarily stricly positive. Inversely, any strictly positive $A$ induces a inner product as a map $V^{2} \to \C$ given by $(v, w) \mapsto \langle A v, w \rangle$, which can be rewritten as $(v, w) \to \langle A^{\frac{1}{2}} v, A^{\frac{1}{2}} w \rangle$. Since all stricly positive maps are invertible, this also means that all the inner products are in a sense same, we get to others by invertible mappings.
-
-	Positive map don't necessarily lead to inner-products, but more so called semi-definite sesquilinear forms.
-	\item Strictly positive maps are central at the study of the local maxima and mimima of multivariate functions. Let $V$ be real inner-product space and $f : V \to \R$ be a twice continuously differentiable. Now me write $f(x + y) = f(x) + \langle y, \nabla f (x) \rangle  + \langle \nabla^{2} f (x) y, y \rangle + o(\|y\|^{2})$, where $\nabla f (x)$ is the gradient of $f$ at $x$, and $\nabla^{2} f(x)$ it the hessian, interpreted as a linear map in $\L(V)$ given by $\nabla^{2} f(x) v = \nabla \langle v, \nabla f \rangle (x)$. Now if $\nabla f (x) = 0$ the Hessian $\nabla^{2}f(x)$ is strictly positive, the functions $f$ has a local minimum at $x$. If $\nabla^{2} f (x)$ is merely positive, such conclusions can't be drawn. If, however, $\nabla^{2} f$ is positive in a neighbourhood of $x$, $f$ has again a local minimum at $x$.
+	\item Strictly positive maps are central at the study of the local maxima and mimima of multivariate functions. Let $V$ be real inner-product space and $f : V \to \R$ be a twice continuously differentiable. Now me write $f(x + y) = f(x) + G_{x}(y)  + B_{x}(y, y) + o(\|y\|^{2})$, where $G_{x}$ is the derivative of $f$ at $x$, and $H_{x}$ is the hessian, the bilinear form correponding to the second derivative. Now if $G_{x} = 0$ and the Hessian $H_{x}$ is strictly positive, the function $f$ has a local minimum at $x$. If $H_{x}$ is merely positive, such conclusions can't be drawn. If, however, $H_{\cdot}$ is positive in a neighbourhood of $x$, $f$ has again a local minimum at $x$.
 
 	\item One way to think about positive maps is that they don't turn vectors too much. If we are working in real inner product space, the angle between two non-zero vectors $v$ and $w$ is the unique real number $\alpha \in [0, \pi]$ such that
 	\[
@@ -428,8 +447,42 @@ Such maps are usually called \textit{positive semi-definite}: the term \textit{p
 	The angle is less than $\frac{\pi}{2}$ if and only if $\cos(\alpha) > 0$, or equivalently if $\langle v, w \rangle > 0$. This means that a Hermitian map is positive if and only if the angle between $v$ and $A v$ is less than $\frac{\pi}{2}$: positive map doesn't turn a vector too much. This intuition can be somewhat pushed to complex spaces, but then the concept of an angle is harder to grasp.
 \end{itemize}
 
-
 \section{Congruence and Sylvesters criterion}
+
+There is one very important way to produce positive maps from others, called congruence. Given any two positive maps $A$ and $B$, their composition need not be positive, but the map $B^{*}AB$ is. First of all, it is self-adjoint, as $(B^{*}AB)^{*} = B^{*} A B^{**} = B^{*}AB$. Also $Q_{B^{*}AB}(v) = \langle B^{*}AB v, v \rangle = \langle A (B v), (B v) \rangle \geq 0$ for any $v \in V$. We didn't really need the assumption on the positivity of $B$, so it could have been any linear map. We also see that $Q_{B^{*}AB} = Q_{A} \circ B$, which also explains the positivity. Also, the construction makes sense for any map $A$. If $A, B, C \in \L(V)$ and $C = B^{*}AB$ for some invertible $B$, we say that $A$ and $C$ are congruent. It is easily verified that congruence is a equivalence relation.
+
+The previous construction can be also performed between two spaces $V$ and $W$: given any map $B \in \L(V, W)$ and $A \in \H_{+}(W)$, we note that $B^{*}AB \in \H_{+}(V)$. We see that self-adjointness is preserved in congruences, but more generally, if $A \in \normal(V)$, $B^{*}AB$ need not be normal for every $B \in \L(V)$. For self-adjoint maps we can say a lot more: while congruence doesn't in general preserve eigenvalues, it preserves their signs.
+
+\begin{lause}[Sylvester's Law of Inertia]
+	$A, B \in \H(V)$ are congruent, if and only if $A$ and $B$ have equally many positive, negative and zero eigenvalues, counted with multiplicity.
+\end{lause}
+\begin{proof}
+	Let's start with the ``if" part. Let's denote the eigenvalues of $A$ and $B$ by $\lambda_{1} \leq \lambda _{2} \leq \ldots \leq \lambda_{n}$ and $\lambda_{1}' \leq \lambda _{2}' \leq \ldots \leq \lambda_{n}'$, respectively, and the corresponding eigenvectors with $v_{1}, v_{2}, \ldots, v_{n}$ and $v_{1}', v_{2}', \ldots, v_{n}'$. By assumption $\lambda_{i}$ and $\lambda_{i}'$ have the same sign (or are both zero) for any $1 \leq i \leq n$, so we may find real numbers $t_{1}, t_{2}, \ldots, t_{n}$ such that $\lambda_{i} = \lambda_{i}' t_{i}^{2}$. Now consider a linear map $C$ with $C v_{i} = t_{i} v_{i}'$. Now $(Q_{B} \circ C)(v) = Q_{B}(\sum_{i = 1}^{n} \langle v, v_{i} \rangle t_{i} v_{i}') = \sum_{i = 1}^{n} |\langle v, v_{i} \rangle|^{2} t_{i}^2 \lambda_{i}' = \sum_{i = 1}^{n} |\langle v, v_{i} \rangle|^{2} \lambda_{i} = Q_{A}(v)$ so $Q_{C^{*}BC} = Q_{B} \circ C = Q_{A}$. Hence $A$ and $B$ are congruent.
+
+	The ``only if" - part is a bit trickier. TODO
+\end{proof}
+
+
+If two normal maps are congruent, however, we can vastly generalize the previous result on positive maps: for normal maps, congruence preserves eigenvalues on any open ray, so in particular also rank.
+
+For any $A \in \normal(V)$ define the mapping $\theta[A] : \C \to \N$ by setting $\theta[A](z)$ be the number of eigenvalues (counted with multiplicity) on ray $\{rz | r > 0\}$. This map is called the \textit{angularity} of $A$.
+
+\begin{lause}[Generalized Sylvester's Law of Inertia]
+	If $A, B \in \normal(V)$ are congruent, then $\theta[A] = \theta[B]$.
+\end{lause}
+
+This surprising theorem follows from the following lemma.
+
+\begin{lem}
+	If $A, B \in \normal(V)$ are congruent, then $A$ and $B$ have equally many eigenvalues on the closed right half-plane $\{z \in \C | \Re(z) \geq 0\}$, i.e. with non-negative real part.
+\end{lem}
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{proof}[Proof of the Sylvester's law of inertia]
+	TODO
+\end{proof}
 
 \section{Fake products}
 
@@ -439,8 +492,6 @@ Such maps are usually called \textit{positive semi-definite}: the term \textit{p
 
 TODO:
 \begin{itemize}
-	\item linear maps vs. bilinear forms
-	\item adjoint commutes with inverse
 	\item Left and right absolute values
 	\item (canonical, löwdin) orthogonalization, polar decomposition and orthogonal Procrustes problem
 	\item projection matrices
