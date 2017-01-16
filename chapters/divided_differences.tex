@@ -16,29 +16,26 @@ Consider the case of increasing $f$. This information is exactly carried by the 
 \]
 Now if the derivative is everywhere non-negative, so are divided differences. Also divided differences are sort of approximations for derivative.
 
-It gets better: consider case of convex $f$. Convexity is usually defined using a real parameter $0 \leq t \leq 1$: we require the inequality $t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y)$ to hold for any $x$ and $y$. For real two times differentiable functions this equivalent to second derivative being at least zero. There is however more symmetric form for convexity. First divided difference corresponds somewhat to first derivative, so second divided difference, defined for three distinct $x, y, z$ as
-\[
-	[x, y, z]_{f} = \frac{[x, y]_{f} - [y, z]_{f}}{x - z} = \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)},
-\]
-should correspond to second derivative. And indeed it does. Assume first that $x < y < z$. We have $f'(\xi_{x}) = [x, y]_{f}$ for some $x < \xi_{x} < y$ and $f'(\xi_{z}) = [y, z]_{f}$ for some $y < \xi_{z} < z$. Now
-\[
-	[x, y, z]_{f} = \frac{[x, y]_{f} - [y, z]_{f}}{x - z} = \frac{f'(\xi_{x}) - f'(\xi_{z})}{x - z} = \frac{\xi_{x} - \xi_{z}}{x - z} \frac{f'(\xi_{x}) - f'(\xi_{z})}{\xi_{x} - \xi_{z}} = \frac{\xi_{x} - \xi_{z}}{x - z} [\xi_{x}, \xi_{z}]_{f'}
-\]
-Applying mean value theorem again for $f'$, we get that $[\xi_{x}, \xi_{z}]_{f'} = f''(\xi)$ for some $\xi_{x} < \xi < \xi_{z}$. Finally
-\[
-	[x, y, z]_{f} = \frac{\xi_{x} - \xi_{z}}{x - z} f''(\xi).
-\]
-Since second divided difference is evidently symmetric in its entries, we can get rid of the assumption on the order of $x, y$ and $z$. This isn't quite as good as the mean value theorem anymore, but it is sufficient to connect second derivative to second divided differences: if the second derivative is always non-negative, so is the second divided difference. Implication goes the other way too, but that's not really clear from our computation. Non-negativity of the second divided difference however corresponds exactly to the standard definition for convexity by change of variables. Fix $x \neq y$, choose $0 < t < 1$ and set $z = t x + (1 - t) y$. We compute that
+We can push these ideas to higher orders. Second order divided differences should be something that captures second order behaviour of a function. In particular, if $f \in C^{2}(\R)$ has non-negative second derivative everywhere, i.e. it is convex, its second divided difference should be non-negative, and vice versa. Standard definition of convexity is almost what we are looking for: $f$ is convex if for any $x, y \in \R$ and $0 \leq t \leq 1$ we have $t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y)$. So if we define the mapping $[\cdot, \cdot, \cdot]_{f} : \R^{2} \times [0, 1]$ by $t f(x) + (1 - t) f(y) - f(t x + (1 - t)y)$, we have $[x, y, t]_{f} \geq 0$ for any $(x, y, t) \in \R^{2} \times [0, 1]$ if and only if $f^{2}(x) \geq 0$ for any $x \in \R$.
+
+There is however much better version for the function. If we write $z = t x + (1 - t) y$, we can solve that $t = \frac{z - y}{x - y}$ and express
 \begin{eqnarray*}
-	[x, y, z]_{f} &=& \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \\
-	&=& \frac{f(x)}{(x - y)(x - (t x + (1 - t) y))} + \frac{f(y)}{(y - (t x + (1 - t) y))(y - x)} \\
-	& &+ \frac{f(t x + (1 - t) y)}{((t x + (1 - t) y) - x)((t x + (1 - t) y) - y)} \\
-	&=& \frac{f(x)}{(1 - t)(y - x)^2} + \frac{f(y)}{t (y - x)^2} - \frac{f(t x + (1 - t) y)}{t (1 - t) (y - x)^2} \\
-	&=& \frac{t f(x) + (1 - t) f(y) - f(t x + (1 - t) y)}{t (1 - t) (y - x)^2}.
+	[x, y, t]_{f} &=& t f(x) + (1 - t) f(y) - f(t x + (1 - t)y) \\
+	&=& \frac{z - y}{x - y} f(x) + \frac{x - z}{x - y} f(y) - f(z) \\
+	&=& -(z - y)(z - x) \left(\frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \right)
 \end{eqnarray*}
 
-As expected, the general $n$:th order divided differences, defined for distinct real numbers $x_{0}, x_{1}, \ldots, x_{n}$ is defined recursively as
+If $t \notin \{0, 1\}$, $-(z - y)(z - x)$ is positive, so if $f$ is convex,
 \[
-[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}}.
+	\frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \geq 0
 \]
-Again, $n$:th divided difference corresponds to $n$:th derivative. TODO
+for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This is new expression is symmetric in its variables, so actually there's no need to assume anything on the fo $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction. If this expression is non-negative any distinct $x, y$ and $z$, $f$ is convex. This motivates us to crap the previous definition and set instead
+\[
+	[x, y, z]_{f} := \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)}.
+\]
+
+One would naturally except that by setting
+\[ 
+	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})},
+\]
+one obtains something that naturally generalizes divided differences for higher orders. This is indeed the case.
