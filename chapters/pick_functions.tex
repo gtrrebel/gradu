@@ -59,6 +59,62 @@ One should be a bit more careful here though: we have included also real constan
 
 If one only thinks about composition one can of course do lot more. Take any simply connected domain in $U \subset \C$. By Riemann mapping theorem there's a analytic bijection $\toplane_{U} \D \to U$. For the domain $U$ we could define similar class of functions, and via $\toplane_{U}$ and it's inverse we could connect the classes. Again, one should be a bit careful with the boundary.
 
-In many ways Pick and Schur functions are most natural of these classes: they are closed under addition and multiplication, respectively. Also, they both contain the identity of the respective operations, so these properties are barely true. 
+In many ways Pick and Schur functions are most natural of these classes: they are closed under addition and multiplication, respectively. Also, they both contain the identity of the respective operations, so these properties are barely true.
+
+\subsection{Automorphisms of the unit disc}
+
+As mentioned, the functions $\toplane$ and $\tocircle$ are not unique. All such mappings are however of a very simple form. If $\rho : \D \to \D$ is analytic bijection, the function $\toplane \circ \rho$ is an analytic bijection from unit disc to upper half-plane. Conversely, if $\toplane_{1}$ is an analytic bijection from unit disc to upper half-plane, $\tocircle \circ \toplane_{1}$ is an analytic bijection. Hence to understand the diversity of the analytic mappings from $\D$ to $\Hp$, we need to understand the analytic self-maps of the unit disc.
+
+All analytic bijections from the unit disc to itself, called the automorhphisms of the unit disc, are given by
+\[
+	\rho_{a, \omega}(z) = \omega \frac{a - z}{1 - \overline{a} z},
+\]
+where $a \in \D$ and $\omega \in \mathbb{S}$. We will write $\rho_{a} = \rho_{a, 1}$. As $|1 - \overline{a} z|^{2} - |a - z|^{2} = (1 + |a||z|^{2} - \overline{a} z - \overline{z} a) - (|a|^2 + |z|^2 -\overline{a} z - \overline{z} a ) = (1 - |z|^2) (1 - |a|^2)$, one readily sees that such mappings are indeed analytic bijections. Schwarz lemma explains why these are the all.
 
 \section{Schwarz lemma}
+
+At first sight one might not guess that Pick function have strong regularity properties. In some sense they however work like Schur functions, and they feel much more restrictive. If one considers a Schur function $\psi$ mapping zero to itself very classic lemma of Schwarz states that $|\psi(z)| \leq z$ for any $z \in \D$. For completeness let's review a standard proof.
+
+\begin{lause}[Schwarz lemma]
+	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$ and hence also $|\psi'(0)| \leq 1$. If $|\psi(z)| = |z|$ for some $z \in \D \setminus \{0\}$ or $|\psi'(0)| = 1$, $\psi(z) = \omega z$ for some $\omega \in \mathbb{S}$.
+\end{lause}
+\begin{proof}
+	By the assumption $\psi$ can be represented as a locally uniformly convergent power series in unit disc, of the form $\sum_{n = 1}^{\infty}a_{1} z^{n}$. Now $\psi(z)/z := \sum_{n = 0}^{\infty} a_{n + 1} z^{n}$ defines also an analytic function in unit disc. For any $0 < r < 1$, by the maximum modulus principle, we have
+	\[
+		\sup_{z \in \D(0, r)} \left|\frac{\psi(z)}{z}\right| \leq \sup_{z \in \mathbb{S}(0, r)} \left|\frac{\psi(z)}{z}\right| \leq \frac{1}{r},
+	\]
+	so by letting $r \to 1$ we get $\sup_{z \in \D} \left|\frac{\psi(z)}{z}\right| \leq 1$ and hence for any $z \in \D$
+	\[
+		|\psi(z)| \leq \left|\frac{\psi(z)}{z}\right| |z| \leq |z|
+	\]
+	TODO
+\end{proof}
+
+One might argue that this proof hides all the mysteriousness in the maximum modulus principle, which is quite surprising itself too. Maximum modulus principle can be seen as a consequence of the Cauchy's integral formula.
+
+There is somewhat better form of the Schwarz lemma, called the invariant form or Schwarz-Pick theorem.
+
+\begin{lause}[Schwarz-Pick theorem]
+	Let $\psi : \D \to \D$ be analytic. Then for any $z_{1}, z_{2} \in \D$ we have
+	\[
+		\left|\frac{\psi(z_{1}) - \psi(z_{2})}{1 - \overline{\psi(z_{1})} \psi(z_{2})} \right| \leq \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|
+	\]
+\end{lause}
+
+Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One could also extend this to say similar statement about the equality cases.
+\begin{proof}
+	Consider the map $\psi_{1} = \rho_{\psi(z_{1})} \circ \psi \circ \rho_{z_{1}}$. The claim follows by using the previous form of the Schwarz lemma for the $\psi_{1}$ and point $z_{2}$.
+\end{proof}
+
+There is a correponding variant of the Schwarz-Pick theorem for the upper half-plane.
+
+TODO:
+\begin{itemize}
+	\item Removing zeros
+	\item Representation
+	\item Pick matrices
+	\item 2 proofs of the Pick-Nevanlinna interpolation theorem
+	\item Pick-Nevanlinna-Herglotz representation theorem
+	\item ``Pointed" Pick-Nevanlinna interpolation: two proofs (one with Pick-Nevanlinna, one with congretely extending)
+\end{itemize}
+
