@@ -291,6 +291,18 @@ So the point is: from map $A \in \L(V, W)$ we (canonically) get a map ${}^{t}A :
 
 It should be noted that all parts of the theorem \ref{basic_adjoint} carry directly to this more general setup with obvious modifications.
 
+\subsection{Adjoint vectors}
+Map $\Phi_{V}$ itself can be interpreted as a kind of an adjoint. For any $v \in V$ we have canonical map, which we also denote by $v : \C /to V$, given by $v(t) = t v$. Now $\Phi_{V}(v)$ is exactly the adjoint of this map. This allows us to write $v^{*} = \Phi_{V}(v)$, that is $v^{*}w = \langle w, v \rangle$ for any $w, v \in V$, and call $v^{*}$ the \textit{adjoint vector} of $v$, or adjoint of $v$.
+
+One could also start with this notion of adjoint vector and use it to define the whole adjoint. Take any $A \in \L(V, W)$. Now the adjoint of $A$ is the map $A^{*} \in \L(W, V)$ such that for any $v \in V$ we have
+\[
+	(A v)^{*} = v^{*} \circ A^{*}.
+\]
+
+TODO?
+
+\subsection{Linear maps vs sesquilinear forms}
+
 Inner products give also other canonical isomorphism: one between linear maps and sesquilinear forms. Sesquilinear forms are complex generalizations of bilinear forms. Sesquilinear form $B : V \times W \to \C$ is a mapping linear in its first entry and anti-linear in the second. The vector space of all sesquilinear forms on $V \times W$ is denoted by $\sesqui(V, W)$. Any linear mapping $A \in \L(V, W)$ gives rise to a sesquilinear form given by $\langle A \cdot, \cdot \rangle_{W}$. This gives us a map $\Psi_{V, W} : \L(V, W) \to \sesqui(V, W)$, and we also denote $\Psi_{V, W} A = B_{A}$. This map is an isomorphism: it can be easily seen that is linear, and injection, and since both spaces are of dimension $\dim(V) \cdot \dim(W)$, the map is also an surjection.
 
 
@@ -315,13 +327,15 @@ One of the very good properties of conjugation is that it commutes with many ope
 \]
 so $(A^{-1})^{*} = (A^{*})^{-1}$. There's a natural generalization we'll come back to later.
 
+TODO: projections
+
 \section{Commuting self-adjoint maps}
 
 \textbf{Warning!} Composition of self-adjoint maps need not be self-adjoint!
 
 It's rather surprising that they are closed under sums in the first place. Of course both Hermitian and self-adjoint maps are by definition, but it's rather surprising that such class has such nice properties (most of which are left to discuss).
 
-The problem is that even if $A, B \in \H(V)$, $(AB)^{*} = B^{*} A^{*} = B A$, which is in general different from $A B$: two self-adjoint maps need not commute. Again, one should have a counterexample and almost anything works for that. We need to have $n > 1$. Also we should be able to find counterexamples that are projetions, since if any two projections commute, so do maps in their span, Hermitian maps. Finally we should not take parallel or orthogonal vectors: projections are idemponent and if one applies two orthogonal projections, result if the zero map. Actually anything else works as a counterexample. Indeed, when $v$ and $w$ are not parallel or orthogonal. Now $P_{w} P_{v} v = P_{w} v =$ something non-zero parallel to $w$, while $P_{v} P_{w}$ is something non-zero parallel to $v$ or at least not parallel to $w$. Hence $P_{v}$ and $P_{w}$ do not commute.
+The problem is that even if $A, B \in \H(V)$, $(AB)^{*} = B^{*} A^{*} = B A$, which is in general different from $A B$: two self-adjoint maps need not commute. Again, one should have a counterexample and almost anything works for that. We need to have $n > 1$. Also we should be able to find counterexamples that are projetions, since if any two projections commute, so do maps in their span, Hermitian maps. Finally we should not take parallel or orthogonal vectors: projections are idemponent and if one applies two orthogonal projections, result if the zero map. Actually anything else works as a counterexample. Indeed, when $v$ and $w$ are not parallel or orthogonal. Now $P_{w} P_{v} v = P_{w} v =$ something non-zero parallel to $w$, while $P_{v} P_{w} v$ is something non-zero parallel to $v$ or at least not parallel to $w$. Hence $P_{v}$ and $P_{w}$ do not commute.
 
 From the previous we see that projections commute exactly when the corresponding vectors are parallel or orthogonal. More generally one would like to determine exactly which products of self-adjoint maps are self-adjoint, i.e. which products commute. Large family of examples is given by pairs of self-adjoint maps with the same eigenvectors. Namely if $A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} \lambda'_{i} P_{v_{i}}$,
 \[
@@ -516,7 +530,29 @@ TODO
 
 \section{Fake products}
 
+In the previous section we noticed that although the usual composition doesn't work nicely with respect to self-adjointness, $*$-conjugation does. It might be however tempting to try to come up with something a bit more similar to the standard products. One natural idea could be to consider a symmetrized product
+\[
+	\frac{A B + B A}{2}.
+\]
+If $A$ and $B$ commute, this coincides with usual product and if $A$ and $B$ are both positive, so is this symmetriced version. Without the assumption on the commutation everything breaks yet again.
+
+TODO
+
 \section{Absolute value and Polar decompositions}
+
+We defined singular values of a linear map to be the eigenvalues of map $\left(A^{*}A\right)^{\frac{1}{2}}$. As we noticed, this map is Hermitian and even positive, and if $A$ is normal to begin with, its eigenvalues are simply absolute values of the eigenvalues of $A$. This motivates us to define
+\[
+	|A| := \left(A^{*}A\right)^{\frac{1}{2}}.
+\],
+absolute value of a map.
+
+The following list of properties of the absolute value make it clear that this is indeed good definition.
+
+\begin{itemize}
+	\item $|A| \geq 0$ for any $A \in \L(V)$ and $|A| = A$, if and only if $A \geq 0$.
+	\item (Polar decomposition) If $A \in \L(V)$, we can write $A = U |A|$ and $A = |A| V$ for some $U, V \in \unitary(V)$. $U$ and $V$ coincide if and only $A$ is normal.
+	\item For any $A \in \H(V)$ we have $-|A| \leq A \leq |A|$.
+\end{itemize}
 
 \section{Matrices and computation}
 
@@ -525,6 +561,10 @@ TODO
 TODO:
 \begin{itemize}
 	\item adjoints of vectors
+	\item projections with inclusions
+	\item order of projections
+	\item Loewner order
+	\item Schur complements
 	\item (canonical, löwdin) orthogonalization, polar decomposition and orthogonal Procrustes problem
 	\item projection matrices
 	\item Hilbert-Schmidt norm ($\to$ matrix functions?) and inner product
