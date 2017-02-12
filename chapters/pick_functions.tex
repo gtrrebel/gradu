@@ -106,15 +106,37 @@ Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One 
 	Consider the map $\psi_{1} = \rho_{\psi(z_{1})} \circ \psi \circ \rho_{z_{1}}$. The claim follows by using the previous form of the Schwarz lemma for the $\psi_{1}$ and point $z_{2}$.
 \end{proof}
 
-There is a correponding variant of the Schwarz-Pick theorem for the upper half-plane.
+There are many ways to think about these results. One immediate interpretation is that Schur functions are in some precise sense very rigid. Knowing a Schur function in a point immediately restricts the values the functions might attain at some other points. Other interpretation is that we may factor Schur functions. If $\psi$ is a Schur function with $\psi(z) = 0$, then also $\frac{\psi(z)}{z}$ is a Schur function; this is the main step in the proof of Schwarz lemma. More generally, for any Schur function $\psi$, the function
+\[
+	\psi_{z_{0}}(z) = \frac{1 - \overline{z_{0}}z}{z_{0} - z} \frac{\psi(z_{0}) - \psi(z)}{1 - \overline{\psi(z_{0})} \psi(z)}
+\]
+is also a Schur function for any $z_{0} \in \D$. In particular, if $\psi(z_{0}) = 0$ for some $z_{0} \in \D$, we can write
+\[
+	\psi(z) = \frac{z - z_{0}}{1 - \overline{z_{0}} z} \psi_{z_{0}}(z).
+\]
+
+There is a correponding variant of the Schwarz-Pick theorem for the upper half-plane, for the Pick functions.
+
+\begin{lause}[Schwarz-Pick theorem for the upper half-plane]
+	Let $\varphi : \Hp \to \Hp$ be analytic. Then for any $z_{1}, z_{2} \in \Hp$ we have
+	\[
+		\left|\frac{\varphi(z_{1}) - \varphi(z_{2})}{\varphi(z_{1}) - \overline{\varphi(z_{2})}} \right| \leq \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
+	\]
+\end{lause}
+
+\begin{proof}
+	Apply the Schwarz-Pick theorem to the map $\toplane \circ \varphi \circ \tocircle$.
+\end{proof}
+
+In a way there's no natural variant of the original Schwarz lemma for the upper half-plane. Direct analogue would be to consider Pick functions with $\varphi(i) = i$, but one might wonder if this is really any simpler. The problem is that there's no canonical center to the upper half-plane, although we've been implicitely taking it as $i$ (by choosing $\toplane$ and $\tocircle$). One might however argue that there's no canonical center to the unit disc either. With automorphisms $\rho_{a}$ we may map any point of the unit disc to any other point. For any Schur function $\psi$ and $a \in \D$ we can consider the map $\rho_{a} \circ \psi \circ \rho_{a}$. TODO
 
 TODO:
 \begin{itemize}
-	\item Removing zeros
-	\item Representation
+	\item Poincare metric
 	\item Pick matrices
 	\item 2 proofs of the Pick-Nevanlinna interpolation theorem
 	\item Pick-Nevanlinna-Herglotz representation theorem
+	\item Examples of representing measures behind functions and functions behind representing measures
 	\item ``Pointed" Pick-Nevanlinna interpolation: two proofs (one with Pick-Nevanlinna, one with congretely extending)
 \end{itemize}
 
