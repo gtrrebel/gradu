@@ -97,16 +97,23 @@ There is somewhat better form of the Schwarz lemma, called the invariant form or
 \begin{lause}[Schwarz-Pick theorem]
 	Let $\psi : \D \to \D$ be analytic. Then for any $z_{1}, z_{2} \in \D$ we have
 	\[
-		\left|\frac{\psi(z_{1}) - \psi(z_{2})}{1 - \overline{\psi(z_{1})} \psi(z_{2})} \right| \leq \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|
+		\left|\frac{\psi(z_{1}) - \psi(z_{2})}{1 - \overline{\psi(z_{1})} \psi(z_{2})} \right| \leq \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|,
 	\]
+	and
+	\[
+		\frac{\left|\psi'(z_{1})\right|}{1 - |\psi(z_{1})|^2} \leq \frac{1}{1 - |z_{1}|^2}.
+	\]
+	If the equality holds in one of the inequalities, $\psi$ is an automorphism of the unit disc. 
 \end{lause}
 
-Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One could also extend this to say similar statement about the equality cases.
+Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One may check that if $\psi$ is indeed automorphism, the inequalities hold as equalities.
 \begin{proof}
 	Consider the map $\psi_{1} = \rho_{\psi(z_{1})} \circ \psi \circ \rho_{z_{1}}$. The claim follows by using the previous form of the Schwarz lemma for the $\psi_{1}$ and point $z_{2}$.
 \end{proof}
 
-There are many ways to think about these results. One immediate interpretation is that Schur functions are in some precise sense very rigid. Knowing a Schur function in a point immediately restricts the values the functions might attain at some other points. Other interpretation is that we may factor Schur functions. If $\psi$ is a Schur function with $\psi(z) = 0$, then also $\frac{\psi(z)}{z}$ is a Schur function; this is the main step in the proof of Schwarz lemma. More generally, for any Schur function $\psi$, the function
+There are many ways to think about these results. One immediate interpretation is that Schur functions are in some precise sense very rigid. Knowing a Schur function in a point immediately restricts the values the functions might attain at some other points. We could make this more precise. If we consider the points $z_{1}, z_{2}$ and the value $\psi(z_{1})$ how exactly is the value $\psi(z_{2})$ restricted? If $z_{1} = 0 = \psi(z_{1})$, we are in the original Schwarz lemma and $\psi(z_{2})$ is simply restricted in a closed disc of radius $|z_{2}|$ around $0$. TODO
+
+Other interpretation is that we may factor Schur functions. If $\psi$ is a Schur function with $\psi(z) = 0$, then also $\frac{\psi(z)}{z}$ is a Schur function; this is the main step in the proof of Schwarz lemma. More generally, for any Schur function $\psi$, the function
 \[
 	\psi_{z_{0}}(z) = \frac{1 - \overline{z_{0}}z}{z_{0} - z} \frac{\psi(z_{0}) - \psi(z)}{1 - \overline{\psi(z_{0})} \psi(z)}
 \]
@@ -130,13 +137,60 @@ There is a correponding variant of the Schwarz-Pick theorem for the upper half-p
 
 In a way there's no natural variant of the original Schwarz lemma for the upper half-plane. Direct analogue would be to consider Pick functions with $\varphi(i) = i$, but one might wonder if this is really any simpler. The problem is that there's no canonical center to the upper half-plane, although we've been implicitely taking it as $i$ (by choosing $\toplane$ and $\tocircle$). One might however argue that there's no canonical center to the unit disc either. With automorphisms $\rho_{a}$ we may map any point of the unit disc to any other point. For any Schur function $\psi$ and $a \in \D$ we can consider the map $\rho_{a} \circ \psi \circ \rho_{a}$. TODO
 
+\subsection{Poincaré metric}
+
+There's really nice interpretation for the Schwarz-Pick theorem. The unit disc $\D$ can be equipped with a hyperbolic metric, which for any two points $z_{1}, z_{2} \in \D$ is given by
+\[
+	2 \tanh^{-1}\left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}} z_{2}}\right|.
+\]
+This is space is called Poincaré disc. One may check that the previous is indeed a metric, and automorhisms of the unit disc are exactly the isometries of this space. Now Schwarz-Pick theorem states that any Schur function decreases distances i.e. Schur functions are contractions on Poincaré disc.
+
+Analogously one could interpret that the Pick functions are contractions in Poincaré upper half-plane, metric space in upper half-plane in which the metrix is given by
+\[
+	2 \tanh^{-1}\left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}}\right|.
+\]
+
+\subsection{Pick Matrices}
+
+Schwarz-Pick theorem was about restricting Schur functions at one point. If we fix two points instead, things get more complicated. Let's say we have a Schur function $\psi$ and we know that $\psi(0) = 0$ and $\psi(\frac{1}{2}) = \frac{1}{4}$. Surely there are such Schur functions, $z \mapsto \frac{1}{2}z$ for instance, but at least Schwarz-Pick theorem doesn't immediately fix such function, which it would do should we change $\frac{1}{4}$ to $\frac{1}{2}$. The question is: what kind of values could a Schur function attain at some other point, say in $i \frac{1}{2}$. There are two things we can say immediately.
+
+TODO (Introduce Pick matrices earlier)
+
+\section{Pick-Nevanlinna interpolation theorem}
+
+We have seen that the Schur functions are contractions in Poincaré disc and Pick function are contractions in Poincaré upper half-plane. Not every contraction in these spaces is however analytic. Take disc for instance. It turns out that $z \mapsto \Re(z)$ is \textbf{not} contraction in the Poincaré disc, but for small enough positive $\eps$, $z \mapsto \eps \Re(z)$ definitely is. One could immediately push this example to upper half-plane, by using the maps $\toplane$ and $\tocircle$, or do something similar from the scratch and take, say, $z \to i + \eps \Re(1 + 2 i - \frac{2 i}{z + i})$. In the both examples the philosophy is the same: the hyperbolic metric in both cases look locally like (a scaled version of) standard metric. So if we map everything to small neighbourhood everyhing behaves nicely. In the disc, this is very simple, just scale. In the upper half-plane, we can for instance first map everything to some compact set in the upper half-plane. Then break the analyticity and scale to get contractivity.
+
+\subsection{Pick Matrices}
+
+There is however rather simple characterization for Schur functions requiring a bit more than contractivity. It turns out, that the condition ``$\psi : \D \to \D$ is contraction" is equivalent to the matrix
+\[
+	\begin{bmatrix}
+		\frac{1 - |\psi(z_{1})|^{2}}{1 - |z_{1}|^{2}} & \frac{1 - \overline{\psi(z_{1})} \psi(z_{2})}{1 - \overline{z_{1}} z_{2}} \\
+		\frac{1 - \overline{\psi(z_{2})} \psi(z_{1})}{1 - \overline{z_{2}} z_{1}} & \frac{1 - |\psi(z_{2})|^{2}}{1 - |z_{2}|^{2}}
+	\end{bmatrix}
+\]
+being positive. Such matrix is called Pick matrix. Conveniently, even the condition ``$\psi$ maps $\D$ to itself" is built-in in the positivity. This is not entirely obvious but it may straighforwardly, although tediously verified by checking that the Schwarz-Pick inequality is equivalent to the determinant of the Pick matrix being non-negative.
+
+Similarly, for any sequence of say $n$ points in the unit disc we may form the matrix
+\[
+	\begin{bmatrix}
+		\frac{1 - |\psi(z_{1})|^{2}}{1 - |z_{1}|^{2}} & \frac{1 - \overline{\psi(z_{1})} \psi(z_{2})}{1 - \overline{z_{1}} z_{2}} & \cdots & \frac{1 - \overline{\psi(z_{1})} \psi(z_{n})}{1 - \overline{z_{1}} z_{n}} \\
+		\frac{1 - \overline{\psi(z_{2})} \psi(z_{1})}{1 - \overline{z_{2}} z_{1}} & \frac{1 - |\psi(z_{2})|^{2}}{1 - |z_{2}|^{2}} & \cdots & \frac{1 - \overline{\psi(z_{2})} \psi(z_{n})}{1 - \overline{z_{2}} z_{n}} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\frac{1 - \overline{\psi(z_{n})} \psi(z_{1})}{1 - \overline{z_{n}} z_{1}} & \frac{1 - \overline{\psi(z_{n})} \psi(z_{2})}{1 - \overline{z_{n}} z_{2}} & \cdots &  \frac{1 - |\psi(z_{n})|^{2}}{1 - |z_{n}|^{2}}
+	\end{bmatrix}
+\]
+
 TODO:
 \begin{itemize}
-	\item Poincare metric
+	\item Poincaré metric
 	\item Pick matrices
 	\item 2 proofs of the Pick-Nevanlinna interpolation theorem
+	\item Hindmarsh's theorem
 	\item Pick-Nevanlinna-Herglotz representation theorem
+	\item Compactness
 	\item Examples of representing measures behind functions and functions behind representing measures
 	\item ``Pointed" Pick-Nevanlinna interpolation: two proofs (one with Pick-Nevanlinna, one with congretely extending)
+	\item Spectral commutant lifting theorem
 \end{itemize}
 

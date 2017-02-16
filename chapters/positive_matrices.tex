@@ -542,8 +542,8 @@ TODO
 
 We defined singular values of a linear map to be the eigenvalues of map $\left(A^{*}A\right)^{\frac{1}{2}}$. As we noticed, this map is Hermitian and even positive, and if $A$ is normal to begin with, its eigenvalues are simply absolute values of the eigenvalues of $A$. This motivates us to define
 \[
-	|A| := \left(A^{*}A\right)^{\frac{1}{2}}.
-\],
+	|A| := \left(A^{*}A\right)^{\frac{1}{2}},
+\]
 absolute value of a map.
 
 The following list of properties of the absolute value make it clear that this is indeed good definition.
@@ -556,29 +556,35 @@ The following list of properties of the absolute value make it clear that this i
 
 \section{Matrices and computation}
 
+We have made whole bunch of definitions and observations concerning positive matrices, but just because we know how to define something doesn't mean we can calculate it. In some cases, calculations are just as easy the proofs, but in many cases one needs further ideas. What follows is a hopefully useful collection of information on how to really calculate things.
+
+\begin{itemize}
+	\item How to calculate adjoint of a map?
+	\item How to calculate spectral composition of a map?
+	\item How to calculate square root of a map?
+	\item How to check if a map is positive?
+	\item How to check if a map is strictly positive?
+	\item If map $A$ is not positive, how to find a vector $v \in V$ such that $Q_{A}(v) < 0$.
+	\item How to calculate a polar decomposition of a map?
+	\item If $A$ and $B$ are $*$-adjoint, how to find $C$ such that $A = C^{*} B C$?
+	\item How to calculate projection matrices?
+\end{itemize}
+
 \section{Positivity without inner-product}
 
 TODO:
 \begin{itemize}
+	\item Square root of a matrix
+	\item Sylvester's criterion
 	\item adjoints of vectors
 	\item projections with inclusions
 	\item order of projections
 	\item Loewner order
 	\item Schur complements
+	\item Moore-Penrose pseudoinverse
 	\item (canonical, löwdin) orthogonalization, polar decomposition and orthogonal Procrustes problem
 	\item projection matrices
 	\item Hilbert-Schmidt norm ($\to$ matrix functions?) and inner product
 	\item Real vs. complex
+	\item Positive definite kernels
 \end{itemize}
-
-
-
-
-
-
-
-
-
-
-
-
