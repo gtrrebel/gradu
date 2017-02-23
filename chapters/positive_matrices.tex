@@ -465,7 +465,7 @@ Such maps are usually called \textit{positive semi-definite}: the term \textit{p
 	FIGURE: this intuition visualized in $\R^{2}$ or $\R^{3}$
 \end{itemize}
 
-\section{Congruence and Sylvesters criterion}
+\section{Congruence and Inertia}
 
 \subsection{$*$-conjugation}
 
@@ -490,6 +490,14 @@ The previous construction can be also performed between two spaces $V$ and $W$: 
 
 If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive eigenvalues of $A$, \textit{inertia} of $A$ is the triplet $\{n_{0}, n_{-}, n_{+} \}$. The previous theorem can be hence restated, that inertia is invariant under congruence.
 
+The proof also gives a useful characterization for the number of non-negative eigenvalues.
+
+\begin{kor}
+	If $A \in \H(V)$, number of non-negative eigenvalues of $A$ equals largest non-negative integer $k$ such that $Q_{A}$ is non-negative on subspace of $V$ of dimension $k$.
+\end{kor}
+
+TODO: explicit expression if $A$ and $B$ are positive definite.
+
 It gets better: if two normal maps are congruent, we can vastly generalize the previous result: for normal maps, congruence preserves the number of eigenvalues on any open ray.
 
 For any $A \in \normal(V)$ define the mapping $\theta[A] : S^{1} \to \N$ by setting $\theta[A](z)$ be the number of eigenvalues (counted with multiplicity) on ray $\{rz | r > 0\}$. This map is called the \textit{angularity} of $A$.
@@ -504,7 +512,7 @@ TODO: figure of change of eigenvalues on congruence.
 
 	Carrying out the previous reasoning for the maps $e^{i t}A$ and $e^{i t} B$ for real $t$ we see that these maps have equally many eigenvalues on any closed half plane containing origin. If one considers function sending $t$ to the number of eigenvalues of $e^{i t} A$ on closed right half-plane, we see that this function has jump discontinuitys, and the value, and the left and the right limits at these point reveals number of eigenvalues at any open ray.
 
-	TODO: figure of functions $t \mapsto$ number of eigenvalues of $e^{it}A$ on closed right half-plane.
+	TODO: figure of functions $t \mapsto$ number of eigenvalues of $e^{it}A$ on closed right half-plane, or even better, map from $\S \to \N$.
 \end{proof}
 
 Sylvester's Law of inertia gives another proof of the fact that strictly positive maps are exactly the maps congruent to the identity, and positive maps are the maps congruent to some projection. More precisely, the positive maps are partitioned to $n + 1$ congruene classes depending on their rank, $k$:th congruence class containing the projections to $k$-dimensional subspaces. $0$:th class contains only the zero map, the only rank $0$ (positive) map, and the $n$:th class is the class of strictly positive maps.
@@ -527,6 +535,9 @@ The important property of $*$-conjugates we have used repeatedly is that it comm
 There is a very important class of congruence called unitary congruence: congruence by unitary map. Since adjoint of an unitary map is just its inverse, $*$-conjugation by unitary map, or unitary conjugation is also conjugation in the usual sense. Unitary congruence hence also preserves eigenvalues.
 
 TODO
+
+\subsection{Sylvester's Criterion}
+Congruence also leads to Sylvester's criterion.
 
 \section{Fake products}
 
@@ -585,6 +596,20 @@ TODO:
 	\item (canonical, löwdin) orthogonalization, polar decomposition and orthogonal Procrustes problem
 	\item projection matrices
 	\item Hilbert-Schmidt norm ($\to$ matrix functions?) and inner product
+	\item Hilbert spaces
 	\item Real vs. complex
 	\item Positive definite kernels
+	\item Weakly positive matrices
+	\item Hlawka inequality for determinant %http://mathoverflow.net/questions/182181/hlawka-inequality-for-determinants-of-positive-definite-matrices?rq=1
+\end{itemize}
+
+Ideas how to rewrite this section:
+\begin{itemize}
+	\item Map is positive, if all of its restrictions are. One dimensional maps are positive if and only the scalar is positive.
+	\item Map is real, if all of its restrictions are. One dimensional maps are real if and only the scalar is real.
+	\item Adjoint commutes with restriction. Adjoint of one dimensional map is its conjugate.
+	\item How should one restrict linear mappings? (Use inclusions and finally project)
+	\item Central notion is adjoint
+	\item $*$-conjugation is natural notion with adjoint
+	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive.
 \end{itemize}
