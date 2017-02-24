@@ -2,6 +2,7 @@
 
 This chapter is titled ``positive matrices", although ``positive maps" might be more appropriate title. We are mostly going to deal with finite-dimensional objects, but many of the ideas could be generalized infinite-dimensional settings, where matrices lose their edge. Also, one should always ask whether it really clarifies the situation to introduce concrete matrices: matrices are good at hiding the truly important properties of linear mappings. The words ``matrix" and ``linear map" are used somewhat synonymously, although one should always remember that the former are just special representations for the latter.
 
+\begin{comment}
 \section{Motivation}
 
 How should one order matrices? What should we require from ordering anyway?
@@ -603,6 +604,8 @@ TODO:
 	\item Hlawka inequality for determinant %http://mathoverflow.net/questions/182181/hlawka-inequality-for-determinants-of-positive-definite-matrices?rq=1
 \end{itemize}
 
+\end{comment}
+
 Ideas how to rewrite this section:
 \begin{itemize}
 	\item Map is positive, if all of its restrictions are. One dimensional maps are positive if and only the scalar is positive.
@@ -613,3 +616,143 @@ Ideas how to rewrite this section:
 	\item $*$-conjugation is natural notion with adjoint
 	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive.
 \end{itemize}
+
+\section{Motivation}
+
+How should one order matrices? What should we require from ordering anyway?
+
+We would definitely like to have natural total order on the space of matrices, but it turns out there are no natural choices for that. Partial order is the next best thing. Recall that a partial order on a set $X$ is a binary relation $\leq$ on such that
+\begin{enumerate}
+	\item $x \leq x$ for any $x \in X$.
+	\item For any $x, y \in X$ for which $x \leq y$ and $y \leq x$, necessarily $x = y$.
+	\item If for some $x, y, z \in X$ we have both $x \leq y$ and $y \leq z$, also $x \leq z$.
+\end{enumerate}
+
+The third point is the main point, the first two are just there preventing us from doing something crazy. But we can do better: this partial order on matrices should also respect addition.
+\begin{enumerate}
+\item[4.] For any $x, y, z \in X$ such that $x \leq y$, we should also have $x + z \leq y + z$.
+\end{enumerate}
+
+There's another way to think about this last point. Instead of specifying order among all the pairs, we just say which matrices are positive: matrix is positive if and only it's at least $0$.
+
+If we know all the positive matrices, we know all the ``orderings". To figure out whether $x \leq y$, we just check whether $0 = x - x \leq y - x$, i.e. whether $y - x$ is positive. Also, positive matrices are just differences of the form $y - x$ where $x \leq y$. Now, conditions on the partial order are reflected to the set of positive matrices.
+\begin{enumerate}
+	\item[1'.] $0$ (zero matrix) is positive.
+	\item[2'.] If both $x$ and $-x$ are positive, then $x = 0$.
+	\item[3'.] If both $x$ and $y$ are positive, so is their sum $x + y$.
+\end{enumerate}
+Here $3'$ is kind of combination of $3$ and $4$.
+
+The terminology here is rather unfortunate. Natural ordering of the reals satisfies all of the above with obvious interpretation of positive numbers, which however differs from the standard definition: $0$ is itself positive in our above definition. This is undoubtedly confusing, but what can you do? For real numbers we have total order, so every number is either zero, strictly positive or strictly negative, so when we say non-negative, it literally means ``not negative": we get all the positive numbers and zero. But with partial orders we might get more. So the main reasons why we are using this terminology are
+\begin{enumerate}
+	\item It's short.
+\end{enumerate}
+Also, now that we have decided to preserve the word ``positive" for ``at least zero" one might be tempted to preserve ``strictly positive" for ``at least zero, but not zero". We won't do that, we save that phrase for something more important.
+
+To figure out a correct notion for positive maps, let's start simple. If we are in a $1$-dimensional vector space $V$ over $\R$ there's rather canonical choice for positivity. Any linear map is of the form $v \mapsto a v$ for some $a \in \R$ and we should obviously say that a map is positive if $a \geq 0$ (note our non-standard terminology concerning positivity).
+
+Natural extension of this idea could be try the following: map is positive if all of its eigenvalues are non-negative. Of course, this doesn't quite work: not every map has real eigenvalues. But even if we restrict to maps with real eigenvalues, this property is not preserved in addition. Consider for example the pair
+\[
+	\begin{bmatrix}
+		0 & 4 \\
+		1 & 0
+	\end{bmatrix}
+	\text{ and }
+	\begin{bmatrix}
+		0 & -1 \\
+		-4 & 0
+	\end{bmatrix}
+\]
+The two matrices have both distinct eigenvalues $- 2$ and $2$ and are hence diagonlizable, but their sum has characteristic polynomial $x^2 + 9$, which most definitely has no real zeros. In general one should not except summation and eigenvalues go very well together.
+
+\section{Restricting linear maps}
+
+There's however quite clever way to go around this. Instead of requiring non-negativity of eigenvalues, we require that map ``restricts" to positive map. The idea is: if we already know which maps should be positive in one-dimensional spaces, we should require that when we restrict our look to one-dimensional subspaces, we should get a positive map.
+
+Of course, one should first understand what restricting linear maps means. Usually if we have a linear map $A : V \to V$, we could take subspace $W \subset V$ and consider the usual restriction map $\restr{A}{W} : W \to V$ given by $\restr{A}{W}(w) = Aw$ for any $w \in W \subset V$. In other words $\restr{A}{W} = A \circ \incl{V}{W}$, where $\incl{V}{W}$ denotes the natural inclusion from $W$ to $V$. But this map is going to wrong space. Instead we would like to define something satisfying
+\begin{itemize}
+	\item Restriction of $A \in \L(V)$ to subspace $W$, which we will \textit{$*$-restriction} and denote by $\arestr{A}{W}$, should be a map in $\L(W)$.
+	\item If $A(W) \subset W$, restriction should coincide with the original map, in the sense that $\arestr{A}{W}w = Aw$ for any $w \in W$.
+	\item Restriction operation is linear (in the linear map).
+	\item If $W' \subset W \subset V$, we should have $\arestr{A}{W'} = \arestr{(\arestr{A}{W})}{W'}$.
+\end{itemize}
+
+These properties don't uniquely define a linear map but they say that $\arestr{A}{W}$ should be of the form $P_{V, W} \circ A \circ \incl{V}{W}$ where $P_{V, W}$ is a projection, i.e. a idemponent linear map with $V \to W$ with image $W$. Moreover, these projections should satisfy $P_{V, W'} = P_{W, W'} \circ P_{V, W}$.
+
+If we are working in a inner-product space, there's rather natural choice for the map $P_{V, W}$: orthogonal projections. Orthogonal projections are projections with $\ker(P) = \image(P)^{\perp}$. Such maps are easily seen to satisfy all the requirements.
+
+\begin{maar}
+	Let $(V, \langle \cdot, \cdot \rangle )$ be an inner product space and $W \subset V$ a subset. We define the map $\arestr{A}{W}$, $*$-restriction of $A$ to $W$ to be the linear map given by $P_{W} \circ A \circ \incl{V}{W}$.
+\end{maar}
+
+The following properties are evident.
+
+\begin{prop}
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. Then
+	\begin{enumerate}[(i)]
+		\item If $W \subset V$ and $A \in \L(V)$ such that $A(V) \subset W$, then $\arestr{A}{W}w = Aw$ for any $w \in W$.
+		\item If $W' \subset W \subset V$ and $A \in \L(V)$, we have $\arestr{A}{W'} = \arestr{(\arestr{A}{W})}{W'}$.
+		\item For any $W \subset V$ and $A, B \in \L(V)$ and $\alpha, \beta \in \R$ we have $\arestr{\alpha A + \beta B}{W} = \alpha \arestr{A}{W} + \beta \arestr{B}{W}$.
+	\end{enumerate}
+\end{prop}
+
+We implicitly defined restriction for inner product spaces over $\R$, but such definition could be done just as well for $\C$. In many ways this is more natural space as we'll soon see.
+
+\section{Positive maps}
+
+Now that we have defined the restrictions we are ready define positive maps.
+
+\begin{maar}
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is positive, and write $A \geq 0$, if for any one dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is positive, i.e. is induced by a non-negative real.
+\end{maar}
+
+Positive maps have the following useful properties.
+
+\begin{prop}
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space over $\C$. Then
+	\begin{enumerate}[(i)]
+		\item $A \in \L(V)$ is positive if and only if $\arestr{A}{W}$ is positive for every subspace $W \subset V$.
+		\item If $A, B \in \L(V)$ are positive and $\alpha, \beta \geq 0$, also $\alpha A + \beta B$ is positive.
+		\item If $(A_{i})_{i = 1}^{\infty}$ are positive and $\lim_{i \to \infty} A_{i} = A$, also $A$ is positive.
+		\item $A \in \L(V)$, $A$ is positive if and only for any $v \in V$ we have $\langle A x, x \rangle \geq 0$.
+		\item If both $A$ and $-A$ are positive, then $A = 0$.
+		\item If $A$ is positive, all of its eigenvalues are non-negative.
+	\end{enumerate}
+\end{prop}
+
+\section{Ideas}
+
+\begin{itemize}
+	\item Square root of a matrix
+	\item Sylvester's criterion
+	\item adjoints of vectors
+	\item projections with inclusions
+	\item order of projections
+	\item Loewner order
+	\item Schur complements
+	\item Moore-Penrose pseudoinverse
+	\item (canonical, löwdin) orthogonalization, polar decomposition and orthogonal Procrustes problem
+	\item projection matrices
+	\item Hilbert-Schmidt norm ($\to$ matrix functions?) and inner product
+	\item Hilbert spaces
+	\item Real vs. complex
+	\item Positive definite kernels
+	\item Weakly positive matrices
+	\item Hlawka inequality for determinant %http://mathoverflow.net/questions/182181/hlawka-inequality-for-determinants-of-positive-definite-matrices?rq=1
+\end{itemize}
+
+Ideas how to rewrite this section:
+\begin{itemize}
+	\item Map is positive, if all of its restrictions are. One dimensional maps are positive if and only the scalar is positive.
+	\item Map is real, if all of its restrictions are. One dimensional maps are real if and only the scalar is real.
+	\item Adjoint commutes with restriction. Adjoint of one dimensional map is its conjugate.
+	\item How should one restrict linear mappings? (Use inclusions and finally project)
+	\item Central notion is adjoint
+	\item $*$-conjugation is natural notion with adjoint
+	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive.
+\end{itemize}
+
+
+
+
+
