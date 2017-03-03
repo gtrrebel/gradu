@@ -702,7 +702,7 @@ as long as $v \neq 0$, and thus
 
 If $w \in (v) \setminus \{0\}$, we could rewrite the previous in the form
 \[
-	\arestr{A}{(v)}(w) = \frac{\langle A w, w\rangle}{\langle w, w \rangle} w.
+	\arestr{A}{(v)}(w) = \frac{\langle A v, v\rangle}{\langle v, v\rangle} w = \frac{\langle A w, w\rangle}{\langle w, w \rangle} w.
 \]
 This gives rise to so called Rayleigh quotient $R(A, \cdot) : V \setminus \{0\} \to \C$, given by
 \[
@@ -714,7 +714,7 @@ We will call $\langle A v, v \rangle$ the quadratic form of $A$, and denote it b
 
 There's one more important property of restricions we need. When map is restricted to a subspace, we naturally lose some imformation about the map. Knowing about all of the restrictions, however, we can get our map back.
 
-\begin{lem}
+\begin{lem}[Injectivity of restriction]
 	If $A, B \in \L(V)$, $A = B$ if and only if $\arestr{A}{W} = \arestr{B}{W}$ for any one-dimensional subspace $W \subset V$.
 \end{lem} 
 \begin{proof}
@@ -726,10 +726,10 @@ There's one more important property of restricions we need. When map is restrict
 Now that we have defined the restrictions we are ready define positive maps.
 
 \begin{maar}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is positive, and write $A \geq 0$, if for any one dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is positive, i.e. is induced by a non-negative real.
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is positive, and write $A \geq 0$, if for any one-dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is positive, i.e. is induced by a non-negative real.
 \end{maar}
 
-The following properties are evident.
+Positive maps have the following useful properties.
 
 \begin{prop}
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space over $\C$. Then
@@ -742,9 +742,23 @@ The following properties are evident.
 		\item If $A$ is positive, all of its eigenvalues are non-negative.
 	\end{enumerate}
 \end{prop}
+\begin{proof}
+	\begin{enumerate}[(i)]
+		\item Other direction is immediate. Also if for any subspace $W \subset V$ take any one-dimensional $W' \subset W$. Now $\arestr{(\arestr{A}{W})}{W'} = \arestr{A}{W'}$, is positive by assumption, and so is $\arestr{A}{W}$.
+		\item The claim evidently holds for one-dimensional spaces. Now for any one-dimesional $W \subset V$ we have $\arestr{(\alpha A + \beta B)}{W} = \alpha \arestr{A}{W} + \beta \arestr{B}{W} \geq 0$, by the one-dimensional case, so $\alpha A + \beta B \geq 0$.
+		\item Again, the claim evidently holds for one-dimensional spaces. Now for any one-dimesional $W \subset V$ we have $\arestr{(\lim_{i \to \infty} A_{i})}{W} = \lim_{i \to \infty}\arestr{(A_{i})}{W}\geq 0$, by the one-dimensional case, so $A \geq 0$.
+		\item These claims are immediate from our representation for one-dimensional restrictions.
+		\item If $A, -A \geq 0$, all the one-dimensional restrictions of $A$ are both non-negative and non-positive, so zero. But by the injectivity of restriction, it follows that $A = 0$.
+		\item Note that if $v$ is any eigenvector of $v$, $\arestr{A}{(v)} w = \frac{\langle A v, v\rangle}{\langle v, v\rangle} w = \lambda w$, so by assumption $\lambda \geq 0$.
+	\end{enumerate}
+\end{proof}
 
 TODO: more/better explanation
-This is where we see the usefulness of the restriction: it allows us to lift all the useful properties of reals to linear mappings. We can also lift other important notions.
+This is where we see the usefulness of the restriction: it allows us to lift all the useful properties of reals to linear mappings.
+
+TODO: projections are positive.
+
+We can also lift other important notions.
 
 \begin{maar}
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is real, and write $A \geq 0$, if for any one dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is real, i.e. is induced by real number.
@@ -754,7 +768,11 @@ This is where we see the usefulness of the restriction: it allows us to lift all
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is imaginary, and write $A \geq 0$, if for any one dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is imaginary, i.e. is induced by imaginary number.
 \end{maar}
 
-The previous two families of maps are called Hermitian and Skew-Hermitian and as with positive maps, many of their properties are lifted form usual complex numbers.
+The previous two families of maps are usually called Hermitian and Skew-Hermitian and as with positive maps, many of their properties are lifted form usual complex numbers.
+
+As positive maps, projections are stereotypical examples of real maps. TODO: projections span all maps.
+
+\section{Adjoint}
 
 We can also lift the notion of complex conjugate. If $V$ is one-dimensional, $\overline{A}$, conjugate of $A$ should be a linear map which is induced by the complex conjugate of the scalar inducing $A$.
 
@@ -762,7 +780,7 @@ We can also lift the notion of complex conjugate. If $V$ is one-dimensional, $\o
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. Then for any $A \in \L(V)$ there exists unique map $A^{*} \in \L(V)$, which we will call adjoint of $A$, for which for any one-dimensional subspace $W$ we have $\arestr{A^{*}}{W} = \overline{\arestr{A}{W}}$.
 \end{lause}
 \begin{proof}
-	The uniqueness is immediate from the injectivity of restrictions. TODO
+	It is plain from the definition that map is its own adjoint if and only if its real. Also, the uniqueness of adjoint is immediate from the injectivity of restrictions. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$. But as we noticed, every map is linear combination of projections, which are their own adjoints. We are done.
 \end{proof}
 
 \section{Ideas}
