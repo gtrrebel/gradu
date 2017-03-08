@@ -111,7 +111,11 @@ Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One 
 	Consider the map $\psi_{1} = \rho_{\psi(z_{1})} \circ \psi \circ \rho_{z_{1}}$. The claim follows by using the previous form of the Schwarz lemma for the $\psi_{1}$ and point $z_{2}$.
 \end{proof}
 
-There are many ways to think about these results. One immediate interpretation is that Schur functions are in some precise sense very rigid. Knowing a Schur function in a point immediately restricts the values the functions might attain at some other points. We could make this more precise. If we consider the points $z_{1}, z_{2}$ and the value $\psi(z_{1})$ how exactly is the value $\psi(z_{2})$ restricted? If $z_{1} = 0 = \psi(z_{1})$, we are in the original Schwarz lemma and $\psi(z_{2})$ is simply restricted in a closed disc of radius $|z_{2}|$ around $0$. TODO
+There are many ways to think about these results. One immediate interpretation is that Schur functions are in some precise sense very rigid. Knowing a Schur function in a point immediately restricts the values the functions might attain at some other points. We could make this more precise. If we consider the points $z_{1}, z_{2}$ and the value $\psi(z_{1})$ how exactly is the value $\psi(z_{2})$ restricted? If $z_{1} = 0 = \psi(z_{1})$, we are in the original Schwarz lemma and $\psi(z_{2})$ is simply restricted in a closed disc of radius $|z_{2}|$ around $0$. More generally, the restriction is bit more subtle, but the values are still restricted in a closed disc. Indeed, the set of admissible $\psi(z_{2})$ is inverse of image of disc $\D(0, r)$, where
+\[
+	r = \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|,
+\]
+under the map $\rho_{\psi(z_{1})}$, thus a disc.
 
 Other interpretation is that we may factor Schur functions. If $\psi$ is a Schur function with $\psi(z) = 0$, then also $\frac{\psi(z)}{z}$ is a Schur function; this is the main step in the proof of Schwarz lemma. More generally, for any Schur function $\psi$, the function
 \[
@@ -152,7 +156,9 @@ Analogously one could interpret that the Pick functions are contractions in Poin
 
 \subsection{Pick Matrices}
 
-Schwarz-Pick theorem was about restricting Schur functions at one point. If we fix two points instead, things get more complicated. Let's say we have a Schur function $\psi$ and we know that $\psi(0) = 0$ and $\psi(\frac{1}{2}) = \frac{1}{4}$. Surely there are such Schur functions, $z \mapsto \frac{1}{2}z$ for instance, but at least Schwarz-Pick theorem doesn't immediately fix such function, which it would do should we change $\frac{1}{4}$ to $\frac{1}{2}$. The question is: what kind of values could a Schur function attain at some other point, say in $i \frac{1}{2}$. There are two things we can say immediately.
+Schwarz-Pick theorem was about restricting Schur functions at one point. If we fix two points instead, things get more complicated. Let's say we have a Schur function $\psi$ and we know that $\psi(-\frac{1}{2}) = -\frac{2}{3}$ and $\psi(\frac{1}{2}) = \frac{2}{3}$. Surely there are such Schur functions, $z \mapsto \frac{2}{3}z$ for instance, but at least Schwarz-Pick theorem doesn't immediately fix such function, which it would do should we change the $\frac{1}{3}$'s to $\frac{1}{2}$. The question is: what kind of values could a Schur function attain at some other point, say at $0$.
+
+There are two immediate restrictions: values at $-\frac{1}{2}$ and $\frac{1}{2}$ restrict the value at $0$ in the intersection of two discs. The value at $-\frac{1}{2}$ restricts the value in a closed disc of radius $\frac{16}{35}$ at $-\frac{9}{35}$ and, symmetrically, the value at $\frac{1}{2}$ of radius $\frac{16}{35}$ at $\frac{9}{35}$. Considering these bounds, there's nothing in principle preventing us from having $\psi(0) = ??$. Not every value in these discs is however attainable. 
 
 TODO (Introduce Pick matrices earlier)
 
@@ -183,7 +189,7 @@ Similarly, for any sequence of say $n$ points in the unit disc we may form the m
 
 TODO:
 \begin{itemize}
-	\item Poincaré metric
+	\item Poincaré metric: discs are discs, Apollonius circle
 	\item Pick matrices
 	\item 2 proofs of the Pick-Nevanlinna interpolation theorem
 	\item Hindmarsh's theorem

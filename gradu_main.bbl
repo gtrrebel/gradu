@@ -1,0 +1,145 @@
+\begin{thebibliography}{10}
+
+\bibitem{Arnold}
+B.~C. Arnold.
+\newblock Majorization: Here, there and everywhere.
+\newblock {\em Statistical Science}, pages 407--413, 2007.
+
+\bibitem{Atiyah}
+M.~F. Atiyah.
+\newblock Convexity and commuting {H}amiltonians.
+\newblock {\em Bull. London Math. Soc.}, 14(1):1--15, 1982.
+
+\bibitem{Ben}
+J.~Bendat and S.~Sherman.
+\newblock Monotone and convex operator functions.
+\newblock {\em Trans. Amer. Math. Soc.}, 79:58--71, 1955.
+
+\bibitem{Bhatia}
+R.~Bhatia.
+\newblock {\em Positive definite matrices}.
+\newblock Princeton university press, 2009.
+
+\bibitem{Bhatia2}
+R.~Bhatia.
+\newblock {\em Matrix analysis}, volume 169.
+\newblock Springer Science \& Business Media, 2013.
+
+\bibitem{Brady}
+Z.~Brady.
+\newblock Inequalities and higher order convexity.
+\newblock {\em arXiv preprint arXiv:1108.5249}, 2011.
+
+\bibitem{Carlen}
+E.~Carlen.
+\newblock Trace inequalities and quantum entropy: an introductory course.
+\newblock {\em Entropy and the quantum}, 529:73--140, 2010.
+
+\bibitem{Chan}
+P.~Chansangiam.
+\newblock A survey on operator monotonicity, operator convexity, and operator
+  means.
+\newblock {\em Int. J. Anal.}, pages Art. ID 649839, 8, 2015.
+
+\bibitem{Boo}
+C.~de~Boor.
+\newblock Divided differences.
+\newblock {\em Surv. Approx. Theory}, 1:46--69, 2005.
+
+\bibitem{Dob}
+O.~Dobsch.
+\newblock Matrixfunktionen beschr\"ankter {S}chwankung.
+\newblock {\em Math. Z.}, 43(1):353--388, 1938.
+
+\bibitem{Don}
+W.~F. Donoghue, Jr.
+\newblock {\em Monotone matrix functions and analytic continuation}.
+\newblock Springer-Verlag, New York-Heidelberg, 1974.
+\newblock Die Grundlehren der mathematischen Wissenschaften, Band 207.
+
+\bibitem{Franz}
+U.~Franz, F.~Hiai, and E.~Ricard.
+\newblock Higher order extension of {L}\"owner's theory: operator {$k$}-tone
+  functions.
+\newblock {\em Trans. Amer. Math. Soc.}, 366(6):3043--3074, 2014.
+
+\bibitem{Han}
+F.~Hansen.
+\newblock The fast track to {L}\"owner's theorem.
+\newblock {\em Linear Algebra Appl.}, 438(11):4557--4571, 2013.
+
+\bibitem{Hansen}
+F.~Hansen and G.~Kj{\ae}rg{\aa}rd~Pedersen.
+\newblock Jensen's inequality for operators and l{\"o}wner's theorem.
+\newblock {\em Mathematische Annalen}, 258(3):229--241, 1982.
+
+\bibitem{Tom}
+F.~Hansen and J.~Tomiyama.
+\newblock Differential analysis of matrix convex functions.
+\newblock {\em Linear Algebra Appl.}, 420(1):102--116, 2007.
+
+\bibitem{Tom2}
+F.~Hansen and J.~Tomiyama.
+\newblock Differential analysis of matrix convex functions. {II}.
+\newblock {\em JIPAM. J. Inequal. Pure Appl. Math.}, 10(2):Article 32, 5, 2009.
+
+\bibitem{Helmke}
+U.~Helmke and J.~Rosenthal.
+\newblock Eigenvalue inequalities and schubert calculus.
+\newblock {\em Mathematische Nachrichten}, 171:207--226, 1995.
+
+\bibitem{Horn}
+R.~A. Horn and C.~R. Johnson.
+\newblock {\em Matrix analysis}.
+\newblock Cambridge university press, 2012.
+
+\bibitem{Karam}
+J.~Karamata.
+\newblock Sur une in{\'e}galit{\'e} relative aux fonctions convexes.
+\newblock {\em Publications de l'Institut mathematique}, 1(1):145--147, 1932.
+
+\bibitem{Klyachko}
+A.~A. Klyachko.
+\newblock Stable bundles, representation theory and {H}ermitian operators.
+\newblock {\em Selecta Math. (N.S.)}, 4(3):419--445, 1998.
+
+\bibitem{Allen}
+A.~Knutson and T.~Tao.
+\newblock Honeycombs and sums of {H}ermitian matrices.
+\newblock {\em Notices Amer. Math. Soc.}, 48(2):175--186, 2001.
+
+\bibitem{Kra}
+F.~Kraus.
+\newblock \"{U}ber konvexe {M}atrixfunktionen.
+\newblock {\em Math. Z.}, 41(1):18--42, 1936.
+
+\bibitem{Low}
+K.~L{\"o}wner.
+\newblock \"{U}ber monotone {M}atrixfunktionen.
+\newblock {\em Math. Z.}, 38(1):177--216, 1934.
+
+\bibitem{Marsh}
+A.~W. Marshall, I.~Olkin, and B.~C. Arnold.
+\newblock {\em Inequalities: theory of majorization and its applications}.
+\newblock Springer Series in Statistics. Springer, New York, second edition,
+  2011.
+
+\bibitem{Mulholland}
+H.~Mulholland.
+\newblock On generalizations of minkowski's inequality in the form of a
+  triangle inequality.
+\newblock {\em Proceedings of the London Mathematical Society}, 2(1):294--307,
+  1949.
+
+\bibitem{Sag}
+{The Sage Developers}.
+\newblock {\em {S}ageMath, the {S}age {M}athematics {S}oftware {S}ystem
+  ({V}ersion 7.1)}, 2016.
+\newblock {\tt http://www.sagemath.org}.
+
+\bibitem{Zhang}
+F.~Zhang.
+\newblock {\em Matrix theory: basic results and techniques}.
+\newblock Springer Science \& Business Media, 2011.
+
+\end{thebibliography}

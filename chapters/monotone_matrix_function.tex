@@ -108,7 +108,7 @@ We should be a bit careful though. As we saw with the square function example, p
 \begin{proof}
 	Again, let's think what goes wrong with the standard proof for $n = 1$.
 
-	Fix open interval $(a, b)$, positive integer $n \geq 2$ and two functions $f, g \in P^{n}(a, b)$. Take any two $A, B \in \H_{(a, b)}^{n}$ with $A \leq B$. Now $f(A) \leq f(B) \leq \max(f, g)(B)$ and Now $f(A) \leq f(B) \leq \max(f, g)(B)$. It follows that
+	Fix open interval $(a, b)$, positive integer $n \geq 2$ and two functions $f, g \in P^{n}(a, b)$. Take any two $A, B \in \H_{(a, b)}^{n}$ with $A \leq B$. Now $f(A) \leq f(B) \leq \max(f, g)(B)$ and $f(A) \leq f(B) \leq \max(f, g)(B)$. It follows that
 	\[
 		\max(f, g)(A) = \max(f(A), g(A)) \leq \max(f, g)(B),
 	\]
@@ -161,6 +161,21 @@ TODO:
 	\item Examples
 	\item Pick functions are monotone
 	\item Heaviside function
+	\item Trace inequalities: if $f$ is monotone/convex then $\tr f$ is monotone/convex. Proof idea: we may write $\tr f$ as a limit of finite sum of translations of Heaviside functions (monotone case) or absolute values (convex case), so its sufficient to prove the claim for these functions. For monotone case it hence suffices to prove that if $A \leq B$, $B$ has at least as many non-negative eigenvalues as $A$. But this is clear by subspace characterization of non-negative eigenvalues. For convex case, it suffices to prove that $\tr |A| + \tr |B| \geq \tr |A + B|$ for any $A, B \in \H^{n}(a, b)$. For this, note that if $(e_{i})_{i = 1}^{n}$ is eigenbasis of $A + B$, we have
+	\begin{eqnarray*}
+		\tr |A + B| &=& \sum_{i = 1}^{n} \langle |A + B| e_{i}, e_{i} \rangle \\
+		= \sum_{i = 1}^{n} \left|\langle (A + B) e_{i}, e_{i} \rangle \right| &\leq& \sum_{i = 1}^{n} \left|\langle A e_{i}, e_{i} \rangle \right| + \sum_{i = 1}^{n} \left|\langle B e_{i}, e_{i} \rangle \right| \\
+		\leq \sum_{i = 1}^{n} \langle |A| e_{i}, e_{i} \rangle + \sum_{i = 1}^{n} \langle |B| e_{i}, e_{i} \rangle &=& \tr |A| + \tr |B|
+	\end{eqnarray*}
+	\item How is the previous related to the $|\cdot|$ not being operator-convex: quadratic form inequality for eigenvectors is not enough.
+	\item The previous also implies that
+	\[
+		f(Q_{A}(v)) \leq Q_{f(A)}(v)
+	\]
+	for any convex $f$. Using this and Minkowski one sees that $p$-schatten norms are indeed norms.
+	\item For $f, g$ generalization (Look at $h(X) = g (\tr f(X))$) we need that $f$ is convex. What else? $h$ is convex if it is convex for diagonalizable matrices and $f$ is convex and $g$ increasing. For the diagonalizable maps it is sufficient that $f$ is increasing and $g = f^{-1}$ and $\log \circ f \circ \exp$ is convex.
+	\item Von Neumann trace inequality, more trace inequalities.
+	\item On Generalizations of Minkowski's Inequality in the Form of a Triangle Inequality, Mulholland
 	\item Positive derivative
 	\item Smoothness properties
 	\item Characterizations

@@ -783,6 +783,53 @@ We can also lift the notion of complex conjugate. If $V$ is one-dimensional, $\o
 	It is plain from the definition that map is its own adjoint if and only if its real. Also, the uniqueness of adjoint is immediate from the injectivity of restrictions. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$. But as we noticed, every map is linear combination of projections, which are their own adjoints. We are done.
 \end{proof}
 
+TODO: Explain adjoint better.
+
+\section{Something else}
+
+\section{Absolute Value}
+
+\textcolor{red}{Rewrite this:} We defined singular values of a linear map to be the eigenvalues of map $\left(A^{*}A\right)^{\frac{1}{2}}$. As we noticed, this map is Hermitian and even positive, and if $A$ is normal to begin with, its eigenvalues are simply absolute values of the eigenvalues of $A$. This motivates us to define
+\[
+	|A| := \left(A^{*}A\right)^{\frac{1}{2}},
+\]
+absolute value of a map.
+
+The following list of properties of the absolute value make it clear that this is indeed good definition.
+
+\begin{itemize}
+	\item $|A| \geq 0$ for any $A \in \L(V)$ and $|A| = A$, if and only if $A \geq 0$.
+	\item (Polar decomposition) If $A \in \L(V)$, we can write $A = U |A|$ and $A = |A| V$ for some $U, V \in \unitary(V)$. $U$ and $V$ coincide if and only $A$ is normal.
+	\item For any $A \in \H(V)$ we have $-|A| \leq A \leq |A|$, or equivalently $|Q_{A}(v)| \leq Q_{|A|}(v)$ for any $v \in V$
+	\item For any $v \in V$ we have $\|A v\| = \||A|v\|$.
+\end{itemize}
+
+One might be tempted to think that the previous absolute value leads to an triangle inequality, i.e.
+\[
+	|A + B| \leq |A| + |B|,
+\]
+for any $A, B \in \L(V)$, or at least $A, B \in \H^{n}$. Such inequality doesn't hold, but it's not that far from being true. Like in the real case, one would like to add
+\[
+	-|A| \leq A \leq |A| \; \text{ and } \; -|B| \leq B \leq |B|,
+\]
+to get
+\[
+	-(|A| + |B|) \leq A + B \leq |A| + |B|.
+\]
+The problem is that we can't make any further conclusions: just because $-Y \leq X \leq Y$, it is not necessarily the case that $|X| \leq Y$. Thinking in quadratic forms we get the inequality
+\begin{align}
+	|Q_{A + B}(v)| \leq Q_{|A| + |B|}(v),
+\end{align}
+for any $v \in V$, but this does not imply that $Q_{|A + B|}(v) \leq Q_{|A| + |B|}(v)$. Indeed $|Q_{A + B}(v)| \leq Q_{|A + B|}(v)$, as we noticed, so the inequality is going to the wrong direction. If however $v$ is an eigenvector of $A + B$, we have $|Q_{A + B}(v)| \leq Q_{|A + B|}(v)$, and it follows that
+\[
+	Q_{|A + B|}(v) \leq Q_{|A| + |B|}(v)
+\]
+holds for eigenvectors $v$ of $|A + B|$. Summing over the eigenvector we see that
+\[
+	\tr|A + B| \leq \tr |A| + \tr |B|,
+\]
+so instead of the full inequality, we get inequality for traces. There is a nice generalization for the previous we'll get back to.
+
 \section{Ideas}
 
 \begin{itemize}
@@ -802,6 +849,8 @@ We can also lift the notion of complex conjugate. If $V$ is one-dimensional, $\o
 	\item Positive definite kernels
 	\item Weakly positive matrices
 	\item Hlawka inequality for determinant %http://mathoverflow.net/questions/182181/hlawka-inequality-for-determinants-of-positive-definite-matrices?rq=1
+	\item Bhatia calls $*$-restriction compression.
+	\item Trace-characterization of positive maps.
 \end{itemize}
 
 Ideas how to rewrite this section:
@@ -812,7 +861,7 @@ Ideas how to rewrite this section:
 	\item How should one restrict linear mappings? (Use inclusions and finally project)
 	\item Central notion is adjoint
 	\item $*$-conjugation is natural notion with adjoint
-	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive.
+	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive: $A \geq 0$ if and only if for any $B \geq 0$ we have $\tr(A B) \geq 0$.
 \end{itemize}
 
 
