@@ -1,5 +1,6 @@
 \chapter{Divided differences}
 
+\section{Motivation}
 Divided differences are derivatives without limits.
 
 Consider a function $f : \R \to \R$. Its (first) divided difference is defined as
@@ -40,7 +41,106 @@ One would naturally except that by setting
 \]
 one obtains something that naturally generalizes divided differences for higher orders. This is indeed the case.
 
-TODO:
+\section{Basic properties}
+
+For $n \geq 1$ define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i \leq n$}\}$.
+\begin{maar}
+Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
+\[
+	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})}.
+\]
+\end{maar}
+
+As with the first order divided differences, if we can continuously extend divided differences to the set $D_{n + 1}$, we should do that, and we identify the resulting function with the original one.
+
+Albeit a rather direct generalization for the cases $n = 1$ and $n = 2$, We defined divided differences only for real valued functions, but codomain could just as well any real or complex vector space. it's not very clear why such definition should correspond to anything useful. We have however the following important properties.
+
+\begin{prop}
+	Divided differences are symmetric in the variable and linear in the function, i.e. for any $\alpha, \beta \in \R$, $f, g : (a, b) \to \R$ and $0 < x_{0}, x_{1}, \ldots, x_{n} < b$ we have
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}]_{\alpha f + \beta g} = \alpha [x_{0}, x_{1}, \ldots, x_{n}]_{f} + \beta [x_{0}, x_{1}, \ldots, x_{n}]_{g}.
+	\]
+	In addition, divided differences can be calculated recursively as
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}}.
+	\]
+\end{prop}
+\begin{proof}
+	Easy to check.
+\end{proof}
+
+Also, we have following classic characterization.
+
+\begin{prop}
+We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the Lagrange interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1}), \ldots, (x_{n}, f(x_{n}))$.
+\end{prop}
+\begin{proof}
+	Claims are easily derived from each other since if $f$ is itself a polynomial of degree at most $n$, its lagrange interpolation polynomial is $f$ itself. Recall that the Lagrange interpolation polynomial of a dataset $(x_{0}, y_{0}), (x_{1}, y_{1}), \ldots, (x_{n}, y_{n})$ is given by
+	\[
+		\sum_{i = 0}^{n} y_{i} \frac{\prod_{j \neq i}(x - x_{j})}{\prod_{j \neq i}(x_{i} - x_{j})},
+	\]
+	and in our case the leading coefficient of this polynomial leads exactly to our definition for the divided differences.
+\end{proof}
+
+These observation already partially justify the terminology: as higher order derivatives are defined recursively using (first order) derivatives, higher order divided differences can be calculated recursively using (the usual) divided differences.
+
+The most important property of the divided differences is the following.
+
+\begin{lause}[Mean value theorem for divided differences]
+	Let $n \geq 1$ and $f \in C^{n}(a, b)$. Then for any $x_{0}, x_{1}, \ldots, x_{n}$ we have $\min_{0 \leq i \leq n}(x_{i}) \leq \xi \leq \max_{0 \leq i \leq n}(x_{i})$ such that
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(\xi)}{n!}.
+	\]
+\end{lause}
+\begin{proof}
+	We prove the statement assuming additionally that the divided differences define a continuous function on the whole set $(a, b)^{n + 1}$: this will proven later. Note that if one manages to prove the statement for distinct points, one may take sequence of tuples of distinct points, $((x_{i}^{(j)})_{i = 0}^{n})_{j = 1}^{\infty}$ converging to $(x_{i})_{i = 0}^{\infty}$. Now the left-hand side will converge to the respective divided difference (assuming the continuity), and by moving to a convergent subsequence, so will the $\xi_{n}$'s on the right-hand side. By the continuity of $f^{(n)}$ we are done.
+
+	For the case of distinct $x_{i}$'s note that we have already proven the statement for polynomials of order at most $n$. By linearity it hence suffices to prove the statement for $C^{n}(a, b)$ functions vanishing on the set $\{x_{i} | 0 \leq i \leq n\}$. This we know already for $n = 1$ ; this is the mean value theorem. Let us prove the statement by induction on $n$. To simplify notation we may assume that $x_{0} < x_{1} < \ldots < x_{n}$. Note that by the mean value theorem, given that $f(x_{i}) = 0$ for any $0 \leq i \leq n$, we also have $f'(y_{i}) = 0$ for some $x_{i} < y_{i} < y_{i + 1}$, for $0 \leq i \leq n - 1$. By the induction hypothesis the $(n - 1)$:th derivative of $f'$, $f^{(n)}$ has a zero $\xi$ with $x_{0} \leq \xi \leq x_{n}$. But this is exactly what we wanted.
+
+	TODO: figure of recursive procedure.
+\end{proof}
+
+We'll get back to smoothness in a minute. This is already a very precise sense in which divided differences work like derivatives, up to a constant. In some sense though $\frac{f^{(n)}}{n!}$, the Taylor coefficients are even more natural objects than the pure derivatives. They are the coefficients in the Taylor expansion, and they satisfy very natural Leibniz rule
+\[
+	\frac{(f g)^{(n)}(x)}{n!} = \sum_{k = 0}^{n} \left(\frac{f^{(k)}(x)}{k!}\right)\left(\frac{g^{(n - k)}(x)}{(n - k)!}\right),
+\]
+which is of course just a formula for polynomial convolution.
+
+Divided differences enjoy similar Leibniz formula, which is related to a generalization of Taylor expansion, called Newton expansion. In Newton expansion we first fix a sequence of points $x_{0}, x_{1}, \ldots x_{n} \in (a, b)$, say pairwise distinct for starters. For $f : (a, b) \to \R$ and $x \in (a, b)$ we may start a process of rewriting
+\begin{eqnarray*}
+	f(x) &=& f(x_0) + f(x) - f(x_{0}) \\
+	&=& [x_{0}]_{f} + [x, x_{0}]_{f} (x - x_{0}) \\
+	&=& [x_{0}]_{f} + ([x_{0}, x_{1}]_{f} + ([x, x_{0}]_{f}- [x_{0}, x_{1}]_{f}))(x - x_{0}) \\
+	&=& [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x, x_{0}, x_{1}]_{f} (x - x_{0}) (x - x_{1}) \\
+	&=& \ldots \\
+	&=& [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x_{0}, x_{1}, x_{2}]_{f} (x - x_{0}) (x - x_{1}) + \ldots \\
+	&& + [x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n - 1}) \\
+	&& + [x, x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n}).
+\end{eqnarray*}
+
+If the points $x_{i}$ coincide, this coincides with the usual Taylor expansion and as usual, the joy is that we can approximate $[x, x_{0}, x_{1}, \ldots, x_{n}]_{f}$ by a $n$'th derivative of $f$.
+
+TODO: Smoothness
+
+\section{Cauchy's integral formula}
+
+Complex analysis offers a nice view on divided differences: if $f$ is analytic, we may interpret divided differences contour integrals.
+
+\begin{lem}[Cauchy's integral formula for divided differences]
+If $\gamma$ is a closed counter-clockwise curve enclosing the numbers $x_{0}, x_{1}, \ldots, x_{n}$, we have
+\[
+	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz.
+\]
+\end{lem}
+\begin{proof}
+Easy induction, by taking Cauchy's integral formula as a base case. Alternatively, the claim is a direct consequence of the Residue theorem. 
+\end{proof}
+
+If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity.
+
+TODO: use the previous for some tricks. Lagrange interpolation polynomial, Leibniz formula for divided differences.
+
+\section{TODO}
 \begin{itemize}
 	\item Mean value theorem, coefficient of the interpolating polynomial
 	\item Basic properties, product rule.

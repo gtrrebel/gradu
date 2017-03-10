@@ -15,6 +15,12 @@ J.~Bendat and S.~Sherman.
 \newblock Monotone and convex operator functions.
 \newblock {\em Trans. Amer. Math. Soc.}, 79:58--71, 1955.
 
+\bibitem{Berco}
+H.~Bercovici, C.~Foias, and A.~Tannenbaum.
+\newblock A spectral commutant lifting theorem.
+\newblock {\em Transactions of the American Mathematical Society},
+  325(2):741--763, 1991.
+
 \bibitem{Bhatia}
 R.~Bhatia.
 \newblock {\em Positive definite matrices}.
@@ -29,6 +35,11 @@ R.~Bhatia.
 Z.~Brady.
 \newblock Inequalities and higher order convexity.
 \newblock {\em arXiv preprint arXiv:1108.5249}, 2011.
+
+\bibitem{Bullen}
+P.~Bullen.
+\newblock A criterion for n-convexity.
+\newblock {\em Pacific Journal of Mathematics}, 36(1):81--98, 1971.
 
 \bibitem{Carlen}
 E.~Carlen.
@@ -46,6 +57,11 @@ C.~de~Boor.
 \newblock Divided differences.
 \newblock {\em Surv. Approx. Theory}, 1:46--69, 2005.
 
+\bibitem{Boo2}
+C.~De~Boor, C.~De~Boor, E.-U. Math{\'e}maticien, C.~De~Boor, and C.~De~Boor.
+\newblock {\em A practical guide to splines}, volume~27.
+\newblock Springer-Verlag New York, 1978.
+
 \bibitem{Dob}
 O.~Dobsch.
 \newblock Matrixfunktionen beschr\"ankter {S}chwankung.
@@ -62,6 +78,12 @@ U.~Franz, F.~Hiai, and E.~Ricard.
 \newblock Higher order extension of {L}\"owner's theory: operator {$k$}-tone
   functions.
 \newblock {\em Trans. Amer. Math. Soc.}, 366(6):3043--3074, 2014.
+
+\bibitem{Frobenius}
+G.~Frobenius.
+\newblock Ueber die {E}ntwickelung analytischer {F}unctionen in {R}eihen, die
+  nach gegebenen {F}unctionen fortschreiten.
+\newblock {\em J. Reine Angew. Math.}, 73:1--30, 1871.
 
 \bibitem{Han}
 F.~Hansen.
@@ -83,10 +105,20 @@ F.~Hansen and J.~Tomiyama.
 \newblock Differential analysis of matrix convex functions. {II}.
 \newblock {\em JIPAM. J. Inequal. Pure Appl. Math.}, 10(2):Article 32, 5, 2009.
 
+\bibitem{Hardy}
+G.~H. Hardy, J.~E. Littlewood, and G.~P{\'o}lya.
+\newblock {\em Inequalities}.
+\newblock Cambridge university press, 1952.
+
 \bibitem{Helmke}
 U.~Helmke and J.~Rosenthal.
 \newblock Eigenvalue inequalities and schubert calculus.
 \newblock {\em Mathematische Nachrichten}, 171:207--226, 1995.
+
+\bibitem{Hind}
+A.~Hindmarsh.
+\newblock Pick’s conditions and analyticity.
+\newblock {\em Pacific Journal of Mathematics}, 27(3):527--531, 1968.
 
 \bibitem{Horn}
 R.~A. Horn and C.~R. Johnson.
@@ -108,6 +140,11 @@ A.~Knutson and T.~Tao.
 \newblock Honeycombs and sums of {H}ermitian matrices.
 \newblock {\em Notices Amer. Math. Soc.}, 48(2):175--186, 2001.
 
+\bibitem{Kowal}
+G.~Kowalewski.
+\newblock {\em Interpolation und gen{\"a}herte Quadratur}.
+\newblock Teubner Leipzig und Berlin, 1932.
+
 \bibitem{Kra}
 F.~Kraus.
 \newblock \"{U}ber konvexe {M}atrixfunktionen.
@@ -124,6 +161,13 @@ A.~W. Marshall, I.~Olkin, and B.~C. Arnold.
 \newblock Springer Series in Statistics. Springer, New York, second edition,
   2011.
 
+\bibitem{Muirhead}
+R.~F. Muirhead.
+\newblock Some methods applicable to identities and inequalities of symmetric
+  algebraic functions of n letters.
+\newblock {\em Proceedings of the Edinburgh Mathematical Society}, 21:144--162,
+  1902.
+
 \bibitem{Mulholland}
 H.~Mulholland.
 \newblock On generalizations of minkowski's inequality in the form of a
@@ -131,11 +175,40 @@ H.~Mulholland.
 \newblock {\em Proceedings of the London Mathematical Society}, 2(1):294--307,
   1949.
 
+\bibitem{Nevan}
+R.~Nevanlinna.
+\newblock {\em {\"U}ber beschr{\"a}nkte funktionen die in gegebenen punkten
+  vorgeschriebene werte annehmen...}
+\newblock Buchdruckerei-a.-g. Sana, 1919.
+
+\bibitem{Pick}
+G.~Pick.
+\newblock {\"U}ber die beschr{\"a}nkungen analytischer funktionen, welche durch
+  vorgegebene funktionswerte bewirkt werden.
+\newblock {\em Mathematische Annalen}, 77(1):7--23, 1915.
+
+\bibitem{Sarason}
+D.~Sarason.
+\newblock Generalized interpolation in {$H^{\infty }$}.
+\newblock {\em Trans. Amer. Math. Soc.}, 127:179--203, 1967.
+
+\bibitem{Sarason2}
+D.~Sarason.
+\newblock Nevanlinna-pick interpolation with boundary data.
+\newblock {\em Integral Equations and Operator Theory}, 30(2):231--250, 1998.
+
 \bibitem{Sag}
 {The Sage Developers}.
 \newblock {\em {S}ageMath, the {S}age {M}athematics {S}oftware {S}ystem
   ({V}ersion 7.1)}, 2016.
 \newblock {\tt http://www.sagemath.org}.
+
+\bibitem{Weyl}
+H.~Weyl.
+\newblock Das asymptotische verteilungsgesetz der eigenwerte linearer
+  partieller differentialgleichungen (mit einer anwendung auf die theorie der
+  hohlraumstrahlung).
+\newblock {\em Mathematische Annalen}, 71(4):441--479, 1912.
 
 \bibitem{Zhang}
 F.~Zhang.

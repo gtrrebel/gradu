@@ -156,6 +156,13 @@ One might ask whether these inclusions are strict. It turns out they are, as lon
 
 There are also more trivial inclusions: $P_{n}(a, b) \subset P_{n}(c, d)$ for any $(a, b) \supset (c, d)$. More interval, more matrices, more restrictions, less functions. To be precise, we only allowed functions with domain $(a, b)$ to the class $P_{n}(a, b)$, so maybe one should say instead something like: if $(a, b) \supset (c, d)$ and $f \in P_{n}(a, b)$, then also $\restr{f}{(c, d)} \in P_{n}(c, d)$. We will try not to worry too much about these technicalities.
 
+\section{Pick functions are monotonic}
+One of the main reasons for introducing Pick functions is that they are monotone of all orders. After understanding real valued monotone functions, it should be clear how to prove the previous statement: as Pick functions are essentially sums of functions of the form $x \mapsto \frac{1}{\lambda - x}$, we should verify that these are monotone. Also $\lambda$ should not have effect on anything so we only need the following. But the increasing nature of the function of $x \mapsto -\frac{1}{x}$ is something we know already. We have hence proved 
+\begin{lause}
+	If $f \in P(a, b)$, then $f \in P_{n}(a, b)$ for any $n \geq 1$.
+\end{lause}
+This is obviously why we chose the notation $P_{n}$ for classes of matrix monotone functions.
+
 TODO:
 \begin{itemize}
 	\item Examples
