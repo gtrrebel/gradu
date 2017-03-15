@@ -174,6 +174,12 @@ TODO:
 		= \sum_{i = 1}^{n} \left|\langle (A + B) e_{i}, e_{i} \rangle \right| &\leq& \sum_{i = 1}^{n} \left|\langle A e_{i}, e_{i} \rangle \right| + \sum_{i = 1}^{n} \left|\langle B e_{i}, e_{i} \rangle \right| \\
 		\leq \sum_{i = 1}^{n} \langle |A| e_{i}, e_{i} \rangle + \sum_{i = 1}^{n} \langle |B| e_{i}, e_{i} \rangle &=& \tr |A| + \tr |B|
 	\end{eqnarray*}
+	\item What about trace inequalities for $k$-tone functions? Eigen-package seems to find a counterexample for $6$-tone functions and $n = 2$, but it's hard to see if there's enough numerical stability. At divided differences of polynomials vanish. First non-trivial question would be:
+	If $A_{j} = A + j H$ for $0 \leq j \leq 3$ and $H \geq 0$. Then is it necessarily the case that
+	\[
+		\tr \left(A_{3} |A_{3}| - 3 A_{2}|A_{2}| + 3 A_{1} |A_{1}| - A_{0} |A_{0}| \right) \geq 0?
+	\]
+	This would imply that $3$-tone functions would lift to trace $3$-tone functions. Maybe expressing this as a contour integral from $-i \infty \to i \infty$ a same tricks as in the paper.
 	\item How is the previous related to the $|\cdot|$ not being operator-convex: quadratic form inequality for eigenvectors is not enough.
 	\item The previous also implies that
 	\[

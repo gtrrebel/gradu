@@ -118,7 +118,7 @@ Divided differences enjoy similar Leibniz formula, which is related to a general
 	&& + [x, x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n}).
 \end{eqnarray*}
 
-If the points $x_{i}$ coincide, this coincides with the usual Taylor expansion and as usual, the joy is that we can approximate $[x, x_{0}, x_{1}, \ldots, x_{n}]_{f}$ by a $n$'th derivative of $f$.
+By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of interpolating polynomial for the first $1, 2, \ldots, $ points of the sequence $x_{0}, x_{1}, \ldots$. If the points $x_{i}$ coincide, the previous coincides with the usual Taylor expansion and, as usual, the joy is that we can approximate $[x, x_{0}, x_{1}, \ldots, x_{n}]_{f}$ by a $n$'th derivative of $f$.
 
 TODO: Smoothness
 
@@ -136,19 +136,66 @@ If $\gamma$ is a closed counter-clockwise curve enclosing the numbers $x_{0}, x_
 Easy induction, by taking Cauchy's integral formula as a base case. Alternatively, the claim is a direct consequence of the Residue theorem. 
 \end{proof}
 
-If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity.
+If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Also if one shortens $[X]_{f} = [x_{0}, x_{1}, \ldots, x_{n}]_{f}$, we have
+\[
+	[X]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{p_{X}(z)} dz.
+\]
 
+Cauchy's integral formula is a convenient way to think about severel identities.
+
+\begin{esim}
+For instance we may express the Lagrange interpolation polynomial of a analytic function $f$ and sequence $X = (x_{i})_{i = 0}^{n}$ by
+\[
+	P_{X}(x) = \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [X]_{f [x, \cdot]_{p_{X}}}.
+\]
+\end{esim}
 TODO: use the previous for some tricks. Lagrange interpolation polynomial, Leibniz formula for divided differences.
+
+\section{$k$-tone functions}
+
+\begin{maar}
+	$f : (a, b) \to \R$ is called $k$-tone if for any $X = (x_{i})_{i = 0}^{n}$ of distinct points we have
+	\[
+		[X]_{f} \geq 0,
+	\]
+	i.e. the $n$'th divided difference is non-negative.
+\end{maar}
+
+As we noticed, $1$-tone and $2$-tone functions are exactly the monotone increasing and convex functions. The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.
+
+Mean value theorem for divided differences tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative. In some sense the further smoothness assumption is not that much of a game changer. It turns out $k$-tone functions are always $k$ times differentiable in a weak sense (?), and the weak derivative is non-negative. One can also usually use regularization techniques discussed in ? to reduce a problem about general $k$-tone functions to smooth $k$-tone functions.
+
+We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$. $k$-tone functions the following enjoy the following useful properties.
+
+\begin{prop}
+	For any positive integer $k$ and open interval $(a, b)$  $P^{(k)}(a, b)$ is a closed (under pointwise convergence) convex cone.
+\end{prop}
+\begin{proof}
+	Convex cone property is immediate form the linearity of divided differences. Also, if $f_{i} \to f$ pointwise, the respective divided differences converge, so also the closedness is clear.
+\end{proof}
+
+\begin{prop}
+	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
+\end{prop}
+\begin{proof}
+	For $f \in C^{k}$ the statement is immediate form the mean value theorem. For more general functions: regularizations TODO.
+\end{proof}
+
 
 \section{TODO}
 \begin{itemize}
 	\item Mean value theorem, coefficient of the interpolating polynomial
 	\item Basic properties, product rule.
 	\item $k$-tone functions, smoothness, and representation
-	\item Majorization, Jensen and Karamata inequalities, generalizations, and corollaries conserning spectrum and trace functions. Schur-Horn conjectures and Honey-Combs
-	\item Cauchy's integral formula
-	\item Polynomial interpolation
+	\item Majorization, Jensen and Karamata inequalities, generalizations, and corollaries concerning spectrum and trace functions. Schur-Horn conjectures and Honey-Combs
+	\item How to understand the inequalities arising from $k$-tone functions: is there nice way to parametrize the tuples coming from the $k$-majorization.
+	\item For $k = 3$ and $3$ numbers, it's all about the biggers number: one with the largest largest number dominates.
+	\item The previous probably generalizes: for $k$-tone functions and $k$ numbers on both sides, with all polynomials of degree less than $k$ vanishing on both tuples, one with largest largest value dominates, or equivalently, it's all about the constant term. This is clearly necessary, by is it also sufficient? Should be: express the whole thing as an integral, differentiate with respect to the constant term, and finally interpret as a divided difference.
+	\item What if we add more terms: is there simple characterization? Why have similar integral representation, and can probably differentiate.
 	\item Peano Kernels: Smoothness properties, Bernstein (?) polynomials as examples.
 	\item Opitz formula
 	\item Regularization techniques
+	\item Notion of midpoint-convexity should generalize by regularization techniques.
+	\item Should Legendre transform generalize to higher orders?  For smooth enough functions probably with derivatives being inverses of each other, but what is the correct definition? And is it of any use? Maybe differentiating $k - 2$ times and then having similar characterization. Is there higher order duality?
+	\item Is there elementary transformations for $k$-tone Karamata?
 \end{itemize}
