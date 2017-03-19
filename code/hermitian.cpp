@@ -16,6 +16,7 @@ typedef MatrixXcd Mt;
 int sort_k;
 
 const ld eps = 1e-6;
+const co I = {0.0, 1.0};
 
 default_random_engine generator;
 normal_distribution<double> distribution(0.0,1.0);
@@ -31,6 +32,13 @@ Mt abs_m(Mt A) {
 }
 
 double p_absx(double x, int k) {
+	if (k == -1) {
+		if (x > 0) {
+			return 1.0;
+		} else {
+			return -1.0;
+		}
+	}
 	double ans = abs(x);
 	for (int i = 0; i < k; i++) {
 		ans *= x;
@@ -46,8 +54,23 @@ Mt xp_absx(Mt A, int k) {
 	return B;
 }
 
+double xp_absx_trace(Mt A, int k) {
+	SelfAdjointEigenSolver<Mt> es(A);
+	double ans = 0;
+	Mt eigs = es.eigenvalues();
+	for (int i = 0; i < (eigs.rows()); i++) {
+		ans += p_absx(eigs(i).real(), k);
+	}
+	return ans;
+}
+
 Mt randH(int n) {
-	Mt X = Mt::Random(n,n);
+	Mt X(n, n);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			X(i, j) = rand_n() + I*rand_n();
+		}
+	}
 	return X + X.adjoint();
 }
 
@@ -78,6 +101,81 @@ double k_coeff(int k, int i) {
 	return k_coeff(k - 1, i - 1) - k_coeff(k - 1, i);
 }
 
+int binom(int n, int m) {
+	if ((m == 0)||(n == m)) {
+		return 1;
+	}
+	if (n < m) {
+		return 0;
+	}
+	return binom(n - 1, m) + binom(n - 1, m - 1);
+}
+
+double divided_difference(vector<double> xs, int ala, int yla, int k) {
+	sort(xs.begin() + ala, xs.begin() + yla + 1);
+	if (xs[ala] + eps > xs[yla]) {
+		if (xs[ala] < 0) {
+			return 0;
+		} else {
+			int der = yla - ala;
+			return pow(xs[ala], k - 1 - der)*binom(k - 1, der);
+		}
+	}
+	else {
+		return (divided_difference(xs, ala, yla - 1, k) - divided_difference(xs, ala + 1, yla, k))/(xs[ala] - xs[yla]);
+	}
+}
+
+void go(vector<double> xs, Mt B, int k, vector<int> cur, ArrayXXcd &D) {
+	int n = B.rows();
+	if ((int)cur.size() == k + 1) {
+		co val = 1;
+		for (int i = 0; i < k; i++) {
+			val *= B(cur[i], cur[i + 1]);
+		}
+		vector<double> ys;
+		for (int i = 0; i < k + 1; i++) {
+			ys.push_back(xs[cur[i]]);
+		}
+		val *= divided_difference(ys, 0, k, k);
+		D(cur[0], cur[k]) = D(cur[0], cur[k]) + val;
+	} else {
+		for (int i = 0; i < n; i++) {
+			vector<int> ne = cur;
+			ne.push_back(i);
+			go(xs, B, k, ne, D);
+		}
+	}
+}
+
+ArrayXXcd matrix_derivative(vector<double> xs, Mt B, int k) {
+	int n = B.rows();
+	ArrayXXcd D(n, n);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			D(i, j) = 0;
+		}
+	}
+	go(xs, B, k, {}, D);
+	return D;
+}
+
+bool test_k_trace(int n, int k) {
+	vector<double> xs;
+	for (int i = 0; i < n; i++) {
+		xs.push_back(rand_n());
+	}
+	Mt B = randHP(n);
+	ArrayXXcd D = matrix_derivative(xs, B, k);
+	double tes = 0;
+	for (int i = 0; i < n; i++) {
+		cout << D(i, i).real() << " ";
+		tes += D(i, i).real();
+	}
+	cout << endl;
+	return (tes > -eps);
+}
+
 double get_val(vector<double> xs, double t, int k) {
 	double ans = 0;
 	for (double x : xs) {
@@ -94,13 +192,28 @@ double get_trace(Mt A, Mt H, int k) {
 	return tes;
 }
 
+double get_trace2(Mt A, Mt H, int k) {
+	double tes = 0;
+	for (int i = 0; i <= k; i++) {
+		tes += k_coeff(k, i)*xp_absx_trace(A + i*H, k - 2);
+	}
+	return tes;
+}
+
 bool try_ktone(int n, int k) {
 	Mt A = randH(n);
 	if (is_positive(A)) {
 		return true;
 	}
 	Mt H = randHP(n);
-	double tes = get_trace(A, H, k);
+	double tes = get_trace2(A, H, k);
+	if (tes < -eps) {
+		cout << "tes: " << tes << endl;
+		cout << "A = " << endl;
+		cout << A << endl;
+		cout << "H = " << endl;
+		cout << H << endl;
+	}
 	return tes > -eps;
 }
 
@@ -119,13 +232,13 @@ double approx_smallest_eigenvalue(Mt A) {
 vector<double> get_k_tone_vec(int n, int k, double step) {
 	Mt A = randH(n);
 	double eig1 = approx_smallest_eigenvalue(A);
-	A -= Mt::Identity(n, n)*eig1;
+	Mt Id = Mt::Identity(n, n);
+	A -= Id*eig1;
 	Mt H = randHP(n);
 	eig1 = approx_largest_eigenvalue(A + k*H);
 	vector<double> traces;
-	Mt I = Mt::Identity(n, n);
 	for (double cur = 0; cur < eig1; cur += step) {
-		double nt = get_trace(A - I*cur, H, k);
+		double nt = get_trace(A - Id*cur, H, k);
 		traces.push_back(nt);
 	}
 	return traces;
@@ -135,6 +248,31 @@ void test_conjecture(int k, int n, int cap) {
 	for (int i = 0; i < cap; i++) {
 		if (!try_ktone(n, k)) {
 			cout << "FAIL: " << i << "\n";
+			return;
+		}
+	}
+	cout << "OK\n";
+	return;
+}
+
+void test_conjecture2(int n, int k, int cap) {
+	for (int i = 0; i < cap; i++) {
+		if (!test_k_trace(n, k)) {
+			cout << "FAIL: " << i << "\n";
+			return;
+		}
+	}
+	cout << "OK\n";
+	return;
+}
+
+void test_random(int k, int n, int cap) {
+	for (int i = 0; i < cap; i++) {
+		int kk = rand()%k + 1;
+		int nn = rand()%n + 1;
+		if (!try_ktone(nn, kk)) {
+			cout << "FAIL: " << i << "\n";
+			cout << "n = " << nn << ", k = " << kk << "\n";
 			return;
 		}
 	}
@@ -219,7 +357,9 @@ void print_k_tone_vec(int n, int k, double step) {
 }
 
 int main() {
-	int cnt = 100;
-	try_3_tuples(cnt);
+	int cap = 100;
+	int n, k;
+	cin >> n >> k;
+	test_conjecture2(n, k, cap);
 	return 0;
 }

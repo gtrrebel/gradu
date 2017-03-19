@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{Ando}
+T.~Ando.
+\newblock Majorization, doubly stochastic matrices, and comparison of
+  eigenvalues.
+\newblock {\em Linear Algebra and Its Applications}, 118:163--248, 1989.
+
 \bibitem{Arnold}
 B.~C. Arnold.
 \newblock Majorization: Here, there and everywhere.
@@ -9,6 +15,11 @@ B.~C. Arnold.
 M.~F. Atiyah.
 \newblock Convexity and commuting {H}amiltonians.
 \newblock {\em Bull. London Math. Soc.}, 14(1):1--15, 1982.
+
+\bibitem{Azagra}
+D.~Azagra.
+\newblock Global approximation of convex functions.
+\newblock {\em arXiv preprint arXiv:1112.1042}, 2011.
 
 \bibitem{Ben}
 J.~Bendat and S.~Sherman.
@@ -186,6 +197,16 @@ G.~Pick.
 \newblock {\"U}ber die beschr{\"a}nkungen analytischer funktionen, welche durch
   vorgegebene funktionswerte bewirkt werden.
 \newblock {\em Mathematische Annalen}, 77(1):7--23, 1915.
+
+\bibitem{Pinkus}
+A.~Pinkus and D.~Wulbert.
+\newblock Extending n-convex functions.
+\newblock {\em Studia Math}, 171(2):125--152, 2005.
+
+\bibitem{Popoviciu}
+T.~Popoviciu.
+\newblock {\em Les fonctions convexes}, volume 992.
+\newblock Bussi{\`e}re, 1945.
 
 \bibitem{Roberts}
 A.~W. Roberts and D.~E. Varberg.

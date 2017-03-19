@@ -780,10 +780,57 @@ We can also lift the notion of complex conjugate. If $V$ is one-dimensional, $\o
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. Then for any $A \in \L(V)$ there exists unique map $A^{*} \in \L(V)$, which we will call adjoint of $A$, for which for any one-dimensional subspace $W$ we have $\arestr{A^{*}}{W} = \overline{\arestr{A}{W}}$.
 \end{lause}
 \begin{proof}
-	It is plain from the definition that map is its own adjoint if and only if its real. Also, the uniqueness of adjoint is immediate from the injectivity of restrictions. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$. But as we noticed, every map is linear combination of projections, which are their own adjoints. We are done.
+	The uniqueness of adjoint is immediate from the injectivity of restrictions. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$: the maps of the form $A = (x \mapsto \langle x, v \rangle w)$ for $v, w \in V$ will do.
+
+	Note that the Rayleigh quotient for such map is given by
+	\[
+		R(A, x) = \frac{\langle x, v \rangle \langle w, x \rangle}{\langle x, x \rangle}.
+	\]
+	But if we define $A^{*} = (x \mapsto \langle x, w \rangle v)$, we definitely have
+	\[
+		R(A^{*}, x) = \frac{\langle x, w \rangle \langle v, x \rangle}{\langle x, x \rangle} = \overline{\frac{\langle w, x \rangle \langle x, w \rangle}{\langle x, x \rangle}} = \overline{R(A, x)}.
+	\]
 \end{proof}
 
-TODO: Explain adjoint better.
+Real maps are their own adjoints, and that is why they are often called \textit{self-adjoint}.
+
+There is also a meaningful way to extend the notion of adjoint for general (non-endomorphism) linear maps. In general setting, we don't have a notion of restriction of linear map: there's no canonical way to restrict the codomain. We can however interpret a map in a bigger space. Indeed, any map $A \in \L(V, W)$ can be canonically interpreted as a map $\tilde{A} \in \L(V \oplus W)$: define $\tilde{A}(v, w) = (0, A v)$. We call this map the \textit{symmetrization} of $A$. Now it makes sense to consider $(\tilde(A))^{*}$, the symmetrization has a unique adjoint. This adjoint does not in general live in $\L(V, W)$ anymore: but it turns out that it does live in $\L(W, V)$!
+
+\begin{lause}
+	For any $A \in \L(V, W)$ there exists a unique map $A^{*} \in \L(W, V)$ which we call the adjoint of $A$, such that $(\tilde{A})^{*} = \tilde{(A^{*})}$. Moreover, if $V = W$, the new notion of adjoint coincides with the old one.
+\end{lause}
+
+\begin{proof}
+	Of course, strictly speaking $\tilde{A^{*}}$ would be map in $\L(W \oplus V)$, not in $\L(V \oplus W)$, but the two spaces are canonically isomorphic.
+
+	The uniqueness follows from the already known uniqueness for the old notion. The map $(\cdot)^{*} : \L(V, W) \to \L(W, V)$ should again evidently be conjugate linear. Also, the same construction for basis elements of the form $A = (x \mapsto \langle x, v \rangle_{V} w)$ (where $v \in V$ and $w \in W$) works again. Indeed, for any $(x, y) \in V \oplus W$ the corresponding Rayleigh quotient is given by
+	\[
+		R(\tilde{A}, (x, y)) = \frac{\langle (0, A x), (x, y)\rangle_{V \oplus W} }{\langle (x, y), (x, y) \rangle_{V \oplus W}} = \frac{\langle A x, y\rangle_{W} }{\langle x, x \rangle_{V} + \langle y, y \rangle_{W}} = \frac{\langle x, v\rangle_{V} \langle w, y\rangle_{W} }{\langle x, x \rangle_{V} + \langle y, y \rangle_{W}},
+	\]
+	and it's clear that we may set $A^{*} = (x \mapsto \langle x, w \rangle_{W} v)$. Our construction also makes it clear that this notion coincides with the old one.
+\end{proof}
+
+The previous proof also gives a convenient corollary, which is the most common definition for adjoint.
+
+\begin{kor}
+	For any $A \in \L(V, W)$, the adjoint $A^{*} \in \L(W, V)$ is unique linear map such that for any $v \in V$ and $w \in W$ we have
+	\[
+		\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
+	\]
+	In particular, map $A \in \L(V)$ is real for any $v, w \in V$ we have
+	\[
+		\langle A v, w \rangle = \langle v, A w \rangle.
+	\]
+	and imaginary if for any $v, w \in V$
+	\[
+		\langle A v, w \rangle = -\langle v, A w \rangle.
+	\]
+\end{kor}
+
+The previous corollary gives a useful alternate way to check if a map is real/imaginary of if two maps are adjoints of each other. It also makes it clear that the adjoint operations is involution.
+
+\subsection{Examples}
+We have already encountered many pairs of adjoints.
 
 \section{Something else}
 
@@ -861,6 +908,7 @@ Ideas how to rewrite this section:
 	\item How should one restrict linear mappings? (Use inclusions and finally project)
 	\item Central notion is adjoint
 	\item $*$-conjugation is natural notion with adjoint
+	\item More generally, adjoint of a map $A \in L(V, W)$ is a unique map $A^{*} \in \L(V, W)$ such that $A \oplus A^{*}$ is real.
 	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive: $A \geq 0$ if and only if for any $B \geq 0$ we have $\tr(A B) \geq 0$.
 \end{itemize}
 
