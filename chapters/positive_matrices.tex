@@ -1001,6 +1001,121 @@ Conversely, if one wants exciting things to happen, one should make things very 
 
 TODO: independence of random variables.
 
+\section{Normal maps}
+
+TODO
+
+\section{Congruence and Inertia}
+
+\subsection{$*$-conjugation}
+
+There is one very important way to produce positive maps from others, called congruence. Given any two positive maps $A$ and $B$, their composition need not be positive, but the map $BAB$ is. First of all, it is real as $(BAB)^{*} = B^{*} A^{*} B^{*} = BAB$. Also $Q_{BAB}(v) = \langle BAB v, v \rangle = \langle A (B v), (B v) \rangle \geq 0$ for any $v \in V$. We didn't really need the assumption on the positivity of $B$, but realness was not that important either. Namely for arbitrary linear $B$ we could consider the product $B^{*}AB$ instead: this is positive whenever $A$ is. If $C = B^{*}AB$ for some $B \in \L(V)$, we say that $C$ is $*$-conjugate of $A$.
+
+We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis in the quadratic form. This is the main motivation for the definition of the $*$-conjugation. We have already seen that the quadratic form of a map is a good way to characterize many of its good properties, so to some extent to undestand maps, we just to need to understand structure of their quadratic forms. By change of basis of the quadratic form we have a good control of what happens. We might however lose some information: if $B = 0$, for instance, the quadratic form after $*$-conjugation by $B$ doesn't tell much about $A$. But if $B$ is invertible, or equivalently if $C$ and $B$ are $*$-conjugates of each other, we shouldn't lose any information. If this is the case, we say that $A$ and $C$ are congruent. It is easily verified that congruence is a equivalence relation.
+
+The construction of $*$-conjugation makes also sense for general linear map $A$, i.e. we could just as well $*$-conjugate non-positive, or even non-real maps. The result then need not be positive or real, and in general, $*$-conjugation loses its usefulness. Also, even if $A$ is normal, $*$-conjugate of $A$ need not be normal. TODO
+
+The previous construction can be also performed between two spaces $V$ and $W$: given any map $B \in \L(V, W)$ and $A \in \H_{+}(W)/\H(W)/\L(W)$, we note that $B^{*}AB \in \H_{+}(V)/\H(W)/\L(W)$. For self-adjoint maps we can say a lot more: while congruence doesn't in general preserve eigenvalues, it preserves their signs.
+
+\begin{lause}[Sylvester's Law of Inertia]
+	$A, B \in \H(V)$ are congruent, if and only if $A$ and $B$ have equally many positive, negative and zero eigenvalues, counted with multiplicity.
+\end{lause}
+\begin{proof}
+	Let's start with the ``if" part. Let's denote the eigenvalues of $A$ and $B$ by $\lambda_{1} \leq \lambda _{2} \leq \ldots \leq \lambda_{n}$ and $\lambda_{1}' \leq \lambda _{2}' \leq \ldots \leq \lambda_{n}'$, respectively, and the corresponding eigenvectors with $v_{1}, v_{2}, \ldots, v_{n}$ and $v_{1}', v_{2}', \ldots, v_{n}'$. By assumption $\lambda_{i}$ and $\lambda_{i}'$ have the same sign (or are both zero) for any $1 \leq i \leq n$, so we may find non-zero real numbers $t_{1}, t_{2}, \ldots, t_{n}$ such that $\lambda_{i} = \lambda_{i}' t_{i}^{2}$. Now consider a linear map $C$ with $C v_{i} = t_{i} v_{i}'$. $C$ is clearly a surjection and hence a bijection. Also if $v = \sum_{i = 1}^{n} x_{i} v_{i}$ $(Q_{B} \circ C)(v) = Q_{B}(\sum_{i = 1}^{n} x_{i} t_{i} v_{i}') = \sum_{i = 1}^{n} |x_{i}|^{2} t_{i}^2 \lambda_{i}' = \sum_{i = 1}^{n} |x_{i}|^{2} \lambda_{i} = Q_{A}(v)$ so $Q_{C^{*}BC} = Q_{B} \circ C = Q_{A}$. It follows that $C^{*}BC = A$ and hence $A$ and $B$ are congruent.
+
+	The ``only if" - part is a bit trickier. The idea is to find a good description for the number of positive non-negative eigenvalues. We noticed before that we can write quadratic forms in the form $Q_{A}(v) = \sum_{i = 1}^{n} \lambda_{i} |x_{i}|^{2}$ if $v = \sum_{i = 1}^{n} x_{i}v_{i}$, and $v_{i}$ are the eigenvectos of $A$ with $\lambda_{i}'s$ as the corresponding eigenvectors. In particular if say first $k$ eigenvalues are negative, $Q_{A}$ will be negative on $\vspan\{v_{i} | 1 \leq i \leq k\}$, a $k$-dimensional subspace, minus zero. Similarly, now $n - k$ of the eigenvalues are non-negative, so the quadratic form is non-negative on a subspace of dimension of at least $n - k$. But the dimensions can't be any bigger: if $Q_{A}$ were for instance negative on some $k + 1$ dimesional subspace, this subspace would necessarily intersect a subspace where $Q_{A}$ is non-negative, which is non-sense.
+
+	Congruence preserves the previous notion: if $Q_{B}$ is negative on a subspace of dimension $k$, so is $Q_{B} \circ C$ for any invertible $C$; namely in the inverse image. Same reasoning holds for the the subspace on which $Q_{B}$ is non-negative, so again, $Q_{B} \circ C$ has to have similar structure. We are done.
+\end{proof}
+
+If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive eigenvalues of $A$, \textit{inertia} of $A$ is the triplet $\{n_{0}, n_{-}, n_{+} \}$. The previous theorem can be hence restated, that inertia is invariant under congruence.
+
+The proof also gives a useful characterization for the number of non-negative eigenvalues.
+
+\begin{kor}
+	If $A \in \H(V)$, number of non-negative eigenvalues of $A$ equals largest non-negative integer $k$ such that $Q_{A}$ is non-negative on subspace of $V$ of dimension $k$.
+\end{kor}
+
+TODO: explicit expression if $A$ and $B$ are positive definite.
+
+It gets better: if two normal maps are congruent, we can vastly generalize the previous result: for normal maps, congruence preserves the number of eigenvalues on any open ray.
+
+For any $A \in \normal(V)$ define the mapping $\theta[A] : S^{1} \to \N$ by setting $\theta[A](z)$ be the number of eigenvalues (counted with multiplicity) on ray $\{rz | r > 0\}$. This map is called the \textit{angularity} of $A$.
+
+TODO: figure of change of eigenvalues on congruence.
+
+\begin{lause}[Generalized Sylvester's Law of Inertia]
+	$A, B \in \normal(V)$ are congruent, if and only if $\theta[A] = \theta[B]$.
+\end{lause}
+\begin{proof}
+	The ``if"-part can be proven almost identically to proof of the self-adjoint case. For the ``only if" -part, note that if $A = C^{*}BC$, the also $\Re(A) = C^{*}\Re(B)C$. Now both sides are self-adjoint, and eigenvalues of $\Re(A)$ and $\Re(B)$ are just the real parts of the eigenvalues of $A$ and $B$. Applying the previous version Law of Inertia for these maps, we see that $A$ and $B$ have equally many eigenvalues on closed right half-plane. 
+
+	Carrying out the previous reasoning for the maps $e^{i t}A$ and $e^{i t} B$ for real $t$ we see that these maps have equally many eigenvalues on any closed half plane containing origin. If one considers function sending $t$ to the number of eigenvalues of $e^{i t} A$ on closed right half-plane, we see that this function has jump discontinuitys, and the value, and the left and the right limits at these point reveals number of eigenvalues at any open ray.
+
+	TODO: figure of functions $t \mapsto$ number of eigenvalues of $e^{it}A$ on closed right half-plane, or even better, map from $\mathbb{S} \to \N$.
+\end{proof}
+
+Sylvester's Law of inertia gives another proof of the fact that strictly positive maps are exactly the maps congruent to the identity, and positive maps are the maps congruent to some projection. More precisely, the positive maps are partitioned to $n + 1$ congruence classes depending on their rank, $k$:th congruence class containing the projections to $k$-dimensional subspaces. $0$:th class contains only the zero map, the only rank $0$ positive map, and the $n$:th class is the class of strictly positive maps.
+
+If one $*$-conjugates with non-invertible, the angularity may change, but in quite obvious way only: some eigenvalues may move to $0$. In particular, we have the following even a bit more general version of the law.
+
+\begin{lause}[General Sylvester's Law of Inertia]
+	For $A, B \in \normal(V)$ and $A$ is $*$-conjugate of $B$, if and only if $\theta[A] \leq \theta[B]$.
+\end{lause}
+\begin{proof}
+	TODO
+\end{proof}
+
+This extension draws a picture about the relation of previously mentioned congcruence classes. We can move to the congruence classes of lower indeces by $*$-conjugation, but cannot move up the ladder: the complexity of quadratic forms cannot increase. One could also think that $*$-congruence for linear maps corresponds to multiplication by non-negative real for real numbers.
+
+TODO: splitting positive maps
+
+\section{Block decomposition}
+
+Congruence is a convenient to tool to investigate positivity. The idea is that with conguence we can perform sort of a Gaussian elimination. If $n = 2$ for instance, we can write any real map in the matrix form
+\[
+	A =
+	\begin{bmatrix}
+		a & b \\
+		\overline{b} & c
+	\end{bmatrix}
+\]
+for some $a, c \in \R$ and $b \in \C$. Now if $a \neq 0$, we could eliminate with
+\[
+	B =
+	\begin{bmatrix}
+		1 & -\frac{b}{a} \\
+		0 & 1
+	\end{bmatrix}
+\]
+to get
+\[
+	B A =
+	\begin{bmatrix}
+		a & b \\
+		\overline{b} & c
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & -\frac{b}{a} \\
+		0 & 1
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		a & 0 \\
+		\overline{b} & \frac{a c - |b|^2}{a}.
+	\end{bmatrix}
+\]
+If we however eliminate from the other side by $B^{*}$, we get
+\[
+	B^{*} A B =
+	\begin{bmatrix}
+		a & 0 \\
+		0 & \frac{a c - |b|^2}{a}.
+	\end{bmatrix}
+	=: C
+\]
+Now $B$ is evidently invertible, it's determinant being $1$, so $A$ and $C$ are congruent. Sylvester's law of inertia tell's us hence that that if $a > 0$ and $\det(A) \geq 0$, then $A \geq 0$.
+
 \section{Something else}
 
 \section{Absolute Value}
