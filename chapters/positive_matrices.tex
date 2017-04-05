@@ -1068,13 +1068,13 @@ If one $*$-conjugates with non-invertible, the angularity may change, but in qui
 
 This extension draws a picture about the relation of previously mentioned congcruence classes. We can move to the congruence classes of lower indeces by $*$-conjugation, but cannot move up the ladder: the complexity of quadratic forms cannot increase. One could also think that $*$-congruence for linear maps corresponds to multiplication by non-negative real for real numbers.
 
-TODO: splitting positive maps
+TODO: splitting positive maps to pseudo square roots
 
 \section{Block decomposition}
 
 Congruence is a convenient to tool to investigate positivity. The idea is that with conguence we can perform sort of a Gaussian elimination. If $n = 2$ for instance, we can write any real map in the matrix form
 \[
-	A =
+	M =
 	\begin{bmatrix}
 		a & b \\
 		\overline{b} & c
@@ -1082,7 +1082,7 @@ Congruence is a convenient to tool to investigate positivity. The idea is that w
 \]
 for some $a, c \in \R$ and $b \in \C$. Now if $a \neq 0$, we could eliminate with
 \[
-	B =
+	D =
 	\begin{bmatrix}
 		1 & -\frac{b}{a} \\
 		0 & 1
@@ -1090,7 +1090,7 @@ for some $a, c \in \R$ and $b \in \C$. Now if $a \neq 0$, we could eliminate wit
 \]
 to get
 \[
-	B A =
+	M D =
 	\begin{bmatrix}
 		a & b \\
 		\overline{b} & c
@@ -1107,14 +1107,101 @@ to get
 \]
 If we however eliminate from the other side by $B^{*}$, we get
 \[
-	B^{*} A B =
+	D^{*} M D =
 	\begin{bmatrix}
 		a & 0 \\
 		0 & \frac{a c - |b|^2}{a}.
 	\end{bmatrix}
-	=: C
+	=: M'
 \]
-Now $B$ is evidently invertible, it's determinant being $1$, so $A$ and $C$ are congruent. Sylvester's law of inertia tell's us hence that that if $a > 0$ and $\det(A) \geq 0$, then $A \geq 0$.
+Now $D$ is evidently invertible, it's determinant being $1$, so $M$ and $M'$ are congruent. Sylvester's law of inertia tell's us hence that that if $a > 0$ and $\det(M) \geq 0$, then $M \geq 0$.
+
+We can generalize this thinking. For general $n$ if we have decomposition $V = W_{1} \oplus W_{2}$, then we can decompose any mapping $M$ as
+\[
+	M =
+	\begin{bmatrix}
+		A & B \\
+		B^{*} & C
+	\end{bmatrix},
+\]
+where $A, B$ and $C$ are the \textit{blocks} of $M$ given by $A = P_{W_{1}} \circ M \circ \incl{V}{W_{1}} = \arestr{M}{W_{1}}$, $B = P_{W_{1}} \circ M \circ \incl{V}{W_{2}}$ and $C = P_{W_{2}} \circ M \circ \incl{V}{W_{2}} = \arestr{M}{W_{2}}$. Now we can generalize the previous elimination: if $A$ happens to be invertible and we let
+\[
+	D =
+	\begin{bmatrix}
+		I & -A^{-1} B \\
+		0 & I
+	\end{bmatrix}
+\]
+then
+\[
+	D^{*} =
+	\begin{bmatrix}
+		I & 0 \\
+		-B^{*} A^{-1}  & I
+	\end{bmatrix}
+\]
+and
+\begin{align}\label{schur_complement}
+	D^{*} M D =
+	\begin{bmatrix}
+		I & 0 \\
+		-B^{*} A^{-1}  & I
+	\end{bmatrix}
+	\begin{bmatrix}
+		A & B \\
+		B^{*} & C
+	\end{bmatrix}
+	\begin{bmatrix}
+		I & -A^{-1} B \\
+		0 & I
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		A & 0 \\
+		0 & C - B^{*} A^{-1} B
+	\end{bmatrix}.
+\end{align}
+The map $(C - B^{*} A^{-1} B) : W_{2} \to W_{2}$ is called the \textit{Schur complement} of block $A$ of $M$, or maybe one should say Schur complement of $M$ with respect to $W_{1}$. We denote the Schur complement by $M/A$.
+
+Now again if $A$ is invertible, $M \geq 0$ if and only if $A > 0$ and $M/A \geq 0$.
+
+This observations leads to convenient characterization for strictly positivity, called Sylvester's criterion. If $W_{2}$ is $1$-dimensional, $M/A$ is just a real number and $M$ is stricly positive if and only if $A > 0$ and this real number is positive. On the other hand, by computing determinants we see that
+\[
+	\det(M) = \det \left(
+	\begin{bmatrix}
+		A & 0 \\
+		0 & M/A
+	\end{bmatrix}
+	\right)
+	=
+	\det(A) \det(M/A),
+\]
+as $\det(D) = 1$. Hence $M$ is positive if and only if $\det(M)$ is positive and $A > 0$. Applying the same idea inductively we arrive at
+\begin{lause}[Sylvester's criterion]
+	$A \in \H(V)$ is stricly positive if and only for some (and then for any) sequence of subspaces $W_{1} \subset W_{2} \subset \ldots \subset W_{n - 1} \subset W_{n} = V$ with $\dim(W_{m}) = m$ we have $\det(A_{W_{m}}) > 0$ for any $1 \leq m \leq n$.
+\end{lause}
+
+One can solve $M$ from \ref{schur_complement} to arrive at so-called \textit{LDL-decomposition} of $M$:
+\begin{align}\label{ldl_decomposition}
+	M =
+	\begin{bmatrix}
+		A & B \\
+		B^{*} & C
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		I & 0 \\
+		B^{*} A^{-1}  & I
+	\end{bmatrix}
+	\begin{bmatrix}
+		A & 0 \\
+		0 & C - B^{*} A^{-1} B
+	\end{bmatrix}
+	\begin{bmatrix}
+		I & A^{-1} B \\
+		0 & I
+	\end{bmatrix}.
+\end{align}
 
 \section{Something else}
 
