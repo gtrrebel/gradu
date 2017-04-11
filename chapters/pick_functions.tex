@@ -57,7 +57,7 @@ Still before proving anything we should think about this relation a bit further.
 
 One should be a bit more careful here though: we have included also real constant functions to our class $\pickclass$ and we should also add unimodular constants to $\schurclass$. For these the bijection doesn't quite work; we can mostly do a natural extension, but then one would be forced to map the constant function $-1$ to the constant $\infty$. This means that we should add the constant infinity function to our Pick functions. We will not do this, as it would change the whole business to Riemann sphere, since it will bring other technical problems, but we will try to indicate when you should think about this extension.
 
-If one only thinks about composition one can of course do lot more. Take any simply connected domain in $U \subset \C$. By Riemann mapping theorem there's a analytic bijection $\toplane_{U} \D \to U$. For the domain $U$ we could define similar class of functions, and via $\toplane_{U}$ and it's inverse we could connect the classes. Again, one should be a bit careful with the boundary.
+If one only thinks about composition one can of course do lot more. Take any simply connected domain in $U \subset \C$. By Riemann mapping theorem there's a analytic bijection $\toplane_{U} : \D \to U$. For the domain $U$ we could define similar class of functions, and via $\toplane_{U}$ and it's inverse we could connect the classes. Again, one should be a bit careful with the boundary.
 
 In many ways Pick and Schur functions are most natural of these classes: they are closed under addition and multiplication, respectively. Also, they both contain the identity of the respective operations, so these properties are barely true.
 
@@ -79,7 +79,7 @@ At first sight one might not guess that Pick function have strong regularity pro
 	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$ and hence also $|\psi'(0)| \leq 1$. If $|\psi(z)| = |z|$ for some $z \in \D \setminus \{0\}$ or $|\psi'(0)| = 1$, $\psi(z) = \omega z$ for some $\omega \in \mathbb{S}$.
 \end{lause}
 \begin{proof}
-	By the assumption $\psi$ can be represented as a locally uniformly convergent power series in unit disc, of the form $\sum_{n = 1}^{\infty}a_{1} z^{n}$. Now $\psi(z)/z := \sum_{n = 0}^{\infty} a_{n + 1} z^{n}$ defines also an analytic function in unit disc. For any $0 < r < 1$, by the maximum modulus principle, we have
+	By the assumption $\psi$ can be represented as a locally uniformly convergent power series in unit disc, of the form $\sum_{n = 1}^{\infty}a_{n} z^{n}$. Now $\psi(z)/z := \sum_{n = 0}^{\infty} a_{n + 1} z^{n}$ defines also an analytic function in unit disc. For any $0 < r < 1$, by the maximum modulus principle, we have
 	\[
 		\sup_{z \in \D(0, r)} \left|\frac{\psi(z)}{z}\right| \leq \sup_{z \in \mathbb{S}(0, r)} \left|\frac{\psi(z)}{z}\right| \leq \frac{1}{r},
 	\]
@@ -149,6 +149,15 @@ There's really nice interpretation for the Schwarz-Pick theorem. The unit disc $
 \]
 This is space is called Poincaré disc. One may check that the previous is indeed a metric, and automorhisms of the unit disc are exactly the isometries of this space. Now Schwarz-Pick theorem states that any Schur function decreases distances i.e. Schur functions are contractions on Poincaré disc.
 
+Because of this intepretation, we abuse the notation and write
+\[
+	\rho(z_{1}, z_{2}) := \rho_{z_{1}}(z_{2}) = \frac{z_{1} - z_{2}}{1 - \overline{z_{1}} z_{2}}.
+\]
+Now the metric is given by
+\[
+	2 \tanh^{-1} \left|\rho(z_{1}, z_{2})\right|.
+\]
+
 Analogously one could interpret that the Pick functions are contractions in Poincaré upper half-plane, metric space in upper half-plane in which the metrix is given by
 \[
 	2 \tanh^{-1}\left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}}\right|.
@@ -156,9 +165,9 @@ Analogously one could interpret that the Pick functions are contractions in Poin
 
 \subsection{Pick Matrices}
 
-Schwarz-Pick theorem was about restricting Schur functions at one point. If we fix two points instead, things get more complicated. Let's say we have a Schur function $\psi$ and we know that $\psi(-\frac{1}{2}) = -\frac{2}{3}$ and $\psi(\frac{1}{2}) = \frac{2}{3}$. Surely there are such Schur functions, $z \mapsto \frac{2}{3}z$ for instance, but at least Schwarz-Pick theorem doesn't immediately fix such function, which it would do should we change the $\frac{1}{3}$'s to $\frac{1}{2}$. The question is: what kind of values could a Schur function attain at some other point, say at $0$.
+Schwarz-Pick theorem was about restricting Schur functions at one point. If we fix two points instead, things get more complicated. Let's say we have a Schur function $\psi$ and we know that $\psi(\frac{1}{2}) = \frac{1}{3}$ and $\psi(\frac{i}{2}) = \frac{i}{3}$. Surely there are such Schur functions, since $|\rho(\frac{1}{3}, \frac{i}{3})|^{2} = \frac{9}{41} < \frac{8}{17} = |\rho(\frac{1}{2}, \frac{i}{2})|^{2}$, but at least Schwarz-Pick theorem doesn't immediately fix such function, which it would do should we change the $\frac{1}{3}$'s to $\frac{1}{2}$. The question is: what kind of values could a Schur function attain at some other point, say at $0$.
 
-There are two immediate restrictions: values at $-\frac{1}{2}$ and $\frac{1}{2}$ restrict the value at $0$ in the intersection of two discs. The value at $-\frac{1}{2}$ restricts the value in a closed disc of radius $\frac{16}{35}$ at $-\frac{9}{35}$ and, symmetrically, the value at $\frac{1}{2}$ of radius $\frac{16}{35}$ at $\frac{9}{35}$. Considering these bounds, there's nothing in principle preventing us from having $\psi(0) = ??$. Not every value in these discs is however attainable. 
+There are two immediate restrictions: values at $-\frac{1}{2}$ and $\frac{1}{2}$ restrict the value at $0$ in the intersection of two discs. The value at $-\frac{1}{2}$ restricts the value in a closed disc of radius $\frac{16}{35}$ at $-\frac{9}{35}$ and, symmetrically, the value at $\frac{1}{2}$ of radius $\frac{16}{35}$ at $\frac{9}{35}$. Considering these bounds, there's nothing in principle preventing us from having $\psi(0) = 0$. This value is however not attainable. The problem is that if $\psi(0) = 0$, then also $\tilde{\psi}(z) := \frac{\psi(z)}{z}$ should be Schur function. But $\tilde{\psi}(\frac{1}{2}) = \frac{2}{3}$ and $\tilde{\psi}(\frac{i}{2}) = \frac{2 i}{3}$. But $|\rho(\frac{2}{3}, \frac{2i}{3})|^{2} = \frac{72}{97} > |\rho(\frac{1}{2}, \frac{i}{2})|^{2}$ violating the Schwarz-Pick theorem.
 
 TODO (Introduce Pick matrices earlier)
 
