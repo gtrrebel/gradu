@@ -946,7 +946,7 @@ It turns out that real maps commute only if they ``trivially" commute, in the fo
 \]
 then $A$ and $B$ are said to be \textit{simultaneously diagonalizable}. Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are indeed simultenously diagonalizable.
 
-To prove this statement, we start with a simple lemma.
+To prove this statement, we start with a lemma, simplest non-trivial case of the statement.
 
 \begin{lem}\label{projectionLemma}
 	Let $W_{1}, W_{2} \subset V$ be two subspaces. Then $P_{W_{1}}$ and $P_{W_{2}}$ commute if and only if there exists orthogonal subspaces $U_{1}, U_{2}$ and $U_{0}$ such that
@@ -959,34 +959,37 @@ To prove this statement, we start with a simple lemma.
 	Write $U_{0} := W_{1} \cap W_{2}$ and $W_{i} = U_{0} + U_{i}$ for some $U_{i} \perp U_{0}$ for $i \in \{1, 2\}$. Now $P_{W_{i}} = P_{U_{i}} + P_{U_{0}}$ for $i \in \{1, 2\}$ so it suffices to check that $U_{1} \perp U_{2}$. Equivalently, it suffices to prove that if $W_{1} \cap W_{2} = \{0\}$, and $P_{W_{1}}$ and $P_{W_{2}}$ commute, then $W_{1} \perp W_{2}$ or equivalently $P_{W_{1}}P_{W_{2}} = 0 = P_{W_{2}}P_{W_{1}}$. But for any $v \in V$ we have $W_{1} \ni P_{W_{1}}P_{W_{2}}v = P_{W_{2}}P_{W_{1}}v \in W_{2}$, so indeed $P_{W_{1}}P_{W_{2}} = 0 = P_{W_{2}}P_{W_{1}}$.
 \end{proof}
 
-\textcolor{red}{Rewrite the following theorem in the cleaner form}
+\begin{maar}
+	We say that two $W_{1}, W_{2} \subset V$ subspaces commute if the respective projections commute.
+\end{maar}
 
 \begin{lause}
-	Let $(A_{j})_{j \in J}$ by an arbitrary family of commuting real maps. Then there exists non-trivial orthogonal subspaces of $V$, $E_{1}, E_{2}, \ldots E_{m}$ with $E_{1} + E_{2} + \ldots + E_{m} = V$ and numbers $\lambda_{i, j}$ for $j \in J$ and $1 \leq i \leq n$ such that
+	Let $\mathcal{A} = (A_{j})_{j \in J}$ by an arbitrary family of commuting real maps. Then there exists non-trivial orthogonal subspaces of $V$, $E_{1}, E_{2}, \ldots E_{m}$ with $E_{1} + E_{2} + \ldots + E_{m} = V$ and numbers $\lambda_{i, j}$ for $j \in J$ and $1 \leq i \leq n$ such that
 	\[
 		A_{j} = \sum_{1 \leq i \leq m} \lambda_{i, j} P_{E_{i}}
 	\]
 	for any $j \in J$.
 \end{lause}
 \begin{proof}
-	The real maps $\mathcal{A} = (A_{j})_{j \in J}$ generate a commutative $\R$-algebra of real maps, $\H_{\mathcal{A}}$, certain quotient algebra of $\R[(X_{j})_{j \in J}]$. By our observations it will contain all the projections to the all the eigenspaces of the maps $A_{j}$. Consider the family of all the projections in $\H(\mathcal{A})$. We will call projecion $P_{W}$ with a minimal, if $W \neq \{0\}$ and if for any other projection $P_{W'} \in \H_{J}$ such that $W' \subset W$ either $W' = \{0\}$ or $W' = W$. Now let $\mathcal{E} = (E_{j})_{j \in J'}$ be the family of subspaces corresponding to minimal projections in $\H_{\mathcal{A}}$. We claim four things.
-	\begin{enumerate}
-		\item Subspaces of $\mathcal{E}$ are orthogonal.
-		\item $\mathcal{E}$ is finite.
-		\item $V = \sum_{j \in J'} E_{j}$.
-		\item $\mathcal{A} = \vspan(A_{j} \mid j \in J')$.
-	\end{enumerate}
-	Given these properties, $\mathcal{E}$ fits the requirements in the theorem statement, and we can find the correspongin numbers $\lambda_{i, j}$.
+	The main idea is the following: like in the spectral theorem, we would like to somehow find the subspaces $E_{1}, E_{2}, \ldots E_{m}$. Also, at least for finite families, we could probably use induction, so we should get far just by proving the theorem for a family of only two maps. For two projections we have already proved the statement as lemma \ref{projectionLemma}.
 
-	TODO: Add details
+	Now here's the trick: if two maps commute, so do all their polynomials. Hence if we have two commuting $A$ and $B$, we know that all the respective eigenspaces commute. Now if we could prove the statement at least for finite families of projections, we could conclude the case of two general maps. Indeed we could write any eigenprojection of $A$ or $B$ as a linear combination of sum finite family of orthogonal (orthogonal) projections, but those projections would then also span $A$ and $B$.
 
-	Proofs of the claims:
-	\begin{enumerate}
-		\item Take two distinct minimal subspaces $E_{1}$ and $E_{2}$. Now since $P_{E_{1}}$ and $P_{E_{2}}$ commute, by Lemma \ref{projectionLemma} it suffices to check that $E_{1} \cap E_{2} = \emptyset$. Because of the minimality, for this it suffices to check that $E_{1} \cap E_{2} \in \H_{J}$. But $P_{E_{1} \cap E_{2}}$ is polynomial of $P_{E_{1}} + P_{E_{2}}$, and we are done with the first claim.
-		\item Immediate from the previous claim.
-		\item Write $V' = \sum_{j \in J'} E_{j}$ and $V = V' + V''$ for $V' \perp V''$. If $V'' = \{0\}$ we are done. Otherwise easily $P_{V''} \in \H_{\mathcal{A}}$. Take non-degenerate subspace $W \subset V''$ of minimal dimension such that $P_{W} \in \H_{\mathcal{A}}$. Now immediately by definition $W$ is minimal which contradicts our assumptions.
-		\item It suffices to prove that any projection in $\H_{\mathcal{A}}$ is in the span, or equivalently that any corresponding subspace $W$ is sum of sum subspace of $\mathcal{E}$. Take $W'$ to be sum of all the subspaces in $\mathcal{E}$ which intersect $W$. We claim that $W = W'$. Assuming otherwise we may take $W$ to be subspace of minimal dimension such that $W \neq W'$. Now since $P_{W}$ and $P_{W'}$ commute, by the Lemma \ref{projectionLemma} we may write $W = W_{1} + W_{0}$ and $W' = W_{2} + W_{0}$ for some orthogonal subspaces $W_{0}, W_{1}$ and $W_{2}$. By minimality of $W$ we easily see that either $W_{0} = \{0\}$ or $W_{1} = \{0\}$. Indeed otherwise easily $W_{0}, W_{1} \in \H_{\mathcal{A}}$ and we can express also $W$. If $W_{0} = \{0\}$, $W \perp W'$, which can't happen unless $W = \{0\}$. But then $W \subset W'$. Reverse inclusion is evident and we are done.
-	\end{enumerate}
+	More generally, if we could prove the statement for arbitrary families of projections, the same argument would yield it for any family of more general linear maps, so we can safely assume that all the maps $A_{j}$ are projections.
+
+	Let's first deal with the finite case by induction. As mentioned, we already dealt with the case $|J| = 2$, but we can draw better conclusions. If we have two commuting projections $P_{W_{1}}$ and $P_{W_{2}}$ in $\mathcal{A}$. Now by the lemma we may write $P_{W_{1}} = P_{U_{1}} + P_{U_{0}}$ and $P_{W_{2}} = P_{U_{2}} + P_{U_{0}}$. The nice things is that any map in $\mathcal{A}$ also commutes with $P_{W_{1}} + P_{W_{2}} = P_{U_{1}} + P_{U_{2}} + 2 P_{U_{0}}$, so also with it's eigenprojections, $P_{U_{0}}$ and $P_{U_{1} + U_{2}}$. It follows that any map in $\mathcal{A}$ commutes with $U_{0}, U_{1}$ and $U_{2}$.
+
+	We have split the subspaces $W_{1}$ and $W_{2}$ in pieces, and we could actually forget $W_{1}$ and $W_{2}$ altogether and replace them by $U_{0}, U_{1}$ and $U_{2}$: note that all the same assumption hold for this new family, and $U_{0}, U_{1}$ and $U_{2}$ span $W_{1}$ and $W_{2}$.
+
+	Problem here is of course: it's not clear that the new family, say $\mathcal{A}'$ is any simpler than $\mathcal{A}$! It could well have more elements than $\mathcal{A}$ so we can't just do straightforward induction. What could happen also is that some of the subspaces $U_{0}, U_{1}, U_{2}$ coincide with the subspaces already present in the family, so the size of the family doesn't increase, and it could even decrease. This will indeed happen. One way to see this is to look at the sum of dimensions of all the projections of the family: if we change the family this sum cannot increase. Moreover, if we pick two subspaces $W_{1}$ and $W_{2}$ which are not orthogonal, this sum will decrease!
+
+	The conclusion is: pick pairs projections with non-orthogonal subspaces and do the replacing procedure as explained before; this process will eventually stop since the sum of dimesions can't drop below zero. But the only reason this process could stop is that all subspaces are pairwise orthogonal in which case we are done. The proof of finite case is complete.
+
+	There are many ways to bootstrap the previous argument for arbitrary families. For any finite subfamily we can form the set of generating projections. If add one more map, the set projections get refined: some of the subspaces get split to pieces. Now sizes of all these generating families are bounded by $n$ so we may pick one with most number of elements. Now if $A$ is any projection in $\mathcal{A}$, by maximality, adding it to the family does not refine the generating set. But this means that the generating set generates any element of $\mathcal{A}$ and we are done.
+
+	We also see that there exists unique minimal family of generating projections TODO.
+
+	Alternative approach to the theorem could be to look at the commutative $\R$-algebra of real maps generated by $\mathcal{A}$: generating projections will be in some sense minimal projections in this algebra.
 \end{proof}
 
 The previous theorem sends a very important message.
@@ -1033,7 +1036,7 @@ If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive e
 The proof also gives a useful characterization for the number of non-negative eigenvalues.
 
 \begin{kor}
-	If $A \in \H(V)$, number of non-negative eigenvalues of $A$ equals largest non-negative integer $k$ such that $Q_{A}$ is non-negative on subspace of $V$ of dimension $k$.
+	If $A \in \H(V)$, number of non-negative eigenvalues of $A$ equals largest non-negative integer $k$ such that for some subspace $W \subset V$ of dimension $k$ the quadratic form $Q_{A}$ is non-negative on $W$, or equivalently, $\arestr{A}{W} \geq 0$.
 \end{kor}
 
 TODO: explicit expression if $A$ and $B$ are positive definite.
@@ -1067,6 +1070,8 @@ If one $*$-conjugates with non-invertible, the angularity may change, but in qui
 \end{proof}
 
 This extension draws a picture about the relation of previously mentioned congcruence classes. We can move to the congruence classes of lower indeces by $*$-conjugation, but cannot move up the ladder: the complexity of quadratic forms cannot increase. One could also think that $*$-congruence for linear maps corresponds to multiplication by non-negative real for real numbers.
+
+One should be rather careful with ones intuition here
 
 TODO: splitting positive maps to pseudo square roots
 
@@ -1105,7 +1110,7 @@ to get
 		\overline{b} & \frac{a c - |b|^2}{a}.
 	\end{bmatrix}
 \]
-If we however eliminate from the other side by $B^{*}$, we get
+If we however eliminate from the other side by $D^{*}$, we get
 \[
 	D^{*} M D =
 	\begin{bmatrix}

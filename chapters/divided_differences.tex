@@ -237,6 +237,30 @@ also for any convex function
 \]
 Jensen's inequaltity.
 
+Of course there should be a larger family of inequalities which hold for functions of the form $|x - t|$: it turns out that there is a rather simple characterization for such inequalities, by \textit{majorization}.
+
+\begin{maar}
+	Let $x = (x_{i})_{i = 1}^{n}$ and $y = (y_{i})_{i = 1}^{n}$ be two sequences of reals. We say that $y$ majorizes $x$, and write $x \prec y$, if TODO
+\end{maar}
+
+\begin{lause}[Polya-Hardy-Littlewood-Karamata-Inequality]
+	Let $(a, b)$ be an open interval, $n$ positive integer, and $x = (x_{i})_{i = 1}^{n} \in (a, b)^{n}$ and $y = (y_{i})_{i = 1}^{n} \in (a, b)^{n}$. Then the following are equivalent.
+	\begin{enumerate}
+		\item $x \prec y$
+		\item For any real number $t$ we have
+		\[
+			\sum_{1 \leq i \leq n} |x_{i} - t| \leq \sum_{1 \leq i \leq n} |y_{i} - t|.
+		\]
+		\item For any convex $f : (a, b) \to \R$ we have
+		\[
+			\sum_{1 \leq i \leq n} f(x_{i}) \leq \sum_{1 \leq i \leq n} f(y_{i}).
+		\]
+	\end{enumerate}
+\end{lause}
+\begin{proof}
+	TODO
+\end{proof}
+
 TODO: Higher orders, majorization
 
 
