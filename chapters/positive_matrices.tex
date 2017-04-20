@@ -711,7 +711,7 @@ Now that we have defined the compression we are ready define positive maps.
 
 We denote the space of positive maps by $\H_{+}(V)$. Positive maps have the following useful properties.
 
-\begin{prop}
+\begin{prop}\label{basic_positive}
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space over $\C$. Then
 	\begin{enumerate}[(i)]
 		\item $A \in \L(V)$ is positive if and only if $\arestr{A}{W}$ is positive for every subspace $W \subset V$.
@@ -1014,7 +1014,7 @@ TODO
 
 There is one very important way to produce positive maps from others, called congruence. Given any two positive maps $A$ and $B$, their composition need not be positive, but the map $BAB$ is. First of all, it is real as $(BAB)^{*} = B^{*} A^{*} B^{*} = BAB$. Also $Q_{BAB}(v) = \langle BAB v, v \rangle = \langle A (B v), (B v) \rangle \geq 0$ for any $v \in V$. We didn't really need the assumption on the positivity of $B$, but realness was not that important either. Namely for arbitrary linear $B$ we could consider the product $B^{*}AB$ instead: this is positive whenever $A$ is. If $C = B^{*}AB$ for some $B \in \L(V)$, we say that $C$ is $*$-conjugate of $A$.
 
-We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis in the quadratic form. This is the main motivation for the definition of the $*$-conjugation. We have already seen that the quadratic form of a map is a good way to characterize many of its good properties, so to some extent to undestand maps, we just to need to understand structure of their quadratic forms. By change of basis of the quadratic form we have a good control of what happens. We might however lose some information: if $B = 0$, for instance, the quadratic form after $*$-conjugation by $B$ doesn't tell much about $A$. But if $B$ is invertible, or equivalently if $C$ and $B$ are $*$-conjugates of each other, we shouldn't lose any information. If this is the case, we say that $A$ and $C$ are congruent. It is easily verified that congruence is a equivalence relation.
+We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis in the quadratic form. This is the main motivation for the definition of the $*$-conjugation. We have already seen that the quadratic form of a map is a good way to characterize many of its good properties, so to some extent to understand maps, we just to need to understand structure of their quadratic forms. By change of basis of the quadratic form we have a good control of what happens. We might however lose some information: if $B = 0$, for instance, the quadratic form after $*$-conjugation by $B$ doesn't tell much about $A$. But if $B$ is invertible, or equivalently if $C$ and $B$ are $*$-conjugates of each other, we shouldn't lose any information. If this is the case, we say that $A$ and $C$ are congruent. It is easily verified that congruence is a equivalence relation.
 
 The construction of $*$-conjugation makes also sense for general linear map $A$, i.e. we could just as well $*$-conjugate non-positive, or even non-real maps. The result then need not be positive or real, and in general, $*$-conjugation loses its usefulness. Also, even if $A$ is normal, $*$-conjugate of $A$ need not be normal. TODO
 
@@ -1208,15 +1208,97 @@ One can solve $M$ from \ref{schur_complement} to arrive at so-called \textit{LDL
 	\end{bmatrix}.
 \end{align}
 
-\section{Something else}
+\section{Loewner Order}
 
+\begin{maar}
+	If $A, B \in \H(V)$, we write that $A \leq B$ ($A$ is smaller than $B$) if $B - A \geq 0$, $B - A$ is positive. If $B - A$ is strictly positive, we write $A < B$.
+\end{maar}
+
+We could of course have made such definition immediately after defining positive maps, but now we have proper tools to investigate such order. Proposition \ref{basic_positive} tells us that such order is indeed partial order on the $\R$-vector space of real maps. More explicitly, we have the following properties:
+
+
+\begin{prop}
+\begin{enumerate}[(i)]
+		\item If $A \leq B$ then $\alpha A \leq \alpha B$ for any $\alpha \geq 0$.
+		\item If $A \leq B$ and $B \leq C$ then $A \leq C$.
+		\item If $A \leq B$ and $B \leq A$ then $A = B$.
+		\item If $\lambda I \leq A$, all the eigenvalues of $A$ are at least $\lambda$.
+\end{enumerate}
+\end{prop}
+
+Key thing here is to note what is missing from the standard real ordering: multiplication by positive map doesn't preserve usual ordering. This is the reason many standard arguments don't work for general real maps.
+
+For example if $0 < a \leq b$, with real numbers one could multiply the inequalities by the positive number $(a b)^{-1}$ to get $0 < b^{-1} \leq a^{-1}$. This doesn't quite work with linear maps anymore.
+
+Congruence is way to at least partially fix this deficit: it's almost like multiplying by positive number. We have
+\begin{prop}
+	If $A \leq B$, then for any $C$ we have $C^{*} A C \leq C^{*} B C$.
+\end{prop}
+
+Using the previous we can mimic the previous proof to make it work.
+
+\begin{lause}
+	If $0 < A \leq B$, then $B^{-1} \leq A^{-1}$.
+\end{lause}
+\begin{proof}
+	As mentioned, we can't really multiply by $(A B)^{-1}$, as it does not preserve the order and doesn't even need to be positive. If $A$ and $B$ commute, this would work though. We can almost multiply by $A^{-1}$: $*$-conjugate by $A^{-\frac{1}{2}}$. This preserves the order, and we get
+	\[
+		I \leq A^{-\frac{1}{2}} B A^{-\frac{1}{2}}.
+	\]
+	Now one would sort of want to multiply $B^{-1}$; so $*$-conjugate by $B^{-\frac{1}{2}}$, but $B$ is in the middle, so this doesn't quite work. But now we can follow the original strategy: since $I \leq X := A^{-\frac{1}{2}} B A^{-\frac{1}{2}}$ we have $X^{-1} \leq I$, that is
+	\[
+		A^{\frac{1}{2}} B^{-1} A^{\frac{1}{2}} \leq I.
+	\]
+	This is already almost what we wanted: simply $*$-conjugate by $A^{-\frac{1}{2}}$.
+\end{proof}
+
+There's one wee bit non-trivial part in the proof: if $I \leq X$ then $X^{-1} \leq I$. But if $I \leq X$, all the eigenvalues of $X$ are at least $1$, so all the eigenvalues of its inverse are at most $1$, so $X \leq 1$.
+
+\begin{huom}
+
+Alternatively, we could conjugate both sides by $X^{-\frac{1}{2}}$ to arrive at the conclusion. Note that by doing this we have only used $*$-conjugation in the proof: actually we have $*$-conjugated altogether with 
+\[
+	A^{-\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{-\frac{1}{2}} A^{-\frac{1}{2}} = (A^{\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{\frac{1}{2}} A^{\frac{1}{2}})^{-1}.
+\]
+The map $A^{\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{\frac{1}{2}} A^{\frac{1}{2}}$, which is real, is usually called the geometric mean of $A$ and $B$. It turns out that this mean, denoted by $G(A, B)$ satifies
+\[
+	G(A, B) = G(B, A) \;\;\; \text{ and } \;\;\; G(A, B)^{-1} = G(A^{-1}, B^{-1}),
+\]
+and if $A$ and $B$ commute we have $G(A, B) = (A B)^{\frac{1}{2}}$. The defining property of it we used it was that $G(A, B)$ is unique real map with
+\[
+	B = G(A, B) A^{-1} G(A, B).
+\]
+
+The point is: somewhat curiously we can almost do the original proof: just replace multiplication by congruence by squareroot, and replace squareroot of product by geometric mean.
+
+\end{huom}
+
+To further highlight the importance of Congruence, we can use it to change map inequalities to usual real inequalities. For instance, one can generalize so called (two variable) arithmetic-harmonic mean inequality, which states that for any two positive real numbers $a$ and $b$ we have
+\[
+	\frac{a + b}{2} \geq \frac{2}{\frac{1}{a} + \frac{1}{b}}.
+\]
+This classic inequality, which can be seen as a restatement of the convexity of the map $x \mapsto \frac{1}{x}$, can be verified for instance by multiplying out the denominator and rewriting it as $\frac{(a - b)^{2}}{ab} \geq 0$.
+
+To prove the matrix version, namely
+\[
+	\frac{A + B}{2} \geq (A^{-1} + B^{-1})^{-1}
+\]
+for any $A, B > 0$, we can $*$-conjugate both sides by $A^{-\frac{1}{2}}$ to arrive at
+\[
+	\frac{I + A^{-\frac{1}{2}}B A^{-\frac{1}{2}}}{2} \geq 2 (I + A^{\frac{1}{2}}B^{-1} A^{\frac{1}{2}})^{-1}.
+\]
+If one writes $X = A^{-\frac{1}{2}}B A^{-\frac{1}{2}}$, this rewrites to
+\[
+	\frac{I + X}{2} \geq 2 (I + X^{-1})^{-1}.
+\]
+But now since $I$ and $X$ commute, the claim is evident form the scalar inequality.
 \section{Absolute Value}
 
-\textcolor{red}{Rewrite this:} We defined singular values of a linear map to be the eigenvalues of map $\left(A^{*}A\right)^{\frac{1}{2}}$. As we noticed, this map is Hermitian and even positive, and if $A$ is normal to begin with, its eigenvalues are simply absolute values of the eigenvalues of $A$. This motivates us to define
+As adjoint behaves as conjugate, it would be natural to guess that
 \[
 	|A| := \left(A^{*}A\right)^{\frac{1}{2}},
 \]
-absolute value of a map.
+absolute value of a map, would have many similar properties as the standard absolute value. Note that in general we have $|A| \neq |A^{*}|$, and maps need not even go between the same spaces: indeed $|A|$ and $|A^{*}|$ coincide exactly with normal maps.
 
 The following list of properties of the absolute value make it clear that this is indeed good definition.
 
