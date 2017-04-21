@@ -645,7 +645,9 @@ Natural extension of this idea could be try the following: map is positive if al
 \]
 The two matrices have both distinct eigenvalues $- 2$ and $2$ and are hence diagonlizable, but their sum has characteristic polynomial $x^2 + 9$, which most definitely has no real zeros. In general one should not except summation and eigenvalues go very well together.
 
-\section{Restricting linear maps}
+\section{Real maps}
+
+\subsection{Restricting linear maps}
 
 There's however quite clever way to go around this. Instead of requiring non-negativity of eigenvalues, we require that map ``restricts" to positive map. The idea is: we already know which maps should be positive in one-dimensional spaces, or more generally, which scalar multiples of identity should be positive. Now we should require that when we restrict our look to one-dimensional subspaces, we should get a positive map.
 
@@ -701,7 +703,7 @@ There's one more important property of compression we need. When map is compress
 	By linearity, it is sufficient to prove that if $Q_{A}(v) = 0$ for any $v \in V$, then $A = 0$. TODO polarization identity.
 \end{proof}
 
-\section{Positive maps}
+\subsection{Positive maps}
 
 Now that we have defined the compression we are ready define positive maps.
 
@@ -747,7 +749,7 @@ We can also lift other important notions.
 
 The previous two families of maps are usually called Hermitian and Skew-Hermitian and as with positive maps, many of their properties are lifted form usual complex numbers. Hermitian maps will have a special role in our discussion. They form a vector space over $\R$, which is denoted by $\H(V)$. Of course, every imaginary map is just $i$ times real map, and we won't preserve any special notation for such maps.
 
-\section{Adjoint}
+\subsection{Adjoint}
 
 We can also lift the notion of complex conjugate. If $V$ is one-dimensional, $\overline{A}$, conjugate of $A$ should be a linear map which is induced by the complex conjugate of the scalar inducing $A$.
 
@@ -816,7 +818,7 @@ The previous corollary makes many of the basic properties of adjoint, which we c
 	\end{enumerate}
 \end{lause}
 
-\section{Examples}
+\subsection{Examples}
 
 It's high time to have some examples.
 
@@ -934,7 +936,7 @@ Also, given $A \in \H(V)$, we may write any $x \in V$ in the form $v = \sum_{1 \
 
 Similarly, if $A \geq 0$, $A$ has a unique positive square root, which we denote by $A^{\frac{1}{2}}$: map such that $A^{\frac{1}{2}} A^{\frac{1}{2}} = A$. Given the spectral reprsentation $A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}}$, we can simply set $A^{\frac{1}{2}} = \sum_{1 \leq i \leq n} \lambda_{i}^{\frac{1}{2}} P_{v_{i}}$. As for the uniqueness, note that if $B$ is a positive square root for $A$ and $B = \sum_{1 \leq i \leq n} \lambda_{i}' P_{v_{i}'}$, then $B^2 = \sum_{1 \leq i \leq n} \lambda_{i}'^{2} P_{v_{i}'}$. It follows that eigenvalues of $B$ are simply square roots of eigenvalues of $A$ and the corresponding eigenspaces are equal. Of course, the whole uniqueness argument floats more naturally with unique spectral representation.
 
-\section{Commuting real maps}
+\subsection{Commuting real maps}
 
 \textbf{Warning!} Composition of positive maps need not be positive!
 
@@ -1004,11 +1006,7 @@ Conversely, if one wants exciting things to happen, one should make things very 
 
 TODO: independence of random variables.
 
-\section{Normal maps}
-
-TODO
-
-\section{Congruence and Inertia}
+\section{Congruence}
 
 \subsection{$*$-conjugation}
 
@@ -1016,7 +1014,7 @@ There is one very important way to produce positive maps from others, called con
 
 We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis in the quadratic form. This is the main motivation for the definition of the $*$-conjugation. We have already seen that the quadratic form of a map is a good way to characterize many of its good properties, so to some extent to understand maps, we just to need to understand structure of their quadratic forms. By change of basis of the quadratic form we have a good control of what happens. We might however lose some information: if $B = 0$, for instance, the quadratic form after $*$-conjugation by $B$ doesn't tell much about $A$. But if $B$ is invertible, or equivalently if $C$ and $B$ are $*$-conjugates of each other, we shouldn't lose any information. If this is the case, we say that $A$ and $C$ are congruent. It is easily verified that congruence is a equivalence relation.
 
-The construction of $*$-conjugation makes also sense for general linear map $A$, i.e. we could just as well $*$-conjugate non-positive, or even non-real maps. The result then need not be positive or real, and in general, $*$-conjugation loses its usefulness. Also, even if $A$ is normal, $*$-conjugate of $A$ need not be normal. TODO
+The construction of $*$-conjugation makes also sense for general linear map $A$, i.e. we could just as well $*$-conjugate non-positive, or even non-real maps. The result then need not be positive or real, and in general, $*$-conjugation loses its usefulness.
 
 The previous construction can be also performed between two spaces $V$ and $W$: given any map $B \in \L(V, W)$ and $A \in \H_{+}(W)/\H(W)/\L(W)$, we note that $B^{*}AB \in \H_{+}(V)/\H(W)/\L(W)$. For self-adjoint maps we can say a lot more: while congruence doesn't in general preserve eigenvalues, it preserves their signs.
 
@@ -1031,7 +1029,7 @@ The previous construction can be also performed between two spaces $V$ and $W$: 
 	Congruence preserves the previous notion: if $Q_{B}$ is negative on a subspace of dimension $k$, so is $Q_{B} \circ C$ for any invertible $C$; namely in the inverse image. Same reasoning holds for the the subspace on which $Q_{B}$ is non-negative, so again, $Q_{B} \circ C$ has to have similar structure. We are done.
 \end{proof}
 
-If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive eigenvalues of $A$, \textit{inertia} of $A$ is the triplet $\{n_{0}, n_{-}, n_{+} \}$. The previous theorem can be hence restated, that inertia is invariant under congruence.
+If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive eigenvalues of $A$, \textit{inertia} of $A$ is the triplet $\{n_{0}, n_{-}, n_{+} \} := \{n_{0}(A), n_{-}(A), n_{+}(A) \}$. The previous theorem can be hence restated, that inertia is invariant under congruence.
 
 The proof also gives a useful characterization for the number of non-negative eigenvalues.
 
@@ -1039,31 +1037,12 @@ The proof also gives a useful characterization for the number of non-negative ei
 	If $A \in \H(V)$, number of non-negative eigenvalues of $A$ equals largest non-negative integer $k$ such that for some subspace $W \subset V$ of dimension $k$ the quadratic form $Q_{A}$ is non-negative on $W$, or equivalently, $\arestr{A}{W} \geq 0$.
 \end{kor}
 
-TODO: explicit expression if $A$ and $B$ are positive definite.
-
-It gets better: if two normal maps are congruent, we can vastly generalize the previous result: for normal maps, congruence preserves the number of eigenvalues on any open ray.
-
-For any $A \in \normal(V)$ define the mapping $\theta[A] : S^{1} \to \N$ by setting $\theta[A](z)$ be the number of eigenvalues (counted with multiplicity) on ray $\{rz | r > 0\}$. This map is called the \textit{angularity} of $A$.
-
-TODO: figure of change of eigenvalues on congruence.
-
-\begin{lause}[Generalized Sylvester's Law of Inertia]
-	$A, B \in \normal(V)$ are congruent, if and only if $\theta[A] = \theta[B]$.
-\end{lause}
-\begin{proof}
-	The ``if"-part can be proven almost identically to proof of the self-adjoint case. For the ``only if" -part, note that if $A = C^{*}BC$, the also $\Re(A) = C^{*}\Re(B)C$. Now both sides are self-adjoint, and eigenvalues of $\Re(A)$ and $\Re(B)$ are just the real parts of the eigenvalues of $A$ and $B$. Applying the previous version Law of Inertia for these maps, we see that $A$ and $B$ have equally many eigenvalues on closed right half-plane. 
-
-	Carrying out the previous reasoning for the maps $e^{i t}A$ and $e^{i t} B$ for real $t$ we see that these maps have equally many eigenvalues on any closed half plane containing origin. If one considers function sending $t$ to the number of eigenvalues of $e^{i t} A$ on closed right half-plane, we see that this function has jump discontinuitys, and the value, and the left and the right limits at these point reveals number of eigenvalues at any open ray.
-
-	TODO: figure of functions $t \mapsto$ number of eigenvalues of $e^{it}A$ on closed right half-plane, or even better, map from $\mathbb{S} \to \N$.
-\end{proof}
-
 Sylvester's Law of inertia gives another proof of the fact that strictly positive maps are exactly the maps congruent to the identity, and positive maps are the maps congruent to some projection. More precisely, the positive maps are partitioned to $n + 1$ congruence classes depending on their rank, $k$:th congruence class containing the projections to $k$-dimensional subspaces. $0$:th class contains only the zero map, the only rank $0$ positive map, and the $n$:th class is the class of strictly positive maps.
 
-If one $*$-conjugates with non-invertible, the angularity may change, but in quite obvious way only: some eigenvalues may move to $0$. In particular, we have the following even a bit more general version of the law.
+If one $*$-conjugates with non-invertible, the inertia may change, but in quite obvious way only: some eigenvalues may move to $0$. In particular, we have the following even a bit more general version of the law.
 
 \begin{lause}[General Sylvester's Law of Inertia]
-	For $A, B \in \normal(V)$ and $A$ is $*$-conjugate of $B$, if and only if $\theta[A] \leq \theta[B]$.
+	For $A, B \in \normal(V)$ and $A$ is $*$-conjugate of $B$, if and only if $n_{\pm}(A) \leq n_{\pm}(B)$.
 \end{lause}
 \begin{proof}
 	TODO
@@ -1071,11 +1050,7 @@ If one $*$-conjugates with non-invertible, the angularity may change, but in qui
 
 This extension draws a picture about the relation of previously mentioned congcruence classes. We can move to the congruence classes of lower indeces by $*$-conjugation, but cannot move up the ladder: the complexity of quadratic forms cannot increase. One could also think that $*$-congruence for linear maps corresponds to multiplication by non-negative real for real numbers.
 
-One should be rather careful with ones intuition here
-
-TODO: splitting positive maps to pseudo square roots
-
-\section{Block decomposition}
+\subsection{Block decomposition}
 
 Congruence is a convenient to tool to investigate positivity. The idea is that with conguence we can perform sort of a Gaussian elimination. If $n = 2$ for instance, we can write any real map in the matrix form
 \[
@@ -1292,19 +1267,19 @@ If one writes $X = A^{-\frac{1}{2}}B A^{-\frac{1}{2}}$, this rewrites to
 	\frac{I + X}{2} \geq 2 (I + X^{-1})^{-1}.
 \]
 But now since $I$ and $X$ commute, the claim is evident form the scalar inequality.
+
 \section{Absolute Value}
 
 As adjoint behaves as conjugate, it would be natural to guess that
 \[
 	|A| := \left(A^{*}A\right)^{\frac{1}{2}},
 \]
-absolute value of a map, would have many similar properties as the standard absolute value. Note that in general we have $|A| \neq |A^{*}|$, and maps need not even go between the same spaces: indeed $|A|$ and $|A^{*}|$ coincide exactly with normal maps.
+absolute value of a map, would have many similar properties as the standard absolute value. Note that in general we have $|A| \neq |A^{*}|$, and maps need not even go between the same spaces.
 
 The following list of properties of the absolute value make it clear that this is indeed good definition.
 
 \begin{itemize}
 	\item $|A| \geq 0$ for any $A \in \L(V)$ and $|A| = A$, if and only if $A \geq 0$.
-	\item (Polar decomposition) If $A \in \L(V)$, we can write $A = U |A|$ and $A = |A| V$ for some $U, V \in \unitary(V)$. $U$ and $V$ coincide if and only $A$ is normal.
 	\item For any $A \in \H(V)$ we have $-|A| \leq A \leq |A|$, or equivalently $|Q_{A}(v)| \leq Q_{|A|}(v)$ for any $v \in V$
 	\item For any $v \in V$ we have $\|A v\| = \||A|v\|$.
 \end{itemize}
@@ -1335,9 +1310,12 @@ holds for eigenvectors $v$ of $|A + B|$. Summing over the eigenvector we see tha
 \]
 so instead of the full inequality, we get inequality for traces. There is a nice generalization for the previous we'll get back to.
 
+\section{Notes and references}
+
 \section{Ideas}
 
 \begin{itemize}
+	\item Normal maps
 	\item Square root of a matrix
 	\item Ellipses map to ellipses
 	\item Sylvester's criterion
@@ -1356,6 +1334,8 @@ so instead of the full inequality, we get inequality for traces. There is a nice
 	\item Weakly positive matrices
 	\item Hlawka inequality for determinant %http://mathoverflow.net/questions/182181/hlawka-inequality-for-determinants-of-positive-definite-matrices?rq=1
 	\item Trace-characterization of positive maps.
+	\item Splitting positive maps to pseudo square roots
+	\item Product of maps
 \end{itemize}
 
 Ideas how to rewrite this section:
