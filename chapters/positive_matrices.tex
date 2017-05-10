@@ -730,7 +730,7 @@ We denote the space of positive maps by $\H_{+}(V)$. Positive maps have the foll
 		\item The claim evidently holds for one-dimensional spaces. Now for any one-dimesional $W \subset V$ we have $\arestr{(\alpha A + \beta B)}{W} = \alpha \arestr{A}{W} + \beta \arestr{B}{W} \geq 0$, by the one-dimensional case, so $\alpha A + \beta B \geq 0$.
 		\item Again, the claim evidently holds for one-dimensional spaces. Now for any one-dimesional $W \subset V$ we have $\arestr{(\lim_{i \to \infty} A_{i})}{W} = \lim_{i \to \infty}\arestr{(A_{i})}{W}\geq 0$, by the one-dimensional case, so $A \geq 0$.
 		\item These claims are immediate from our representation for one-dimensional compressions.
-		\item If $A, -A \geq 0$, all the one-dimensional compressions of $A$ are both non-negative and non-positive, so zero. But by the injectivity of restriction, it follows that $A = 0$.
+		\item If $A, -A \geq 0$, all the one-dimensional compressions of $A$ are both non-negative and non-positive, so zero. But by the injectivity of compression, it follows that $A = 0$.
 		\item Note that if $v$ is any eigenvector of $v$, $\arestr{A}{(v)} w = \frac{\langle A v, v\rangle}{\langle v, v\rangle} w = \lambda w$, so by assumption $\lambda \geq 0$.
 	\end{enumerate}
 \end{proof}
@@ -1033,7 +1033,7 @@ If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive e
 
 The proof also gives a useful characterization for the number of non-negative eigenvalues.
 
-\begin{kor}
+\begin{kor}\label{subspace_lemma}
 	If $A \in \H(V)$, number of non-negative eigenvalues of $A$ equals largest non-negative integer $k$ such that for some subspace $W \subset V$ of dimension $k$ the quadratic form $Q_{A}$ is non-negative on $W$, or equivalently, $\arestr{A}{W} \geq 0$.
 \end{kor}
 
@@ -1201,6 +1201,10 @@ We could of course have made such definition immediately after defining positive
 \end{enumerate}
 \end{prop}
 
+\begin{esim}
+	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Conversely if $P_{W_{1}} \leq P_{W_{2}}$, for any $v \in W_{1}$ we have $Q_{{P_{W_{1}}}}(v) = \|v\|^{2} \leq \langle P_{W_{2}} v, v \rangle = Q_{P_{W_{2}}}(v)$, where the inequality can hold if and only if $v \in W_{2}$.
+\end{esim}
+
 Key thing here is to note what is missing from the standard real ordering: multiplication by positive map doesn't preserve usual ordering. This is the reason many standard arguments don't work for general real maps.
 
 For example if $0 < a \leq b$, with real numbers one could multiply the inequalities by the positive number $(a b)^{-1}$ to get $0 < b^{-1} \leq a^{-1}$. This doesn't quite work with linear maps anymore.
@@ -1336,6 +1340,9 @@ so instead of the full inequality, we get inequality for traces. There is a nice
 	\item Trace-characterization of positive maps.
 	\item Splitting positive maps to pseudo square roots
 	\item Product of maps
+	\item AM-GM-HM
+	\item Exponential formula for geometric mean?
+	\item Maximum of matrices with powerlimit
 \end{itemize}
 
 Ideas how to rewrite this section:

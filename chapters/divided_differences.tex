@@ -263,6 +263,17 @@ Of course there should be a larger family of inequalities which hold for functio
 	TODO
 \end{proof}
 
+\section{Spectral majorization}
+
+In addition to being convenient notion to discuss $k$-tone functions, majorization explains many phenomena related to spectra of real maps. Basic fact is the following.
+
+\begin{prop}
+	If $A \leq B$, the $\spec(A) \prec_{1} \spec(B)$.
+\end{prop}
+\begin{proof}
+	By Theorem (?) it suffices to check that for any $t \in \R$ we have $\#([t, \infty) \cap \spec(A)) \leq \#([t, \infty) \cap \spec(B))$. Translating by $t I$ this amounts to proving that if $A \leq B$, $B$ has at least as many non-negative eigenvalues as $A$. But this follows from Lemma \ref{subspace_lemma}.
+\end{proof}
+
 TODO: Higher orders, majorization
 
 

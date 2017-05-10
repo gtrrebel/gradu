@@ -3,6 +3,7 @@
 #include <complex>
 #include <iomanip>
 #include <random>
+#include "assert.h"
 #include "../../eigen/Eigen/Dense"
 #include "../../eigen/Eigen/Eigenvalues"
 
@@ -15,8 +16,9 @@ typedef MatrixXcd Mt;
 
 int sort_k;
 
-const ld eps = 1e-6;
+const ld eps = 1e-3;
 const co I = {0.0, 1.0};
+bool verbose = false;
 
 default_random_engine generator;
 normal_distribution<double> distribution(0.0,1.0);
@@ -54,6 +56,31 @@ Mt xp_absx(Mt A, int k) {
 	return B;
 }
 
+void print_eigs(Mt A) {
+	SelfAdjointEigenSolver<Mt> es(A);
+	Mt eigs = es.eigenvalues();
+	for (int i = 0; i < A.rows(); i++) {
+		cout << eigs(i, 0).real() << " ";
+	}
+}
+
+Mt get_can_f_k(Mt A, int k) {
+	Mt B = abs_m(A);
+	int n = A.rows();
+	Mt Id = Mt::Identity(n, n);
+	Mt C = (Id - B).inverse();
+	for (int i = 1; i <= k; i++) {
+		C *= A;
+	}
+	if (verbose) {
+		cout << "C:" << "\n";
+		cout << C << "\n";
+		print_eigs(C);
+		cout << "\n";
+	}
+	return C;
+}
+
 double xp_absx_trace(Mt A, int k) {
 	SelfAdjointEigenSolver<Mt> es(A);
 	double ans = 0;
@@ -82,6 +109,18 @@ Mt randHP(int n) {
 bool is_positive(Mt A) {
 	LLT<Mt> lltOfA(A);
 	if(lltOfA.info() == NumericalIssue) {
+		return false;
+	}
+	return true;
+}
+
+bool spectrum_in(Mt A, double a, double b) {
+	int n = A.rows();
+	Mt Id = Mt::Identity(n, n);
+	if (!is_positive(A - (a + eps)*Id)) {
+		return false;
+	}
+	if (!is_positive(-A + (b - eps)*Id)) {
 		return false;
 	}
 	return true;
@@ -165,15 +204,79 @@ bool test_k_trace(int n, int k) {
 	for (int i = 0; i < n; i++) {
 		xs.push_back(rand_n());
 	}
-	Mt B = randHP(n);
+	Mt B = randH(n);
 	ArrayXXcd D = matrix_derivative(xs, B, k);
 	double tes = 0;
 	for (int i = 0; i < n; i++) {
-		cout << D(i, i).real() << " ";
+		//cout << D(i, i).real() << " ";
 		tes += D(i, i).real();
 	}
-	cout << endl;
+	//cout << endl;
+	if (tes < -eps) {
+		cout << tes << "\n";
+		for (int i = 0; i < n; i++) {
+			cout << xs[i] << " ";
+		}
+		cout << endl;
+	}
 	return (tes > -eps);
+}
+
+bool try_can_f_k(Mt A, Mt B, int k) {
+	int n = A.rows();
+	Mt S = Mt::Zero(n, n);
+	double sgn = 1.0;
+	if (k%2 == 0) {
+		sgn = -1.0;
+	}
+	for (int i = 0; i <= k; i++) {
+		sgn *= -1.0;
+		Mt Ai = A + i*B;
+		if (!spectrum_in(Ai, -1.0, 1.0)) {
+			return true;
+		}
+		Mt Xi = get_can_f_k(Ai, k);
+		double coeff = binom(k, i)*sgn;
+		S += coeff*Xi;
+	}
+	bool ok = is_positive(S);
+	if (!ok) {
+		verbose = true;
+		cout << "A:\n";
+		cout << A << "\n";
+		cout << "B:\n";
+		cout << B << "\n";
+		cout << "S: " << "\n";
+		cout << S << "\n";
+		cout << "spectras:" << "\n";
+		cout << "B:" << "\n";
+		print_eigs(B);
+		cout << "\n";
+		for (int i = 0; i <= k; i++) {
+			cout << "A + " << i << " B:" << "\n";
+			print_eigs(A + i*B);
+			cout << "\n";
+			get_can_f_k(A + i*B, k);
+		}
+		cout << "S: " << "\n";
+		cout << S << "\n";
+		cout << "eigs: " << "\n";
+		print_eigs(S);
+		cout << "\n";
+		verbose = false;
+	}
+	return ok;
+}
+
+bool try_several_can_f_k(int k, int cnt) {
+	for (int i = 0; i < cnt; i++) {
+		Mt A = randH(2)*0.1;
+		Mt B = randHP(2)*0.03;
+		if (!try_can_f_k(A, B, k)) {
+			return false;
+		}
+	}
+	return true;
 }
 
 double get_val(vector<double> xs, double t, int k) {
@@ -357,9 +460,9 @@ void print_k_tone_vec(int n, int k, double step) {
 }
 
 int main() {
-	int cap = 100;
-	int n, k;
-	cin >> n >> k;
-	test_conjecture2(n, k, cap);
+	int cap;
+	int k;
+	cin >> k >> cap;
+	cout << try_several_can_f_k(k, cap) << "\n";
 	return 0;
 }
