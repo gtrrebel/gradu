@@ -78,6 +78,16 @@ def print_expanded_table_first(d = 1):
 		print i
 		print l[i]
 
+def get_polynomial_i(i):
+	ans = 0
+	for j in xrange(i):
+		z = (t + ds[0][j + 1])/ds[j][j + 1]
+		w = 1 - z
+		for jj in xrange(k - 1):
+			ans += z**(k - 2 - jj)*w**(jj)*binom(k - 2, jj)*vals[j][jj]
+	return ans
+
+
 def go(l = [], coeff = 1):
 	if (len(l) == k):
 		open_divided_difference(l, coeff*X[l[0] - 1][l[-1] - 1])
@@ -94,4 +104,5 @@ def set_all_terms():
 d = 1
 set_all_terms()
 print_table()
+print get_polynomial_i(1)
 #print_expanded_table_first(d)

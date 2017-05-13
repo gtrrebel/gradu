@@ -81,6 +81,16 @@ def print_expanded_table_first(d = _sage_const_1 ):
 		print i
 		print l[i]
 
+def get_polynomial_i(i):
+	ans = _sage_const_0 
+	for j in xrange(i):
+		z = (t + ds[_sage_const_0 ][j + _sage_const_1 ])/ds[j][j + _sage_const_1 ]
+		w = _sage_const_1  - z
+		for jj in xrange(k - _sage_const_1 ):
+			ans += z**(k - _sage_const_2  - jj)*w**(jj)*binom(k - _sage_const_2 , jj)*vals[j][jj]
+	return ans
+
+
 def go(l = [], coeff = _sage_const_1 ):
 	if (len(l) == k):
 		open_divided_difference(l, coeff*X[l[_sage_const_0 ] - _sage_const_1 ][l[-_sage_const_1 ] - _sage_const_1 ])
@@ -97,4 +107,5 @@ def set_all_terms():
 d = _sage_const_1 
 set_all_terms()
 print_table()
+print get_polynomial_i(_sage_const_1 )
 #print_expanded_table_first(d)

@@ -119,6 +119,39 @@ def get_general_term(ass, B, x, i, first = True, second = True):
 		ans += 4*term2*term3*(x - ass[i])
 	return ans
 
+def try_general_sum_4(ass, B, x):
+	n = len(ass)
+	if (x < ass[0]):
+		return 0
+	if (x > ass[-1]):
+		return 0
+	p = 0
+	while (ass[p] < x):
+		p += 1
+	ans = 0
+	for i in xrange(p):
+		for j in xrange(p, n):
+			term = 0
+			term1 = 0
+			for i1 in xrange(p):
+				term1 += B[i][i1]*B[i1][j]/(ass[j] - ass[i1])
+			term2 = 0
+			for j1 in xrange(p, n):
+				term2 += B[i][j1]*B[j1][j]/(ass[i] - ass[j1])
+			term = term1*(x - ass[j]) + term2*(x - ass[i])
+			#ans += term**2/(ass[j] - ass[i])
+	for i1 in xrange(p):
+		termij_0 = (x - ass[i1])
+		for i2 in xrange(p):
+			for j in xrange(p, n):
+				termij_1 = termij_0*(x - ass[j])/((ass[j] - ass[i1])*(ass[j] - ass[i2]))
+				termij_1 *= B[i1][j]*B[i2][j]
+				for l in xrange(p, n):
+					termij_2 = termij_1*B[i1][l]*B[i2][l]/(ass[l] - ass[i1])
+					ans -= termij_2
+	return 4*ans
+
+
 def get_3_general_term(ass, B, x, i):
 	n = len(ass)
 	term1, term2 = 0, 0
@@ -183,6 +216,24 @@ def test_sum_right(ass, B, cap = 1000):
 			print ts
 			print ass
 			print B
+
+def try_sum_4_conjecture(ass, B, cap = 10):
+	n = len(ass)
+	for _ in xrange(cap):
+		x = get_x()
+		ts = []
+		for i in xrange(n):
+			ts.append(get_general_term(ass, B, x, i))
+		su = 0
+		for i in xrange(n):
+			if (ass[i] < x):
+				su += ts[i]
+		su2 = try_general_sum_4(ass, B, x)
+		if (su2 < -eps):
+			print "FAIL"
+			print su
+			print x
+			print ass
 
 def test_3_sum_right(ass, B, cap = 1000):
 	n = len(ass)
@@ -295,6 +346,13 @@ def try_pos(n):
 		B = get_B(n)
 		test_pos_3(ass, B)
 
-n = 4
+def try_conj(n):
+	cap = 100
+	for _ in xrange(cap):
+		ass = get_abc(n)
+		B = get_B(n)
+		try_sum_4_conjecture(ass, B)
 
-try_pos(n)
+n = 5
+
+try_conj(n)
