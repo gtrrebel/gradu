@@ -139,7 +139,7 @@ def try_general_sum_4(ass, B, x):
 			for j1 in xrange(p, n):
 				term2 += B[i][j1]*B[j1][j]/(ass[i] - ass[j1])
 			term = term1*(x - ass[j]) + term2*(x - ass[i])
-			#ans += term**2/(ass[j] - ass[i])
+			ans += term**2/(ass[j] - ass[i])
 	for i1 in xrange(p):
 		termij_0 = (x - ass[i1])
 		for i2 in xrange(p):
@@ -148,7 +148,19 @@ def try_general_sum_4(ass, B, x):
 				termij_1 *= B[i1][j]*B[i2][j]
 				for l in xrange(p, n):
 					termij_2 = termij_1*B[i1][l]*B[i2][l]/(ass[l] - ass[i1])
-					ans -= termij_2
+					#ans -= termij_2
+	for i1 in xrange(p):
+		for i2 in xrange(p):
+			interm = 0
+			for j in xrange(p, n):
+				interm += (x - ass[j])/((ass[j] - ass[i1])*(ass[j] - ass[i2]))*B[i1][j]*B[i2][j]
+			ans += interm**2*(x - ass[i1])
+	for j1 in xrange(p, n):
+		for j2 in xrange(p, n):
+			interm = 0
+			for i in xrange(p):
+				interm += (x - ass[i])/((ass[i] - ass[j1])*(ass[i] - ass[j2]))*B[i][j1]*B[i][j2]
+			ans += interm**2*(ass[j1] - x)
 	return 4*ans
 
 
@@ -217,7 +229,7 @@ def test_sum_right(ass, B, cap = 1000):
 			print ass
 			print B
 
-def try_sum_4_conjecture(ass, B, cap = 10):
+def try_sum_4_conjecture(ass, B, cap = 100):
 	n = len(ass)
 	for _ in xrange(cap):
 		x = get_x()
@@ -229,7 +241,7 @@ def try_sum_4_conjecture(ass, B, cap = 10):
 			if (ass[i] < x):
 				su += ts[i]
 		su2 = try_general_sum_4(ass, B, x)
-		if (su2 < -eps):
+		if (abs(su2 - su) > eps):
 			print "FAIL"
 			print su
 			print x
@@ -353,6 +365,6 @@ def try_conj(n):
 		B = get_B(n)
 		try_sum_4_conjecture(ass, B)
 
-n = 5
+n = 7
 
 try_conj(n)

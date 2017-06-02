@@ -6,10 +6,18 @@ X = [[X11, X12, X13, X14], [X12, X22, X23, X24], [X13, X23, X33, X34], [X14, X24
 ass = [a, b, c, d]
 ds = [[0, d_ab, d_ac, d_ad], [-d_ab, 0, d_bc, d_bd], [-d_ac, -d_bc, 0, d_cd], [-d_ad, -d_bd, -d_cd, 0]]
 
-k = 4
-n = 3
+k = 3
+n = 4
+p = 0
 
 vals = [[0 for __ in xrange(k - 1)] for _ in xrange(n - 1)]
+
+def list_index(l):
+	ind = 0
+	for i in xrange(len(l)):
+		if ((l[i - 1] <= p) and (l[i] > p)):
+			ind += 1
+	return ind
 
 def set_divided_difference(l, coeff):
 	if (l[0] == l[-1]):
@@ -101,8 +109,45 @@ def go(l = [], coeff = 1):
 def set_all_terms():
 	go()
 
-d = 1
-set_all_terms()
-print_table()
-print get_polynomial_i(1)
-#print_expanded_table_first(d)
+polys = [0 for _ in xrange(k/2 + 1)]
+
+def basic_div(i, m):
+	if (m == k):
+		return 0
+	if (i <= p):
+		return 0
+	return (ass[i] - x)**(k - 1 - m)*binom(k - 2, m - 1)
+
+def get_X_coeff(l):
+	coeff = 1
+	for i in xrange(k):
+		coeff *= X[i - 1][i]
+	return coeff
+
+def get_divided_difference_polynomial(l):
+	l = sorted(l)
+	if (l[0] < l[-1]):
+		return (get_divided_difference_polynomial(l[:-1]) - get_divided_difference_polynomial(l[1:]))/(ass[l[0]] - ass[l[-1]]) #ds[l[0]][l[-1]]
+	return basic_div(l[0], len(l))
+
+def set_div(l):
+	ind = list_index(l)
+	pol = get_divided_difference_polynomial(l)
+	coeff = get_X_coeff(l)
+	global polys
+	polys[ind] += coeff*pol
+	return
+
+def go_poly(l=[]):
+	if (len(l) == k):
+		set_div(l)
+		return
+	for i in xrange(n):
+		l2 = [xx for xx in l]
+		l2.append(i)
+		go_poly(l2)
+	return
+
+go_poly()
+for i in xrange(k/2 + 1):
+	print i, polys[i]

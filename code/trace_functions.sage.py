@@ -9,10 +9,18 @@ X = [[X11, X12, X13, X14], [X12, X22, X23, X24], [X13, X23, X33, X34], [X14, X24
 ass = [a, b, c, d]
 ds = [[_sage_const_0 , d_ab, d_ac, d_ad], [-d_ab, _sage_const_0 , d_bc, d_bd], [-d_ac, -d_bc, _sage_const_0 , d_cd], [-d_ad, -d_bd, -d_cd, _sage_const_0 ]]
 
-k = _sage_const_4 
-n = _sage_const_3 
+k = _sage_const_3 
+n = _sage_const_4 
+p = _sage_const_0 
 
 vals = [[_sage_const_0  for __ in xrange(k - _sage_const_1 )] for _ in xrange(n - _sage_const_1 )]
+
+def list_index(l):
+	ind = _sage_const_0 
+	for i in xrange(len(l)):
+		if ((l[i - _sage_const_1 ] <= p) and (l[i] > p)):
+			ind += _sage_const_1 
+	return ind
 
 def set_divided_difference(l, coeff):
 	if (l[_sage_const_0 ] == l[-_sage_const_1 ]):
@@ -104,8 +112,45 @@ def go(l = [], coeff = _sage_const_1 ):
 def set_all_terms():
 	go()
 
-d = _sage_const_1 
-set_all_terms()
-print_table()
-print get_polynomial_i(_sage_const_1 )
-#print_expanded_table_first(d)
+polys = [_sage_const_0  for _ in xrange(k/_sage_const_2  + _sage_const_1 )]
+
+def basic_div(i, m):
+	if (m == k):
+		return _sage_const_0 
+	if (i <= p):
+		return _sage_const_0 
+	return (ass[i] - x)**(k - _sage_const_1  - m)*binom(k - _sage_const_2 , m - _sage_const_1 )
+
+def get_X_coeff(l):
+	coeff = _sage_const_1 
+	for i in xrange(k):
+		coeff *= X[i - _sage_const_1 ][i]
+	return coeff
+
+def get_divided_difference_polynomial(l):
+	l = sorted(l)
+	if (l[_sage_const_0 ] < l[-_sage_const_1 ]):
+		return (get_divided_difference_polynomial(l[:-_sage_const_1 ]) - get_divided_difference_polynomial(l[_sage_const_1 :]))/(ass[l[_sage_const_0 ]] - ass[l[-_sage_const_1 ]]) #ds[l[0]][l[-1]]
+	return basic_div(l[_sage_const_0 ], len(l))
+
+def set_div(l):
+	ind = list_index(l)
+	pol = get_divided_difference_polynomial(l)
+	coeff = get_X_coeff(l)
+	global polys
+	polys[ind] += coeff*pol
+	return
+
+def go_poly(l=[]):
+	if (len(l) == k):
+		set_div(l)
+		return
+	for i in xrange(n):
+		l2 = [xx for xx in l]
+		l2.append(i)
+		go_poly(l2)
+	return
+
+go_poly()
+for i in xrange(k/_sage_const_2  + _sage_const_1 ):
+	print i, polys[i]
