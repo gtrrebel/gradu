@@ -1343,6 +1343,25 @@ so instead of the full inequality, we get inequality for traces. There is a nice
 	\item AM-GM-HM
 	\item Exponential formula for geometric mean?
 	\item Maximum of matrices with powerlimit
+	\item If $A, B$ are Hermitian, what eigenvalues $AB$ can have? What if the eigenvalues are known? What about $AB + BA$. What eigenvalues $A$ can have if eigenvalues of $\Re(A)$ are known.
+	\item It seems to be the case that if $n = 2$, and $A$ is Hermitian with $\spec(A) = \{\lambda_{1}, \lambda_{2}\}$ ($\lambda_{1} \leq \lambda_{2}$), then there exists linear $B$ such that $\Re(B) = A$, and $\spec(B) = \{\mu_{1}, \mu_{2} \}$ if and only if $\Re(\mu_{1} + \mu_{2}) = \lambda_{1} + \lambda_{2}$ and $\lambda_{1} \leq \Re(\mu_{i}) \leq \lambda_{2}$. In general this is known as Ky-Fan theorem, according to \cite{Ando3}.
+	\item Let's define $A \leq_{2} B$ if $\tr(A) = \tr(B)$ and for any $t \in \R$ we have $\tr(|A - t I|) \leq \tr(B - t I)$. Similarly we can define $A \leq_{k} B$. This easily (?) defines a partial order on matrices. But know we lose all the data about the eigenvectors? Is there a way to bring it back? Is there some nice interpretation.
+	\item One would like to get such order with restrictions. Maybe this is related to sectional curvature.
+	\item What happens if $n = 2$, $A, B \in \H$, and $\tr(B) = 0$ and $\tr(AB) \geq 0$. What can be said about the relation between $A$ and $A + B$.
+	\item We have up to first order that if $\lambda_{1} \geq \lambda_{2} \geq \ldots \geq \lambda_{n}$ are the eigenvalues of $A$, with respective eigenvectors $v_{i}$, then we should have
+	\[
+		\sum_{i = 1}^{k} \langle \dot{A} v_{i}, v_{i}\rangle \geq 0,
+	\]
+	for any $1 \leq k \leq n$ with equality for $k = n$.
+	\item Is the right condition something like: for any $t \in \R$ we should have $A \cdot \chi_{(t, \infty)} \leq B \cdot \chi_{(t, \infty)}$ or something like that.
+	\item Does the following work? We say that $A \leq_{2} B$ if for any orthonormal basis $(e_{i})_{i = 1}^{n}$ we have
+	\[
+		(\langle A e_{i}, e_{i} \rangle)_{i = 1}^{n} \prec_{2} (\langle B e_{i}, e_{i} \rangle)_{i = 1}^{n}.
+	\]
+	Does this correspond to the case $n = 1$? This probably doesn't work: if $n = 2$, $\tr(A) = \tr(B) = 0$ and $e_{1}$ is in Kernel of $B$, then the right-hand sequence is zero sequence.
+	\item Lorenz order?
+	\item Proof difficulties
+	\item Proof ``sketch"
 \end{itemize}
 
 Ideas how to rewrite this section:
@@ -1356,6 +1375,7 @@ Ideas how to rewrite this section:
 	\item $*$-conjugation is natural notion with adjoint
 	\item More generally, adjoint of a map $A \in L(V, W)$ is a unique map $A^{*} \in \L(V, W)$ such that $A \oplus A^{*}$ is real.
 	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive: $A \geq 0$ if and only if for any $B \geq 0$ we have $\tr(A B) \geq 0$.
+	\item Power series for positivity of inverse function.
 \end{itemize}
 
 

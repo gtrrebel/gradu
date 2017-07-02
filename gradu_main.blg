@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: gradu_main.aux
 The style file: abbrv.bst
 Database file #1: gradu_main.bib
-You've used 46 entries,
+You've used 48 entries,
             2118 wiz_defined-function locations,
-            823 strings with 9327 characters,
-and the built_in function-call counts, 13589 in all, are:
-= -- 1399
-> -- 447
+            837 strings with 9564 characters,
+and the built_in function-call counts, 14128 in all, are:
+= -- 1458
+> -- 461
 < -- 6
-+ -- 188
-- -- 136
-* -- 879
-:= -- 2262
-add.period$ -- 140
-call.type$ -- 46
-change.case$ -- 193
++ -- 194
+- -- 140
+* -- 912
+:= -- 2355
+add.period$ -- 146
+call.type$ -- 48
+change.case$ -- 201
 chr.to.int$ -- 0
-cite$ -- 46
-duplicate$ -- 554
-empty$ -- 1167
-format.name$ -- 136
-if$ -- 2834
+cite$ -- 48
+duplicate$ -- 576
+empty$ -- 1214
+format.name$ -- 140
+if$ -- 2944
 int.to.chr$ -- 0
-int.to.str$ -- 46
-missing$ -- 57
-newline$ -- 234
-num.names$ -- 92
-pop$ -- 188
+int.to.str$ -- 48
+missing$ -- 59
+newline$ -- 244
+num.names$ -- 96
+pop$ -- 192
 preamble$ -- 1
-purify$ -- 159
+purify$ -- 165
 quote$ -- 0
-skip$ -- 380
+skip$ -- 394
 stack$ -- 0
-substring$ -- 1039
-swap$ -- 91
+substring$ -- 1084
+swap$ -- 93
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 160
+type$ -- 168
 warning$ -- 0
-while$ -- 154
-width$ -- 48
-write$ -- 501
+while$ -- 162
+width$ -- 50
+write$ -- 523

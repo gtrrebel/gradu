@@ -451,6 +451,27 @@ void try_3_tuples(int cnt) {
 	}
 }
 
+void test_positivity_conjecture(int n, int cap) {
+	for (int iter = 0; iter < cap; iter++) {
+		Mt A = randHP(n);
+		Mt B = randHP(n);
+		Mt C = 2*A*A + 3*A*B + 3*B*A + 4*B*B;
+		if (!is_positive(C)) {
+			cout << iter << "\n";
+			cout << "A:" << "\n";
+			cout << A << "\n";
+			cout << "B:" << "\n";
+			cout << B << "\n";
+			cout << "C:" << "\n";
+			cout << C << "\n";
+			cout << "FAIL" << "\n";
+			return;
+		}
+	}
+	cout << "OK" << "\n";
+	return;
+}
+
 void print_k_tone_vec(int n, int k, double step) {
 	vector<double> v = get_k_tone_vec(n, k, step);
 	cout << setprecision(15);
@@ -461,8 +482,8 @@ void print_k_tone_vec(int n, int k, double step) {
 
 int main() {
 	int cap;
-	int k;
-	cin >> k >> cap;
-	cout << try_several_can_f_k(k, cap) << "\n";
+	int n;
+	cin >> n >> cap;
+	test_positivity_conjecture(n, cap);
 	return 0;
 }
