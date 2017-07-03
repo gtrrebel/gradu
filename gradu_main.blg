@@ -3,44 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: gradu_main.aux
 The style file: abbrv.bst
 Database file #1: gradu_main.bib
-You've used 48 entries,
+Warning--empty school in Burgdorf
+Warning--empty school in Clivaz2
+You've used 60 entries,
             2118 wiz_defined-function locations,
-            837 strings with 9564 characters,
-and the built_in function-call counts, 14128 in all, are:
-= -- 1458
-> -- 461
+            915 strings with 11051 characters,
+and the built_in function-call counts, 17522 in all, are:
+= -- 1810
+> -- 570
 < -- 6
-+ -- 194
-- -- 140
-* -- 912
-:= -- 2355
-add.period$ -- 146
-call.type$ -- 48
-change.case$ -- 201
++ -- 239
+- -- 172
+* -- 1129
+:= -- 2929
+add.period$ -- 183
+call.type$ -- 60
+change.case$ -- 249
 chr.to.int$ -- 0
-cite$ -- 48
-duplicate$ -- 576
-empty$ -- 1214
-format.name$ -- 140
-if$ -- 2944
+cite$ -- 62
+duplicate$ -- 717
+empty$ -- 1506
+format.name$ -- 172
+if$ -- 3651
 int.to.chr$ -- 0
-int.to.str$ -- 48
-missing$ -- 59
-newline$ -- 244
-num.names$ -- 96
-pop$ -- 192
+int.to.str$ -- 60
+missing$ -- 70
+newline$ -- 304
+num.names$ -- 120
+pop$ -- 237
 preamble$ -- 1
-purify$ -- 165
+purify$ -- 204
 quote$ -- 0
-skip$ -- 394
+skip$ -- 490
 stack$ -- 0
-substring$ -- 1084
-swap$ -- 93
+substring$ -- 1332
+swap$ -- 113
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 168
-warning$ -- 0
-while$ -- 162
-width$ -- 50
-write$ -- 523
+type$ -- 214
+warning$ -- 2
+while$ -- 201
+width$ -- 62
+write$ -- 651
+(There were 2 warnings)

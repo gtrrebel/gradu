@@ -920,9 +920,9 @@ Spectral representation makes many of the properties of real maps obvious. For i
 	A^{2} = \left(\sum_{i = 1} \lambda_{i} P_{v_{i}}\right) \left(\sum_{j = 1} \lambda_{j} P_{v_{j}}\right) = \sum_{i = 1}^{n} \sum_{j = 1}^{n}\lambda_{i} \lambda_{j} P_{v_{i}} P_{v_{j}} = \sum_{i = 1}^{n} \lambda_{i}^2 P_{v_{i}},
 \]
 since $P_{v} P_{w} = 0$ for $v \perp w$. By induction one can extend the previous for higher powers. In other words: eigenspaces are preserved under compositional powers, and eigenvalues are ones to get powered up. From the original definition this is not all that clear. One could even extend to polynomials. If $p(x) = c_{n} x^{n} + c_{n- 1} x^{n - 1} + \ldots c_{1} x + c_{0}$, with $c_{i} \in \R$, we should write
-\[
+\begin{align}\label{polynomial_matrix_function}
 	p(A) = c_{n} A^{n} + c_{n - 1} A^{n - 1} + \ldots c_{1} A + c_{0} = \sum_{1 \leq i \leq n} p(\lambda_{i}) P_{v_{i}}.
-\]
+\end{align}
 This implies that if $p$ is the characteristic polynomial of $A$, then $p(A) = 0$: the special case of Cayley Hamilton theorem. Moreover, the minimal polynomial of $A$ is the polynomial with the eigenvalues of $A$ as single roots.
 
 But even better, if $p$ is polynomial with all except one, say $\lambda_{i}$, of the eigenvalues of $A$ as roots, then $p(A) = p(\lambda_{i}) P_{E_{\lambda_{i}}}$. In particular, the projections to eigenspaces of $A$ are actually polynomials of $A$.
@@ -1016,7 +1016,7 @@ We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis
 
 The construction of $*$-conjugation makes also sense for general linear map $A$, i.e. we could just as well $*$-conjugate non-positive, or even non-real maps. The result then need not be positive or real, and in general, $*$-conjugation loses its usefulness.
 
-The previous construction can be also performed between two spaces $V$ and $W$: given any map $B \in \L(V, W)$ and $A \in \H_{+}(W)/\H(W)/\L(W)$, we note that $B^{*}AB \in \H_{+}(V)/\H(W)/\L(W)$. For self-adjoint maps we can say a lot more: while congruence doesn't in general preserve eigenvalues, it preserves their signs.
+The previous construction can be also performed between two spaces $V$ and $W$: given any map $B \in \L(V, W)$ and $A \in \H_{+}(W)/\H(W)/\L(W)$, we note that $B^{*}AB \in \H_{+}(V)/\H(V)/\L(V)$. For real maps we can say a lot more: while congruence doesn't in general preserve eigenvalues, it preserves their signs.
 
 \begin{lause}[Sylvester's Law of Inertia]
 	$A, B \in \H(V)$ are congruent, if and only if $A$ and $B$ have equally many positive, negative and zero eigenvalues, counted with multiplicity.
@@ -1085,7 +1085,7 @@ to get
 		\overline{b} & \frac{a c - |b|^2}{a}.
 	\end{bmatrix}
 \]
-If we however eliminate from the other side by $D^{*}$, we get
+The resulting map of course need not be real, but if we also eliminate from the other side by $D^{*}$, we get
 \[
 	D^{*} M D =
 	\begin{bmatrix}
@@ -1161,6 +1161,8 @@ as $\det(D) = 1$. Hence $M$ is positive if and only if $\det(M)$ is positive and
 	$A \in \H(V)$ is stricly positive if and only for some (and then for any) sequence of subspaces $W_{1} \subset W_{2} \subset \ldots \subset W_{n - 1} \subset W_{n} = V$ with $\dim(W_{m}) = m$ we have $\det(A_{W_{m}}) > 0$ for any $1 \leq m \leq n$.
 \end{lause}
 
+TODO: Explain what happend with non-strict case.
+
 One can solve $M$ from \ref{schur_complement} to arrive at so-called \textit{LDL-decomposition} of $M$:
 \begin{align}\label{ldl_decomposition}
 	M =
@@ -1197,7 +1199,7 @@ We could of course have made such definition immediately after defining positive
 		\item If $A \leq B$ then $\alpha A \leq \alpha B$ for any $\alpha \geq 0$.
 		\item If $A \leq B$ and $B \leq C$ then $A \leq C$.
 		\item If $A \leq B$ and $B \leq A$ then $A = B$.
-		\item If $\lambda I \leq A$, all the eigenvalues of $A$ are at least $\lambda$.
+		\item If $\lambda I \leq A$, then all the eigenvalues of $A$ are at least $\lambda$. Similarly if $A \leq \lambda I$, all the eigenvalues of $A$ are at most $\lambda$.
 \end{enumerate}
 \end{prop}
 
@@ -1248,11 +1250,11 @@ and if $A$ and $B$ commute we have $G(A, B) = (A B)^{\frac{1}{2}}$. The defining
 	B = G(A, B) A^{-1} G(A, B).
 \]
 
-The point is: somewhat curiously we can almost do the original proof: just replace multiplication by congruence by squareroot, and replace squareroot of product by geometric mean.
+The point is: somewhat curiously we can almost do the original proof: just replace multiplication by congruence by square root, and replace square root of product by geometric mean.
 
 \end{huom}
 
-To further highlight the importance of Congruence, we can use it to change map inequalities to usual real inequalities. For instance, one can generalize so called (two variable) arithmetic-harmonic mean inequality, which states that for any two positive real numbers $a$ and $b$ we have
+To further highlight the importance of congruence, we can use it to change map inequalities to usual real inequalities. For instance, one can generalize so called (two variable) arithmetic-harmonic mean inequality, which states that for any two positive real numbers $a$ and $b$ we have
 \[
 	\frac{a + b}{2} \geq \frac{2}{\frac{1}{a} + \frac{1}{b}}.
 \]
@@ -1270,7 +1272,7 @@ If one writes $X = A^{-\frac{1}{2}}B A^{-\frac{1}{2}}$, this rewrites to
 \[
 	\frac{I + X}{2} \geq 2 (I + X^{-1})^{-1}.
 \]
-But now since $I$ and $X$ commute, the claim is evident form the scalar inequality.
+But now since $I$ and $X$ commute, the claim is evident form the scalar inequality. In a similar manner one could also prove that the geometric mean lies between arithmetic and harmonic.
 
 \section{Absolute Value}
 
@@ -1278,7 +1280,7 @@ As adjoint behaves as conjugate, it would be natural to guess that
 \[
 	|A| := \left(A^{*}A\right)^{\frac{1}{2}},
 \]
-absolute value of a map, would have many similar properties as the standard absolute value. Note that in general we have $|A| \neq |A^{*}|$, and maps need not even go between the same spaces.
+absolute value of a map, would have many similar properties as the standard absolute value.
 
 The following list of properties of the absolute value make it clear that this is indeed good definition.
 
@@ -1288,11 +1290,13 @@ The following list of properties of the absolute value make it clear that this i
 	\item For any $v \in V$ we have $\|A v\| = \||A|v\|$.
 \end{itemize}
 
-One might be tempted to think that the previous absolute value leads to an triangle inequality, i.e.
+ Note that in general we have $|A| \neq |A^{*}|$, and maps need not even go between the same spaces.
+
+One might be tempted to think that we have triangle inequality, i.e.
 \[
 	|A + B| \leq |A| + |B|,
 \]
-for any $A, B \in \L(V)$, or at least $A, B \in \H^{n}$. Such inequality doesn't hold, but it's not that far from being true. Like in the real case, one would like to add
+for any $A, B \in \L(V)$, or at least $A, B \in \H$. Such inequality doesn't hold, but it's not that far from being true. Like in the real case, one would like to add
 \[
 	-|A| \leq A \leq |A| \; \text{ and } \; -|B| \leq B \leq |B|,
 \]
@@ -1360,6 +1364,7 @@ so instead of the full inequality, we get inequality for traces. There is a nice
 	\]
 	Does this correspond to the case $n = 1$? This probably doesn't work: if $n = 2$, $\tr(A) = \tr(B) = 0$ and $e_{1}$ is in Kernel of $B$, then the right-hand sequence is zero sequence.
 	\item Lorenz order?
+	\item BMV-conjecture (theorem)
 	\item Proof difficulties
 	\item Proof ``sketch"
 \end{itemize}

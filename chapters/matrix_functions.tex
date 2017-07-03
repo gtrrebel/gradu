@@ -1,5 +1,29 @@
 \chapter{Matrix functions}
 
+\begin{maar}
+	For any $-\infty \leq a < b \leq \infty$ $f : (a, b) \to \R$ the associated matrix function on $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
+	\[
+		f_{V}\left(A\right) = \sum_{\lambda \in \spec(A)} f(\lambda) P_{E_{\lambda}}
+	\]
+	if $A = \sum_{\lambda \in \spec(A)} f(\lambda) P_{E_{\lambda}}$.
+\end{maar}
+Hence to calculate the matrix function we just apply the function to the eigenvalues of the map and leave the eigenspaces as they are. Note as the spectral representation is unique this definition makes sense.
+
+We have already discussed four types of matrix functions: inverse, polynomials, square root and absolute value. All these notion coincide with the general notion of matrix function for real maps, as notion in (\ref{polynomial_matrix_function}) and TODO.
+
+Matrix functions enjoy many natural and useful properties.
+
+\begin{prop}
+	Let $f : (a,b) \to \R$ and $A \in \H_{(a, b)}$
+	\begin{itemize}
+		\item If $f[(a, b)] \subset (c, d)$ then $f_{V}(A) \in \H_{(c, d)}$.
+		\item If also $g : (a, b) \to \R$ then $(f + g)_{V} = f_{V} + g_{V}$ and $(fg)_{V} = f_{V}g_{V}$.
+		\item $f_{V_{1} \oplus V_{2}} = f_{V_{1}} \oplus f_{V_{2}}$.
+		\item If $g : (a, b) \to \R$ and $f$ and $g$ agree on spectrum of $A$, then $f(A) = g(A)$.
+		\item If $f[(a, b)] \subset (c, d)$ and $g : (c, d) \to \R$ then $(g \circ f)_{V} = g_{V} \circ f_{V}$.
+	\end{itemize}
+\end{prop}
+
 TODO:
 \begin{itemize}
 	\item Basic definition
