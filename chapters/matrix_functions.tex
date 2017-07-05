@@ -1,11 +1,13 @@
 \chapter{Matrix functions}
 
+\section{Functional calculus}
+
 \begin{maar}
 	For any $-\infty \leq a < b \leq \infty$ $f : (a, b) \to \R$ the associated matrix function on $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
 	\[
 		f_{V}\left(A\right) = \sum_{\lambda \in \spec(A)} f(\lambda) P_{E_{\lambda}}
 	\]
-	if $A = \sum_{\lambda \in \spec(A)} f(\lambda) P_{E_{\lambda}}$.
+	if $A = \sum_{\lambda \in \spec(A)} \lambda P_{E_{\lambda}}$.
 \end{maar}
 Hence to calculate the matrix function we just apply the function to the eigenvalues of the map and leave the eigenspaces as they are. Note as the spectral representation is unique this definition makes sense.
 
@@ -13,16 +15,52 @@ We have already discussed four types of matrix functions: inverse, polynomials, 
 
 Matrix functions enjoy many natural and useful properties.
 
-\begin{prop}
+\begin{prop}\label{basic_matrix}
 	Let $f : (a,b) \to \R$ and $A \in \H_{(a, b)}$
-	\begin{itemize}
+	\begin{enumerate}
 		\item If $f[(a, b)] \subset (c, d)$ then $f_{V}(A) \in \H_{(c, d)}$.
 		\item If also $g : (a, b) \to \R$ then $(f + g)_{V} = f_{V} + g_{V}$ and $(fg)_{V} = f_{V}g_{V}$.
 		\item $f_{V_{1} \oplus V_{2}} = f_{V_{1}} \oplus f_{V_{2}}$.
 		\item If $g : (a, b) \to \R$ and $f$ and $g$ agree on spectrum of $A$, then $f(A) = g(A)$.
 		\item If $f[(a, b)] \subset (c, d)$ and $g : (c, d) \to \R$ then $(g \circ f)_{V} = g_{V} \circ f_{V}$.
-	\end{itemize}
+		\item If $f_{n} : (a, b) \to \R$ converge pointwise to $f$, then the same holds true for $(f_{n})_{V}$'s.
+	\end{enumerate}
 \end{prop}
+
+These properties make it clear that such definition is natural. We will drop the subscript $V$ and identify $f$ with its matrix function $f_{V}$ if $V$ is clear from context.
+
+\section{Holomorphic functional calculus}
+
+If $f$ is entire, there's another way to appoach matrix functions. As $f$ can be written as
+\[
+	f(z) = \sum_{n = 0}^{\infty} a_{n} z^{n},
+\]
+power series convergent whole any $z \in \C$, we should have
+\[
+	f_{V}(A) = \sum_{n = 0}^{\infty} a_{n} A^{n}.
+\]
+This matrix power series indeed converges as $\|A^{n}\| \leq \|A\|^{n}$. Also, this definition coincides with the spectral one. Indeed, if one writes $f_{n} : z \mapsto  \sum_{k = 0}^{n} a_{n} z^{n}$, then we have, by definition,
+\[
+	\sum_{n = 0}^{\infty}a_{n} A^{n} = \lim_{n \to \infty} \left[(f_{n})_{V}(A) \right] = f_{V}(A),
+\]
+by point (6) of proposition (\ref{basic_matrix}).
+
+Note however that the power series definition makes perfect sense even if $a_{n} \notin \R$ and even better, $A$ need not be real.
+
+TODO General formulation of spectral matrix functions, Cauchy's integral formula.
+
+\section{Derivative of a matrix function}
+
+TODO: Start with polynomials.
+
+If $f$ is entire with $f(z) = \sum_{n = 0}^{\infty} a_{n} z^{n}$ we have
+\begin{align*}
+	f(A + B) &= a_{0} I \\
+			&+ a_{1} (A + B) \\
+			&+ a_{2} (A^2 + AB + BA + B^2) \\
+			&+ a_{3} (A^3 + A^2 B + ABA + AB^2 + BA^2 + BAB + B^2A + B^3) \\
+			&+ \ldots
+\end{align*}
 
 TODO:
 \begin{itemize}

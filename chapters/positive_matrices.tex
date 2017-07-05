@@ -586,16 +586,6 @@ We have made whole bunch of definitions and observations concerning positive mat
 
 \end{comment}
 
-Ideas how to rewrite this section:
-\begin{itemize}
-	\item Map is positive, if all of its restrictions are. One dimensional maps are positive if and only the scalar is positive.
-	\item Map is real, if all of its restrictions are. One dimensional maps are real if and only the scalar is real.
-	\item Adjoint commutes with restriction. Adjoint of one dimensional map is its conjugate.
-	\item How should one restrict linear mappings? (Use inclusions and finally project)
-	\item Central notion is adjoint
-	\item $*$-conjugation is natural notion with adjoint
-	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive.
-\end{itemize}
 
 \section{Motivation}
 
@@ -965,7 +955,7 @@ To prove this statement, we start with a lemma, simplest non-trivial case of the
 	We say that two $W_{1}, W_{2} \subset V$ subspaces commute if the respective projections commute.
 \end{maar}
 
-\begin{lause}
+\begin{lause}\label{commuting_real_maps}
 	Let $\mathcal{A} = (A_{j})_{j \in J}$ by an arbitrary family of commuting real maps. Then there exists non-trivial orthogonal subspaces of $V$, $E_{1}, E_{2}, \ldots E_{m}$ with $E_{1} + E_{2} + \ldots + E_{m} = V$ and numbers $\lambda_{i, j}$ for $j \in J$ and $1 \leq i \leq n$ such that
 	\[
 		A_{j} = \sum_{1 \leq i \leq m} \lambda_{i, j} P_{E_{i}}
@@ -1004,7 +994,39 @@ One would naturally hope that product of positive maps is still positive, but as
 
 Conversely, if one wants exciting things to happen, one should make things very non-commutative.
 
+As another corollary of theorem \ref{commuting_real_maps} we have
+
+\begin{kor}
+	If $A, B \geq 0$ and $A$ and $B$ commute, then $AB \geq 0$.
+\end{kor}
+
+Also in the general case we can say something positive:
+
+\begin{prop}
+	If $A, B \geq 0$, then $AB$ has non-negative eigenvalues. Conversely, if $C$ has non-negative eigenvalues, then it's of the form $AB$ for some positive $A$ and $B$. TODO: details
+\end{prop}
+\begin{proof}
+	Postponed.
+\end{proof}
+
 TODO: independence of random variables.
+
+\subsection{Symmetric product}
+
+As normal product doesn't quite work with positivity, next attempt might be symmetrized product
+\[
+	S(A, B) = AB + BA,
+\]
+(or maybe with normalizing constant $\frac{1}{2}$ in the front), instead of the usual one. It turns out that even this doesn't fix positivity.
+
+\begin{prop}
+	Let $\alpha, \beta, \gamma \in \C$ and $n \geq 2$. Then the expression $\alpha A^{2} + \beta AB + \overline{\beta} BA + \gamma B^{2}$ is positive for any $A, B \geq 0$ if and only if $\alpha, \gamma \in [0, \infty)$ and $|\beta|^{2} \leq \alpha \gamma$.
+\end{prop}
+\begin{proof}
+	TODO
+\end{proof}
+
+So in some sense, by taking non-commutative products, we really lose most of the structure.
 
 \section{Congruence}
 
@@ -1233,7 +1255,7 @@ Using the previous we can mimic the previous proof to make it work.
 	This is already almost what we wanted: simply $*$-conjugate by $A^{-\frac{1}{2}}$.
 \end{proof}
 
-There's one wee bit non-trivial part in the proof: if $I \leq X$ then $X^{-1} \leq I$. But if $I \leq X$, all the eigenvalues of $X$ are at least $1$, so all the eigenvalues of its inverse are at most $1$, so $X \leq 1$.
+There's one wee bit non-trivial part in the proof: if $I \leq X$ then $X^{-1} \leq I$. But if $I \leq X$, all the eigenvalues of $X$ are at least $1$, so all the eigenvalues of its inverse are at most $1$, so $X \leq I$.
 
 \begin{huom}
 
