@@ -107,18 +107,31 @@ We'll get back to smoothness in a minute. This is already a very precise sense i
 which is of course just a formula for polynomial convolution.
 
 Divided differences enjoy similar Leibniz formula, which is related to a generalization of Taylor expansion, called Newton expansion. In Newton expansion we first fix a sequence of points $x_{0}, x_{1}, \ldots x_{n} \in (a, b)$, say pairwise distinct for starters. For $f : (a, b) \to \R$ and $x \in (a, b)$ we may start a process of rewriting
-\begin{eqnarray*}
-	f(x) &=& f(x_0) + f(x) - f(x_{0}) \\
-	&=& [x_{0}]_{f} + [x, x_{0}]_{f} (x - x_{0}) \\
-	&=& [x_{0}]_{f} + ([x_{0}, x_{1}]_{f} + ([x, x_{0}]_{f}- [x_{0}, x_{1}]_{f}))(x - x_{0}) \\
-	&=& [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x, x_{0}, x_{1}]_{f} (x - x_{0}) (x - x_{1}) \\
-	&=& \ldots \\
-	&=& [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x_{0}, x_{1}, x_{2}]_{f} (x - x_{0}) (x - x_{1}) + \ldots \\
-	&& + [x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n - 1}) \\
-	&& + [x, x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n}).
-\end{eqnarray*}
+\begin{align*}
+	f(x) &= f(x_0) + f(x) - f(x_{0}) \\
+	&= [x_{0}]_{f} + [x, x_{0}]_{f} (x - x_{0}) \\
+	&= [x_{0}]_{f} + ([x_{0}, x_{1}]_{f} + ([x, x_{0}]_{f}- [x_{0}, x_{1}]_{f}))(x - x_{0}) \\
+	&= [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x, x_{0}, x_{1}]_{f} (x - x_{0}) (x - x_{1}) \\
+	&= \ldots \\
+	&= [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x_{0}, x_{1}, x_{2}]_{f} (x - x_{0}) (x - x_{1}) + \ldots \\
+	& + [x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n - 1}) \\
+	& + [x, x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n}).
+\end{align*}
 
 By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of interpolating polynomial for the first $1, 2, \ldots, $ points of the sequence $x_{0}, x_{1}, \ldots$. If the points $x_{i}$ coincide, the previous coincides with the usual Taylor expansion and, as usual, the joy is that we can approximate $[x, x_{0}, x_{1}, \ldots, x_{n}]_{f}$ by a $n$'th derivative of $f$.
+
+\begin{huom}
+	As Taylor expansion lead to Taylor series, one might wonder under which conditions do Newton expansions lead to Newton series. That is, under which conditions for analytic $f : U \to \C$ and a sequence $z_{0}, z_{1}, \ldots, z_{n}, \ldots \in \C$ and $z \in \C$ the following, Newton series, converges
+	\begin{align*}
+		f(z) &= [z_{0}]_{f} \\
+		&+ [z_{0}, z_{1}]_{f} (z - z_{0}) \\
+		&+ [z_{0}, z_{1}, z_{2}]_{f} (z - z_{0}) (z - z_{1}) \\
+		&+ \ldots \\
+		&+ [z_{0}, z_{1}, z_{2}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n - 1}) \\
+		&+ \ldots
+	\end{align*}
+	This problem is closely related to logarithmic potentials and subharmonic functions.
+\end{huom}
 
 TODO: Smoothness: Tohoku
 
@@ -126,14 +139,26 @@ TODO: Smoothness: Tohoku
 
 Complex analysis offers a nice view on divided differences: if $f$ is analytic, we may interpret divided differences contour integrals.
 
-\begin{lem}[Cauchy's integral formula for divided differences]
+\begin{lem}[Cauchy's integral formula for divided differences]\label{div_cauchy}
 If $\gamma$ is a closed counter-clockwise curve enclosing the numbers $x_{0}, x_{1}, \ldots, x_{n}$, we have
 \[
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz.
 \]
 \end{lem}
 \begin{proof}
-Easy induction, by taking Cauchy's integral formula as a base case. Alternatively, the claim is a direct consequence of the Residue theorem. 
+Easy induction, by taking Cauchy's integral formula as a base case. Alternatively, the claim is a direct consequence of the Residue theorem.
+
+There's another rather instructive proof for the statement. Write Newton expansion for $f$ and integrate both sides along $\gamma$. We get
+\begin{align*}
+	\frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz &= \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}]_{f}}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz \\
+	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}]_{f}}{(z - x_{1}) \cdots (z - x_{n})} dz \\
+	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}]_{f}}{(z - x_{2}) \cdots (z - x_{n})} dz \\
+	&+ \ldots \\
+	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}, \ldots, x_{n - 1}]_{f}}{(z - x_{n - 1})(z - x_{n})} dz \\
+	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}}{(z - x_{n})} dz \\
+	&+ \frac{1}{2 \pi i} \int_{\gamma} [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} dz \\
+\end{align*}
+As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $\frac{1}{z^2}$. Finally, the $(n + 1)$:the term given exactly what we wanted.
 \end{proof}
 
 If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Also if one shortens $[X]_{f} = [x_{0}, x_{1}, \ldots, x_{n}]_{f}$, we have
@@ -149,6 +174,21 @@ For instance we may express the Lagrange interpolation polynomial of a analytic 
 	P_{X}(x) = \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [X]_{f [x, \cdot]_{p_{X}}}.
 \]
 \end{esim}
+
+\begin{prop}[Leibniz formula for divided differences]
+	We have
+	\begin{align*}
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f g} &= [x_{0}]_{f} [x_{0}, x_{1}, \ldots, x_{n}]_{g} \\
+		&+ [x_{0}, x_{1}]_{f} [x_{1}, \ldots, x_{n}]_{g} \\
+		&+ [x_{0}, x_{1}, x_{2}]_{f} [x_{2}, \ldots, x_{n}]_{g} \\
+		&+ \ldots \\
+		&+ [x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} [x_{n}]_{g}.
+	\end{align*}
+\end{prop}
+\begin{proof}
+	Write Newton expansion for $f$ and $g$ with points reversed for $g$. The rest follows as in the final proof of Theorem (\ref{div_cauchy}).
+\end{proof}
+
 TODO: use the previous for some tricks. Lagrange interpolation polynomial, Leibniz formula for divided differences.
 
 \section{$k$-tone functions}
@@ -294,4 +334,6 @@ TODO: Higher orders, majorization
 	\item Notion of midpoint-convexity should generalize by regularization techniques.
 	\item Should Legendre transform generalize to higher orders?  For smooth enough functions probably with derivatives being inverses of each other, but what is the correct definition? And is it of any use? Maybe differentiating $k - 2$ times and then having similar characterization. Is there higher order duality?
 	\item Is there elementary transformations for $k$-tone Karamata?
+	\item Divided-difference series for entire functions (Newton expansion)? For analytic function? When does it converge? When does it converge to the right function?
+	\item Given domain $U \subset \C$ and analytic function $f : U \to \C$, determine all subsets $V \subset U$ such that there exists Newton series with some sequence $x_{1}, x_{2}, \ldots$ converging in $V$. This is very much related to logarithmic potentials and subharmonic functions: sequence, if say bounded for starters, corresponds to a radon measure. Indeed, take weak limit of radon measures averaged exprimental measures of first elements in the sequence, if the limit exists (if not...). Now if $f = \frac{1}{z}$ for starters, we have the logarithmic potential $U(z)$ and the Newton series converges whenever $U(z) < U(0)$.
 \end{itemize}
