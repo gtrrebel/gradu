@@ -67,7 +67,7 @@ If $f$ is entire with $f(z) = \sum_{n = 0}^{\infty} a_{n} z^{n}$ we have
 
 We give slick proof for the fact $f \in C^{\omega}(a, b) \cap P_{\infty}(a, b)$ then the Pick matrices are positive. Pick matrices being positive is equavalent to
 \[
-	\frac{1}{2 \pi i}\int_{\gamma} f(z) \left|\sum_{c_{i}}{z - z_{i}} \right| d z \geq 0
+	\frac{1}{2 \pi i}\int_{\gamma} f(z) \left|\sum_{1 \leq i \leq n}\frac{c_{i}}{z - z_{i}} \right| d z \geq 0
 \]
 for any $c_{i} \in \C$ and $z_{i} \in \Hp$ such that $\gamma$ encloses $z_{i}$'s. Now what we know is that this holds if $z_{i}$'s are real and we can let some points coincide. But then we consider $g_{k}(z) = \frac{1}{z^{k}}\sum_{i = 1}^{n} c_{i} \frac{z^{k} - z_{i}^{k}}{z - z_{i}}$, this converges pointwise to what we want, at least for suitable $z_{i}$'s, and it is of the right form, so we have the claim, essentially. To elaborate a little, we integrate
 \[

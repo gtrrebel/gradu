@@ -121,7 +121,7 @@ Divided differences enjoy similar Leibniz formula, which is related to a general
 By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of interpolating polynomial for the first $1, 2, \ldots, $ points of the sequence $x_{0}, x_{1}, \ldots$. If the points $x_{i}$ coincide, the previous coincides with the usual Taylor expansion and, as usual, the joy is that we can approximate $[x, x_{0}, x_{1}, \ldots, x_{n}]_{f}$ by a $n$'th derivative of $f$.
 
 \begin{huom}
-	As Taylor expansion lead to Taylor series, one might wonder under which conditions do Newton expansions lead to Newton series. That is, under which conditions for analytic $f : U \to \C$ and a sequence $z_{0}, z_{1}, \ldots, z_{n}, \ldots \in \C$ and $z \in \C$ the following, Newton series, converges
+	As Taylor expansion lead to Taylor series, one might wonder under which conditions do Newton expansions lead to Newton series. That is, under which conditions for analytic $f : U \to \C$ and a sequence $z_{0}, z_{1}, \ldots, z_{n}, \ldots \in \C$ and $z \in \C$ the following converges
 	\begin{align*}
 		f(z) &= [z_{0}]_{f} \\
 		&+ [z_{0}, z_{1}]_{f} (z - z_{0}) \\
@@ -130,7 +130,9 @@ By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of inte
 		&+ [z_{0}, z_{1}, z_{2}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n - 1}) \\
 		&+ \ldots
 	\end{align*}
-	This problem is closely related to logarithmic potentials and subharmonic functions.
+	If $f$ is entire and $Z = (z_{i})_{i \geq 0}$ is bounded, Newton series converges for every $z \in \C$, but if $Z$ is not bounded, series need not converge for any $z$ outside $Z$.
+
+	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions.
 \end{huom}
 
 TODO: Smoothness: Tohoku
@@ -336,4 +338,6 @@ TODO: Higher orders, majorization
 	\item Is there elementary transformations for $k$-tone Karamata?
 	\item Divided-difference series for entire functions (Newton expansion)? For analytic function? When does it converge? When does it converge to the right function?
 	\item Given domain $U \subset \C$ and analytic function $f : U \to \C$, determine all subsets $V \subset U$ such that there exists Newton series with some sequence $x_{1}, x_{2}, \ldots$ converging in $V$. This is very much related to logarithmic potentials and subharmonic functions: sequence, if say bounded for starters, corresponds to a radon measure. Indeed, take weak limit of radon measures averaged exprimental measures of first elements in the sequence, if the limit exists (if not...). Now if $f = \frac{1}{z}$ for starters, we have the logarithmic potential $U(z)$ and the Newton series converges whenever $U(z) < U(0)$.
+	\item Harnack-type inequalities for derivatives of Pick functions?
+	\item Smooth function is in $P(0, \infty)$ if it's negative of Laplace transform of Laplace transform of a measure on $[0, \infty)$?
 \end{itemize}
