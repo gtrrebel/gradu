@@ -4,8 +4,8 @@ import numpy as np
 eps = 1e-6
 import cmath
 
-step_len = 5e-6
-iter_count = 2000000
+step_len = 5e-3
+iter_count = 5000
 
 def get_B(n):
 	B = np.zeros((n, n), dtype=complex)
@@ -34,17 +34,22 @@ def get_term(ass, B, z, k, extra = False):
 	if (extra):
 		C = np.dot(C, A)
 	T = np.trace(C)
-	di = np.conj(T)*1j
+	di = -np.conj(T)
 	le = abs(di)
 	di /= le
 	return di
 
+def get_term2(ass, B, z, k, extra = False):
+	ans = (z**2 - 1)/z
+	ans /= abs(ans)
+	return ans
+
 def get_trajectory(ass, B, k, step = step_len, iters = iter_count):
-	z0 = 0 + 0j
+	z0 = -0.5 + 0.25j
 	zs = [z0]
 	for ite in xrange(iters):
 		print ite*1.0/iters
-		di = get_term(ass, B, z0, k)
+		di = get_term2(ass, B, z0, k)
 		z0 += di*step
 		zs.append(z0)
 	return zs
@@ -64,6 +69,7 @@ def plot_curve(ass, zs):
 	plt.show()
 
 def plot_random_curve(n, k):
+	print "jee"
 	ass = get_ass(n)
 	if (ass[0]*ass[1] > 0):
 		return
@@ -71,8 +77,8 @@ def plot_random_curve(n, k):
 	zs = get_trajectory(ass, B, k)
 	plot_curve(ass, zs)
 
-n = 2
-k = 2
+n = 3
+k = 4
 
 print plot_random_curve(n, k)
 
