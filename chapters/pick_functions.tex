@@ -143,7 +143,7 @@ But this is to say that the matrix
 is positive. Now, it just so turns out that ``determinant of the matrix is non-negative" is equivalent to Schwarz-Pick theorem.
 
 It is not very hard to generalize the previous argument larger matrices, and we have arrived to
-\begin{lause}
+\begin{lause}\label{pick-nevanlinna_theorem}
 	If $\varphi$ is Pick function and $z_{1}, z_{2}, \ldots, z_{n}$ are any points in the upper half-plane, then the matrix
 	\begin{align}\label{Pick_matrix}
 	\begin{bmatrix}
@@ -170,6 +170,65 @@ The matrix \ref{Pick_matrix} is called \textit{Pick matrix}.
 	\end{enumerate}
 	It follows $\varphi \circ g_{n} \to \varphi$ pointwise and $\varphi \circ g_{n}$'s satisfy the already proven case. Finally, also the corresponding Pick-matrices of $\varphi \circ g_{n}$'s converge to Pick matrix of $\varphi$, hence the general case.
 \end{proof}
+
+\section{Pick-Nevanlinna Interpolation theorem}
+
+There's another way to think about Schwarz lemma: if $\psi$ is Schur function such that $\psi(0) = 0$, then also $\psi(z)/z$ is a Schur function. One may again translate this to Pick functions, and get an interesting corollary: if $\varphi$ is a Pick function such that $\varphi(i) = i$, then also
+\[
+	\frac{\varphi(z) - z}{1 + z \varphi(z)}
+\]
+is a Pick function. Actually, this gives a bijection between Pick functions and Pick functions with $\varphi(i) = i \ldots$ almost: $z \mapsto -\frac{1}{z}$ would like to map to constant infinity.
+
+We could form similar bijection for any pair $(z, w) \in \H_{+}^{2}$: Pick functions for which $\varphi(z) = w$.
+
+The previous bijection translates nicely to Pick matrices. Take sequence of points $z_{1}, z_{2}, \ldots, z_{n} \in \H_{+} \setminus \{i\}$. Theorem \ref{pick-nevanlinna_theorem} for $\varphi$ and points $i, z_{1}, \ldots, z_{n}$ implies that the matrix
+\begin{align*}
+	\begin{bmatrix}
+		[i, -i]_{\varphi} & [i, \overline{z_{1}}]_{\varphi} & \cdots & [i, \overline{z_{n}}]_{\varphi} \\
+		[z_{1}, -i]_{\varphi} & [z_{1}, \overline{z_{1}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		[z_{n}, -i]_{\varphi} & [z_{n}, \overline{z_{1}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
+	\end{bmatrix}
+\end{align*}
+is positive. Since $[i, -i]_{\varphi} = 1$ is positive, taking Schur-complement with respect to upper-left corner this is equivalent to the matrix
+\begin{align*}
+	& \left([z_{i}, \overline{z_{j}}]_{\varphi} - [z_{i}, -i]_{\varphi}[i, \overline{z_{j}}]_{\varphi}\right)_{1 \leq i, j \leq n} \\
+	=& \left(\left(\frac{\varphi(z_{i})- \overline{\varphi(z_{j})}}{z_{i} - \overline{z_{j}}}\right) - \left(\frac{\varphi(z_{i}) + i}{z_{i} + i}\right)\left(\frac{i - \overline{\varphi(z_{j})}}{i - \overline{z_{j}}}\right)\right)_{1 \leq i, j \leq n} \\
+	=& \left(\frac{[z_{i}, \overline{z_{j}}]_{\varphi} (z_{i} \overline{z_{j}} + 1) - 1 - \varphi(z_{i}) \overline{\varphi(z_{j})}}{(z_{i} + i) (\overline{z_{j}} - i)}\right)_{1 \leq i, j \leq n}
+\end{align*}
+being positive. But if one applies the theorem to the function $\frac{\varphi(z) - z}{1 + z \varphi(z)}$ and points $z_{1}, z_{2}, \ldots, z_{n}$, one arrives at the matrix
+\begin{align*}
+	\left(\frac{[z_{i}, \overline{z_{j}}]_{\varphi} (z_{i} \overline{z_{j}} + 1) - 1 - \varphi(z_{i}) \overline{\varphi(z_{j})}}{(1 + z_{i} \varphi(z_{i}))(1 + \overline{z_{j}} \overline{\varphi(z_{j})})}\right)_{1 \leq i, j \leq n}.
+\end{align*}
+Two resulting matrices are evidently congruent. TODO
+
+Carrying on with this line of thinking we arrive at a surprising conclusing.
+
+\begin{lause}[Pick-Nevanlinna interpolation theorem]
+	Let $(z_{i})_{1 \leq i \leq n}$ and $(w_{i})_{1 \leq i \leq n}$ be two sequences of points in $\H_{+}$. Then there exists a Pick function $\varphi$ such that $\varphi(z_{i}) = w_{i}$, if and only if the matrix
+	\[
+		\begin{bmatrix}
+		\frac{w_{1} - \overline{w_{1}}}{z_{1} - \overline{z_{1}}} & \frac{w_{1} - \overline{w_{2}}}{z_{1} - \overline{z_{2}}} & \cdots & \frac{w_{1} - \overline{w_{n}}}{z_{1} - \overline{z_{n}}} \\
+		\frac{w_{2} - \overline{w_{1}}}{z_{2} - \overline{z_{1}}} & \frac{w_{2} - \overline{w_{2}}}{z_{2} - \overline{z_{2}}} & \cdots & \frac{w_{2} - \overline{w_{n}}}{z_{2} - \overline{z_{n}}} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\frac{w_{n} - \overline{w_{1}}}{z_{n} - \overline{z_{1}}} & \frac{w_{n} - \overline{w_{2}}}{z_{n} - \overline{z_{2}}} & \cdots &  \frac{w_{n} - \overline{w_{n}}}{z_{n} - \overline{z_{n}}}
+		\end{bmatrix}
+	\]
+	is positive.
+\end{lause}
+
+\begin{proof}
+	One direction is the theorem \ref{pick-nevanlinna_theorem}. For the other direction we proceed by induction. If $z_{1} = i = w_{1}$, we just noted that this matrix being positive is equivalent to smaller matrix, namely
+	\[
+		\left(\frac{\frac{w_{i} - z_{i}}{1 + z_{i} w_{i}} - \frac{\overline{w_{i}} - \overline{z_{i}}}{1 + \overline{z_{i}} \overline{w_{i}}}}{z_{i} - \overline{z_{j}}}\right)_{2 \leq i, j \leq n}
+	\]
+	being positive. By inductive hypothesis this then means that there exists a Pick function $\tilde{\varphi}$ with $\tilde{\varphi}(z_{i}) = \frac{w_{i} - z_{i}}{1 + z_{i} w_{i}}$. But then $\varphi(z) = \frac{\tilde{\varphi}(z) + z}{1 - z \tilde{\varphi}(z)}$ fits the bill. TODO: general case (introduce Schur transform)
+\end{proof}
+
+
+
+
+
 
 \begin{comment}
 
