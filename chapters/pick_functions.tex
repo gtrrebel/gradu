@@ -1,5 +1,178 @@
 \chapter{Pick-Nevanlinna functions}
 
+\textit{Pick-Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative real part. Such functions are sometimes also called Herglotz or $\R$ functions but we will call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
+
+Pick functions have many interesting properties related to positive matrices and that is why they are central objects to the theory of matrix monotone functions.
+
+\section{Basic properties and examples}
+
+Most obvious examples of Pick functions might be functions of the form $\alpha z + \beta$ where $\alpha, \beta \in \R$ and $\alpha \geq 0$. Of course one could also take $\beta \in \Hpc$. Actually real constants are the only Pick functions failing to map $\Hp \to \Hp$: non-constant analytic functions are open mappings.
+
+Sum of two Pick functions is a Pick function and one can multiply a Pick function by non-negative constant to get a new Pick function. Same is true for composition.
+
+The map $z \mapsto -\frac{1}{z}$ is evidently a Pick function. Hence are also all functions of the form
+\[
+	\alpha z + \beta + \sum_{i = 1}^{N} \frac{m_{i}}{\lambda_{i}- z},
+\]
+where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$, $\beta \in \Hp$ and $\lambda_{1}, \ldots, \lambda_{N} \in \Hp$. So far we have constructed our function by adding simple poles to the closure of lower half-plane. We could further add poles of higher order at lower half plane, and change residues and so on, but then we have to be a bit more careful.
+
+There are (luckily) more interesting examples: all the functions of the form $x^{p}$ where $0 < p < 1$ are Pick functions. To be precise, one should choose branch for the previous so that they are real at positive real axis. Also $\log$ yields Pick function when branch is chosen properly i.e. naturally again. Another classic example is $\tan$. Indeed, by the addition formula
+\begin{eqnarray*}
+	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
+	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
+\end{eqnarray*}
+and $y$ and $\tanh(y)$ have the same sign.
+
+We observe the following useful fact.
+
+\begin{prop}
+	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging locally uniformly, the limit function is also a Pick function.
+\end{prop}
+\begin{proof}
+	Locally uniform limits of analytic functions are analytic. Also the limit function has evidently non-negative imaginary part.
+\end{proof}
+
+This is one of the main reasons we include real constants to Pick functions, although they are exceptional in many ways. Note that for any $z \in \Hp$ we have $\log(z) = \lim_{p \to 0^{+}}(z^p - 1)/p$: $\log$ can be understood as a limit of Pick functions. There's actually a considerable strengthening of the previous result.
+
+There's a considerable strengthening of the previous result.
+
+\begin{prop}
+	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
+\end{prop}
+
+We will not prove this quite surprising result yet; the message is that the class of Pick functions is very rigid in some sense.
+
+\section{Rigidity}
+
+\subsection{Schur functions}
+
+To understand the rigidity phenomena we take look at the close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. These functions functions include for instance power functions $z \mapsto z^{n}$ and more generally, as one may check, any Blaschke products, that is products of the terms of the form
+\[
+	\rho_{a, \omega}(z) = \omega \frac{a - z}{1 - \overline{a} z},
+\]
+Blaschke factors. Classic fact about these functions is the Schwarz lemma.
+
+\begin{lause}[Schwarz lemma]
+	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$ and hence also $|\psi'(0)| \leq 1$. If $|\psi(z)| = |z|$ for some $z \in \D \setminus \{0\}$ or $|\psi'(0)| = 1$, $\psi(z) = \omega z$ for some $\omega \in \mathbb{S}$.
+\end{lause}
+
+Fixing value of Schur function at $0$ restricts function a whole lot.
+
+The usual proof is by cleverly using maximum modulus principle for $\psi(z)/z$. Maximum modulus principle itself is consequence of the Cauchy's integral formula. There's also more symmetric form for Schwarz lemma, called Schwarz-Pick theorem.
+
+\begin{lause}[Schwarz-Pick theorem]
+	Let $\psi : \D \to \D$ be analytic. Then for any $z_{1}, z_{2} \in \D$ we have
+	\[
+		\left|\frac{\psi(z_{1}) - \psi(z_{2})}{1 - \overline{\psi(z_{1})} \psi(z_{2})} \right| \leq \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|,
+	\]
+	and
+	\[
+		\frac{\left|\psi'(z_{1})\right|}{1 - |\psi(z_{1})|^2} \leq \frac{1}{1 - |z_{1}|^2}.
+	\]
+	If the equality holds in one of the inequalities, $\psi$ is an Blaschke factor.
+\end{lause}
+
+Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One may check that if $\psi$ is Blaschke factor, the inequalities hold as equalities.
+\begin{proof}
+	Consider the map $\psi_{1} = \rho_{\psi(z_{1})} \circ \psi \circ \rho_{z_{1}}$. The claim follows by using the previous form of the Schwarz lemma for the $\psi_{1}$ and point $z_{2}$.
+\end{proof}
+
+The previous result shows that Blaschke factors are exactly the analytic bijections $\D \to \D$.
+
+One can also make weaker estimates straight from Cauchy's integral formula. We can for instance write
+\[
+	\psi(a) = \frac{1}{2 \pi i}\int_{\gamma} \frac{\psi(z)}{z - a} dz
+\]
+for suitable $\gamma$. Now if $\psi$ extends over unit circle, letting $\gamma$ trace unit circle we have
+\[
+	|\psi(a)| \leq \left(\max_{|z| = 1} \left|\psi(z)\right| \right) \frac{1}{2 \pi}\int_{0}^{2 \pi} \frac{d t}{|e^{i t}  - a|}.
+\]
+This is not very strong estimate; the averaged integral tends to infinity as $|a| \to 1$, but the point is that by a simple argument we have can some bound on analytic function on a disc given only bound on its boundary values.
+
+The point in looking at Schur functions is that we can directly bring the claims for Schur functions to Pick functions with maps
+\begin{align*}
+	\toplane : \D \to \Hp & \hspace{1cm} \toplane (z) = i \frac{1 - z}{1 + z} \\
+	\tocircle : \Hp \to \D & \hspace{1cm} \tocircle (z) = \frac{i - z}{i + z}.
+\end{align*}
+If $\psi$ is Schur function then $\toplane \circ \psi \circ \tocircle$ is a Pick function, and conversely every Pick function $\varphi$ gives rise to Schur function $\tocircle \circ \varphi \circ \toplane$. We can directly translate Schwarz-Pick theorem to Pick functions.
+
+\begin{lause}[Schwarz-Pick theorem for the upper half-plane]
+	Let $\varphi : \Hp \to \Hp$ be analytic. Then for any $z_{1}, z_{2} \in \Hp$ we have
+	\[
+		\left|\frac{\varphi(z_{1}) - \varphi(z_{2})}{\varphi(z_{1}) - \overline{\varphi(z_{2})}} \right| \leq \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
+	\]
+\end{lause}
+
+\subsection{Pick matrices}
+
+We can also arrive at the previous estimate directly using Cauchy's integral theorem, a bit similarly as with unit disc. Assume first that $\varphi$ is a bounded Pick-function extending over real line. We can start by proving that if $\varphi$ has positive imaginary part on real line, then it has positive real part on whole upper half-plane The idea to consider
+\begin{align*}
+	f(a) = \frac{1}{2 \pi i}\int_{\gamma} \frac{\varphi(z)}{z - a} dz,
+\end{align*}
+again for suitable closed curve $\gamma$. If $\varphi$ decays fast enough at infinitity, we can deform the contour $\gamma$ to coincide with real axis. The unfortunate thing is that the we can't say much about the real or imaginary part of $ \frac{\varphi(z)}{z - a}$. But there's a trick: we can fix our problem by considering
+\begin{align*}
+	\frac{1}{2 \pi i}\int_{-\infty}^{\infty} \frac{\varphi(z)}{(z - a) (z - \overline{a})} dz.
+\end{align*}
+This expression has positive real part, and by using the residue theorem, the real part equals
+\[
+	\frac{\varphi(a) - \overline{\varphi(a)}}{a - \overline{a}},
+\]
+hence the claim. Also boundedness is enough for this estimate.
+
+To arrive at Schwarz-Pick theorem consider integral
+\begin{align*}
+	\frac{1}{2 \pi i}\int_{-\infty}^{\infty} \varphi(z) \left(\frac{c_{1}}{z - z_{1}} + \frac{c_{2}}{z - z_{2}} \right) \left(\frac{\overline{c_{1}}}{z - \overline{z_{1}}} + \frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) dz.
+\end{align*}
+Again, the point is that writing $h(z) = \frac{c_{1}}{z - z_{1}} + \frac{c_{2}}{z - z_{2}}$, $h$ is meromorphic in upper half-plane expect for the simple poles at $z_{1}$ and $z_{2}$, thus giving information about $\varphi(z_{1})$ and $\varphi(z_{2})$, $\overline{h(\overline{z})}$ is analytic in the upper halfplane and $h(z)\overline{h(\overline{z})}$ is real on the real axis.
+
+Now this expression should have positive real part for any $c_{1}, c_{2} \in \C$, and computing the real part using the residue theorem, we arrive at
+\begin{align*}
+	[z_{1}, \overline{z_{1}}]_{\varphi} |c_{1}|^{2} &+ [z_{1}, \overline{z_{2}}]_{\varphi} c_{1} \overline{c_{2}} \\
+	[z_{2}, \overline{z_{1}}]_{\varphi} c_{2} \overline{c_{1}} &+ [z_{2}, \overline{z_{2}}]_{\varphi} |c_{2}|^{2},
+\end{align*}
+where we abuse the notation a little by writing $\varphi(\overline{z}) = \overline{\varphi(z)}$.
+
+But this is to say that the matrix
+\begin{align*}
+	\left([z_{i}, \overline{z_{j}}]_{\varphi}\right)_{1 \leq i, j \leq 2} =
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} \\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}
+	\end{bmatrix}
+\end{align*}
+is positive. Now, it just so turns out that ``determinant of the matrix is non-negative" is equivalent to Schwarz-Pick theorem.
+
+It is not very hard to generalize the previous argument larger matrices, and we have arrived to
+\begin{lause}
+	If $\varphi$ is Pick function and $z_{1}, z_{2}, \ldots, z_{n}$ are any points in the upper half-plane, then the matrix
+	\begin{align}\label{Pick_matrix}
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
+	\end{bmatrix}
+	\end{align}
+	is positive.
+\end{lause}
+
+The matrix \ref{Pick_matrix} is called \textit{Pick matrix}.
+
+\begin{proof}
+	We have already proved the theorem in the case that $\varphi$ is bounded and extends analytically over the real line. For general case consider the sequence $g_{n}$ of Pick functions given by
+	\[
+		g_{n}(z) = \frac{(1 - \frac{1}{n})x + \frac{i}{n}}{(1 - \frac{1}{n}) - i\frac{x}{n}} = \toplane \circ \left(z \mapsto \left(1 - \frac{2}{n}\right)z\right) \circ \tocircle.
+	\]
+	Now
+	\begin{enumerate}
+		\item $g_{n}(z) \to z$ pointwise.
+		\item $g_{n}$'s extend analytically over real line and $g_{n}(\overline{\H_{+}})$ is compact subset of $\H_{+}$ for every $n \geq 1$.
+	\end{enumerate}
+	It follows $\varphi \circ g_{n} \to \varphi$ pointwise and $\varphi \circ g_{n}$'s satisfy the already proven case. Finally, also the corresponding Pick-matrices of $\varphi \circ g_{n}$'s converge to Pick matrix of $\varphi$, hence the general case.
+\end{proof}
+
+\begin{comment}
+
 \textit{Pick-Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative real part. Such functions are sometimes also called Herglotz or $\R$ functions but we will often call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
 
 Pick functions have many interesting properties related to positive matrices and that is why they are central objects to the theory of matrix monotone functions.
@@ -195,6 +368,8 @@ Similarly, for any sequence of say $n$ points in the unit disc we may form the m
 		\frac{1 - \overline{\psi(z_{n})} \psi(z_{1})}{1 - \overline{z_{n}} z_{1}} & \frac{1 - \overline{\psi(z_{n})} \psi(z_{2})}{1 - \overline{z_{n}} z_{2}} & \cdots &  \frac{1 - |\psi(z_{n})|^{2}}{1 - |z_{n}|^{2}}
 	\end{bmatrix}
 \]
+
+\end{comment}
 
 TODO:
 \begin{itemize}
