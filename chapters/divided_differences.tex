@@ -135,7 +135,26 @@ By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of inte
 	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions.
 \end{huom}
 
-TODO: Smoothness: Tohoku
+\section{Smoothness}
+
+\begin{lause}
+	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function on $(a, b)^{n + 1}$.
+\end{lause}
+\begin{proof}
+	TODO (Tohoku)
+\end{proof}
+
+TODO: stronger version.
+
+There is however more interesting equivalence to be made.
+
+\begin{lause}\label{bounded_div}
+	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n - 1}(a, b)$ and $f^{(n - 1)}$ is Lipschitz, if and only if $n$:th divided difference of $f$ is bounded. Moreover, [Relationship between bound and Lipschitz constant].
+\end{lause}
+
+\begin{proof}
+	TODO (by induction)
+\end{proof}
 
 \section{Cauchy's integral formula}
 
@@ -205,11 +224,27 @@ TODO: use the previous for some tricks. Lagrange interpolation polynomial, Leibn
 
 As we noticed, $1$-tone and $2$-tone functions are exactly the monotone increasing and convex functions. The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.
 
-Mean value theorem for divided differences tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative. In some sense the further smoothness assumption is not that much of a game changer. It turns out $k$-tone functions are always $k$ times differentiable in a weak sense (?), and the weak derivative is non-negative. One can also usually use regularization techniques discussed in ? to reduce a problem about general $k$-tone functions to smooth $k$-tone functions. In general:
+Mean value theorem for divided differences tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative. It turns out that this almost true in general case, namely we have the following result.
+
+\begin{lause}
+	If $f : (a, b) \to \R$ is $k$-tone, then $f \in C^{k - 2}(a, b)$, $f^{(k - 2)}(x)$ is convex and $f^{(k)}(x)$ is exists and is non-negative almost everywhere.
+\end{lause}
+
+\begin{proof}
+	TODO (by induction using theorem \ref{bounded_div}).
+\end{proof}
+
+
+In some sense the further smoothness assumption is not that much of a game changer. It turns out $k$-tone functions are always $k$ times differentiable in a weak sense (?), and the weak derivative is non-negative.
+
+One can also usually use regularization techniques discussed in ? to reduce a problem about general $k$-tone functions to smooth $k$-tone functions. In general:
 
 \begin{phil}
 	One should not worry about smoothness issues.
 \end{phil}
+
+We will not resort to such sorcery, however, but try to understand the true reasons behind the smoothness.
+
 
 We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$. $k$-tone functions the following enjoy the following useful properties.
 
@@ -224,7 +259,7 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
 \end{prop}
 \begin{proof}
-	For $f \in C^{k}$ the statement is immediate form the mean value theorem. For more general functions: regularizations TODO.
+	For $f \in C^{k}$ the statement is immediate form the mean value theorem. General case: push points in the middle.
 \end{proof}
 
 \section{Basis $k$-tone functions}
