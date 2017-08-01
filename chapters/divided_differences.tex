@@ -170,7 +170,7 @@ Finally, we can relate divided differences to divided differences of the derivat
 	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function on $(a, b)^{n + 1}$.
 \end{lause}
 
-Actually we can prove a slightly better statement. Let $1 \leq n, n$ and denote
+Actually we can prove a slightly better statement. Let $n, m \geq 1$ and and denote
 \[
 	D_{n, m} = \{x \in \R^{n} | x_{i_{1}} = x_{i_{2}} = \ldots = x_{i_{k}} \text{ for some $1 \leq i_{1} < i_{2} < \ldots < i_{m} \leq n$} \}.
 \]
@@ -235,7 +235,7 @@ There is however more interesting equivalence to be made.
 \begin{lause}\label{bounded_div}
 	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n - 1}(a, b)$ and $f^{(n - 1)}$ is Lipschitz, if and only if $n$:th divided difference of $f$ is bounded. Moreover,
 	\[
-		1 \leq \frac{\Lip(f^{(n - 1)})}{\sup_{a < x_{0} < x_{1} < \ldots < x_{n}} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}|} \leq n!.
+		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| = \frac{\Lip(f^{(n - 1)})}{n!}
 	\]
 \end{lause}
 
@@ -250,7 +250,7 @@ There is however more interesting equivalence to be made.
 	\[
 		[x', x, y]_{f} + [y', y, x] = \frac{([x', x]_{f} - [x, y]_{f}) - ([y', y]_{f} - [x, y]_{f})}{x - y} = \frac{[x', x] - [y, y']}{x - y}.
 	\]
-	Letting $x' \to x$ and $y' \to y$ we see that $f \in C^{1}(a, b)$ and $f'$ is Lipschitz.
+	Letting $x' \to x$ and $y' \to y$ we see that $f'$ is Lipschitz and hence also $f \in C^{1}(a, b)$ .
 
 	Now for general $n$ we argue by induction on $n$. Let $n > 2$. Note that since
 	\[
@@ -260,15 +260,32 @@ There is however more interesting equivalence to be made.
 	\[
 		[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
 	\]
-	$f'$ has bounded $(n - 1)$:th divided differences, and by the induction hypothesis, $f \in C^{(n - 1)}(a, b)$ and $f^{(n - 1)}$ is Lipschitz. Induction also immediately gives the right inequality.
+	$f'$ has bounded $(n - 1)$:th divided differences, and by the induction hypothesis, $f \in C^{(n - 1)}(a, b)$ and $f^{(n - 1)}$ is Lipschitz. Induction also immediately gives
+	\[
+		\frac{\Lip(f^{(n - 1)})}{n!} \leq \sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}|.
+	\]
 
 	Let us then prove the ``only if"-direction. Take any $a < x_{0} < x_{1} < \ldots < x_{n} < b$. By the mean-value theorem for divided differences we have
 	\begin{align*}
 		\left|[x_{0}, x_{1}, \ldots, x_{n}]_{f} \right| &= \left|\frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}} \right| \\
-		&= \left|\frac{f^{(n - 1)}(\xi_{1}) - f^{(n - 1)}(\xi_{2})}{x_{0} - x_{n}} \right| \\
-		&\leq \Lip(f^{(n - 1)}) \left|\frac{\xi_{1} - \xi_{2}}{x_{0} - x_{n}}\right|
+		&= \frac{1}{(n - 1)!}\left|\frac{f^{(n - 1)}(\xi_{1}) - f^{(n - 1)}(\xi_{2})}{x_{0} - x_{n}} \right| \\
+		&\leq \frac{\Lip(f^{(n - 1)})}{(n - 1)!} \left|\frac{\xi_{1} - \xi_{2}}{x_{0} - x_{n}}\right|
 	\end{align*}
-	for some $x_{0} \leq \xi_{1} \leq \xi_{2} \leq x_{n}$. Hence $n$:th divided difference is bounded, and we also have the left inequality.
+	for some $x_{0} \leq \xi_{1} \leq \xi_{2} \leq x_{n}$. Hence $n$:th divided difference is bounded, but the inequality is not quite sharp enough.
+
+	We can make it sharp with some tricks. Firstly, when considering the supremum, we only need to consider tuples where all but one of entries are equal. Indeed pick any $a < x_{0} < x_{1} < x_{2} < \ldots < x_{n}$. Now consider the map $g(x) = [x, x_{0}]_{f}$. This is $C^{n - 1}(x_{0}, b)$ so by the mean-value theorem we have
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = [x_{1}, x_{2}, \ldots, x_{n}]_{g} = \frac{g^{(n - 1)}(\xi)}{(n - 1)!} = [\xi, \xi, \ldots, \xi]_{g} = [x_{0}, \xi, \xi, \ldots]_{f}.
+	\]
+	Hence it suffices to consider only tuples $(x, x, x, \ldots, y)$ where $x$ appears $n$ times. Now by the Taylor's theorem
+	\begin{align*}
+		\left|[x, x, \ldots, y]_{f}\right| &= \left|\frac{[x, x, \ldots, x]_{f} - [x, x, \ldots, y]}{x - y} \right| \\
+		&= \left|\frac{\frac{f^{(n - 1)}}{(n - 1)!} - \int_{x}^{y} \frac{f^{(n - 1)}(t) (y - t)^{n - 2}}{(n - 2)!} dt}{x - y} \right| = \\
+		&= \frac{1}{(n - 2)!|y - x|^{n - 1}} \left|\int_{x}^{y} (f^{(n - 1)}(x) - f^{(n - 1)}(t)) (y - t)^{n - 2} dt \right| \\
+		&\leq \frac{\Lip(f^{(n - 1)})}{(n - 2)!} \int_{x}^{y} |x - t| |y - t|^{n - 2} dt \\
+		&= \frac{\Lip(f^{(n - 1)})}{n!},
+	\end{align*}
+	and we are done.
 \end{proof}
 
 \section{Cauchy's integral formula}
