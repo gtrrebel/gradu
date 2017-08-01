@@ -43,7 +43,7 @@ one obtains something that naturally generalizes divided differences for higher 
 
 \section{Basic properties}
 
-For $n \geq 1$ define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i \leq n$}\}$.
+For $n \geq 1$ define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i < j \leq n$}\}$.
 \begin{maar}
 Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
 \[
@@ -56,14 +56,18 @@ As with the first order divided differences, if we can continuously extend divid
 Albeit a rather direct generalization for the cases $n = 1$ and $n = 2$, We defined divided differences only for real valued functions, but codomain could just as well any real or complex vector space. it's not very clear why such definition should correspond to anything useful. We have however the following important properties.
 
 \begin{prop}
-	Divided differences are symmetric in the variable and linear in the function, i.e. for any $\alpha, \beta \in \R$, $f, g : (a, b) \to \R$ and $0 < x_{0}, x_{1}, \ldots, x_{n} < b$ we have
+	Divided differences are symmetric in the variable, i.e. for any $f : (a, b) \to \R$, $a < x_{0}, x_{1}, \ldots, x_{n} < b$ permutation $\sigma : \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$ we have
+	\[
+		[x_{1}, x_{2}, \ldots, x_{n}]_{f} = [x_{\sigma(1)}, x_{\sigma(2)}, \ldots, x_{\sigma(n)}]_{f}
+	\]
+	and linear in the function, i.e. for any $\alpha, \beta \in \R$, $f, g : (a, b) \to \R$ and $a < x_{0}, x_{1}, \ldots, x_{n} < b$ we have
 	\[
 		[x_{0}, x_{1}, \ldots, x_{n}]_{\alpha f + \beta g} = \alpha [x_{0}, x_{1}, \ldots, x_{n}]_{f} + \beta [x_{0}, x_{1}, \ldots, x_{n}]_{g}.
 	\]
 	In addition, divided differences can be calculated recursively as
-	\[
+	\begin{align}\label{divdif_rec}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}}.
-	\]
+	\end{align}
 \end{prop}
 \begin{proof}
 	Easy to check.
@@ -88,9 +92,9 @@ The most important property of the divided differences is the following.
 
 \begin{lause}[Mean value theorem for divided differences]
 	Let $n \geq 1$ and $f \in C^{n}(a, b)$. Then for any $x_{0}, x_{1}, \ldots, x_{n}$ we have $\min_{0 \leq i \leq n}(x_{i}) \leq \xi \leq \max_{0 \leq i \leq n}(x_{i})$ such that
-	\[
+	\begin{align}\label{mean_value}
 		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(\xi)}{n!}.
-	\]
+	\end{align}
 \end{lause}
 \begin{proof}
 	We prove the statement assuming additionally that the divided differences define a continuous function on the whole set $(a, b)^{n + 1}$: this will proven later. Note that if one manages to prove the statement for distinct points, one may take sequence of tuples of distinct points, $((x_{i}^{(j)})_{i = 0}^{n})_{j = 1}^{\infty}$ converging to $(x_{i})_{i = 0}^{\infty}$. Now the left-hand side will converge to the respective divided difference (assuming the continuity), and by moving to a convergent subsequence, so will the $\xi_{n}$'s on the right-hand side. By the continuity of $f^{(n)}$ we are done.
@@ -135,25 +139,136 @@ By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of inte
 	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions.
 \end{huom}
 
+Divided differences enjoy also the following nesting property.
+
+\begin{prop}
+	For any $f : (a, b) \to \R$ and pairwise distinct $x_{1}, x_{2}, \ldots, x_{n}, y_{1}, y_{2}, \ldots, y_{m}$ we have
+	\[
+		[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} = [y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}.
+	\]
+	In particular
+	\[
+		\frac{d^{m}}{d x^{m}} \left([x, x_{1}, x_{2}, \ldots, x_{n}]_{f}\right) = m! [x, x, \ldots, x, x_{1}, x_{2}, \ldots, x_{m}]
+	\]
+\end{prop}
+\begin{proof}
+	TODO
+\end{proof}
+
+Finally, we can relate divided differences to divided differences of the derivative.
+
+\begin{prop}
+	If $f \in C^{1}(a, b)$ and $a < x_{1}, x_{2}, \ldots, x_{n} < b$ then
+	\[
+		[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
+	\]
+\end{prop}
+
 \section{Smoothness}
 
 \begin{lause}
 	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function on $(a, b)^{n + 1}$.
 \end{lause}
-\begin{proof}
-	TODO (Tohoku)
-\end{proof}
 
-TODO: stronger version.
+Actually we can prove a slightly better statement. Let $1 \leq n, n$ and denote
+\[
+	D_{n, m} = \{x \in \R^{n} | x_{i_{1}} = x_{i_{2}} = \ldots = x_{i_{k}} \text{ for some $1 \leq i_{1} < i_{2} < \ldots < i_{m} \leq n$} \}.
+\]
+\begin{lause}
+	Let $f : (a, b) \to \R$, $0 \leq m \leq n$. Then $f \in C^{m}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function to $(a, b)^{n + 1} \setminus D_{n + 1, m + 2}$. Moreover, this extension is unique and satisfies \ref{divdif_rec} and \ref{mean_value}.
+\end{lause}
+
+\begin{proof}
+	We first prove the ``only if"-direction by induction on $m$.
+
+	The case $m = 0$ is clear. Now fix $m > 0$. Let us prove the statement for this $m$ by induction on $n$.
+
+	Consider the base case case $n = m$. Take any sequence $a < x_{0} \leq x_{1} \leq x_{2} \ldots \leq x_{n} < b$. By induction hypothesis for the pair $(n, m - 1)$ we can extend the divided difference to this point if $x_{0} < x_{n}$. If $x_{0} = x_{1} = \ldots = x_{n}$, we will extend the divided difference as
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(x_{0})}{n!}.
+	\]
+	But the mean value theorem for the divided difference immediately implies this extension is continuous at $(x_{0}, x_{1}, \ldots, x_{n})$.
+
+	If $n > m$, and $x \in \R^{n + 1} \setminus D_{n + 1, m + 2}$, we necessarily have $x_{0} < x_{n}$ and hence we can extend the divided differences using \ref{divdif_rec}. By construction, our extension satisfies \ref{divdif_rec} and \ref{mean_value} and since $\R^{n + 1} \setminus D_{n + 1}$ is dense in $\R^{n + 1} \setminus D_{n + 1, m + 2}$, the extension is necessarily unique.
+
+	Let us then prove the ``if"-direction. We start with a lemma.
+
+	\begin{lem}\label{smooth_lemma}
+		Let $n \geq 1$ and $m \geq 0$. If the $n$:th divided difference of $f$ has continuous extension to the set $\R^{n + 1} \setminus D_{n + 1, m + 2}$, then there also is a continuous extension for the $(n - 1)$:th divided difference of $f$ to the set $\R^{n} \setminus D_{n, m + 2}$. 
+	\end{lem}
+	\begin{proof}
+		Take any $x \in \R^{n} \setminus D_{n, m + 2}$. We induct downward on $l$, the number of distinct components of $x$. If $l = n$, the statement is clear. Assume then that $l < n$. Now there exist $x' \in \R^{n} \setminus D_{n, m + 2}$ with $l + 1$ distinct components, which differs from $x$ by exactly one component, say i'th one. We then extend
+		\[
+			[x_{1}, x_{2}, \ldots, x_{n}]_{f} := [x_{1}, x_{2}, \ldots, x'_{i}, \ldots, x_{n}]_{f} + (x'_i - x_{i}) [x_{1}, x_{2}, \ldots, x_{i}, x'_{i}, \ldots, x_{n}]_{f}.
+		\]
+		Now if $x^{(n)} \to x$, then by comparing both sides also $[x_{1}, x_{2}, \ldots, x_{n}]_{f}$'s converge, and we have the continuous extension.
+	\end{proof}
+
+	Now let us continue with the proof. We induct on $m$. The case $m = 0$ is clear. The case $n = m = 1$ is also rather clear, the diagonal $[x, x]_{f}$ given the derivative of $f$ and continuity of the derivative is implied by the continuity of $[\cdot, \cdot]_{f}$ along the diagonal.
+
+	\begin{lem}\label{divdif_der}
+		If $f \in C^{1}(a, b)$ and $a < x_{1}, x_{2}, \ldots, x_{n} < b$ are distinct, then 
+		\[
+			[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
+		\]
+	\end{lem}
+	\begin{proof}
+		We induct on $n$: the case $n = 1$ is clear. When $n > 1$, by \ref{divdif_rec} we have
+		\begin{align*}
+			[x_{1}, x_{2}, \ldots, x_{n}]_{f'} &= \frac{[x_{1}, \ldots, x_{n - 1}]_{f'} - [x_{2}, \ldots, x_{n}]_{f'}}{x_{1} - x_{n}} \\
+			&= \frac{\left(\sum_{1 \leq i \leq n - 1} [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n - 1}]_{f}\right) - \left(\sum_{2 \leq i \leq n} [x_{2}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f}\right)}{x_{1} - x_{n}} \\
+			&= \sum_{2 \leq i \leq n - 1} \frac{[x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n - 1}]_{f} - [x_{2}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f}}{x_{1} - x_{n}} \\
+			&+ \frac{[x_{1}, x_{1}, x_{2}, \ldots, x_{n - 1}]_{f} - [x_{2}, \ldots, x_{n}, x_{n}]_{f}}{x_{1} - x_{n}} \\
+			&= \sum_{2 \leq i \leq n - 1}  [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f} \\
+			&+ \frac{[x_{1}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n} ]_{f}}{x_{1} - x_{n}} + \frac{[x_{1}, \ldots, x_{n}]_{f} - [x_{2}, \ldots, x_{n}, x_{n} ]_{f}}{x_{1} - x_{n}} \\
+			&= \sum_{1 \leq i \leq n}  [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f} \\
+		\end{align*}
+	\end{proof}
+
+	Let us then take $2 \leq m = n$. By the lemma \ref{smooth_lemma} and the case $m = 1$ we see that $f \in C^{1}(a, b)$. But by the lemma \ref{divdif_der} $(n - 1)$:th divided differences of $f'$ extend to continuous function to $\R^{n}$. Hence by the induction hypothesis $f' \in C^{(n - 1)}(a, b)$ and hence $f \in C^{n}(a, b)$.
+
+	Finally the lemma \ref{smooth_lemma} immediately implies the remaining cases $\leq m < n$, by induction on $n$.
+\end{proof}
 
 There is however more interesting equivalence to be made.
 
 \begin{lause}\label{bounded_div}
-	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n - 1}(a, b)$ and $f^{(n - 1)}$ is Lipschitz, if and only if $n$:th divided difference of $f$ is bounded. Moreover, [Relationship between bound and Lipschitz constant].
+	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n - 1}(a, b)$ and $f^{(n - 1)}$ is Lipschitz, if and only if $n$:th divided difference of $f$ is bounded. Moreover,
+	\[
+		1 \leq \frac{\Lip(f^{(n - 1)})}{\sup_{a < x_{0} < x_{1} < \ldots < x_{n}} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}|} \leq n!.
+	\]
 \end{lause}
 
 \begin{proof}
-	TODO (by induction)
+	We first prove the ``if"-direction.
+
+	The case $n = 1$ is clear. In the case $n = 2$ note that
+	\[
+		[x, y, z] = \frac{[y, x]_{f} - [z, x]_{f}}{y - z}
+	\]
+	Since this quantity is bounded, it follows that $[\cdot, x]_{f}$ has a limit at $x$, which means exactly that $f$ is differentiable at $x$. Note that in addition for any $x, x', y, y'$ we have
+	\[
+		[x', x, y]_{f} + [y', y, x] = \frac{([x', x]_{f} - [x, y]_{f}) - ([y', y]_{f} - [x, y]_{f})}{x - y} = \frac{[x', x] - [y, y']}{x - y}.
+	\]
+	Letting $x' \to x$ and $y' \to y$ we see that $f \in C^{1}(a, b)$ and $f'$ is Lipschitz.
+
+	Now for general $n$ we argue by induction on $n$. Let $n > 2$. Note that since
+	\[
+		[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}}.
+	\]
+	The map $x \mapsto [x, x_{1}, x_{2}, \ldots, x_{n - 1}]$ is $1$-Lipschitz for any $x_{1}, x_{2}, \ldots, x_{n - 1}$ and hence $(n - 1)$:th divided difference is Lipschitz and consequently bounded. By induction hypothesis $f$ is $C^{n - 2}(a, b)$ and hence at least $C^{1}(a, b)$. But now since
+	\[
+		[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
+	\]
+	$f'$ has bounded $(n - 1)$:th divided differences, and by the induction hypothesis, $f \in C^{(n - 1)}(a, b)$ and $f^{(n - 1)}$ is Lipschitz. Induction also immediately gives the right inequality.
+
+	Let us then prove the ``only if"-direction. Take any $a < x_{0} < x_{1} < \ldots < x_{n} < b$. By the mean-value theorem for divided differences we have
+	\begin{align*}
+		\left|[x_{0}, x_{1}, \ldots, x_{n}]_{f} \right| &= \left|\frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}} \right| \\
+		&= \left|\frac{f^{(n - 1)}(\xi_{1}) - f^{(n - 1)}(\xi_{2})}{x_{0} - x_{n}} \right| \\
+		&\leq \Lip(f^{(n - 1)}) \left|\frac{\xi_{1} - \xi_{2}}{x_{0} - x_{n}}\right|
+	\end{align*}
+	for some $x_{0} \leq \xi_{1} \leq \xi_{2} \leq x_{n}$. Hence $n$:th divided difference is bounded, and we also have the left inequality.
 \end{proof}
 
 \section{Cauchy's integral formula}
@@ -179,7 +294,7 @@ There's another rather instructive proof for the statement. Write Newton expansi
 	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}}{(z - x_{n})} dz \\
 	&+ \frac{1}{2 \pi i} \int_{\gamma} [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} dz \\
 \end{align*}
-As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $\frac{1}{z^2}$. Finally, the $(n + 1)$:the term given exactly what we wanted.
+As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $\frac{1}{z^2}$. Finally, the $(n + 1)$:th term gives exactly what we wanted.
 \end{proof}
 
 If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Also if one shortens $[X]_{f} = [x_{0}, x_{1}, \ldots, x_{n}]_{f}$, we have
@@ -210,8 +325,6 @@ For instance we may express the Lagrange interpolation polynomial of a analytic 
 	Write Newton expansion for $f$ and $g$ with points reversed for $g$. The rest follows as in the final proof of Theorem (\ref{div_cauchy}).
 \end{proof}
 
-TODO: use the previous for some tricks. Lagrange interpolation polynomial, Leibniz formula for divided differences.
-
 \section{$k$-tone functions}
 
 \begin{maar}
@@ -227,7 +340,7 @@ As we noticed, $1$-tone and $2$-tone functions are exactly the monotone increasi
 Mean value theorem for divided differences tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative. It turns out that this almost true in general case, namely we have the following result.
 
 \begin{lause}
-	If $f : (a, b) \to \R$ is $k$-tone, then $f \in C^{k - 2}(a, b)$, $f^{(k - 2)}(x)$ is convex and $f^{(k)}(x)$ is exists and is non-negative almost everywhere.
+	Let $f : (a, b) \to \R$ and $k \geq 2$. If $f$ is $k$-tone, then $f \in C^{k - 2}(a, b)$, $f^{(k - 2)}(x)$ is convex and $f^{(k)}(x)$ is exists and is non-negative almost everywhere.
 \end{lause}
 
 \begin{proof}
@@ -375,4 +488,5 @@ TODO: Higher orders, majorization
 	\item Given domain $U \subset \C$ and analytic function $f : U \to \C$, determine all subsets $V \subset U$ such that there exists Newton series with some sequence $x_{1}, x_{2}, \ldots$ converging in $V$. This is very much related to logarithmic potentials and subharmonic functions: sequence, if say bounded for starters, corresponds to a radon measure. Indeed, take weak limit of radon measures averaged exprimental measures of first elements in the sequence, if the limit exists (if not...). Now if $f = \frac{1}{z}$ for starters, we have the logarithmic potential $U(z)$ and the Newton series converges whenever $U(z) < U(0)$.
 	\item Harnack-type inequalities for derivatives of Pick functions?
 	\item Smooth function is in $P(0, \infty)$ if it's negative of Laplace transform of Laplace transform of a measure on $[0, \infty)$?
+	\item Are there better bounds for theorem \ref{bounded_div}?
 \end{itemize}
