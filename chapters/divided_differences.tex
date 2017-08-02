@@ -357,11 +357,23 @@ As we noticed, $1$-tone and $2$-tone functions are exactly the monotone increasi
 Mean value theorem for divided differences tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative. It turns out that this almost true in general case, namely we have the following result.
 
 \begin{lause}
-	Let $f : (a, b) \to \R$ and $k \geq 2$. If $f$ is $k$-tone, then $f \in C^{k - 2}(a, b)$, $f^{(k - 2)}(x)$ is convex and $f^{(k)}(x)$ is exists and is non-negative almost everywhere.
+	Let $f : (a, b) \to \R$ and $k \geq 2$. Then $f$ is $k$-tone, if and only if $f \in C^{k - 2}(a, b)$, $f^{(k - 2)}(x)$ is convex.
 \end{lause}
 
 \begin{proof}
-	TODO (by induction using theorem \ref{bounded_div}).
+
+	We start with a lemma.
+	\begin{lem}
+		If $k \geq 1$ and $f : (a, b) \to \R$ is $k$-tone, then the $(k - 1)$:th divided differences of $f$ are locally bounded, i.e. bounded on every closed subinterval of $(a, b)$.
+	\end{lem}
+	\begin{proof}
+		We induct on $k$. The case $k = 1$ is rather clear: for any $a < c < x < d < b$ we have $f(x) \in [f(c), f(d)]$. Take then $k > 1$ and any closed interval $[c, d] \subset (a, b)$. Take $a < x_{0} < c$. The map $g = [\cdot, x_{0}]_{f}$ is $(k - 1)$-tone, so by induction hypothesis the $(k - 2)$:th divided differences of $g$ are bounded on $[c, d]$. Now for any $c \leq x_{1} < x_{2} < \ldots < x_{k} \leq d$ we have
+		\[
+			[x_{1}, x_{2}, \ldots, x_{k}]_{f} = (x_{k} - x_{0}) [x_{0}, x_{1}, \ldots, x_{k}]_{f} + [x_{0}, x_{1}, \ldots, x_{k - 1}]_{f} \geq [x_{0}, x_{1}, \ldots, x_{k - 1}]_{f}
+		\]
+		But $[x_{0}, x_{1}, \ldots, x_{k - 1}]_{f} = [x_{1}, \ldots, x_{k - 1}]_{g}$ is bounded, so we have lower bound for $(k - 1)$:th divided differences of $f$. Similarly, by taking $d < x_{0} < b$ we get upper bound, and we are done.
+	\end{proof}
+	Combining the lemma with theorem \ref{bounded_div} gives the right smoothness. Convexity condition is implied by the lemma \ref{divdif_der} combined with induction on $k$.
 \end{proof}
 
 
@@ -374,7 +386,6 @@ One can also usually use regularization techniques discussed in ? to reduce a pr
 \end{phil}
 
 We will not resort to such sorcery, however, but try to understand the true reasons behind the smoothness.
-
 
 We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$. $k$-tone functions the following enjoy the following useful properties.
 
@@ -389,7 +400,19 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
 \end{prop}
 \begin{proof}
-	For $f \in C^{k}$ the statement is immediate form the mean value theorem. General case: push points in the middle.
+	For $f \in C^{k}$ the statement is immediate form the mean value theorem. In general we can argue bit similarly as in the case $k = 1$. For $k = 1$ note that if $a < x < c < b < z < d$ we may take $c < y < b$. Now
+	\[
+		f(z) - f(x) = (f(z) - f(y)) + (f(y) - f(x)) \geq 0.
+	\]
+	In terms of divided differences
+	\[
+		[x, z]_{f} = [z, y]_{f} \frac{z - y}{z - x} + [x, y]_{f} \frac{y - x}{z - x}.
+	\]
+	The point is that we can express divided differences as weighted sums of divided differences of tuples with smaller supports. More generally, if $a < x_{0} < \ldots < x_{k} < d$ with $x_{0} < c$ and $d < x_{k}$, take any $y \in (c, b)$ distinct from $x_{i}$'s and we have
+	\[
+		[x_{0}, \ldots, x_{k}]_{f} = [x_{1}, \ldots, x_{k}, y]_{f} \frac{x_{k} - y}{x_{k} - x_{0}} + [x_{0}, \ldots, x_{k - 1}, y]_{f} \frac{y - x_{0}}{x_{k} - x_{0}}.
+	\]
+	This identity is easily verified by applying the previous version for the function $x \mapsto [\cdot, x_{1}, x_{2}, \ldots, x_{n - 1}]_{f}$. By repeating this process, we will end up with divided differences of tuples completely lying on $(a, b)$ or $(c, d)$. Formally, we could induct on $l$ number of $x_{i}$'s outside $(c, b)$ and note that if tuple isn't good already, the two new tuples have lower number $l$.
 \end{proof}
 
 \section{Basis $k$-tone functions}
