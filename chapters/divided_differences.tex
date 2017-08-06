@@ -122,7 +122,18 @@ Divided differences enjoy similar Leibniz formula, which is related to a general
 	& + [x, x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n}).
 \end{align*}
 
-By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of interpolating polynomial for the first $1, 2, \ldots, $ points of the sequence $x_{0}, x_{1}, \ldots$. If the points $x_{i}$ coincide, the previous coincides with the usual Taylor expansion and, as usual, the joy is that we can approximate $[x, x_{0}, x_{1}, \ldots, x_{n}]_{f}$ by a $n$'th derivative of $f$.
+By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of interpolating polynomial for the first $1, 2, \ldots, $ points of the sequence $x_{0}, x_{1}, \ldots$. If the points $x_{i}$ coincide, we get
+\begin{align}\label{taylor_expansion}
+	f(x) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_{0})}{k!} + [x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n},
+\end{align}
+the usual Taylor expansion. Consequently
+\[
+	[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f(x) - \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_{0})}{k!}}{(x - x_{0})^{n}},
+\]
+and as is well known, this error term can be also written in the form
+\[
+	[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} = \int_{x_{0}}^{x} \frac{f^{(n)}(t) (x - t)^{n - 1}}{(n - 1)!} dt.
+\]
 
 \begin{huom}
 	As Taylor expansion lead to Taylor series, one might wonder under which conditions do Newton expansions lead to Newton series. That is, under which conditions for analytic $f : U \to \C$ and a sequence $z_{0}, z_{1}, \ldots, z_{n}, \ldots \in \C$ and $z \in \C$ the following converges
@@ -134,7 +145,8 @@ By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of inte
 		&+ [z_{0}, z_{1}, z_{2}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n - 1}) \\
 		&+ \ldots
 	\end{align*}
-	If $f$ is entire and $Z = (z_{i})_{i \geq 0}$ is bounded, Newton series converges for every $z \in \C$, but if $Z$ is not bounded, series need not converge for any $z$ outside $Z$.
+	If the points coincide we recover the usual Taylor expansion and from the \ref{taylor_expansion} we see that the Taylor series converges on disc $\D(z_{0}, r)$ if $\left|\frac{f^{(n)}}{n!}\right| \leq C/r^{n}$ for some $C > 0$. If $f$ is entire, we have such bound for every $r$ and the series converges everywhere. In a similar vein,
+	if $f$ is entire and $Z = (z_{i})_{i \geq 0}$ is bounded, also Newton series converges for every $z \in \C$, but if $Z$ is not bounded, series need not converge for any $z$ outside $Z$.
 
 	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions.
 \end{huom}
@@ -152,17 +164,8 @@ Divided differences enjoy also the following nesting property.
 	\]
 \end{prop}
 \begin{proof}
-	TODO
+	Note that both $[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}}$ and $[y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ satisfy \ref{divdif_rec} and they agree when $m = 1$.
 \end{proof}
-
-Finally, we can relate divided differences to divided differences of the derivative.
-
-\begin{prop}
-	If $f \in C^{1}(a, b)$ and $a < x_{1}, x_{2}, \ldots, x_{n} < b$ then
-	\[
-		[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
-	\]
-\end{prop}
 
 \section{Smoothness}
 
@@ -341,6 +344,14 @@ For instance we may express the Lagrange interpolation polynomial of a analytic 
 \begin{proof}
 	Write Newton expansion for $f$ and $g$ with points reversed for $g$. The rest follows as in the final proof of Theorem (\ref{div_cauchy}).
 \end{proof}
+
+\section{Peano kernels}
+
+We already noticed that the $n$:th divided differences of the form $[x, x, \ldots, x, y]_{f}$ can be written as an integral of $n$:th derivative of $f$ with some positive polynomial weight. This is no anomaly: if $f \in C^{n}(a, b)$ and $a < x_{0}, x_{1}, \ldots, x_{n} < b$, there exits a function $w = w_{x_{0}, x_{1}, \ldots, x_{n}}$ such that
+\[
+	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \int_{\R} f^{(n)}(t) w(t) dt.
+\]
+It turns out that $w$, \textit{Peano kernel} with nodes $x_{0}, x_{1}, \ldots, x_{n}$ is piecewise polynomial compactly supported $C^{n - 2}(\R)$-function. TODO
 
 \section{$k$-tone functions}
 
