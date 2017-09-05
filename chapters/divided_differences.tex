@@ -132,7 +132,7 @@ the usual Taylor expansion. Consequently
 \]
 and as is well known, this error term can be also written in the form
 \[
-	[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} = \int_{x_{0}}^{x} \frac{f^{(n)}(t) (x - t)^{n - 1}}{(n - 1)!} dt.
+	[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{1}{(x - x_{0})^{n}}\int_{x_{0}}^{x} \frac{f^{(n)}(t) (x - t)^{n - 1}}{(n - 1)!} dt.
 \]
 
 \begin{huom}
@@ -165,130 +165,6 @@ Divided differences enjoy also the following nesting property.
 \end{prop}
 \begin{proof}
 	Note that both $[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}}$ and $[y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ satisfy \ref{divdif_rec} and they agree when $m = 1$.
-\end{proof}
-
-\section{Smoothness}
-
-\begin{lause}
-	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function on $(a, b)^{n + 1}$.
-\end{lause}
-
-Actually we can prove a slightly better statement. Let $n, m \geq 1$ and and denote
-\[
-	D_{n, m} = \{x \in \R^{n} | x_{i_{1}} = x_{i_{2}} = \ldots = x_{i_{k}} \text{ for some $1 \leq i_{1} < i_{2} < \ldots < i_{m} \leq n$} \}.
-\]
-\begin{lause}
-	Let $f : (a, b) \to \R$, $0 \leq m \leq n$. Then $f \in C^{m}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function to $(a, b)^{n + 1} \setminus D_{n + 1, m + 2}$. Moreover, this extension is unique and satisfies \ref{divdif_rec} and \ref{mean_value}.
-\end{lause}
-
-\begin{proof}
-	We first prove the ``only if"-direction by induction on $m$.
-
-	The case $m = 0$ is clear. Now fix $m > 0$. Let us prove the statement for this $m$ by induction on $n$.
-
-	Consider the base case case $n = m$. Take any sequence $a < x_{0} \leq x_{1} \leq x_{2} \ldots \leq x_{n} < b$. By induction hypothesis for the pair $(n, m - 1)$ we can extend the divided difference to this point if $x_{0} < x_{n}$. If $x_{0} = x_{1} = \ldots = x_{n}$, we will extend the divided difference as
-	\[
-		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(x_{0})}{n!}.
-	\]
-	But the mean value theorem for the divided difference immediately implies this extension is continuous at $(x_{0}, x_{1}, \ldots, x_{n})$.
-
-	If $n > m$, and $x \in \R^{n + 1} \setminus D_{n + 1, m + 2}$, we necessarily have $x_{0} < x_{n}$ and hence we can extend the divided differences using \ref{divdif_rec}. By construction, our extension satisfies \ref{divdif_rec} and \ref{mean_value} and since $\R^{n + 1} \setminus D_{n + 1}$ is dense in $\R^{n + 1} \setminus D_{n + 1, m + 2}$, the extension is necessarily unique.
-
-	Let us then prove the ``if"-direction. We start with a lemma.
-
-	\begin{lem}\label{smooth_lemma}
-		Let $n \geq 1$ and $m \geq 0$. If the $n$:th divided difference of $f$ has continuous extension to the set $\R^{n + 1} \setminus D_{n + 1, m + 2}$, then there also is a continuous extension for the $(n - 1)$:th divided difference of $f$ to the set $\R^{n} \setminus D_{n, m + 2}$. 
-	\end{lem}
-	\begin{proof}
-		Take any $x \in \R^{n} \setminus D_{n, m + 2}$. We induct downward on $l$, the number of distinct components of $x$. If $l = n$, the statement is clear. Assume then that $l < n$. Now there exist $x' \in \R^{n} \setminus D_{n, m + 2}$ with $l + 1$ distinct components, which differs from $x$ by exactly one component, say i'th one. We then extend
-		\[
-			[x_{1}, x_{2}, \ldots, x_{n}]_{f} := [x_{1}, x_{2}, \ldots, x'_{i}, \ldots, x_{n}]_{f} + (x'_i - x_{i}) [x_{1}, x_{2}, \ldots, x_{i}, x'_{i}, \ldots, x_{n}]_{f}.
-		\]
-		Now if $x^{(n)} \to x$, then by comparing both sides also $[x_{1}, x_{2}, \ldots, x_{n}]_{f}$'s converge, and we have the continuous extension.
-	\end{proof}
-
-	Now let us continue with the proof. We induct on $m$. The case $m = 0$ is clear. The case $n = m = 1$ is also rather clear, the diagonal $[x, x]_{f}$ given the derivative of $f$ and continuity of the derivative is implied by the continuity of $[\cdot, \cdot]_{f}$ along the diagonal.
-
-	\begin{lem}\label{divdif_der}
-		If $f \in C^{1}(a, b)$ and $a < x_{1}, x_{2}, \ldots, x_{n} < b$ are distinct, then 
-		\[
-			[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
-		\]
-	\end{lem}
-	\begin{proof}
-		We induct on $n$: the case $n = 1$ is clear. When $n > 1$, by \ref{divdif_rec} we have
-		\begin{align*}
-			[x_{1}, x_{2}, \ldots, x_{n}]_{f'} &= \frac{[x_{1}, \ldots, x_{n - 1}]_{f'} - [x_{2}, \ldots, x_{n}]_{f'}}{x_{1} - x_{n}} \\
-			&= \frac{\left(\sum_{1 \leq i \leq n - 1} [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n - 1}]_{f}\right) - \left(\sum_{2 \leq i \leq n} [x_{2}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f}\right)}{x_{1} - x_{n}} \\
-			&= \sum_{2 \leq i \leq n - 1} \frac{[x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n - 1}]_{f} - [x_{2}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f}}{x_{1} - x_{n}} \\
-			&+ \frac{[x_{1}, x_{1}, x_{2}, \ldots, x_{n - 1}]_{f} - [x_{2}, \ldots, x_{n}, x_{n}]_{f}}{x_{1} - x_{n}} \\
-			&= \sum_{2 \leq i \leq n - 1}  [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f} \\
-			&+ \frac{[x_{1}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n} ]_{f}}{x_{1} - x_{n}} + \frac{[x_{1}, \ldots, x_{n}]_{f} - [x_{2}, \ldots, x_{n}, x_{n} ]_{f}}{x_{1} - x_{n}} \\
-			&= \sum_{1 \leq i \leq n}  [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f} \\
-		\end{align*}
-	\end{proof}
-
-	Let us then take $2 \leq m = n$. By the lemma \ref{smooth_lemma} and the case $m = 1$ we see that $f \in C^{1}(a, b)$. But by the lemma \ref{divdif_der} $(n - 1)$:th divided differences of $f'$ extend to continuous function to $\R^{n}$. Hence by the induction hypothesis $f' \in C^{(n - 1)}(a, b)$ and hence $f \in C^{n}(a, b)$.
-
-	Finally the lemma \ref{smooth_lemma} immediately implies the remaining cases $\leq m < n$, by induction on $n$.
-\end{proof}
-
-There is however more interesting equivalence to be made.
-
-\begin{lause}\label{bounded_div}
-	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n - 1}(a, b)$ and $f^{(n - 1)}$ is Lipschitz, if and only if $n$:th divided difference of $f$ is bounded. Moreover,
-	\[
-		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| = \frac{\Lip(f^{(n - 1)})}{n!}
-	\]
-\end{lause}
-
-\begin{proof}
-	We first prove the ``if"-direction.
-
-	The case $n = 1$ is clear. In the case $n = 2$ note that
-	\[
-		[x, y, z] = \frac{[y, x]_{f} - [z, x]_{f}}{y - z}
-	\]
-	Since this quantity is bounded, it follows that $[\cdot, x]_{f}$ has a limit at $x$, which means exactly that $f$ is differentiable at $x$. Note that in addition for any $x, x', y, y'$ we have
-	\[
-		[x', x, y]_{f} + [y', y, x] = \frac{([x', x]_{f} - [x, y]_{f}) - ([y', y]_{f} - [x, y]_{f})}{x - y} = \frac{[x', x] - [y, y']}{x - y}.
-	\]
-	Letting $x' \to x$ and $y' \to y$ we see that $f'$ is Lipschitz and hence also $f \in C^{1}(a, b)$ .
-
-	Now for general $n$ we argue by induction on $n$. Let $n > 2$. Note that since
-	\[
-		[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}}.
-	\]
-	The map $x \mapsto [x, x_{1}, x_{2}, \ldots, x_{n - 1}]$ is $1$-Lipschitz for any $x_{1}, x_{2}, \ldots, x_{n - 1}$ and hence $(n - 1)$:th divided difference is Lipschitz and consequently bounded. By induction hypothesis $f$ is $C^{n - 2}(a, b)$ and hence at least $C^{1}(a, b)$. But now since
-	\[
-		[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
-	\]
-	$f'$ has bounded $(n - 1)$:th divided differences, and by the induction hypothesis, $f \in C^{(n - 1)}(a, b)$ and $f^{(n - 1)}$ is Lipschitz. Induction also immediately gives
-	\[
-		\frac{\Lip(f^{(n - 1)})}{n!} \leq \sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}|.
-	\]
-
-	Let us then prove the ``only if"-direction. Take any $a < x_{0} < x_{1} < \ldots < x_{n} < b$. By the mean-value theorem for divided differences we have
-	\begin{align*}
-		\left|[x_{0}, x_{1}, \ldots, x_{n}]_{f} \right| &= \left|\frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}} \right| \\
-		&= \frac{1}{(n - 1)!}\left|\frac{f^{(n - 1)}(\xi_{1}) - f^{(n - 1)}(\xi_{2})}{x_{0} - x_{n}} \right| \\
-		&\leq \frac{\Lip(f^{(n - 1)})}{(n - 1)!} \left|\frac{\xi_{1} - \xi_{2}}{x_{0} - x_{n}}\right|
-	\end{align*}
-	for some $x_{0} \leq \xi_{1} \leq \xi_{2} \leq x_{n}$. Hence $n$:th divided difference is bounded, but the inequality is not quite sharp enough.
-
-	We can make it sharp with some tricks. Firstly, when considering the supremum, we only need to consider tuples where all but one of entries are equal. Indeed pick any $a < x_{0} < x_{1} < x_{2} < \ldots < x_{n}$. Now consider the map $g(x) = [x, x_{0}]_{f}$. This is $C^{n - 1}(x_{0}, b)$ so by the mean-value theorem we have
-	\[
-		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = [x_{1}, x_{2}, \ldots, x_{n}]_{g} = \frac{g^{(n - 1)}(\xi)}{(n - 1)!} = [\xi, \xi, \ldots, \xi]_{g} = [x_{0}, \xi, \xi, \ldots]_{f}.
-	\]
-	Hence it suffices to consider only tuples $(x, x, x, \ldots, y)$ where $x$ appears $n$ times. Now by the Taylor's theorem
-	\begin{align*}
-		\left|[x, x, \ldots, y]_{f}\right| &= \left|\frac{[x, x, \ldots, x]_{f} - [x, x, \ldots, y]}{x - y} \right| \\
-		&= \left|\frac{\frac{f^{(n - 1)}}{(n - 1)!} - \int_{x}^{y} \frac{f^{(n - 1)}(t) (y - t)^{n - 2}}{(n - 2)!} dt}{x - y} \right| = \\
-		&= \frac{1}{(n - 2)!|y - x|^{n - 1}} \left|\int_{x}^{y} (f^{(n - 1)}(x) - f^{(n - 1)}(t)) (y - t)^{n - 2} dt \right| \\
-		&\leq \frac{\Lip(f^{(n - 1)})}{(n - 2)!} \int_{x}^{y} |x - t| |y - t|^{n - 2} dt \\
-		&= \frac{\Lip(f^{(n - 1)})}{n!},
-	\end{align*}
-	and we are done.
 \end{proof}
 
 \section{Cauchy's integral formula}
@@ -367,26 +243,11 @@ As we noticed, $1$-tone and $2$-tone functions are exactly the monotone increasi
 
 Mean value theorem for divided differences tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative. It turns out that this almost true in general case, namely we have the following result.
 
-\begin{lause}
+\begin{lause}\label{k-tone_smooth}
 	Let $f : (a, b) \to \R$ and $k \geq 2$. Then $f$ is $k$-tone, if and only if $f \in C^{k - 2}(a, b)$, $f^{(k - 2)}(x)$ is convex.
 \end{lause}
 
-\begin{proof}
-
-	We start with a lemma.
-	\begin{lem}
-		If $k \geq 1$ and $f : (a, b) \to \R$ is $k$-tone, then the $(k - 1)$:th divided differences of $f$ are locally bounded, i.e. bounded on every closed subinterval of $(a, b)$.
-	\end{lem}
-	\begin{proof}
-		We induct on $k$. The case $k = 1$ is rather clear: for any $a < c < x < d < b$ we have $f(x) \in [f(c), f(d)]$. Take then $k > 1$ and any closed interval $[c, d] \subset (a, b)$. Take $a < x_{0} < c$. The map $g = [\cdot, x_{0}]_{f}$ is $(k - 1)$-tone, so by induction hypothesis the $(k - 2)$:th divided differences of $g$ are bounded on $[c, d]$. Now for any $c \leq x_{1} < x_{2} < \ldots < x_{k} \leq d$ we have
-		\[
-			[x_{1}, x_{2}, \ldots, x_{k}]_{f} = (x_{k} - x_{0}) [x_{0}, x_{1}, \ldots, x_{k}]_{f} + [x_{0}, x_{1}, \ldots, x_{k - 1}]_{f} \geq [x_{0}, x_{1}, \ldots, x_{k - 1}]_{f}
-		\]
-		But $[x_{0}, x_{1}, \ldots, x_{k - 1}]_{f} = [x_{1}, \ldots, x_{k - 1}]_{g}$ is bounded, so we have lower bound for $(k - 1)$:th divided differences of $f$. Similarly, by taking $d < x_{0} < b$ we get upper bound, and we are done.
-	\end{proof}
-	Combining the lemma with theorem \ref{bounded_div} gives the right smoothness. Convexity condition is implied by the lemma \ref{divdif_der} combined with induction on $k$.
-\end{proof}
-
+We will postpone the proof.
 
 In some sense the further smoothness assumption is not that much of a game changer. It turns out $k$-tone functions are always $k$ times differentiable in a weak sense (?), and the weak derivative is non-negative.
 
@@ -516,6 +377,193 @@ In addition to being convenient notion to discuss $k$-tone functions, majorizati
 \end{proof}
 
 TODO: Higher orders, majorization
+
+\section{Smoothness}
+
+\begin{lause}
+	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function on $(a, b)^{n + 1}$.
+\end{lause}
+
+Actually we can prove a slightly better statement. Let $n, m \geq 1$ and and denote
+\[
+	D_{n, m} = \{x \in \R^{n} | x_{i_{1}} = x_{i_{2}} = \ldots = x_{i_{k}} \text{ for some $1 \leq i_{1} < i_{2} < \ldots < i_{m} \leq n$} \}.
+\]
+\begin{lause}
+	Let $f : (a, b) \to \R$, $0 \leq m \leq n$. Then $f \in C^{m}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function to $(a, b)^{n + 1} \setminus D_{n + 1, m + 2}$. Moreover, this extension is unique and satisfies \ref{divdif_rec} and \ref{mean_value}.
+\end{lause}
+
+\begin{proof}
+	We first prove the ``only if"-direction by induction on $m$.
+
+	The case $m = 0$ is clear. Now fix $m > 0$. Let us prove the statement for this $m$ by induction on $n$.
+
+	Consider the base case case $n = m$. Take any sequence $a < x_{0} \leq x_{1} \leq x_{2} \ldots \leq x_{n} < b$. By induction hypothesis for the pair $(n, m - 1)$ we can extend the divided difference to this point if $x_{0} < x_{n}$. If $x_{0} = x_{1} = \ldots = x_{n}$, we will extend the divided difference as
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(x_{0})}{n!}.
+	\]
+	But the mean value theorem for the divided difference immediately implies this extension is continuous at $(x_{0}, x_{1}, \ldots, x_{n})$.
+
+	If $n > m$, and $x \in \R^{n + 1} \setminus D_{n + 1, m + 2}$, we necessarily have $x_{0} < x_{n}$ and hence we can extend the divided differences using \ref{divdif_rec}. By construction, our extension satisfies \ref{divdif_rec} and \ref{mean_value} and since $\R^{n + 1} \setminus D_{n + 1}$ is dense in $\R^{n + 1} \setminus D_{n + 1, m + 2}$, the extension is necessarily unique.
+
+	Let us then prove the ``if"-direction. We start with a lemma.
+
+	\begin{lem}\label{smooth_lemma}
+		Let $n \geq 1$ and $m \geq 0$. If the $n$:th divided difference of $f$ has continuous extension to the set $\R^{n + 1} \setminus D_{n + 1, m + 2}$, then there also is a continuous extension for the $(n - 1)$:th divided difference of $f$ to the set $\R^{n} \setminus D_{n, m + 2}$. 
+	\end{lem}
+	\begin{proof}
+		Take any $x \in \R^{n} \setminus D_{n, m + 2}$. We induct downward on $l$, the number of distinct components of $x$. If $l = n$, the statement is clear. Assume then that $l < n$. Now there exist $x' \in \R^{n} \setminus D_{n, m + 2}$ with $l + 1$ distinct components, which differs from $x$ by exactly one component, say i'th one. We then extend
+		\[
+			[x_{1}, x_{2}, \ldots, x_{n}]_{f} := [x_{1}, x_{2}, \ldots, x'_{i}, \ldots, x_{n}]_{f} + (x'_i - x_{i}) [x_{1}, x_{2}, \ldots, x_{i}, x'_{i}, \ldots, x_{n}]_{f}.
+		\]
+		Now if $x^{(n)} \to x$, then by comparing both sides also $[x_{1}, x_{2}, \ldots, x_{n}]_{f}$'s converge, and we have the continuous extension.
+	\end{proof}
+
+	Now let us continue with the proof. We induct on $m$. The case $m = 0$ is clear. The case $n = m = 1$ is also rather clear, the diagonal $[x, x]_{f}$ given the derivative of $f$ and continuity of the derivative is implied by the continuity of $[\cdot, \cdot]_{f}$ along the diagonal.
+
+	\begin{lem}\label{divdif_der}
+		If $f \in C^{1}(a, b)$ and $a < x_{1}, x_{2}, \ldots, x_{n} < b$ are distinct, then 
+		\[
+			[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
+		\]
+	\end{lem}
+	\begin{proof}
+		We induct on $n$: the case $n = 1$ is clear. When $n > 1$, by \ref{divdif_rec} we have
+		\begin{align*}
+			[x_{1}, x_{2}, \ldots, x_{n}]_{f'} &= \frac{[x_{1}, \ldots, x_{n - 1}]_{f'} - [x_{2}, \ldots, x_{n}]_{f'}}{x_{1} - x_{n}} \\
+			&= \frac{\left(\sum_{1 \leq i \leq n - 1} [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n - 1}]_{f}\right) - \left(\sum_{2 \leq i \leq n} [x_{2}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f}\right)}{x_{1} - x_{n}} \\
+			&= \sum_{2 \leq i \leq n - 1} \frac{[x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n - 1}]_{f} - [x_{2}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f}}{x_{1} - x_{n}} \\
+			&+ \frac{[x_{1}, x_{1}, x_{2}, \ldots, x_{n - 1}]_{f} - [x_{2}, \ldots, x_{n}, x_{n}]_{f}}{x_{1} - x_{n}} \\
+			&= \sum_{2 \leq i \leq n - 1}  [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f} \\
+			&+ \frac{[x_{1}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n} ]_{f}}{x_{1} - x_{n}} + \frac{[x_{1}, \ldots, x_{n}]_{f} - [x_{2}, \ldots, x_{n}, x_{n} ]_{f}}{x_{1} - x_{n}} \\
+			&= \sum_{1 \leq i \leq n}  [x_{1}, \ldots, x_{i}, x_{i}, \ldots, x_{n}]_{f} \\
+		\end{align*}
+	\end{proof}
+
+	Let us then take $2 \leq m = n$. By the lemma \ref{smooth_lemma} and the case $m = 1$ we see that $f \in C^{1}(a, b)$. But by the lemma \ref{divdif_der} $(n - 1)$:th divided differences of $f'$ extend to continuous function to $\R^{n}$. Hence by the induction hypothesis $f' \in C^{(n - 1)}(a, b)$ and hence $f \in C^{n}(a, b)$.
+
+	Finally the lemma \ref{smooth_lemma} immediately implies the remaining cases $\leq m < n$, by induction on $n$.
+\end{proof}
+
+There is however more interesting equivalence to be made.
+
+\begin{lause}\label{bounded_div}
+	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n - 1}(a, b)$ and $f^{(n - 1)}$ is Lipschitz, if and only if $n$:th divided difference of $f$ is bounded. Moreover,
+	\[
+		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| = \frac{\Lip(f^{(n - 1)})}{n!}
+	\]
+\end{lause}
+
+\begin{proof}
+	We first prove the ``if"-direction.
+
+	The case $n = 1$ is clear. In the case $n = 2$ note that
+	\[
+		[x, y, z] = \frac{[y, x]_{f} - [z, x]_{f}}{y - z}
+	\]
+	Since this quantity is bounded, it follows that $[\cdot, x]_{f}$ has a limit at $x$, which means exactly that $f$ is differentiable at $x$. Note that in addition for any $x, x', y, y'$ we have
+	\[
+		[x', x, y]_{f} + [y', y, x] = \frac{([x', x]_{f} - [x, y]_{f}) - ([y', y]_{f} - [x, y]_{f})}{x - y} = \frac{[x', x] - [y, y']}{x - y}.
+	\]
+	Letting $x' \to x$ and $y' \to y$ we see that $f'$ is Lipschitz and hence also $f \in C^{1}(a, b)$ .
+
+	Now for general $n$ we argue by induction on $n$. Let $n > 2$. Note that since
+	\[
+		[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}}.
+	\]
+	The map $x \mapsto [x, x_{1}, x_{2}, \ldots, x_{n - 1}]$ is $1$-Lipschitz for any $x_{1}, x_{2}, \ldots, x_{n - 1}$ and hence $(n - 1)$:th divided difference is Lipschitz and consequently bounded. By induction hypothesis $f$ is $C^{n - 2}(a, b)$ and hence at least $C^{1}(a, b)$. But now since
+	\[
+		[x_{1}, x_{2}, \ldots, x_{n}]_{f'} = \sum_{1 \leq i \leq n} [x_{1}, x_{2}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n}]_{f}
+	\]
+	$f'$ has bounded $(n - 1)$:th divided differences, and by the induction hypothesis, $f \in C^{(n - 1)}(a, b)$ and $f^{(n - 1)}$ is Lipschitz. Induction also immediately gives
+	\[
+		\frac{\Lip(f^{(n - 1)})}{n!} \leq \sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}|.
+	\]
+
+	Let us then prove the ``only if"-direction. Take any $a < x_{0} < x_{1} < \ldots < x_{n} < b$. By the mean-value theorem for divided differences we have
+	\begin{align*}
+		\left|[x_{0}, x_{1}, \ldots, x_{n}]_{f} \right| &= \left|\frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}} \right| \\
+		&= \frac{1}{(n - 1)!}\left|\frac{f^{(n - 1)}(\xi_{1}) - f^{(n - 1)}(\xi_{2})}{x_{0} - x_{n}} \right| \\
+		&\leq \frac{\Lip(f^{(n - 1)})}{(n - 1)!} \left|\frac{\xi_{1} - \xi_{2}}{x_{0} - x_{n}}\right|
+	\end{align*}
+	for some $x_{0} \leq \xi_{1} \leq \xi_{2} \leq x_{n}$. Hence $n$:th divided difference is bounded, but the inequality is not quite sharp enough.
+
+	We can make it sharp with some tricks. Firstly, when considering the supremum, we only need to consider tuples where all but one of entries are equal. Indeed pick any $a < x_{0} < x_{1} < x_{2} < \ldots < x_{n}$. Now consider the map $g(x) = [x, x_{0}]_{f}$. This is $C^{n - 1}(x_{0}, b)$ so by the mean-value theorem we have
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = [x_{1}, x_{2}, \ldots, x_{n}]_{g} = \frac{g^{(n - 1)}(\xi)}{(n - 1)!} = [\xi, \xi, \ldots, \xi]_{g} = [x_{0}, \xi, \xi, \ldots]_{f}.
+	\]
+	Hence it suffices to consider only tuples $(x, x, x, \ldots, y)$ where $x$ appears $n$ times. Now by the Taylor's theorem
+	\begin{align*}
+		\left|[x, x, \ldots, y]_{f}\right| &= \left|\frac{[x, x, \ldots, x]_{f} - [x, x, \ldots, y]}{x - y} \right| \\
+		&= \left|\frac{\frac{f^{(n - 1)}}{(n - 1)!} - \int_{x}^{y} \frac{f^{(n - 1)}(t) (y - t)^{n - 2}}{(n - 2)!} dt}{x - y} \right| = \\
+		&= \frac{1}{(n - 2)!|y - x|^{n - 1}} \left|\int_{x}^{y} (f^{(n - 1)}(x) - f^{(n - 1)}(t)) (y - t)^{n - 2} dt \right| \\
+		&\leq \frac{\Lip(f^{(n - 1)})}{(n - 2)!} \int_{x}^{y} |x - t| |y - t|^{n - 2} dt \\
+		&= \frac{\Lip(f^{(n - 1)})}{n!},
+	\end{align*}
+	and we are done.
+\end{proof}
+
+With such tools we are ready to tackle the regularity of $k$-tone functions
+
+\begin{proof}[Proof of the theorem \ref{k-tone_smooth}]
+
+	We start with a lemma.
+	\begin{lem}
+		If $k \geq 1$ and $f : (a, b) \to \R$ is $k$-tone, then the $(k - 1)$:th divided differences of $f$ are locally bounded, i.e. bounded on every closed subinterval of $(a, b)$.
+	\end{lem}
+	\begin{proof}
+		We induct on $k$. The case $k = 1$ is rather clear: for any $a < c < x < d < b$ we have $f(x) \in [f(c), f(d)]$. Take then $k > 1$ and any closed interval $[c, d] \subset (a, b)$. Take $a < x_{0} < c$. The map $g = [\cdot, x_{0}]_{f}$ is $(k - 1)$-tone, so by induction hypothesis the $(k - 2)$:th divided differences of $g$ are bounded on $[c, d]$. Now for any $c \leq x_{1} < x_{2} < \ldots < x_{k} \leq d$ we have
+		\[
+			[x_{1}, x_{2}, \ldots, x_{k}]_{f} = (x_{k} - x_{0}) [x_{0}, x_{1}, \ldots, x_{k}]_{f} + [x_{0}, x_{1}, \ldots, x_{k - 1}]_{f} \geq [x_{0}, x_{1}, \ldots, x_{k - 1}]_{f}
+		\]
+		But $[x_{0}, x_{1}, \ldots, x_{k - 1}]_{f} = [x_{1}, \ldots, x_{k - 1}]_{g}$ is bounded, so we have lower bound for $(k - 1)$:th divided differences of $f$. Similarly, by taking $d < x_{0} < b$ we get upper bound, and we are done.
+	\end{proof}
+	Combining the lemma with theorem \ref{bounded_div} gives the right smoothness. Convexity condition is implied by the lemma \ref{divdif_der} combined with induction on $k$.
+\end{proof}
+
+\section{Analyticity and Bernstein's theorems}
+
+By requiring (some kind of) regularity for the divided differences of all orders, occasionally we get more than smoothness, namely analyticity. Most basic result of this kind is the following.
+
+\begin{lause}\label{div_anal}
+	Let $f : (a, b) \to \R$. Then $f$ is real analytic, if and only if for every closed subinteval $[c, d]$ of $(a, b)$ there exists constant $C$ such that for any $n \geq 1$
+	\[
+		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| \leq C^{n + 1}.
+	\]
+\end{lause}
+\begin{proof}
+	Let's first prove that ``if"-direction. We need to prove that the for any $x_{0} \in (a, b)$ Taylor series at $x_{0}$ converges at some neighbourhood of $x_{0}$. As observed before, the $n$:th error term in Taylor series is given by
+	\[
+		[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n}
+	\]
+	with $n$ $x_{0}$'s. Now choose $a < c < x_{0} < d < b$ and take any $x$ with $x \in [c, d]$ and $|x - x_{0}| C < 1$, where $C$ is given by the assumption for interval $c, d$. But then the error term tends to zero and we are done.
+
+	For the other direction note that if $x_{0} \in (a, b)$ and $f$ extends to analytic function on $\D(x_{0}, r)$, we definititely have $\left|\frac{f^{(n)}(x_{0})}{n!}\right| \leq C^{n + 1}$ for some $C$. If $|x - x_{0}| < r$ we have
+	\[
+		\frac{f^{(k)}(x)}{k!} = \sum_{n = k}^{\infty} \binom{n}{k} \frac{f^{(n)}(x_{0})}{n!} (x - x_{0})^{n - k},
+	\]
+	which may be estimated by
+	\[
+	 \left|\frac{f^{(k)}(x)}{k!}\right| \leq C^{k + 1}\sum_{n = k}^{\infty} \binom{n}{k} C^{n - k} (x - x_{0})^{n - k} = \frac{C^{k + 1} }{(1 - |x - x_{0}| C)^{k}},
+	\]
+	whenever $|x - x_{0}| C < 1$. By the mean value theorem for divided differences it follows that we get required bound for some neighbourhood of $x_{0}$ and consequently, by compactness for any closed subinteval of $(a, b)$.
+\end{proof}
+
+Of course, we could just as well replace the closed inteval by any compact compact subset of $(a, b)$. The previous result is some kind of relative of \ref{bounded_div}. Also theorem \ref{k-tone_smooth} has rather interesting relative.
+
+\begin{lause}[Bernstein's little theorem]
+	If $f : (a, b) \to \R$ is $k$-tone for every $k \geq 0$, then $f$ is real-analytic on $(a, b)$.
+\end{lause}
+\begin{proof}
+	We prove that the conditions of the theorem \ref{div_anal} are satisfied. Pick any $a < x_{0} < x < b$. Now for any $n \geq 0$ we have
+	\[
+		f(x) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_{0})}{k!}(x - x_{0})^{k} + \frac{f^{(n)}(x_{0})}{n!} (x - x_{0})^{n} + [x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n + 1}.
+	\]
+	Note that all the terms on the right-hand side are non-negative, and hence
+	\[
+		0 \leq \frac{f^{(n)}(x_{0})}{n!} \leq f(x) (x - x_{0})^{-n}.
+	\]
+	Now given any interval $[c, d] \subset (a, b)$ we can make such estimate uniform over $x_{0} \in [c, d]$ simply by picking $x \in (d, b)$, and we are done.
+\end{proof}
 
 
 \section{TODO}

@@ -16,7 +16,8 @@ typedef MatrixXcd Mt;
 
 int sort_k;
 
-const ld eps = 1e-3;
+const ld eps = 1e-9;
+const ld bad_eps = 1e-3;
 const co I = {0.0, 1.0};
 bool verbose = false;
 
@@ -31,6 +32,16 @@ Mt abs_m(Mt A) {
 	Mt B = A.adjoint()*A;
 	SelfAdjointEigenSolver<Mt> es(B);
 	return es.operatorSqrt();
+}
+
+Mt get_bad_mat(int n) {
+	Mt A = Mt::Identity(n, n);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			A(i, j) = 1 - bad_eps;
+		}
+	}
+	return A;
 }
 
 double p_absx(double x, int k) {
@@ -239,7 +250,10 @@ bool try_can_f_k(Mt A, Mt B, int k) {
 		double coeff = binom(k, i)*sgn;
 		S += coeff*Xi;
 	}
+	S += Mt::Identity(n, n)*eps;
 	bool ok = is_positive(S);
+	print_eigs(S);
+	cout << endl;
 	if (!ok) {
 		verbose = true;
 		cout << "A:\n";
@@ -268,10 +282,10 @@ bool try_can_f_k(Mt A, Mt B, int k) {
 	return ok;
 }
 
-bool try_several_can_f_k(int k, int cnt) {
+bool try_several_can_f_k(int n, int k, int cnt) {
 	for (int i = 0; i < cnt; i++) {
-		Mt A = randH(2)*0.1;
-		Mt B = randHP(2)*0.03;
+		Mt B = get_bad_mat(n)*0.01;
+		Mt A = randH(n)*0.1;
 		if (!try_can_f_k(A, B, k)) {
 			return false;
 		}
@@ -484,6 +498,6 @@ int main() {
 	int cap;
 	int n;
 	cin >> n >> cap;
-	test_positivity_conjecture(n, cap);
+	cout << try_several_can_f_k(n, 3, cap) << "\n";
 	return 0;
 }

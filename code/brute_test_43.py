@@ -365,6 +365,6 @@ def try_conj(n):
 		B = get_B(n)
 		try_sum_4_conjecture(ass, B)
 
-n = 7
+n = 2
 
-try_conj(n)
+print_random_vals(n)
