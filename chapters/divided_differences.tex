@@ -565,6 +565,20 @@ Of course, we could just as well replace the closed inteval by any compact compa
 	Now given any interval $[c, d] \subset (a, b)$ we can make such estimate uniform over $x_{0} \in [c, d]$ simply by picking $x \in (d, b)$, and we are done.
 \end{proof}
 
+We could further conclude that $f$ in the previous theorem extends to a complex analytic function to $\D(a, |b - a|)$.
+
+Usually by Bernstein's little theorem one means slightly weaker statement: if $f : (0, \infty) \to \R$ is smooth such that $(-1)^{n} f^{(n)}(t) \geq 0$ for any $t > 0$, then $f$ extends to analytic function to right half-plane. This is readily implied by the previous observation. Latter version has however a considerable strenghtening.
+
+\begin{lause}[Bernstein's big theorem]
+	If $f : (0, \infty) : \R$ is smooth such that $(-1)^{n} f^{(n)}(t) \geq 0$ for any $t > 0$, then $f$ is Laplace transform of a radon measure $\mu$ on $[0, \infty)$, that is we have
+	\[
+		f(x) = \int_{0}^{\infty} e^{-x t} d \mu(t)
+	\]
+	for every $x > 0$.
+\end{lause}
+
+We will postpone the proof.
+
 
 \section{TODO}
 \begin{itemize}
