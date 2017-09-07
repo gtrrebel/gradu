@@ -163,6 +163,59 @@ One of the main reasons for introducing Pick functions is that they are monotone
 \end{lause}
 This is obviously why we chose the notation $P_{n}$ for classes of matrix monotone functions.
 
+\section{Monotonicity and derivative}
+
+As in the real case, also in the matrix world we may characterize monotonicity with derivatives.
+
+\begin{lause}
+	Let $f \in C^{1}(a, b)$ and $n \geq 1$. Then the following are equivalent:
+	\begin{enumerate}[(i)]
+	\item For any $A \in \H^{n}_{(a, b)}$ and $H \geq 0$ we have
+	\[
+		D^{1}_{n}f_{A}(H) \geq 0.
+	\]
+	\item For any $A \in \H^{n}_{(a, b)}$ and $P$ one dimensional (orthogonal) projection we have
+	\[
+		D^{1}_{n}f_{A}(P) \geq 0.
+	\]
+	\item For any $A \in \H^{n}_{(a, b)}$, $H \geq 0$ and $v \in V$ the map
+	\[
+		t \mapsto \langle f(A + t H) v, v \rangle
+	\]
+	is increasing.
+	\item For any $A \in \H^{n}_{(a, b)}$, $P$ one dimensional (orthogonal) projection and $v \in V$ the map
+	\[
+		t \mapsto \langle f(A + t P) v, v \rangle
+	\]
+	is increasing.
+	\end{enumerate}
+\end{lause}
+\begin{proof}
+	TODO
+\end{proof}
+
+We already noticed that we can express $D^{1}_{n}f_{A}(H) = ([\lambda_{i}, \lambda_{j}]_{f})_{1 \leq i, j \leq n}\circ H$, where Hadamard product is taken along eigenbasis of $A$. We can however make the following simple observation:
+
+\begin{lem}
+	Let $A \in \H$. Then $A \geq 0$, if and only if $A \circ B$ for every $B \geq 0$.
+\end{lem}
+
+\begin{proof}
+	If the Hadamard product is along $(e_{i})_{1 \leq i \leq n}$, we have $A = A \circ \left(\sqrt{n} P_{\frac{1}{\sqrt{n}}\sum_{1 \leq i \leq n} e_{i}} \right)$, and hence have the ``if". Note that for only if we only need to verify the inequality for $A$ and $B$ both one dimensional projections. But now one easily sees that $A \circ B$ is non-negative multiple of projection.
+\end{proof}
+
+We hence have the following characterization.
+
+\begin{lause}
+	$f \in P_{n}(a, b)$, if and only if the matrix
+	\begin{align*}
+		\left([\lambda_{i}, \lambda_{j}]_{f}\right)_{i, j} \geq 0
+	\end{align*}
+	for any $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in (a, b)$.
+\end{lause}
+
+
+
 TODO:
 \begin{itemize}
 	\item Examples
