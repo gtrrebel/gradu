@@ -205,9 +205,11 @@ For instance we may express the Lagrange interpolation polynomial of a analytic 
 \[
 	P_{X}(x) = \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [X]_{f [x, \cdot]_{p_{X}}}.
 \]
+More generally, if some of the points coincide, we get the Hermite interpolation polynomial. In general, if one wants to find a polynomial which vanishes at points TODO
 \end{esim}
 
-\begin{prop}[Leibniz formula for divided differences]
+
+\begin{prop}[Leibniz formula for divided differences]\label{Leibniz_rule}
 	We have
 	\begin{align*}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f g} &= [x_{0}]_{f} [x_{0}, x_{1}, \ldots, x_{n}]_{g} \\
@@ -219,6 +221,24 @@ For instance we may express the Lagrange interpolation polynomial of a analytic 
 \end{prop}
 \begin{proof}
 	Write Newton expansion for $f$ and $g$ with points reversed for $g$. The rest follows as in the final proof of Theorem (\ref{div_cauchy}).
+\end{proof}
+
+Actually, we are not quite done yet. Cauchy's integral formula only works for analytic functions. We can however extend the prove with the following useful observation.
+\begin{lem}\label{bootstrap_lemma}
+	Let $n, m \geq 0$. Assume that for some constants $c_{i, j}$ and $a_{i, j} \in (a, b)$ we have
+	\begin{align*}
+	\sum_{\atop{0 \leq i \leq n}{1 \leq j \leq m}} c_{i, j} f^{(i)}(a_{i, j}) = 0
+	\end{align*}
+	for every polynomial. Then the numbers $c_{i, j}$ are all zeroes.
+\end{lem}
+\begin{proof}
+	By Hermite interpolation TODO we can find for any pair $(i, j)$ polynomial with $f^{(i)}(a_{i, j}) = 1$ and $f^{(j')}(a_{i', j'})$ for every other pair $(i', j')$. Consequently $c_{i, j} = 0$ and we have the claim.
+\end{proof}
+
+Of course there's nothing really special about the functional being linear, but the point is: if the $F : C^{n}(a, b) \to \R$ depends only $f$ and it's derivatives up to some fixed order at some fixed points, then we know $F$ just by knowing the values at polynomials.
+
+\begin{proof}[Rest of the proof of \ref{Leibniz_rule}]
+	Note that if we expand the divided differences, we are almost in the situation of the lemma \ref{bootstrap_lemma}; now we just have product of two functions instead. Story is the same.
 \end{proof}
 
 \section{Peano kernels}

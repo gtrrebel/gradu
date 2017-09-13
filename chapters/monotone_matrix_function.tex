@@ -1,10 +1,8 @@
-\chapter{Monotone and Convex matrix functions}
+\chapter{Monotone matrix functions}
 
-We already introduced monotone and convex matrix functions in the introduction, but now that we have properly defined and discussed underlying structures we should take a deeper look. As mentioned, monotone and convex matrix functions are sort of generalizations for the standard properties of reals, and this is why we should undestand which of the phenomena for the real functions carry to matrix functions and which do not.
+We already introduced monotone matrix functions in the introduction, but now that we have properly defined and discussed underlying structures we should take a deeper look. As mentioned, monotone matrix functions are sort of generalizations for the standard properties of reals, and this is why we should undestand which of the phenomena for the real functions carry to matrix functions and which do not.
 
-We will start with the matrix monotone functions; much of the discussion carries quite directly to the convex case.
-
-\section{Basic properties of the matrix monotone functions}
+\section{Basic properties}
 
 We first state the definition.
 
@@ -207,14 +205,70 @@ We already noticed that we can express $D^{1}_{n}f_{A}(H) = ([\lambda_{i}, \lamb
 We hence have the following characterization.
 
 \begin{lause}
-	$f \in P_{n}(a, b)$, if and only if the matrix
-	\begin{align*}
+	$f \in P_{n}(a, b) \cap C^{1}(a, b)$, if and only if the matrix
+	\begin{align}\label{Loewner_matrix}
 		\left([\lambda_{i}, \lambda_{j}]_{f}\right)_{i, j} \geq 0
-	\end{align*}
+	\end{align}
 	for any $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in (a, b)$.
 \end{lause}
 
+This is the original characterization by Loewner, and it is pretty much just saying that function is matrix monotone if its (matrix) derivative is positive. The matrix \ref{Loewner_matrix} is called, appropriately, Loewner matrix (of function $f$ on points $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$). Using the characterization it is in general not very easy to check that the function is $n$-monotone: we would have to check positivity of the matrix for any tuple on the interval. Also the characterization is not local one: in order to check monotonicity we need to know the behaviour on the whole interval. This is just a reflection of the fact that the space in which we are working on, space of real maps, is itself in a way spread around the interval.
 
+\section{Local Property}
+
+It nevertheless turns out that $n$-monotonicity is a local property.
+
+\begin{prop}
+	For any $n \geq 1$, $P_{n}$ is a local property meaning that whenever $f \in P_{n}(a, b)$ and $P_{n}(c, d)$ for some $a < c < b < d$, then also $f \in P_{n}(a, d)$.
+\end{prop}
+
+The reason for this is hidden in the Loewner matrix.
+
+Note that Loewner matrix is essentially something we saw before: it is just a Pick matrix when all the points are on the real line. We observed before that positivity of the Pick matrix was some kind of manifestation of the strength of the Cauchy's integral formula. Namely, if $f$ happens to analytic, in some suitable set, we can write
+\begin{align*}
+	\left([\lambda_{i}, \lambda_{j}]_{f}\right)_{i, j} = \frac{1}{2 \pi i}\int_{\gamma} \frac{f(z)}{(z - \lambda_{i})(z - \lambda_{j})} dz.
+\end{align*}
+Now the positivity the matrix means that for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ the quantity
+\begin{align*}
+	\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} [\lambda_{i}, \lambda_{j}]_{f} = \frac{1}{2 \pi i}\int_{\gamma}f(z) \left(\sum_{1 \leq i \leq n} \frac{c_{i}}{z - \lambda_{i}}\right) \left( \sum_{1 \leq i \leq n} \frac{\overline{c_{i}}}{z - \lambda_{i}}\right)dz.
+\end{align*}
+But here's the trick: we may write
+\begin{align*}
+	\sum_{1 \leq i \leq n} \frac{c_{i}}{z - \lambda_{i}} = \frac{q(z)}{\prod_{1 \leq i \leq n} (z - \lambda_{i})} = \frac{q(z)}{p_{\Lambda}(z)}
+\end{align*}
+for some polynomial of degree less than $n$, and indeed, if the $\lambda$'s are distinct there's a one-to-one correspondence between polynomials $q$ and the $\lambda$'s. It follows that we may rewrite the integral as
+\begin{align*}
+\frac{1}{2 \pi i}\int_{\gamma}f(z) \frac{q(z) \overline{q(\overline{z})}}{p_{\Lambda}(z)^2}dz.
+\end{align*}
+Note that $z \mapsto q(z)\overline{q(\overline{z})})$ is a polynomial of degree at most $(2 n - 2)$ non-negative on the real line. Easy application of the Fundamental theorem of algebra reveals that all such polynomials are actually of the previous form. Write $h(z) = q(z)\overline{q(\overline{z})})$.
+
+Finally note that resulting expression,
+\begin{align*}
+\frac{1}{2 \pi i}\int_{\gamma}f(z) \frac{h(z)}{p_{\Lambda}(z)^2}dz
+\end{align*}
+is nothing but the divided difference of the function $f h$ at points $\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}$. By \ref{bootstrap_lemma} this extends to all $C^{1}(a, b)$. We would like to conclude that $f h$ is $(2 n - 1)$-tone, but unfortunately we only know the non-negativity of the divided differences of order $(2 n - 1)$ special sets of tuples. It however turns out that this is enough.
+
+\begin{lem}
+	Let $k$ and $n$ be positive integers and $d_{1}, d_{2}, \ldots, d_{m}$ be positive integers with $d_{1} + d_{2} + \ldots + d_{m} = k + 1$. Assume that $n \geq \left(\max_{1 \leq i \leq m} d_{i} \right) - 1$. Let $f \in C^{n}(a, b)$. Then the following are equivalent.
+	\begin{enumerate}[(i)]
+		\item $f$ is $k$-tone.
+		\item For any $a < x_{1} < x_{2} < \ldots < x_{m} < b$ we have
+		\begin{align*}
+			[x_{1}, x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f} \geq 0
+		\end{align*}
+		where $x_{i}$ appears $d_{i}$ times.
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+	$(i) \Rightarrow (ii)$ is clear. \textcolor{red}{One cannot use the same idea naively! What to do?}
+\end{proof}
+
+We have hence the following.
+
+\begin{lause}
+	Let $n \geq 1$ and $f \in C^{1}(a, b)$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone for every polynomial of degree at most $(2 n - 2)$, $h$, non-negative on real line. 
+\end{lause}
 
 TODO:
 \begin{itemize}
@@ -245,4 +299,5 @@ TODO:
 	\item Positive derivative
 	\item Smoothness properties
 	\item Characterizations
+	\item There should nice proof for Loewner theorem, like the blog post for Bernstein's big theorem.
 \end{itemize}
