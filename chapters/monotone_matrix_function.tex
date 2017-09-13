@@ -161,7 +161,7 @@ One of the main reasons for introducing Pick functions is that they are monotone
 \end{lause}
 This is obviously why we chose the notation $P_{n}$ for classes of matrix monotone functions.
 
-\section{Monotonicity and derivative}
+\section{Derivative and Loewner's characterization}
 
 As in the real case, also in the matrix world we may characterize monotonicity with derivatives.
 
@@ -214,7 +214,7 @@ We hence have the following characterization.
 
 This is the original characterization by Loewner, and it is pretty much just saying that function is matrix monotone if its (matrix) derivative is positive. The matrix \ref{Loewner_matrix} is called, appropriately, Loewner matrix (of function $f$ on points $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$). Using the characterization it is in general not very easy to check that the function is $n$-monotone: we would have to check positivity of the matrix for any tuple on the interval. Also the characterization is not local one: in order to check monotonicity we need to know the behaviour on the whole interval. This is just a reflection of the fact that the space in which we are working on, space of real maps, is itself in a way spread around the interval.
 
-\section{Local Property}
+\section{Local characterization}
 
 It nevertheless turns out that $n$-monotonicity is a local property.
 
@@ -246,7 +246,7 @@ Finally note that resulting expression,
 \begin{align*}
 \frac{1}{2 \pi i}\int_{\gamma}f(z) \frac{h(z)}{p_{\Lambda}(z)^2}dz
 \end{align*}
-is nothing but the divided difference of the function $f h$ at points $\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}$. By \ref{bootstrap_lemma} this extends to all $C^{1}(a, b)$. We would like to conclude that $f h$ is $(2 n - 1)$-tone, but unfortunately we only know the non-negativity of the divided differences of order $(2 n - 1)$ special sets of tuples. It however turns out that this is enough.
+is nothing but the divided difference of the function $f h$ at points $\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}$. By \ref{bootstrap_lemma} this extends to all $C^{1}(a, b)$. We would like to conclude that $f h$ is $(2 n - 1)$-tone, but unfortunately we only know the non-negativity of the divided differences of order $(2 n - 1)$ special sets of tuples. It however turns out that this is enough, as can be seen by using the same trick as in the proof of theorem \ref{bounded_div}.
 
 \begin{lem}
 	Let $k$ and $n$ be positive integers and $d_{1}, d_{2}, \ldots, d_{m}$ be positive integers with $d_{1} + d_{2} + \ldots + d_{m} = k + 1$. Assume that $n \geq \left(\max_{1 \leq i \leq m} d_{i} \right) - 1$. Let $f \in C^{n}(a, b)$. Then the following are equivalent.
@@ -254,21 +254,88 @@ is nothing but the divided difference of the function $f h$ at points $\lambda_{
 		\item $f$ is $k$-tone.
 		\item For any $a < x_{1} < x_{2} < \ldots < x_{m} < b$ we have
 		\begin{align*}
-			[x_{1}, x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f} \geq 0
+			[x_{1}, x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{m}, \ldots, x_{m}]_{f} \geq 0
 		\end{align*}
 		where $x_{i}$ appears $d_{i}$ times.
 	\end{enumerate}
 \end{lem}
 
 \begin{proof}
-	$(i) \Rightarrow (ii)$ is clear. \textcolor{red}{One cannot use the same idea naively! What to do?}
+	$(i) \Rightarrow (ii)$ is clear.
+
+	For the other direction let's take any $a < y_{1} < y_{2} < \ldots < y_{n} < y_{n + 1} < b$. We need to prove that
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{k}, y_{k + 1}]_{f} \geq 0.
+	\end{align*}
+	The idea is to bunch the variables together using the mean value theorem.
+
+	Let's consider the function $g_{1}(x) = [x, y_{d_{1} + 1}, y_{d_{1} + 2}, \ldots, y_{k + 1}]_{f}$. In terms of $g_{1}$ we need to prove that
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{d + 1}]_{g_{1}}.
+	\end{align*}
+	Since $f \in C^{d_{1} - 1}(a, b)$, $g_{1} \in C^{d_{1} - 1}(a, y_{d_{1} + 1})$ and hence by the mean value theorem we have
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{d_{1}}]_{g} = [x_{1}, x_{1}, \ldots, x_{1}]_{g_{1}}
+	\end{align*}
+	for some $a < x_{1} < y_{d + 1}$. Consequently,
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{k}, y_{k + 1}]_{f} = [x_{1}, x_{1}, \ldots, x_{1}, y_{d_{1} + 1}, \ldots, y_{k + 1}]_{f}.
+	\end{align*}
+	Next step is to bunch together the next $d_{2}$ terms: consider now the map $g_{2}(x) = [x_{1}, x_{1}, \ldots, x_{1}, x, y_{d_{1} + d_{2} + 1, \ldots, y_{k + 1}}]_{f}$ and observe that we are to verify that
+	\[
+		[y_{d_{1} + 1}, \ldots, y_{d_{1} + d_{2}}]_{g_{2}} \geq 0.
+	\]
+	Again use mean value theorem to replace $y_{d_{1} + 1}, \ldots, y_{d_{1} + d_{2}}$ by $x_{2}$'s.
+
+	One should be bit careful here: the number $x_{1}$ certainly depends on all the $y$'s, so once we have fixed it we can't say that
+	\begin{align*}
+		[y_{d_{1} + 1}', y_{d_{1} + 2}', \ldots, y_{d_{1} + d_{2}}']_{g_{2}} = [y_{1}, \ldots, y_{d_{1}}, y_{d_{1} + 1}', \ldots, y_{d_{1} + d_{2}}', y_{d_{1} + d_{2} + 1}, \ldots, y_{k + 1}]_{f},
+	\end{align*}
+	for instance, anymore. This is of course not a problem.
+
+	Making $m$ steps of the previous form we finally find numbers $x_{1}, x_{2}, \ldots, x_{m}$ such that
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{k}, y_{k + 1}]_{f} = [x_{1}, x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{m}, \ldots, x_{m}]_{f} \geq 0
+	\end{align*}
+	and we are done.
 \end{proof}
 
 We have hence the following.
 
 \begin{lause}
-	Let $n \geq 1$ and $f \in C^{1}(a, b)$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone for every polynomial of degree at most $(2 n - 2)$, $h$, non-negative on real line. 
+	Let $n \geq 1$ and $f \in C^{1}(a, b)$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on real line. 
 \end{lause}
+
+\section{Main Theorem}
+
+Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turns out that we can.
+
+\begin{lause}
+	Let $n \geq 1$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on real line. 
+\end{lause}
+\begin{proof}
+	For the version with extra assumption, the starting point was to take derivative of the matrix function. Although we now cannot do that, we can try to replicate the proof otherwise.
+
+	Instead of proving that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}]_{f h} \geq 0
+	\end{align*}
+	for any $a < \lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}$, we should prove that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0.
+	\end{align*}
+	$\lambda$'s should eigenvalues of some map, but now there are $2 n$ of them. Natural guess would be that they are eigenvalues of two maps, $A$ and $B$.
+
+	But now everything starts to make sense: we should choose $A$, $B$ with $A \leq B$ and $v \in V$ such that
+	\begin{align*}
+		\langle (f(B) - f(A)) v, v \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
+	\end{align*}
+	Moreover we should find some kind of bijection between triplets $(A, B, v)$ and pairs $((\lambda_{i})_{i = 1}^{2 n}, h)$: this would give the claim.
+
+	TODO
+
+
+\end{proof}
 
 TODO:
 \begin{itemize}
