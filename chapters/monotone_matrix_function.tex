@@ -306,6 +306,33 @@ We have hence the following.
 	Let $n \geq 1$ and $f \in C^{1}(a, b)$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on real line. 
 \end{lause}
 
+This result has a curious corollary.
+
+\begin{kor}\label{k_tone_cor}
+	If $n \geq 1$ and $f h$ is $(2 n + 1)$:tone for every polynomial $h$ of degree at most $2 n$, then $f h$ is $(2 n - 1)$-tone for every polynomial $h$ of degree at most $(2 n - 2)$. In particular $f$ is $k$-tone for every $k = 1, 3, 5, \ldots, 2n - 3, 2 n - 1, 2n + 1$.
+\end{kor}
+Although we strictly speaking only proved the result for $f \in C^{1}$, it holds true without extra assumptions, as can be seen with the following alternate proof.
+
+\begin{proof}[Proof of corollary \ref{k_tone_cor}]
+	Take any $h$, a polynomial of at most $(2 n - 2)$ non-negative on real axis and points $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n} < b$. We should prove that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \geq 0.
+	\end{align*}
+	By the assumption, for any $c_{1}, c_{2} \in \R$ and $a < t_{1}, t_{2} < b$ we have
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}, t_{2}]_{f h (c_{1} (\cdot - t_{1}) + c_{2} (\cdot - t_{2}))^2} \geq 0.
+	\end{align*}
+	Expanding this using linearity and Leibniz rule leads to
+	\begin{align*}
+		0 &\leq (c_{1} + c_{2})^{2} [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
+		&+ c_{1}^2 (t_{2} - t_{1}) [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{2}]_{f h} \\
+		&+ c_{2}^2 (t_{1} - t_{2}) [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}]_{f h}.
+	\end{align*}
+	We would like to choose $c_{1}$ and $c_{2}$ such that sum of the last two terms is non-positive, but $c_{1} + c_{2} \neq 0$: then $[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h}$ would have to be non-negative. By choosing $c_{1}$ and $c_{2}$ non-negative this can be done if can make any of the two last terms negative. Now if $[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}]_{f h} \neq 0$ for some $t_{1}$, this is easily done. If $[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}]_{f h} = 0$ for any $t_{1}$, then the last two terms vanish anyway, so we are again done.
+
+	Final claim follows by setting $h \equiv 1$.
+\end{proof}
+
 \section{Main Theorem}
 
 Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turns out that we can.
@@ -320,21 +347,57 @@ Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turn
 	\begin{align*}
 		[\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}]_{f h} \geq 0
 	\end{align*}
-	for any $a < \lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}$, we should prove that
+	for any $a < \lambda_{1}, \lambda_{2}, \ldots, \lambda_{n - 1}, \lambda_{n} < b$, we should prove that
 	\begin{align*}
 		[\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0.
 	\end{align*}
 	$\lambda$'s should eigenvalues of some map, but now there are $2 n$ of them. Natural guess would be that they are eigenvalues of two maps, $A$ and $B$.
 
-	But now everything starts to make sense: we should choose $A$, $B$ with $A \leq B$ and $v \in V$ such that
+	But now everything starts to make sense: whenever $A$, $B$ with $A \leq B$ and $v \in V$ the quantity
+	\begin{align*}
+		\langle (f(B) - f(A)) v, v \rangle
+	\end{align*}
+	is non-negative. On the other hand this can be expanded as some kind of linear combination of values of $f$ at eigenvalues of $A$ and $B$. Same is true for the divided differences, so there might be change to choose $A$, $B$ and $v$ such that
 	\begin{align*}
 		\langle (f(B) - f(A)) v, v \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
 	\end{align*}
-	Moreover we should find some kind of bijection between triplets $(A, B, v)$ and pairs $((\lambda_{i})_{i = 1}^{2 n}, h)$: this would give the claim.
+	Moreover should we find some kind of correspondence between triplets $(A, B, v)$ and pairs $((\lambda_{i})_{i = 1}^{2 n}, h)$, we would be done. This is the content of the main lemma.
 
-	TODO
+	\begin{lem}\label{main_lemma}
+		If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $h$ is polynomial of degree at most $(2 n - 2)$ non-negative on the real line, we may find $a I < A \leq  B < b I$ and $v \in V$ such that
+		\begin{align*}
+			\langle (f(B) - f(A)) v, v \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}
+		\end{align*}
+		for any $f : (a, b) \to \R$.
 
+		Conversely, if $a I < A \leq B < b I$ such that $B - A = c P_{w}$ for some $c > 0$ and $w$ not othogonal to any eigenvector of $A$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $h$ of degree at most $(2 n - 2)$, non-negative on the real line such that for any $f : (a, b) \to \R$ we have
+		\begin{align*}
+			\langle (f(B) - f(A)) v, v \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
+		\end{align*}
+	\end{lem}
 
+	Before proving the lemma we show how it implies the theorem.
+
+	Assume first that $f \in P_{n}(a, b)$. We need to prove that $f h$ is $(2 n - 1)$-tone for any $h$ polynomial of degree at most $(2 n - 2)$ non-negative on real line. But any divided difference of such $f h$ can be expressed by the main lemma \ref{main_lemma} as $\langle (f(B) - f(A)) v, v \rangle$ for some $aI < A \leq B < bI$, and the previous is non-negative by the assumption.
+
+	Conversely, assume that $f h$ is $(2 n - 1)$-tone for any suitable $h$ and take any $A \leq B$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$, as $f(B) - f(A)$ is sum of such terms. We may hence assume that $B - A$ is positive multiple of one dimensional projection.
+
+	We may also assume that if $B - A = c P_{w}$, then $w$ is not orthogonal to any eigenvector of $A$. Indeed, if this would be the case, we could decompose $V = \vspan\{v_{1}\} \oplus V'$, where $v_{1}$ is the eigenvector, and factorize $A = \arestr{A}{\vspan\{v_{1}\}} \oplus \arestr{A}{V'}$ and $P_{w} = 0 \oplus \arestr{(P_{w})}{V'}$. But now checking that $f(B) - f(A) \geq 0$ boils down to checkin that $f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. But this follows if we induct on $n$ in the main statement and use lemma \ref{k_tone_cor}.
+
+	Finally in the this, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ such that
+	\begin{align*}
+		\langle (f(B) - f(A)) v, v \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0
+	\end{align*}
+	and we are finally done.
+
+	In the ``if"-direction we could alternatively make use of the continuity of $f$, which is guaranteed by the lemma \ref{k-tone_smooth}
+
+\end{proof}
+
+Let us then complete proof by proving the lemma \ref{main_lemma}.
+
+\begin{proof}[Proof of lemma \ref{main_lemma}]
+	The proof is based on lemma TODO.
 \end{proof}
 
 TODO:
