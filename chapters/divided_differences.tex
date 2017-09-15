@@ -514,7 +514,7 @@ There is however more interesting equivalence to be made.
 	Hence it suffices to consider only tuples $(x, x, x, \ldots, y)$ where $x$ appears $n$ times. Now by the Taylor's theorem
 	\begin{align*}
 		\left|[x, x, \ldots, y]_{f}\right| &= \left|\frac{[x, x, \ldots, x]_{f} - [x, x, \ldots, y]}{x - y} \right| \\
-		&= \left|\frac{\frac{f^{(n - 1)}}{(n - 1)!} - \int_{x}^{y} \frac{f^{(n - 1)}(t) (y - t)^{n - 2}}{(n - 2)!} dt}{x - y} \right| = \\
+		&= \left|\frac{\frac{f^{(n - 1)}(x)}{(n - 1)!} - \int_{x}^{y} \frac{f^{(n - 1)}(t) (y - t)^{n - 2}}{(n - 2)!} dt}{x - y} \right| = \\
 		&= \frac{1}{(n - 2)!|y - x|^{n - 1}} \left|\int_{x}^{y} (f^{(n - 1)}(x) - f^{(n - 1)}(t)) (y - t)^{n - 2} dt \right| \\
 		&\leq \frac{\Lip(f^{(n - 1)})}{(n - 2)!} \int_{x}^{y} |x - t| |y - t|^{n - 2} dt \\
 		&= \frac{\Lip(f^{(n - 1)})}{n!},

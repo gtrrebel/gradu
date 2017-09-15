@@ -181,6 +181,80 @@ The matrix \ref{Pick_matrix} is called \textit{Pick matrix}.
 	It follows $\varphi \circ g_{n} \to \varphi$ pointwise and $\varphi \circ g_{n}$'s satisfy the already proven case. Finally, also the corresponding Pick-matrices of $\varphi \circ g_{n}$'s converge to Pick matrix of $\varphi$, hence the general case.
 \end{proof}
 
+\section{Weak characterization}
+
+Theorem \ref{pick-nevanlinna_theorem} has a converse.
+
+\begin{lause}\label{pick-nevalinna_converse}
+	If $\varphi : \Hp \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ the respective Pick matrix
+	\begin{align*}
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
+	\end{bmatrix}
+	\end{align*}
+	is positive, then $\varphi$ is a Pick function.
+\end{lause}
+
+Note that if all the Pick matrices are positive, function clearly has non-negative imaginary part. Thus we ``only" need to verify analyticity.
+
+Let's first check continuity. For this we only need positivity on $2 \times 2$-matrices.
+
+\begin{lause}
+	Let $A \subset \Hp$ and $\varphi : A \to \Hpc$ such that for any $z_{1}, z_{2} \in \Hp$ Pick matrix
+	\begin{align*}
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
+	\end{bmatrix}
+	\end{align*}
+	is positive. Then $f$ is locally Lipschitz, in particular continuity.
+\end{lause}
+\begin{proof}
+	TODO
+\end{proof}
+
+Curiosly enough, $\varphi$ is analytic as long as all its $3 \times 3$ Pick matrices are positive. This result is known as Hindmarsh's theorem.
+
+\begin{lause}
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for every $z_{1}, z_{2}, z_{3} \in \Hp$ Pick matrix
+	\begin{align*}
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & [z_{1}, \overline{z_{3}}]_{\varphi}\\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & [z_{2}, \overline{z_{3}}]_{\varphi}\\
+		[z_{3}, \overline{z_{1}}]_{\varphi} & [z_{3}, \overline{z_{2}}]_{\varphi} & [z_{3}, \overline{z_{3}}]_{\varphi}\\
+	\end{bmatrix}
+	\end{align*}
+	is positive. Then $f$ is analytic.
+\end{lause}
+\begin{proof}
+	TODO
+\end{proof}
+
+As an immediate corollary we get theorem \ref{pick-nevalinna_converse}.
+
+\begin{proof}[Proof of theorem \ref{pick-nevalinna_converse}]
+\end{proof}
+
+One might know argue that one does not need Pick matrices larger than $3 \times 3$ to talk about Pick functions. They however carry interesting ``global" information.
+
+\begin{lause}
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in U$ the respective Pick matrix
+	\begin{align*}
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
+	\end{bmatrix}
+	\end{align*}
+	is positive. Then $\varphi$ is a restriction of an unique Pick function.
+\end{lause}
+
+
+
 \section{Pick-Nevanlinna Interpolation theorem}
 
 There's another way to think about Schwarz lemma: if $\psi$ is Schur function such that $\psi(0) = 0$, then also $\psi(z)/z$ is a Schur function. One may again translate this to Pick functions, and get an interesting corollary: if $\varphi$ is a Pick function such that $\varphi(i) = i$, then also
@@ -235,211 +309,6 @@ Carrying on with this line of thinking we arrive at a surprising conclusing.
 	being positive. By inductive hypothesis this then means that there exists a Pick function $\tilde{\varphi}$ with $\tilde{\varphi}(z_{i}) = \frac{w_{i} - z_{i}}{1 + z_{i} w_{i}}$. But then $\varphi(z) = \frac{\tilde{\varphi}(z) + z}{1 - z \tilde{\varphi}(z)}$ fits the bill. TODO: general case (introduce Schur transform)
 \end{proof}
 
-
-
-
-
-
-\begin{comment}
-
-\textit{Pick-Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative real part. Such functions are sometimes also called Herglotz or $\R$ functions but we will often call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
-
-Pick functions have many interesting properties related to positive matrices and that is why they are central objects to the theory of matrix monotone functions.
-
-\section{Basic properties and examples}
-
-Most obvious examples of Pick functions might be functions of the form $\alpha z + \beta$ where $\alpha, \beta \in \R$ and $\alpha \geq 0$. Of course one could also take $\beta \in \Hpc$. Actually real constants are the only Pick functions failing to map $\Hp \to \Hp$: non-constant analytic functions are open mappings.
-
-Sum of two Pick functions is a Pick function and one can multiply a Pick function by non-negative constant to get a new Pick function. Same is true for composition.
-
-The map $z \mapsto -\frac{1}{z}$ is evidently a Pick function. Hence are also all functions of the form
-\[
-	\alpha z + \beta + \sum_{i = 1}^{N} \frac{m_{i}}{\lambda_{i}- z},
-\]
-where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$, $\beta \in \Hp$ and $\lambda_{1}, \ldots, \lambda_{N} \in \Hp$. So far we have constructed our function by adding simple poles to the closure of lower half-plane. We could further add poles of higher order at lower half plane, and change residues and so on, but then we have to be a bit more careful.
-
-There are (luckily) more interesting examples: all the functions of the form $x^{p}$ where $0 < p < 1$ are Pick functions. To be precise, one should choose branch for the previous so that they are real at positive real axis. Also $\log$ yields Pick function when branch is chosen properly i.e. naturally again. Another classic example is $tan$. Indeed, by the addition formula
-\begin{eqnarray*}
-	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
-	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
-\end{eqnarray*}
-and $y$ and $\tanh(y)$ have the same sign.
-
-We observe the following useful fact.
-
-\begin{prop}
-	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging locally uniformly, the limit function is also a Pick function.
-\end{prop}
-\begin{proof}
-	Locally uniform limits of analytic functions are analytic. Also the limit function has evidently non-negative imaginary part.
-\end{proof}
-
-This is one of the main reasons we include real constants to Pick functions, although they are exceptional in many ways. Note that for any $z \in \Hp$ we have $\log(z) = \lim_{p \to 0^{+}}(z^p - 1)/p$: $\log$ can be understood as a limit of Pick functions. There's actually a considerable strengthening of the previous result.
-
-\begin{prop}
-	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
-\end{prop}
-
-We will not prove this quite surprising result yet.
-
-\section{Schur functions}
-
-As we have noticed, Pick functions need not be injections or surjections. Some are both: simple examples are functions of the form $\alpha z + \beta$ and $\frac{\alpha}{\lambda - z} + \beta$ for $\alpha > 0$ and $\beta, \lambda \in \R$. And that's all.
-
-Before trying to understand why is that, we have to change the point of view. All the previous functions are rational functions, but even more is true: they are all Möbius transformations. Möbius transformations are analytic bijections of extended complex plane i.e. Riemann sphere, to itself. Our examples all exactly those Möbius transformation which map the extended real axis to itself, and don't change the orientation, so the upper half-plane is mapped to itself and not to the lower half-plane. When viewed as a part of the Riemann sphere, upper half-plane is just a hemisphere. Of course it shouldn't matter too much which hemisphere we are looking at, so we could also consider mappings from unit disc to itself (or closed unit disc, to be precise). These mappings are called \textit{Schur functions} and class of Schur functions is denoted by $\schurclass$. It's then natural to conjecture that bijective Schur functions are exactly the Möbius transformations which map unit circle to unit circle, and don't change the orientation so that the inside is mapped to the inside.
-
-These claims are easily derivable from each other as follows. Consider the pair of Möbius transformations
-\begin{eqnarray*}
-	\toplane : \D \to \Hp & & \toplane (z) = i \frac{1 - z}{1 + z} \\
-	\tocircle : \Hp \to \D & & \tocircle (z) = \frac{i - z}{i + z}.
-\end{eqnarray*}
-They are inverses of each other and map the (open) unit disc to upper half-plane and back, respectively. Now take any bijective Schur function $\psi : \D \to \D$. Then $\varphi = \toplane \circ \psi \circ \tocircle$ is bijective Pick function. Similarly one could invert $\psi = \tocircle \circ \varphi \circ \toplane$. This means that bijections can be paired: if all bijective Pick functions are Möbius transformations, so are all bijective Schur functions, since non-Möbiusness on one side would give rise to non-Möbiusness on the other side.
-
-Still before proving anything we should think about this relation a bit further. We noticed that every bijective Pick function has a corresponding Schur function pair. This correspondence is however by no means unique, it was merely our choice to choose such $\toplane$ and $\tocircle$. Still, there is need to restrict ourselves to bijections anymore. If one takes \textbf{any} Schur function $\psi : \D \to \D$ we can form the corresponding Pick function by taking $\varphi = \toplane \circ \psi \circ \tocircle$. This gives rise to bijection $\schurclass \to \pickclass$, and the inverse should be rather obvious by now. Of course, it's not a big surprise that there would be such bijection, that is to say that the sets are equal in size, but our bijection preserves composition of functions. All this is to say that in some sense these classes are almost the same.
-
-One should be a bit more careful here though: we have included also real constant functions to our class $\pickclass$ and we should also add unimodular constants to $\schurclass$. For these the bijection doesn't quite work; we can mostly do a natural extension, but then one would be forced to map the constant function $-1$ to the constant $\infty$. This means that we should add the constant infinity function to our Pick functions. We will not do this, as it would change the whole business to Riemann sphere, since it will bring other technical problems, but we will try to indicate when you should think about this extension.
-
-If one only thinks about composition one can of course do lot more. Take any simply connected domain in $U \subset \C$. By Riemann mapping theorem there's a analytic bijection $\toplane_{U} : \D \to U$. For the domain $U$ we could define similar class of functions, and via $\toplane_{U}$ and it's inverse we could connect the classes. Again, one should be a bit careful with the boundary.
-
-In many ways Pick and Schur functions are most natural of these classes: they are closed under addition and multiplication, respectively. Also, they both contain the identity of the respective operations, so these properties are barely true.
-
-\subsection{Automorphisms of the unit disc}
-
-As mentioned, the functions $\toplane$ and $\tocircle$ are not unique. All such mappings are however of a very simple form. If $\rho : \D \to \D$ is analytic bijection, the function $\toplane \circ \rho$ is an analytic bijection from unit disc to upper half-plane. Conversely, if $\toplane_{1}$ is an analytic bijection from unit disc to upper half-plane, $\tocircle \circ \toplane_{1}$ is an analytic bijection. Hence to understand the diversity of the analytic mappings from $\D$ to $\Hp$, we need to understand the analytic self-maps of the unit disc.
-
-All analytic bijections from the unit disc to itself, called the automorhphisms of the unit disc, are given by
-\[
-	\rho_{a, \omega}(z) = \omega \frac{a - z}{1 - \overline{a} z},
-\]
-where $a \in \D$ and $\omega \in \mathbb{S}$. We will write $\rho_{a} = \rho_{a, 1}$. As $|1 - \overline{a} z|^{2} - |a - z|^{2} = (1 + |a||z|^{2} - \overline{a} z - \overline{z} a) - (|a|^2 + |z|^2 -\overline{a} z - \overline{z} a ) = (1 - |z|^2) (1 - |a|^2)$, one readily sees that such mappings are indeed analytic bijections. Schwarz lemma explains why these are the all.
-
-\section{Schwarz lemma}
-
-At first sight one might not guess that Pick function have strong regularity properties. In some sense they however work like Schur functions, and they feel much more restrictive. If one considers a Schur function $\psi$ mapping zero to itself very classic lemma of Schwarz states that $|\psi(z)| \leq z$ for any $z \in \D$. For completeness let's review a standard proof.
-
-\begin{lause}[Schwarz lemma]
-	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$ and hence also $|\psi'(0)| \leq 1$. If $|\psi(z)| = |z|$ for some $z \in \D \setminus \{0\}$ or $|\psi'(0)| = 1$, $\psi(z) = \omega z$ for some $\omega \in \mathbb{S}$.
-\end{lause}
-\begin{proof}
-	By the assumption $\psi$ can be represented as a locally uniformly convergent power series in unit disc, of the form $\sum_{n = 1}^{\infty}a_{n} z^{n}$. Now $\psi(z)/z := \sum_{n = 0}^{\infty} a_{n + 1} z^{n}$ defines also an analytic function in unit disc. For any $0 < r < 1$, by the maximum modulus principle, we have
-	\[
-		\sup_{z \in \D(0, r)} \left|\frac{\psi(z)}{z}\right| \leq \sup_{z \in \mathbb{S}(0, r)} \left|\frac{\psi(z)}{z}\right| \leq \frac{1}{r},
-	\]
-	so by letting $r \to 1$ we get $\sup_{z \in \D} \left|\frac{\psi(z)}{z}\right| \leq 1$ and hence for any $z \in \D$
-	\[
-		|\psi(z)| \leq \left|\frac{\psi(z)}{z}\right| |z| \leq |z|
-	\]
-	TODO
-\end{proof}
-
-One might argue that this proof hides all the mysteriousness in the maximum modulus principle, which is quite surprising itself too. Maximum modulus principle can be seen as a consequence of the Cauchy's integral formula.
-
-There is somewhat better form of the Schwarz lemma, called the invariant form or Schwarz-Pick theorem.
-
-\begin{lause}[Schwarz-Pick theorem]
-	Let $\psi : \D \to \D$ be analytic. Then for any $z_{1}, z_{2} \in \D$ we have
-	\[
-		\left|\frac{\psi(z_{1}) - \psi(z_{2})}{1 - \overline{\psi(z_{1})} \psi(z_{2})} \right| \leq \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|,
-	\]
-	and
-	\[
-		\frac{\left|\psi'(z_{1})\right|}{1 - |\psi(z_{1})|^2} \leq \frac{1}{1 - |z_{1}|^2}.
-	\]
-	If the equality holds in one of the inequalities, $\psi$ is an automorphism of the unit disc. 
-\end{lause}
-
-Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One may check that if $\psi$ is indeed automorphism, the inequalities hold as equalities.
-\begin{proof}
-	Consider the map $\psi_{1} = \rho_{\psi(z_{1})} \circ \psi \circ \rho_{z_{1}}$. The claim follows by using the previous form of the Schwarz lemma for the $\psi_{1}$ and point $z_{2}$.
-\end{proof}
-
-There are many ways to think about these results. One immediate interpretation is that Schur functions are in some precise sense very rigid. Knowing a Schur function in a point immediately restricts the values the functions might attain at some other points. We could make this more precise. If we consider the points $z_{1}, z_{2}$ and the value $\psi(z_{1})$ how exactly is the value $\psi(z_{2})$ restricted? If $z_{1} = 0 = \psi(z_{1})$, we are in the original Schwarz lemma and $\psi(z_{2})$ is simply restricted in a closed disc of radius $|z_{2}|$ around $0$. More generally, the restriction is bit more subtle, but the values are still restricted in a closed disc. Indeed, the set of admissible $\psi(z_{2})$ is inverse of image of disc $\D(0, r)$, where
-\[
-	r = \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|,
-\]
-under the map $\rho_{\psi(z_{1})}$, thus a disc.
-
-Other interpretation is that we may factor Schur functions. If $\psi$ is a Schur function with $\psi(z) = 0$, then also $\frac{\psi(z)}{z}$ is a Schur function; this is the main step in the proof of Schwarz lemma. More generally, for any Schur function $\psi$, the function
-\[
-	\psi_{z_{0}}(z) = \frac{1 - \overline{z_{0}}z}{z_{0} - z} \frac{\psi(z_{0}) - \psi(z)}{1 - \overline{\psi(z_{0})} \psi(z)}
-\]
-is also a Schur function for any $z_{0} \in \D$. In particular, if $\psi(z_{0}) = 0$ for some $z_{0} \in \D$, we can write
-\[
-	\psi(z) = \frac{z - z_{0}}{1 - \overline{z_{0}} z} \psi_{z_{0}}(z).
-\]
-
-There is a correponding variant of the Schwarz-Pick theorem for the upper half-plane, for the Pick functions.
-
-\begin{lause}[Schwarz-Pick theorem for the upper half-plane]
-	Let $\varphi : \Hp \to \Hp$ be analytic. Then for any $z_{1}, z_{2} \in \Hp$ we have
-	\[
-		\left|\frac{\varphi(z_{1}) - \varphi(z_{2})}{\varphi(z_{1}) - \overline{\varphi(z_{2})}} \right| \leq \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
-	\]
-\end{lause}
-
-\begin{proof}
-	Apply the Schwarz-Pick theorem to the map $\toplane \circ \varphi \circ \tocircle$.
-\end{proof}
-
-In a way there's no natural variant of the original Schwarz lemma for the upper half-plane. Direct analogue would be to consider Pick functions with $\varphi(i) = i$, but one might wonder if this is really any simpler. The problem is that there's no canonical center to the upper half-plane, although we've been implicitely taking it as $i$ (by choosing $\toplane$ and $\tocircle$). One might however argue that there's no canonical center to the unit disc either. With automorphisms $\rho_{a}$ we may map any point of the unit disc to any other point. For any Schur function $\psi$ and $a \in \D$ we can consider the map $\rho_{a} \circ \psi \circ \rho_{a}$. TODO
-
-\subsection{Poincaré metric}
-
-There's really nice interpretation for the Schwarz-Pick theorem. The unit disc $\D$ can be equipped with a hyperbolic metric, which for any two points $z_{1}, z_{2} \in \D$ is given by
-\[
-	2 \tanh^{-1}\left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}} z_{2}}\right|.
-\]
-This is space is called Poincaré disc. One may check that the previous is indeed a metric, and automorhisms of the unit disc are exactly the isometries of this space. Now Schwarz-Pick theorem states that any Schur function decreases distances i.e. Schur functions are contractions on Poincaré disc.
-
-Because of this intepretation, we abuse the notation and write
-\[
-	\rho(z_{1}, z_{2}) := \rho_{z_{1}}(z_{2}) = \frac{z_{1} - z_{2}}{1 - \overline{z_{1}} z_{2}}.
-\]
-Now the metric is given by
-\[
-	2 \tanh^{-1} \left|\rho(z_{1}, z_{2})\right|.
-\]
-
-Analogously one could interpret that the Pick functions are contractions in Poincaré upper half-plane, metric space in upper half-plane in which the metrix is given by
-\[
-	2 \tanh^{-1}\left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}}\right|.
-\]
-
-\subsection{Pick Matrices}
-
-Schwarz-Pick theorem was about restricting Schur functions at one point. If we fix two points instead, things get more complicated. Let's say we have a Schur function $\psi$ and we know that $\psi(\frac{1}{2}) = \frac{1}{3}$ and $\psi(\frac{i}{2}) = \frac{i}{3}$. Surely there are such Schur functions, since $|\rho(\frac{1}{3}, \frac{i}{3})|^{2} = \frac{9}{41} < \frac{8}{17} = |\rho(\frac{1}{2}, \frac{i}{2})|^{2}$, but at least Schwarz-Pick theorem doesn't immediately fix such function, which it would do should we change the $\frac{1}{3}$'s to $\frac{1}{2}$. The question is: what kind of values could a Schur function attain at some other point, say at $0$.
-
-There are two immediate restrictions: values at $-\frac{1}{2}$ and $\frac{1}{2}$ restrict the value at $0$ in the intersection of two discs. The value at $-\frac{1}{2}$ restricts the value in a closed disc of radius $\frac{16}{35}$ at $-\frac{9}{35}$ and, symmetrically, the value at $\frac{1}{2}$ of radius $\frac{16}{35}$ at $\frac{9}{35}$. Considering these bounds, there's nothing in principle preventing us from having $\psi(0) = 0$. This value is however not attainable. The problem is that if $\psi(0) = 0$, then also $\tilde{\psi}(z) := \frac{\psi(z)}{z}$ should be Schur function. But $\tilde{\psi}(\frac{1}{2}) = \frac{2}{3}$ and $\tilde{\psi}(\frac{i}{2}) = \frac{2 i}{3}$. But $|\rho(\frac{2}{3}, \frac{2i}{3})|^{2} = \frac{72}{97} > |\rho(\frac{1}{2}, \frac{i}{2})|^{2}$ violating the Schwarz-Pick theorem.
-
-TODO (Introduce Pick matrices earlier)
-
-\section{Pick-Nevanlinna interpolation theorem}
-
-We have seen that the Schur functions are contractions in Poincaré disc and Pick function are contractions in Poincaré upper half-plane. Not every contraction in these spaces is however analytic. Take disc for instance. It turns out that $z \mapsto \Re(z)$ is \textbf{not} contraction in the Poincaré disc, but for small enough positive $\eps$, $z \mapsto \eps \Re(z)$ definitely is. One could immediately push this example to upper half-plane, by using the maps $\toplane$ and $\tocircle$, or do something similar from the scratch and take, say, $z \to i + \eps \Re(1 + 2 i - \frac{2 i}{z + i})$. In the both examples the philosophy is the same: the hyperbolic metric in both cases look locally like (a scaled version of) standard metric. So if we map everything to small neighbourhood everyhing behaves nicely. In the disc, this is very simple, just scale. In the upper half-plane, we can for instance first map everything to some compact set in the upper half-plane. Then break the analyticity and scale to get contractivity.
-
-\subsection{Pick Matrices}
-
-There is however rather simple characterization for Schur functions requiring a bit more than contractivity. It turns out, that the condition ``$\psi : \D \to \D$ is contraction" is equivalent to the matrix
-\[
-	\begin{bmatrix}
-		\frac{1 - |\psi(z_{1})|^{2}}{1 - |z_{1}|^{2}} & \frac{1 - \overline{\psi(z_{1})} \psi(z_{2})}{1 - \overline{z_{1}} z_{2}} \\
-		\frac{1 - \overline{\psi(z_{2})} \psi(z_{1})}{1 - \overline{z_{2}} z_{1}} & \frac{1 - |\psi(z_{2})|^{2}}{1 - |z_{2}|^{2}}
-	\end{bmatrix}
-\]
-being positive. Such matrix is called Pick matrix. Conveniently, even the condition ``$\psi$ maps $\D$ to itself" is built-in in the positivity. This is not entirely obvious but it may straighforwardly, although tediously verified by checking that the Schwarz-Pick inequality is equivalent to the determinant of the Pick matrix being non-negative.
-
-Similarly, for any sequence of say $n$ points in the unit disc we may form the matrix
-\[
-	\begin{bmatrix}
-		\frac{1 - |\psi(z_{1})|^{2}}{1 - |z_{1}|^{2}} & \frac{1 - \overline{\psi(z_{1})} \psi(z_{2})}{1 - \overline{z_{1}} z_{2}} & \cdots & \frac{1 - \overline{\psi(z_{1})} \psi(z_{n})}{1 - \overline{z_{1}} z_{n}} \\
-		\frac{1 - \overline{\psi(z_{2})} \psi(z_{1})}{1 - \overline{z_{2}} z_{1}} & \frac{1 - |\psi(z_{2})|^{2}}{1 - |z_{2}|^{2}} & \cdots & \frac{1 - \overline{\psi(z_{2})} \psi(z_{n})}{1 - \overline{z_{2}} z_{n}} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		\frac{1 - \overline{\psi(z_{n})} \psi(z_{1})}{1 - \overline{z_{n}} z_{1}} & \frac{1 - \overline{\psi(z_{n})} \psi(z_{2})}{1 - \overline{z_{n}} z_{2}} & \cdots &  \frac{1 - |\psi(z_{n})|^{2}}{1 - |z_{n}|^{2}}
-	\end{bmatrix}
-\]
-
-\end{comment}
-
 TODO:
 \begin{itemize}
 	\item Poincaré metric: discs are discs, Apollonius circle
@@ -451,5 +320,6 @@ TODO:
 	\item Examples of representing measures behind functions and functions behind representing measures
 	\item ``Pointed" Pick-Nevanlinna interpolation: two proofs (one with Pick-Nevanlinna, one with congretely extending)
 	\item Spectral commutant lifting theorem
+	\item Use Morera's theorem to prove Hindmarsh's theorem
 \end{itemize}
 
