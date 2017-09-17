@@ -218,7 +218,7 @@ Let's first check continuity. For this we only need positivity on $2 \times 2$-m
 
 Curiosly enough, $\varphi$ is analytic as long as all its $3 \times 3$ Pick matrices are positive. This result is known as Hindmarsh's theorem.
 
-\begin{lause}
+\begin{lause}\label{Hindmarsh_theorem}
 	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for every $z_{1}, z_{2}, z_{3} \in \Hp$ Pick matrix
 	\begin{align*}
 	\begin{bmatrix}
@@ -238,7 +238,7 @@ As an immediate corollary we get theorem \ref{pick-nevalinna_converse}.
 \begin{proof}[Proof of theorem \ref{pick-nevalinna_converse}]
 \end{proof}
 
-One might know argue that one does not need Pick matrices larger than $3 \times 3$ to talk about Pick functions. They however carry interesting ``global" information.
+One might now argue that one does not need Pick matrices larger than $3 \times 3$ to talk about Pick functions. They however carry interesting ``global" information.
 
 \begin{lause}
 	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in U$ the respective Pick matrix
@@ -252,6 +252,146 @@ One might know argue that one does not need Pick matrices larger than $3 \times 
 	\end{align*}
 	is positive. Then $\varphi$ is a restriction of an unique Pick function.
 \end{lause}
+
+This tells us that we may recognise Pick functions from local information. To prove the theorem, we first introduce the notion of \textit{Pick point}.
+
+\begin{maar}
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. We say that $z \in U$ is Pick point of $\varphi$, if $\varphi$ is analytic at $z$ and the $n \times n$ matrix
+	\begin{align*}
+	\begin{bmatrix}
+		[z, \overline{z}]_{\varphi} & [z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
+		[z, z \overline{z}]_{\varphi} & [z, z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		[z, z, \ldots, z, \overline{z}]_{\varphi} & [z, z, \ldots, z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, z, \ldots, z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
+	\end{bmatrix}
+	\end{align*}
+	is positive for every $n$.
+\end{maar}
+
+Where does this definition come from? The idea is to answer the question: what does it mean the Pick matrices to be non-negative at a single point, say $z_{0}$? In the definition of Pick matrix we could let all the variables be equal and conclude that the matrix
+\begin{align*}
+\begin{bmatrix}
+	[z_{0}, \overline{z_{0}}]_{\varphi} & [z_{0}, \overline{z_{0}}]_{\varphi} & \cdots & [z_{0}, \overline{z_{0}}]_{\varphi} \\
+	[z_{0}, \overline{z_{0}}]_{\varphi} & [z_{0}, \overline{z_{0}}]_{\varphi} & \cdots & [z_{0}, \overline{z_{0}}]_{\varphi} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	[z_{0}, \overline{z_{0}}]_{\varphi} & [z_{0}, \overline{z_{0}}]_{\varphi} & \cdots &  [z_{0}, \overline{z_{0}}]_{\varphi}
+\end{bmatrix}
+\end{align*}
+is positive, but this would only tell us that $[z_{0}, \overline{z_{0}}]_{\varphi}$ is non-negative. We need derivatives.
+
+The idea is to $*$-conjugate the Pick matrix first. Say $n = 2$. If we subtract first row from the second in the Pick matrix
+\begin{align*}
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
+	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
+\end{bmatrix}
+\end{align*}
+we get
+\begin{align*}
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
+	[z_{2}, \overline{z_{1}}]_{\varphi} - [z_{1}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} - [z_{1}, \overline{z_{2}}]_{\varphi}\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
+	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{2}}]_{\varphi}
+\end{bmatrix}.
+\end{align*}
+Now subtracting first column from the second results in
+\begin{align*}
+&\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} - [z_{1}, \overline{z_{1}}]_{\varphi}\\
+	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{2}}]_{\varphi} - (z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi}
+\end{bmatrix} \\
+=&
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & \overline{(z_{2} - z_{1})}[z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
+	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1}) \overline{(z_{2} - z_{1})}[z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
+\end{bmatrix}.
+\end{align*}
+In the language of matrices this really says that
+\begin{align*}
+&\begin{bmatrix}
+	1 & 0 \\
+	-1 & 1
+\end{bmatrix}
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
+	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
+\end{bmatrix}
+\begin{bmatrix}
+	1 & -1 \\
+	0 & 1
+\end{bmatrix} \\
+= &
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & \overline{(z_{2} - z_{1})}[z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
+	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1}) \overline{(z_{2} - z_{1})}[z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
+\end{bmatrix} \\
+= &
+\begin{bmatrix}
+	1 & 0 \\
+	0 & (z_{2} - z_{1})
+\end{bmatrix}
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
+	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
+\end{bmatrix}
+\begin{bmatrix}
+	1 & 0 \\
+	0 & \overline{(z_{2} - z_{1})}
+\end{bmatrix}:
+\end{align*}
+Matrices
+\begin{align*}
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
+	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
+\end{bmatrix}
+\text{ and }
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
+	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
+\end{bmatrix}
+\end{align*}
+are congruent.
+
+Generalizing this argument we see that the matrices
+\begin{gather*}
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
+	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
+\end{bmatrix} \\
+\text{ and } \\
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
+	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	[z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi}
+\end{bmatrix}
+\end{gather*}
+are congruent. We hence conclude the following.
+
+\begin{lem}
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$. Assume that for some $r > 0$, for every $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in \D(z_{0}, r) \cap U$ the respective Pick matrix is positive. Then $z_{0}$ is Pick point of $\varphi$.
+\end{lem}
+\begin{proof}
+	By theorem \ref{Hindmarsh_theorem} $\varphi$ is analytic at $z_{0}$. By previous observation all the matrices of the form
+\begin{align}\label{extended_dobsch_matrix}
+\begin{bmatrix}
+	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
+	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	[z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi}
+\end{bmatrix}
+\end{align}
+are positive. By letting $z_{1}, z_{2}, \ldots, z_{n} \to z_{0}$ we get the claim.
+\end{proof}
+Matrix \ref{extended_dobsch_matrix} is called \textit{extended Pick matrix}.
+
 
 
 
@@ -321,5 +461,6 @@ TODO:
 	\item ``Pointed" Pick-Nevanlinna interpolation: two proofs (one with Pick-Nevanlinna, one with congretely extending)
 	\item Spectral commutant lifting theorem
 	\item Use Morera's theorem to prove Hindmarsh's theorem
+	\item Idea: first prove Pick-Nevanlinna with Pick points, then consider general sets and use proof with extensions to balls. Finally do usual prove with compactness.
 \end{itemize}
 
