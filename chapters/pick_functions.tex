@@ -240,7 +240,7 @@ As an immediate corollary we get theorem \ref{pick-nevalinna_converse}.
 
 One might now argue that one does not need Pick matrices larger than $3 \times 3$ to talk about Pick functions. They however carry interesting ``global" information.
 
-\begin{lause}
+\begin{lause}\label{open_pick_nevanlinna}
 	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in U$ the respective Pick matrix
 	\begin{align*}
 	\begin{bmatrix}
@@ -392,8 +392,40 @@ are positive. By letting $z_{1}, z_{2}, \ldots, z_{n} \to z_{0}$ we get the clai
 \end{proof}
 Matrix \ref{extended_dobsch_matrix} is called \textit{extended Pick matrix}.
 
+The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we try to make every point in $\Hp$ is Pick point of $\varphi$. For this we need two lemmas. first one says that if point is a Pick point of $\varphi$, then $\varphi$ can be extended to a reasonable large disc around $z_{0}$, which is really say that the Taylor coefficients of $\varphi$ at $z_{0}$ don't grow too fast. Second one tells us that if managed to extend function to such disc, then all the points in the disc are Pick points.
 
+\begin{lem}
+	There exists absolute constant $c_{0}$ with the following property: Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that $z_{0} \in U$ is a Pick point of $U$. Then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, c_{0} \Im(z_{0}))$. One may take $c_{0} = ?$.
+\end{lem}
+\begin{proof}
+	TODO
+\end{proof}
 
+\begin{lem}
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$ and $r > 0$. Assume that $z_{0}$ is Pick point of $\varphi$ and $\varphi$ is analytic in $\D(z_{0}, r)$. Then all Pick matrices of $\varphi$ are positive on $\D(z_{0}, r)$. Consequently, all the points in $\D(z_{0}, r)$ are Pick points of $z_{0}$.
+\end{lem}
+\begin{proof}
+	TODO.
+\end{proof}
+
+\begin{proof}[Proof of theorem \ref{open_pick_nevanlinna}]
+	Consider all open sets $U \subset V \subset \Hp$ such that $\varphi$ may be extended to $V$ so that all the points of $V$ are Pick points of $\varphi$ (or the extension thereof). These sets trivially satisfy conditions of Zorn's lemma (where partial order is given by inclusion) so we may Pick maximal such set, $V$. We claim that this set is $\Hp$. If not, we may pick a point $z_{0}$ in $\Hp \cap \partial V$. Now pick $z \in V$ such that $|z - z_{0}| < \Im(z_{0}) c_{0}$: we may extend $\varphi$ now further to $\D(z_{0}, c_{0} \Im(z_{0}))$ by Taylor series and all points in the extension are Pick points, which contradicts the maximality.
+
+	There is fundamental flaw with the second argument: when we extend $\varphi$ with Taylor series, how do we know that these extensions are consistent? If original set $U$ was, say, disjoint union of two discs, and Taylor series centered at a point of one disc would converge also at (some part of) other disc, how do we know that the Taylor series converges to the predefined values in the one disc? This is not at all clear.
+
+	If $U$ is disc or more generally domain, we can use the monodromy theorem to show that this kind of extension is indeed possible. Indeed, upper half-plane is simply connected and by the previous lemmas we can continue $\varphi$ along any path. This, however, still doesn't fix the problem with two disjoint discs.
+
+	We can salvage the proof by improving the second lemma.
+
+	\begin{lem}
+		Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that all the Pick matrices of $\varphi$ are positive on $U$ and that for some $z_{0} \in U$ and $r > 0$ the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, r)$. Then the values of Taylor series in $\D(z_{0}, r) \cap U$ coincide with $\varphi$ and the Pick matrices of the resulting extension are also positive in the whole of $U \cup \D(z_{0}, r)$.
+	\end{lem}
+	\begin{proof}
+		TODO
+	\end{proof}
+
+	Now the Zorn's lemma works if we change the condition a bit: we look at all the open supersets of $U$, $V$'s such that there exists extension of $\varphi$ to $V$ in such a way that all the Pick matrices of the extension are positive in $V$.
+\end{proof}
 
 \section{Pick-Nevanlinna Interpolation theorem}
 
