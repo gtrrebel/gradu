@@ -36,7 +36,7 @@ This is one of the main reasons we include real constants to Pick functions, alt
 
 There's a considerable strengthening of the previous result.
 
-\begin{prop}
+\begin{prop}\label{pick_convergence}
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
@@ -185,7 +185,7 @@ The matrix \ref{Pick_matrix} is called \textit{Pick matrix}.
 
 Theorem \ref{pick-nevanlinna_theorem} has a converse.
 
-\begin{lause}\label{pick-nevalinna_converse}
+\begin{lause}\label{pick-nevanlinna_converse}
 	If $\varphi : \Hp \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ the respective Pick matrix
 	\begin{align*}
 	\begin{bmatrix}
@@ -202,7 +202,7 @@ Note that if all the Pick matrices are positive, function clearly has non-negati
 
 Let's first check continuity. For this we only need positivity on $2 \times 2$-matrices.
 
-\begin{lause}
+\begin{lause}\label{pick_continuity_lemma}
 	Let $A \subset \Hp$ and $\varphi : A \to \Hpc$ such that for any $z_{1}, z_{2} \in \Hp$ Pick matrix
 	\begin{align*}
 	\begin{bmatrix}
@@ -210,7 +210,7 @@ Let's first check continuity. For this we only need positivity on $2 \times 2$-m
 		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
 	\end{bmatrix}
 	\end{align*}
-	is positive. Then $f$ is locally Lipschitz, in particular continuity.
+	is positive. Then $f$ is locally Lipschitz, in particular continuous.
 \end{lause}
 \begin{proof}
 	TODO
@@ -233,12 +233,19 @@ Curiosly enough, $\varphi$ is analytic as long as all its $3 \times 3$ Pick matr
 	TODO
 \end{proof}
 
-As an immediate corollary we get theorem \ref{pick-nevalinna_converse}.
+As an immediate corollary we get theorem \ref{pick-nevanlinna_converse}.
 
-\begin{proof}[Proof of theorem \ref{pick-nevalinna_converse}]
+\begin{proof}[Proof of theorem \ref{pick-nevanlinna_converse}]
+If all Pick matrices are positive, so are all $3 \times 3$ Pick matrices.
 \end{proof}
 
-One might now argue that one does not need Pick matrices larger than $3 \times 3$ to talk about Pick functions. They however carry interesting ``global" information.
+We can hence characterize Pick functions purely with Pick matrices, without limits and concerns of regularity, ``weakly". As an immediate corollary we get proposition \ref{pick_convergence}.
+
+\begin{proof}[Proof of theorem \ref{pick_convergence}]
+Pointwise limits preserve positivity of the Pick matrices.
+\end{proof}
+
+One might still go even further and argue that one does not need Pick matrices larger than $3 \times 3$ to talk about Pick functions. They however carry interesting ``global" information.
 
 \begin{lause}\label{open_pick_nevanlinna}
 	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in U$ the respective Pick matrix
@@ -343,7 +350,7 @@ In the language of matrices this really says that
 	0 & \overline{(z_{2} - z_{1})}
 \end{bmatrix}:
 \end{align*}
-Matrices
+matrices
 \begin{align*}
 \begin{bmatrix}
 	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
@@ -424,10 +431,47 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 		TODO
 	\end{proof}
 
-	Now the Zorn's lemma works if we change the condition a bit: we look at all the open supersets of $U$, $V$'s such that there exists extension of $\varphi$ to $V$ in such a way that all the Pick matrices of the extension are positive in $V$.
+	Now the Zorn's lemma works if we change the condition a bit: we look at all the extensions of $\varphi$ to open subsets of upper half-plane for which all the Pick matrices are positive.
 \end{proof}
 
+Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture) and the lemmas would guarantee that we can always both extend further and extensions are always consistent.
+
 \section{Pick-Nevanlinna Interpolation theorem}
+
+One can still considerably strenghten theorem \ref{open_pick_nevanlinna}: instead of open set, domain of $\varphi$ could be any set. Then we don't in general have unique extension. This is the content of Pick-Nevanlinna interpolation theorem.
+
+\begin{lause}[Pick-Nevanlinna interpolation theorem]\label{pick_nevanlinna_interpolation}
+	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in A$ the respective Pick matrix is positive. Then $\varphi$ is a restriction of a Pick function to $A$.
+\end{lause}
+
+In the general setting we can't use Taylor series to extend the function anymore, but it turns out that this is not too big of a problem. The idea is again to extend $\varphi$ to larger and larger sets. Note that to do this we only need to be able to extend $\varphi$ to one new point so that all Pick matrices are again positive: we can then use the Zorn's lemma -trick again.
+
+\begin{lem}\label{pick_extension_lemma}
+	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in A$ the respective Pick matrix is positive. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also all the Pick matrices of the extension are positive.
+\end{lem}
+\begin{proof}
+	Let's first consider the case of finite $A$. TODO
+
+	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we now that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed ball. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But this means that the family
+	\begin{align*}
+		\{W_{F} \subset \Hp | \text{$F$ is finite (non-empty) subset of $A$} \}
+	\end{align*}
+	has finite intersection property, and since it's members are compact, we know that they have non-empty intersection. This intersection is the place where we find the $w_{0}$.
+\end{proof}
+
+\begin{proof}[Proof of theorem \ref{pick_nevanlinna_interpolation}]
+Let us consider the set all of extensions of $\varphi$ for which all the Pick matrices are positive, ordered by restriction. This family trivially satisfies conditions of the Zorn's lemma, so there's a maximal element, $\varphi_{0}$. But by the previous lemma $\varphi_{0}$ must be defined in the whole upper half-plane, since if not, we could extend it to one more point. Finally, by theorem \ref{pick-nevanlinna_converse} the resulting map is Pick function.
+\end{proof}
+
+Again, one doesn't really need the Zorn's lemma.
+
+\begin{proof}[Alternate proof of theorem \ref{pick_nevanlinna_interpolation}]
+	If $\Hp \setminus A$ is finite, simply apply lemma \ref{pick_extension_lemma} repeatedly. If not, we may pick a countable dense set in $C \subset \Hp \setminus A$ and extend $\varphi$ there. As a result we get a map in a dense subset of upper half-plane, which is continuous by lemma \ref{pick_continuity_lemma}. This means that we have continuous extension to whole upper half-plane, and by continuity also all the Pick matrices of the extension are positive. Finally, by theorem \ref{pick-nevanlinna_converse} the final extension is a Pick function.
+\end{proof}
+
+\section{Schur transform}
+
+TODO: relationship matrix and Pick function phenomena (cone structure, Hadamard product, Schur factors, composition with automorphisms)
 
 There's another way to think about Schwarz lemma: if $\psi$ is Schur function such that $\psi(0) = 0$, then also $\psi(z)/z$ is a Schur function. One may again translate this to Pick functions, and get an interesting corollary: if $\varphi$ is a Pick function such that $\varphi(i) = i$, then also
 \[
@@ -494,5 +538,6 @@ TODO:
 	\item Spectral commutant lifting theorem
 	\item Use Morera's theorem to prove Hindmarsh's theorem
 	\item Idea: first prove Pick-Nevanlinna with Pick points, then consider general sets and use proof with extensions to balls. Finally do usual prove with compactness.
+	\item Compactness and Pick matrices?
 \end{itemize}
 
