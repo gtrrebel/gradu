@@ -622,7 +622,7 @@ One can solve $M$ from \ref{schur_complement} to arrive at so-called \textit{LDL
 	\end{bmatrix}.
 \end{align}
 
-\section{Loewner Order}
+\section{Loewner order}
 
 \begin{maar}
 	If $A, B \in \H(V)$, we write that $A \leq B$ ($A$ is smaller than $B$) if $B - A \geq 0$, $B - A$ is positive. If $B - A$ is strictly positive, we write $A < B$.
@@ -755,9 +755,45 @@ holds for eigenvectors $v$ of $|A + B|$. Summing over the eigenvector we see tha
 \]
 so instead of the full inequality, we get inequality for traces. There is a nice generalization for the previous we'll get back to.
 
-\section{Loewner order and eigenvalues}
+\section{Eigenvalue inequalities}
 
-TODO
+There's great deal of things to be said about relationship between eigenvalues and Loewner order. Let's denote the eigenvalues of real map $A$ by $\lambda_{1}(A) \geq \lambda_{2} \geq \ldots \geq \lambda_{n}(A)$. One of the most basic result is the following.
+
+\begin{prop}
+	Assume that $A \leq B$. Then for any $1 \leq k \leq n$ we have $\lambda_{k}(A) \leq \lambda_{k}(B)$.
+\end{prop}
+\begin{proof}
+	We first claim that $A$ has at most as many non-negative eigenvalues as $B$: if we manage to do this, we can apply the observation for the maps $A - \lambda I$ and $B - \lambda I$ and conclude that $B$ has at least $k$ eigenvalues in $[\lambda_{k}(A), \infty)$, which implies that $\lambda_{k}(A) \leq \lambda_{k}(B)$.
+
+	To prove the claim note that if $A$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's restriction to some $k$-dimensional subspace is positive. But then also the restriction of $B$ to this subspace is positive, so also $B$ has at least $k$ non-negative eigenvalues.
+\end{proof}
+
+In general that's all one can say: if numbers $a_{1} \geq a_{2} \geq \ldots a_{n}$ and $b_{1} \geq b_{2} \geq \ldots \geq b_{n}$ satisfy $a_{k} \leq b_{k}$, then we can definitely find $A$ and $B$ with $A \leq B$ and $a_{i}$'s and $b_{i}$'s as eigenvalues: simply take $A = \sum_{i = 1}^{n} a_{i} P_{e_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{e_{i}}$ where $(e_{i})_{i = 1}^{n}$ is an orthonormal basis.
+
+Eigenvalues work also desirably with restriction.
+
+\begin{prop}
+	If $A \in \H^{n}(V)$ and $W \subset V$ is of dimension $n - 1$, then we have
+	\begin{align*}
+		\lambda_{1}(A) \geq \lambda_{1}(\arestr{A}{W}) \geq \lambda_{2}(A) \geq \lambda_{2}(\arestr{A}{W}) \geq \ldots \geq \lambda_{n - 1}(A) \geq \lambda_{n - 1}(\arestr{A}{W}) \geq \lambda_{n}(A).
+	\end{align*}
+\end{prop}
+
+\begin{proof}
+	We use the same appoach and first prove that $A$ has at least as many non-negative eigenvalues as $\arestr{A}{W}$: again if we know this, we get inequalities of the form $\lambda_{k}(A) \geq \lambda_{k}(\arestr{A}{W})$. Then applying the idea for the $-A$, we get the reverse inequalities, and finally the complete chain.
+
+	To prove the claim, note again that if $\arestr{A}{W}$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's restriction to some $k$-dimensional subspace is positive. But then also restriction of $A$ to this same subspace is positive and hence it has $k$ non-negative eigenvalues.
+\end{proof}
+
+Again one can prove that this result is strongest possible, but the proof is lot more involved.
+
+\begin{prop}
+	For any $a_{1} \geq b_{1} \geq a_{2} \geq \ldots b_{n - 1} \geq a_{n}$ we may find $A \in \H^{n}(V)$ with $a_{i}$'s as spectra and $(n - 1)$-dimensional subspace $W$ of $V$ such that eigenvalues of $\arestr{A}{W}$ are the $b_{i}$'s.
+\end{prop}
+
+\begin{proof}
+	TODO.
+\end{proof}
 
 \section{Notes and references}
 
