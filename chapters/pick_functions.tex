@@ -417,42 +417,48 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 
 \begin{proof}[Proof of theorem \ref{open_pick_nevanlinna}]
 	Consider all open sets $U \subset V \subset \Hp$ such that $\varphi$ may be extended to $V$ so that all the points of $V$ are Pick points of $\varphi$ (or the extension thereof). These sets trivially satisfy conditions of Zorn's lemma (where partial order is given by inclusion) so we may Pick maximal such set, $V$. We claim that this set is $\Hp$. If not, we may pick a point $z_{0}$ in $\Hp \cap \partial V$. Now pick $z \in V$ such that $|z - z_{0}| < \Im(z_{0}) c_{0}$: we may extend $\varphi$ now further to $\D(z_{0}, c_{0} \Im(z_{0}))$ by Taylor series and all points in the extension are Pick points, which contradicts the maximality.
-
-	There is fundamental flaw with the second argument: when we extend $\varphi$ with Taylor series, how do we know that these extensions are consistent? If original set $U$ was, say, disjoint union of two discs, and Taylor series centered at a point of one disc would converge also at (some part of) other disc, how do we know that the Taylor series converges to the predefined values in the one disc? This is not at all clear.
-
-	If $U$ is disc or more generally domain, we can use the monodromy theorem to show that this kind of extension is indeed possible. Indeed, upper half-plane is simply connected and by the previous lemmas we can continue $\varphi$ along any path. This, however, still doesn't fix the problem with two disjoint discs.
-
-	We can salvage the proof by improving the second lemma.
-
-	\begin{lem}
-		Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that all the Pick matrices of $\varphi$ are positive on $U$ and that for some $z_{0} \in U$ and $r > 0$ the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, r)$. Then the values of Taylor series in $\D(z_{0}, r) \cap U$ coincide with $\varphi$ and the Pick matrices of the resulting extension are also positive in the whole of $U \cup \D(z_{0}, r)$.
-	\end{lem}
-	\begin{proof}
-		TODO
-	\end{proof}
-
-	Now the Zorn's lemma works if we change the condition a bit: we look at all the extensions of $\varphi$ to open subsets of upper half-plane for which all the Pick matrices are positive.
 \end{proof}
 
+There is fundamental flaw with the second argument: when we extend $\varphi$ with Taylor series, how do we know that these extensions are consistent? If original set $U$ was, say, disjoint union of two discs, and Taylor series centered at a point of one disc would converge also at (some part of) other disc, how do we know that the Taylor series converges to the predefined values in the one disc? This is not at all clear.
+
+If $U$ is disc or more generally domain, we can use the monodromy theorem to show that this kind of extension is indeed possible. Indeed, upper half-plane is simply connected and by the previous lemmas we can continue $\varphi$ along any path. This, however, still doesn't fix the problem with two disjoint discs.
+
+We can salvage the proof by improving the second lemma. We have to somehow remember the information of the positivity of all the Pick matrices, otherwise we might run into problem. Let's have notion for this.
+
+\begin{maar}
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. We call $\varphi$ \textit{weakly Pick}, or say it is \textit{weak Pick function} if all its Pick matrices are positive.
+\end{maar}
+
+\begin{lem}
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ weakly Pick. Assume that for some $z_{0} \in U$ and $r > 0$ the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, r)$. Then the values of Taylor series in $\D(z_{0}, r) \cap U$ coincide with $\varphi$ and the resulting extension is weakly Pick in $U \cup \D(z_{0}, r)$.
+\end{lem}
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{proof}[Fix of the proof of theorem \ref{open_pick_nevanlinna}]
+Now the Zorn's lemma works if we change the condition a bit: we look at all the extensions of $\varphi$ to open subsets of upper half-plane for which all the Pick matrices are positive.
+
 Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture) and the lemmas would guarantee that we can always both extend further and extensions are always consistent.
+\end{proof}
 
 \section{Pick-Nevanlinna Interpolation theorem}
 
 One can still considerably strenghten theorem \ref{open_pick_nevanlinna}: instead of open set, domain of $\varphi$ could be any set. Then we don't in general have unique extension. This is the content of Pick-Nevanlinna interpolation theorem.
 
 \begin{lause}[Pick-Nevanlinna interpolation theorem]\label{pick_nevanlinna_interpolation}
-	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in A$ the respective Pick matrix is positive. Then $\varphi$ is a restriction of a Pick function to $A$.
+	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ weakly Pick. Then $\varphi$ is a restriction of a Pick function to $A$.
 \end{lause}
 
-In the general setting we can't use Taylor series to extend the function anymore, but it turns out that this is not too big of a problem. The idea is again to extend $\varphi$ to larger and larger sets. Note that to do this we only need to be able to extend $\varphi$ to one new point so that all Pick matrices are again positive: we can then use the Zorn's lemma -trick again.
+Note that the notion of weak Pick functions makes perfect sense in this more general setting. In the general setting we can't use Taylor series to extend the function anymore, but it turns out that this is not too big of a problem. The idea is again to extend $\varphi$ to larger and larger sets. Note that to do this we only need to be able to extend $\varphi$ to one new point so that all Pick matrices are again positive: we can then use the Zorn's lemma -trick again.
 
 \begin{lem}\label{pick_extension_lemma}
-	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in A$ the respective Pick matrix is positive. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also all the Pick matrices of the extension are positive.
+	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
 \end{lem}
 \begin{proof}
 	Let's first consider the case of finite $A$. TODO
 
-	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we now that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed ball. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But this means that the family
+	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we know that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed ball. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But this means that the family
 	\begin{align*}
 		\{W_{F} \subset \Hp | \text{$F$ is finite (non-empty) subset of $A$} \}
 	\end{align*}
@@ -460,7 +466,7 @@ In the general setting we can't use Taylor series to extend the function anymore
 \end{proof}
 
 \begin{proof}[Proof of theorem \ref{pick_nevanlinna_interpolation}]
-Let us consider the set all of extensions of $\varphi$ for which all the Pick matrices are positive, ordered by restriction. This family trivially satisfies conditions of the Zorn's lemma, so there's a maximal element, $\varphi_{0}$. But by the previous lemma $\varphi_{0}$ must be defined in the whole upper half-plane, since if not, we could extend it to one more point. Finally, by theorem \ref{pick-nevanlinna_converse} the resulting map is Pick function.
+Let us consider the set of all weakly Pick extensions of $\varphi$, ordered by restriction. This family trivially satisfies conditions of the Zorn's lemma, so there's a maximal element, $\varphi_{0}$. But by the previous lemma $\varphi_{0}$ must be defined in the whole upper half-plane, since if not, we could extend it to one more point. Finally, by theorem \ref{pick-nevanlinna_converse} the resulting map is Pick function.
 \end{proof}
 
 Again, one doesn't really need the Zorn's lemma.
@@ -471,12 +477,27 @@ Again, one doesn't really need the Zorn's lemma.
 
 \section{Schur transform}
 
-TODO: relationship matrix and Pick function phenomena (cone structure, Hadamard product, Schur factors, composition with automorphisms)
+Properties of Pick functions translate nicely to those of positive maps. Most obvious of these properties is the cone structure: Pick matrix is linear in the function. The automorphims of the upper half-plane correspond to one dimensional projections. Indeed, Pick matrix of map of the form $z \mapsto \frac{a z + b}{c z + d}$ is given by
+\begin{align*}
+	\left[\frac{\frac{a z_{i} + b}{c z_{i} + d} - \frac{a \overline{z_{j}} + b}{c \overline{z_{j}} + d}}{z_{i} - \overline{z_{j}}}\right]_{i, j = 1}^{n}
+	=
+	\left[\frac{a d - bc}{(c z_{i} + d) (c \overline{z_{i}} + d)}\right]_{i, j = 1}^{n},
+\end{align*}
+which is of rank $1$. Composition corresponds to Hadamard product: if $\varphi = \varphi_{2} \circ \varphi_{1}$, we have
+\begin{align*}
+	\left[\frac{\varphi(z_{i}) - \overline{\varphi(z_{j})}}{z_{i} - \overline{z_{j}}}\right]_{i, j = 1}^{n}
+	=
+	\left[\frac{\varphi_{2}(\varphi_{1}(z_{i})) - \overline{\varphi_{2}(\varphi_{1}(z_{j}))}}{\varphi_{1}(z_{i}) - \overline{\varphi_{1}(z_{j})}}\right]_{i, j = 1}^{n}
+	\circ
+	\left[\frac{\varphi_{1}(z_{i}) - \overline{\varphi_{1}(z_{j})}}{z_{i} - \overline{z_{j}}}\right]_{i, j = 1}^{n}.
+\end{align*}
 
-There's another way to think about Schwarz lemma: if $\psi$ is Schur function such that $\psi(0) = 0$, then also $\psi(z)/z$ is a Schur function. One may again translate this to Pick functions, and get an interesting corollary: if $\varphi$ is a Pick function such that $\varphi(i) = i$, then also
-\[
+There's however more subtle connection, one between Schur transform and, rather appropriately, Schur complement.
+
+If $\psi$ is Schur function such that $\psi(0) = 0$, then, by the Schwarz lemma, also $\psi(z)/z$ is a Schur function. One may again translate this to Pick functions, and get an interesting corollary: if $\varphi$ is a Pick function such that $\varphi(i) = i$, then also
+\begin{align*}
 	\frac{\varphi(z) - z}{1 + z \varphi(z)}
-\]
+\end{align*}
 is a Pick function. Actually, this gives a bijection between Pick functions and Pick functions with $\varphi(i) = i \ldots$ almost: $z \mapsto -\frac{1}{z}$ would like to map to constant infinity.
 
 We could form similar bijection for any pair $(z, w) \in \H_{+}^{2}$: Pick functions for which $\varphi(z) = w$.
@@ -500,44 +521,50 @@ being positive. But if one applies the theorem to the function $\frac{\varphi(z)
 \begin{align*}
 	\left(\frac{[z_{i}, \overline{z_{j}}]_{\varphi} (z_{i} \overline{z_{j}} + 1) - 1 - \varphi(z_{i}) \overline{\varphi(z_{j})}}{(1 + z_{i} \varphi(z_{i}))(1 + \overline{z_{j}} \overline{\varphi(z_{j})})}\right)_{1 \leq i, j \leq n}.
 \end{align*}
-Two resulting matrices are evidently congruent. TODO
+Two resulting matrices are evidently congruent.
 
-Carrying on with this line of thinking we arrive at a surprising conclusing.
+This line of thinking leads to alternate proof for the Pick-Nevanlinna interpolation theorem for finite domain $A$.
 
-\begin{lause}[Pick-Nevanlinna interpolation theorem]
-	Let $(z_{i})_{1 \leq i \leq n}$ and $(w_{i})_{1 \leq i \leq n}$ be two sequences of points in $\H_{+}$. Then there exists a Pick function $\varphi$ such that $\varphi(z_{i}) = w_{i}$, if and only if the matrix
-	\[
-		\begin{bmatrix}
-		\frac{w_{1} - \overline{w_{1}}}{z_{1} - \overline{z_{1}}} & \frac{w_{1} - \overline{w_{2}}}{z_{1} - \overline{z_{2}}} & \cdots & \frac{w_{1} - \overline{w_{n}}}{z_{1} - \overline{z_{n}}} \\
-		\frac{w_{2} - \overline{w_{1}}}{z_{2} - \overline{z_{1}}} & \frac{w_{2} - \overline{w_{2}}}{z_{2} - \overline{z_{2}}} & \cdots & \frac{w_{2} - \overline{w_{n}}}{z_{2} - \overline{z_{n}}} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		\frac{w_{n} - \overline{w_{1}}}{z_{n} - \overline{z_{1}}} & \frac{w_{n} - \overline{w_{2}}}{z_{n} - \overline{z_{2}}} & \cdots &  \frac{w_{n} - \overline{w_{n}}}{z_{n} - \overline{z_{n}}}
-		\end{bmatrix}
-	\]
-	is positive.
-\end{lause}
-
-\begin{proof}
-	One direction is the theorem \ref{pick-nevanlinna_theorem}. For the other direction we proceed by induction. If $z_{1} = i = w_{1}$, we just noted that this matrix being positive is equivalent to smaller matrix, namely
+\begin{proof}[Alternate proof of \ref{pick_nevanlinna_interpolation} for finite $A$]
+	We proceed by induction. If $z_{1} = i = w_{1}$, we just noted that this matrix being positive is equivalent to smaller matrix, namely
 	\[
 		\left(\frac{\frac{w_{i} - z_{i}}{1 + z_{i} w_{i}} - \frac{\overline{w_{i}} - \overline{z_{i}}}{1 + \overline{z_{i}} \overline{w_{i}}}}{z_{i} - \overline{z_{j}}}\right)_{2 \leq i, j \leq n}
 	\]
 	being positive. By inductive hypothesis this then means that there exists a Pick function $\tilde{\varphi}$ with $\tilde{\varphi}(z_{i}) = \frac{w_{i} - z_{i}}{1 + z_{i} w_{i}}$. But then $\varphi(z) = \frac{\tilde{\varphi}(z) + z}{1 - z \tilde{\varphi}(z)}$ fits the bill. TODO: general case (introduce Schur transform)
 \end{proof}
 
+\section{Compactness}
+
+One can lift the previous argument of the Pick-Nevanlinna interpolation theorem to infinite sets by the following compactness result.
+
+\begin{lause}\label{pick_compactness}
+	Let $F = \{\varphi_{j} | j \in J \}$ be a family of Pick functions uniformly bounded in a point (or upper half-plane). Then $F$ is compact under the topology of pointwise convergence.
+\end{lause}
+\begin{proof}
+	Note that respective claim holds for Schur functions by Montel's theorem, so hence also holds for Pick functions $\ldots$ with one small cavaet. The problem is that Schur function constant $-1$ corresponds to constant $\infty$, which isn't proper Pick function. But by the boundedness condition this cannot happen.
+\end{proof}
+
+There's really nothing special about Pick functions here: in the same way one could prove any family of analytic maps with common (non-whole-of-$\C$) simply connected domain is compact. Of course we even get locally uniform convergence but that won't be important for us.
+
+One could also give weaker proof.
+
+\begin{proof}[Alternate proof for the theorem \ref{pick_compactness}]
+	Fix sequence in $F$. By lemma \ref{pick_continuity_lemma} and the condition values $\sup_{z \in K}|\varphi_{j}(z)|$ are uniformly bounded for every compact set. By Arzel\`{a}-Ascoli theorem for every compact set $K$ we can find a subsequence convergent in $K$ and by taking exhaustin upper half-plane by nested compact sequence and taking the diagonal sequence we get the claim. By proposition \ref{pick_convergence} the limit is also Pick function.
+\end{proof}
+
+Of course, one could use the previous approach to prove the Montel's theorem in the first place, but the idea is that we can also forget the analyticity and work with Pick matrices on the weak level.
+
 TODO:
 \begin{itemize}
 	\item Poincaré metric: discs are discs, Apollonius circle
-	\item Pick matrices
-	\item 2 proofs of the Pick-Nevanlinna interpolation theorem
-	\item Hindmarsh's theorem
 	\item Pick-Nevanlinna-Herglotz representation theorem
 	\item Compactness
 	\item Examples of representing measures behind functions and functions behind representing measures
 	\item ``Pointed" Pick-Nevanlinna interpolation: two proofs (one with Pick-Nevanlinna, one with congretely extending)
 	\item Spectral commutant lifting theorem
-	\item Use Morera's theorem to prove Hindmarsh's theorem
+	\item Use Morera's theorem to prove weak Hindmarsh's theorem
 	\item Idea: first prove Pick-Nevanlinna with Pick points, then consider general sets and use proof with extensions to balls. Finally do usual prove with compactness.
 	\item Compactness and Pick matrices?
+	\item Weakly Pick functions.
 \end{itemize}
 
