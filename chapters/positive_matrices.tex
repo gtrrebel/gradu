@@ -466,6 +466,15 @@ The previous construction can be also performed between two spaces $V$ and $W$: 
 	Congruence preserves the previous notion: if $Q_{B}$ is negative on a subspace of dimension $k$, so is $Q_{B} \circ C$ for any invertible $C$; namely in the inverse image. Same reasoning holds for the the subspace on which $Q_{B}$ is non-negative, so again, $Q_{B} \circ C$ has to have similar structure. We are done.
 \end{proof}
 
+In the proof we used the following useful linear algebra fact.
+
+\begin{lem}
+	Let $V$ be $n$-dimensional and $W_{1}, W_{2} \subset V$ subspaces such that $\dim(W_{1}) + \dim(W_{2}) > n$. Then $W_{1} \cap W_{2} \neq \{0\}$.
+\end{lem}
+\begin{proof}
+	We find non-trivial element $v \in W_{1} \cap W_{2}$. Take bases for $W_{1}$ and $W_{2}$, say $(e_{i})_{i = 1}^{n_{1}}$ and $(f_{i})_{i = 1}^{n_{2}}$ with $n_{1} + n_{2} > n$. Since $(e_{i})_{i = 1}^{n_{1}} \cup (f_{i})_{i = 1}^{n_{2}}$ can't be linearly independent, as that would mean $\dim(V) \geq \dim(W_{1}) + \dim(W_{2}) > n$, we can find non-trivial pair of sequence $(a_{i})_{i = 1}^{n_{1}}$'s and $(b_{i})_{i = 1}^{n_{2}}$ such that $\sum_{i = 1}^{n_{1}} a_{i} e_{i} + \sum_{i = 1}^{n_{2}} b_{i} f_{i} = 0$. But $W_{1} \ni \sum_{i = 1}^{n_{1}} a_{i} e_{i} = v = -\sum_{i = 1}^{n_{2}} b_{i} f_{i} \in W_{2}$, and since sequences are non-trivial, $v$ is non-trivial element in the intersection.
+\end{proof}
+
 If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive eigenvalues of $A$, \textit{inertia} of $A$ is the triplet $\{n_{0}, n_{-}, n_{+} \} := \{n_{0}(A), n_{-}(A), n_{+}(A) \}$. The previous theorem can be hence restated, that inertia is invariant under congruence.
 
 The proof also gives a useful characterization for the number of non-negative eigenvalues.
@@ -622,6 +631,32 @@ One can solve $M$ from \ref{schur_complement} to arrive at so-called \textit{LDL
 	\end{bmatrix}.
 \end{align}
 
+LDL-decomposition leads to many interesting identities. First of all, (given that $A$ is invertible), $M$ is invertible if and only if $C - B^{*} A^{-1} B$ is and its inverse is given by
+\begin{align*}
+	M^{-1} &=
+	\begin{bmatrix}
+		I & -A^{-1} B \\
+		0 & I
+	\end{bmatrix}
+	\begin{bmatrix}
+		A^{-1} & 0 \\
+		0 & (C - B^{*} A^{-1} B)^{-1}
+	\end{bmatrix}
+	\begin{bmatrix}
+		I & 0 \\
+		-B^{*} A^{-1}  & I
+	\end{bmatrix} \\
+	&=
+	\begin{bmatrix}
+		A^{-1} + A^{-1} B (C - B^{*} A^{-1} B)^{-1} B^{*} A^{-1} & -A^{-1} B (C - B^{*} A^{-1} B)^{-1} \\
+		-(C - B^{*} A^{-1} B)^{-1} B^{*} A^{-1} & (C - B^{*} A^{-1} B)^{-1}
+	\end{bmatrix}.
+\end{align*}
+
+TODO: identity one gets by conjugating with respect to the other corner.
+
+Of course, once one knows the statements, such identities could also be easily verified by multiplying everything out, for instance, but this is how one might stumble upon them.
+
 \section{Loewner order}
 
 \begin{maar}
@@ -759,20 +794,20 @@ so instead of the full inequality, we get inequality for traces. There is a nice
 
 There's great deal of things to be said about relationship between eigenvalues and Loewner order. Let's denote the eigenvalues of real map $A$ by $\lambda_{1}(A) \geq \lambda_{2} \geq \ldots \geq \lambda_{n}(A)$. One of the most basic result is the following.
 
-\begin{prop}
+\begin{prop}\label{loewner_eigenvalues}
 	Assume that $A \leq B$. Then for any $1 \leq k \leq n$ we have $\lambda_{k}(A) \leq \lambda_{k}(B)$.
 \end{prop}
 \begin{proof}
 	We first claim that $A$ has at most as many non-negative eigenvalues as $B$: if we manage to do this, we can apply the observation for the maps $A - \lambda I$ and $B - \lambda I$ and conclude that $B$ has at least $k$ eigenvalues in $[\lambda_{k}(A), \infty)$, which implies that $\lambda_{k}(A) \leq \lambda_{k}(B)$.
 
-	To prove the claim note that if $A$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's restriction to some $k$-dimensional subspace is positive. But then also the restriction of $B$ to this subspace is positive, so also $B$ has at least $k$ non-negative eigenvalues.
+	To prove the claim note that if $A$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's restriction to some $k$-dimensional subspace is positive. But then also the compression of $B$ to this subspace is positive, so also $B$ has at least $k$ non-negative eigenvalues.
 \end{proof}
 
 In general that's all one can say: if numbers $a_{1} \geq a_{2} \geq \ldots a_{n}$ and $b_{1} \geq b_{2} \geq \ldots \geq b_{n}$ satisfy $a_{k} \leq b_{k}$, then we can definitely find $A$ and $B$ with $A \leq B$ and $a_{i}$'s and $b_{i}$'s as eigenvalues: simply take $A = \sum_{i = 1}^{n} a_{i} P_{e_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{e_{i}}$ where $(e_{i})_{i = 1}^{n}$ is an orthonormal basis.
 
-Eigenvalues work also desirably with restriction.
+Eigenvalues work also desirably with compression.
 
-\begin{prop}
+\begin{prop}\label{compression_eigenvalues}
 	If $A \in \H^{n}(V)$ and $W \subset V$ is of dimension $n - 1$, then we have
 	\begin{align*}
 		\lambda_{1}(A) \geq \lambda_{1}(\arestr{A}{W}) \geq \lambda_{2}(A) \geq \lambda_{2}(\arestr{A}{W}) \geq \ldots \geq \lambda_{n - 1}(A) \geq \lambda_{n - 1}(\arestr{A}{W}) \geq \lambda_{n}(A).
@@ -782,18 +817,41 @@ Eigenvalues work also desirably with restriction.
 \begin{proof}
 	We use the same appoach and first prove that $A$ has at least as many non-negative eigenvalues as $\arestr{A}{W}$: again if we know this, we get inequalities of the form $\lambda_{k}(A) \geq \lambda_{k}(\arestr{A}{W})$. Then applying the idea for the $-A$, we get the reverse inequalities, and finally the complete chain.
 
-	To prove the claim, note again that if $\arestr{A}{W}$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's restriction to some $k$-dimensional subspace is positive. But then also restriction of $A$ to this same subspace is positive and hence it has $k$ non-negative eigenvalues.
+	To prove the claim, note again that if $\arestr{A}{W}$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's compression to some $k$-dimensional subspace is positive. But then also compression of $A$ to this same subspace is positive and hence it has $k$ non-negative eigenvalues.
 \end{proof}
+
+TODO prove the 1d-projection case with the previous restricting to orthocomplement of the projection.
+
+TODO picture of eigenvalues changing when compressed
 
 Again one can prove that this result is strongest possible, but the proof is lot more involved.
 
 \begin{prop}
-	For any $a_{1} \geq b_{1} \geq a_{2} \geq \ldots b_{n - 1} \geq a_{n}$ we may find $A \in \H^{n}(V)$ with $a_{i}$'s as spectra and $(n - 1)$-dimensional subspace $W$ of $V$ such that eigenvalues of $\arestr{A}{W}$ are the $b_{i}$'s.
+	For any $a_{1} \geq b_{1} \geq a_{2} \geq \ldots \geq b_{n - 1} \geq a_{n}$ we may find $A \in \H^{n}(V)$ with $a_{i}$'s as spectra and $(n - 1)$-dimensional subspace $W$ of $V$ such that eigenvalues of $\arestr{A}{W}$ are the $b_{i}$'s.
 \end{prop}
 
+Before approaching the proof we note an interesting corollary.
+
+\begin{kor}
+	Let $A \leq B$ such that $B - A = c P_{v}$ for some one-dimensional projection and $c \geq 0$. Then
+	\begin{align*}
+		\lambda_{1}(B) \geq \lambda_{1}(A) \geq \lambda_{2}(B) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(B) \geq \lambda_{n}(A).
+	\end{align*}
+\end{kor}
+
 \begin{proof}
-	TODO.
+	By proposition \ref{loewner_eigenvalues} $\lambda_{k}(A) \leq \lambda_{k}(B)$, so we just need to prove that $\lambda_{k + 1}(B) \leq \lambda_{k}(A)$. Let $W$ be orthocomplement of $\vspan\{v\}$. Then $\arestr{A}{W} = \arestr{B}{W}$ and $W$ is $(n - 1)$-dimensional. Hence by lemma \ref{compression_eigenvalues} we have $\lambda_{k + 1}(B) \leq \lambda_{k}(\arestr{B}{W}) = \lambda_{k}(\arestr{A}{W}) \leq \lambda_{k}(A)$, which is what we wanted.
 \end{proof}
+
+One could now use induction to make similar but more complicated statements about inequalities when compression is to subspace of bigger codimension or when $B - A$ is or larger rank. One could also ask what happens $B - A$ multiple of projection to $k$-dimensional subspace (TODO: what happens?).
+
+One also has a similar converse as in the compression case.
+
+\begin{prop}
+	For any $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \ldots \geq b_{n} \geq a_{n}$ we may find $A, B \in \H^{n}(V)$ with $a_{i}$'s and $b_{i}$'s as spectra of $A$ and $B$, respectively and $B - A = c P_{v}$ for some $v \in V$ and $c \geq 0$.
+\end{prop}
+
+We will first prove this converse. The idea is the following: the eigenvalues of roots of the characteristic polynomial, hence to control eigenvalues, we should control characteristic polyomials. It turns out that if two maps differ by map rank $1$, their characteristic polynomials are intimately related.
 
 \section{Notes and references}
 
@@ -846,23 +904,9 @@ Again one can prove that this result is strongest possible, but the proof is lot
 	\item Proof ``sketch" (as in joke)
 	\item Positive linear functions $\H \to \R$.
 	\item What about positive linear functionals form $\H^{n} \to \H^{m}$?
-\end{itemize}
-
-Ideas how to rewrite this section:
-\begin{itemize}
-	\item Spectral theorem for positive maps
-	\item Map is positive, if all of its restrictions are. One dimensional maps are positive if and only the scalar is positive.
-	\item Map is real, if all of its restrictions are. One dimensional maps are real if and only the scalar is real.
-	\item Adjoint commutes with restriction. Adjoint of one dimensional map is its conjugate.
-	\item How should one restrict linear mappings? (Use inclusions and finally project)
-	\item Central notion is adjoint
-	\item $*$-conjugation is natural notion with adjoint
-	\item More generally, adjoint of a map $A \in L(V, W)$ is a unique map $A^{*} \in \L(V, W)$ such that $A \oplus A^{*}$ is real.
-	\item Increasing sequence of subspaces and restriction with positive determinant $\Rightarrow$ the whole map is positive. Equivalently, map is positive if it has positive determinant and has a subspace where it is positive: $A \geq 0$ if and only if for any $B \geq 0$ we have $\tr(A B) \geq 0$.
 	\item Power series for positivity of inverse function.
 	\item Two notions of positivity: spectral and quadratic form. First works well with functional calculus and second with linear phenomena, but one shouldn't mix these two things.
 \end{itemize}
-
 
 
 
