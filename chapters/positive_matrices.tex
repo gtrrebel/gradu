@@ -653,7 +653,34 @@ LDL-decomposition leads to many interesting identities. First of all, (given tha
 	\end{bmatrix}.
 \end{align*}
 
-TODO: identity one gets by conjugating with respect to the other corner.
+If one take Schur complement with respect to $C$ instead one arrives at
+\begin{align*}
+	M^{-1}
+	&=
+	\begin{bmatrix}
+		(A - B C^{-1} B^{*})^{-1} & (A - B C^{-1} B^{*})^{-1} B C^{-1} \\
+		- C^{-1} B^{*} (A - B C^{-1} B^{*})^{-1} & C^{-1} + C^{-1} B^{*} (A - B C^{-1} B^{*})^{-1} B C^{-1}
+	\end{bmatrix},
+\end{align*}
+so by comparing blocks we see that for instance
+\begin{align}\label{woodbury_identity}
+	A^{-1} + A^{-1} B (C - B^{*} A^{-1} B)^{-1} B^{*} A^{-1} = (A - B C^{-1} B^{*})^{-1},
+\end{align}
+\textit{Woodbury matrix identity}. Why might such identity be useful? The idea is that if $\dim(W_{2}) \ll \dim(W_{1})$, the identity is way to connect inverse of $A - B C^{-1} B^{*}$, low rank update of $A$, and $A$. If $\dim(W_{2}) = 1$ for instance, by setting $C = -\frac{1}{c}$ for some $c > 0$ and $B = v$ for some $v \in V$ with $|v| = 1$ we get
+\begin{align*}
+	A^{-1} - \frac{A^{-1} P_{v} A^{-1}}{\frac{1}{c} + \langle A^{-1}v, v\rangle} = (A + c P_{v})^{-1}:
+\end{align*}
+inverse of rank 1 update can be easily calculated if one knows the inverse of the original map.
+
+In a similar vein one obtains formulas for determinants. By comparing determinants from two LDL-decompositions we arrive at
+\begin{align}\label{matrix_determinant_lemma}
+	\det(A) \det(C - B^{*} A^{-1} B) = \det(C) \det(A - B C^{-1} B^{*}),
+\end{align}
+\textit{matrix determinant lemma}. Again, by the previous choices for $B$ and $C$ we arrive at
+\begin{align*}
+	\det(A) \left(1 + c \langle A^{-1}v, v\rangle\right) = \det(A + c P_{v}):
+\end{align*}
+determinant of rank 1 update can be also easily calculated.
 
 Of course, once one knows the statements, such identities could also be easily verified by multiplying everything out, for instance, but this is how one might stumble upon them.
 
@@ -826,7 +853,7 @@ TODO picture of eigenvalues changing when compressed
 
 Again one can prove that this result is strongest possible, but the proof is lot more involved.
 
-\begin{prop}
+\begin{prop}\label{compression_eigenvalues_con}
 	For any $a_{1} \geq b_{1} \geq a_{2} \geq \ldots \geq b_{n - 1} \geq a_{n}$ we may find $A \in \H^{n}(V)$ with $a_{i}$'s as spectra and $(n - 1)$-dimensional subspace $W$ of $V$ such that eigenvalues of $\arestr{A}{W}$ are the $b_{i}$'s.
 \end{prop}
 
@@ -847,11 +874,53 @@ One could now use induction to make similar but more complicated statements abou
 
 One also has a similar converse as in the compression case.
 
-\begin{prop}
+\begin{prop}\label{projection_eigenvalues_con}
 	For any $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \ldots \geq b_{n} \geq a_{n}$ we may find $A, B \in \H^{n}(V)$ with $a_{i}$'s and $b_{i}$'s as spectra of $A$ and $B$, respectively and $B - A = c P_{v}$ for some $v \in V$ and $c \geq 0$.
 \end{prop}
 
 We will first prove this converse. The idea is the following: the eigenvalues of roots of the characteristic polynomial, hence to control eigenvalues, we should control characteristic polyomials. It turns out that if two maps differ by map rank $1$, their characteristic polynomials are intimately related.
+
+\begin{lem}
+	Let $A, B \in \H$ be such that $B - A = c P_{v}$ for some $c \in \R$ and $v \in V$ with $|v| = 1$. Then
+	\begin{align*}
+		\det(B - z I) = \det(A - z I) \left(1 + c \langle (A - z I)^{-1}v, v\rangle\right).
+	\end{align*}
+	This is just direct application of rank 1 version of matrix determinant lemma \ref{matrix_determinant_lemma}.
+\end{lem}
+
+\begin{proof}[Proof of propostion \ref{projection_eigenvalues_con}]
+	If $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, solve the remaining problem on smaller space to get $A'$ and $v'$ and take $A : V' \oplus \C \to V' \oplus \C$ to be $A' \oplus 0$. We may hence assume that the numbers are distinct.
+
+	First take $A$ with the given eigenvalues. By the previous lemma we just want to choose $c$ and $v$ in such a way that
+	\begin{align*}
+		\frac{p_{B}(z)}{p_{A}(z)} = 1 + c \langle (A - z I)^{-1}v, v\rangle= 1 + c \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z},
+	\end{align*}
+	where $e_{i}$'s are the eigenvectors of $A$ and $p_{A}$ and $p_{B}$ are polynomials with $a_{i}$'s and $b_{i}$'s as roots. But this is easily achieveable if can show that the residues of $p_{B}(z)/p_{A}(z)$ are negative, which follows easily from the interlacing property.
+
+	From the identity we can also easily deduce the other direction. If $\langle v, e_{i} \rangle \neq 0$ for any $1 \leq i \leq n$ the function
+	\begin{align*}
+		z \mapsto 1 + c \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z}
+	\end{align*}
+	has $n$ poles of negative residue so it has a root between any two poles. Also it tends to $1$ at infinity so it has also root on $(a_{1}, \infty)$.
+\end{proof}
+
+The proof of \ref{compression_eigenvalues_con} is similar: the aim to first connect the characteristic polynomials of $A$ and its compression and then do similar observations.
+
+\begin{lem}
+	Let $A \in \H(V)$ and $W \subset V$ a subspace of codimension $1$, orthocomplement of subspace spanned by unit vector $v$. Then
+	\begin{align*}
+		\det(\arestr{A}{W} - z I) = -\det(A - z I) \langle (A - z I)^{-1}v, v\rangle
+	\end{align*}
+\end{lem}
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{proof}[Proof of proposition \ref{compression_eigenvalues_con}]
+	TODO
+\end{proof}
+
+TODO: change order of compression and projection eigenvalues converses.
 
 \section{Notes and references}
 
