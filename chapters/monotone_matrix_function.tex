@@ -154,13 +154,6 @@ One might ask whether these inclusions are strict. It turns out they are, as lon
 
 There are also more trivial inclusions: $P_{n}(a, b) \subset P_{n}(c, d)$ for any $(a, b) \supset (c, d)$. More interval, more matrices, more restrictions, less functions. To be precise, we only allowed functions with domain $(a, b)$ to the class $P_{n}(a, b)$, so maybe one should say instead something like: if $(a, b) \supset (c, d)$ and $f \in P_{n}(a, b)$, then also $\restr{f}{(c, d)} \in P_{n}(c, d)$. We will try not to worry too much about these technicalities.
 
-\section{Pick functions are monotonic}
-One of the main reasons for introducing Pick functions is that they are monotone of all orders. After understanding real valued monotone functions, it should be clear how to prove the previous statement: as Pick functions are essentially sums of functions of the form $x \mapsto \frac{1}{\lambda - x}$, we should verify that these are monotone. Also $\lambda$ should not have effect on anything so we only need the following. But the increasing nature of the function of $x \mapsto -\frac{1}{x}$ is something we know already. We have hence proved 
-\begin{lause}
-	If $f \in P(a, b)$, then $f \in P_{n}(a, b)$ for any $n \geq 1$.
-\end{lause}
-This is obviously why we chose the notation $P_{n}$ for classes of matrix monotone functions.
-
 \section{Derivative and Loewner's characterization}
 
 As in the real case, also in the matrix world we may characterize monotonicity with derivatives.
@@ -271,7 +264,7 @@ is nothing but the divided difference of the function $f h$ at points $\lambda_{
 
 	Let's consider the function $g_{1}(x) = [x, y_{d_{1} + 1}, y_{d_{1} + 2}, \ldots, y_{k + 1}]_{f}$. In terms of $g_{1}$ we need to prove that
 	\begin{align*}
-		[y_{1}, y_{2}, \ldots, y_{d + 1}]_{g_{1}}.
+		[y_{1}, y_{2}, \ldots, y_{d + 1}]_{g_{1}} \geq 0.
 	\end{align*}
 	Since $f \in C^{d_{1} - 1}(a, b)$, $g_{1} \in C^{d_{1} - 1}(a, y_{d_{1} + 1})$ and hence by the mean value theorem we have
 	\begin{align*}
@@ -311,24 +304,34 @@ This result has a curious corollary.
 \begin{kor}\label{k_tone_cor}
 	If $n \geq 1$ and $f h$ is $(2 n + 1)$:tone for every polynomial $h$ of degree at most $2 n$, then $f h$ is $(2 n - 1)$-tone for every polynomial $h$ of degree at most $(2 n - 2)$. In particular $f$ is $k$-tone for every $k = 1, 3, 5, \ldots, 2n - 3, 2 n - 1, 2n + 1$.
 \end{kor}
-Although we strictly speaking only proved the result for $f \in C^{1}$, it holds true without extra assumptions, as can be seen with the following alternate proof.
+Although we strictly speaking only proved this corollary for $f \in C^{1}$, it holds true without extra assumptions, as can be seen with the following alternate proof.
 
 \begin{proof}[Proof of corollary \ref{k_tone_cor}]
 	Take any $h$, a polynomial of at most $(2 n - 2)$ non-negative on real axis and points $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n} < b$. We should prove that
 	\begin{align*}
 		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \geq 0.
 	\end{align*}
-	By the assumption, for any $c_{1}, c_{2} \in \R$ and $a < t_{1}, t_{2} < b$ we have
+	The idea is the following: if $f$ is $C^{1}$, we have
 	\begin{align*}
-		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}, t_{2}]_{f h (c_{1} (\cdot - t_{1}) + c_{2} (\cdot - t_{2}))^2} \geq 0.
+		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} = [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t, t]_{f h (\cdot - t)^2} \geq 0,
 	\end{align*}
-	Expanding this using linearity and Leibniz rule leads to
+	Now, actually $f h (\cdot - t)^2$ is always differentiable at $t$, so the previous at least should hold without the smootness TODO, but one can take safer route.
+	For any $a < t, s < b$ we have
 	\begin{align*}
-		0 &\leq (c_{1} + c_{2})^{2} [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
-		&+ c_{1}^2 (t_{2} - t_{1}) [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{2}]_{f h} \\
-		&+ c_{2}^2 (t_{1} - t_{2}) [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}]_{f h}.
+		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t, s]_{f h (\cdot - t)^2} \geq 0.
 	\end{align*}
-	We would like to choose $c_{1}$ and $c_{2}$ such that sum of the last two terms is non-positive, but $c_{1} + c_{2} \neq 0$: then $[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h}$ would have to be non-negative. By choosing $c_{1}$ and $c_{2}$ non-negative this can be done if can make any of the two last terms negative. Now if $[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}]_{f h} \neq 0$ for some $t_{1}$, this is easily done. If $[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t_{1}]_{f h} = 0$ for any $t_{1}$, then the last two terms vanish anyway, so we are again done.
+	Expanding this Leibniz rule leads to
+	\begin{align*}
+		0 &\leq [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
+		&+ (s - t) [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s]_{f h}
+	\end{align*}
+	But by choosing $t$ and $s$ suitable we can definitely make the second term non-positive, so the first term is non-negative, as we wanted. Indeed choose first arbitrary $s$ and then choose $t$ on $(a, s)$ or on $(s, b)$, depending on the sign of the divided difference. Or if one so prefers, we have
+	\begin{align*}
+		& 2 [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
+		=& [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s + r, s]_{f h (\cdot - s - r)^2} \\
+		+& [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s - r, s]_{f h (\cdot - s + r)^2}
+	\end{align*}
+	for small enough $r$.
 
 	Final claim follows by setting $h \equiv 1$.
 \end{proof}
@@ -338,7 +341,7 @@ Although we strictly speaking only proved the result for $f \in C^{1}$, it holds
 Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turns out that we can.
 
 \begin{lause}
-	Let $n \geq 1$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on real line. 
+	Let $n \geq 1$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on the real line. 
 \end{lause}
 \begin{proof}
 	For the version with extra assumption, the starting point was to take derivative of the matrix function. Although we now cannot do that, we can try to replicate the proof otherwise.
@@ -370,9 +373,9 @@ Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turn
 		\end{align*}
 		for any $f : (a, b) \to \R$.
 
-		Conversely, if $a I < A \leq B < b I$ such that $B - A = c P_{w}$ for some $c > 0$ and $w$ not othogonal to any eigenvector of $A$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $h$ of degree at most $(2 n - 2)$, non-negative on the real line such that for any $f : (a, b) \to \R$ we have
+		Conversely, if $a I < A \leq B < b I$ such that $B - A = v v^{*}$ for some $c > 0$ and $v$ not othogonal to any eigenvector of $A$, and $w \in V$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $h$ of degree at most $(2 n - 2)$, non-negative on the real line such that for any $f : (a, b) \to \R$ we have
 		\begin{align*}
-			\langle (f(B) - f(A)) v, v \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
+			\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
 		\end{align*}
 	\end{lem}
 
@@ -397,7 +400,37 @@ Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turn
 Let us then complete proof by proving the lemma \ref{main_lemma}.
 
 \begin{proof}[Proof of lemma \ref{main_lemma}]
-	The proof is based on lemma TODO.
+	The proof is based on lemmas \ref{projection_eigenvalues} and \ref{projection_eigenvalues_con}. To find the connection we first assume $f$ is entire. Then if and $B - A = v v^{*}$ for some $v \in V$ and $w \in V$ we have
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - B)^{-1} v, w \rangle  \langle (z I - A)^{-1} w, v \rangle f(z) dz.
+	\end{align*}
+	Note that by the rank $1$ version of Woodbury matrix identity \ref{woodbury_identity} with short simplifications we get
+	\begin{align*}
+		\langle (z I - B)^{-1} v, w \rangle = \frac{\langle (z I - A)^{-1} v, w\rangle}{1 + \langle (A - z I)^{-1} v, v \rangle}.
+	\end{align*}
+	Now by lemma \ref{projection_characteristic_polynomial} we have $1 + \langle (A - z I)^{-1} v, v \rangle = \frac{p_{B}(z)}{p_{A}(z)}$ where $p_{A}$ and $p_{B}$ denote the characteristic polynomials of $A$ and $B$, and we are hence left with
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = \frac{1}{2 \pi i}\int_{\gamma} \frac{p_{A}(z)}{p_{B}(z)}\langle (z I - A)^{-1} v, w\rangle \langle (z I - A)^{-1} w, v \rangle f(z) dz.
+	\end{align*}
+	If $v$ is not parallel to eigenvector of $A$, when $w$ ranges over $V$, $\langle (z I - A)^{-1} v, w\rangle p_{A}(z)$ ranges over all polynomials of degree at most $(n - 1)$. Also $\langle (z I - A)^{-1} w, v \rangle = \overline{\langle (\overline{z} I - A)^{-1} v, w \rangle}$; hence when $w$ ranges over $V$ we see that $\langle (f(B) - f(A)) w, w \rangle$ ranges over expressions of the form
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = \frac{1}{2 \pi i}\int_{\gamma} \frac{h(z)}{p_{A}(z)p_{B}(z)} f(z) dz = [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n - 1}, \lambda_{2 n}]_{f h},
+	\end{align*}
+	where $\lambda$'s are the eigenvalues of $A$ and $B$ is some order. But this identity holds definitely for any $f$, irrespective of the smoothness. This is the sought correspondence.
+
+	To recap, the map
+	\begin{align*}
+		V &\to P_{n - 1}(\C) = \{\text{Complex polynomials of degree at most } (n - 1) \} \\
+		w &\mapsto \det(z I - A) \langle (z I - A)^{-1} v, w \rangle
+	\end{align*}
+	is antilinear bijection and the map
+	\begin{align*}
+		P_{n - 1}(\C) &\to \{\text{Complex polynomials of degree at most } (2 n - 2) \text{ non-negative on } \R \} \\
+		p(z) &\mapsto p(z) \overline{p(\overline{z})}
+	\end{align*}
+	is surjection: composition of these maps is the correspondence.
+
+	TODO better proof (better simplification)
 \end{proof}
 
 TODO:
