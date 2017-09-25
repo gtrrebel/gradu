@@ -267,7 +267,7 @@ This tells us that we may recognise Pick functions from local information. To pr
 	\begin{align*}
 	\begin{bmatrix}
 		[z, \overline{z}]_{\varphi} & [z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
-		[z, z \overline{z}]_{\varphi} & [z, z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
+		[z, z, \overline{z}]_{\varphi} & [z, z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
 		\vdots & \vdots & \ddots & \vdots \\
 		[z, z, \ldots, z, \overline{z}]_{\varphi} & [z, z, \ldots, z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, z, \ldots, z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
 	\end{bmatrix}
@@ -408,7 +408,7 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 	TODO
 \end{proof}
 
-\begin{lem}
+\begin{lem}\label{pick_point_lemma}
 	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$ and $r > 0$. Assume that $z_{0}$ is Pick point of $\varphi$ and $\varphi$ is analytic in $\D(z_{0}, r)$. Then all Pick matrices of $\varphi$ are positive on $\D(z_{0}, r)$. Consequently, all the points in $\D(z_{0}, r)$ are Pick points of $z_{0}$.
 \end{lem}
 \begin{proof}
@@ -558,13 +558,8 @@ Of course, one could use the previous approach to prove the Montel's theorem in 
 \begin{itemize}
 	\item Poincaré metric: discs are discs, Apollonius circle
 	\item Pick-Nevanlinna-Herglotz representation theorem
-	\item Compactness
 	\item Examples of representing measures behind functions and functions behind representing measures
-	\item ``Pointed" Pick-Nevanlinna interpolation: two proofs (one with Pick-Nevanlinna, one with congretely extending)
 	\item Spectral commutant lifting theorem
 	\item Use Morera's theorem to prove weak Hindmarsh's theorem
-	\item Idea: first prove Pick-Nevanlinna with Pick points, then consider general sets and use proof with extensions to balls. Finally do usual prove with compactness.
-	\item Compactness and Pick matrices?
-	\item Weakly Pick functions.
 \end{itemize}
 

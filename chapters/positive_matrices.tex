@@ -75,7 +75,9 @@ If we are working in a inner-product space, there's rather natural choice for th
 	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space and $W \subset V$ subspace of $V$. Then the compression to $W$ is unique linear contraction from $\L(V)$ to $\L(W)$, such that for any $A \in L(V, W)$ we have $\arestr{(\incl{V}{W} \circ A)}{W} = A \circ \incl{V}{W}$. Moreover, if $W' \subset W$, we have $\arestr{(\cdot)}{W'} = \arestr{(\arestr{(\cdot)}{W})}{W'}$.
 \end{lause}
 \begin{proof}
-	TODO
+	Trust me, it's true. Also, even if it's not, this theorem is clearly here just to convince the reader that orthogonal projections are the only sensible choice; but does that really need convincing?
+
+	Okay, we'll come back to the proof.
 \end{proof}
 
 For one-dimensional compressions we have convenient representation. As one easily checks, one dimensional projection onto subspace spanned by vector $v$ is given by
@@ -866,15 +868,18 @@ Again one can prove that this result is strongest possible.
 
 Before approaching the proof we note an interesting corollary.
 
+Let us call pair $(A, B) \in \H(V)^{2}$ a \textit{projection pair} if $B - A = v v^{*}$ for some $v \in V$. Note that such $v$ is always unique up to phase. Let us say that a projection pair $(A, B)$ is strict, if whenever $B - A = v v^{*}$ then $v$ is not orthogonal to any eigenvector of $A$. 
+
 \begin{kor}\label{projection_eigenvalues}
-	Let $A \leq B$ such that $B - A = v v^{*}$ for some $v \in V$. Then
+	Let $(A, B)$ be a projection pair. Then
 	\begin{align*}
 		\lambda_{1}(B) \geq \lambda_{1}(A) \geq \lambda_{2}(B) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(B) \geq \lambda_{n}(A).
 	\end{align*}
+	$(A, B)$ is strict if and only if all the inequalities are strict. 
 \end{kor}
 
 \begin{proof}
-	By proposition \ref{loewner_eigenvalues} $\lambda_{k}(A) \leq \lambda_{k}(B)$, so we just need to prove that $\lambda_{k + 1}(B) \leq \lambda_{k}(A)$. Let $W$ be orthocomplement of $\vspan\{v\}$. Then $\arestr{A}{W} = \arestr{B}{W}$ and $W$ is $(n - 1)$-dimensional. Hence by lemma \ref{compression_eigenvalues} we have $\lambda_{k + 1}(B) \leq \lambda_{k}(\arestr{B}{W}) = \lambda_{k}(\arestr{A}{W}) \leq \lambda_{k}(A)$, which is what we wanted.
+	By proposition \ref{loewner_eigenvalues} $\lambda_{k}(A) \leq \lambda_{k}(B)$, so we just need to prove that $\lambda_{k + 1}(B) \leq \lambda_{k}(A)$. Let $W$ be orthocomplement of $\vspan\{v\}$. Then $\arestr{A}{W} = \arestr{B}{W}$ and $W$ is $(n - 1)$-dimensional. Hence by lemma \ref{compression_eigenvalues} we have $\lambda_{k + 1}(B) \leq \lambda_{k}(\arestr{B}{W}) = \lambda_{k}(\arestr{A}{W}) \leq \lambda_{k}(A)$, which is what we wanted. TODO
 \end{proof}
 
 One could now use induction to make similar but more complicated statements about inequalities when compression is to subspace of bigger codimension or when $B - A$ is or larger rank. One could also ask what happens $B - A$ multiple of projection to $k$-dimensional subspace (TODO: what happens?).
@@ -882,18 +887,20 @@ One could now use induction to make similar but more complicated statements abou
 One also has a similar converse as in the compression case.
 
 \begin{prop}\label{projection_eigenvalues_con}
-	For any $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \ldots \geq b_{n} \geq a_{n}$ we may find $A, B \in \H^{n}(V)$ with $a_{i}$'s and $b_{i}$'s as spectra of $A$ and $B$, respectively and $B - A = v v^{*}$ for some $v \in V$.
+	For any $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \ldots \geq b_{n} \geq a_{n}$ we may find projection pair $A, B \in \H^{n}(V)$ with $a_{i}$'s and $b_{i}$'s as spectra.
 \end{prop}
 
 We will first prove this converse. The idea is the following: the eigenvalues of roots of the characteristic polynomial, hence to control eigenvalues, we should control characteristic polyomials. It turns out that if two maps differ by map rank $1$, their characteristic polynomials are intimately related.
 
 \begin{lem}\label{projection_characteristic_polynomial}
-	Let $A, B \in \H$ be such that $B - A = v v^{*}$ for some $v \in V$. Then
+	Let $A, B \in \H$ be a projection pair. Then
 	\begin{align*}
 		\det(B - z I) = \det(A - z I) \left(1 + \langle (A - z I)^{-1}v, v\rangle\right).
 	\end{align*}
-	This is just direct application of rank 1 version of matrix determinant lemma \ref{matrix_determinant_lemma}.
 \end{lem}
+\begin{proof}
+	This is just direct application of rank 1 version of matrix determinant lemma \ref{matrix_determinant_lemma}.
+\end{proof}
 
 \begin{proof}[Proof of propostion \ref{projection_eigenvalues_con}]
 	If $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, solve the remaining problem on smaller space to get $A'$ and $v'$ and take $A : V' \oplus \C \to V' \oplus \C$ to be $A' \oplus a_{i}$ and $v = v' \oplus 0$. We may hence assume that the numbers are distinct.
@@ -916,7 +923,7 @@ The proof of \ref{compression_eigenvalues_con} is similar: the aim to first conn
 \begin{lem}
 	Let $A \in \H(V)$ and $W \subset V$ a subspace of codimension $1$, orthocomplement of subspace spanned by unit vector $v$. Then
 	\begin{align*}
-		\det(\arestr{A}{W} - z I) = -\det(A - z I) \langle (A - z I)^{-1}v, v\rangle
+		\det(\arestr{A}{W} - z I) = \det(A - z I) \langle (A - z I)^{-1}v, v\rangle
 	\end{align*}
 \end{lem}
 \begin{proof}
@@ -937,12 +944,7 @@ TODO: change order of compression and projection eigenvalues converses.
 	\item Normal maps
 	\item Square root of a matrix
 	\item Ellipses map to ellipses
-	\item Sylvester's criterion
 	\item adjoints of vectors
-	\item projections with inclusions
-	\item order of projections
-	\item Loewner order
-	\item Schur complements
 	\item Moore-Penrose pseudoinverse
 	\item (canonical, löwdin) orthogonalization, polar decomposition and orthogonal Procrustes problem
 	\item projection matrices
@@ -955,7 +957,6 @@ TODO: change order of compression and projection eigenvalues converses.
 	\item Trace-characterization of positive maps.
 	\item Splitting positive maps to pseudo square roots
 	\item Product of maps
-	\item AM-GM-HM
 	\item Exponential formula for geometric mean?
 	\item Maximum of matrices with powerlimit
 	\item If $A, B$ are Hermitian, what eigenvalues $AB$ can have? What if the eigenvalues are known? What about $AB + BA$. What eigenvalues $A$ can have if eigenvalues of $\Re(A)$ are known.
