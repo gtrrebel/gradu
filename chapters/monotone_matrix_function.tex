@@ -512,44 +512,52 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 	\begin{proof}
 		We shall verify the conditions of the theorem \ref{div_anal}.
 
-		TODO
-	\end{proof}
+		The trick is first show that we have bound of the form $|f^{(n)}(t)| \leq n! C^{n + 1}$ for odd $n$, and then use the following result.
+		\begin{lem}
+			Let $f \in C^{2}(a, b)$ such that $|f(x)| \leq M_{0}$ and $|f^{(2)}(x)| \leq M_{2}$ for any $x \in (a, b)$. Then
+			\begin{align*}
+			|f'(x)| \leq \max\left(2\sqrt{M_{0} M_{2}}, \frac{8 M_{0}}{b - a}\right)
+			\end{align*}
+			for any $x \in (a, b)$.
+		\end{lem}
+		\begin{proof}
+			Take any $x_{0} \in (a, b)$ and set $f(x_{0}) = c$: we shall prove the given bound of $c$. Without loss of generality we may assume that $c \geq 0$ and $x_{0} \leq \frac{a + b}{2}$. The idea is that as $f^{(2)}$ is not too big, $f'$ has to be positive and reasonably big around the point $x_{0}$ which means that $f$ has to increase a lot around $x_{0}$. By the assumption it can't increase more than $2 M_{0}$, however.
 
-	\begin{lem}
-		Let $f \in C^{2}(a, b)$ such that $|f(x)| \leq M_{0}$ and $|f^{(2)}(x)| \leq M_{2}$ for any $x \in (a, b)$. Then
+			To make this argument precise and effective, we split into too cases.
+
+			\begin{enumerate}
+				\item $M_{2} (b - x_{0}) > c$: this means that we have
+				\begin{align*}
+					f'(x) \geq c - M_{2} (x - x_{0})
+				\end{align*}
+				for $x_{0} \leq x \leq \frac{c}{M_{2}} + x_{0}$ and hence for any such $x$
+				\begin{align*}
+					2 M_{0} \geq f\left(\frac{c}{M_{2}} + x_{0}\right) - f(x_{0}) \geq \int_{x_{0}}^{\frac{c}{M_{2}} + x_{0}} \left(c - M_{2} (x - x_{0})\right) dx \geq \frac{c^2}{2 M_{2}},
+				\end{align*}
+				which yields the first inequality.
+				\item $M_{2} (b - x_{0}) \leq c$: now we have
+				\begin{align*}
+					f'(x) \geq c \frac{b - x}{b - x_{0}},
+				\end{align*}
+				for every $x_{0} \leq x < b$
+				\begin{align*}
+					2 M_{0} \geq f(x) - f(x_{0}) \geq \int_{x_{0}}^{x}  c \frac{b - x}{b - x_{0}} d x \geq \frac{c}{2(b - x_{0})} \left((b - x_{0})^2 - (b - x)^2\right).
+				\end{align*}
+				Letting $x \to b$ and using $(b - x_{0}) \geq \frac{b - a}{2}$ we get the second inequality.
+			\end{enumerate}
+
+			TODO: two pictures.
+			TODO: better proof
+		\end{proof}
+
+		To prove the bound for odd $n$, we would like to play the same game as in the proof of lemma \ref{bounded_div}, but the unfortunate thing is that the even order terms are breaking the inequality. We can salvage the situation by getting rid of them. Assume first that $0 \in (a, b)$. Trick is to consider the Taylor expansion for $f(x) - f(-x)$, centered at $0$, instead:
 		\begin{align*}
-		|f'(x)| \leq \max\left(2\sqrt{M_{0} M_{2}}, \frac{8 M_{0}}{b - a}\right)
+			f(x) - f(-x) = 2 \left(\sum_{i = 1}^{n} \frac{f^{(2 i - 1)}(0)}{(2 i - 1)!}x^{2 i - 1}\right) + \int_{0}^{x} \frac{f^{(2 n + 1)}(t) + f^{(2 n + 1)}(-t)}{(2n)!} (x - t)^{2 n} dt.
 		\end{align*}
-		for any $x \in (a, b)$.
-	\end{lem}
-	\begin{proof}
-		Take any $x_{0} \in (a, b)$ and set $f(x_{0}) = c$: we shall prove the given bound of $c$. Without loss of generality we may assume that $c \geq 0$ and $x_{0} \leq \frac{a + b}{2}$. The idea is that as $f^{(2)}$ is not too big, $f'$ has to be positive and reasonably big around the point $x_{0}$ which means that $f$ has to increase a lot around $x_{0}$. By the assumption it can't increase more than $2 M_{0}$, however.
-
-		To make this argument precise and effective, note that there are effectively two cases.
-
-		\begin{enumerate}
-			\item $M_{2} (b - x_{0}) > c$: this means that we have
-			\begin{align*}
-				f'(x) \geq c - M_{2} (x - x_{0})
-			\end{align*}
-			for $x_{0} \leq x \leq \frac{c}{M_{2}} + x_{0}$ and hence for any such $x$
-			\begin{align*}
-				2 M_{0} \geq f\left(\frac{c}{M_{2}} + x_{0}\right) - f(x_{0}) \geq \int_{x_{0}}^{\frac{c}{M_{2}} + x_{0}} \left(c - M_{2} (x - x_{0})\right) dx \geq \frac{c^2}{2 M_{2}},
-			\end{align*}
-			which yields the first inequality.
-			\item $M_{2} (b - x_{0}) \leq c$: now we have
-			\begin{align*}
-				f'(x) \geq c \frac{b - x}{b - x_{0}},
-			\end{align*}
-			for every $x_{0} \leq x < b$
-			\begin{align*}
-				2 M_{0} \geq f(x) - f(x_{0}) \geq \int_{x_{0}}^{x}  c \frac{b - x}{b - x_{0}} d x \geq \frac{c}{2(b - x_{0})} \left((b - x_{0})^2 - (b - x)^2\right).
-			\end{align*}
-			Letting $x \to b$ and using $(b - x_{0}) \geq \frac{b - a}{2}$ we get the second inequality.
-		\end{enumerate}
-
-		TODO: two pictures.
+		But know we can simply follow the same argument.
 	\end{proof}
+
+	TODO: another trick with $(a, b) = (0, \infty)$
 \end{proof}
 
 

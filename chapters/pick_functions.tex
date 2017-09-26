@@ -113,6 +113,12 @@ where $a, b, c, d \in \R$ and $a d - b c > 0$. Among these mapping the map
 \]
 satisfies $f(i) = w_{0}$.
 
+We denote
+\begin{align*}
+	\tilde{d}(z_{1}, z_{2}) = \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
+\end{align*}
+Schwarz-Pick theorem tells us that $\tilde{d} \circ \varphi \leq \tilde{d}$ for any Pick functions $\varphi$. Consequently $\tilde{d} \circ \varphi = \tilde{d}$ if $\varphi$ is an bijection.
+
 \subsection{Pick matrices}
 
 We can also arrive at the previous estimate directly using Cauchy's integral theorem, a bit similarly as with unit disc. Assume first that $\varphi$ is a bounded Pick-function extending over real line. We can start by proving that if $\varphi$ has positive imaginary part on real line, then it has positive real part on whole upper half-plane The idea to consider
@@ -151,6 +157,18 @@ But this is to say that the matrix
 	\end{bmatrix}
 \end{align*}
 is positive. Now, it just so turns out that ``determinant of the matrix is non-negative" is equivalent to Schwarz-Pick theorem.
+
+Indeed, straightforward although laborious computation shows that
+\begin{align}\label{pick2_determinant}
+	\det\left(
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} \\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}
+	\end{bmatrix}
+	\right)
+	=
+	\frac{|\varphi(z_{1}) - \varphi(z_{2})|^2}{4 \Im(z_{1}) \Im(z_{2})} \left( d(z_{1}, z_{2})^2 - d(\varphi(z_{1}), \varphi(z_{2})^2)\right).
+\end{align}
 
 It is not very hard to generalize the previous argument larger matrices, and we have arrived to
 \begin{lause}\label{pick-nevanlinna_theorem}
