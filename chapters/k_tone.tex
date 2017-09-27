@@ -1,0 +1,74 @@
+\chapter{Matrix $k$-tone functions}
+
+After having defined the notion of $k$-tone function in the real setting, it is natural to ponder what happens with matrix setting. Defining the notion itself is already a bit cumbersome: with monotone and convex functions the usual definitions make immediately sense but divided differences cause some problems. One cannot simply say that $f$ is matrix monotone if
+\begin{align*}
+	[A, B]_{f} = \frac{f(B) - f(A)}{B - A},
+\end{align*}
+since the right-hand side doesn't make much sense. We can however use an equivalent definition from the theorem \ref{monotone_derivative}.
+
+\section{Basic properties}
+
+\begin{maar}
+	We say that $f : (a, b) \to \R$ is matrix $k$-tone of order $n$ if for every $A \in \H^{n}(V)$ and $B \in \H^{n}_{+}(V)$ and $v \in V$ the function
+	\begin{align*}
+		t \mapsto \langle f(A + t B) v, v \rangle
+	\end{align*}
+	is $k$-tone.
+\end{maar}
+
+Denote the class of matrix $k$-tone functions of order $n$ on interval $(a, b)$ as $P^{k}_{n}(a, b)$ (so $P^{1}_{n}(a, b) = P_{n}(a, b)$).
+
+This definition doesn't exactly coincide with our definition for matrix convex functions, where we needed no assumption on the ``sign" of $B$. As we will later see, however, this alternate definition leads to same set of functions.
+
+
+As in the monotone case, we can list many natural properties of classes $P^{k}_{n}(a, b)$, proofs of which are very similar to the monotone case.
+
+\begin{prop}
+	Let $(a, b) \subset \R$ be an open interval $n \geq 1$, and $k \geq 1$. Now
+	\begin{enumerate}
+		\item $P_{n}^{k}(a, b)$ is a convex closed cone.
+		\item $P_{n + 1}^{k}(a, b) \subset P_{n}^{k}(a, b)$.
+		\item $\left(x \mapsto \alpha_{k} x^{k} + \ldots + \alpha_{1} x + \alpha_{0}\right) \in P^{k}_{n}(a, b)$ if $\alpha_{n} \geq 0$.
+		\item $\left(x \mapsto (-1)^k x^{-1}\right) \in P^{k}_{n}(a, b)$.
+	\end{enumerate}
+\end{prop}
+\begin{proof}
+	TODO
+\end{proof}
+
+Not surprisingly, we have also the following derivative characterization.
+
+\begin{lause}
+	Let $n, k \geq 1$ and $f \in C^{k}(a, b)$.
+	Then the following are equivalent:
+	\begin{enumerate}[(i)]
+	\item $f \in P^{k}_{n}(a, b)$.
+	\item For any $A \in \H^{n}_{(a, b)}$ and $H \geq 0$ we have
+	\[
+		D^{k}_{n}f_{A}(H) \geq 0.
+	\]
+	\end{enumerate}
+\end{lause}
+\begin{proof}
+	TODO
+\end{proof}
+
+But there's a problem: there's no obvious way to change the $H$ in the statement of the previous theorem to one-dimensional projection, when $k > 1$. The issue is that when $k > 1$, the map
+\begin{align*}
+	H \mapsto D^{k}_{n}f_{A}(H)
+\end{align*}
+is not linear anymore! It's a horrible mess instead.
+
+\section{TODO}
+
+\begin{itemize}
+	\item Is this section really needed?
+	\item How to deal with smoothness issues cleanly?
+\end{itemize}
+
+
+
+
+
+
+

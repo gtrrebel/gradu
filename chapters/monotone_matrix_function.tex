@@ -158,9 +158,10 @@ There are also more trivial inclusions: $P_{n}(a, b) \subset P_{n}(c, d)$ for an
 
 As in the real case, also in the matrix world we may characterize monotonicity with derivatives.
 
-\begin{lause}
+\begin{lause}\label{monotone_derivative}
 	Let $f \in C^{1}(a, b)$ and $n \geq 1$. Then the following are equivalent:
 	\begin{enumerate}[(i)]
+	\item $f \in P_{n}(a, b)$.
 	\item For any $A \in \H^{n}_{(a, b)}$ and $H \geq 0$ we have
 	\[
 		D^{1}_{n}f_{A}(H) \geq 0.
@@ -530,7 +531,7 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 				\begin{align*}
 					f'(x) \geq c - M_{2} (x - x_{0})
 				\end{align*}
-				for $x_{0} \leq x \leq \frac{c}{M_{2}} + x_{0}$ and hence for any such $x$
+				for $x_{0} \leq x \leq \frac{c}{M_{2}} + x_{0}$ and hence
 				\begin{align*}
 					2 M_{0} \geq f\left(\frac{c}{M_{2}} + x_{0}\right) - f(x_{0}) \geq \int_{x_{0}}^{\frac{c}{M_{2}} + x_{0}} \left(c - M_{2} (x - x_{0})\right) dx \geq \frac{c^2}{2 M_{2}},
 				\end{align*}
