@@ -34,7 +34,13 @@ Actually, increasing functions have simple and expected role in $n$-monotone mat
 	\end{enumerate}
 \end{prop}
 \begin{proof}
-	TODO
+	Since $1 \times 1$ matrices are for our purposes just reals, $(i) \Leftrightarrow (ii)$ is clear. Also if $(iii)$ holds, since in particular $x I$ and $y I$ commute for every $x, y$, if $x \leq y$, then $x I \leq y I$, and by assumption hence $f(x) I = f(x I) \leq f(y I) = f(y) I$ so $f(x) \leq f(y)$, which is to say that $f$ is increasing.
+
+	Let us then prove that $(i) \Rightarrow (iii)$. If $A \leq B$ and $A$ and $B$ commute, by theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} a_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{v_{i}}$ for some $a_{1}, \ldots, a_{n}, b_{1}, \ldots, b_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $a_{i} \leq b_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(a_{i}) P_{v_{i}}$ and $\sum_{i = 1}^{n} f(b_{i}) P_{v_{i}}$ so
+	\begin{align*}
+		f(B) - f(A) = \sum_{i = 1}^{n} (f(b_{i}) - f(a_{i})) P_{v_{i}}
+	\end{align*}
+	is positive, as $f$ is increasing.
 \end{proof}
 
 The equivalence of the first two is almost obvious and from this point on we shall identify $1$-monotone and increasing functions. But the third point is very important: it is exactly the non-commutative nature which makes the classes of higher order interesting.
@@ -77,16 +83,12 @@ That was easy. It's not very easy to come up with other examples, though. Most o
 	\[
 		(A + H)^2-A^2 = A H + H A + H^2.
 	\]
-	Note that $H^2 \geq 0$, but as we have seen in TODO, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. We are ready to formulate our proof strategy: find $A \in \H^{n}_{a, b}$ and $\Hp^{n}$ such that $A H + H A \ngeq 0$. Then choose parameter $t > 0$ so small that $A + t H \in \H^{n}(a,b)$ and
+	Note that $H^2 \geq 0$, but as we have seen in proposition \ref{symmetric_fail}, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. We are ready to formulate our proof strategy: find $A \in \H^{n}_{a, b}$ and $\Hp^{n}$ such that $A H + H A \ngeq 0$. Then choose parameter $t > 0$ so small that $A + t H \in \H^{n}(a,b)$ and
 	\[
 		(A + t H)^2 - A^2 = t (A H + H A + t H^2) \ngeq 0
 	\]
 	and set the pair $(A, A + t H)$ as the counterexample.
-
-	TODO
 \end{proof}
-
-In a similar manner one could show the similar statement for the functions $(x \mapsto x^k)$.
 
 At this point several other important properties of the matrix monotone functions should be clear.
 
@@ -116,7 +118,15 @@ We should be a bit careful though. As we saw with the square function example, p
 
 	We still need proper counterexamples though. Let's try $f \equiv 0$ and $g = \id$. So far the only $n$-monotone functions we know are affine functions so that's essentially our only hope for counterexamples.
 
-	TODO
+	The idea is the following: we are going to construct $A, B \in \H^{2}$ with the following properties:
+	\begin{enumerate}
+		\item $A \leq B$
+		\item $A$ and $B$ have both exactly one positive eigenvalue
+		\item $A$ and $B$ don't commute
+	\end{enumerate}
+	If we can do this, $A$ and $B$ work as counterexamples. Indeed then $f(A) = a_{1} P_{v_{1}}$ and $f(B) = b_{1} P_{w_{1}}$ where $a_{1}$ and $b_{1}$ are the positive eigenvalues of $A$ and $B$, with respective eigenvectors $v_{1}$ and $w_{1}$. But $f(A) \not\leq f(B)$ as $v_{1}$ and $w_{1}$ are linearly independent.
+
+	Constructing such pair is very easy: just take $A$ with eigenvalues $-1$ and $1$ and consider $B$ of the form $A + t H$ for some $H \geq 0$, $t > 0$ and such that $A$ and $H$ do not commute. For small enough $H$ all of the conditions are easily satisfied.
 \end{proof}
 
 Similarly we have composition and pointwise limits.
@@ -147,7 +157,13 @@ One of the main properties of the classes of matrix monotone functions has still
 	For any open interval $(a, b)$ and positive integer $n$ we have $P_{n + 1}(a, b) \subset P_{n}(a, b)$.
 \end{prop}
 \begin{proof}
-	TODO
+	The idea is that if $\dim(V) \leq \dim(V')$, we can essentially find copy of $V$ in $V'$. If $A, B \in \H^{n}(V)$, we can augment $A$ and $B$ to $V' = V \oplus \C$ by setting $A' = A \oplus c$ for any $c \in \R$.
+
+	Now if $A \leq B$, by picking any $c \in \R$ we see that $(A \oplus c) \leq (B \oplus c)$. Consequently if $f \in P_{n + 1}(a, b)$, we have
+	\begin{align*}
+		f(A) \oplus f(c) = f(A \oplus c) \leq f(B \oplus c) = f(B) \oplus f(c),
+	\end{align*}
+	which implies that $f(A) \leq f(B)$.
 \end{proof}
 
 One might ask whether these inclusions are strict. It turns out they are, as long as our interval is not the whole $\R$. We will come back to this.
@@ -364,17 +380,17 @@ Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turn
 	\begin{align*}
 		[\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0.
 	\end{align*}
-	$\lambda$'s should eigenvalues of some map, but now there are $2 n$ of them. Natural guess would be that they are eigenvalues of two maps, $A$ and $B$.
+	$\lambda$'s should be eigenvalues of some map, but now there are $2 n$ of them. Natural guess would be that they are eigenvalues of two maps, $A$ and $B$.
 
 	But now everything starts to make sense: whenever $A$, $B$ with $A \leq B$ and $w \in V$ the quantity
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle
 	\end{align*}
-	is non-negative. On the other hand this can be expanded as some kind of linear combination of values of $f$ at eigenvalues of $A$ and $B$. Same is true for the divided differences, so there might be change to choose $A$, $B$ and $w$ such that
+	is non-negative. On the other hand this can be expanded as some kind of linear combination of values of $f$ at eigenvalues of $A$ and $B$. Same is true for the divided differences, so there might be a chance to choose $A$, $B$ and $w$ such that
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
 	\end{align*}
-	Moreover should we find some kind of correspondence between triplets $(A, B, w)$ and pairs $((\lambda_{i})_{i = 1}^{2 n}, h)$, we would be done. This is the content of the main lemma.
+	Moreover, should we find some kind of correspondence between triplets $(A, B, w)$ and pairs $((\lambda_{i})_{i = 1}^{2 n}, h)$, we would be done. This is the content of the main lemma.
 
 	\begin{lem}\label{main_lemma}
 		If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $h$ is polynomial of degree at most $(2 n - 2)$ non-negative on the real line, we may find a strict projection pair $(A, B)$ such that
@@ -399,7 +415,7 @@ Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turn
 
 	Finally in this case, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ such that
 	\begin{align*}
-		\langle (f(B) - f(A)) v, v \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0
 	\end{align*}
 	and we are finally done.
 
@@ -522,7 +538,7 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 			for any $x \in (a, b)$.
 		\end{lem}
 		\begin{proof}
-			Take any $x_{0} \in (a, b)$ and set $f(x_{0}) = c$: we shall prove the given bound of $c$. Without loss of generality we may assume that $c \geq 0$ and $x_{0} \leq \frac{a + b}{2}$. The idea is that as $f^{(2)}$ is not too big, $f'$ has to be positive and reasonably big around the point $x_{0}$ which means that $f$ has to increase a lot around $x_{0}$. By the assumption it can't increase more than $2 M_{0}$, however.
+			Take any $x_{0} \in (a, b)$ and set $f'(x_{0}) = c$: we shall prove the given bound of $c$. Without loss of generality we may assume that $c \geq 0$ and $x_{0} \leq \frac{a + b}{2}$. The idea is that as $f^{(2)}$ is not too big, $f'$ has to be positive and reasonably big interval around the point $x_{0}$ which means that $f$ has to increase a lot around $x_{0}$. By the assumption it can't increase more than $2 M_{0}$, however.
 
 			To make this argument precise and effective, we split into too cases.
 
@@ -562,7 +578,7 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 \end{proof}
 
 
-\section{TODO}
+TODO:
 
 \begin{itemize}
 	\item Examples

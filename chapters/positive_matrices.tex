@@ -343,6 +343,12 @@ Also, given $A \in \H(V)$, we may write any $x \in V$ in the form $v = \sum_{1 \
 
 Similarly, if $A \geq 0$, $A$ has a unique positive square root, which we denote by $A^{\frac{1}{2}}$: map such that $A^{\frac{1}{2}} A^{\frac{1}{2}} = A$. Given the spectral reprsentation $A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}}$, we can simply set $A^{\frac{1}{2}} = \sum_{1 \leq i \leq n} \lambda_{i}^{\frac{1}{2}} P_{v_{i}}$. As for the uniqueness, note that if $B$ is a positive square root for $A$ and $B = \sum_{1 \leq i \leq n} \lambda_{i}' P_{v_{i}'}$, then $B^2 = \sum_{1 \leq i \leq n} \lambda_{i}'^{2} P_{v_{i}'}$. It follows that eigenvalues of $B$ are simply square roots of eigenvalues of $A$ and the corresponding eigenspaces are equal. Of course, the whole uniqueness argument floats more naturally with unique spectral representation.
 
+Spectral theorem also makes it clear that positiveness and realness of a map is preserved under direct sums.
+
+\begin{kor}
+	Let $A \in \L(V)$ and $B \in \L(W)$ and consider the map $A \oplus B \in \L(V \oplus W)$. Then $A \oplus B$ is real (positive), if and only if $A$ and $B$ are.
+\end{kor}
+
 \subsection{Commuting real maps}
 
 \textbf{Warning!} Composition of positive maps need not be positive!
@@ -436,7 +442,7 @@ As normal product doesn't quite work with positivity, next attempt might be symm
 \]
 (or maybe with normalizing constant $\frac{1}{2}$ in the front), instead of the usual one. It turns out that even this doesn't fix positivity.
 
-\begin{prop}
+\begin{prop}\label{symmetric_fail}
 	Let $\alpha, \beta, \gamma \in \C$ and $n \geq 2$. Then the expression $\alpha A^{2} + \beta AB + \overline{\beta} BA + \gamma B^{2}$ is positive for any $A, B \geq 0$ if and only if $\alpha, \gamma \in [0, \infty)$ and $|\beta|^{2} \leq \alpha \gamma$.
 \end{prop}
 \begin{proof}

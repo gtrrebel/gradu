@@ -17,7 +17,7 @@ Consider the case of increasing $f$. This information is exactly carried by the 
 \]
 Now if the derivative is everywhere non-negative, so are divided differences. Also divided differences are sort of approximations for derivative.
 
-We can push these ideas to higher orders. Second order divided differences should be something that captures second order behaviour of a function. In particular, if $f \in C^{2}(\R)$ has non-negative second derivative everywhere, i.e. it is convex, its second divided difference should be non-negative, and vice versa. Standard definition of convexity is almost what we are looking for: $f$ is convex if for any $x, y \in \R$ and $0 \leq t \leq 1$ we have $t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y)$. So if we define the mapping $[\cdot, \cdot, \cdot]_{f} : \R^{2} \times [0, 1]$ by $t f(x) + (1 - t) f(y) - f(t x + (1 - t)y)$, we have $[x, y, t]_{f} \geq 0$ for any $(x, y, t) \in \R^{2} \times [0, 1]$ if and only if $f^{2}(x) \geq 0$ for any $x \in \R$.
+We can push these ideas to higher orders. Second order divided differences should be something that captures second order behaviour of a function. In particular, if $f \in C^{2}(\R)$ has non-negative second derivative everywhere, i.e. it is convex, its second divided difference should be non-negative, and vice versa. Standard definition of convexity is almost what we are looking for: $f$ is convex if for any $x, y \in \R$ and $0 \leq t \leq 1$ we have $t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y)$. So if we define the mapping $[\cdot, \cdot, \cdot]_{f} : \R^{2} \times [0, 1]$ by $t f(x) + (1 - t) f(y) - f(t x + (1 - t)y)$, we have $[x, y, t]_{f} \geq 0$ for any $(x, y, t) \in \R^{2} \times [0, 1]$ if and only if $f^{(2)}(x) \geq 0$ for any $x \in \R$.
 
 There is however much better version for the function. If we write $z = t x + (1 - t) y$, we can solve that $t = \frac{z - y}{x - y}$ and express
 \begin{eqnarray*}
@@ -79,7 +79,7 @@ Also, we have following classic characterization.
 We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the Lagrange interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1}), \ldots, (x_{n}, f(x_{n}))$.
 \end{prop}
 \begin{proof}
-	Claims are easily derived from each other since if $f$ is itself a polynomial of degree at most $n$, its lagrange interpolation polynomial is $f$ itself. Recall that the Lagrange interpolation polynomial of a dataset $(x_{0}, y_{0}), (x_{1}, y_{1}), \ldots, (x_{n}, y_{n})$ is given by
+	Claims are easily derived from each other since if $f$ is itself a polynomial of degree at most $n$, its Lagrange interpolation polynomial is $f$ itself. Recall that the Lagrange interpolation polynomial of a dataset $(x_{0}, y_{0}), (x_{1}, y_{1}), \ldots, (x_{n}, y_{n})$ is given by
 	\[
 		\sum_{i = 0}^{n} y_{i} \frac{\prod_{j \neq i}(x - x_{j})}{\prod_{j \neq i}(x_{i} - x_{j})},
 	\]
@@ -190,7 +190,7 @@ There's another rather instructive proof for the statement. Write Newton expansi
 	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}}{(z - x_{n})} dz \\
 	&+ \frac{1}{2 \pi i} \int_{\gamma} [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} dz \\
 \end{align*}
-As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $\frac{1}{z^2}$. Finally, the $(n + 1)$:th term gives exactly what we wanted.
+As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $|z|^{-2}$. Finally, the $(n + 1)$:th term gives exactly what we wanted.
 \end{proof}
 
 If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Also if one shortens $[X]_{f} = [x_{0}, x_{1}, \ldots, x_{n}]_{f}$, we have
@@ -235,7 +235,7 @@ Actually, we are not quite done yet. Cauchy's integral formula only works for an
 	By Hermite interpolation TODO we can find for any pair $(i, j)$ polynomial with $f^{(i)}(a_{i, j}) = 1$ and $f^{(j')}(a_{i', j'})$ for every other pair $(i', j')$. Consequently $c_{i, j} = 0$ and we have the claim.
 \end{proof}
 
-Of course there's nothing really special about the functional being linear, but the point is: if the $F : C^{n}(a, b) \to \R$ depends only $f$ and it's derivatives up to some fixed order at some fixed points, then we know $F$ just by knowing the values at polynomials.
+Of course there's nothing really special about the functional being linear, but the point is: if the $F : C^{n}(a, b) \to \R$ depends only $f$ and it's derivatives up to some fixed order at some finite set of fixed points, then we know $F$ just by knowing the values at polynomials.
 
 \begin{proof}[Rest of the proof of \ref{Leibniz_rule}]
 	Note that if we expand the divided differences, we are almost in the situation of the lemma \ref{bootstrap_lemma}; now we just have product of two functions instead. Story is the same.
@@ -599,8 +599,8 @@ Usually by Bernstein's little theorem one means slightly weaker statement: if $f
 
 We will postpone the proof.
 
+TODO:
 
-\section{TODO}
 \begin{itemize}
 	\item Mean value theorem, coefficient of the interpolating polynomial
 	\item Basic properties, product rule.
