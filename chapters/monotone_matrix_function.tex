@@ -10,7 +10,17 @@ We first state the definition.
 	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H^{n}_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
 \end{maar}
 
-We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. One immediately sees that that all the matrix monotone functions are monotone as real functions.
+We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. Note that in the notation we don't specify the space $V$; it doesn't really matter.
+
+\begin{prop}
+	If $\dim(V) = \dim(V')$, then $f$ is $n$-monotone in $V$ if and only if it is $n$-monotone in $V'$.
+\end{prop}
+\begin{proof}
+	The reason is rather clear: inner product spaces of same dimension are isometric.
+\end{proof}
+
+
+One immediately sees that that all the matrix monotone functions are monotone as real functions.
 
 \begin{prop}
 	If $f \in P_{n}(a, b)$, $f$ is increasing.
@@ -503,6 +513,8 @@ Now an alternative version of \ref{main_theorem} reads as follows.
 \begin{proof}
 	TODO
 \end{proof}
+
+This formulation makes it also clear that $P_{n + 1}(a, b) \subset P_{n}(a, b)$.
 
 One can again get rid of the smootness assumption by some careful considerations.
 
