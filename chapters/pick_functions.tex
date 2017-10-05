@@ -420,10 +420,56 @@ Matrix \ref{extended_dobsch_matrix} is called \textit{extended Pick matrix}.
 The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we try to make every point in $\Hp$ is Pick point of $\varphi$. For this we need two lemmas. first one says that if point is a Pick point of $\varphi$, then $\varphi$ can be extended to a reasonable large disc around $z_{0}$, which is really say that the Taylor coefficients of $\varphi$ at $z_{0}$ don't grow too fast. Second one tells us that if managed to extend function to such disc, then all the points in the disc are Pick points.
 
 \begin{lem}
-	There exists absolute constant $c_{0}$ with the following property: Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that $z_{0} \in U$ is a Pick point of $U$. Then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, c_{0} \Im(z_{0}))$. One may take $c_{0} = ?$.
+	There exists absolute constant $c_{0}$ with the following property: Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that $z_{0} \in U$ is a Pick point of $U$. Then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, c_{0} \Im(z_{0}))$. One may take $c_{0} = \frac{1}{9}$.
 \end{lem}
 \begin{proof}
-	TODO
+	By affine transformation we may assume that $z_{0} = i$ and $\varphi(i) = i$. We should prove that there exists an absolute constant $C_{0}$ such that $\left|\frac{\varphi^{(n)(x_{0})}}{n!}\right| \leq C_{0}^{n + 1}$ for any $n$. Write $a_{k} = f^{(k)}(i)/k!$. The claim follows quite easily if we can prove that for some constant $C_{0}'$. We have
+	\begin{align*}
+		|a_{k}| \leq C_{0}' \sum_{i = 0}^{k - 1} |a_{i}|
+	\end{align*}
+	for $k \geq 1$.
+
+	The rest is more or less brute force: we are going to express the entries of the Dobsch matrix with respect to the Taylor coefficients and exploit the positiveness with suitable vector.
+
+	For convenience, write
+	\begin{align*}
+		b_{k} = a_{k} (-2 i)^{k + 1}
+	\end{align*}
+
+	By staightforvard induction one sees that
+	\begin{align*}
+		&[i, i, \ldots, i, -i, -i, \ldots, -i]_{\varphi} \\
+		&= \frac{1}{(-2i)^{k_{1}} (2 i)^{k_{2}}} \left( \sum_{j = 0}^{n - 1} b_{j} \binom{m + n - 2 - j}{m - 1} + \sum_{j = 0}^{m - 1} \overline{b_{j}} \binom{m + n - 2 - j}{n - 1}\right).
+	\end{align*}
+	where $i$ and $-i$ appear $k_{1}$ and $k_{2}$ times in the divided difference.
+
+	The idea is to look at the $n \times n$ matrix and conclude the inequality for $b_{n - 1}$. It turns out that it is sufficient to look at the submatrix consisting of only first and the last row and column. We may interpret the resulting matrix as sum of $n$ matrices $A_{i}$, $0 \leq i \leq n - 1$, namely
+	\begin{align*}
+		A_{j} =
+		\begin{cases}
+			\begin{bmatrix}
+				\frac{1}{4}(b_{0} + \overline{b_{0}}) & \frac{1}{(-2i)^{n}(2i)}(b_{0} + \overline{b_{0}}) \\
+				\frac{1}{(-2 i)(2 i)^{n}}(b_{0} + \overline{b_{0}}) &  \frac{\binom{2 n - 2}{n - 1}}{2^{2 n}}(b_{0} + \overline{b_{0}})
+			\end{bmatrix}
+			& \text{ if } j = 0 \\
+			\begin{bmatrix}
+				0 &  \frac{1}{(-2i)^{n}(2i)}b_{j} \\
+				\frac{1}{(-2 i)(2 i)^{n}}\overline{b_{j}} & \frac{\binom{2 n - 2 - j}{n - 1}}{2^{2 n}}(b_{j} + \overline{b_{j}})
+			\end{bmatrix}
+			& \text{ otherwise}.
+		\end{cases}
+	\end{align*}
+	Using the trivial inequality $\binom{2 n - 2 - j}{n - 1} \leq 2^{2 n - 2 - j}$ one easily sees that $\|A_{j}\| \leq 2^{-j}|b_{j}|$ for any $0 \leq j \leq n - 1$. Additionally it is easy to verify that $A_{n - 1}$ negative eigenvalue with absolute value at least $|b_{n - 1}| 2^{- n - 2}$.
+
+	This implies that
+	\begin{align*}
+		\frac{|b_{n - 1}|}{2^{n - 1}} \leq 8 \sum_{j = 0}^{n - 2} \frac{|b_{j}|}{2^{j}},
+	\end{align*}
+	which implies
+	\begin{align*}
+		|a_{n - 1}| \leq 8 \sum_{j = 0}^{n - 2} |a_{j}|.
+	\end{align*}
+	Since $a_{0} = 1$, we see by induction that $|a_{j}| \leq 9^{j}$, and we may hence take $c_{0} = \frac{1}{9}$.
 \end{proof}
 
 \begin{lem}\label{pick_point_lemma}
