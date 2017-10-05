@@ -87,7 +87,11 @@ This formula holds even if $f$ is not analytic, namely as long as $f \in \C^{1}(
 	\]
 \end{lem}
 \begin{proof}
-	TODO
+	By lemma \ref{spectrum_stability} we see that $|\lambda_{i}(A + H) - \lambda_{i}(A)| \leq n \|H\|$. Now by Taylor expansion $|f(\lambda_{i}(A + H))| =  n \|H\| f'(\xi_{i})$ for some $\xi_{i} = \xi_{i, A, H}$ on $(\lambda_{i}(A) - n \|H\|, \lambda_{i}(A) + n \|H\|)$. Now
+	\begin{align*}
+		\|f(A + H)\| \leq \sum_{i = 1}^{n} |\lambda_{i}(A + H)| \|P_{v_{i}}\| \leq n \|H\| \sum_{i = 1}^{n} |f'(\xi_{i, A, H})|.
+	\end{align*}
+	But by continuity of $f'$ the sum tends to zero as $\|H\| \to 0$.
 \end{proof}
 
 \begin{comment}

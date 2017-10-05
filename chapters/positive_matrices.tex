@@ -72,12 +72,10 @@ If we are working in a inner-product space, there's rather natural choice for th
 \end{maar}
 
 \begin{lause}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space and $W \subset V$ subspace of $V$. Then the compression to $W$ is unique linear contraction from $\L(V)$ to $\L(W)$, such that for any $A \in L(V, W)$ we have $\arestr{(\incl{V}{W} \circ A)}{W} = A \circ \incl{V}{W}$. Moreover, if $W' \subset W$, we have $\arestr{(\cdot)}{W'} = \arestr{(\arestr{(\cdot)}{W})}{W'}$.
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space and $W \subset V$ subspace of $V$. Then the compression to $W$ is linear contraction from $\L(V)$ to $\L(W)$, such that for any $A \in L(V, W)$ we have $\arestr{(\incl{V}{W} \circ A)}{W} = A \circ \incl{V}{W}$. Moreover, if $W' \subset W$, we have $\arestr{(\cdot)}{W'} = \arestr{(\arestr{(\cdot)}{W})}{W'}$.
 \end{lause}
 \begin{proof}
-	Trust me, it's true. Also, even if it's not, this theorem is clearly here just to convince the reader that orthogonal projections are the only sensible choice; but does that really need convincing?
-
-	Okay, we'll come back to the proof.
+	Easy to check.
 \end{proof}
 
 For one-dimensional compressions we have convenient representation. As one easily checks, one dimensional projection onto subspace spanned by vector $v$ is given by
@@ -428,10 +426,10 @@ As another corollary of theorem \ref{commuting_real_maps} we have
 Also in the general case we can say something positive:
 
 \begin{prop}
-	If $A, B \geq 0$, then $AB$ has non-negative eigenvalues. Conversely, if $C$ has non-negative eigenvalues, then it's of the form $AB$ for some positive $A$ and $B$. TODO: details
+	If $A, B \geq 0$, then $AB$ is diagonalizable and has non-negative eigenvalues. Conversely, if $C$ is diagonalizable and has non-negative eigenvalues, then it's of the form $AB$ for some positive $A$ and $B$.
 \end{prop}
 \begin{proof}
-	Postponed.
+	TODO (Is this true?)
 \end{proof}
 
 TODO: independence of random variables.
@@ -507,7 +505,7 @@ If one $*$-conjugates with non-invertible, the inertia may change, but in quite 
 	For $A, B \in \normal(V)$ and $A$ is $*$-conjugate of $B$, if and only if $n_{\pm}(A) \leq n_{\pm}(B)$.
 \end{lause}
 \begin{proof}
-	TODO
+	The proof is essentially the same.
 \end{proof}
 
 This extension draws a picture about the relation of previously mentioned congcruence classes. We can move to the congruence classes of lower indeces by $*$-conjugation, but cannot move up the ladder: the complexity of quadratic forms cannot increase. One could also think that $*$-congruence for linear maps corresponds to multiplication by non-negative real for real numbers.
@@ -902,6 +900,15 @@ The proof of \ref{compression_eigenvalues_con} is similar: the aim to first conn
 
 \begin{proof}[Proof of proposition \ref{compression_eigenvalues_con}]
 	Proof is just an easier version of the proof of \ref{projection_eigenvalues_con}
+\end{proof}
+
+These eigenvalue inequalities have interesting corollaries.
+
+\begin{kor}\label{spectrum_stability}
+	If $A, B \in \H^{n}(V)$, then $|\lambda_{i}(A) - \lambda_{i}(B)| \leq \sum_{i = 1}^{n} |\lambda_{i}(A - B)| \leq n \|A - B\|$ for any $1 \leq i \leq n$.
+\end{kor}
+\begin{proof}
+	If $B - A = \sum_{i = 1}^{n} \lambda_{i}(B - A) P_{v_{i}}$, write $A_{j} = A + \sum_{i = 1}^{j} \lambda_{i}(B - A) P_{v_{i}}$. By using lemma \ref{projection_eigenvalues_con} we may trace how the eigenvalues of $A_{j}$ change when $j$ increases. We conclude the given bound $\ldots$ almost: this implies bound for terms $|\lambda_{i}(A) - \lambda_{\sigma(i)}(B)|$ for some permutation $\sigma$ of $\{1, 2, \ldots, n\}$. But $\max_{1 \leq i \leq n} |\lambda_{i}(A) - \lambda_{i}(B)| \leq \max_{1 \leq i \leq n}|\lambda_{i}(A) - \lambda_{\sigma(i)}(B)|$ for any permutation $\sigma$ (as can be seen by simple exchange argument, for instance). The last inequality is trivial, so we are done.
 \end{proof}
 
 TODO: change order of compression and projection eigenvalues converses.

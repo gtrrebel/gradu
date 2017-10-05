@@ -209,7 +209,15 @@ As in the real case, also in the matrix world we may characterize monotonicity w
 	\end{enumerate}
 \end{lause}
 \begin{proof}
-	TODO
+	$(i) \Leftrightarrow (ii)$ follows from Spectral theorem linearity of $D^{1}_{n}$, and $(iii) \Leftrightarrow (iv)$ from Spectral theorem. One also easily sees that the derivative of the map
+	\[
+		t \mapsto \langle f(A + t H) v, v \rangle
+	\]
+	is the map
+	\[
+		t \mapsto \langle D^{1}_{n}f_{A}(H) v, v \rangle
+	\]
+	so also $(i) \Leftrightarrow (iii)$ is clear.
 \end{proof}
 
 We already noticed that we can express $D^{1}_{n}f_{A}(H) = ([\lambda_{i}, \lambda_{j}]_{f})_{1 \leq i, j \leq n}\circ H$, where Hadamard product is taken along eigenbasis of $A$. We can however make the following simple observation:

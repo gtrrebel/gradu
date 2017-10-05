@@ -231,7 +231,19 @@ Let's first check continuity. For this we only need positivity on $2 \times 2$-m
 	is positive. Then $f$ is locally Lipschitz, in particular continuous.
 \end{lause}
 \begin{proof}
-	TODO
+	It follows from \ref{pick2_determinant}: what we have
+	\begin{align*}
+		\left|\frac{\varphi(z_{1}) - \varphi(z_{2})}{\varphi(z_{1}) - \overline{\varphi(z_{2})}} \right| \leq \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
+	\end{align*}
+	for any $z_{1}, z_{2} \in A$; we can draw the same conclusion as in the Schwarz lemma. Now it clearly suffices to check that $\varphi$ is bounded on any compact set. For any compact $K$ there exists $\varepsilon_{K}$ such that the expression
+	\begin{align*}
+		\left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right| < 1 - \varepsilon_{K},
+	\end{align*}
+	whenever $z_{1}, z_{2} \in K$. If we fix $z_{2} \in K$, it is easily seen that we obtain uniform bound on $|\varphi(z_{1})|$, as
+	\begin{align*}
+		\lim_{z \to \infty}  \left|\frac{z - w}{z - \overline{w}} \right| = 1.
+	\end{align*}
+	(Here $\infty$ denotes the complex infinity).
 \end{proof}
 
 Curiosly enough, $\varphi$ is analytic as long as all its $3 \times 3$ Pick matrices are positive. This result is known as Hindmarsh's theorem.
@@ -423,7 +435,7 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 	There exists absolute constant $c_{0}$ with the following property: Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that $z_{0} \in U$ is a Pick point of $U$. Then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, c_{0} \Im(z_{0}))$. One may take $c_{0} = \frac{1}{9}$.
 \end{lem}
 \begin{proof}
-	By affine transformation we may assume that $z_{0} = i$ and $\varphi(i) = i$. We should prove that there exists an absolute constant $C_{0}$ such that $\left|\frac{\varphi^{(n)(x_{0})}}{n!}\right| \leq C_{0}^{n + 1}$ for any $n$. Write $a_{k} = f^{(k)}(i)/k!$. The claim follows quite easily if we can prove that for some constant $C_{0}'$. We have
+	By affine transformation we may assume that $z_{0} = i$ and $\varphi(i) = i$. We should prove that there exists an absolute constant $C_{0}$ such that $\left|\frac{\varphi^{(n)(x_{0})}}{n!}\right| \leq C_{0}^{n + 1}$ for any $n$. Write $a_{k} = \varphi^{(k)}(i)/k!$. The claim follows quite easily if we can prove that for some constant $C_{0}'$. We have
 	\begin{align*}
 		|a_{k}| \leq C_{0}' \sum_{i = 0}^{k - 1} |a_{i}|
 	\end{align*}
@@ -443,7 +455,7 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 	\end{align*}
 	where $i$ and $-i$ appear $k_{1}$ and $k_{2}$ times in the divided difference.
 
-	The idea is to look at the $n \times n$ matrix and conclude the inequality for $b_{n - 1}$. It turns out that it is sufficient to look at the submatrix consisting of only first and the last row and column. We may interpret the resulting matrix as sum of $n$ matrices $A_{i}$, $0 \leq i \leq n - 1$, namely
+	The idea is to look at the $n \times n$ matrix and conclude the inequality for $b_{n - 1}$. It turns out that it is sufficient to look at the submatrix consisting of only first and the last row and column. We may interpret the resulting matrix as sum of $n$ matrices $A_{j}$, $0 \leq j \leq n - 1$, namely
 	\begin{align*}
 		A_{j} =
 		\begin{cases}
@@ -459,13 +471,13 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 			& \text{ otherwise}.
 		\end{cases}
 	\end{align*}
-	Using the trivial inequality $\binom{2 n - 2 - j}{n - 1} \leq 2^{2 n - 2 - j}$ one easily sees that $\|A_{j}\| \leq 2^{-j}|b_{j}|$ for any $0 \leq j \leq n - 1$. Additionally it is easy to verify that $A_{n - 1}$ negative eigenvalue with absolute value at least $|b_{n - 1}| 2^{- n - 2}$.
+	Using the trivial inequality $\binom{2 n - 2 - j}{n - 1} \leq 2^{2 n - 2 - j}$ one easily sees that $\|A_{j}\| \leq 2^{-j}|b_{j}|$ for any $0 \leq j \leq n - 1$. Additionally it is easy to verify that $A_{n - 1}$ negative eigenvalue with absolute value at least $2^{- n - 2}|b_{n - 1}|$.
 
-	This implies that
+	It follows that
 	\begin{align*}
 		\frac{|b_{n - 1}|}{2^{n - 1}} \leq 8 \sum_{j = 0}^{n - 2} \frac{|b_{j}|}{2^{j}},
 	\end{align*}
-	which implies
+	which implies that
 	\begin{align*}
 		|a_{n - 1}| \leq 8 \sum_{j = 0}^{n - 2} |a_{j}|.
 	\end{align*}
@@ -476,7 +488,15 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$ and $r > 0$. Assume that $z_{0}$ is Pick point of $\varphi$ and $\varphi$ is analytic in $\D(z_{0}, r)$. Then all Pick matrices of $\varphi$ are positive on $\D(z_{0}, r)$. Consequently, all the points in $\D(z_{0}, r)$ are Pick points of $z_{0}$.
 \end{lem}
 \begin{proof}
-	TODO.
+	Rewriting things with Cauchy's integral formula, our goal is to prove that for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \D(z_{0}, r)$ we have
+	\begin{align*}
+		\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \lambda_{j}}\right) f(z) dz \geq 0
+	\end{align*}
+	where $\gamma$ traces a circle centered at $z_{0}$, enclosing the $\lambda$'s. What we know, again, in terms of Cauchy's integral formula, is that for any $c_{1}', c_{2}', \ldots, c_{n}' \in \C$ we have
+	\begin{align*}
+		\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{(z - z_{0})^{j}}\right) \left(\sum_{j = 1}^{n}\frac{\overline{c_{j}}}{(z - z_{0})^{j}}\right) f(z) dz \geq 0.
+	\end{align*}
+	The idea is to simply approximate upper integrand: if we manange to approximate terms of the form $\frac{1}{z - \lambda}$ uniformly on $\gamma$ by terms of the form $\sum_{j = 1}^{n} \frac{c_{j}}{(z - z_{0})^{j}}$, then we can certainly make our goal expression as close to a non-negative number as we wish. But this is exactly what Laurent expansions are for.
 \end{proof}
 
 \begin{proof}[Proof of theorem \ref{open_pick_nevanlinna}]
