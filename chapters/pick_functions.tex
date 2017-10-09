@@ -471,7 +471,7 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 			& \text{ otherwise}.
 		\end{cases}
 	\end{align*}
-	Using the trivial inequality $\binom{2 n - 2 - j}{n - 1} \leq 2^{2 n - 2 - j}$ one easily sees that $\|A_{j}\| \leq 2^{-j}|b_{j}|$ for any $0 \leq j \leq n - 1$. Additionally it is easy to verify that $A_{n - 1}$ negative eigenvalue with absolute value at least $2^{- n - 2}|b_{n - 1}|$.
+	Using the trivial inequality $\binom{2 n - 2 - j}{n - 1} \leq 2^{2 n - 2 - j}$ one easily sees that $\|A_{j}\| \leq 2^{-j}|b_{j}|$ for any $0 \leq j \leq n - 1$. Additionally it is easy to verify that $A_{n - 1}$ has negative eigenvalue with absolute value at least $2^{- n - 2}|b_{n - 1}|$.
 
 	It follows that
 	\begin{align*}
@@ -540,9 +540,54 @@ Note that the notion of weak Pick functions makes perfect sense in this more gen
 	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
 \end{lem}
 \begin{proof}
-	Let's first consider the case of finite $A$. TODO
+	Let's first consider the case of finite $A$, say $A = \{z_{1}, z_{2}, \ldots, z_{n}\}$ and denote $w_{i} = \varphi(z_{i})$. Without loss of generality we may assume that $z_{0} = i$. We should find $w_{0}$ such that the matrix
+	\begin{align*}
+		\begin{bmatrix}
+			\frac{w_{0} - \overline{w_{0}}}{2 i} & \frac{w_{0} - \overline{w_{1}}}{i - \overline{z_{1}}} & \cdots & \frac{w_{0} - \overline{w_{n}}}{i - \overline{z_{n}}} \\
+			\frac{w_{1} - \overline{w_{0}}}{z_{1} + i} & \frac{w_{1} - \overline{w_{1}}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{w_{1} - \overline{w_{n}}}{z_{1} - \overline{z_{n}}} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			\frac{w_{n} - \overline{w_{0}}}{z_{n} + i} & \frac{w_{n} - \overline{w_{1}}}{z_{n} - \overline{z_{1}}} & \ldots & \frac{w_{n} - \overline{w_{n}}}{z_{n} - \overline{z_{n}}}
+		\end{bmatrix}
+	\end{align*}
+	is positive. Denote the matrix consisting of the last $n$ rows and columns of the matrix by $n$. We first assume that $M$ is invertible. Then the original matrix is positive if and only the the Schur complement with to last $n$ rows is positive, that is
+	\begin{align*}
+		0 \leq &\frac{w_{0} - \overline{w_{0}}}{2 i} - (w_{0} v - w)^{*} M^{-1} (w_{0} v - w) \\
+		=& -\langle M^{-1} v, v \rangle |w_{0}|^2 + \left(\frac{1}{2 i} + \langle M^{-1} v, w \rangle \right) w_{0} \\
+		&+  \left(-\frac{1}{2 i} + \langle M^{-1} w, v \rangle \right) \overline{w_{0}} - \langle M^{-1} w, w \rangle \\
+		=&  -\frac{1}{\langle M^{-1} v, v \rangle} \left|\langle M^{-1} v, v \rangle w_{0} +  \frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} \\
+		&+ \frac{\left|\frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle}{\langle M^{-1} v, v \rangle}
+	\end{align*}
+	where $v = (\frac{1}{i - \overline{z_{i}}})_{i = 1}^{n}$ and $w = (\frac{\overline{w_{i}}}{i - \overline{z_{i}}})_{i = 1}^{n}$. Now if we manage to prove that
+	\begin{align*}
+	\left|\frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle \geq 0,
+	\end{align*}
+	we can choose suitable $w_{0}$ and moreover set of suitable $w_{0}$'s is a closed disc.
 
-	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we know that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed ball. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But this means that the family
+	The positivity follows from the following formula:
+	\begin{align*}
+		\left|\frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle = \prod_{i = 1}^{n} \|\frac{z_{i} - i}{z_{i} + i}\|^{2}
+	\end{align*}
+	Where does this come from? The idea is that the Pick matrix is of a really special form and as one easily checks, one has
+	\begin{align*}
+		\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}} - \frac{w_{k} - i}{z_{k} + i}\frac{\overline{w_{l}} - i}{\overline{z_{l}} - i} + \frac{w_{k} + i}{z_{k} + i}\frac{\overline{w_{l}} + i}{\overline{z_{l}} - i} = \frac{z_{k} - i}{z_{k} + i}\frac{\overline{z_{k}} + i}{\overline{z_{k}} - i}\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}}.
+	\end{align*}
+	This identity can be interpreted as $(M - v_{1} v_{1}^{*}) + v_{2} v_{2}^{*} = D^{*} M D$ where $v_{1}, v_{2}$ are some vectors and $D$ a diagonal matrix. Calculating the determinant from both sides, by multiplicativity on the right-hand side and using rank 1 update formulas in the bracketed order one will end up to the sought formula.
+
+	If $M$ is singular, one has to be bit careful. The trick is to shift the tuple a bit.
+
+	The matrix $\left(\frac{2 i}{z_{k} - \overline{z_{l}}}\right)_{1 \leq k,l \leq n}$ is strictly positive for any tuple of distinct numbers $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$. Indeed, by the residue theorem we have
+	\begin{align*}
+		\sum_{1 \leq k,l \leq n} c_{k} \overline{c_{l}} \frac{2 i}{z_{k} - \overline{z_{l}}} = \int_{-\infty}^{\infty} \left|\sum_{k = 1}^{n} \frac{c_{k}}{t - z_{k}}\right|^{2} d t
+	\end{align*}
+	and if the integrand is zero almost everywhere, and hence on at least $n$ points, then $c_{i}$'s are all zero.
+
+	Consequently, consider the extension problem for the values $w_{k} + \varepsilon i$ for some $\varepsilon > 0$, ja let $D_{\varepsilon} + \varepsilon i$ be the respective set of suitable $w_{0}$'s for given $\varepsilon$. Since clearly $D_{\varepsilon} \subset D_{\varepsilon'}$ for any $\varepsilon \leq \varepsilon'$ and $D_{\varepsilon}$'s are closed discs, the intersection
+	\begin{align*}
+		\cap_{\varepsilon > 0} D_{\varepsilon} =: D_{0}
+	\end{align*}
+	is also a closed disc, and one easily sees that it is exactly the set of suitable $w_{0}$'s.
+
+	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we know that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed disc. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But this means that the family
 	\begin{align*}
 		\{W_{F} \subset \Hp | \text{$F$ is finite (non-empty) subset of $A$} \}
 	\end{align*}
@@ -610,11 +655,11 @@ Two resulting matrices are evidently congruent.
 This line of thinking leads to alternate proof for the Pick-Nevanlinna interpolation theorem for finite domain $A$.
 
 \begin{proof}[Alternate proof of \ref{pick_nevanlinna_interpolation} for finite $A$]
-	We proceed by induction. If $z_{1} = i = w_{1}$, we just noted that this matrix being positive is equivalent to smaller matrix, namely
+	We proceed by induction. Without loss of generality we may assume that $z_{1} = i = w_{1}$. We just noted that this matrix being positive is equivalent to smaller matrix, namely
 	\[
 		\left(\frac{\frac{w_{i} - z_{i}}{1 + z_{i} w_{i}} - \frac{\overline{w_{i}} - \overline{z_{i}}}{1 + \overline{z_{i}} \overline{w_{i}}}}{z_{i} - \overline{z_{j}}}\right)_{2 \leq i, j \leq n}
 	\]
-	being positive. By inductive hypothesis this then means that there exists a Pick function $\tilde{\varphi}$ with $\tilde{\varphi}(z_{i}) = \frac{w_{i} - z_{i}}{1 + z_{i} w_{i}}$. But then $\varphi(z) = \frac{\tilde{\varphi}(z) + z}{1 - z \tilde{\varphi}(z)}$ fits the bill. TODO: general case (introduce Schur transform)
+	being positive. By inductive hypothesis this then means that there exists a Pick function $\tilde{\varphi}$ with $\tilde{\varphi}(z_{i}) = \frac{w_{i} - z_{i}}{1 + z_{i} w_{i}}$. But then $\varphi(z) = \frac{\tilde{\varphi}(z) + z}{1 - z \tilde{\varphi}(z)}$ fits the bill.
 \end{proof}
 
 \section{Compactness}

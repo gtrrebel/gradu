@@ -519,10 +519,11 @@ Now an alternative version of \ref{main_theorem} reads as follows.
 	Let $n \geq 1$. Then $f \in P_{n}(a, b) \cap C^{2 n - 1}(a, b)$, if and only if all Dobsch matrices of $f$ of order $n$ are positive for every $t \in (a, b)$.
 \end{lause}
 \begin{proof}
-	TODO
+	By simple computation
+	\begin{align*}
+		\left.\frac{1}{(2 n - 1)!} \frac{d^{2 n - 1}\left(f(t) \left(\sum_{i = 1}^{n} c_{i} t^{n - i}\right) \left(\sum_{i = 1}^{n} \overline{c_{i}} t^{n - i}\right)\right)}{d t^{2 n - 1}} \right|_{t = 0} = \sum_{i,j = 1}^{n} c_{i} \overline{c_{j}} \frac{f^{(i + j - 1)}(0)}{(i + j - 1)!}.
+ 	\end{align*}
 \end{proof}
-
-This formulation makes it also clear that $P_{n + 1}(a, b) \subset P_{n}(a, b)$.
 
 One can again get rid of the smootness assumption by some careful considerations.
 
@@ -583,7 +584,7 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 				Letting $x \to b$ and using $(b - x_{0}) \geq \frac{b - a}{2}$ we get the second inequality.
 			\end{enumerate}
 
-			TODO: two pictures.
+			TODO: pictures of function and it's derivatives
 			TODO: better proof
 		\end{proof}
 
@@ -594,7 +595,6 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 		But know we can simply follow the same argument.
 	\end{proof}
 
-	TODO: another trick with $(a, b) = (0, \infty)$
 \end{proof}
 
 
