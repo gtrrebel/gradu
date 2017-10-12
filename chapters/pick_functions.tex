@@ -435,13 +435,13 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 	There exists absolute constant $c_{0}$ with the following property: Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that $z_{0} \in U$ is a Pick point of $U$. Then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, c_{0} \Im(z_{0}))$. One may take $c_{0} = \frac{1}{9}$.
 \end{lem}
 \begin{proof}
-	By affine transformation we may assume that $z_{0} = i$ and $\varphi(i) = i$. We should prove that there exists an absolute constant $C_{0}$ such that $\left|\frac{\varphi^{(n)(x_{0})}}{n!}\right| \leq C_{0}^{n + 1}$ for any $n$. Write $a_{k} = \varphi^{(k)}(i)/k!$. The claim follows quite easily if we can prove that for some constant $C_{0}'$. We have
+	By affine transformation we may assume that $z_{0} = i$ and $\varphi(i) = i$. We should prove that there exists an absolute constant $C_{0}$ such that $\left|\frac{\varphi^{(n)}(i)}{n!}\right| \leq C_{0}^{n + 1}$ for any $n$. Write $a_{k} = \varphi^{(k)}(i)/k!$. The claim follows quite easily if we can prove that for some constant $C_{0}'$. We have
 	\begin{align*}
 		|a_{k}| \leq C_{0}' \sum_{i = 0}^{k - 1} |a_{i}|
 	\end{align*}
 	for $k \geq 1$.
 
-	The rest is more or less brute force: we are going to express the entries of the Dobsch matrix with respect to the Taylor coefficients and exploit the positiveness with suitable vector.
+	We are going to express the entries of the Dobsch matrix with respect to the Taylor coefficients.
 
 	For convenience, write
 	\begin{align*}
@@ -485,18 +485,20 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 \end{proof}
 
 \begin{lem}\label{pick_point_lemma}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$ and $r > 0$. Assume that $z_{0}$ is Pick point of $\varphi$ and $\varphi$ is analytic in $\D(z_{0}, r)$. Then all Pick matrices of $\varphi$ are positive on $\D(z_{0}, r)$. Consequently, all the points in $\D(z_{0}, r)$ are Pick points of $z_{0}$.
+	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$ and $0 < r \leq \Im(z_{0})$. Assume that $z_{0}$ is Pick point of $\varphi$ and $\varphi$ is analytic in $\D(z_{0}, r)$. Then all Pick matrices of $\varphi$ are positive on $\D(z_{0}, r)$. Consequently, all the points in $\D(z_{0}, r)$ are Pick points of $z_{0}$.
 \end{lem}
 \begin{proof}
 	Rewriting things with Cauchy's integral formula, our goal is to prove that for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \D(z_{0}, r)$ we have
 	\begin{align*}
-		\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \lambda_{j}}\right) f(z) dz \geq 0
+		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \overline{\lambda_{j}}}\right) f(z) dz \right) \geq 0
 	\end{align*}
 	where $\gamma$ traces a circle centered at $z_{0}$, enclosing the $\lambda$'s. What we know, again, in terms of Cauchy's integral formula, is that for any $c_{1}', c_{2}', \ldots, c_{n}' \in \C$ we have
 	\begin{align*}
-		\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{(z - z_{0})^{j}}\right) \left(\sum_{j = 1}^{n}\frac{\overline{c_{j}}}{(z - z_{0})^{j}}\right) f(z) dz \geq 0.
+		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}'}{(z - z_{0})^{j}}\right) \left(\sum_{j = 1}^{n}\frac{\overline{c_{j}'}}{(z - \overline{z_{0}})^{j}}\right) f(z) dz\right) \geq 0.
 	\end{align*}
-	The idea is to simply approximate upper integrand: if we manange to approximate terms of the form $\frac{1}{z - \lambda}$ uniformly on $\gamma$ by terms of the form $\sum_{j = 1}^{n} \frac{c_{j}}{(z - z_{0})^{j}}$, then we can certainly make our goal expression as close to a non-negative number as we wish. But this is exactly what Laurent expansions are for.
+	The idea is to simply approximate upper integrand: if we manange to approximate terms of the form $\frac{1}{z - \lambda}$ uniformly on $\gamma$ by terms of the form $\sum_{j = 1}^{n} \frac{c_{j}'}{(z - z_{0})^{j}}$, then we can certainly make our goal expression as close to a non-negative number as we wish. But this is exactly what Laurent expansions are for.
+
+	One should not forget that also the conjugate part should be approximated, but since $|\overline{z} - z_{0}| > |z - z_{0}|$ for any $z \in \Hp$, the conjugated approximation is even better.
 \end{proof}
 
 \begin{proof}[Proof of theorem \ref{open_pick_nevanlinna}]
@@ -517,13 +519,86 @@ We can salvage the proof by improving the second lemma. We have to somehow remem
 	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ weakly Pick. Assume that for some $z_{0} \in U$ and $r > 0$ the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, r)$. Then the values of Taylor series in $\D(z_{0}, r) \cap U$ coincide with $\varphi$ and the resulting extension is weakly Pick in $U \cup \D(z_{0}, r)$.
 \end{lem}
 \begin{proof}
-	TODO
+	Let us first show that the extension coincides with the original function. Note that this not all that obvious and fails if without the weakly Pick -condition.
+
+	To do that, let $\tilde{\varphi} : \D(z_{0}, r) \to \C$ be the extension and let $z_{1} \in \D(z_{0}, r)$ and $z_{2} \in U$ be distinct. We prove that the matrix
+	\begin{align*}
+		\begin{bmatrix}
+		\frac{\tilde{\varphi}(z_{1}) -  \overline{\tilde{\varphi}(z_{1})}}{z_{1} - \overline{z_{1}}} & \frac{\tilde{\varphi}(z_{1}) -  \overline{\varphi(z_{2})}}{z_{1} - \overline{z_{2}}} \\
+		\frac{\varphi(z_{2}) -  \overline{\tilde{\varphi}(z_{1})}}{z_{2} - \overline{z_{1}}} & \frac{\varphi(z_{2}) -  \overline{\varphi(z_{2})}}{z_{2} - \overline{z_{2}}}
+		\end{bmatrix}
+	\end{align*}
+	is positive. As observed before, this shows that $|\tilde{\varphi}(z_{1}) - \varphi(z_{2})| \leq C_{\varphi, z_{2}} |z_{1} - z_{2}|$ which implies the claim. We could also consider the matrix where $z_{1}$ and $z_{2}$ are equal, but this is just for notational convenience.
+
+	The idea is to try to do the same thing as in the proof of lemma \ref{pick_point_lemma}. The problem is that we can't a priori express both $\varphi(z_{1})$ and $\tilde{\varphi}(z_{1})$ with Cauchy's integral formula with the same contour. But we can still follow the same approximation scheme, one just has to be more careful about error terms.
+
+	To make the notation slightly simpler 
+
+	If we already knew that the result was true, the positivity of matrix desired would be same as positivity of the real part of
+	\begin{align*}
+		\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}}{z - z_{1}} + \frac{c_{2}}{z - z_{2}} \right)  \left(\frac{\overline{c_{1}}}{z - \overline{z_{1}}} + \frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right)\varphi(z) dz.
+	\end{align*}
+
+	Plugging the identity
+	\begin{align*}
+	\frac{1}{z - z_{1}} = \sum_{j = 1}^{n} \frac{(z_{1} - z_{0})^{j - 1}}{(z - z_{0})^{j}} + \frac{(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}
+	\end{align*}
+	in the previous integral we arrive at
+	\begin{align*}
+		&\frac{1}{2 \pi i}\int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{1}(z_{1} - z_{0})^{j - 1}}{(z - z_{0})^{j}}  + \frac{c_{2}}{z - z_{2}} \right)  \left(\sum_{j = 1}^{n} \frac{\overline{c_{1}} (\overline{z_{1}} - \overline{z_{0}})^{j - 1}}{(z - \overline{z_{0}})^{j}} + \frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) \varphi(z) dz\\
+		+&\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\sum_{j = 1}^{n} \frac{\overline{c_{1}} (\overline{z_{1}} - \overline{z_{0}})^{j - 1}}{(z - \overline{z_{0}})^{j}}\right) \varphi(z) dz\\
+		+&\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) \varphi(z) dz\\
+		+&\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\frac{\overline{c_{1}}(\overline{z_{1}} - \overline{z_{0}})^{n}}{(z - \overline{z_{1}})(z - \overline{z_{0}})^{n}}\right) \varphi(z) dz \\
+		+& \frac{1}{2 \pi i}\int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{1}(z_{1} - z_{0})^{j - 1}}{(z - z_{0})^{j}}\right) \left(\frac{\overline{c_{1}}(\overline{z_{1}} - \overline{z_{0}})^{n}}{(z - \overline{z_{1}})(z - \overline{z_{0}})^{n}}\right) \varphi(z) dz \\
+		+& \frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{2}}{z - z_{2}}\right) \left(\frac{\overline{c_{1}}(\overline{z_{1}} - \overline{z_{0}})^{n}}{(z - \overline{z_{1}})(z - \overline{z_{0}})^{n}}\right) \varphi(z) dz.
+	\end{align*}
+	Note all this could be expanded as sum linear combination of $\varphi(z_{1}), \varphi(z_{2})$ and $\varphi^{(j)}(z_{0})$ for $0 \leq j \leq n - 1$. Should one do that, the resulting identity would hold without any additional (to the lemma statement) smootness assumptions. The point again is that the first row gives the main term, and we know that it is non-negative. It hence suffices to prove that remaining terms tend to zero as $n \to \infty$.
+
+	Terms without $z_{2}$ are easy to estimate directly as they make also make honest sense. We can take $\gamma$ to be circle of radius $r'$ for some $|z_{1} - z_{0}| < r' < r$. Then for instance the first error term can be bounded by
+	\begin{align*}
+		\frac{|c_{1} c_{2}| |z_{1} - z_{0}|^{n}(r - r')}{r'^{n}} \left(\sum_{j = 1}^{n} \frac{|z_{1} - z_{0}|^{j - 1}}{{r'}^{j}}\right) \sup_{z \in \partial \D(z_{0}, r')}|\varphi(z)|,
+	\end{align*}
+	which clearly tends to $0$.
+
+	With $z_{2}$ terms one has to be bit more careful. First, write
+	\begin{align*}
+		& \frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) \varphi(z) dz \\
+		= & \frac{c_{1} \overline{c_{2}}}{z_{1} - \overline{z_{2}}}\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \varphi(z) dz \\
+		-& \frac{c_{1} \overline{c_{2}}}{z_{1} - \overline{z_{2}}}\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - \overline{z_{2}})(z - z_{0})^{n}}\right) \varphi(z) dz.
+	\end{align*}
+	First term is again easily estimated. The second integrand, so far formal, can be written as a sum
+	\begin{align*}
+		& \frac{(z_{1} - z_{0})^{n}}{(z - \overline{z_{2}})(z - z_{0})^{n}} \varphi(z)\\
+		=& \frac{(z_{1} - z_{0})^{n}}{(z - \overline{z_{2}})(z_{0} - \overline{z_{2}})^{n}}\varphi(z) - \sum_{i = 1}^{n} \frac{(z_{1} - z_{0})^{n}}{(z - z_{0})^{j} (z_{0} - \overline{z_{2}})^{n + 1 - j}}\varphi(z).
+	\end{align*}
+	First term evaluates to $0$ and the other terms are again easily estimated. For the another $z_{2}$ only
+	\begin{align*}
+		\frac{(z_{1} - z_{0})^{n}}{(z_{0} - \overline{z_{2}})^{n}} \varphi(z_{0})
+	\end{align*}
+	remains.
+
+	This argument also essentially proves that the extension is weakly Pick. We should prove that for any $n_{1}, n_{2} \geq 0$ and $z_{1}, \ldots, z_{n_{1}}, w_{1}, \ldots, w_{n_{2}} \in \C$ the matrix
+	\begin{align*}
+		\begin{bmatrix}
+			\frac{\tilde{\varphi}(z_{1}) - \overline{\tilde{\varphi}(z_{1})}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{\tilde{\varphi}(z_{1}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{z_{1} - \overline{z_{n_{1}}}} & \frac{\tilde{\varphi}(z_{1}) - \overline{\varphi(w_{1})}}{z_{1} - \overline{w_{1}}} & \ldots & \frac{\tilde{\varphi}(z_{1}) - \overline{\varphi(w_{n_{2}})}}{z_{1} - \overline{w_{n_{2}}}} \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			\frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\tilde{\varphi}(z_{1})}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{z_{1} - \overline{z_{n_{1}}}} & \frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\varphi(w_{1})}}{z_{1} - \overline{w_{1}}} & \ldots & \frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\varphi(w_{n_{2}})}}{z_{1} - \overline{w_{n_{2}}}} \\
+			\frac{\varphi(w_{1}) - \overline{\tilde{\varphi}(z_{1})}}{w_{1} - \overline{z_{1}}} & \cdots & \frac{\varphi(w_{1}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{w_{1} - \overline{z_{n_{1}}}} & \frac{\varphi(w_{1}) - \overline{\varphi(w_{1})}}{w_{1} - \overline{w_{1}}} & \ldots & \frac{\varphi(w_{1}) - \overline{\varphi(w_{n_{2}})}}{w_{1} - \overline{w_{n_{2}}}} \\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+			\frac{\varphi(w_{n_{2}}) - \overline{\tilde{\varphi}(z_{1})}}{w_{n_{2}} - \overline{z_{1}}} & \cdots & \frac{\varphi(w_{n_{2}}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{w_{n_{2}} - \overline{z_{n_{1}}}} & \frac{\varphi(w_{n_{2}}) - \overline{\varphi(w_{1})}}{w_{n_{2}} - \overline{w_{1}}} & \ldots & \frac{\varphi(w_{n_{2}}) - \overline{\varphi(w_{n_{2}})}}{w_{n_{2}} - \overline{w_{n_{2}}}} \\
+		\end{bmatrix}
+	\end{align*}
+	is positive. Formally, this would mean that for any $c_{1}, \ldots, c_{n_{1}}, d_{1}, \ldots, d_{n_{2}} \in \C$ ther real part of the integral
+	\begin{align*}
+		\frac{1}{2 \pi i}\int_{\gamma} \left(\sum_{i = 1}^{n_{1}} \frac{c_{i}}{z - z_{i}} + \sum_{i = 1}^{n_{2}} \frac{d_{i}}{z - w_{i}}\right) \left(\sum_{i = 1}^{n_{1}} \frac{\overline{c_{i}}}{z - \overline{z_{i}}} + \sum_{i = 1}^{n_{2}} \frac{\overline{d_{i}}}{z - \overline{w_{i}}}\right) \varphi(z) dz
+	\end{align*}
+	is positive. But one can simply do the same Laurent expansion, and error terms are estimated completely analogously.
 \end{proof}
 
 \begin{proof}[Fix of the proof of theorem \ref{open_pick_nevanlinna}]
-Now the Zorn's lemma works if we change the condition a bit: we look at all the extensions of $\varphi$ to open subsets of upper half-plane for which all the Pick matrices are positive.
+Now the Zorn's lemma works if we change the condition a bit: we look at all the weakly Pick extensions of $\varphi$ to open subsets of upper half-plane.
 
-Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture) and the lemmas would guarantee that we can always both extend further and extensions are always consistent.
+Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture) and the lemmas would guarantee that we can always both extend further and extensions are always consistent and weakly Pick.
 \end{proof}
 
 \section{Pick-Nevanlinna Interpolation theorem}
@@ -531,67 +606,77 @@ Zorn's lemma is not really necessary here: one could write explicit extension sc
 One can still considerably strenghten theorem \ref{open_pick_nevanlinna}: instead of open set, domain of $\varphi$ could be any set. Then we don't in general have unique extension. This is the content of Pick-Nevanlinna interpolation theorem.
 
 \begin{lause}[Pick-Nevanlinna interpolation theorem]\label{pick_nevanlinna_interpolation}
-	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ weakly Pick. Then $\varphi$ is a restriction of a Pick function to $A$.
+	Let $A \subset \H_{+}$ and $\varphi : A \to \Hpc$ weakly Pick. Then $\varphi$ is a restriction of a Pick function to $A$.
 \end{lause}
 
 Note that the notion of weak Pick functions makes perfect sense in this more general setting. In the general setting we can't use Taylor series to extend the function anymore, but it turns out that this is not too big of a problem. The idea is again to extend $\varphi$ to larger and larger sets. Note that to do this we only need to be able to extend $\varphi$ to one new point so that all Pick matrices are again positive: we can then use the Zorn's lemma -trick again.
 
+Before the proof we need an interesting fact\footnote{We don't really need, but it is an interesting fact nevertheless.}.
+
+\begin{lem}\label{disc_lemma}
+	Let $\mathcal{F}$ be a non-empty family of (non-empty) closed discs such that for any $\D_{1}, \D_{2} \in \mathcal{F}$ we have $\mathcal{F} \ni \D_{3} \subset \D_{1} \cap \D_{2}$. Then
+	\begin{align*}
+		\bigcap_{\D \in \mathcal{F}} \D
+	\end{align*}
+	is a (non-empty) closed disc.
+\end{lem}
+
 \begin{lem}\label{pick_extension_lemma}
-	Let $A \subset \H_{+}$ and $\varphi \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
+	Let $A \subset \H_{+}$ and $\varphi : A \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
 \end{lem}
 \begin{proof}
-	Let's first consider the case of finite $A$, say $A = \{z_{1}, z_{2}, \ldots, z_{n}\}$ and denote $w_{i} = \varphi(z_{i})$. Without loss of generality we may assume that $z_{0} = i$. We should find $w_{0}$ such that the matrix
+	Let's first consider the case of finite $A$, say $A = \{z_{1}, z_{2}, \ldots, z_{n}\}$ and denote $w_{i} = \varphi(z_{i})$. We should find $w_{0}$ such that the matrix
 	\begin{align*}
 		\begin{bmatrix}
-			\frac{w_{0} - \overline{w_{0}}}{2 i} & \frac{w_{0} - \overline{w_{1}}}{i - \overline{z_{1}}} & \cdots & \frac{w_{0} - \overline{w_{n}}}{i - \overline{z_{n}}} \\
-			\frac{w_{1} - \overline{w_{0}}}{z_{1} + i} & \frac{w_{1} - \overline{w_{1}}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{w_{1} - \overline{w_{n}}}{z_{1} - \overline{z_{n}}} \\
+			\frac{w_{0} - \overline{w_{0}}}{z_{0} - \overline{z_{0}}} & \frac{w_{0} - \overline{w_{1}}}{z_{0} - \overline{z_{1}}} & \cdots & \frac{w_{0} - \overline{w_{n}}}{z_{0} - \overline{z_{n}}} \\
+			\frac{w_{1} - \overline{w_{0}}}{z_{1} - \overline{z_{0}}} & \frac{w_{1} - \overline{w_{1}}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{w_{1} - \overline{w_{n}}}{z_{1} - \overline{z_{n}}} \\
 			\vdots & \vdots & \ddots & \vdots \\
-			\frac{w_{n} - \overline{w_{0}}}{z_{n} + i} & \frac{w_{n} - \overline{w_{1}}}{z_{n} - \overline{z_{1}}} & \ldots & \frac{w_{n} - \overline{w_{n}}}{z_{n} - \overline{z_{n}}}
+			\frac{w_{n} - \overline{w_{0}}}{z_{n} - \overline{z_{0}}} & \frac{w_{n} - \overline{w_{1}}}{z_{n} - \overline{z_{1}}} & \ldots & \frac{w_{n} - \overline{w_{n}}}{z_{n} - \overline{z_{n}}}
 		\end{bmatrix}
 	\end{align*}
 	is positive. Denote the matrix consisting of the last $n$ rows and columns of the matrix by $n$. We first assume that $M$ is invertible. Then the original matrix is positive if and only the the Schur complement with to last $n$ rows is positive, that is
 	\begin{align*}
-		0 \leq &\frac{w_{0} - \overline{w_{0}}}{2 i} - (w_{0} v - w)^{*} M^{-1} (w_{0} v - w) \\
-		=& -\langle M^{-1} v, v \rangle |w_{0}|^2 + \left(\frac{1}{2 i} + \langle M^{-1} v, w \rangle \right) w_{0} \\
-		&+  \left(-\frac{1}{2 i} + \langle M^{-1} w, v \rangle \right) \overline{w_{0}} - \langle M^{-1} w, w \rangle \\
-		=&  -\frac{1}{\langle M^{-1} v, v \rangle} \left|\langle M^{-1} v, v \rangle w_{0} +  \frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} \\
-		&+ \frac{\left|\frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle}{\langle M^{-1} v, v \rangle}
+		0 \leq &\frac{w_{0} - \overline{w_{0}}}{z_{0} - \overline{z_{0}}} - (w_{0} v - w)^{*} M^{-1} (w_{0} v - w) \\
+		=& -\langle M^{-1} v, v \rangle |w_{0}|^2 + \left(\frac{1}{z_{0} - \overline{z_{0}}} + \langle M^{-1} v, w \rangle \right) w_{0} \\
+		&+  \left(-\frac{1}{z_{0} - \overline{z_{0}}} + \langle M^{-1} w, v \rangle \right) \overline{w_{0}} - \langle M^{-1} w, w \rangle \\
+		=&  -\frac{1}{\langle M^{-1} v, v \rangle} \left|\langle M^{-1} v, v \rangle w_{0} +  \frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} \\
+		&+ \frac{\left|\frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle}{\langle M^{-1} v, v \rangle}
 	\end{align*}
-	where $v = (\frac{1}{i - \overline{z_{i}}})_{i = 1}^{n}$ and $w = (\frac{\overline{w_{i}}}{i - \overline{z_{i}}})_{i = 1}^{n}$. Now if we manage to prove that
+	where $v = (\frac{1}{z_{0} - \overline{z_{i}}})_{i = 1}^{n}$ and $w = (\frac{\overline{w_{i}}}{z_{0} - \overline{z_{i}}})_{i = 1}^{n}$. Now if we manage to prove that
 	\begin{align*}
-	\left|\frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle \geq 0,
+	\left|\frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle \geq 0,
 	\end{align*}
 	we can choose suitable $w_{0}$ and moreover set of suitable $w_{0}$'s is a closed disc.
 
 	The positivity follows from the following formula:
 	\begin{align*}
-		\left|\frac{1}{2 i} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle = \prod_{i = 1}^{n} \|\frac{z_{i} - i}{z_{i} + i}\|^{2}
+		\left|\frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle = \prod_{i = 1}^{n} \left|\frac{z_{i} - z_{0}}{z_{i} - \overline{z_{0}}}\right|^{2} = \prod_{i = 1}^{n} \tilde{d}(z_{1}, z_{0})^{2}
 	\end{align*}
 	Where does this come from? The idea is that the Pick matrix is of a really special form and as one easily checks, one has
 	\begin{align*}
-		\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}} - \frac{w_{k} - i}{z_{k} + i}\frac{\overline{w_{l}} - i}{\overline{z_{l}} - i} + \frac{w_{k} + i}{z_{k} + i}\frac{\overline{w_{l}} + i}{\overline{z_{l}} - i} = \frac{z_{k} - i}{z_{k} + i}\frac{\overline{z_{k}} + i}{\overline{z_{k}} - i}\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}}.
+		\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}} -\frac{w_{k} - \overline{z_{0}}}{z_{k} - \overline{z_{0}}}\frac{\overline{w_{l}} - z_{0}}{\overline{z_{l}} - z_{0}} +  \frac{w_{k} - z_{0}}{z_{k} - \overline{z_{0}}}\frac{\overline{w_{l}} - \overline{z_{0}}}{\overline{z_{l}} - z_{0}} = \frac{z_{k} - z_{0}}{z_{k} - \overline{z_{0}}}\frac{\overline{z_{l}} - \overline{z_{0}}}{\overline{z_{l}} - z_{0}}\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}}.
 	\end{align*}
-	This identity can be interpreted as $(M - v_{1} v_{1}^{*}) + v_{2} v_{2}^{*} = D^{*} M D$ where $v_{1}, v_{2}$ are some vectors and $D$ a diagonal matrix. Calculating the determinant from both sides, by multiplicativity on the right-hand side and using rank 1 update formulas in the bracketed order one will end up to the sought formula.
+	This identity can be interpreted as $(M - v_{1} v_{1}^{*}) + v_{2} v_{2}^{*} = D^{*} M D$ where $v_{1}, v_{2}$ are some vectors and $D$ a diagonal matrix. Calculating the determinant from both sides, by multiplicativity on the right-hand side and using rank 1 update formulas in the bracketed order one will end up with the sought formula.
 
 	If $M$ is singular, one has to be bit careful. The trick is to shift the tuple a bit.
 
-	The matrix $\left(\frac{2 i}{z_{k} - \overline{z_{l}}}\right)_{1 \leq k,l \leq n}$ is strictly positive for any tuple of distinct numbers $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$. Indeed, by the residue theorem we have
+	The matrix $\left(\frac{2 i}{z_{k} - \overline{z_{l}}}\right)_{1 \leq k,l \leq n}$ is strictly positive for any tuple of distinct numbers $z_{1}, \ldots, z_{n} \in \Hp$. Indeed, by the residue theorem we have
 	\begin{align*}
-		\sum_{1 \leq k,l \leq n} c_{k} \overline{c_{l}} \frac{2 i}{z_{k} - \overline{z_{l}}} = \int_{-\infty}^{\infty} \left|\sum_{k = 1}^{n} \frac{c_{k}}{t - z_{k}}\right|^{2} d t
+		\sum_{1 \leq k,l \leq n} c_{k} \overline{c_{l}} \frac{2 i}{z_{k} - \overline{z_{l}}} = \frac{1}{2 \pi}\int_{-\infty}^{\infty} \left|\sum_{k = 1}^{n} \frac{c_{k}}{t - z_{k}}\right|^{2} d t
 	\end{align*}
 	and if the integrand is zero almost everywhere, and hence on at least $n$ points, then $c_{i}$'s are all zero.
 
-	Consequently, consider the extension problem for the values $w_{k} + \varepsilon i$ for some $\varepsilon > 0$, ja let $D_{\varepsilon} + \varepsilon i$ be the respective set of suitable $w_{0}$'s for given $\varepsilon$. Since clearly $D_{\varepsilon} \subset D_{\varepsilon'}$ for any $\varepsilon \leq \varepsilon'$ and $D_{\varepsilon}$'s are closed discs, the intersection
+	Consequently, consider the extension problem for the values $w_{k} + \varepsilon i$ for some $\varepsilon > 0$, and let $D_{\varepsilon} + \varepsilon i$ be the respective set of suitable $w_{0}$'s for given $\varepsilon$. Since clearly $D_{\varepsilon} \subset D_{\varepsilon'}$ for any $\varepsilon \leq \varepsilon'$ and $D_{\varepsilon}$'s are closed discs, by lemma \ref{disc_lemma} the intersection
 	\begin{align*}
 		\cap_{\varepsilon > 0} D_{\varepsilon} =: D_{0}
 	\end{align*}
 	is also a closed disc, and one easily sees that it is exactly the set of suitable $w_{0}$'s.
 
-	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we know that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed disc. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But this means that the family
+	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we know that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed disc. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But now it follows that the family
 	\begin{align*}
 		\{W_{F} \subset \Hp | \text{$F$ is finite (non-empty) subset of $A$} \}
 	\end{align*}
-	has finite intersection property, and since it's members are compact, we know that they have non-empty intersection. This intersection is the place where we find the $w_{0}$.
+	satisfies the conditions of the lemma \ref{disc_lemma} and hence the intersection is a closed disc. This intersection is exactly the set of suitable $w_{0}$'s.
 \end{proof}
 
 \begin{proof}[Proof of theorem \ref{pick_nevanlinna_interpolation}]
@@ -670,15 +755,15 @@ One can lift the previous argument of the Pick-Nevanlinna interpolation theorem 
 	Let $F = \{\varphi_{j} | j \in J \}$ be a family of Pick functions uniformly bounded in a point (or upper half-plane). Then $F$ is compact under the topology of pointwise convergence.
 \end{lause}
 \begin{proof}
-	Note that respective claim holds for Schur functions by Montel's theorem, so hence also holds for Pick functions $\ldots$ with one small cavaet. The problem is that Schur function constant $-1$ corresponds to constant $\infty$, which isn't proper Pick function. But by the boundedness condition this cannot happen.
+	Note that respective claim holds for Schur functions by Montel's theorem, so hence also holds for Pick functions $\ldots$ with one small caveat: the Schur function constant $-1$ corresponds to constant $\infty$, which isn't proper Pick function. But by the boundedness condition this cannot happen.
 \end{proof}
 
 There's really nothing special about Pick functions here: in the same way one could prove any family of analytic maps with common (non-whole-of-$\C$) simply connected domain is compact. Of course we even get locally uniform convergence but that won't be important for us.
 
-One could also give weaker proof.
+One could also give ``weaker" proof.
 
 \begin{proof}[Alternate proof for the theorem \ref{pick_compactness}]
-	Fix sequence in $F$. By lemma \ref{pick_continuity_lemma} and the condition values $\sup_{z \in K}|\varphi_{j}(z)|$ are uniformly bounded for every compact set. By Arzel\`{a}-Ascoli theorem for every compact set $K$ we can find a subsequence convergent in $K$ and by taking exhaustin upper half-plane by nested compact sequence and taking the diagonal sequence we get the claim. By proposition \ref{pick_convergence} the limit is also Pick function.
+	Fix sequence in $F$. By lemma \ref{pick_continuity_lemma} and the condition values $\sup_{z \in K}|\varphi_{j}(z)|$ are uniformly bounded for every compact set. By Arzel\`{a}-Ascoli theorem for every compact set $K$ we can find a subsequence convergent in $K$ and exhausting upper half-plane by sequence of nested compact sets and taking the diagonal sequence we get the claim. By proposition \ref{pick_convergence} the limit is also Pick function.
 \end{proof}
 
 Of course, one could use the previous approach to prove the Montel's theorem in the first place, but the idea is that we can also forget the analyticity and work with Pick matrices on the weak level.

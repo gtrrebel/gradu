@@ -94,42 +94,19 @@ This formula holds even if $f$ is not analytic, namely as long as $f \in \C^{1}(
 	But by continuity of $f'$ the sum tends to zero as $\|H\| \to 0$.
 \end{proof}
 
-\begin{comment}
-
-TODO: Start with polynomials.
-
-If $f$ is entire with $f(z) = \sum_{n = 0}^{\infty} a_{n} z^{n}$ we have
+Derivative of matrix function can be also approached via power series. Since
 \begin{align*}
-	f(A + B) &= a_{0} I \\
-			&+ a_{1} (A + B) \\
-			&+ a_{2} (A^2 + AB + BA + B^2) \\
-			&+ a_{3} (A^3 + A^2 B + ABA + AB^2 + BA^2 + BAB + B^2A + B^3) \\
-			&+ \ldots
+	(A + t H)^{k} = \sum_{j = 0}^{k}t^{j}\sum_{\atop{i_{0}, i_{1}, \ldots, i_{j} \geq 0}{i_{0} + i_{1} + \ldots + i_{j} = k - j}}^{k - 1} A^{i_{0}} H A^{i_{1}} H \cdots H A^{i_{j}},
 \end{align*}
-Hence we have
+we have
 \begin{align*}
-	\lim_{t \to 0} \frac{f(A + tB) - f(A)}{t} &= a_{1} B \\
-			&+ a_{2} (AB + BA) \\
-			&+ a_{3} (B A^2 + ABA + A^2 B) \\
-			&+ a_{4} (B A^{3} + ABA^2 + A^2BA + A^3 B) \\
-			&+ \ldots \\
-			&= \sum_{n = 1}^{\infty} a_{n} \sum_{0 \leq k \leq n - 1} A^{k} B A^{n - 1 - k}.
+	\lim_{t \to 0}\frac{(A + t H)^{k} - A^{k}}{t} = \sum_{j = 0}^{k - 1}A^{j} H A^{k - 1 - j}.
 \end{align*}
-
-\end{comment}
-
-\section{Slick proof}
-
-We give slick proof for the fact $f \in C^{\omega}(a, b) \cap P_{\infty}(a, b)$ then the Pick matrices are positive. Pick matrices being positive is equavalent to
-\[
-	\frac{1}{2 \pi i}\int_{\gamma} f(z) \left|\sum_{1 \leq i \leq n}\frac{c_{i}}{z - z_{i}} \right| d z \geq 0
-\]
-for any $c_{i} \in \C$ and $z_{i} \in \Hp$ such that $\gamma$ encloses $z_{i}$'s. Now what we know is that this holds if $z_{i}$'s are real and we can let some points coincide. But then we consider $g_{k}(z) = \frac{1}{z^{k}}\sum_{i = 1}^{n} c_{i} \frac{z^{k} - z_{i}^{k}}{z - z_{i}}$, this converges pointwise to what we want, at least for suitable $z_{i}$'s, and it is of the right form, so we have the claim, essentially. To elaborate a little, we integrate
-\[
-	\frac{1}{2 \pi i}\int_{\gamma} f(z) |g_{k}(z)|^{2} dz.
-\]
-As $k \to \infty$, this approaches what we want. Absolute values might a bit off, but something like this.
-
+With the same notation as before, we have for eigenbasis of $A$
+\begin{align*}
+	\sum_{j = 0}^{k - 1}A^{j} H A^{k - 1 - j}= \sum_{j = 0}^{k - 1}\left( \lambda_{k}^{j}H_{k, l} \lambda_{l}^{k - 1 - j}\right)_{1 \leq k, l \leq n} = \left(H_{k, l} [\lambda_{k}, \lambda_{l}]_{(x \mapsto x^{k})}\right)_{1 \leq k, l \leq n}.
+\end{align*}
+Summing this identity over the Taylor terms yields the derivative formula for entire functions.
 
 TODO:
 \begin{itemize}
