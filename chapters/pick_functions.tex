@@ -611,15 +611,26 @@ One can still considerably strenghten theorem \ref{open_pick_nevanlinna}: instea
 
 Note that the notion of weak Pick functions makes perfect sense in this more general setting. In the general setting we can't use Taylor series to extend the function anymore, but it turns out that this is not too big of a problem. The idea is again to extend $\varphi$ to larger and larger sets. Note that to do this we only need to be able to extend $\varphi$ to one new point so that all Pick matrices are again positive: we can then use the Zorn's lemma -trick again.
 
-Before the proof we need an interesting fact\footnote{We don't really need, but it is an interesting fact nevertheless.}.
+Before the proof we need an interesting fact\footnote{We don't really need, but it is an interesting fact nonetheless.}.
 
 \begin{lem}\label{disc_lemma}
-	Let $\mathcal{F}$ be a non-empty family of (non-empty) closed discs such that for any $\D_{1}, \D_{2} \in \mathcal{F}$ we have $\mathcal{F} \ni \D_{3} \subset \D_{1} \cap \D_{2}$. Then
+	Let $\mathcal{D}$ be a non-empty family of (non-empty) closed discs such that for any $\D_{1}, \D_{2} \in \mathcal{D}$ we have $\mathcal{D} \ni \D_{3} \subset \D_{1} \cap \D_{2}$. Then
 	\begin{align*}
-		\bigcap_{\D \in \mathcal{F}} \D
+		\bigcap_{\D \in \mathcal{D}} \D
 	\end{align*}
 	is a (non-empty) closed disc.
 \end{lem}
+\begin{proof}
+	Denote the intersection by $K$. Since closed discs are compact and convex, so is $K$. Additionally, since the family has finite intersection property, $K$ is also non-empty. By compactness one may take two points on $K$ with largest distance. If the points are equal, the intersection is a single points, and we are done. If not, without loss of generality we may assume that the points are $-1$ and $1$. Now fix $\varepsilon \in (0, \frac{1}{4})$.
+
+	We claim that there exists a disc $\D \in \mathcal{D}$ such that $\D$ is contained in the strip $S_{\varepsilon} := \{z \in \C | |\Re(z)| < 1 + \varepsilon\}$. For this note that for any $M > 0$ the family $\{[1 + \varepsilon - i M, 1 + \varepsilon + i M] \cap \D | \D \in \mathcal{D}\}$ (where $[1 + \varepsilon - i M, 1 + \varepsilon + i M]$ denotes the closed interval from $1 + \varepsilon - i M$ to $1 + \varepsilon + i M$) is family of compact sets with empty intersection, so they have finite subfamily with empty intersection. By the main condition if follows that we find a disc in $\mathcal{D}$ with empty intersection with the interval. Taking $M$ large enough we see that one of the discs has empty intesection with the line $\{z \in \C | \Re(z) = 1 + \varepsilon\}$. Playing the same game with $-1 - \varepsilon$ and taking the intersection we find the required disc.
+
+	Now we claim that any disc in the family contains the disc $\D(0, 1 - 2 \sqrt{\varepsilon})$. To show this note that every disc has radius at least $1$ so it is sufficient to prove that any disc has center in $\D(0, \sqrt{\varepsilon})$. It is sufficient to consider discs in $S_{\varepsilon}$. If $\D_{0}$ is such disc let $z_{0}$ be it's center since $2 + 8 \varepsilon \geq 2(1 + \varepsilon)^{2} \geq |1 - z_{0}|^2 + |1 + z_{0}|^2 = 2 + 2 |z_{0}|^2$, from which the second claim follows.
+
+	Since $\varepsilon$ was arbitrary it follows that $K$ (being compact) contains the closed disc $\overline{\D}(0, 1)$. But since $K$ has diameter $2$, it can't contain anything else, so $K = \overline{\D}(0, 1)$ and we are done.
+
+	TODO picture
+\end{proof}
 
 \begin{lem}\label{pick_extension_lemma}
 	Let $A \subset \H_{+}$ and $\varphi : A \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
@@ -677,6 +688,8 @@ Before the proof we need an interesting fact\footnote{We don't really need, but 
 		\{W_{F} \subset \Hp | \text{$F$ is finite (non-empty) subset of $A$} \}
 	\end{align*}
 	satisfies the conditions of the lemma \ref{disc_lemma} and hence the intersection is a closed disc. This intersection is exactly the set of suitable $w_{0}$'s.
+
+	TODO: express this as a hyperbolic disc with canonical center.
 \end{proof}
 
 \begin{proof}[Proof of theorem \ref{pick_nevanlinna_interpolation}]
