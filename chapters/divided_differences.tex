@@ -243,11 +243,53 @@ Of course there's nothing really special about the functional being linear, but 
 
 \section{Peano kernels}
 
-We already noticed that the $n$:th divided differences of the form $[x, x, \ldots, x, y]_{f}$ can be written as an integral of $n$:th derivative of $f$ with some positive polynomial weight. This is no anomaly: if $f \in C^{n}(a, b)$ and $a < x_{0}, x_{1}, \ldots, x_{n} < b$, there exits a function $w = w_{x_{0}, x_{1}, \ldots, x_{n}}$ such that
-\[
-	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \int_{\R} f^{(n)}(t) w(t) dt.
-\]
-It turns out that $w$, \textit{Peano kernel} with nodes $x_{0}, x_{1}, \ldots, x_{n}$ is piecewise polynomial compactly supported $C^{n - 2}(\R)$-function. TODO
+We already noticed that the $n$:th divided differences of the form $[x, x, \ldots, x, y]_{f}$ can be written as an integral of $n$:th derivative of $f$ with some positive polynomial weight. This is no anomaly.
+
+\begin{lause}
+	Let $n > 1$, $a < x_{1} < \ldots < x_{n} < b$ and $1 \leq d_{1}, d_{2}, \ldots, d_{n}$, and denote $d = d_{1} + d_{2} + \ldots + d_{n} - 1$. Then there exits an unique function $w = w_{x_{1}, \ldots, x_{n}, d_{1}, d_{2}, \ldots, d_{n}} : \R \to \R$ with the following properties
+	\begin{enumerate}[(i)]
+		\item $w$ is supported on $[x_{1}, x_{n}]$
+		\item $w$ is polynomial of degree at most $d - 1$ on each of the intervals $[x_{i}, x_{i + 1}]$ for $1 \leq i \leq n - 1$
+		\item $w$ is $C^{d - 2 - d_{i}}$ at $x_{i}$ (if $d - 2 - d_{i} < 0$, (in which case necessarily $d - 2 - d_{i} = -1$), no continuity is required)
+		\item $w$ is non-negative
+		\item For every $f \in C^{d}(a, b)$ we have
+		\begin{align*}
+			[x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f} = \int_{\R} f^{(d)}(t) w(t) dt,
+		\end{align*}
+		where $x_{i}$ appears $d_{i}$ times.
+	\end{enumerate}
+	\begin{proof}
+		Standard bump function argument shows that should such $w$ exist, it is necessarily unique.
+
+		Take any $x_{0} \in (x_{1}, x_{n})$. For every $0 \leq j < d$ and $1 \leq i \leq n$ we can Taylor expand
+		\begin{align*}
+			f^{(j)}(x_{i}) &= f^{(j)}(x_{0}) + f^{(j + 1)}(x_{0})(x_{i} - x_{0}) + \ldots + \frac{f^{(d - 1)}(x_{0})}{(d - 1 - j)!} (x_{i} - x_{0})^{d - 1 - j} \\
+			&+ \int_{x_{0}}^{x_{i}} \frac{f^{(d)}(t)}{(d - 1 - j)!} (x_{i} - x_{0})^{d - 1 - j} dt.
+		\end{align*}
+		Since the divided differences can be written as a sum of such terms, we find $w$, and constants $c_{0}, c_{1}, \ldots, c_{d - 1}$ supported on $[x_{1}, x_{n}]$ such that
+		\begin{align*}
+			& [x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f} \\
+			&= \int_{\R} f^{(d)}(t) w(t) dt \\
+			&+  c_{0} f(x_{0}) + c_{1} f'(x_{0}) + \ldots + c_{d - 1} f^{(d - 1)}(x_{0})
+		\end{align*}
+		for every $f \in C^{d}(a, b)$. We claim that $w$ is the sought function.
+
+		Note that since the divided difference of order $d$ kills all polynomials of degree less than $d$, the constants $c_{i}$ are necessarily all zeros. Now clearly $w$ satisfies $(i), (iii)$ and $v$. Also $w$ at least almost satisfies $(ii)$: it might not be polynomial at $x_{0}$. This cannot happen, however, since by the uniqueness we could have picked different $x_{0}$ resulting to different point of non-polynomiality. To prove $(iv)$ note that should $w$ be negative, we can easily construct  function $f \in C^{d}(a, b)$ such that $f^{(d)} \geq 0$ and
+		\begin{align*}
+			0 > \int_{\R} f^{(d)}(t) w(t) dt = [x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f},
+		\end{align*}
+		which clearly violates the mean value theorem.
+	\end{proof}
+\end{lause}
+If $n = 1$, $w$ fails to be a function, it is a delta measure at $x_{1}$.
+
+The functions $w$ are called \textit{Peano kernels} or \textit{B-splines}.
+
+TODO: pictures
+
+Peano kernels describe the precise sense in which divided differences are weak versions of $n$'th derivative. Of course on could also use more traditional weak approach using distributions, but here the nice thing is that our functionals are local. TODO
+
+There are various ways to express Peano kernels. TODO
 
 \section{$k$-tone functions}
 

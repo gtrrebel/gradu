@@ -1,5 +1,22 @@
 \chapter{Matrix $k$-tone functions}
 
+\section{Matrix convex functions}
+
+Having charaterized matrix monotone functions it is natural to ask what happens with convex functions.
+
+\begin{maar}
+	We say that $f : (a, b) \to \R$ is matrix convex of order $n$ if for every $A, B \in \H^{n}(V)$ and $t \in [0, 1]$ we have
+	\begin{align*}
+		f(t A + (1 - 1) B) \leq t f(A) + (1 - t) f(B).
+	\end{align*}
+\end{maar}
+
+Theory of matrix convex functions is very similar to that of monotone functions.
+
+TODO
+
+\section{Matrix $k$-tone functions}
+
 After having defined the notion of $k$-tone function in the real setting, it is natural to ponder what happens with matrix setting. Defining the notion itself is already a bit cumbersome: with monotone and convex functions the usual definitions make immediately sense but divided differences cause some problems. One cannot simply say that $f$ is matrix monotone if
 \begin{align*}
 	[A, B]_{f} = \frac{f(B) - f(A)}{B - A},
