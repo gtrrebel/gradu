@@ -614,23 +614,25 @@ Note that the notion of weak Pick functions makes perfect sense in this more gen
 Before the proof we need an interesting fact\footnote{We don't really need, but it is an interesting fact nonetheless.}.
 
 \begin{lem}\label{disc_lemma}
-	Let $\mathcal{D}$ be a non-empty family of (non-empty) closed discs such that for any $\D_{1}, \D_{2} \in \mathcal{D}$ we have $\mathcal{D} \ni \D_{3} \subset \D_{1} \cap \D_{2}$. Then
+	Let $\mathcal{D}$ be a non-empty family of (non-empty) closed discs such that for any $\D_{1}, \D_{2} \in \mathcal{D}$ there exists $\mathcal{D} \ni \D_{3} \subset \D_{1} \cap \D_{2}$. Then
 	\begin{align*}
 		\bigcap_{\D \in \mathcal{D}} \D
 	\end{align*}
 	is a (non-empty) closed disc.
 \end{lem}
 \begin{proof}
-	Denote the intersection by $K$. Since closed discs are compact and convex, so is $K$. Additionally, since the family has finite intersection property, $K$ is also non-empty. By compactness one may take two points on $K$ with largest distance. If the points are equal, the intersection is a single points, and we are done. If not, without loss of generality we may assume that the points are $-1$ and $1$. Now fix $\varepsilon \in (0, \frac{1}{4})$.
+	Denote the intersection by $K$. Since $\mathcal{D}$ is family of compact sets with finite intersection property, $K$ is non-empty compact set. Hence we may take two points in $K$ with largest distance. If the points are equal, the intersection is a single points, and we are done. If not, without loss of generality we may assume that the points are $-1$ and $1$. Our aim is to prove that $K$ equals $\overline{\D}(0, 1)$.
 
-	We claim that there exists a disc $\D \in \mathcal{D}$ such that $\D$ is contained in the strip $S_{\varepsilon} := \{z \in \C | |\Re(z)| < 1 + \varepsilon\}$. For this note that for any $M > 0$ the family $\{[1 + \varepsilon - i M, 1 + \varepsilon + i M] \cap \D | \D \in \mathcal{D}\}$ (where $[1 + \varepsilon - i M, 1 + \varepsilon + i M]$ denotes the closed interval from $1 + \varepsilon - i M$ to $1 + \varepsilon + i M$) is family of compact sets with empty intersection, so they have finite subfamily with empty intersection. By the main condition if follows that we find a disc in $\mathcal{D}$ with empty intersection with the interval. Taking $M$ large enough we see that one of the discs has empty intesection with the line $\{z \in \C | \Re(z) = 1 + \varepsilon\}$. Playing the same game with $-1 - \varepsilon$ and taking the intersection we find the required disc.
+	Fix $r > 1$. We claim that there exists a disc $\D \in \mathcal{D}$ such that $\D$ is contained in the strip $S_{r} := \{z \in \C | |\Re(z)| < r\}$. For this note that for any $M > 0$ the family $\{[r - i M, r + i M] \cap \D | \D \in \mathcal{D}\}$ (where $[r - i M, r + i M]$ denotes the closed interval from $r - i M$ to $r + i M$) is family of compact sets with empty intersection, so they have finite subfamily with empty intersection. By the main condition if follows that we find a disc in $\mathcal{D}$ with empty intersection with the interval. Taking $M$ large enough we see that one of the discs has empty intesection with the line $\{z \in \C | \Re(z) = r\}$. Playing the same game with $-r$ and taking the intersection we find the required disc.
 
-	Now we claim that any disc in the family contains the disc $\D(0, 1 - 2 \sqrt{\varepsilon})$. To show this note that every disc has radius at least $1$ so it is sufficient to prove that any disc has center in $\D(0, \sqrt{\varepsilon})$. It is sufficient to consider discs in $S_{\varepsilon}$. If $\D_{0}$ is such disc let $z_{0}$ be it's center since $2 + 8 \varepsilon \geq 2(1 + \varepsilon)^{2} \geq |1 - z_{0}|^2 + |1 + z_{0}|^2 = 2 + 2 |z_{0}|^2$, from which the second claim follows.
+	Next we claim that for any $r' < 1$ any disc in the family contains $\D(0, r')$. Note that since all the discs in the family have radius at least $1$, this is certainly true for any disc with center close enough to $0$. If $\D_{0} \in S_{r}$ has center $z_{0}$, we have $2 r^{2} \geq |1 - z_{0}|^2 + |1 + z_{0}|^2 = 2 + 2 |z_{0}|^2$. Taking $r$ close to $1$ we see that $z_{0}$ is close to $0$ and hence $\D_{0}$ contains $\D(0, r')$. Since by the intersection property every disc in $\mathcal{D}$ contains disc in $S_{r}$, also the second claim is proven.
 
-	Since $\varepsilon$ was arbitrary it follows that $K$ (being compact) contains the closed disc $\overline{\D}(0, 1)$. But since $K$ has diameter $2$, it can't contain anything else, so $K = \overline{\D}(0, 1)$ and we are done.
+	Now as $K$ as compact, it contains the closed disc $\overline{\D}(0, 1)$. But since $K$ has diameter $2$, it can't contain anything else, so $K = \overline{\D}(0, 1)$ and we are done.
 
 	TODO picture
 \end{proof}
+
+Not surprisingly, the result remain's true also in higher dimensions, as can be seen for instance by intersecting the closed balls with two dimensional planes and applying the 2d case.
 
 \begin{lem}\label{pick_extension_lemma}
 	Let $A \subset \H_{+}$ and $\varphi : A \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
@@ -768,7 +770,7 @@ One can lift the previous argument of the Pick-Nevanlinna interpolation theorem 
 	Let $F = \{\varphi_{j} | j \in J \}$ be a family of Pick functions uniformly bounded in a point (or upper half-plane). Then $F$ is compact under the topology of pointwise convergence.
 \end{lause}
 \begin{proof}
-	Note that respective claim holds for Schur functions by Montel's theorem, so hence also holds for Pick functions $\ldots$ with one small caveat: the Schur function constant $-1$ corresponds to constant $\infty$, which isn't proper Pick function. But by the boundedness condition this cannot happen.
+	Note that respective claim holds for Schur functions by Montel's theorem, so hence also holds for Pick functions $\ldots$ with one small caveat: the Schur function constant $-1$ corresponds to constant $\infty$, which isn't proper Pick function. But by the boundedness condition this is not a problem.
 \end{proof}
 
 There's really nothing special about Pick functions here: in the same way one could prove any family of analytic maps with common (non-whole-of-$\C$) simply connected domain is compact. Of course we even get locally uniform convergence but that won't be important for us.
@@ -776,7 +778,7 @@ There's really nothing special about Pick functions here: in the same way one co
 One could also give ``weaker" proof.
 
 \begin{proof}[Alternate proof for the theorem \ref{pick_compactness}]
-	Fix sequence in $F$. By lemma \ref{pick_continuity_lemma} and the condition values $\sup_{z \in K}|\varphi_{j}(z)|$ are uniformly bounded for every compact set. By Arzel\`{a}-Ascoli theorem for every compact set $K$ we can find a subsequence convergent in $K$ and exhausting upper half-plane by sequence of nested compact sets and taking the diagonal sequence we get the claim. By proposition \ref{pick_convergence} the limit is also Pick function.
+	Fix sequence in $F$. By lemma \ref{pick_continuity_lemma} and the condition values $\sup_{z \in K}|\varphi_{j}(z)|$ are uniformly bounded for every compact set $K$. The proof of the lemma also easily implies that $\varphi_{j}$'s are uniformly Lipschitz on compact sets. By Arzel\`{a}-Ascoli theorem for every compact set $K$ we can find a subsequence convergent in $K$ and exhausting upper half-plane by sequence of nested compact sets and taking the diagonal sequence we get the claim. By proposition \ref{pick_convergence} the limit is also Pick function.
 \end{proof}
 
 Of course, one could use the previous approach to prove the Montel's theorem in the first place, but the idea is that we can also forget the analyticity and work with Pick matrices on the weak level.

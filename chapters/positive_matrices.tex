@@ -725,8 +725,8 @@ We could of course have made such definition immediately after defining positive
 \end{enumerate}
 \end{prop}
 
-\begin{esim}
-	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Conversely if $P_{W_{1}} \leq P_{W_{2}}$, for any $v \in W_{1}$ we have $Q_{{P_{W_{1}}}}(v) = \|v\|^{2} \leq \langle P_{W_{2}} v, v \rangle = Q_{P_{W_{2}}}(v)$, where the inequality can hold if and only if $v \in W_{2}$.
+\begin{esim}\label{projection_order}
+	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Conversely if $P_{W_{1}} \leq P_{W_{2}}$, then $0 \leq \arestr{(P_{W_{1}})}{W_{2}^{\perp}} \leq \arestr{(P_{W_{2}})}{W_{2}^{\perp}} = 0$, so $\arestr{(P_{W_{1}})}{W_{2}^{\perp}} = 0$. But this easily implies that $W_{1} \perp W_{2}^{\perp}$, and hence the claim.
 \end{esim}
 
 Key thing here is to note what is missing from the standard real ordering: multiplication by positive map doesn't preserve usual ordering. This is the reason many standard arguments don't work for general real maps.
