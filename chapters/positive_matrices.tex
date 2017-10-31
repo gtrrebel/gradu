@@ -442,6 +442,26 @@ As normal product doesn't quite work with positivity, next attempt might be symm
 \]
 (or maybe with normalizing constant $\frac{1}{2}$ in the front), instead of the usual one. It turns out that even this doesn't fix positivity.
 
+For one dimesional projections things go as badly as they possibly can.
+
+\begin{prop}\label{symmetric_projection}
+	If $v, w \in V \setminus \{0\}$, then
+	\begin{align*}
+		P_{v} P_{w} + P_{w} P_{v} \geq 0,
+	\end{align*}
+	if and only if $v$ and $w$ are parallel or orthogonal, i.e. if and only if $P_{v}$ and $P_{w}$ commute.
+\end{prop}
+\begin{proof}
+	Since everything is happening in a (at most) two dimensional subspace of $V$, we may assume that $V$ is two dimensional in the first place. Note that
+	\begin{align*}
+		P_{v} P_{w} + P_{w} P_{v} = (P_{v} + P_{w})^2 - P_{v}^2 - P_{w}^2 = (P_{v} + P_{w})^2 - P_{v} - P_{w} = A^2 - A = A (A - I),
+	\end{align*}
+	where $A := P_{v} + P_{w}$. This is positive, if and only if the eigenvalues of $A$ are outside the interval $(0, 1)$. But since $\tr(A) = 2$ and $A \geq 0$, the only way this can happen is that either $A$ has double eigenvalues $1$ or $A$ has eigenvalues $0$ and $2$. It's easy to check that these correspond exactly to the described cases.
+\end{proof}
+
+
+Moreover, even if one adds positive buffer, things won't work in general.
+
 \begin{prop}\label{symmetric_fail}
 	Let $\alpha, \beta, \gamma \in \C$ and $n \geq 2$. Then the expression $\alpha A^{2} + \beta AB + \overline{\beta} BA + \gamma B^{2}$ is positive for any $A, B \geq 0$ if and only if $\alpha, \gamma \in [0, \infty)$ and $|\beta|^{2} \leq \alpha \gamma$.
 \end{prop}
@@ -784,7 +804,7 @@ This classic inequality, which can be seen as a restatement of the convexity of 
 
 To prove the matrix version, namely
 \[
-	\frac{A + B}{2} \geq (A^{-1} + B^{-1})^{-1}
+	\frac{A + B}{2} \geq 2 (A^{-1} + B^{-1})^{-1}
 \]
 for any $A, B > 0$, we can $*$-conjugate both sides by $A^{-\frac{1}{2}}$ to arrive at
 \[

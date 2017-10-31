@@ -783,10 +783,31 @@ One could also give ``weaker" proof.
 
 Of course, one could use the previous approach to prove the Montel's theorem in the first place, but the idea is that we can also forget the analyticity and work with Pick matrices on the weak level.
 
+\section{Pick-Nevanlinna-Herglotz representation theorem}
+
+One cannot simply talk about Pick functions without discussing Pick-Nevanlinna-Herglotz representation theorem.
+
+\begin{lause}\label{pick_nevanlinna_herglotz_representation_theorem}
+	$\varphi \in \pickclass$, if and only
+	\begin{align*}
+		\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \left(\frac{1}{\lambda - z} - \frac{\lambda}{\lambda^2 + 1}\right) d \mu(\lambda)
+	\end{align*}
+	for some $\alpha \geq 0$ and $\beta \in \R$ and a Borel measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
+	In addition, we can recover the measure $\mu$, $\alpha$ and $\beta$ from $\varphi$ as follows: $\alpha = \lim_{y \to \infty} \frac{\varphi(i y)}{y}$, $\beta = \Re(\varphi(i))$
+	\begin{align*}
+		\mu([a, b]) = \frac{1}{\pi}\lim_{x \to 0^{+}} \lim_{y \to 0^{+}} \int_{a - x + i y}^{b + x + i y} \varphi(z) d z
+	\end{align*}
+\end{lause}
+
+We prove the statement in the chapter TODO. (Intuition on deforming contour, split the function to three pieces)
+
+The integral representation makes many of the properties of the Pick functions obvious. TODO
+
+\section{Examples of representing measures}
+
 TODO:
 \begin{itemize}
 	\item Poincaré metric: discs are discs, Apollonius circle
-	\item Pick-Nevanlinna-Herglotz representation theorem
 	\item Examples of representing measures behind functions and functions behind representing measures
 	\item Spectral commutant lifting theorem
 	\item Use Morera's theorem to prove weak Hindmarsh's theorem

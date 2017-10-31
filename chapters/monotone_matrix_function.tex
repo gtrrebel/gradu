@@ -167,7 +167,7 @@ As a corollary with get
 \begin{proof}
 	If $\chi_{x > 0}$ were $n$-monotone so would be
 	\begin{align*}
-		x^2 = \int_{0}^{\infty} \chi_{(t, \infty)}(x) dt.
+		x^2 = \int_{0}^{\infty} t \chi_{(t, \infty)}(x) dt.
 	\end{align*}
 \end{proof}
 
@@ -210,7 +210,7 @@ The maximum problem is not too bad; similar statement doesn't hold for $k$-tone 
 	There exists no $\alpha > 0$, and an open interval $(a, b) \subset \R$ such that $\alpha x + x^{2} \in P_{n}(a, b)$.
 \end{prop}
 \begin{proof}
-	Adding linear is means just translating domain and codomain, which is not going to help: $x^2 + \alpha x = (x + \frac{\alpha}{2})^2 - \frac{\alpha^2}{4}$.
+	Adding linear term means just translating domain and codomain, which is not going to help: $x^2 + \alpha x = (x + \frac{\alpha}{2})^2 - \frac{\alpha^2}{4}$.
 \end{proof}
 
 Why is this bad? If $f : (a, b) \to \R$ is not too bad (say Lipschitz), for large enough $\alpha$ the function defined by $g(x) = f(x) + \alpha x$ is increasing. But we can't do necessarily do the same thing in the matrix setting even for smooth or analytic functions. Although this might not be such a big surprise or a bad thing in the first place, it is worthwhile to investigate the underlying reason.
@@ -226,7 +226,7 @@ In the real setting we could just increase $a_{1}$ to make the previous expressi
 
 On the other hand if $n = 2$, for instance, there is not too much room for things to go south. We still, a priori, can't guarantee positivity with $a_{1}$, but buffing first few Taylor coefficients starts to somehow affect the whole space.
 
-Now when $n$ gets larger we have more and more space to worry about, so we should start worrying about more and more Taylor coefficients.
+When $n$ gets larger we have more and more space to worry about, so we should start worrying about more and more Taylor coefficients.
 
 This is all just heuristics, but it leads us to expect two things:
 
@@ -426,7 +426,7 @@ Although we strictly speaking only proved this corollary for $f \in C^{1}$, it h
 		0 &\leq [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
 		&+ (s - t) [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s]_{f h}
 	\end{align*}
-	But by choosing $t$ and $s$ suitable we can definitely make the second term non-positive, so the first term is non-negative, as we wanted. Indeed choose first arbitrary $s$ and then choose $t$ on $(a, s)$ or on $(s, b)$, depending on the sign of the divided difference. Or if one so prefers, we have
+	But by choosing $t$ and $s$ suitably we can definitely make the second term non-positive, so the first term is non-negative, as we wanted. Indeed choose first arbitrary $s$ and then choose $t$ on $(a, s)$ or on $(s, b)$, depending on the sign of the divided difference. Or if one so prefers, we have
 	\begin{align*}
 		& 2 [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
 		=& [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s + r, s]_{f h (\cdot - s - r)^2} \\

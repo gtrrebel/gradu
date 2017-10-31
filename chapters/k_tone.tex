@@ -11,9 +11,30 @@ Having charaterized matrix monotone functions it is natural to ask what happens 
 	\end{align*}
 \end{maar}
 
-Theory of matrix convex functions is very similar to that of monotone functions.
+We denote class of matrix convex functions of order $n$ on interval $(a, b)$ by $P^{2}_{n}(a, b)$. Many of the properties of matrix monotone functions translate immediately to matrix convexity.
 
-TODO
+\begin{prop}
+	TODO
+\end{prop}
+
+By now it ought to be no surprise that not every convex function is matrix convex. Canonical counterexample is absolute value. In turns out that we have
+
+\begin{prop}
+	Let $v, w \in V \setminus \{0\}$. Then
+	\begin{align*}
+	P_{v} + P_{w} \geq |P_{v} - P_{w}|,
+	\end{align*}
+	if and only if $v$ and $w$ are parallel or orthogonal, i.e. if and only if $P_{v}$ and $P_{w}$ commute.
+\end{prop}
+\begin{proof}
+	As everything is happening in (at most) two dimensional subspace of $V$, we may assume that $V$ is two dimensinal in the first place. Note that in this case $P_{v} - P_{w}$ has $0$ trace, so its eigenvalues are additive inverses of each other. Consequently the absolute value is multiple of identity.
+
+	It follows that both sides of the inequality commute, and as they are both positive, it suffices to check when the squared inequality holds. This leads to an equivalent inequality
+	\begin{align*}
+		P_{v} P_{w} + P_{w} P_{v} \geq 0,
+	\end{align*}
+	which was already discussed in \ref{symmetric_projection}.
+\end{proof}
 
 \section{Matrix $k$-tone functions}
 
