@@ -349,6 +349,26 @@ Spectral theorem also makes it clear that positiveness and realness of a map is 
 	Let $A \in \L(V)$ and $B \in \L(W)$ and consider the map $A \oplus B \in \L(V \oplus W)$. Then $A \oplus B$ is real (positive), if and only if $A$ and $B$ are.
 \end{kor}
 
+Finally, one should note that the lemma \ref{spectralZeroLemma} enjoys following natural generalization.
+
+\begin{prop}\label{posnegfact}
+	If $A \geq 0$ and $\arestr{A}{W} = 0$ for some subspace $W \subset V$ then we may decompose $A = \arestr{A}{W^{\perp}} \oplus 0_{W}$.
+\end{prop}
+\begin{proof}
+	We prove the statement by induction on the dimension of $W$. Lemma \ref{spectralZeroLemma} took care of the case $\dim(W) = 1$. When $\dim(W) > 1$ we may decompose $W = W' \oplus W''$ where $\dim(W') = 1$. Now $\arestr{A}{W'} = \arestr{(\arestr{A}{W})}{W'} = \arestr{0}{W'} = 0$, so we may decompose $A = \arestr{A}{W'^{\perp}} \oplus 0_{W'}$. But $\arestr{(\arestr{A}{W'^{\perp}})}{W''} = \arestr{A}{W''} = \arestr{(\arestr{A}{W})}{W''} = \arestr{0}{W''} = 0$, so by the induction hypothesis $\arestr{A}{W'^{\perp}} = \arestr{(\arestr{A}{W'^{\perp}})}{W''^{\perp}} \oplus 0_{W''} = \arestr{A}{W^{\perp}} \oplus 0_{W''}$. Consequently $A = \arestr{A}{W'^{\perp}} \oplus 0_{W'} = \arestr{A}{W^{\perp}} \oplus 0_{W''} \oplus 0_{W'} = \arestr{A}{W^{\perp}} \oplus 0_{W}$, as desired.
+\end{proof}
+It's easy to see that this property actually characterizes the set of positive and negative maps: we may find kernel of a positive or negative map by finding where the map compresses to zero.
+
+The previous proposition has an useful corollary.
+
+\begin{kor}\label{projection_compression}
+	If $W, W' \subset V$, then $\arestr{(P_{W})}{W'} = 0$ if and only if $W \perp W'$.
+\end{kor}
+\begin{proof}
+	Assume first that $\arestr{(P_{W})}{W'} = 0$. Then by the lemma \ref{posnegfact} we have $W = \image(P_{W}) \subset W'^{\perp}$. The other direction is evident.
+\end{proof}
+
+
 \subsection{Commuting real maps}
 
 \textbf{Warning!} Composition of positive maps need not be positive!
@@ -456,7 +476,19 @@ For one dimesional projections things go as badly as they possibly can.
 	\begin{align*}
 		P_{v} P_{w} + P_{w} P_{v} = (P_{v} + P_{w})^2 - P_{v}^2 - P_{w}^2 = (P_{v} + P_{w})^2 - P_{v} - P_{w} = A^2 - A = A (A - I),
 	\end{align*}
-	where $A := P_{v} + P_{w}$. This is positive, if and only if the eigenvalues of $A$ are outside the interval $(0, 1)$. But since $\tr(A) = 2$ and $A \geq 0$, the only way this can happen is that either $A$ has double eigenvalues $1$ or $A$ has eigenvalues $0$ and $2$. It's easy to check that these correspond exactly to the described cases.
+	where $A := P_{v} + P_{w}$. This is positive, if and only if the eigenvalues of $A$ are outside the interval $(0, 1)$. But since $\tr(A) = 2$ and $A \geq 0$, the only way this can happen is that either $A$ has double eigenvalues $1$ or $A$ has eigenvalues $0$ and $2$. To conclude the claim itself, we are left to do two reality checks:
+	\begin{lem}
+		If $A = P_{v} + P_{w} = I$, then $v$ and $w$ are orthogonal.
+	\end{lem}
+	\begin{proof}
+		Note that $I_{(v)} = \arestr{A}{(v)} = \arestr{(P_{v})}{(v)} + \arestr{(P_{w})}{(v)} = I_{(v)} + \arestr{(P_{w})}{(v)}$, so $\arestr{(P_{w})}{(v)} = 0$. By lemma \ref{posnegfact} we have $(w) \perp (v)$.
+	\end{proof}
+	\begin{lem}
+		If $A = P_{v} + P_{w} = 2 P_{u}$ for some $u \in V$, then $v, w$ and $u$ are all parallel.
+	\end{lem}
+	\begin{proof}
+		Since $0 = \arestr{A}{(u)^{\perp}} = \arestr{(P_{v} + P_{w})}{(u)^{\perp}} = \arestr{(P_{v})}{(u)^{\perp}} + \arestr{(P_{w})}{(u)^{\perp}} \geq 0$, we have $\arestr{(P_{v})}{(u)^{\perp}} =  \arestr{(P_{w})}{(u)^{\perp}}$. Now by the lemma \ref{posnegfact} we have $(v), (w) \subset (u)$: hence the claim.
+	\end{proof}
 \end{proof}
 
 
@@ -483,7 +515,17 @@ So in some sense, by taking non-commutative products, we really lose most of the
 
 There is one very important way to produce positive maps from others, called congruence. Given any two positive maps $A$ and $B$, their composition need not be positive, but the map $BAB$ is. First of all, it is real as $(BAB)^{*} = B^{*} A^{*} B^{*} = BAB$. Also $Q_{BAB}(v) = \langle BAB v, v \rangle = \langle A (B v), (B v) \rangle \geq 0$ for any $v \in V$. We didn't really need the assumption on the positivity of $B$, but realness was not that important either. Namely for arbitrary linear $B$ we could consider the product $B^{*}AB$ instead: this is positive whenever $A$ is. If $C = B^{*}AB$ for some $B \in \L(V)$, we say that $C$ is $*$-conjugate of $A$.
 
-We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis in the quadratic form. This is the main motivation for the definition of the $*$-conjugation. We have already seen that the quadratic form of a map is a good way to characterize many of its good properties, so to some extent to understand maps, we just to need to understand structure of their quadratic forms. By change of basis of the quadratic form we have a good control of what happens. We might however lose some information: if $B = 0$, for instance, the quadratic form after $*$-conjugation by $B$ doesn't tell much about $A$. But if $B$ is invertible, or equivalently if $C$ and $B$ are $*$-conjugates of each other, we shouldn't lose any information. If this is the case, we say that $A$ and $C$ are congruent. It is easily verified that congruence is a equivalence relation.
+\begin{maar}
+	Let $A, B \in \H$. We say that $B$ is \textit{$*$-conjugate} of $A$ if for some $C \in \L(V)$ we have $B = C^{*} A C$.
+\end{maar}
+
+We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis in the quadratic form. This is the main motivation for the definition of the $*$-conjugation. We have already seen that the quadratic form of a map is a good way to characterize many of its good properties, so to some extent to understand maps, we just to need to understand structure of their quadratic forms. By change of basis of the quadratic form we have a good control of what happens. We might however lose some information: if $B = 0$, for instance, the quadratic form after $*$-conjugation by $B$ doesn't tell much about $A$. But if $B$ is invertible, or equivalently if $C$ and $B$ are $*$-conjugates of each other, we shouldn't lose any information.
+
+\begin{maar}
+	Let $A, B \in \H$. We say that $A$ and $B$ are \textit{congruent} if they are $*$-conjugates of each other.
+\end{maar}
+
+It is easily verified that congruence is a equivalence relation.
 
 The construction of $*$-conjugation makes also sense for general linear map $A$, i.e. we could just as well $*$-conjugate non-positive, or even non-real maps. The result then need not be positive or real, and in general, $*$-conjugation loses its usefulness.
 
@@ -746,7 +788,7 @@ We could of course have made such definition immediately after defining positive
 \end{prop}
 
 \begin{esim}\label{projection_order}
-	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Conversely if $P_{W_{1}} \leq P_{W_{2}}$, then $0 \leq \arestr{(P_{W_{1}})}{W_{2}^{\perp}} \leq \arestr{(P_{W_{2}})}{W_{2}^{\perp}} = 0$, so $\arestr{(P_{W_{1}})}{W_{2}^{\perp}} = 0$. But this easily implies that $W_{1} \perp W_{2}^{\perp}$, and hence the claim.
+	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Conversely if $P_{W_{1}} \leq P_{W_{2}}$, then $0 \leq \arestr{(P_{W_{1}})}{W_{2}^{\perp}} \leq \arestr{(P_{W_{2}})}{W_{2}^{\perp}} = 0$, so $\arestr{(P_{W_{1}})}{W_{2}^{\perp}} = 0$. But now lemma \ref{projection_compression} implies that $W_{1} \subset W_{2}$.
 \end{esim}
 
 Key thing here is to note what is missing from the standard real ordering: multiplication by positive map doesn't preserve usual ordering. This is the reason many standard arguments don't work for general real maps.
