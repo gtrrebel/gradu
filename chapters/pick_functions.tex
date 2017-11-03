@@ -588,7 +588,7 @@ We can salvage the proof by improving the second lemma. We have to somehow remem
 			\frac{\varphi(w_{n_{2}}) - \overline{\tilde{\varphi}(z_{1})}}{w_{n_{2}} - \overline{z_{1}}} & \cdots & \frac{\varphi(w_{n_{2}}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{w_{n_{2}} - \overline{z_{n_{1}}}} & \frac{\varphi(w_{n_{2}}) - \overline{\varphi(w_{1})}}{w_{n_{2}} - \overline{w_{1}}} & \ldots & \frac{\varphi(w_{n_{2}}) - \overline{\varphi(w_{n_{2}})}}{w_{n_{2}} - \overline{w_{n_{2}}}} \\
 		\end{bmatrix}
 	\end{align*}
-	is positive. Formally, this would mean that for any $c_{1}, \ldots, c_{n_{1}}, d_{1}, \ldots, d_{n_{2}} \in \C$ ther real part of the integral
+	is positive. Formally, this would mean that for any $c_{1}, \ldots, c_{n_{1}}, d_{1}, \ldots, d_{n_{2}} \in \C$ the real part of the integral
 	\begin{align*}
 		\frac{1}{2 \pi i}\int_{\gamma} \left(\sum_{i = 1}^{n_{1}} \frac{c_{i}}{z - z_{i}} + \sum_{i = 1}^{n_{2}} \frac{d_{i}}{z - w_{i}}\right) \left(\sum_{i = 1}^{n_{1}} \frac{\overline{c_{i}}}{z - \overline{z_{i}}} + \sum_{i = 1}^{n_{2}} \frac{\overline{d_{i}}}{z - \overline{w_{i}}}\right) \varphi(z) dz
 	\end{align*}
@@ -632,7 +632,7 @@ Before the proof we need an interesting fact\footnote{We don't really need, but 
 	TODO picture
 \end{proof}
 
-Not surprisingly, the result remain's true also in higher dimensions, as can be seen for instance by intersecting the closed balls with two dimensional planes and applying the 2d case.
+Not surprisingly, the result remains true also in higher dimensions, as can be seen for instance by intersecting the closed balls with two dimensional planes and applying the 2d case.
 
 \begin{lem}\label{pick_extension_lemma}
 	Let $A \subset \H_{+}$ and $\varphi : A \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
@@ -647,7 +647,7 @@ Not surprisingly, the result remain's true also in higher dimensions, as can be 
 			\frac{w_{n} - \overline{w_{0}}}{z_{n} - \overline{z_{0}}} & \frac{w_{n} - \overline{w_{1}}}{z_{n} - \overline{z_{1}}} & \ldots & \frac{w_{n} - \overline{w_{n}}}{z_{n} - \overline{z_{n}}}
 		\end{bmatrix}
 	\end{align*}
-	is positive. Denote the matrix consisting of the last $n$ rows and columns of the matrix by $n$. We first assume that $M$ is invertible. Then the original matrix is positive if and only the the Schur complement with to last $n$ rows is positive, that is
+	is positive. Denote the matrix consisting of the last $n$ rows and columns of the matrix by $n$. We first assume that $M$ is invertible. Then the original matrix is positive if and only the the Schur complement with respect to the last $n$ rows is positive, that is
 	\begin{align*}
 		0 \leq &\frac{w_{0} - \overline{w_{0}}}{z_{0} - \overline{z_{0}}} - (w_{0} v - w)^{*} M^{-1} (w_{0} v - w) \\
 		=& -\langle M^{-1} v, v \rangle |w_{0}|^2 + \left(\frac{1}{z_{0} - \overline{z_{0}}} + \langle M^{-1} v, w \rangle \right) w_{0} \\
@@ -669,7 +669,7 @@ Not surprisingly, the result remain's true also in higher dimensions, as can be 
 	\begin{align*}
 		\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}} -\frac{w_{k} - \overline{z_{0}}}{z_{k} - \overline{z_{0}}}\frac{\overline{w_{l}} - z_{0}}{\overline{z_{l}} - z_{0}} +  \frac{w_{k} - z_{0}}{z_{k} - \overline{z_{0}}}\frac{\overline{w_{l}} - \overline{z_{0}}}{\overline{z_{l}} - z_{0}} = \frac{z_{k} - z_{0}}{z_{k} - \overline{z_{0}}}\frac{\overline{z_{l}} - \overline{z_{0}}}{\overline{z_{l}} - z_{0}}\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}}.
 	\end{align*}
-	This identity can be interpreted as $(M - v_{1} v_{1}^{*}) + v_{2} v_{2}^{*} = D^{*} M D$ where $v_{1}, v_{2}$ are some vectors and $D$ a diagonal matrix. Calculating the determinant from both sides, by multiplicativity on the right-hand side and using rank 1 update formulas in the bracketed order one will end up with the sought formula.
+	This identity can be interpreted as $(M - v_{1} v_{1}^{*}) + v_{2} v_{2}^{*} = D^{*} M D$ where $v_{1}, v_{2}$ are some vectors and $D$ a diagonal matrix. Calculating the determinant from both sides, by multiplicativity on the right-hand side and using rank 1 update formulas in the bracketed order on the left-hand side, one will end up with the sought formula.
 
 	If $M$ is singular, one has to be bit careful. The trick is to shift the tuple a bit.
 
@@ -767,13 +767,13 @@ This line of thinking leads to alternate proof for the Pick-Nevanlinna interpola
 One can lift the previous argument of the Pick-Nevanlinna interpolation theorem to infinite sets by the following compactness result.
 
 \begin{lause}\label{pick_compactness}
-	Let $F = \{\varphi_{j} | j \in J \}$ be a family of Pick functions uniformly bounded in a point (or upper half-plane). Then $F$ is compact under the topology of pointwise convergence.
+	Let $F = \{\varphi_{j} | j \in J \}$ be a family of Pick functions uniformly bounded in a point. Then $F$ is compact under the topology of pointwise convergence.
 \end{lause}
 \begin{proof}
 	Note that respective claim holds for Schur functions by Montel's theorem, so hence also holds for Pick functions $\ldots$ with one small caveat: the Schur function constant $-1$ corresponds to constant $\infty$, which isn't proper Pick function. But by the boundedness condition this is not a problem.
 \end{proof}
 
-There's really nothing special about Pick functions here: in the same way one could prove any family of analytic maps with common (non-whole-of-$\C$) simply connected domain is compact. Of course we even get locally uniform convergence but that won't be important for us.
+There's really nothing special about Pick functions here: in the same way one could prove any family of analytic maps with common (non-whole-of-$\C$) simply connected codomain is compact. Of course we even get locally uniform convergence but that won't be important for us.
 
 One could also give ``weaker" proof.
 
@@ -781,7 +781,7 @@ One could also give ``weaker" proof.
 	Fix sequence in $F$. By lemma \ref{pick_continuity_lemma} and the condition values $\sup_{z \in K}|\varphi_{j}(z)|$ are uniformly bounded for every compact set $K$. The proof of the lemma also easily implies that $\varphi_{j}$'s are uniformly Lipschitz on compact sets. By Arzel\`{a}-Ascoli theorem for every compact set $K$ we can find a subsequence convergent in $K$ and exhausting upper half-plane by sequence of nested compact sets and taking the diagonal sequence we get the claim. By proposition \ref{pick_convergence} the limit is also Pick function.
 \end{proof}
 
-Of course, one could use the previous approach to prove the Montel's theorem in the first place, but the idea is that we can also forget the analyticity and work with Pick matrices on the weak level.
+Of course, one could use Arzel\`{a}-Ascoli to prove the Montel's theorem in the first place, but the idea is that we can also forget the analyticity and work with Pick matrices on the weak level.
 
 \section{Pick-Nevanlinna-Herglotz representation theorem}
 
@@ -795,7 +795,7 @@ One cannot simply talk about Pick functions without discussing Pick-Nevanlinna-H
 	for some $\alpha \geq 0$ and $\beta \in \R$ and a Borel measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
 	In addition, we can recover the measure $\mu$, $\alpha$ and $\beta$ from $\varphi$ as follows: $\alpha = \lim_{y \to \infty} \frac{\varphi(i y)}{y}$, $\beta = \Re(\varphi(i))$
 	\begin{align*}
-		\mu([a, b]) = \frac{1}{\pi}\lim_{x \to 0^{+}} \lim_{y \to 0^{+}} \int_{a - x + i y}^{b + x + i y} \varphi(z) d z
+		\mu([a, b]) = \frac{1}{\pi}\lim_{x \to 0^{+}} \lim_{y \to 0^{+}} \int_{a - x + i y}^{b + x + i y} \Im(\varphi(z)) d z
 	\end{align*}
 \end{lause}
 
