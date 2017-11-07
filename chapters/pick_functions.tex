@@ -429,7 +429,23 @@ are positive. By letting $z_{1}, z_{2}, \ldots, z_{n} \to z_{0}$ we get the clai
 \end{proof}
 Matrix \ref{extended_dobsch_matrix} is called \textit{extended Pick matrix}.
 
-The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we try to make every point in $\Hp$ is Pick point of $\varphi$. For this we need two lemmas. first one says that if point is a Pick point of $\varphi$, then $\varphi$ can be extended to a reasonable large disc around $z_{0}$, which is really say that the Taylor coefficients of $\varphi$ at $z_{0}$ don't grow too fast. Second one tells us that if managed to extend function to such disc, then all the points in the disc are Pick points.
+Again, one can, and should, interpret the extended Pick matrix as some kind of change of basis. In terms of a Cauchy's integral formula the original Pick matrix says that
+\begin{align*}
+	\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \overline{\lambda_{j}}}\right) \varphi(z) dz \right) \geq 0,
+\end{align*}
+for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in U$ while the extended Pick matrix says that
+\begin{align*}
+	\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{\prod_{1 \leq j' \leq j}(z - \lambda_{j'})}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{\prod_{1 \leq j' \leq j}(z - \overline{\lambda_{j'}})}\right) \varphi(z) dz \right) \geq 0
+\end{align*}
+for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in U$. This interpretation makes it clear that two different matrices are really about
+\begin{gather*}
+	\frac{1}{z - \lambda_{1}}, \frac{1}{z - \lambda_{2}}, \ldots, \frac{1}{z - \lambda_{n}} \\
+	\text{and} \\
+	\frac{1}{z - \lambda_{1}}, \frac{1}{(z - \lambda_{1})(z - \lambda_{2})}, \ldots, \frac{1}{(z - \lambda_{1}) (z - \lambda_{2}) \cdots (z - \lambda_{n})}
+\end{gather*}
+spanning the same set of rational functions (whenever $\lambda_{i}$'s are pairwise distinct).
+
+The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we try to make every point in $\Hp$ is Pick point of $\varphi$. For this we need two lemmas. first one says that if point is a Pick point of $\varphi$, then $\varphi$ can be extended to a reasonable large disc around $z_{0}$, which is really to say that the Taylor coefficients of $\varphi$ at $z_{0}$ don't grow too fast. Second one tells us that if we managed to extend function to such disc, then all the points in the disc are Pick points.
 
 \begin{lem}
 	There exists absolute constant $c_{0}$ with the following property: Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that $z_{0} \in U$ is a Pick point of $U$. Then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, c_{0} \Im(z_{0}))$. One may take $c_{0} = \frac{1}{9}$.
@@ -490,11 +506,11 @@ The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we
 \begin{proof}
 	Rewriting things with Cauchy's integral formula, our goal is to prove that for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \D(z_{0}, r)$ we have
 	\begin{align*}
-		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \overline{\lambda_{j}}}\right) f(z) dz \right) \geq 0
+		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \overline{\lambda_{j}}}\right) \varphi(z) dz \right) \geq 0
 	\end{align*}
 	where $\gamma$ traces a circle centered at $z_{0}$, enclosing the $\lambda$'s. What we know, again, in terms of Cauchy's integral formula, is that for any $c_{1}', c_{2}', \ldots, c_{n}' \in \C$ we have
 	\begin{align*}
-		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}'}{(z - z_{0})^{j}}\right) \left(\sum_{j = 1}^{n}\frac{\overline{c_{j}'}}{(z - \overline{z_{0}})^{j}}\right) f(z) dz\right) \geq 0.
+		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}'}{(z - z_{0})^{j}}\right) \left(\sum_{j = 1}^{n}\frac{\overline{c_{j}'}}{(z - \overline{z_{0}})^{j}}\right) \varphi(z) dz\right) \geq 0.
 	\end{align*}
 	The idea is to simply approximate upper integrand: if we manange to approximate terms of the form $\frac{1}{z - \lambda}$ uniformly on $\gamma$ by terms of the form $\sum_{j = 1}^{n} \frac{c_{j}'}{(z - z_{0})^{j}}$, then we can certainly make our goal expression as close to a non-negative number as we wish. But this is exactly what Laurent expansions are for.
 
@@ -804,6 +820,8 @@ We prove the statement in the chapter TODO. (Intuition on deforming contour, spl
 The integral representation makes many of the properties of the Pick functions obvious. TODO
 
 \section{Examples of representing measures}
+
+\section{Notes and references}
 
 TODO:
 \begin{itemize}

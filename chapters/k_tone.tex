@@ -14,8 +14,41 @@ Having charaterized matrix monotone functions it is natural to ask what happens 
 We denote class of matrix convex functions of order $n$ on interval $(a, b)$ by $P^{2}_{n}(a, b)$. Many of the properties of matrix monotone functions translate immediately to matrix convexity.
 
 \begin{prop}
-	TODO
+	Let $(a, b) \subset \R$ be an open interval $n \geq 1$. Then
+	\begin{enumerate}
+		\item $P_{n}^{2}(a, b)$ is a convex closed cone.
+		\item $P_{n + 1}^{2}(a, b) \subset P_{n}^{2}(a, b)$.
+		\item $\left(x \mapsto \alpha_{2} x^{2} + \alpha_{1} x + \alpha_{0}\right) \in P^{2}_{n}(a, b)$ if $\alpha_{n} \geq 0$.
+		\item $\left(x \mapsto |x|^{-1}\right) \in P^{2}_{n}(a, b)$ whenever $0 \notin (a, b)$.
+	\end{enumerate}
 \end{prop}
+\begin{proof}
+	\begin{enumerate}
+		\item This is clear.
+		\item The proof is essentially the same as in the monotone case.
+		\item We have
+		\begin{align*}
+			& t (\alpha_{2} A^2 + \alpha_{1} A + \alpha_{0} I) + (1 - t) (\alpha_{2} B^2 + \alpha_{1} B + \alpha_{0} I) \\
+			&- (\alpha_{2} (t A + (1 - t) B)^2 + \alpha_{1} (t A + (1 - t) B) + \alpha_{0} I) \\
+			=& \alpha_{2} t (1 - t) (A - B)^{2}.
+		\end{align*}
+		\item It's is clearly sufficient to prove that $x \mapsto x^{-1}$ is convex on $(0, \infty)$. For this we should prove that for any $A, B > 0$ and $t \in [0, 1]$ we have
+		\begin{align*}
+			t A^{-1} + (1 - t) B^{-1} \geq (t A + (1 - t) B)^{-1}.
+		\end{align*}
+		By doing the congruence trick, i.e. $*$-conjugating by $A^{\frac{1}{2}}$ and setting $X = A^{-\frac{1}{2}} B A^{-\frac{1}{2}}$ we are left with
+		\begin{align*}
+			t + (1 - t) X^{-1} \geq (t + (1 - t) X)^{-1},
+		\end{align*}
+		which would follow if we can prove the respective scalar inequality. But
+		\begin{align*}
+			t + (1 - t) x^{-1} - (t + (1 - t) x)^{-1} = \frac{t (1 - t)}{x (t + (1 - t) x)} (x - 1)^{2},
+		\end{align*}
+		so the scalar inequality is true.
+	\end{enumerate}
+\end{proof}
+
+With linear combinations of the previous examples we can again build large number of $n$-convex functions. TODO
 
 By now it ought to be no surprise that not every convex function is matrix convex. Canonical counterexample is absolute value. In turns out that we have
 
@@ -35,6 +68,31 @@ By now it ought to be no surprise that not every convex function is matrix conve
 	\end{align*}
 	which was already discussed in \ref{symmetric_projection}.
 \end{proof}
+
+\section{Convexity and the second derivative}
+
+So far everything has worked pretty much the same way as with the monotone functions, but with derivative things to start to look very different. Theorem \ref{monotone_derivative} has natural analog in the convex case.
+
+\begin{lause}
+	Let $n \geq 1$ and $f \in C^{2}(a, b)$.
+	Then the following are equivalent:
+	\begin{enumerate}[(i)]
+	\item $f \in P^{2}_{n}(a, b)$.
+	\item For any $A, H \in \H^{n}_{(a, b)}$ we have
+	\[
+		D^{2}_{n}f_{A}(H) \geq 0.
+	\]
+	\item For any $A, H \in \H^{n}_{(a, b)}$ and $v \in V$ the map
+	\[
+		t \mapsto \langle f(A + t H) v, v \rangle
+	\]
+	is convex.
+	\end{enumerate}
+\end{lause}
+
+Note that there are only three conditions in this theorem. In the monotone case we could take $H$ to be projection, but with the convex case this is not (a priori) possible anymore.
+
+TODO
 
 \section{Matrix $k$-tone functions}
 

@@ -167,7 +167,7 @@ As a corollary with get
 \begin{proof}
 	If $\chi_{x > 0}$ were $n$-monotone so would be
 	\begin{align*}
-		x^2 = \int_{0}^{\infty} t \chi_{(t, \infty)}(x) dt.
+		x^2 = \int_{0}^{\infty} 2 t \chi_{(t, \infty)}(x) dt.
 	\end{align*}
 \end{proof}
 
@@ -236,6 +236,32 @@ This is all just heuristics, but it leads us to expect two things:
 \end{enumerate}
 
 We will later see that both of these phenomena occur.
+
+\section{Pick functions are matrix monotone}
+
+Fortunately the affine functions are not the only matrix monotone functions. We have already discussed a second example.
+
+\begin{prop}
+	We have $(x \mapsto -x^{-1}) \in P_{n}(a, b)$ for any $(a, b) \not\ni 0$ and $n \geq 1$.
+\end{prop}
+\begin{proof}
+	The result follows immediately from the theorem \ref{inverse_decreasing}.
+\end{proof}
+
+Now also the tranlations $(x \mapsto \frac{1}{\lambda - x}) \in P_{n}(a, b)$ for any $n \geq 1$ and $(a, b) \not\ni \lambda$ so by the cone property also all the functions of the form
+\begin{align}\label{finite_pick}
+	x \mapsto \alpha x + \beta + \sum_{i = 1}^{m} \frac{t_{i}}{\lambda_{i} - x}
+\end{align}
+are $n$-monotone on $(a, b)$ for any $n \geq 1$, $\alpha, t_{1}, t_{2}, \ldots, t_{m} \geq 0$ and $\beta, \lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ where $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m} \not\in (a, b)$.
+
+Taking pointwise limits we arrive at
+
+\begin{lause}
+	If $f \in P(a, b)$, then $f \in P_{n}(a, b)$ for every $n \geq 1$.
+\end{lause}
+\begin{proof}
+	The reason is of course that every element of $P(a, b)$ is pointwise limit of the functions of the form \ref{finite_pick}. Why is that exactly? One should be a bit careful as things aren't compactly supported. TODO (explain why everything is compact afterall)
+\end{proof}
 
 \section{Derivative and Loewner's characterization}
 
@@ -328,10 +354,10 @@ for some polynomial of degree less than $n$, and indeed, if the $\lambda$'s are 
 Note that $z \mapsto q(z)\overline{q(\overline{z})})$ is a polynomial of degree at most $(2 n - 2)$ non-negative on the real line. Easy application of the Fundamental theorem of algebra reveals that all such polynomials are actually of the previous form.
 
 \begin{lem}\label{polynomial_lemma}
-	$h$ is polynomial of degree at most $(2 n - 2)$ if and only if it is of the form $p(z) \overline{p(\overline{z})}$ for some complex polynomial of degree of at most $(n - 1)$.
+	$h$ is polynomial of degree at most $(2 n - 2)$ non-negative on $\R$, if and only if it is of the form $p(z) \overline{p(\overline{z})}$ for some complex polynomial of degree of at most $(n - 1)$.
 \end{lem}
 \begin{proof}
-	It is easy to see that all of the polynomials of the specific form fit the bill. Conversely, if $h$ is real on real axis it's roots all appear in pairs: either with strict complex conjugate pairs, of pairs of double real roots. We may take $p$ to be $\sqrt{a_{n}}\prod (z - z_{i})$ where $z_{i}$ range over representatives of all the pairs and $a_{n}$ is the leading coefficient of $h$.
+	It is easy to see that all of the polynomials of the specific form fit the bill. Conversely, if $h$ is non-negative on real axis, it's roots all appear in pairs: either with strict complex conjugate pairs, of pairs of double real roots. We may take $p$ to be $\sqrt{a_{n}}\prod (z - z_{i})$ where $z_{i}$ range over representatives of all the pairs and $a_{n}$ is the leading coefficient of $h$.
 \end{proof}
 
 Write $h(z) = q(z)\overline{q(\overline{z})})$.
@@ -575,7 +601,7 @@ Let us then complete proof by proving the lemma \ref{main_lemma}.
 		P_{n - 1}(\C) &\to \{\text{Complex polynomials of degree at most } (2 n - 2) \text{ non-negative on } \R \} \\
 		p(z) &\mapsto p(z) \overline{p(\overline{z})}
 	\end{align*}
-	is surjection: composition of these maps is the correspondence.
+	is surjection: composition of these maps is the correspondence between $w$ and $h$.
 \end{proof}
 
 \section{A bit of history}
@@ -676,7 +702,7 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 		\begin{align*}
 			f(x) - f(-x) = 2 \left(\sum_{i = 1}^{n} \frac{f^{(2 i - 1)}(0)}{(2 i - 1)!}x^{2 i - 1}\right) + \int_{0}^{x} \frac{f^{(2 n + 1)}(t) + f^{(2 n + 1)}(-t)}{(2n)!} (x - t)^{2 n} dt.
 		\end{align*}
-		But know we can simply follow the same argument.
+		But now we can simply follow the same argument.
 	\end{proof}
 
 \end{proof}
