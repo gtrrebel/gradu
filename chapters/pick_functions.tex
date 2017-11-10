@@ -40,7 +40,7 @@ There's a considerable strengthening of the previous result.
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-We will not prove this quite surprising result yet; the message is that the class of Pick functions is very rigid in some sense.
+Note that this result far from clear: pointwise limits of analytic functions need not in general be analytic. We will not prove this result yet, but it strongly suggests that the class of Pick functions is very rigid in some sense.
 
 \section{Rigidity}
 
@@ -801,19 +801,39 @@ Of course, one could use Arzel\`{a}-Ascoli to prove the Montel's theorem in the 
 
 \section{Pick-Nevanlinna-Herglotz representation theorem}
 
-One cannot simply talk about Pick functions without discussing Pick-Nevanlinna-Herglotz representation theorem.
+One cannot simply talk about Pick functions without discussing Pick-Nevanlinna-Herglotz representation theorem.\footnote{TODO: (other names) Schwarz integral formula, Poisson formula}
 
 \begin{lause}\label{pick_nevanlinna_herglotz_representation_theorem}
 	$\varphi \in \pickclass$, if and only
-	\begin{align*}
+	\begin{align}\label{pick_representation}
 		\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \left(\frac{1}{\lambda - z} - \frac{\lambda}{\lambda^2 + 1}\right) d \mu(\lambda)
-	\end{align*}
+	\end{align}
 	for some $\alpha \geq 0$ and $\beta \in \R$ and a Borel measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
-	In addition, we can recover the measure $\mu$, $\alpha$ and $\beta$ from $\varphi$ as follows: $\alpha = \lim_{y \to \infty} \frac{\varphi(i y)}{y}$, $\beta = \Re(\varphi(i))$
-	\begin{align*}
-		\mu([a, b]) = \frac{1}{\pi}\lim_{x \to 0^{+}} \lim_{y \to 0^{+}} \int_{a - x + i y}^{b + x + i y} \Im(\varphi(z)) d z
-	\end{align*}
 \end{lause}
+
+Where does such representation come from? The representation \ref{pick_representation} tells us that every Pick function is essentially a sum functions of the form $\frac{1}{\lambda - z}$ (and an affine term). If $\varphi$ is bounded and extends over the real axis, this looks almost like Cauchy's integral formula but the beauty is that $\mu$ is real, while with Cauchy's integral formula we can't control the phase. TODO
+
+\begin{comment}
+We have however almost discussed such identities already. We for instance observed that
+\begin{align*}
+	& \frac{1}{2 \pi}\int_{-\infty}^{\infty} \frac{\Im\left(\varphi(z)\right)}{(z - a) (z - \overline{a})} dz \\
+	=& \Re\left(\frac{1}{2 \pi i}\int_{-\infty}^{\infty} \frac{\varphi(z)}{(z - a) (z - \overline{a})} dz\right) \\
+	=& \frac{\varphi(a) - \overline{\varphi(a)}}{a - \overline{a}} \\
+	=& \Im\left(\frac{\varphi(a)}{a}\right)
+\end{align*}
+\end{comment}
+
+\begin{lause}[Supplement to theorem \ref{pick_nevanlinna_herglotz_representation_theorem}]
+	In the representation \ref{pick_representation} we have
+	$\alpha = \lim_{y \to \infty} \frac{\varphi(i y)}{y}$, $\beta = \Re(\varphi(i))$ and we can recover the measure $\mu$ as
+	\begin{align}\label{measure_recovery}
+		\mu([a, b]) = \frac{1}{\pi}\lim_{x \to 0^{+}} \lim_{y \to 0^{+}} \int_{a - x + i y}^{b + x + i y} \Im(\varphi(z)) d z.
+	\end{align}
+\end{lause}
+
+\begin{proof}
+TODO
+\end{proof}
 
 We prove the statement in the chapter TODO. (Intuition on deforming contour, split the function to three pieces)
 

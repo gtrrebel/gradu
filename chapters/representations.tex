@@ -17,6 +17,24 @@ Now if one has say compact convex set in $K \subset \R^{n}$, $K$ should be rough
 
 Same holds true much more generally, in infinite dimensional spaces.
 
+We have already discussed this kind of phenomenon: we noted that every Pick function is essentially sum of functions of the form $z \mapsto \frac{1}{\lambda - z}$. Such functions (together with affine ones) are the extreme points of the cone of Pick functions. Similarly we found basis functions for $k$-tone functions: they are exactly the extreme points of the $k$-tone functions. TODO splitting Pick measures.
+
+\section{Minkowski–Carath\'{e}odory Theorem}
+
+\begin{maar}
+	Let $E$ be a vector space $C$ its convex subset. A point $x \in C$ is \textit{extreme point} of $C$ whenever $x = t y + (1 - t) z$ for $y, z \in C$ and $t \in [0, 1]$ then $x = y$ or $x = z$.
+\end{maar}
+
+\begin{lause}[(Weak) Minkowski–Carath\'{e}odory Theorem]
+	Let $C \subset \R^{n}$ be convex and compact. Then it is convex hull of its extreme points, i.e. for any $x \in C$ we may find $m \geq 1$, $x_{1}, x_{2}, \ldots, x_{m}$ and $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ with $t_{1} + t_{2} + \ldots + t_{m} = 1$ such that
+	\begin{align*}
+		x = \sum_{i = 1}^{m} t_{i} x_{i}.
+	\end{align*}
+\end{lause}
+\begin{proof}
+	TODO
+\end{proof}
+
 \section{Basis $k$-tone functions}
 
 We noticed that $k$-tone functions correspond more or less to functions with non-negative $k$'th derivative. In other words, $k$-tone functions should be $k$-fold integrals of positive functions, at least in sufficiently smooth setting. For instance $f : (a, b) \to \R$ is increasing and smooth if and only if it's of the form
@@ -27,7 +45,7 @@ for some positive $\rho \in C^{\infty}(a, b)$ and $x_{0} \in (a, b)$, up to a co
 
 If $\mu = \delta_{0}$, for instance, $f = \chi_{[0, \infty)}$. One could think that $\delta_{0}$ gives a jump for $f$ at $0$. More generally, if $\mu$ is positive linear combination if $m$ (distinct) Dirac deltas, $f$ is a function with $m$ jumps. Now every Radon measure is a weak limit of positive linear combination Dirac deltas, so every increasing function is limit of finite sums of jump functions, at least in some weak sense.
 
-This is fact is actually contained in \ref{increasing_repr}: we may rewrite
+This fact is actually contained in \ref{increasing_repr}: we may rewrite
 \[
 	f(x) = \int_{a}^{b} \chi_{[t, \infty)}(x)d\mu(t),
 \]
@@ -61,13 +79,15 @@ where $(x - t)_{+}$ denotes $\max(0, x - t)$. What this means is that the functi
 
 Now if a linear equality holds for functions of the form $|x - t|$, it holds for any convex function. So since for any $x_{1}, x_{2}, \ldots, x_{m} \in \R$ we have
 \[
-	\sum_{1 \leq i \leq m} |x_{i} - t| \geq m |\frac{\sum_{1 \leq i \leq m} x_{i}}{m} - t|,
+	\sum_{1 \leq i \leq m} |x_{i} - t| \geq m \left|\frac{\sum_{1 \leq i \leq m} x_{i}}{m} - t\right|,
 \]
 also for any convex function
 \[
 	\sum_{1 \leq i \leq m} f(x_{i}) \geq m f\left(\frac{\sum_{1 \leq i \leq m} x_{i}}{m}\right),
 \]
 Jensen's inequaltity.
+
+\begin{comment}
 
 \section{Majorization}
 
@@ -94,3 +114,5 @@ Of course there should be a larger family of inequalities which hold for functio
 \begin{proof}
 	TODO
 \end{proof}
+
+\end{comment}
