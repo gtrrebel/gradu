@@ -133,7 +133,7 @@ This expression has positive real part, and by using the residue theorem, the re
 \[
 	\frac{\varphi(a) - \overline{\varphi(a)}}{a - \overline{a}},
 \]
-hence the claim. Also boundedness is enough for this estimate.
+hence the claim. Also, boundedness is enough for this computation.
 
 To arrive at Schwarz-Pick theorem consider integral
 \begin{align*}
@@ -231,7 +231,7 @@ Let's first check continuity. For this we only need positivity on $2 \times 2$-m
 	is positive. Then $f$ is locally Lipschitz, in particular continuous.
 \end{lause}
 \begin{proof}
-	It follows from \ref{pick2_determinant}: what we have
+	It follows from \ref{pick2_determinant} that we have
 	\begin{align*}
 		\left|\frac{\varphi(z_{1}) - \varphi(z_{2})}{\varphi(z_{1}) - \overline{\varphi(z_{2})}} \right| \leq \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
 	\end{align*}
@@ -257,10 +257,10 @@ Curiosly enough, $\varphi$ is analytic as long as all its $3 \times 3$ Pick matr
 		[z_{3}, \overline{z_{1}}]_{\varphi} & [z_{3}, \overline{z_{2}}]_{\varphi} & [z_{3}, \overline{z_{3}}]_{\varphi}\\
 	\end{bmatrix}
 	\end{align*}
-	is positive. Then $f$ is analytic.
+	is positive. Then $\varphi$ is analytic.
 \end{lause}
 \begin{proof}
-	TODO
+	We are going to check that the quantity $[z_{1}, z_{2}, z_{3}]_{\varphi}$ is locally bounded, which implies the claim as in the proof of theorem \ref{bounded_div}. 
 \end{proof}
 
 As an immediate corollary we get theorem \ref{pick-nevanlinna_converse}.
@@ -849,5 +849,13 @@ TODO:
 	\item Examples of representing measures behind functions and functions behind representing measures
 	\item Spectral commutant lifting theorem
 	\item Use Morera's theorem to prove weak Hindmarsh's theorem
+\end{itemize}
+
+
+How to rewrite majority of this section:
+\begin{itemize}
+	\item Concentrate on Pick-integrals
+	\item Proof open Pick interpolation by extending thinking about Pick-integrals and then showing that the extension is unique, thus showing that everything works.
+	\item Split the Pick measure weakly with $1/(x^2 + 1)$ (How to do the same thing with $k$-tone functions?)
 \end{itemize}
 

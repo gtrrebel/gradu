@@ -59,14 +59,77 @@ For any two matrices $0 < A \leq B$ we have
 \]
 This is already not trivial, and with previous interpretation in mind, could this be interpreted as the functions $(x \mapsto \frac{1}{x})$ could be \textit{matrix decreasing}? And is this just a special case of something bigger? Yes, and that's exactly what this thesis is about.
 
-\section{Themes}
+\section{Themes and structure}
 
-The theory of matrix monotone functions is build upon two main themes.
+One of the main themes in this thesis is the notion of \textit{closed salient cone}.
 
+\begin{maar}
+	Let $V$ be a topological vector space over $\R$ or $\C$ and $C \subset V$. Then $C$ is \textit{closed salient cone} of $V$ if
+	\begin{enumerate}[(i)]
+		\item For every $v \in C$ and $\alpha > 0$ we have $\alpha v \in C$.
+		\item For every $v, w, \in C$ we have $v + w \in C$.
+		\item $0 \in C$.
+		\item If both $v \in C$ and $-v \in C$, then $v = 0$.
+		\item $C$ is closed.
+	\end{enumerate}
+\end{maar}
+
+Subsets of vector spaces satisfying the first one, two, three and four properties are called \textit{cones}, \textit{convex cones}, \textit{pointed cones} and \textit{salient cones}, respectively. To shorten terminology we call closed salient cones \textbf{\textit{proper cones}}.
+
+(Pictures of every possibility)
+
+Proper cones are an attempt to generalize the set of non-negative real numbers to a vector space. The first four conditions are pretty much direct translations of the axioms of non-negative numbers to vector spaces. The closedness condition is more of a convenience. In particular, every proper cone gives rise to partial order on the vector space. This makes the vector space (not surprisingly) \textit{ordered topological vector space}.
+
+\begin{maar}
+	Let $V$ be a topological vector space over $\R$ or $\C$ and $\leq \in V^{2}$ a relation on $V$. Then $(V, \leq)$ is \textit{ordered topological vector space} if
+	\begin{enumerate}[(i)]
+		\item $\leq$ is partial order in $V$, that is
+		\begin{enumerate}
+			\item $v \leq v$ for any $v \in V$.
+			\item If $v, w, u$ such that $v \leq w$ and $w \leq u$, then also $v \leq u$.
+			\item If for some $v, w \in V$ we have both $v \leq w$ and $w \leq u$, then $v = w$.
+		\end{enumerate}
+		\item If $v, w \in V$ are such that $v \leq w$, then also $v + u \leq w + u$ for any $u \in V$.
+		\item If $v, w \in V$ are such that $v \leq w$, then for any $\alpha \in [0, \infty)$ also $\alpha v \leq \alpha w$.
+		\item The set $\{v \in V | 0 \leq v\}$ is closed.
+	\end{enumerate}
+\end{maar}
+
+Of course, one should always hope the order $\leq$ to be total, but this is usually wishful thinking, at least if one wants $\leq$ to be canonical in some way.
+
+\begin{prop}
+	For any proper cone $C$ of topological vector space $V$ the relation $\leq_{C}$ defined by
+	\begin{align*}
+		v \leq_{C} w \Leftrightarrow w - v \in C
+	\end{align*}
+	makes $(V, \leq_{C})$ ordered topological vector space.
+\end{prop}
+\begin{proof}
+	Easy to check.
+\end{proof}
+
+Conversely, for every ordered topological vector space $(V, \leq)$ the set $\{v \in V | 0 \leq v\}$ is a proper cone (which induces $\leq$). Elements of the set $\{v \in V | 0 \leq v\}$ are called the \textit{positive elements} of $(V, \leq)$, or simply \textit{positive}. This terminology is rather unfortunate: if $V = \R$, then the positive elements in $(\R, \leq)$ coincide with the non-negative reals (and not the positive ones). The problem is that with non-total orders the term non-negative should mean something totally different. While potentially confusing, we stick with term positive because of the following reasons:
 \begin{enumerate}
-	\item Positivity leads to boundedness, boundedness leads to regularity
-	\item The bigger the space, the more ways are there to maneuver
+	\item It's short.
 \end{enumerate}
+
+The next four chapters are devoted to the four main proper cones of this thesis.
+
+\begin{itemize}
+	\item \textbf{Positive maps} (i.e. positive semidefinite maps). These are the main objects of interest and they are used to define the matrix monotone functions, as illustrated in the introduction. As a comprehensive account of these creatures is far beyond the scope of this thesis, only certain aspects, most relevant to the main topic, are discussed. Should the reader lack familiarity with positive maps, the author farmly recommends TODO as a welcome to the topic.
+
+	Nevertheless, chapter should be self-contained given the background topics (in the next section).
+
+	\item \textbf{k-tone functions}. $k$-tone functions are essentially functions with non-negative $k$'th derivative. Many of the regularity phenomena discussed in this thesis can be understood through the properties of these functions.
+
+	\item \textbf{Pick functions}. Pick functions are analytic functions on upper half-plane with non-negative imaginary part. It turns out that these functions are intimately linked to matrix monotone functions.
+
+	\item \textbf{Matrix monotone functions}. These are the main objects of the study and all the theory build so far is finally connected.
+\end{itemize}
+
+To be entirely honest, only the first of the four proper cones is really a proper cone (three others fail the fourth condition), but the shortcomings of the others are so minor and canonical that we still call them proper.
+
+The last chapter discusses TODO.
 
 \section{Plan of attack}
 
@@ -245,6 +308,7 @@ Master's thesis is to be structured roughly as follows.
 	\item Concrete Pick function extension procedure
 	\item Change of eigenvalues of $A + t B$
 	\item Disc lemma
+	\item Cones in the introduction
 \end{enumerate}
 
 

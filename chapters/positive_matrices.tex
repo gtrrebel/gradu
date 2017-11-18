@@ -1,217 +1,137 @@
-\chapter{Positive matrices}
-
-This chapter is titled ``positive matrices", although ``positive maps" might be more appropriate title. We are mostly going to deal with finite-dimensional objects, but many of the ideas could be generalized infinite-dimensional settings, where matrices lose their edge. Also, one should always ask whether it really clarifies the situation to introduce concrete matrices: matrices are good at hiding the truly important properties of linear mappings. The words ``matrix" and ``linear map" are used somewhat synonymously, although one should always remember that the former are just special representations for the latter.
+\chapter{Positive maps}
 
 \section{Motivation}
 
-How should one order matrices? What should we require from ordering anyway?
-
-We would definitely like to have natural total order on the space of matrices, but it turns out there are no natural choices for that. Partial order is the next best thing. Recall that a partial order on a set $X$ is a binary relation $\leq$ on such that
-\begin{enumerate}
-	\item $x \leq x$ for any $x \in X$.
-	\item For any $x, y \in X$ for which $x \leq y$ and $y \leq x$, necessarily $x = y$.
-	\item If for some $x, y, z \in X$ we have both $x \leq y$ and $y \leq z$, also $x \leq z$.
-\end{enumerate}
-
-The third point is the main point, the first two are just there preventing us from doing something crazy. But we can do better: this partial order on matrices should also respect addition.
-\begin{enumerate}
-\item[4.] For any $x, y, z \in X$ such that $x \leq y$, we should also have $x + z \leq y + z$.
-\end{enumerate}
-
-There's another way to think about this last point. Instead of specifying order among all the pairs, we just say which matrices are positive: matrix is positive if and only it's at least $0$.
-
-If we know all the positive matrices, we know all the ``orderings". To figure out whether $x \leq y$, we just check whether $0 = x - x \leq y - x$, i.e. whether $y - x$ is positive. Also, positive matrices are just differences of the form $y - x$ where $x \leq y$. Now, conditions on the partial order are reflected to the set of positive matrices.
-\begin{enumerate}
-	\item[1'.] $0$ (zero matrix) is positive.
-	\item[2'.] If both $x$ and $-x$ are positive, then $x = 0$.
-	\item[3'.] If both $x$ and $y$ are positive, so is their sum $x + y$.
-\end{enumerate}
-Here $3'$ is kind of combination of $3$ and $4$.
-
-The terminology here is rather unfortunate. Natural ordering of the reals satisfies all of the above with obvious interpretation of positive numbers, which however differs from the standard definition: $0$ is itself positive in our above definition. This is undoubtedly confusing, but what can you do? For real numbers we have total order, so every number is either zero, strictly positive or strictly negative, so when we say non-negative, it literally means ``not negative": we get all the positive numbers and zero. But with partial orders we might get more. So the main reasons why we are using this terminology are
-\begin{enumerate}
-	\item It's short.
-\end{enumerate}
-Also, now that we have decided to preserve the word ``positive" for ``at least zero" one might be tempted to preserve ``strictly positive" for ``at least zero, but not zero". We won't do that, we save that phrase for something more important.
-
-To figure out a correct notion for positive maps, let's start simple. If we are in a $1$-dimensional vector space $V$ over $\R$ there's rather canonical choice for positivity. Any linear map is of the form $v \mapsto a v$ for some $a \in \R$ and we should obviously say that a map is positive if $a \geq 0$ (note our non-standard terminology concerning positivity). More generally, if a map if scalar multiple of identity, map should be positive if and only if the corresponding scalar is non-negative.
-
-Natural extension of this idea could be try the following: map is positive if all of its eigenvalues are non-negative. Of course, this doesn't quite work: not every map has real eigenvalues. But even if we restrict to maps with real eigenvalues, this property is not preserved in addition. Consider for example the pair
-\[
-	\begin{bmatrix}
-		0 & 4 \\
-		1 & 0
-	\end{bmatrix}
-	\text{ and }
-	\begin{bmatrix}
-		0 & -1 \\
-		-4 & 0
-	\end{bmatrix}
-\]
-The two matrices have both distinct eigenvalues $- 2$ and $2$ and are hence diagonlizable, but their sum has characteristic polynomial $x^2 + 9$, which most definitely has no real zeros. In general one should not except summation and eigenvalues go very well together.
-
-\section{Real maps}
-
-\subsection{Restricting linear maps}
-
-There's however quite clever way to go around this. Instead of requiring non-negativity of eigenvalues, we require that map ``restricts" to positive map. The idea is: we already know which maps should be positive in one-dimensional spaces, or more generally, which scalar multiples of identity should be positive. Now we should require that when we restrict our look to one-dimensional subspaces, we should get a positive map.
-
-Of course, one should first understand what restricting linear maps means. Usually if we have a linear map $A : V \to V$, we could take subspace $W \subset V$ and consider the usual restriction map $\restr{A}{W} : W \to V$ given by $\restr{A}{W}(w) = Aw$ for any $w \in W \subset V$. In other words $\restr{A}{W} = A \circ \incl{V}{W}$, where $\incl{V}{W}$ denotes the natural inclusion from $W$ to $V$. But this map is going to wrong space. Instead we would like to define something satisfying
-\begin{itemize}
-	\item Restriction is a linear map $\arestr{(\cdot)}{V, W} = \arestr{(\cdot)}{W} : \L(V) \to \L(W)$.
-	\item If $A \in \L(V)$ and $A(W) \subset W$, restriction should coincide with the original map, in the sense that $A = \incl{V}{W} \circ \arestr{A}{W}$.
-	\item If $W' \subset W \subset V$, we should have $\arestr{(\cdot)}{W'} = \arestr{(\arestr{(\cdot)}{W})}{W'}$.
-\end{itemize}
-
-These properties don't uniquely define a linear map but they say that $\arestr{A}{W}$ should be of the form $P_{V, W} \circ A \circ \incl{V}{W}$ where $P_{V, W}$ is a projection, i.e. a map for which $P_{V, W} \circ \incl{V}{W} = I_{W}$. Moreover, these projections should satisfy $P_{V, W'} = P_{W, W'} \circ P_{V, W}$.
-
-If we are working in a inner-product space, there's rather natural choice for the map $P_{V, W}$: orthogonal projections. Orthogonal projections are projections with $\ker(P) = \image(P)^{\perp}$. Such maps are easily seen to satisfy all the requirements. Finally, we will call our new concept \textit{compression} instead of restriction, to distinguish between the two.
+\subsection{The right definition}
 
 \begin{maar}
-	Let $(V, \langle \cdot, \cdot \rangle )$ be an inner product space and $W \subset V$ a subset. We define the map $\arestr{A}{W}$, \textit{compression} of $A$ to $W$ to be the linear map given by $P_{W} \circ A \circ \incl{V}{W}$.
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space and $A \in \L(V)$. We say that $A$ is \textit{positive map}, or simply \textit{positive}, and write $A \geq 0$, if for any $v \in V$ we have
+	\begin{align*}
+		\langle A v, v \rangle \geq 0.
+	\end{align*}
 \end{maar}
 
+Why is this the right definition for positivity? Do we really need an inner product to define positivity?
+
+While these are both excellent questions (and one should definitely think about them), there is no way to satisfactorily answer them in the scope of this thesis. Instead, I just try to explain why the definition is pretty damn good.
+
+But first things first: we should check that this notion gives us a proper cone.
+
 \begin{lause}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space and $W \subset V$ subspace of $V$. Then the compression to $W$ is linear contraction from $\L(V)$ to $\L(W)$, such that for any $A \in L(V, W)$ we have $\arestr{(\incl{V}{W} \circ A)}{W} = A \circ \incl{V}{W}$. Moreover, if $W' \subset W$, we have $\arestr{(\cdot)}{W'} = \arestr{(\arestr{(\cdot)}{W})}{W'}$.
+	The set
+	\begin{align*}
+		\{A \in \L(V) | \text{ $A$ is positive} \}
+	\end{align*}
+	is a proper cone (of $\L(V)$).
 \end{lause}
 \begin{proof}
-	Easy to check.
-\end{proof}
-
-For one-dimensional compressions we have convenient representation. As one easily checks, one dimensional projection onto subspace spanned by vector $v$ is given by
-\[
-	P_{(v)} = \frac{\langle \cdot, v \rangle}{\langle v, v \rangle} v,
-\]
-as long as $v \neq 0$, and thus
-\[
-	\arestr{A}{(v)} = \frac{\langle A \cdot, v \rangle}{\langle v, v \rangle} v.
-\]
-
-If $w \in (v) \setminus \{0\}$, we could rewrite the previous in the form
-\[
-	\arestr{A}{(v)}(w) = \frac{\langle A v, v\rangle}{\langle v, v\rangle} w = \frac{\langle A w, w\rangle}{\langle w, w \rangle} w.
-\]
-This gives rise to so called Rayleigh quotient $R(A, \cdot) : V \setminus \{0\} \to \C$, given by
-\[
-	R(A, v) = \frac{\langle A v, v \rangle}{\langle v, v \rangle}.
-\]
-Compression in the direction of $v$ is given by scaling by the corresponding Rayleigh quotient.
-
-We will call $\langle A v, v \rangle$ the quadratic form of $A$, and denote it by $Q_{A}(v)$.
-
-There's one more important property of compression we need. When map is compressed to a subspace, we naturally lose some information about the map. Knowing about all of the compressions, however, we can get our map back.
-
-\begin{lem}[Injectivity of compression]
-	If $A, B \in \L(V)$, $A = B$ if and only if $\arestr{A}{W} = \arestr{B}{W}$ for any one-dimensional subspace $W \subset V$.
-\end{lem} 
-\begin{proof}
-	By linearity, it is sufficient to prove that if $Q_{A}(v) = 0$ for any $v \in V$, then $A = 0$.
-
-	The idea is that we can recover the inner product from norm. Indeed, if $v, w \in V$, then $\|v + w\|^2 = \|v\|^2 + \|w\|^2 + 2 \Re(\langle v, w \rangle)$, so knowing the norm, we at least know the real part of the inner product. Doing the same trick with $\|v + i w\|^2$ we can figure out the imaginary part.
-
-	How does this help us? By a similar argument $\langle A(v + w), v + w \rangle = \langle A v, v \rangle + \langle A w, w \rangle + \langle A v, w\rangle + \langle A w, v \rangle$, so given that the quadratic form is always zero, so $\langle A v, w \rangle + \langle A w, v \rangle$ for any $v, w \in V$. Expanding $\langle A (v + i w), v + i w \rangle$ we see that $-i \langle A v, w \rangle + i \langle A v, w \rangle$, which together with the previous observation implies that $\langle A v , w \rangle = 0$ for any $v, w \in V$. It follows that $A = 0$.
-\end{proof}
-
-\subsection{Positive maps}
-
-Now that we have defined the compression we are ready define positive maps.
-
-\begin{maar}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is positive, and write $A \geq 0$, if for any one-dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is positive, i.e. is induced by a non-negative real.
-\end{maar}
-
-We denote the space of positive maps by $\H_{+}(V)$. Positive maps have the following useful properties.
-
-\begin{prop}\label{basic_positive}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space over $\C$. Then
+	We verify the five conditions.
 	\begin{enumerate}[(i)]
-		\item $A \in \L(V)$ is positive if and only if $\arestr{A}{W}$ is positive for every subspace $W \subset V$.
-		\item If $A, B \in \L(V)$ are positive and $\alpha, \beta \geq 0$, also $\alpha A + \beta B$ is positive.
-		\item If $(A_{i})_{i = 1}^{\infty}$ are positive and $\lim_{i \to \infty} A_{i} = A$, also $A$ is positive.
-		\item $A \in \L(V)$, $A$ is positive if and only for any $v \in V$, or for any $v \in V$ with $|v| = 1$ we have $\langle A v, v \rangle \geq 0$, or still equivalently, for any $v \in V \setminus \{0\}$ the Rayleigh quotient $R(A, v)$ is non-negative.
-		\item If both $A$ and $-A$ are positive, then $A = 0$.
-		\item If $A$ is positive, all of its eigenvalues are non-negative.
-	\end{enumerate}
-\end{prop}
-\begin{proof}
-	\begin{enumerate}[(i)]
-		\item Other direction is immediate. Also if for any subspace $W \subset V$ take any one-dimensional $W' \subset W$. Now $\arestr{(\arestr{A}{W})}{W'} = \arestr{A}{W'}$, is positive by assumption, and so is $\arestr{A}{W}$.
-		\item The claim evidently holds for one-dimensional spaces. Now for any one-dimesional $W \subset V$ we have $\arestr{(\alpha A + \beta B)}{W} = \alpha \arestr{A}{W} + \beta \arestr{B}{W} \geq 0$, by the one-dimensional case, so $\alpha A + \beta B \geq 0$.
-		\item Again, the claim evidently holds for one-dimensional spaces. Now for any one-dimesional $W \subset V$ we have $\arestr{(\lim_{i \to \infty} A_{i})}{W} = \lim_{i \to \infty}\arestr{(A_{i})}{W}\geq 0$, by the one-dimensional case, so $A \geq 0$.
-		\item These claims are immediate from our representation for one-dimensional compressions.
-		\item If $A, -A \geq 0$, all the one-dimensional compressions of $A$ are both non-negative and non-positive, so zero. But by the injectivity of compression, it follows that $A = 0$.
-		\item Note that if $v$ is any eigenvector of $v$, $\arestr{A}{(v)} w = \frac{\langle A v, v\rangle}{\langle v, v\rangle} w = \lambda w$, so by assumption $\lambda \geq 0$.
+		\item Take any $A \geq 0$. Then for every $\alpha > 0$ and $v \in V$ we have $\langle \alpha A v, v \rangle = \alpha \langle A v, v \rangle \geq 0$.
+		\item Take any two $A, B \geq 0$. Then for any $v \in V$ we have $\langle \alpha (A + B) v, v \rangle = \langle A v, v \rangle + \langle B v, v \rangle \geq 0$.
+		\item For any $v \subset V$ we have $\langle 0 v, v\rangle = 0 \geq 0$.
+		\item If $A, -A \geq 0$, then $\langle A v, v\rangle = 0$ for every $v \in V$. We should show that $A = 0$. We'll get back to this in a minute.
+		\item We should check that if $(A_{i})_{i = 1}^{\infty}$ are positive and $\lim_{i \to \infty} A_{i} = A$, also $A$ is positive. But as the inner product is continuous, for every $v \subset V$ we have $\langle (\lim_{i \to \infty} A_{i}) v, v \rangle = \lim_{i \to \infty}\langle A_{i} v, v \rangle \geq 0$.
 	\end{enumerate}
 \end{proof}
 
-We can also lift other important notions.
+We denote the cone of positive maps by $\H_{+}(V)$.
 
-\begin{maar}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is real, if for any one dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is real, i.e. is induced by real number.
-\end{maar}
-
-\begin{maar}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. We say that a map $A \in \L(V)$ is imaginary, if for any one dimensional subspace $W \subset V$ the map $\arestr{A}{W}$ is imaginary, i.e. is induced by imaginary number.
-\end{maar}
-
-The previous two families of maps are usually called Hermitian and Skew-Hermitian and as with positive maps, many of their properties are lifted form usual complex numbers. Hermitian maps will have a special role in our discussion. They form a vector space over $\R$, which is denoted by $\H(V)$. Of course, every imaginary map is just $i$ times real map, and we won't preserve any special notation for such maps.
-
-\subsection{Adjoint}
-
-We can also lift the notion of complex conjugate. If $V$ is one-dimensional, $\overline{A}$, conjugate of $A$ should be a linear map which is induced by the complex conjugate of the scalar inducing $A$.
+Before completing the proof, one should stop and appreciate how elegent and general the construction really is. Indeed, it carries directly to a much more general setting:
 
 \begin{lause}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space. Then for any $A \in \L(V)$ there exists unique map $A^{*} \in \L(V)$, which we will call adjoint of $A$, for which for any one-dimensional subspace $W$ we have $\arestr{(A^{*})}{W} = \overline{\arestr{A}{W}}$.
+	Let $V$ be a topological vector space (over $\R$ or $\C$) and $C^{*}$ a subset of its continuous dual. Assume that
+	\begin{align*}
+		\{v \in V | w^{*}(v) = 0 \text{ for every $w^{*} \in C^{*}$} \} = \{0\}.
+	\end{align*}
+	Then
+	\begin{align*}
+		\{v \in V | w^{*}(v) \geq 0 \text{ for every $w^{*} \in C^{*}$}\}
+	\end{align*}
+	is a proper convex cone of $V$.
+\end{lause}
+
+In our case the subset of the linear functional are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$. Now we are left to check the following.
+
+\begin{lem}[Injectivity of compression]\label{inj_compr}
+	If $A \in \L(V)$ and $\langle A v, v \rangle = 0$ for any $v \subset V$, then $A = 0$.
+\end{lem} 
+\begin{proof}
+	The idea is that we can recover the inner product from norm. Indeed, if $v, w \in V$, then $\|v + w\|^2 = \|v\|^2 + \|w\|^2 + 2 \Re(\langle v, w \rangle)$, so knowing the norm, we at least know the real part of the inner product. Doing the same trick with $\|v + i w\|^2$ we can figure out the imaginary part.
+
+	How does this help us? By a similar argument $\langle A(v + w), v + w \rangle = \langle A v, v \rangle + \langle A w, w \rangle + \langle A v, w\rangle + \langle A w, v \rangle$, so given that the quadratic form is always zero, we have $\langle A v, w \rangle + \langle A w, v \rangle = 0$ for any $v, w \in V$. Expanding $\langle A (v + i w), v + i w \rangle$ we see that $-i \langle A v, w \rangle + i \langle A v, w \rangle = 0$, which together with the previous observation implies that $\langle A v , w \rangle = 0$ for any $v, w \in V$. Now setting $w = A v$ this implies that $\|A v\|^{2} = 0$ for every $v \in V$ so $A = 0$.
+\end{proof}
+
+As one would hope, map $v \to \alpha v$, i.e. $\alpha I$ is positive, if and only if $\alpha \geq 0$. In particular in one-dimensional spaces the notion works as expected. Fortunately there are other examples, also. Indeed, any orthogonal projection is positive.
+
+\begin{prop}
+	If $A \in \L(V)$ is a orthogonal projection, then $A \geq 0$.
+\end{prop}
+\begin{proof}
+	As any orthogonal projetion is sum of one-dimensional orthogonal projections, we can assume that the $A$ is one-dimensional in the first place. It follows that $A = \langle \cdot, v \rangle v/\|v\|^2$ for some $v \in V \setminus \{0\}$. Now for every $w \in V$ we have
+	\begin{align*}
+		\langle A w, w \rangle = \langle \langle w, v \rangle v, w \rangle/\|v, v\|^{2} = |\langle w, v \rangle|^{2}/\|v\|^{2} \geq 0,
+	\end{align*}
+	so $A$ is positive.
+\end{proof}
+
+We denote the one-dimensional orthogonal projection to the span of $v \in V \setminus \{0\}$, i.e. the map $ \langle \cdot, v \rangle v/\|v\|^2$ by $P_{v}$.
+
+Taking positive linear combinations of orhogonal projections leads to large number of examples of positive maps.
+
+\subsection{Real maps and adjoint}
+
+Dual cone thinking lets us also lift other important notions.
+
+\begin{maar}
+	We say that a map $A \in \L(V)$ is \textit{real}, if
+	\begin{align*}
+		\langle A v, v \rangle \in \R
+	\end{align*}
+	for any $v \in V$.
+\end{maar}
+
+\begin{maar}
+	We say that a map $A \in \L(V)$ is \textit{imaginary}, if
+	\begin{align*}
+		\langle A v, v \rangle \in i \R
+	\end{align*}
+	for any $v \in V$.
+\end{maar}
+
+The previous two families of maps are usually called Hermitian and Skew-Hermitian and as with positive maps, many of their properties are lifted form usual complex numbers. reals maps will have a special role in our discussion. They form a vector space over $\R$, which is denoted by $\H(V)$. Of course, every imaginary map is just $i$ times real map, and we won't preserve any special notation for such maps.
+
+Interestingly enough, we can also lift the concept of complex conjugate.
+
+\begin{lause}
+	For any $A \in \L(V)$ there exists unique map $A^{*} \in \L(V)$, called the \textit{adjoint} of $A$, for which for any $v \in V$ we have
+	\begin{align*}
+	\langle A^{*} v, v\rangle = \overline{\langle A v, v \rangle}
+	\end{align*}
 \end{lause}
 \begin{proof}
 	The uniqueness of adjoint is immediate from the injectivity of compression. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$: the maps of the form $A = (x \mapsto \langle x, v \rangle w)$ for $v, w \in V$ will do.
 
-	Note that the Rayleigh quotient for such map is given by
+	Th quadratic form for such map is given by
 	\[
-		R(A, x) = \frac{\langle x, v \rangle \langle w, x \rangle}{\langle x, x \rangle}.
+		\langle A x, x \rangle = \langle x, v \rangle \langle w, x \rangle.
 	\]
 	But if we define $A^{*} = (x \mapsto \langle x, w \rangle v)$, we definitely have
 	\[
-		R(A^{*}, x) = \frac{\langle x, w \rangle \langle v, x \rangle}{\langle x, x \rangle} = \overline{\frac{\langle w, x \rangle \langle x, w \rangle}{\langle x, x \rangle}} = \overline{R(A, x)}.
+		\langle A^{*} x, x \rangle = \langle x, w \rangle \langle v, x \rangle = \overline{\langle w, x \rangle \langle x, w \rangle} = \overline{\langle A v, v \rangle}.
 	\]
 \end{proof}
 
-Real maps are their own adjoints, and that is why they are often called \textit{self-adjoint}.
+In more common terms: a adjoint of linear map $A \in \L(V)$ is the unique map $A^{*}$ such that
 
-There is also a meaningful way to extend the notion of adjoint for general (non-endomorphism) linear maps. In general setting, we don't have a notion of compression of linear map: there's no canonical way to restrict the codomain. We can however interpret a map in a bigger space. Indeed, any map $A \in \L(V, W)$ can be canonically interpreted as a map $\tilde{A} \in \L(V \oplus W)$: define $\tilde{A}(v, w) = (0, A v)$. We call this map the \textit{symmetrization} of $A$. Now it makes sense to consider $(\tilde{A})^{*}$, the symmetrization has a unique adjoint. This adjoint does not in general live in $\L(V, W)$ anymore: but it turns out that it does live in $\L(W, V)$!
+\begin{align*}
+	\langle A v, w \rangle = \langle v, A^{*} w \rangle
+\end{align*}
+for any $v, w \in V$.
 
-\begin{lause}
-	For any $A \in \L(V, W)$ there exists a unique map $A^{*} \in \L(W, V)$ which we call the adjoint of $A$, such that $(\tilde{A})^{*} = \tilde{(A^{*})}$. Moreover, if $V = W$, the new notion of adjoint coincides with the old one.
-\end{lause}
+As real maps are their own adjoints, they are often called appropriately \textit{self-adjoint}.
 
-\begin{proof}
-	Of course, strictly speaking $\tilde{A^{*}}$ would be map in $\L(W \oplus V)$, not in $\L(V \oplus W)$, but the two spaces are canonically isomorphic.
-
-	The uniqueness follows from the already known uniqueness for the old notion. The map $(\cdot)^{*} : \L(V, W) \to \L(W, V)$ should again evidently be conjugate linear. Also, the same construction for basis elements of the form $A = (x \mapsto \langle x, v \rangle_{V} w)$ (where $v \in V$ and $w \in W$) works again. Indeed, for any $(x, y) \in V \oplus W$ the corresponding Rayleigh quotient is given by
-	\[
-		R(\tilde{A}, (x, y)) = \frac{\langle (0, A x), (x, y)\rangle_{V \oplus W} }{\langle (x, y), (x, y) \rangle_{V \oplus W}} = \frac{\langle A x, y\rangle_{W} }{\langle x, x \rangle_{V} + \langle y, y \rangle_{W}} = \frac{\langle x, v\rangle_{V} \langle w, y\rangle_{W} }{\langle x, x \rangle_{V} + \langle y, y \rangle_{W}},
-	\]
-	and it's clear that we may set $A^{*} = (x \mapsto \langle x, w \rangle_{W} v)$. Our construction also makes it clear that this notion coincides with the old one.
-\end{proof}
-
-The previous proof also gives a convenient corollary, which is the most common definition for adjoint.
-
-\begin{kor}
-	For any $A \in \L(V, W)$, the adjoint $A^{*} \in \L(W, V)$ is unique linear map such that for any $v \in V$ and $w \in W$ we have
-	\[
-		\langle A v, w \rangle_{W} = \langle v, A^{*} w \rangle_{V}.
-	\]
-	In particular, map $A \in \L(V)$ is real for any $v, w \in V$ we have
-	\[
-		\langle A v, w \rangle = \langle v, A w \rangle.
-	\]
-	and imaginary if for any $v, w \in V$
-	\[
-		\langle A v, w \rangle = -\langle v, A w \rangle.
-	\]
-\end{kor}
-
-The previous corollary makes many of the basic properties of adjoint, which we collect below, evident.
+The previous observation makes many of the basic properties of adjoint, which we collect below, evident.
 
 \begin{lause}\label{basic_adjoint}
 	For any linear maps $A$ and $B$, with appropriate domains and codomains, and $\lambda \in \C$ we have
@@ -221,39 +141,61 @@ The previous corollary makes many of the basic properties of adjoint, which we c
 		\item $(A + B)^{*} = A^{*} + B^{*}$
 		\item $(\lambda I)^{*} = \overline{\lambda} I$
 		\item $(AB)^{*} = B^{*}A^{*}$.
-		\item $\kernel(A) = \image(A)^{\perp}$
 	\end{enumerate}
 \end{lause}
 
-\subsection{Examples}
+\subsection{More convincing}
 
-It's high time to have some examples.
+Positive maps have many other desirable properties. First of all, eigenvalues of a positive map are non-negative. This fact is a corollary of a more general property.
 
-Most obvious, although not very interesting, representatives of real/imaginary/positive maps are real/imaginary/positive scalar multiples of the identity. Projections are stereotypical examples of positive and hence real maps. \textcolor{red}{Projections, proper definition}. Indeed, one-dimensional projections are given by $A = (x \mapsto \langle x, v \rangle v)$ for some $v \in V$ with $|v| = 1$. For such maps $\langle A x, x \rangle = \langle x, v \rangle \langle v, x \rangle = |\langle x, v \rangle|^{2} \geq 0$.
-Higher dimensional projections are simply sums of one-dimensional ones, so they are also positive and real. More generally one could take any positive linear combination of projections to get much more positive maps, and real linear combination of projections to get real maps.
+\begin{maar}
+	Let $W \subset V$ be a subspace and $A \in \L(V)$. Then the \textit{compression} of $A$ to $W$, denoted by $\arestr{A}{W}$ is the linear map
+	\begin{align*}
+		P_{W} \circ A \circ \incl{V}{W} : W \to W
+	\end{align*}
+	where $\incl{V}{W}$ is the inclusion from $W$ to $V$ and $P_{W}$ is an orthogonal projection to $W$.
+\end{maar}
 
-As we earlier noticed, however, not every map with real eigenvalues is real, and not every map non-negative eigenvalues is positive. It turns out that the basis elements of the form $A = (x \mapsto \langle x, v \rangle w)$ are real if and only if $v$ and $w$ are real multiples of each other, or to be precise, if there exists $\alpha, \beta \in \R$, not both $0$, such that $\alpha v + \beta w = 0$. Indeed, by the corollary, the map is real if for any $x, y \in V$ we have
-\[
-	\langle x, v \rangle \langle w, x \rangle = \langle A x, y \rangle = \langle x, A y \rangle = \langle x, w \rangle \langle v, x \rangle.
-\]
-Now if $v$ and $w$ are not parallel, we can find $x$ such that $\langle x, v \rangle = 0 \neq \langle x, w \rangle$, which contradicts the previous. The case of parallel $v$ and $w$ is easy to check.
+\begin{lem}
+	Let $W \subset V$ and $A \geq 0$. Then also $\arestr{A}{W} \geq 0$. In particular all the eigenvalues of $A$ are non-negative.
+\end{lem}
+\begin{proof}
+	Note that quadratic form give essentially the one-dimensional compressions. Indeed, if $W = (v)$, then
+	\begin{align*}
+		\arestr{A}{W} x = \frac{\langle A x, v \rangle}{\langle v, v \rangle} v = \frac{\langle A v, v \rangle}{\langle v, v \rangle} x
+	\end{align*}
+	for any $x \in (v)$. This means that a map is positive, if and only if its compressions to one-dimensional subspaces are.
 
-While hunting for examples, it's worthwhile to note that in some sense $\H(V)$ is not essentially bigger than $\H_{+}(V)$: if $A \in \H(V)$ we can always find a positive real number $\lambda$ such that $A + \lambda I \in \H_{+}(V)$.
-To this end, note that the quadratic form of $A + \lambda I$ at $v \in V$ is $\langle (A + \lambda I) v, v \rangle = \langle A v, v \rangle + \lambda \langle v, v \rangle$. But if $\lambda \geq \|A\|$, the operator norm of $A$, the previous quantity is non-negative for any $v \in V$.
+	Now the trick is that nested compressions work nicely: if $W' \subset W \subset V$ and $A \in \L(V)$, then $\arestr{(\arestr{A}{W})}{W'} = \arestr{A}{W'}$. Consequently, if every one-dimensional compression $A$ is positive, same is true for all its compressions.
 
-TODO: $2 \times 2$ case.
+	Now compressing to eigenspace we see that if $A$ is positive, all it's eigenvalues are non-negative.
+\end{proof}
+
+In addition, (categorical) sum of two positive map is positive.
+\begin{lem}
+	Let $A_{1} \in \L(V_{1})$ and $A_{2} \in \L(V_{2})$. Then $A_{1} \oplus A_{2} \in \H_{+}(V_{1} \oplus V_{2})$, if and only if $A_{1} \in \H_{+}(V_{1})$ and $A_{2} \in \H_{+}(V_{2})$.
+\end{lem}
+\begin{proof}
+	Recall that one defines $\langle(v_{1}, v_{2}), (w_{1}, w_{2}) \rangle_{V_{1} \oplus V_{2}} = \langle v_{1}, w_{1} \rangle_{V_{1}} + \langle w_{2}, w_{2} \rangle_{V_{2}}$. Now clearly
+	\begin{align*}
+	\langle (A_{1} \oplus A_{2})(v_{1}, v_{2}), (v_{1}, v_{2}) \rangle_{V_{1} \oplus V_{2}} =  \langle A_{1} v_{1}, v_{1} \rangle_{V_{1}} + \langle A_{2} v_{2}, v_{2} \rangle_{V_{2}} \geq 0
+	\end{align*}
+	for every $(v_{1}, v_{2}) \in V_{1} \oplus V_{2}$, if and only if both $\langle A_{1} v_{1}, v_{1} \rangle_{V_{1}} \geq 0$ for every $v_{1} \in V_{1}$ and $\langle A_{2} v_{2}, v_{2} \rangle_{V_{2}} \geq 0$ for every $v_{2} \in V_{2}$.
+\end{proof}
 
 \section{Spectral theorem}
 
-One might wonder if there are other examples of positive maps than positive linear combination of projections. Rather surprisingly, there are none.
+The most important result in the theory of positive and real maps is the Spectral theorem.
 
 \begin{lause}\label{cheapSpectral}
-	$A \in \L(V)$ is positive if and only for some $m \geq 0$, $\lambda_{i} > 0$ and $v_{i} \in V$ for $1 \leq i \leq m$ we have
-	\[
-		A = \sum_{1 \leq i \leq m} \lambda_{i} P_{v_{i}}.
-	\]
+	Let $n = \dim(V)$. Then $A \in \L(V)$ is real if and only there exists real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and for pairwise orthogonal vectors $v_{1}, v_{2}, \ldots, v_{n} \in V$ such that
+	\begin{align}\label{spectralrepr}
+		A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}.
+	\end{align}
 \end{lause}
 \begin{proof}
+	We first prove the theorem for the positive maps.
+
 	We already proved one direction: every map of the previous form is positive.
 
 	The other direction is tricky. The idea is to somehow find the vectors $v_{i}$. The problem is that such representation is by no means unique. If $A$ is any projection for instance, we could let $v_{i}$'s by any orthonormal basis of the corresponding subspace and $\lambda_{i}$'s all equal to one. There's no vector one has to choose.
@@ -270,44 +212,26 @@ One might wonder if there are other examples of positive maps than positive line
 
 	Proof is by induction on $n$, the dimension of the space. If $n = 0$, the claim is evident. For induction step assume first that there exists $v \in V$ such that $\langle A v, v \rangle = 0$. Then by the Lemma for any $w \in v^{\perp}$ we have $A w \in v^{\perp} =: W$. But this means that $A = \incl{V}{W} \circ \arestr{A}{W} \circ P_{W} = A$. Now $\arestr{A}{W}$ is also positive, and $\dim(W) < n$. By induction assumption we have numbers $\lambda_{i}$ and vectors $v_{i} \in V$ for the map $\arestr{A}{W}$, but such representation for $\arestr{A}{W}$ immediately gives representation for $A$ also.
 
-	We just have to get rid of the extra assumption on the existence of such $v$. But for this, note that if $\lambda = \inf_{|v| = 1} \langle A v, v \rangle$, consider $B = A - \lambda I$. Now $\inf_{|v| = 1} \langle B v, v \rangle = 0$, and $B$ is hence positive. Also, by compactness, the infimum is attained at some point $v$, so $B$ satisfies our assumptions. Now cook up a representation for $B$ and add orthonormal basis of $V$ with $\lambda_{i}$'s equal to $\lambda$: this is required representation for $A$. 
-\end{proof}
+	We just have to get rid of the extra assumption on the existence of such $v$. But for this, note that if $\lambda = \inf_{|v| = 1} \langle A v, v \rangle$, consider $B = A - \lambda I$. Now $\inf_{|v| = 1} \langle B v, v \rangle = 0$, and $B$ is hence positive. Also, by compactness, the infimum is attained at some point $v$, so $B$ satisfies our assumptions. Now cook up a representation for $B$ and add orthonormal basis of $V$ with $\lambda_{i}$'s equal to $\lambda$: this is required representation for $A$.
 
-TODO: image of the proof process in $\R^{3}$.
+	It remains to prove the general case of real map. But there's a rather simple trick: for every real map $A$ the map $A + \|A\| I$ is positive. Indeed, by the Cauchy-Schwarz -inequality one has
+	\begin{align*}
+		\left|\langle A v, v \rangle\right| \geq -\|A v\| \|v\| \geq - \|A\| \|v\|^{2}.
+	\end{align*}
+	Now if we manage to the representation for $A + \|A\| I$, we can certainly cook it for $A$ simply subtracting $\|A\|$ from the $\lambda_{i}$'s.
+\end{proof}
 
 \begin{proof}[Proof of lemma \ref{spectralZeroLemma}]
 	Take any $w \in V$. Now by assumption for any $c \in \C$ we have
 	\[
-		Q_{A}(c v + w) = \langle A (c v + w), c v + w \rangle = |c|^{2} \langle A v, v \rangle + c \langle A v, w \rangle + \overline{c} \langle A w, v \rangle + \langle A w, w \rangle \geq 0
+		\langle A (c v + w), c v + w \rangle = |c|^{2} \langle A v, v \rangle + c \langle A v, w \rangle + \overline{c} \langle A w, v \rangle + \langle A w, w \rangle \geq 0
 	\]
 	But this easily implies that $\langle A v, w \rangle = 0 = \langle A w, v \rangle$ for any $w \in V$. The first equality implies that $A v = 0$ and the second that $A w \perp v$ for any $w \in V$.
 \end{proof}
 
-As discussed, there should be obvious generalization for real maps: they real linear combinations for projections. We can however still improve the statement: we can take $v_{i}$'s to be orthogonal, and hence $m \leq n$. We have thus arrived at Spectral theorem.
+Again, as to why such result should be true is a story for another time. 
 
-\begin{lause}[Spectral theorem]
-	Let $A \in \H(V)$. Then there exists real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and orthonormal vectors $v_{1}, v_{2}, \ldots, v_{n}$ such that
-	\begin{align}\label{spectralrepr}
-		A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}.
-	\end{align}
-\end{lause}
-\begin{proof}
-	Let's first check case of positive $A$. There's not very many things to change from the proof of theorem \ref{cheapSpectral}. Indeed, we again argue by induction. The case $n = 0$ is again clear. In the induction step we found that induction assumption applies to $A - \lambda I$ compressed to suitable $(n - 1)$-subspace. There we can cook up required representation, and bring back the representation for $A - \lambda I$ itself. That is we have
-	\[
-		A - \lambda I = \sum_{i = 1}^{n - 1} \lambda_{i} P_{v_{i}}
-	\]
-	for orthonormal $v_{i}$'s and non-negative $\lambda_{i}$'s. But then if $v_{n}$ is a missing orthonormal vector, we find that
-	\[
-		A = \sum_{i = 1}^{n} (\lambda_{i} + \lambda) P_{v_{i}},
-	\]
-	where $\lambda_{n} = 0$. But this is what we wanted.
-
-	For non-positive $A$, simply add suitable multiple of identity to get $B := A + \lambda I \geq 0$ and apply what we have proved to $B$. If we have representation for $B$, we can easily cook up one for $A$: just subtract $\lambda$ for $\lambda_{i}$'s in the representation of $B$.
-\end{proof}
-
-In the representation \ref{spectralrepr} the numbers $\lambda_{i}$ are evidently the eigenvalues of $A$ and vectors $v_{i}$ the corresponding eigenvectors; this is why we call it the \textit{Spectral representation}. Such representation is of course not unique: if $A = I$, we could again choose $v_{i}$'s to be any orthonormal basis of $V$.
-
-There is way to make the Spectral representation unique, however. For this we have to change $v_{i}$ to corresponding eigenspaces.
+In the representation \ref{spectralrepr} the numbers $\lambda_{i}$ are evidently the eigenvalues of $A$ and vectors $v_{i}$ the corresponding eigenvectors; this is why we call it the \textit{Spectral representation}. As remarked, the representation is of course not unique, but there is a way to make the Spectral representation unique, however. For this we have to change $v_{i}$ to corresponding eigenspaces.
 
 \begin{lause}[Spectral theorem]
 	Let $A \in \H(V)$. Then there exists unique non-negative integer $m$, distinct real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ and non-trivial orthogonal subspaces of $V$, $E_{\lambda_{1}}, E_{\lambda_{2}}, \ldots E_{\lambda_{m}}$ with $E_{\lambda_{1}} + E_{\lambda_{2}} + \ldots + E_{\lambda_{m}} = V$, such that
@@ -320,7 +244,7 @@ There is way to make the Spectral representation unique, however. For this we ha
 	Existence of such representation immediately follows from the previous form of Spectral theorem. For uniqueness, note that $\lambda_{i}$'s are necessarily the eigenvalues of $A$ and $E_{\lambda_{i}}$'s the corresponding eigenspaces.
 \end{proof}
 
-Although the latter version is definitely of theoretical importance, we will mostly stick the former: it only contains one-dimensional projections.
+Although the latter version is definitely of theoretical importance, we will mostly stick the former as it only contains one-dimensional projections.
 
 Spectral representation makes many of the properties of real maps obvious. For instance any power of real map is real: indeed, if $A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}}$, then
 \[
@@ -343,12 +267,6 @@ Also, given $A \in \H(V)$, we may write any $x \in V$ in the form $v = \sum_{1 \
 
 Similarly, if $A \geq 0$, $A$ has a unique positive square root, which we denote by $A^{\frac{1}{2}}$: map such that $A^{\frac{1}{2}} A^{\frac{1}{2}} = A$. Given the spectral reprsentation $A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}}$, we can simply set $A^{\frac{1}{2}} = \sum_{1 \leq i \leq n} \lambda_{i}^{\frac{1}{2}} P_{v_{i}}$. As for the uniqueness, note that if $B$ is a positive square root for $A$ and $B = \sum_{1 \leq i \leq n} \lambda_{i}' P_{v_{i}'}$, then $B^2 = \sum_{1 \leq i \leq n} \lambda_{i}'^{2} P_{v_{i}'}$. It follows that eigenvalues of $B$ are simply square roots of eigenvalues of $A$ and the corresponding eigenspaces are equal. Of course, the whole uniqueness argument floats more naturally with unique spectral representation.
 
-Spectral theorem also makes it clear that positiveness and realness of a map is preserved under direct sums.
-
-\begin{kor}
-	Let $A \in \L(V)$ and $B \in \L(W)$ and consider the map $A \oplus B \in \L(V \oplus W)$. Then $A \oplus B$ is real (positive), if and only if $A$ and $B$ are.
-\end{kor}
-
 Finally, one should note that the lemma \ref{spectralZeroLemma} enjoys following natural generalization.
 
 \begin{prop}\label{posnegfact}
@@ -367,7 +285,6 @@ The previous proposition has an useful corollary.
 \begin{proof}
 	Assume first that $\arestr{(P_{W})}{W'} = 0$. Then by the lemma \ref{posnegfact} we have $W = \image(P_{W}) \subset W'^{\perp}$. The other direction is evident.
 \end{proof}
-
 
 \subsection{Commuting real maps}
 

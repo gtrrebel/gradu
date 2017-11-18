@@ -1,7 +1,6 @@
 \chapter{Divided differences}
 
 \section{Motivation}
-TODO: why it this desirable
 
 Divided differences are derivatives without limits.
 
@@ -34,7 +33,7 @@ If $t \notin \{0, 1\}$, $-(z - y)(z - x)$ is positive, so if $f$ is convex,
 \[
 	\frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \geq 0
 \]
-for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This is new expression is symmetric in its variables, so actually there's no need to assume anything on the fo $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction. If this expression is non-negative any distinct $x, y$ and $z$, $f$ is convex. This motivates us to trash the previous definition and set instead
+for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This new expression is symmetric in its variables, so actually there's no need to assume anything on the fo $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction. If this expression is non-negative any distinct $x, y$ and $z$, $f$ is convex. This motivates us to trash the previous definition and set instead
 \[
 	[x, y, z]_{f} := \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)}.
 \]
@@ -249,7 +248,23 @@ Of course there's nothing really special about the functional being linear, but 
 	Note that if we expand the divided differences, we are almost in the situation of the lemma \ref{bootstrap_lemma}; now we just have product of two functions instead. Story is the same.
 \end{proof}
 
-\section{Peano kernels}
+\section{Why does this all work?}
+
+We have already seen how divided differences offer a nice tool for discussing derivatives, and complex analytic point of view has certainly reinforced this idea. One might (and should), however, wonder why does this all work?
+
+The reason is rather simple: $n$'th order divided difference is a certain weighted average of the $n$'th derivative. If $n = 1$ for instance, and $x < y$, we have
+\begin{align*}
+	[x, y]_{f} = \frac{1}{y - x}\int_{x}^{y} f'(t) dt = \int_{-\infty}^{\infty} \frac{\chi_{[x, y]}(t)}{y - x} f'(t) dt:
+\end{align*}
+first divided difference is average of the derivative over the interval $[x, y]$.
+
+When $n = 2$, plain average doesn't work anymore. How should one choose the weight $w_{x, y, z}$, such that
+\begin{align*}
+	[x, y, z]_{f} = \int_{-\infty}^{\infty} w_{x, y, z}(t) f^{(2)}(t) dt
+\end{align*}
+holds for any $f$?
+
+TODO (Also, rewrite the following section)
 
 We already noticed that the $n$:th divided differences of the form $[x, x, \ldots, x, y]_{f}$ can be written as an integral of $n$:th derivative of $f$ with some positive polynomial weight. This is no anomaly.
 
