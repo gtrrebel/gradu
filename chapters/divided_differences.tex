@@ -1,30 +1,82 @@
-\chapter{Divided differences}
+\chapter{$k$-tone functions}
 
 \section{Motivation}
 
-Divided differences are derivatives without limits.
+As mentioned in the introduction, $k$-tone functions should correspond to the functions with non-negative $k$'th derivative. What should this mean?
 
-Consider a function $f : \R \to \R$. Its (first) divided difference is defined as
+We already know the perfect answer for the case $k = 1$: $1$-tone functions should be the increasing functions.
+
+\begin{lause}\label{increasing_1tone}
+	Let $f : (a, b) \to \R$ be differentiable. Then $f$ is increasing, if and only if $f'(x) \geq 0$ for every $x \in (a, b)$.
+\end{lause}
+
+\begin{proof}
+	If $f$ is increasing, then all its divided differences, i.e. the quotients of the form
+	\begin{align*}
+		\frac{f(x) - f(y)}{x - y}
+	\end{align*}
+	for $x \neq y$ are non-negative. As derivatives are limits of such quotients, also they are non-negative at any point. Conversely, by the mean value theorem for every $x \neq y$ we may find $\xi$ such that
+	\begin{align*}
+		\frac{f(x) - f(y)}{x - y} = f'(\xi).
+	\end{align*}
+	Now if the derivatives are non-negative, so are the divided differences, so the function is increasing.
+\end{proof}
+
+While this proof by the mean value theorem works in more general setting, if $f \in C^{1}$, one has more instructive proof.\footnote{Of course, the following argument would also work with slightly weaker assumptions, but that's not important to us.}
+
+\begin{proof}[Alternate proof for the theorem \ref{increasing_1tone} (in the case $f \in C^{1}(a, b)$)]
+	Note that if $f \in C^{1}(a, b)$, we may write
+	\begin{align*}
+		\frac{f(y) - f(x)}{y - x} = \frac{1}{y - x}\int_{x}^{y} f'(t) dt.
+	\end{align*}
+	Note that on the right-hand side one we have average of the derivative over the interval. This means that the claim can be translated to: continuous function is non-negative, if and only if its averages over all intervals are non-negative. But this is clear.
+\end{proof}
+
+This is really powerful point of view. While one would like to say the increasing functions are the functions with non-negative derivative, that's a bit of a lie. Instead, one can say that they are the functions whose derivative is non-negative average, and all the problems are gone. This should rougly mean that the derivative defines a positive distribution and it is hence a measure. Thus all increasing functions should be integrals of a positive measure (at least almost everywhere). Although this kind of thinking could be carried out, the details aren't important for us. The main point is that one should that think increasing functions, i.e. the $1$-tone functions are functions whose first derivative is a (positive) measure. The divided differences are an averaged (i.e. weak) way of talking about the positivity of the derivative (measure).
+
+This is essentially distributional way of thinking, and we could keep going and end up with the whole business of weak derivatives and stuff. But we don't have to: the plain averages suffice. We write
 \begin{align*}
-	[\cdot , \cdot]_{f} : \R^{2} \setminus \{x \neq y\} &\to \R \\
-	[x, y]_{f} &= \frac{f(x) - f(y)}{x - y}.
+	[x, y]_{f} := \frac{f(x) - f(y)}{x - y},
 \end{align*}
+and say that $[\cdot, \cdot]_{f}$ is the (first) divided difference of $f$. The domain of $[\cdot, \cdot]_{f}$ should naturally be $(a, b)^{2}$ minus the diagonal. And of course, if $f \in C^{1}$, we should extend $[\cdot, \cdot]_{f}$ to the diagonal, as the derivative. Divided differences then becomes a continuous function on the whole set $(a, b)^2$. Aside from capturing the first derivative, divided difference has two rather convenient properties.
 
-If $f$ is sufficiently smooth, we should also define $[x, x]_{f} = f'(x)$: if $f \in C^{1}(\R)$, this gives continuous extension to $[\cdot, \cdot]_{f}$. Much of the power of divided difference comes however from the fact that they conveniently carry same information even if we do not do such extension.
+\begin{itemize}
+	\item For given $x$ and $y$, $f \mapsto [x, y]_{f}$ defines a linear map, which is continuous if the domain ($\R^{(a, b)}$) has any reasonable topology (any topology finer than the topology of pointwise convergence, i.e. the product topology will do).
+	\item Divided differences are local in the sense that if $f$ and $g$ agree on $\{x, y\}$, divided differences agree; this observation readily implies the previous continuity claim.
+\end{itemize}
 
-Consider the case of increasing $f$. This information is exactly carried by the inequality $[x, y]_{f} \geq 0$. Again, if $f$ is differentiable, this is equivalent to $f'(x) = [x, x]_{f} \geq 0$. There are many ways to see this fact, one of the more standard being the mean value theorem: If $x \neq y$, for some $\xi$ between $x$ and $y$ we have
-\[
-	\frac{f(x) - f(y)}{x - y} = f'(\xi).
-\]
-Now if the derivative is everywhere non-negative, so are divided differences. Also divided differences are sort of approximations for derivative.
+These are the ways the divided differences are compromise between real derivative and the full distributional view. The first point says that one doesn't have worry too much, only about pointwise convergence, while the second says that things are still rather concrete (and it makes the life whole lotta easier).
 
-The idea of higher order divided differences is to push this interplay between (usual) divided difference and derivative to higher orders.
+Now, the real power of this approach comes with larger $k$. What about the case $k = 2$? Again, we already know the perfect answer: $2$-tone functions should be the convex functions.
 
-Second order divided differences should be something that captures second order behaviour of a function. In particular, if $f \in C^{2}(\R)$ has non-negative second derivative everywhere, i.e. it is convex, its second divided difference should be non-negative, and vice versa. Standard definition of convexity is almost what we are looking for: $f$ is convex if for any $x, y \in \R$ and $0 \leq t \leq 1$ we have $t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y)$. So if we define the mapping $[\cdot, \cdot, \cdot]_{f} : \R^{2} \times [0, 1]$ by $t f(x) + (1 - t) f(y) - f(t x + (1 - t)y)$, we have $[x, y, t]_{f} \geq 0$ for any $(x, y, t) \in \R^{2} \times [0, 1]$ if and only if $f^{(2)}(x) \geq 0$ for any $x \in \R$.
+\begin{lause}
+	Let $f : (a, b) \to \R$ be twice differentiable. Then $f$ is convex, if and only if $f^{(2)}(x) \geq 0$ for every $x \in (a, b)$.
+\end{lause}
 
-There is however much better version for the function. If we write $z = t x + (1 - t) y$, we can solve that $t = \frac{z - y}{x - y}$ and express
+\begin{proof}
+	While the result is true as stated, let us only proof the case $f \in C^{2}(a, b)$ (we'll come back to the more general case). Recall that $f$ is convex, if and only if for any $x, y \in (a, b)$ and $t \in [0, 1]$ we have
+	\begin{align*}
+		t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y).
+	\end{align*}
+	This suggest that we may write
+	\begin{align*}
+		t f(x) + (1 - t) f(y) - f(t x + (1 - t)y) = \int_{x}^{y} w(t) f^{(2)}(t) dt
+	\end{align*}
+	for some weight $w$. Note that if we manage to find such weight, which is non-negative (and positive enough), we would be done.
+
+	How to find the weight $w$? The idea is rather simple: we want to choose $f$ such that $f^{(2)} = \delta_{a}$ for $a \in \R$ (in some sense). Now, this should mean that $f(t) = (t - a)_{+} + c t + d$ for some $c, d \in \R$, where we write $t_{+} = \max(t, 0)$. Plugging this is on the left hand side we get
+	\begin{align*}
+		t (x - a)_{+} + (1 - t) (y - a)_{+} - (t x + (1 - t) y - a)_{+} = w(a).
+	\end{align*}
+	TODO: picture
+	Now while the steps taken might have contained some leaps of faith, it can be easily verified with partial integration that the given $w$ really works.
+\end{proof}
+
+The giveaway is that while the divided differences are a convenient averaged way to talk about first derivative, the quantity $tf(x) + (1 - t) f(y) - f(t x + (1 - t)y)$ is a convenient averaged way to talk about the second derivative: and it captures the second derivative being a positive measure -- without talking about derivatives. We won't call the quantity the second divided difference, as, as it turns out, we can rewrite it in much more convenient form.
+
+If we write $z = t x + (1 - t) y$, we can solve that $t = \frac{z - y}{x - y}$ and express
 \begin{eqnarray*}
-	[x, y, t]_{f} &=& t f(x) + (1 - t) f(y) - f(t x + (1 - t)y) \\
+	&& t f(x) + (1 - t) f(y) - f(t x + (1 - t)y) \\
 	&=& \frac{z - y}{x - y} f(x) + \frac{x - z}{x - y} f(y) - f(z) \\
 	&=& -(z - y)(z - x) \left(\frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \right)
 \end{eqnarray*}
@@ -33,32 +85,31 @@ If $t \notin \{0, 1\}$, $-(z - y)(z - x)$ is positive, so if $f$ is convex,
 \[
 	\frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \geq 0
 \]
-for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This new expression is symmetric in its variables, so actually there's no need to assume anything on the fo $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction. If this expression is non-negative any distinct $x, y$ and $z$, $f$ is convex. This motivates us to trash the previous definition and set instead
+for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This new expression is symmetric in its variables, so actually there's no need to assume anything on the fo $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction. If this expression is non-negative any distinct $x, y$ and $z$, $f$ is convex. This motivates to define
 \[
-	[x, y, z]_{f} := \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)}.
+	[x, y, z]_{f} := \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)},
 \]
+the second divided difference of $f$.
 
-One would naturally except that by setting
+One would naturally expect that by setting
 \[ 
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} := \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})},
 \]
 one obtains something that naturally generalizes divided differences for higher orders. This is indeed the case.
 
-Why might it be desirable to make such definition, replace higher order derivatives with this mess of a expression? The key idea is that when one talks about high order differentiability, one has to be reasonably careful with everthing: even if functions converge pointwise, same need not be true for derivatives, let alone higher order ones. Higher order derivatives are rather fragile. If one can however translate derivatives to linear combinations, one doesn't have to worry that much anymore.
+\section{Divided differences}
 
-\section{Basic properties}
+TODO: rewrite the following section
 
 For $n \geq 1$ define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i < j \leq n$}\}$.
 \begin{maar}
-Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
+Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the corresponding $k$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
 \[
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})}.
 \]
 \end{maar}
 
-As with the first order divided differences, if we can continuously extend divided differences to the set $D_{n + 1}$, we should do that, and we identify the resulting function with the original one.
-
-We defined divided differences only for real valued functions, but codomain could just as well any real or complex vector space. it's not very clear why such definition should correspond to anything useful.
+As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differences to the set $D_{n + 1}$, we should do that, and we identify the resulting function with the original one. We will later proof that, as expected, this can be done, if and only $f \in C^{n}(a, b)$.
 
 We have the following important properties.
 
@@ -111,11 +162,10 @@ The most important property of the divided differences is the following.
 	TODO: figure of recursive procedure.
 \end{proof}
 
-We'll get back to smoothness in a minute. This is already a very precise sense in which divided differences work like derivatives, up to a constant. In some sense though $\frac{f^{(n)}}{n!}$, the Taylor coefficients are even more natural objects than the pure derivatives. They are the coefficients in the Taylor expansion, and they satisfy very natural Leibniz rule
+We'll get back to smoothness in a minute. This is already a very precise sense in which divided differences work like derivatives, up to a constant. In some sense though $\frac{f^{(n)}}{n!}$, the Taylor coefficients are even more natural objects than the pure derivatives. They are the coefficients in the Taylor expansion, and they satisfy Leibniz rule much more natural than the one with pure derivatives:
 \[
-	\frac{(f g)^{(n)}(x)}{n!} = \sum_{k = 0}^{n} \left(\frac{f^{(k)}(x)}{k!}\right)\left(\frac{g^{(n - k)}(x)}{(n - k)!}\right),
+	\frac{(f g)^{(n)}(x)}{n!} = \sum_{k = 0}^{n} \left(\frac{f^{(k)}(x)}{k!}\right)\left(\frac{g^{(n - k)}(x)}{(n - k)!}\right).
 \]
-which is of course just a formula for polynomial convolution.
 
 Divided differences enjoy similar Leibniz formula, which is related to a generalization of Taylor expansion, called Newton expansion. In Newton expansion we first fix a sequence of points $x_{0}, x_{1}, \ldots x_{n} \in (a, b)$, say pairwise distinct for starters. For $f : (a, b) \to \R$ and $x \in (a, b)$ we may start a process of rewriting
 \begin{align*}
@@ -542,7 +592,7 @@ By requiring (some kind of) regularity for the divided differences of all orders
 	whenever $|x - x_{0}| C < 1$. By the mean value theorem for divided differences it follows that we get required bound for some neighbourhood of $x_{0}$ and consequently, by compactness for any closed subinteval of $(a, b)$.
 \end{proof}
 
-Of course, we could just as well replace the closed inteval by any compact compact subset of $(a, b)$. The previous result is some kind of relative of \ref{bounded_div}. Also theorem \ref{k-tone_smooth} has rather interesting relative.
+Of course, we could just as well replace the closed inteval by any compact subset of $(a, b)$. The previous result is some kind of relative of \ref{bounded_div}. Also theorem \ref{k-tone_smooth} has rather interesting relative.
 
 \begin{lause}[Bernstein's little theorem]
 	If $f : (a, b) \to \R$ is $k$-tone for every $k \geq 0$, then $f$ is real-analytic on $(a, b)$.
