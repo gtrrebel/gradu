@@ -2,7 +2,7 @@
 
 \section{Motivation}
 
-As mentioned in the introduction, $k$-tone functions should correspond to the functions with non-negative $k$'th derivative. What should this mean?
+As mentioned in the introduction, $k$-tone functions should correspond to the functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should this mean?
 
 We already know the perfect answer for the case $k = 1$: $1$-tone functions should be the increasing functions.
 
@@ -98,17 +98,21 @@ One would naturally expect that by setting
 \]
 one obtains something that naturally generalizes divided differences for higher orders. This is indeed the case.
 
+TODO: explain the contents of the following two sections.
+
 \section{Divided differences}
 
 For $n \geq 1$ define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i < j \leq n$}\}$.
 \begin{maar}
 Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
-\[
+\begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})}.
-\]
+\end{align*}
 \end{maar}
 
-We have the following important properties.
+\subsection{Basic properties}
+
+Divided differences have the following important properties.
 
 \begin{prop}
 	Divided differences are symmetric in the variable, i.e. for any $f : (a, b) \to \R$ and pairwise distinct $a < x_{0}, x_{1}, \ldots, x_{n} < b$ permutation $\sigma : \{1, 2, \ldots, n\} \to \{1, 2, \ldots, n\}$ we have
@@ -157,6 +161,8 @@ We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{
 	and the leading coefficient of this polynomial is exactly the divided difference.
 \end{proof}
 
+\subsection{Peano representation}
+
 Coming back to the original motivation, divided difference enjoys a integral representation for larger $n$, albeit somewhat more complicated.
 
 \begin{lause}\label{peano_theorem}
@@ -165,9 +171,9 @@ Coming back to the original motivation, divided difference enjoys a integral rep
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \int_{\R} f^{(n)}(t) w(t) dt,
 	\end{align}
 	where
-	\begin{align*}
+	\begin{align}\label{peano_weight}
 		w(t) := w_{x_{0}, x_{1}, \ldots, x_{n}}(t) = \frac{1}{(n - 1)!}\sum_{i = 0}^{n} \frac{((x_{i} - t)_{+})^{n - 1}}{\prod_{j \neq i} (x_{i} - x_{j})}.
-	\end{align*}
+	\end{align}
 	In addition, $w$ is non-negative, supported on $[\min(x_{i}), \max(x_{i})]$ and integrates to $(n!)^{-1}$.
 \end{lause}
 \begin{proof}
@@ -210,12 +216,18 @@ Coming back to the original motivation, divided difference enjoys a integral rep
 	Now since all the divided differences of $g_{t, n - 1}$ are non-negative, the same is clearly true for $g_{t, n - 1}(s \cdot + (1 - s) x_{n})$, so we are done.
 \end{proof}
 
+The weight \ref{peano_weight} is called \textit{Peano kernel} (of order $n$, whenever there are $(n + 1)$ points). The points $x_{0}, x_{1}, \ldots, x_{n}$ are called the \text{nodes} of $w$.
+
 TODO: pictures of Peano Kernels
 
 As an very important corollary we get the following.
 
 \begin{lause}[Mean value theorem for divided differences]
-	Let $n \geq 1$ and $f \in C^{n}(a, b)$. Then for any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have $\min_{0 \leq i \leq n}(x_{i}) < \xi < \max_{0 \leq i \leq n}(x_{i})$ such that
+	Let $n \geq 1$ and $f \in C^{n}(a, b)$. Then for any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have
+	\begin{align*}
+	\min_{0 \leq i \leq n}(x_{i}) < \xi < \max_{0 \leq i \leq n}(x_{i})
+	\end{align*}
+	such that
 	\begin{align}\label{mean_value}
 		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(\xi)}{n!}.
 	\end{align}
@@ -243,7 +255,9 @@ As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differ
 \end{align*}
 which together with \ref{divdif_rec} is enough to describe the divided differences with values of the function and its derivative.
 
-Many of the familiar identities for the derivatives have analogs with divided differences. We won't really need these formulas, but it's nevertheless nice to know that there are such. Also, they are not really more complicated than the derivative counterparts, on the contrary; the author honestly thinks that they are in fact easier to remember. One of the downsides of the divided differences identities is however that they are usually not symmetric with respect to the sequence $x_{0}, x_{1}, \ldots, x_{n}$ anymore. That's life.
+\subsection{Identities}
+
+Many of the familiar identities for the derivatives have analogs with divided differences. We won't be really needing these formulas much, but it's nevertheless nice to know that there are such. Also, they are not really more complicated than the derivative counterparts, on the contrary; the author honestly thinks that they are in fact easier to remember. One of the downsides of the divided difference identities is however that they are usually not symmetric with respect to the sequence $x_{0}, x_{1}, \ldots, x_{n}$ anymore. That's life.
 
 \begin{prop}
 	Let $n$, $k$, $f, g$, $f_{1}, f_{2}, \ldots, f_{k}$ and $x_{0}, x_{1}, \ldots, x_{n}$ be such that the folliowing identities make sense.
@@ -308,7 +322,40 @@ Many of the familiar identities for the derivatives have analogs with divided di
 	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions. (?)
 \end{huom}
 
-\section{Cauchy's integral formula}
+\subsection{$k$-tone functions}
+
+All these observations are more than enough to verify that our definition of divided differences gives us suitable notion $k$-tone functions.
+
+\begin{maar}
+	$f : (a, b) \to \R$ is called $k$-tone if for any $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ of distinct points we have
+	\[
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \geq 0,
+	\]
+	i.e. the $n$'th divided difference is non-negative.
+\end{maar}
+
+We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$.
+
+\begin{lause}
+	Let $k$ be an non-negative integer and $(a, b)$ an open interval. Then $P^{(k)}(a, b) \subset \R^{(a, b)}$ is (almost) a proper cone.
+\end{lause}
+\begin{proof}
+	Since the divided differences are continuous linear functional result follows if we can prove that
+	\begin{align*}
+		[\cdot, \cdot, \ldots, \cdot]_{f} = 0 \Leftrightarrow f = 0.
+	\end{align*}
+	This isn't quite true, instead we have
+	\begin{align*}
+		[\cdot, \cdot, \ldots, \cdot]_{f} = 0 \Leftrightarrow \text{ $f$ is a polynomial of degree less $n$}.
+	\end{align*}
+	To see why this is true, note that we already proved ``$\Leftarrow$" -direction. The other direction follows immediately from the Newton expansion \ref{newton_expansion}.
+\end{proof}
+
+Mean value theorem tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative.
+
+TODO: quotient topological vector space
+
+\subsection{Cauchy's integral formula}
 
 Complex analysis offers a nice view on divided differences: if $f$ is analytic, we may interpret divided differences contour integrals.
 
@@ -331,12 +378,12 @@ There's another rather instructive proof for the statement. Write Newton expansi
 	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}}{(z - x_{n})} dz \\
 	&+ \frac{1}{2 \pi i} \int_{\gamma} [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} dz \\
 \end{align*}
-As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $|z|^{-2}$. Finally, the $(n + 1)$:th term gives exactly what we wanted.
+As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, (as will be proven later) the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $|z|^{-2}$. Finally, the $(n + 1)$:th term gives exactly what we wanted.
 \end{proof}
 
-If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Also if one shortens $[X]_{f} = [x_{0}, x_{1}, \ldots, x_{n}]_{f}$, we have
+If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Now we have
 \[
-	[X]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{p_{X}(z)} dz.
+	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{p_{X}(z)} dz.
 \]
 
 Cauchy's integral formula is a convenient way to think about severel identities.
@@ -344,9 +391,9 @@ Cauchy's integral formula is a convenient way to think about severel identities.
 \begin{esim}
 We may express the Lagrange interpolation polynomial of a analytic function $f$ and sequence $X = (x_{i})_{i = 0}^{n}$ by
 \[
-	P_{X}(x) = \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [X]_{f [x, \cdot]_{p_{X}}}.
+	P_{X}(x) = \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [x_{0}, x_{1}, \ldots, x_{n}]_{f [x, \cdot]_{p_{X}}}.
 \]
-More generally, if some of the points coincide, we get the Hermite interpolation polynomial. In general, if one wants to find a polynomial which vanishes at points TODO
+More generally, if some of the points coincide, we get so-called Hermite interpolation polynomial.
 \end{esim}
 As an another example one can give variant of the proof the Leibniz rule using the ideas from complex analysis.
 \begin{proof}[Alternate proof for the Leibniz rule for the divided differences]
@@ -371,65 +418,119 @@ Of course there's nothing really special about the functional being linear, but 
 	Note that if we expand the divided differences, we are almost in the situation of the lemma \ref{bootstrap_lemma}; now we just have product of two functions instead. Story is the same.
 \end{proof}
 
-\section{$k$-tone functions}
+\subsection{Locality}
 
-\begin{maar}
-	$f : (a, b) \to \R$ is called $k$-tone if for any $X = (x_{i})_{i = 0}^{n}$ of distinct points we have
-	\[
-		[X]_{f} \geq 0,
-	\]
-	i.e. the $n$'th divided difference is non-negative.
-\end{maar}
+One of the properties of the divided differences, which might not be clear from the definition, is that they can also be used to model local phenomena. One of the important properties of the $k$-tone functions is that if a function is $k$-tone on two overlapping intervals, then the function is $k$-tone on their union. While this definitely holds for $C^{k}$ functions, it's not really clear how to change this argument for the general case.
 
-As we noticed, $1$-tone and $2$-tone functions are exactly the monotone increasing and convex functions. The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.
-
-Mean value theorem for divided differences tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative. It turns out that this almost true in general case, namely we have the following result.
-
-\begin{lause}\label{k-tone_smooth}
-	Let $f : (a, b) \to \R$ and $k \geq 2$. Then $f$ is $k$-tone, if and only if $f \in C^{k - 2}(a, b)$, $f^{(k - 2)}(x)$ is convex.
-\end{lause}
-
-We will postpone the proof.
-
-In some sense the further smoothness assumption is not that much of a game changer. It turns out $k$-tone functions are always $k$ times differentiable in a weak sense (?), and the weak derivative is non-negative.
-
-One can also usually use regularization techniques discussed in ? to reduce a problem about general $k$-tone functions to smooth $k$-tone functions. In general:
-
-\begin{phil}
-	One should not worry about smoothness issues.
-\end{phil}
-
-We will not resort to such sorcery, however, but try to understand the true reasons behind the smoothness.
-
-We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$. $k$-tone functions the following enjoy the following useful properties.
-
+If one thinks that $k$-tone functions have $k$'th derivative as a positive measure, the locality property should be a special case of the general property of distributions.
 \begin{prop}
-	For any positive integer $k$ and open interval $(a, b)$ $P^{(k)}(a, b)$ is a closed (under pointwise convergence) convex cone.
+	Let $a < c < b < d$ and $\mu$ distribution on $(a, d)$, restriction of which to $(a, b)$ and $(c, d)$ is a positive measure. Then $\mu$ is a positive measure.
 \end{prop}
 \begin{proof}
-	Convex cone property is immediate form the linearity of divided differences. Also, if $f_{i} \to f$ pointwise, the respective divided differences converge, so also the closedness is clear.
+	We should prove that $\mu(f)$ is non-negative for every non-negative test function $f$ on $(a, d)$. But every such function can be written as sum of two non-negative test functions, $f_{1}$ and $f_{2}$, $f_{1}$ supported on $(a, b)$ and $f_{2}$ on $(c, d)$, so $\mu(f) = \mu(f_{1}) + \mu(f_{2}) \geq 0$ by the assumption.
 \end{proof}
+
+They key idea in the proof was to split the test functions to two parts, one supported on $(a, b)$ and one on $(c, d)$. It turns out that we can do the same thing with Peano kernels.
+
+\begin{lem}\label{peano_splitting_theorem}
+	Let $a < c < b < d$ be reals and $w$ a Peano kernel supported on $(a, d)$. Then $w$ can written as a (finite) weighted average of Peano kernels, all of which are supported either on $(a, b)$ or on $(c, d)$.
+\end{lem}
+\begin{proof}
+	Let $n$ be the order of the Peano kernel and let $a < x_{0} < x_{1} < \ldots < x_{n} < d$ be the nodes or $w$.
+
+	The case $n = 1$ is rather clear: we simply split characteristic function of an interval to characteristic function of two intervals. TODO: picture. In terms of the kernels, if $a < x_{0} < c < b < x_{1} < d$, we can pick $c < y_{0} < b$ and write
+	\begin{align*}
+		w_{x_{0}, x_{1}} = \frac{y_{0} - x_{0}}{x_{1} - x_{0}} w_{x_{0}, y_{0}} + \frac{x_{1} - y_{0}}{x_{1} - x_{0}} w_{y_{0}, x_{1}}:
+	\end{align*}
+	this is a sought decomposition.
+
+	When $n = 2$ the goal is not much harder: we have a triangle whose corners have (distinct) $x$-coordinates on the interval $(a, d)$ and we should split it to smaller triangles in such a way that
+	\begin{itemize}
+		\item No triangle has two equal $x$-coordinates (this is the property of the Peano kernels)
+		\item All triangles have all their corners' $x$-coordinates either on $(a, b)$ and $(c, d)$.
+	\end{itemize}
+	TODO: picture
+	We call such triangles good. While the above picture should be rather convincing already, one can write an general algorithm generating such decomposition.
+	\begin{enumerate}[\textbf{Step} 1.]
+		\item If the triangle is good already, we are done.
+		\item Pick $y_{0} \in (c, b)$, which does not coincide any of the $x_{0}, x_{1}, x_{2}$.
+		\item Divide the triangle to two triagles with $x$-coordinates $(x_{0}, x_{1}, y_{0})$ and $(x_{1}, y_{0}, x_{2})$, as illustrated.
+		\item Run this algorithm recursively for these two triangles.
+	\end{enumerate}
+	Why does this algorithm terminate? Note that if any of the $x_{i}$'s are in $(c, b)$, the triangle is either good or $x_{1} \in (c, b)$ (or maybe both). In the former case we are done, and in the latter the two parts of the split are both good. If none of $x_{i}$'s are in $(c, b)$, both of the parts of the split has a coordinate in $(c, b)$, so also this case leads to a good split. In other words we can keep splitting triangles in such a way that they either become good or they have more nodes on $(c, b)$.
+
+	It's easy to verify that splitting the triangle corresponds to the identity
+	\begin{align*}
+		w_{x_{0}, x_{1}, x_{2}} = \frac{y_{0} - x_{0}}{x_{2} - x_{0}} w_{x_{0}, x_{1}, y_{0}} + \frac{x_{1} - y_{0}}{x_{2} - x_{0}} w_{x_{1}, y_{0}, x_{2}}.
+	\end{align*}
+
+	When $n > 2$ geometric picture is largely lost (at least by the author), but the algebra generalizes perfectly: we can still split Peano kernels using the following identity:
+	\begin{align}\label{peano_splitting}
+		w_{x_{0}, x_{1}, \ldots, x_{n}} = \frac{y_{0} - x_{0}}{x_{n} - x_{0}} w_{x_{0}, x_{1}, \ldots, x_{n - 1}, y_{0}} + \frac{x_{n} - y_{0}}{x_{n} - x_{0}} w_{x_{1}, \ldots, x_{n}, y_{0}}.
+	\end{align}
+	Where does this come from? Recall that the Peano kernels are nothing more than the divided differences of the functions $g_{t, n} = \frac{1}{(n - 1)!}((\cdot - t)_{+})^{n - 1}$,. The first identity immediately generalizes
+	\begin{align*}
+		[x_{0}, x_{1}]_{f} = \frac{y_{0} - x_{0}}{x_{1} - x_{0}} [x_{0}, y_{0}]_{f} + \frac{x_{1} - y_{0}}{x_{1} - x_{0}} [y_{0}, x_{1}]_{f},
+	\end{align*}
+	where $f$ is now any function. By the nesting property the identity \ref{peano_splitting} is nothing more than the previous identity applied to $f = [\cdot, x_{1}, \ldots, x_{n - 1}]_{g_{t, n}}$. Note that we need $x_{0} < y_{0} < x_{n}$, so that the weighted average is really a convex combination.
+
+	Now we are ready to generalize the algorighm to higher $n$:
+	\begin{enumerate}[\textbf{Step} 1.]
+		\item If the kernel is good already, we are done.
+		\item Pick $y_{0} \in (c, b)$, which does not coincide any of the $x_{0}, x_{1}, \ldots, x_{n}$.
+		\item Divide the kernel to two kernels with nodes $(x_{0}, x_{1}, \ldots, x_{n}, y_{0})$ and $(y_{0}, x_{1}, \ldots, x_{n})$ as in the \ref{peano_splitting}.
+		\item Run this algorithm recursively for these kernels.
+	\end{enumerate}
+	This algorithm terminates basically because of the same reason: if the kernel isn't good already, the two splits have more nodes on $(c, b)$, and this quantity cannot increase forever.
+	TODO: figure
+\end{proof}
+
+While this property is of independent interest, the real use of it is its generalization to divided differences.
+
+\begin{lem}\label{divdif_splitting_theorem}
+	Let $a < c < b < d$ be reals and $x_{0}, x_{1}, \ldots, x_{n} \in (a, d)$. Then we may find $N, M \in \N$, sequences $(y_{0, i}, \ldots, y_{n, i})$ and $(z_{0, j}, \ldots, z_{n, j})$ and numbers $p_{i}$ and $q_{j}$ for $1 \leq i \leq N$ and $1 \leq j \leq M$, such that
+	\begin{itemize}
+		\item $\sum_{i = 1}^{N} p_{i} + \sum_{j = 1}^{M} q_{j} = 0$ and $p_{i}, q_{j} \geq 0$ for every $1 \leq i \leq N$ and $1 \leq j \leq M$.
+		\item $y_{0, i}, y_{1, i}, \ldots, y_{n, i}$ are pairwise distinct elements of $(a, b)$ for every $1 \leq i \leq N$.
+		\item $z_{0, j}, z_{1, j}, \ldots, z_{n, j}$ are pairwise distinct elements of $(c, d)$ for every $1 \leq i \leq M$.
+		\item For every $f : (a, d) \to \R$ we have
+		\begin{align*}
+			[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 1}^{N} p_{i} [y_{0, i}, y_{1, i}, \ldots, y_{n, i}]_{f} +  \sum_{j = 1}^{M} q_{j} [z_{0, j}, z_{1, j}, \ldots, z_{n, j}]_{f}.
+		\end{align*}
+	\end{itemize}
+\end{lem}
+\begin{proof}
+	Proof is almost identical to that of the lemma \ref{peano_splitting_theorem}: we more-or-less just replace the identity \ref{peano_splitting} by
+	\begin{align}\label{divdif_splitting_property}
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{y_{0} - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}, y_{0}]_{f} + \frac{x_{n} - y_{0}}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}, y_{0}]_{f},
+	\end{align}
+	which is valid because of essentially the same reasoning, and replace the word ``kernel" with word ``tuple".
+\end{proof}
+
+We are now ready to prove the locality property of the $k$-tone functions.
 
 \begin{prop}
 	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
 \end{prop}
 \begin{proof}
-	For $f \in C^{k}$ the statement is immediate form the mean value theorem. In general we can argue bit similarly as in the case $k = 1$. For $k = 1$ note that if $a < x < c < b < z < d$ we may take $c < y < b$. Now
-	\[
-		f(z) - f(x) = (f(z) - f(y)) + (f(y) - f(x)) \geq 0.
-	\]
-	In terms of divided differences
-	\[
-		[x, z]_{f} = [z, y]_{f} \frac{z - y}{z - x} + [x, y]_{f} \frac{y - x}{z - x}.
-	\]
-	The point is that we can express divided differences as weighted sums of divided differences of tuples with smaller supports. More generally, if $a < x_{0} < \ldots < x_{k} < d$ with $x_{0} < c$ and $d < x_{k}$, take any $y \in (c, b)$ distinct from $x_{i}$'s and we have
-	\[
-		[x_{0}, \ldots, x_{k}]_{f} = [x_{1}, \ldots, x_{k}, y]_{f} \frac{x_{k} - y}{x_{k} - x_{0}} + [x_{0}, \ldots, x_{k - 1}, y]_{f} \frac{y - x_{0}}{x_{k} - x_{0}}.
-	\]
-	This identity is easily verified by applying the previous version for the function $x \mapsto [\cdot, x_{1}, x_{2}, \ldots, x_{n - 1}]_{f}$. By repeating this process, we will end up with divided differences of tuples completely lying on $(a, b)$ or $(c, d)$. Formally, we could induct on $l$ number of $x_{i}$'s outside $(c, b)$ and note that if tuple isn't good already, the two new tuples have lower number $l$.
+	This follows immediately from lemma \ref{divdif_splitting_theorem}.
 \end{proof}
 
-\section{Smoothness}
+Note that we could have also used the splitting property \ref{divdif_splitting_property} to slightly simplify the proof of theorem \ref{peano_theorem}. In the induction step we managed to prove that we have
+\begin{align*}
+	[x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} = \frac{1}{n - 1}[x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} =  \frac{1}{n - 1} w_{x_{0}, \ldots, x_{n - 1}}(t)\geq 0
+\end{align*}
+for any $x_{0}, x_{1}, \ldots, x_{n - 1}$. But this readily implies that the divided differences are non-negative on all tuples as we have
+\begin{align*}
+	w_{x_{0}, x_{1}, \ldots, x_{n - 1}, x_{n}} &= [x_{0}, x_{1}, \ldots, x_{n - 1}, x_{n}]_{g_{t, n}} \\
+	&= \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} + \frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}, t]_{g_{t, n}} \\
+	&= \frac{1}{n - 1} \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}]_{g_{t, n - 1}} \\
+	&= \frac{1}{n - 1}  \frac{t - x_{0}}{x_{n} - x_{0}} w_{x_{0}, x_{1}, \ldots, x_{n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} w_{x_{1}, \ldots, x_{n}} \\
+	&\geq 0.
+\end{align*}
+Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, but if this is not the case, as observed, the divided differences are zero anyway. The previous identity can be also used to recursively compute Peano kernels.
+
+\section{Regularity}
 
 TODO: prove the following with the locally uniform continuity trick.
 
