@@ -27,7 +27,7 @@ While this proof by the mean value theorem works in more general setting, if $f 
 \begin{proof}[Alternate proof for the theorem \ref{increasing_1tone} (in the case $f \in C^{1}(a, b)$)]
 	Note that if $f \in C^{1}(a, b)$, we may write
 	\begin{align*}
-		\frac{f(y) - f(x)}{y - x} = \frac{1}{y - x}\int_{x}^{y} f'(t) dt.
+		\frac{f(y) - f(x)}{y - x} = \frac{1}{y - x}\int_{x}^{y} f'(t) dt = \int_{0}^{1} f'(t x + (1 - t) y) dt.
 	\end{align*}
 	Note that on the right-hand side one we have average of the derivative over the interval. This means that the claim can be translated to: continuous function is non-negative, if and only if its averages over all intervals are non-negative. But this is clear.
 \end{proof}
@@ -100,8 +100,6 @@ one obtains something that naturally generalizes divided differences for higher 
 
 \section{Divided differences}
 
-TODO: rewrite the following section
-
 For $n \geq 1$ define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i < j \leq n$}\}$.
 \begin{maar}
 Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
@@ -124,7 +122,29 @@ We have the following important properties.
 	Easy to check.
 \end{proof}
 
-These observation already partially justify the terminology: just as higher order derivatives are defined recursively using (first order) derivatives, higher order divided differences can be calculated recursively using (the usual) divided differences. The following observation tells us that the divided differences work as $n$'th derivative insomuch that it kills polynomials of degree less than $n$ and works with degree $n$ as expected.
+The name ``divided differences" stems from the fact that the higher order divided differences are itself divided differences of lower order ones.
+
+\begin{prop}\label{nesting_property}
+	For any $f : (a, b) \to \R$ and pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have
+	\begin{align}\label{divdif_rec}
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}} = [x_{0}, x_{n}]_{[\cdot, x_{1}, \ldots, x_{n - 1}]_f}
+	\end{align}
+	More generally, for any pairwise distinct $x_{1}, x_{2}, \ldots, x_{n}, y_{1}, y_{2}, \ldots, y_{m} \in (a, b)$ we have
+	\begin{align}\label{nesting_rule}
+		[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} = [y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}.
+	\end{align}
+\end{prop}
+\begin{proof}
+	The simpler case is easy to check directly. For more general case note that both
+	\begin{align*}
+	[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} \text{ and } [y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}
+	\end{align*}
+	satisfy the simpler case (as a function of the $y$'s) and they agree when $m = 1$.
+\end{proof}
+
+We call \ref{nesting_rule} the \textit{nesting property} of divided differences. Although the analogy isn't perfect, one could think that this identity says that $m$'th derivative of the $n$'th derivative is the $(n + m)$'th derivative. 
+
+The following observation tells us that the divided differences work as $n$'th derivative insomuch that it kills polynomials of degree less than $n$ and works with degree $n$ as expected.
 
 \begin{prop}\label{lagrange_divided}
 We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the Lagrange interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1}), \ldots, (x_{n}, f(x_{n}))$.
@@ -139,11 +159,11 @@ We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{
 
 Coming back to the original motivation, divided difference enjoys a integral representation for larger $n$, albeit somewhat more complicated.
 
-\begin{lause}
+\begin{lause}\label{peano_theorem}
 	If $f \in C^{n}(a, b)$, then for any pairwise distinct $a < x_{0}, x_{1}, x_{2}, \ldots, x_{n} < b$ we have
-	\begin{align*}
+	\begin{align}\label{peano_identity}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \int_{\R} f^{(n)}(t) w(t) dt,
-	\end{align*}
+	\end{align}
 	where
 	\begin{align*}
 		w(t) := w_{x_{0}, x_{1}, \ldots, x_{n}}(t) = \frac{1}{(n - 1)!}\sum_{i = 0}^{n} \frac{((x_{i} - t)_{+})^{n - 1}}{\prod_{j \neq i} (x_{i} - x_{j})}.
@@ -158,7 +178,7 @@ Coming back to the original motivation, divided difference enjoys a integral rep
 	\end{align*}
 	While the previous argument could be pushed through, we take safer route. To prove that the formula even makes sense, we should prove the claim on the support. It is clear that $w$ is zero whenever $t \geq \max(x_{i})$. If on the other hand $t \leq \min(x_{i})$, $w(t)$ is simply a $n$'th divided difference of the map $x \mapsto \frac{1}{(n - 1)!}(x - t)^{n - 1}$, which is zero by the proposition \ref{lagrange_divided}.
 
-	We may hence we may partially integrate the right-hand side:
+	We may hence repeatedly partially integrate the right-hand side:
 	\begin{align*}
 		 \int_{\R} f^{(n)}(t) w(t) dt &= \int_{\R} f^{(n - 1)}(t) (-1) w'(t) dt \\
 		 &= \int_{\R} f^{(n - 2)}(t) w^{(2)}(t) dt \\
@@ -173,65 +193,110 @@ Coming back to the original motivation, divided difference enjoys a integral rep
 
 	Applying the identity to $x \mapsto x^{n}$ shows the claim on the integral of $w$, so it remains to be shown that $w$ is non-negative.
 
-	TODO
+	This is very important property. It allows us to conclude that the $n$'th divided differences are really weighted averages the $n$'th derivatives. The property is also by no means trivial with large $n$.
 
+	We prove the non-negativity by induction on $n$. The case $n = 1$ is clear. The idea is rather simple: we should prove that the functions $g_{t, n}$ has non-negative divided differences, which should rougly mean it has non-negative $n$'th derivative (being $\delta_{t}$). By the nesting property we have
+	\begin{align*}
+		[x_{0}, x_{1}, \ldots, x_{n}]_{g_{t, n}} = [x_{0}, x_{1}, \ldots, x_{n - 1}]_{[\cdot, x_{n}]_{g_{t, n}}}.
+	\end{align*}
+	Now if we could replace $[\cdot, x_{n}]_{g_{t, n}}$ with the derivative of $g_{t, n}$, which is conveniently $g_{t, n - 1}$, we would be done by the induction hypothesis. Note that while these functions aren't the same in general, they agree (up to constant) if $x_{n} = t$. But if $x_{n} \neq t$, we can play the same game as before: $[\cdot, x_{n}]_{g_{t, n}}$ is weighted average of the derivative $g_{t, n}' = g_{t, n - 1}$. Indeed, as
+	\begin{align*}
+		[\cdot, x_{n}]_{g_{t, n}} = \int_{0}^{1} g_{t, n - 1}(s \cdot + (1 - s) x_{n}) ds,
+	\end{align*}
+	we have
+	\begin{align*}
+		[x_{0}, x_{1}, \ldots, x_{n}]_{[\cdot, x_{n}]_{g_{t, n}}} = \int_{0}^{1} [x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}(s \cdot + (1 - s) x_{n})} ds,
+	\end{align*}
+	Now since all the divided differences of $g_{t, n - 1}$ are non-negative, the same is clearly true for $g_{t, n - 1}(s \cdot + (1 - s) x_{n})$, so we are done.
 \end{proof}
 
 TODO: pictures of Peano Kernels
 
-As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differences to the set $D_{n + 1}$, we should do that, and we identify the resulting function with the original one. We will later proof that, as expected, this can be done, if and only $f \in C^{n}(a, b)$.
-
-The most important property of the divided differences is the following.
+As an very important corollary we get the following.
 
 \begin{lause}[Mean value theorem for divided differences]
-	Let $n \geq 1$ and $f \in C^{n}(a, b)$. Then for any $x_{0}, x_{1}, \ldots, x_{n}$ we have $\min_{0 \leq i \leq n}(x_{i}) \leq \xi \leq \max_{0 \leq i \leq n}(x_{i})$ such that
+	Let $n \geq 1$ and $f \in C^{n}(a, b)$. Then for any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have $\min_{0 \leq i \leq n}(x_{i}) < \xi < \max_{0 \leq i \leq n}(x_{i})$ such that
 	\begin{align}\label{mean_value}
 		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(\xi)}{n!}.
 	\end{align}
 \end{lause}
 \begin{proof}
-	We prove the statement assuming additionally that the divided differences define a continuous function on the whole set $(a, b)^{n + 1}$: this will proven later. Note that if one manages to prove the statement for distinct points, one may take sequence of tuples of distinct points, $((x_{i}^{(j)})_{i = 0}^{n})_{j = 1}^{\infty}$ converging to $(x_{i})_{i = 0}^{\infty}$. Now the left-hand side will converge to the respective divided difference (assuming the continuity), and by moving to a convergent subsequence, so will the $\xi_{n}$'s on the right-hand side. By the continuity of $f^{(n)}$ we are done.
+	This follows immediately from \ref{peano_theorem}.
 
-	For the case of distinct $x_{i}$'s note that we have already proven the statement for polynomials of order at most $n$. By linearity it hence suffices to prove the statement for $C^{n}(a, b)$ functions vanishing on the set $\{x_{i} | 0 \leq i \leq n\}$. This we know already for $n = 1$ ; this is the mean value theorem. Let us prove the statement by induction on $n$. To simplify notation we may assume that $x_{0} < x_{1} < \ldots < x_{n}$. Note that by the mean value theorem, given that $f(x_{i}) = 0$ for any $0 \leq i \leq n$, we also have $f'(y_{i}) = 0$ for some $x_{i} < y_{i} < y_{i + 1}$, for $0 \leq i \leq n - 1$. By the induction hypothesis the $(n - 1)$:th derivative of $f'$, $f^{(n)}$ has a zero $\xi$ with $x_{0} \leq \xi \leq x_{n}$. But this is exactly what we wanted.
+	One can also give a proof using mean value theorem and with slightly weaker assumptions: it suffices to assume that $f$ is $n$ times differentiable.
 
-	TODO: figure of recursive procedure.
+	By linearity and proposition \ref{lagrange_divided} it suffices to verify the claim for the case $f(x_{i}) = 0$ for $0 \leq i \leq n$, or to verify the following claim.
+
+	\begin{lem}
+		If $f$ is $n$ times differentiable, and has $n + 1$ roots, then $f^{(n)}$ has a root (in the interior of the convex hull of the roots).
+	\end{lem}
+	\begin{proof}
+		If $f$ has $n + 1$ roots, by the mean value theorem its derivative has $n$ roots (in the interior of the convex hull of the roots of $f$) and is $(n - 1)$ times differentiable. Since the derivative satisfies the same assumptions for $n - 1$, the claim follows by induction.
+	\end{proof}
 \end{proof}
 
-We'll get back to smoothness in a minute. This is already a very precise sense in which divided differences work like derivatives, up to a constant. In some sense though $\frac{f^{(n)}}{n!}$, the Taylor coefficients are even more natural objects than the pure derivatives. They are the coefficients in the Taylor expansion, and they satisfy Leibniz rule much more natural than the one with pure derivatives:
-\[
-	\frac{(f g)^{(n)}(x)}{n!} = \sum_{k = 0}^{n} \left(\frac{f^{(k)}(x)}{k!}\right)\left(\frac{g^{(n - k)}(x)}{(n - k)!}\right).
-\]
+The mean value theorem could be also used to prove the non-negativity of the weight $w$: if $w$ were somewhere negative, one could construct function with non-negative derivative and negative divided difference, which would contradict \ref{mean_value}.
 
-Divided differences enjoy similar Leibniz formula, which is related to a generalization of Taylor expansion, called Newton expansion. In Newton expansion we first fix a sequence of points $x_{0}, x_{1}, \ldots x_{n} \in (a, b)$, say pairwise distinct for starters. For $f : (a, b) \to \R$ and $x \in (a, b)$ we may start a process of rewriting
+As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differences to the set $D_{n + 1}$, we should do that, and we identify the resulting function with the original one. We will later proof that, as expected, this can be done, if and only $f \in C^{n}(a, b)$. In this case by \ref{mean_value} the extesion satisfies
 \begin{align*}
-	f(x) &= f(x_0) + f(x) - f(x_{0}) \\
-	&= [x_{0}]_{f} + [x, x_{0}]_{f} (x - x_{0}) \\
-	&= [x_{0}]_{f} + ([x_{0}, x_{1}]_{f} + ([x, x_{0}]_{f}- [x_{0}, x_{1}]_{f}))(x - x_{0}) \\
-	&= [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x, x_{0}, x_{1}]_{f} (x - x_{0}) (x - x_{1}) \\
-	&= \ldots \\
-	&= [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x_{0}, x_{1}, x_{2}]_{f} (x - x_{0}) (x - x_{1}) + \ldots \\
-	& + [x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n - 1}) \\
-	& + [x, x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n}).
+	[x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f^{(n)}(x_{0})}{n!},
 \end{align*}
+which together with \ref{divdif_rec} is enough to describe the divided differences with values of the function and its derivative.
 
-By taking first $1, 2, \ldots$ terms of the sum, one obtains Newton form of interpolating polynomial for the first $1, 2, \ldots, $ points of the sequence $x_{0}, x_{1}, \ldots$. If the points $x_{i}$ coincide, we get
-\begin{align}\label{taylor_expansion}
-	f(x) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_{0})}{k!} + [x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n},
-\end{align}
-the usual Taylor expansion. Consequently
-\[
-	[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f(x) - \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_{0})}{k!}}{(x - x_{0})^{n}},
-\]
-and as is well known, this error term can be also written in the form
-\[
-	[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{1}{(x - x_{0})^{n}}\int_{x_{0}}^{x} \frac{f^{(n)}(t) (x - t)^{n - 1}}{(n - 1)!} dt.
-\]
+Many of the familiar identities for the derivatives have analogs with divided differences. We won't really need these formulas, but it's nevertheless nice to know that there are such. Also, they are not really more complicated than the derivative counterparts, on the contrary; the author honestly thinks that they are in fact easier to remember. One of the downsides of the divided differences identities is however that they are usually not symmetric with respect to the sequence $x_{0}, x_{1}, \ldots, x_{n}$ anymore. That's life.
+
+\begin{prop}
+	Let $n$, $k$, $f, g$, $f_{1}, f_{2}, \ldots, f_{k}$ and $x_{0}, x_{1}, \ldots, x_{n}$ be such that the folliowing identities make sense.
+	\begin{enumerate}[(i)]
+		\item (Newton expansion)
+		\begin{align}\label{newton_expansion}
+			f(x) &= [x_{0}]_{f} + [x_{0}, x_{1}]_{f} (x - x_{0})  + [x_{0}, x_{1}, x_{2}]_{f} (x - x_{0}) (x - x_{1}) + \ldots \\
+			& + [x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n - 1}) \nonumber\\
+			& + [x, x_{0}, x_{1}, \ldots, x_{n}]_{f} (x - x_{0}) (x - x_{1}) \cdots (x - x_{n}) \nonumber,
+		\end{align}
+		in particular, if the points coincide we get the familiar Taylor expansion
+		\begin{align}\label{taylor_expansion}
+			f(x) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_{0})}{k!} + [x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n},
+		\end{align}
+		\item (Product rule)
+		\begin{align*}
+			[x_{0}, x_{1}]_{f g} = [x_{0}]_{f} [x_{0}, x_{1}]_{g} + [x_{0}, x_{1}]_{f} [x_{1}]_{g}.
+		\end{align*}
+		\item (Leibniz rule)
+		\begin{align}\label{leibniz_rule}
+			[x_{0}, x_{1}, \ldots, x_{n}]_{f g} &= [x_{0}]_{f} [x_{0}, \ldots, x_{n}]_{g} + [x_{0}, x_{1}]_{f} [x_{1}, \ldots, x_{n}]_{g} + \ldots\\
+			&+ [x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} [x_{n - 1}, x_{n}]_{g} + [x_{0}, x_{1}, \ldots, x_{n}]_{f} [x_{n}]_{g} \nonumber.
+		\end{align}
+		More generally
+		\begin{align*}
+			[x_{0}, x_{1}, \ldots, x_{n}]_{f_{1} f_{2} \cdots f_{k}} &= \sum_{0 = i_{0} < i_{1} < i_{2} < \ldots < i_{k - 1} < i_{k} = n} \prod_{j = 1}^{k} [x_{i_{j - 1}, \ldots, x_{i_{j}}}]_{f_{j}}
+		\end{align*}
+		\item (Chain rule)
+		\begin{align*}
+			[x_{0}, x_{1}]_{f \circ g} = [g(x_{0}), g(x_{1})]_{f} [x_{0}, x_{1}]_{g}
+		\end{align*}
+		\item (Fa\`{a} di Bruno formula)
+		\begin{align*}
+			& [x_{0}, x_{1}, \ldots, x_{n}]_{f \circ g} \\
+			=& \sum_{k = 1}^{n} \sum_{0 = i_{0}< i_{1} < i_{2} < \ldots < i_{k - 1} < i_{k} =  n} [g(x_{i_{0}}), g(x_{i_{1}})\ldots , g(x_{i_{k}})]_{f} \prod_{j = 1}^{k} [x_{i_{j - 1}, \ldots, x_{i_{j}}}]_{g}
+		\end{align*}
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof sketches]
+	\begin{enumerate}[(i)]
+		\item Easy induction using \ref{divdif_rec}. Notice that this formula makes it also clear that the divided difference agrees with the degree $n$ coefficient of the interpolating polynomial.
+		\item Easy to check.
+		\item Induction using the product rule (i.e. the case $n = 1$) and the nesting rule \ref{nesting_rule}. Alternatively one could write Newton expansions of both $f$ and $g$ with sequences $(x_{0}, x_{1}, \ldots, x_{n})$ and $(x_{n}, x_{n - 1}, \ldots, x_{0})$ and notice that the given sum gives exactly the leading term of the interpolating polynomial of $f g$. The more general case follows from the case of two functions by induction.
+		\item Easy to check.
+		\item A bit tedious induction using the Leibniz rule and \ref{divdif_rec}.
+	\end{enumerate}
+\end{proof}
 
 \begin{huom}
 	As Taylor expansion lead to Taylor series, one might wonder under which conditions do Newton expansions lead to Newton series. That is, under which conditions for analytic $f : U \to \C$ and a sequence $z_{0}, z_{1}, \ldots, z_{n}, \ldots \in \C$ and $z \in \C$ the following converges
 	\begin{align*}
 		f(z) &= [z_{0}]_{f} \\
-		&+ [z_{0}, z_{1}]_{f} (z - z_{0}) \\
+		&+ [z_{0}, z_{1}]_{f} (z - z_{0})\\
 		&+ [z_{0}, z_{1}, z_{2}]_{f} (z - z_{0}) (z - z_{1}) \\
 		&+ \ldots \\
 		&+ [z_{0}, z_{1}, z_{2}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n - 1}) \\
@@ -240,24 +305,8 @@ and as is well known, this error term can be also written in the form
 	If the points coincide we recover the usual Taylor expansion and from the \ref{taylor_expansion} we see that the Taylor series converges on disc $\D(z_{0}, r)$ if $\left|\frac{f^{(n)}}{n!}\right| \leq C/r^{n}$ for some $C > 0$. If $f$ is entire, we have such bound for every $r$ and the series converges everywhere. In a similar vein,
 	if $f$ is entire and $Z = (z_{i})_{i \geq 0}$ is bounded, also Newton series converges for every $z \in \C$, but if $Z$ is not bounded, series need not converge for any $z$ outside $Z$.
 
-	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions.
+	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions. (?)
 \end{huom}
-
-Divided differences enjoy also the following nesting property.
-
-\begin{prop}
-	For any $f : (a, b) \to \R$ and pairwise distinct $x_{1}, x_{2}, \ldots, x_{n}, y_{1}, y_{2}, \ldots, y_{m}$ we have
-	\[
-		[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} = [y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}.
-	\]
-	In particular
-	\[
-		\frac{d^{m}}{d x^{m}} \left([x, x_{1}, x_{2}, \ldots, x_{n}]_{f}\right) = m! [x, x, \ldots, x, x_{1}, x_{2}, \ldots, x_{m}]
-	\]
-\end{prop}
-\begin{proof}
-	Note that both $[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}}$ and $[y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ satisfy \ref{divdif_rec} and they agree when $m = 1$.
-\end{proof}
 
 \section{Cauchy's integral formula}
 
@@ -270,7 +319,7 @@ If $\gamma$ is a closed counter-clockwise curve enclosing the numbers $x_{0}, x_
 \]
 \end{lem}
 \begin{proof}
-Easy induction, by taking Cauchy's integral formula as a base case. Alternatively, the claim is a direct consequence of the Residue theorem.
+Easy induction, verifying \ref{divdif_rec}, by taking Cauchy's integral formula as a base case. Alternatively, the claim is a direct consequence of the Residue theorem.
 
 There's another rather instructive proof for the statement. Write Newton expansion for $f$ and integrate both sides along $\gamma$. We get
 \begin{align*}
@@ -293,25 +342,14 @@ If all the points coincide, we get the familiar formula for the $n$'th derivativ
 Cauchy's integral formula is a convenient way to think about severel identities.
 
 \begin{esim}
-For instance we may express the Lagrange interpolation polynomial of a analytic function $f$ and sequence $X = (x_{i})_{i = 0}^{n}$ by
+We may express the Lagrange interpolation polynomial of a analytic function $f$ and sequence $X = (x_{i})_{i = 0}^{n}$ by
 \[
 	P_{X}(x) = \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [X]_{f [x, \cdot]_{p_{X}}}.
 \]
 More generally, if some of the points coincide, we get the Hermite interpolation polynomial. In general, if one wants to find a polynomial which vanishes at points TODO
 \end{esim}
-
-
-\begin{prop}[Leibniz formula for divided differences]\label{Leibniz_rule}
-	We have
-	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n}]_{f g} &= [x_{0}]_{f} [x_{0}, x_{1}, \ldots, x_{n}]_{g} \\
-		&+ [x_{0}, x_{1}]_{f} [x_{1}, \ldots, x_{n}]_{g} \\
-		&+ [x_{0}, x_{1}, x_{2}]_{f} [x_{2}, \ldots, x_{n}]_{g} \\
-		&+ \ldots \\
-		&+ [x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} [x_{n}]_{g}.
-	\end{align*}
-\end{prop}
-\begin{proof}
+As an another example one can give variant of the proof the Leibniz rule using the ideas from complex analysis.
+\begin{proof}[Alternate proof for the Leibniz rule for the divided differences]
 	Write Newton expansion for $f$ and $g$ with points reversed for $g$. The rest follows as in the final proof of Theorem (\ref{div_cauchy}).
 \end{proof}
 
@@ -329,75 +367,9 @@ Actually, we are not quite done yet. Cauchy's integral formula only works for an
 
 Of course there's nothing really special about the functional being linear, but the point is: if the $F : C^{n}(a, b) \to \R$ depends only $f$ and it's derivatives up to some fixed order at some finite set of fixed points, then we know $F$ just by knowing the values at polynomials.
 
-\begin{proof}[Rest of the proof of \ref{Leibniz_rule}]
+\begin{proof}[Rest of the alternate proof]
 	Note that if we expand the divided differences, we are almost in the situation of the lemma \ref{bootstrap_lemma}; now we just have product of two functions instead. Story is the same.
 \end{proof}
-
-\section{Why does this all work?}
-
-We have already seen how divided differences offer a nice tool for discussing derivatives, and complex analytic point of view has certainly reinforced this idea. One might (and should), however, wonder why does this all work?
-
-The reason is rather simple: $n$'th order divided difference is a certain weighted average of the $n$'th derivative. If $n = 1$ for instance, and $x < y$, we have
-\begin{align*}
-	[x, y]_{f} = \frac{1}{y - x}\int_{x}^{y} f'(t) dt = \int_{-\infty}^{\infty} \frac{\chi_{[x, y]}(t)}{y - x} f'(t) dt:
-\end{align*}
-first divided difference is average of the derivative over the interval $[x, y]$.
-
-When $n = 2$, plain average doesn't work anymore. How should one choose the weight $w_{x, y, z}$, such that
-\begin{align*}
-	[x, y, z]_{f} = \int_{-\infty}^{\infty} w_{x, y, z}(t) f^{(2)}(t) dt
-\end{align*}
-holds for any $f$?
-
-TODO (Also, rewrite the following section)
-
-We already noticed that the $n$:th divided differences of the form $[x, x, \ldots, x, y]_{f}$ can be written as an integral of $n$:th derivative of $f$ with some positive polynomial weight. This is no anomaly.
-
-\begin{lause}
-	Let $n > 1$, $a < x_{1} < \ldots < x_{n} < b$ and $1 \leq d_{1}, d_{2}, \ldots, d_{n}$, and denote $d = d_{1} + d_{2} + \ldots + d_{n} - 1$. Then there exits an unique function $w = w_{x_{1}, \ldots, x_{n}, d_{1}, d_{2}, \ldots, d_{n}} : \R \to \R$ with the following properties
-	\begin{enumerate}[(i)]
-		\item $w$ is supported on $[x_{1}, x_{n}]$
-		\item $w$ is polynomial of degree at most $d - 1$ on each of the intervals $[x_{i}, x_{i + 1}]$ for $1 \leq i \leq n - 1$
-		\item $w$ is $C^{d - 2 - d_{i}}$ at $x_{i}$ (if $d - 2 - d_{i} < 0$, (in which case necessarily $d - 2 - d_{i} = -1$), no continuity is required)
-		\item $w$ is non-negative
-		\item For every $f \in C^{d}(a, b)$ we have
-		\begin{align*}
-			[x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f} = \int_{\R} f^{(d)}(t) w(t) dt,
-		\end{align*}
-		where $x_{i}$ appears $d_{i}$ times.
-	\end{enumerate}
-	\begin{proof}
-		Standard bump function argument shows that should such $w$ exist, it is necessarily unique.
-
-		Take any $x_{0} \in (x_{1}, x_{n})$. For every $0 \leq j < d$ and $1 \leq i \leq n$ we can Taylor expand
-		\begin{align*}
-			f^{(j)}(x_{i}) &= f^{(j)}(x_{0}) + f^{(j + 1)}(x_{0})(x_{i} - x_{0}) + \ldots + \frac{f^{(d - 1)}(x_{0})}{(d - 1 - j)!} (x_{i} - x_{0})^{d - 1 - j} \\
-			&+ \int_{x_{0}}^{x_{i}} \frac{f^{(d)}(t)}{(d - 1 - j)!} (x_{i} - x_{0})^{d - 1 - j} dt.
-		\end{align*}
-		Since the divided differences can be written as a sum of such terms, we find $w$, and constants $c_{0}, c_{1}, \ldots, c_{d - 1}$ supported on $[x_{1}, x_{n}]$ such that
-		\begin{align*}
-			& [x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f} \\
-			&= \int_{\R} f^{(d)}(t) w(t) dt \\
-			&+  c_{0} f(x_{0}) + c_{1} f'(x_{0}) + \ldots + c_{d - 1} f^{(d - 1)}(x_{0})
-		\end{align*}
-		for every $f \in C^{d}(a, b)$. We claim that $w$ is the sought function.
-
-		Note that since the divided difference of order $d$ kills all polynomials of degree less than $d$, the constants $c_{i}$ are necessarily all zeros. Now clearly $w$ satisfies $(i), (iii)$ and $v$. Also $w$ at least almost satisfies $(ii)$: it might not be polynomial at $x_{0}$. This cannot happen, however, since by the uniqueness we could have picked different $x_{0}$ resulting to different point of non-polynomiality. To prove $(iv)$ note that should $w$ be negative, we can easily construct  function $f \in C^{d}(a, b)$ such that $f^{(d)} \geq 0$ and
-		\begin{align*}
-			0 > \int_{\R} f^{(d)}(t) w(t) dt = [x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{n}, \ldots, x_{n}]_{f},
-		\end{align*}
-		which clearly violates the mean value theorem.
-	\end{proof}
-\end{lause}
-If $n = 1$, $w$ fails to be a function, it is a delta measure at $x_{1}$.
-
-The functions $w$ are called \textit{Peano kernels} or \textit{B-splines}.
-
-TODO: pictures
-
-Peano kernels describe the precise sense in which divided differences are weak versions of $n$'th derivative. Of course on could also use more traditional weak approach using distributions, but here the nice thing is that our functionals are local. TODO
-
-There are various ways to express Peano kernels. TODO
 
 \section{$k$-tone functions}
 
@@ -458,6 +430,8 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 \end{proof}
 
 \section{Smoothness}
+
+TODO: prove the following with the locally uniform continuity trick.
 
 \begin{lause}
 	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n}(a, b)$, if and only if $n$:th divided difference of $f$ extends to continuous function on $(a, b)^{n + 1}$.

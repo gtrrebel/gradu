@@ -130,6 +130,11 @@ A.~Eremenko.
 \newblock Herbert stahl's proof of the bmv conjecture.
 \newblock {\em arXiv preprint arXiv:1312.6003}, 2013.
 
+\bibitem{Floater}
+M.~Floater and T.~Lyche.
+\newblock Two chain rules for divided differences and faa di bruno’s formula.
+\newblock {\em Mathematics of Computation}, 76(258):867--877, 2007.
+
 \bibitem{Franz}
 U.~Franz, F.~Hiai, and E.~Ricard.
 \newblock Higher order extension of {L}\"owner's theory: operator {$k$}-tone

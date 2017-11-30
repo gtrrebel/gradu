@@ -5,45 +5,45 @@ The style file: abbrv.bst
 Database file #1: gradu_main.bib
 Warning--empty school in Burgdorf
 Warning--empty school in Clivaz2
-You've used 61 entries,
+You've used 62 entries,
             2118 wiz_defined-function locations,
-            921 strings with 11151 characters,
-and the built_in function-call counts, 17819 in all, are:
-= -- 1842
-> -- 577
+            928 strings with 11300 characters,
+and the built_in function-call counts, 18152 in all, are:
+= -- 1877
+> -- 590
 < -- 6
-+ -- 242
-- -- 174
-* -- 1151
-:= -- 2978
-add.period$ -- 186
-call.type$ -- 61
-change.case$ -- 253
++ -- 247
+- -- 178
+* -- 1177
+:= -- 3033
+add.period$ -- 189
+call.type$ -- 62
+change.case$ -- 258
 chr.to.int$ -- 0
-cite$ -- 63
-duplicate$ -- 728
-empty$ -- 1533
-format.name$ -- 174
-if$ -- 3712
+cite$ -- 64
+duplicate$ -- 739
+empty$ -- 1560
+format.name$ -- 178
+if$ -- 3780
 int.to.chr$ -- 0
-int.to.str$ -- 61
-missing$ -- 71
-newline$ -- 309
-num.names$ -- 122
-pop$ -- 239
+int.to.str$ -- 62
+missing$ -- 72
+newline$ -- 314
+num.names$ -- 124
+pop$ -- 242
 preamble$ -- 1
-purify$ -- 207
+purify$ -- 211
 quote$ -- 0
-skip$ -- 497
+skip$ -- 505
 stack$ -- 0
-substring$ -- 1362
-swap$ -- 114
+substring$ -- 1392
+swap$ -- 115
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 218
+type$ -- 222
 warning$ -- 2
-while$ -- 205
-width$ -- 63
-write$ -- 662
+while$ -- 209
+width$ -- 64
+write$ -- 673
 (There were 2 warnings)
