@@ -28,7 +28,7 @@ This kind of function might be more properly called \textit{matrix increasing} b
 	How very inconvenient.
 \end{itemize}
 
-Of course, it's not really obvious how one should make any sense of these ``definitions''. One quickly realizes that there two things to understand.
+Of course, it's not really obvious how one should make any sense of these ``definitions''. There two things to understand.
 \begin{itemize}
 	\item How should matrices be ordered?
 	\item How should functions act on matrices?
@@ -37,13 +37,11 @@ Both of these questions can be (of course) answered in many ways, but for both o
 
 Just to give a short glimpse of how these things might be defined, we should first fix our ground field (for matrices): let's say it's $\R$, at least for now.
 
-For matrix ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We can't have everything. For instance it's not very hard to see that it is not possible to give notion of positivity on space of all real $n \times n$ matrices which respects similarity. If we give our space inner product, and restrict to a nice subspace of linear maps, called Hermitian maps, we can have a notion of positivity which respects unitary similarity.
+For matrix ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We can't have everything: For instance, it's not very hard to see that it is not possible to give notion of positivity on space of all real $n \times n$ matrices which respects similarity. If we give our space inner product, and restrict to a nice subspace of linear maps, called Hermitian maps, we can have a notion of positivity which respects unitary similarity.
 
-Matrix functions, i.e. ``how to apply function to matrix" is bit simpler to explain. Instead of doing something arbitrary the idea is to take real function (a function $f : \R \to \R$, say) and intepret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, and similarly analytic functions, or at least entire. Now, a perverse definition for matrix function for continuous functions would be some kind of a limit when function is uniformly approximated by polynomials (using Weierstrass approximation theorem). This works for Hermitian matrices, but one can do better: apply the function to the eigenvalues of the mapping to get another linear map.
+Matrix functions, i.e. ``how to apply function to matrix" is bit simpler to explain. Instead of considering arbitrary maps the idea is to take a real function ($f : \R \to \R$, say) and intepret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, and similarly analytic functions, or at least entire. Now, a perverse definition for matrix function for continuous functions would be some kind of a limit when function is uniformly approximated by polynomials (using Weierstrass approximation theorem). This works for Hermitian matrices, but one can do better: apply the function to the eigenvalues of the mapping to get another linear map.
 
-As it turns out, much of the study of matrix monotone and convex functions is all about understanding these definitions of positive maps and matrix functions.
-
-Lastly, one might wonder why should one be interested in the whole business of matrix monotone functions? It's all about point of view. Let's consider a very simple inequality:
+Lastly, one might wonder why should one be interested in the whole business of matrix monotone functions? It's all about point of view.\footnote{And there are some real applications too $\ldots$.} Let's consider a very simple inequality:
 
 For any real numbers $0 < x \leq y$ we have
 \[
@@ -59,9 +57,29 @@ For any two matrices $0 < A \leq B$ we have
 \]
 This is already not trivial, and with previous interpretation in mind, could this be interpreted as the functions $(x \mapsto \frac{1}{x})$ could be \textit{matrix decreasing}? And is this just a special case of something bigger? Yes, and that's exactly what this thesis is about.
 
-\section{Themes and structure}
+\section{Goals}
 
-One of the main themes in this thesis is the notion of \textit{closed salient cone}.
+Main goal of this thesis is to understand two basic results (theorems TODO and TODO) on matrix monotone functions, which read roughly as follows.
+
+\begin{lause}
+	If a function is matrix monotone for $n \times n$ matrices, then it is $C^{2 n - 3}$.
+\end{lause}
+
+\begin{lause}
+	If a function is matrix monotone for $n \times n$ matrices for every $n$, then it is analytic and extends analytically to upper half-plane.
+\end{lause}
+
+Both of these result can be turned to ``if and only" -characterizations, but let us ignore the technicalities for know. The giveaway is that matrix monotone functions are quite regular.
+
+Why is that? Where does regularity come from? The only thing we know about matrix monotone functions is essentially some positivity condition (difference of matrices being positive). The moral goal of the thesis is to explain that it is exactly the positivity that leads to regularity.
+
+\begin{phil}
+	Positiveness leads to regularity.
+\end{phil}
+
+\section{Positive objects}
+
+One of the main themes in this thesis is the notion of \textit{closed salient cone}. They work like sets of positive numbers.
 
 \begin{maar}
 	Let $V$ be a topological vector space over $\R$ or $\C$ and $C \subset V$. Then $C$ is \textit{closed salient cone} of $V$ if
@@ -74,11 +92,11 @@ One of the main themes in this thesis is the notion of \textit{closed salient co
 	\end{enumerate}
 \end{maar}
 
-Subsets of vector spaces satisfying the first one, two, three and four properties are called \textit{cones}, \textit{convex cones}, \textit{pointed cones} and \textit{salient cones}, respectively. To shorten terminology we call closed salient cones \textbf{\textit{proper cones}}.
+Subsets of vector spaces satisfying the first one, two, three and four properties are called \textit{cones}, \textit{convex cones}, \textit{pointed cones} and \textit{salient cones}, respectively. To shorten the terminology we call closed salient cones \textbf{\textit{proper cones}}, as is also somewhat customary.
 
 (Pictures of every possibility)
 
-Proper cones are an attempt to generalize the set of non-negative real numbers to a vector space. The first four conditions are pretty much direct translations of the axioms of non-negative numbers to vector spaces. The closedness condition is more of a convenience. In particular, every proper cone gives rise to partial order on the vector space. This makes the vector space (not surprisingly) \textit{ordered topological vector space}.
+As mentioned, proper cones are an attempt to generalize the set of non-negative real numbers to a vector space. The first four conditions are pretty much direct translations of the axioms of non-negative numbers to vector spaces. The closedness condition is more of a convenience. Every proper cone gives rise to partial order on the vector space. This makes the vector space (not surprisingly) \textit{ordered topological vector space}.
 
 \begin{maar}
 	Let $V$ be a topological vector space over $\R$ or $\C$ and $\leq \in V^{2}$ a relation on $V$. Then $(V, \leq)$ is \textit{ordered topological vector space} if
@@ -112,6 +130,8 @@ Conversely, for every ordered topological vector space $(V, \leq)$ the set $\{v 
 \begin{enumerate}
 	\item It's short.
 \end{enumerate}
+
+\section{Structure}
 
 The next four chapters are devoted to the four main proper cones of this thesis.
 

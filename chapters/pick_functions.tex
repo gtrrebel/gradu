@@ -1,10 +1,8 @@
 \chapter{Pick-Nevanlinna functions}
 
-\textit{Pick-Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative real part. Such functions are sometimes also called Herglotz or $\R$ functions but we will call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
+\textit{Pick-Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative imaginary part. Such functions are sometimes also called Herglotz or $\R$ functions; we will call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
 
-Pick functions have many interesting properties related to positive matrices and that is why they are central objects to the theory of matrix monotone functions.
-
-\section{Basic properties and examples}
+\section{Examples and basic properties}
 
 Most obvious examples of Pick functions might be functions of the form $\alpha z + \beta$ where $\alpha, \beta \in \R$ and $\alpha \geq 0$. Of course one could also take $\beta \in \Hpc$. Actually real constants are the only Pick functions failing to map $\Hp \to \Hp$: non-constant analytic functions are open mappings.
 
@@ -23,42 +21,85 @@ There are (luckily) more interesting examples: all the functions of the form $x^
 \end{eqnarray*}
 and $y$ and $\tanh(y)$ have the same sign.
 
-We observe the following useful fact.
+As one might have guessed by now, Pick functions are our set of ``positive analytic functions".
 
-\begin{prop}
-	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging locally uniformly, the limit function is also a Pick function.
-\end{prop}
+\begin{lause}
+	$\pickclass \subset \{\text{analytic maps on $\Hp$} \}$ is a proper cone.
+\end{lause}
 \begin{proof}
-	Locally uniform limits of analytic functions are analytic. Also the limit function has evidently non-negative imaginary part.
+	Again, since the evaluation functionals are continuous, we are essentially left to check that the fourth condition, i.e. we should prove that
+	\begin{align*}
+		\Im(\varphi) = 0 \Leftrightarrow \varphi = 0.
+	\end{align*}
+	And again, this isn't quite true, even for analytic functions. Imaginary part being constant merely implies that function is a real constant. Good enough.
 \end{proof}
 
-This is one of the main reasons we include real constants to Pick functions, although they are exceptional in many ways. Note that for any $z \in \Hp$ we have $\log(z) = \lim_{p \to 0^{+}}(z^p - 1)/p$: $\log$ can be understood as a limit of Pick functions.
+Again, one could instead consider the quotient space, analytic maps up to a constant, and we would have a proper cone, but this kind of thinking isn't bringing much to the discussion.
 
-There's a considerable strengthening of the previous result.
+So far we have made no mention on the topology, as it's usually taken to be the topology of locally uniform convergence. This definitely works (as it makes the evaluation functionals continuous), but we can do much better. It namely turns out that we can consider the set of Pick functions as a proper cone of $\C^{\Hp}$, set of all functions, with product topology.
 
 \begin{prop}\label{pick_convergence}
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-Note that this result far from clear: pointwise limits of analytic functions need not in general be analytic. We will not prove this result yet, but it strongly suggests that the class of Pick functions is very rigid in some sense.
+This result far from clear: pointwise limits of analytic functions need not in general be analytic. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals.
 
 \section{Rigidity}
 
 \subsection{Schur functions}
 
-To understand the rigidity phenomena we take look at the close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. These functions functions include for instance power functions $z \mapsto z^{n}$ and more generally, as one may check, any Blaschke products, that is products of the terms of the form
-\[
-	\rho_{a, \omega}(z) = \omega \frac{a - z}{1 - \overline{a} z},
-\]
-Blaschke factors. Classic fact about these functions is the Schwarz lemma.
+To understand the rigidity phenomena we take look at a close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
 
 \begin{lause}[Schwarz lemma]
 	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$ and hence also $|\psi'(0)| \leq 1$. If $|\psi(z)| = |z|$ for some $z \in \D \setminus \{0\}$ or $|\psi'(0)| = 1$, $\psi(z) = \omega z$ for some $\omega \in \mathbb{S}$.
 \end{lause}
 
-Fixing value of Schur function at $0$ restricts function a whole lot.
+The textbook proof is based on two observations about analytic functions.
+\begin{itemize}
+	\item If $\varphi$ is analytic at $a$ with $\varphi(a) = 0$, then $\varphi/(\cdot - a)$ is also analytic.
+	\item If $\varphi$ is analytic on closed unit disc and $|\varphi| \leq 1$ on the boundary of the disc, then $|\varphi| \leq 1$ inside the disc.
+\end{itemize}
 
-The usual proof is by cleverly using maximum modulus principle for $\psi(z)/z$. Maximum modulus principle itself is consequence of the Cauchy's integral formula. There's also more symmetric form for Schwarz lemma, called Schwarz-Pick theorem.
+The first observation might not be very surprising, and it holds for smooth functions also. The second, on the other hand, is a true manifestation of the nature of the analytic maps: we can bound analytic functions simply by bounding them on the boundary of the domain. More generally, one knows everything about an analytic function on a domain simply by knowing it on a boundary, by Cauchy's integral formula.
+
+This tells us that we should be able to recognize also Pick functions looking only at their boundary values. Actually even more is true: it suffices to look at the imaginary parts.
+
+\begin{prop}
+	Let $\varphi : U \to \C$ be analytic, such that $\overline{\Hp} \subset U$, and $\varphi$ is continuous at $\infty$. Then if the imaginary part of $\varphi$ is non-negative on the real axis, $\varphi$ is Pick function.
+\end{prop}
+\begin{proof}
+	This follows immediately from the minimum principle applied to the harmonic function $\Im(\varphi)$.
+\end{proof}
+
+Recall that imaginary part of an analytic function determines also its real part, up to a constant, so we can also recover the function itself. This can be also done explicitely.
+
+\begin{lause}
+	Let $\varphi : U \to \C$ be analytic, such that $\overline{\Hp} \subset U$, and $\varphi(z) = O(|z|^{-\varepsilon})$ for some $\varepsilon > 0$ at infinity. Then for any $z \in \Hp$ we have
+	\begin{align*}
+		\varphi(z) = \frac{1}{\pi}\int_{\R} \frac{\Im(\varphi)(\lambda)}{\lambda - z} d \lambda
+	\end{align*}
+\end{lause}
+\begin{proof}
+	Note that the integral defines an analytic function, imaginary part of which equals
+	\begin{align*}
+		\frac{\Im(z)}{\pi}\int_{\R} \frac{\Im(\varphi)(\lambda)}{(\lambda - z)(\lambda - \overline{z})} d \lambda.
+	\end{align*}
+	This expression however equals $\Im(\varphi(z))$ by Poisson integral formula.
+
+	Alternatively one could observe that for a closed counter clockwise oriented curves $\gamma $on the upper half-plane, enclosing $z$, we have
+	\begin{align*}
+		\varphi(z) = \frac{1}{2\pi i}\int_{\gamma} \frac{\varphi(\lambda)}{\lambda - z} d \lambda.
+	\end{align*}
+	Now given the bound, we may deform the contour to real axis. By comparing this identity and our goal, we are left to prove that
+	\begin{align*}
+		\frac{1}{2\pi i}\int_{\gamma} \frac{\overline{\varphi(\lambda)}}{\lambda - z} d \lambda = \frac{1}{2\pi i} \overline{\int_{\gamma} \frac{\varphi(\lambda)}{\lambda - \overline{z}} d \lambda}.
+	\end{align*}
+	But this is clear as $\varphi/(\cdot - \overline{z})$ is analytic in the upper half-plane.
+\end{proof}
+
+TODO
+
+Maximum modulus principle itself is consequence of the Cauchy's integral formula. There's also more symmetric form for Schwarz lemma, called Schwarz-Pick theorem.
 
 \begin{lause}[Schwarz-Pick theorem]
 	Let $\psi : \D \to \D$ be analytic. Then for any $z_{1}, z_{2} \in \D$ we have
@@ -69,7 +110,7 @@ The usual proof is by cleverly using maximum modulus principle for $\psi(z)/z$. 
 	\[
 		\frac{\left|\psi'(z_{1})\right|}{1 - |\psi(z_{1})|^2} \leq \frac{1}{1 - |z_{1}|^2}.
 	\]
-	If the equality holds in one of the inequalities, $\psi$ is an Blaschke factor.
+	If the equality holds in one of the inequalities, $\psi$ is a Blaschke factor.
 \end{lause}
 
 Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One may check that if $\psi$ is Blaschke factor, the inequalities hold as equalities.

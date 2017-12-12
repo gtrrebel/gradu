@@ -2,7 +2,7 @@
 
 \section{Motivation}
 
-As mentioned in the introduction, $k$-tone functions should correspond to the functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should this mean?
+As mentioned in the introduction, $k$-tone functions correspond to the functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should this mean?
 
 We already know the perfect answer for the case $k = 1$: $1$-tone functions should be the increasing functions.
 
@@ -29,27 +29,29 @@ While this proof by the mean value theorem works in more general setting, if $f 
 	\begin{align*}
 		\frac{f(y) - f(x)}{y - x} = \frac{1}{y - x}\int_{x}^{y} f'(t) dt = \int_{0}^{1} f'(t x + (1 - t) y) dt.
 	\end{align*}
-	Note that on the right-hand side one we have average of the derivative over the interval. This means that the claim can be translated to: continuous function is non-negative, if and only if its averages over all intervals are non-negative. But this is clear.
+	Note that on the right-hand side we have average of the derivative over the interval. This means that the claim can be translated to: continuous function is non-negative, if and only if its averages over all intervals are non-negative. But this is clear.
 \end{proof}
 
-This is really powerful point of view. While one would like to say the increasing functions are the functions with non-negative derivative, that's a bit of a lie. Instead, one can say that they are the functions whose derivative is non-negative average, and all the problems are gone. This should rougly mean that the derivative defines a positive distribution and it is hence a measure. Thus all increasing functions should be integrals of a positive measure (at least almost everywhere). Although this kind of thinking could be carried out, the details aren't important for us. The main point is that one should that think increasing functions, i.e. the $1$-tone functions are functions whose first derivative is a (positive) measure. The divided differences are an averaged (i.e. weak) way of talking about the positivity of the derivative (measure).
+This is really powerful point of view. While one would like to say the increasing functions are the functions with non-negative derivative, that's a bit of a lie. Instead, one can say that they are the functions whose derivative is non-negative on average, and all the problems are gone. This should rougly mean that the derivative defines a positive distribution and it is hence a measure. Thus all increasing functions should be integrals of a positive measure (at least almost everywhere). Although this kind of thinking could be carried out, the details aren't important for us. The main point is that one should think that increasing functions, i.e. the $1$-tone functions are functions whose first derivative is a (positive) measure. The divided differences are an averaged (i.e. weak) way of talking about the positivity of the derivative (measure).
 
 This is essentially distributional way of thinking, and we could keep going and end up with the whole business of weak derivatives and stuff. But we don't have to: the plain averages suffice. We write
 \begin{align*}
 	[x, y]_{f} := \frac{f(x) - f(y)}{x - y},
 \end{align*}
-and say that $[\cdot, \cdot]_{f}$ is the (first) divided difference of $f$. The domain of $[\cdot, \cdot]_{f}$ should naturally be $(a, b)^{2}$ minus the diagonal. And of course, if $f \in C^{1}$, we should extend $[\cdot, \cdot]_{f}$ to the diagonal, as the derivative. Divided differences then becomes a continuous function on the whole set $(a, b)^2$. Aside from capturing the first derivative, divided difference has two rather convenient properties.
+and say that $[\cdot, \cdot]_{f}$ is the (first) divided difference of $f$. The domain of $[\cdot, \cdot]_{f}$ should naturally be $(a, b)^{2}$ minus the diagonal. And of course, if $f \in C^{1}$, we should extend $[\cdot, \cdot]_{f}$ to the diagonal, as the derivative. Divided differences then becomes a continuous function on the whole set $(a, b)^2$.
+
+Aside from capturing the first derivative, divided difference has two rather convenient properties.
 
 \begin{itemize}
 	\item For given $x$ and $y$, $f \mapsto [x, y]_{f}$ defines a linear map, which is continuous if the domain ($\R^{(a, b)}$) has any reasonable topology (any topology finer than the topology of pointwise convergence, i.e. the product topology will do).
 	\item Divided differences are local in the sense that if $f$ and $g$ agree on $\{x, y\}$, divided differences agree; this observation readily implies the previous continuity claim.
 \end{itemize}
 
-These are the ways the divided differences are compromise between real derivative and the full distributional view. The first point says that one doesn't have worry too much, only about pointwise convergence, while the second says that things are still rather concrete (and it makes the life whole lotta easier).
+These are the ways divided difference is a compromise between the real derivative and the weak derivative. The first point says that one doesn't have worry too much, only about pointwise convergence, while the second says that things are still rather concrete (and it makes the life whole lotta easier).
 
-Now, the real power of this approach comes with larger $k$. What about the case $k = 2$? Again, we already know the perfect answer: $2$-tone functions should be the convex functions.
+The real power of this approach comes with larger $k$. What about the case $k = 2$? Again, we already know the perfect answer: $2$-tone functions should be the convex functions.
 
-\begin{lause}
+\begin{lause}\label{2-tone}
 	Let $f : (a, b) \to \R$ be twice differentiable. Then $f$ is convex, if and only if $f^{(2)}(x) \geq 0$ for every $x \in (a, b)$.
 \end{lause}
 
@@ -64,7 +66,7 @@ Now, the real power of this approach comes with larger $k$. What about the case 
 	\end{align*}
 	for some weight $w$. Note that if we manage to find such weight, which is non-negative (and positive enough), we would be done.
 
-	How to find the weight $w$? The idea is rather simple: we want to choose $f$ such that $f^{(2)} = \delta_{a}$ for $a \in \R$ (in some sense). Now, this should mean that $f(t) = (t - a)_{+} + c t + d$ for some $c, d \in \R$, where we write $t_{+} = \max(t, 0)$. Plugging this is on the left hand side we get
+	How to find the weight $w$? The idea is rather simple: we want to ``sieve out" the values of $w$ by choosing $f$ such that $f^{(2)} = \delta_{a}$ for $a \in \R$ (in some sense). Now, this should mean that $f(t) = (t - a)_{+} + c t + d$ for some $c, d \in \R$, where we write $t_{+} = \max(t, 0)$. Plugging this is on the left hand side we get
 	\begin{align*}
 		t (x - a)_{+} + (1 - t) (y - a)_{+} - (t x + (1 - t) y - a)_{+} = w(a).
 	\end{align*}
@@ -86,19 +88,17 @@ If $t \notin \{0, 1\}$, $-(z - y)(z - x)$ is positive, so if $f$ is convex,
 \[
 	\frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \geq 0
 \]
-for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This new expression is symmetric in its variables, so actually there's no need to assume anything on the fo $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction. If this expression is non-negative any distinct $x, y$ and $z$, $f$ is convex. This motivates us to define
+for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This new expression is symmetric in its variables, so actually there's no need to assume anything on the order of $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction: if the expression is non-negative for any distinct $x, y$ and $z$, $f$ is convex. This motivates us to define
 \[
 	[x, y, z]_{f} := \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)},
 \]
 the second divided difference of $f$.
 
-One would naturally expect that by setting
+One would hope that by setting
 \[ 
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} := \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})},
 \]
 one obtains something that naturally generalizes divided differences for higher orders. This is indeed the case.
-
-TODO: explain the contents of the following two sections.
 
 \section{Divided differences}
 
@@ -109,6 +109,8 @@ Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the correspo
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})}.
 \end{align*}
 \end{maar}
+
+We will soon prove that divided differences (of order $n$) are simply weighted averages of the $n$'th derivative.
 
 \subsection{Basic properties}
 
@@ -126,7 +128,7 @@ Divided differences have the following important properties.
 	Easy to check.
 \end{proof}
 
-The name ``divided differences" stems from the fact that the higher order divided differences are itself divided differences of lower order ones.
+The name ``divided differences" stems from the fact that the higher order divided differences are itself (usual) divided differences of lower order ones.
 
 \begin{prop}\label{nesting_property}
 	For any $f : (a, b) \to \R$ and pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have
@@ -163,7 +165,7 @@ We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{
 
 \subsection{Peano representation}
 
-Coming back to the original motivation, divided difference enjoys a integral representation for larger $n$, albeit somewhat more complicated.
+Coming back to the original motivation, divided differences enjoy an integral representation also for larger $n$, albeit somewhat more complicated.
 
 \begin{lause}\label{peano_theorem}
 	If $f \in C^{n}(a, b)$, then for any pairwise distinct $a < x_{0}, x_{1}, x_{2}, \ldots, x_{n} < b$ we have
@@ -177,12 +179,7 @@ Coming back to the original motivation, divided difference enjoys a integral rep
 	In addition, $w$ is non-negative, supported on $[\min(x_{i}), \max(x_{i})]$ and integrates to $(n!)^{-1}$.
 \end{lause}
 \begin{proof}
-	Note that the weight is simply the $n$'th divided difference of the map $g_{t, n} : x \mapsto \frac{1}{(n - 1)!}((x - t)_{+})^{n - 1}$. This is not very surprising: one should think that $w$ is the function whose $n$'th derivative is $\delta_{t}$. Now if $f = \sum_{i = 1}^{m} c_{i} g_{t_{i}, n}$, by linearity we have
-	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n}]_{f} &=\sum_{i = 1}^{m} c_{i} [x_{0}, x_{1}, \ldots, x_{n}]_{g_{t_{i}, n}} =\sum_{i = 1}^{m} c_{i} w(t_{i}) \\
-		&=\int_{\R} c_{i} \delta_{t_{i}} w(t) dt =\int_{\R} f^{(n)}(t) w(t) dt.
-	\end{align*}
-	While the previous argument could be pushed through, we take safer route. To prove that the formula even makes sense, we should prove the claim on the support. It is clear that $w$ is zero whenever $t \geq \max(x_{i})$. If on the other hand $t \leq \min(x_{i})$, $w(t)$ is simply a $n$'th divided difference of the map $x \mapsto \frac{1}{(n - 1)!}(x - t)^{n - 1}$, which is zero by the proposition \ref{lagrange_divided}.
+	Note that the weight is simply the $n$'th divided difference of the map $g_{t, n} : x \mapsto \frac{1}{(n - 1)!}((x - t)_{+})^{n - 1}$. This is not very surprising: one should think that $g_{t, n}$ is the function whose $n$'th derivative is $\delta_{t}$. Now if we plug in $f = g_{t, n}$, (as in the proof of \ref{2-tone}), we, at least morally, get the claim. While the previous argument could be pushed through, we take safer route. To prove that the formula even makes sense, we should prove the claim on the support. It is clear that $w$ is zero whenever $t \geq \max(x_{i})$. If on the other hand $t \leq \min(x_{i})$, $w(t)$ is simply a $n$'th divided difference of the map $x \mapsto \frac{1}{(n - 1)!}(x - t)^{n - 1}$, which is zero by the proposition \ref{lagrange_divided}.
 
 	We may hence repeatedly partially integrate the right-hand side:
 	\begin{align*}
@@ -199,7 +196,7 @@ Coming back to the original motivation, divided difference enjoys a integral rep
 
 	Applying the identity to $x \mapsto x^{n}$ shows the claim on the integral of $w$, so it remains to be shown that $w$ is non-negative.
 
-	This is very important property. It allows us to conclude that the $n$'th divided differences are really weighted averages the $n$'th derivatives. The property is also by no means trivial with large $n$.
+	This is very important property. It allows us to conclude that the $n$'th divided differences are really weighted averages of the $n$'th derivatives. The property is also by no means trivial for large $n$.
 
 	We prove the non-negativity by induction on $n$. The case $n = 1$ is clear. The idea is rather simple: we should prove that the functions $g_{t, n}$ has non-negative divided differences, which should rougly mean it has non-negative $n$'th derivative (being $\delta_{t}$). By the nesting property we have
 	\begin{align*}
@@ -218,7 +215,7 @@ Coming back to the original motivation, divided difference enjoys a integral rep
 
 The weight \ref{peano_weight} is called \textit{Peano kernel} (of order $n$, whenever there are $(n + 1)$ points). The points $x_{0}, x_{1}, \ldots, x_{n}$ are called the \text{nodes} of $w$.
 
-TODO: pictures of Peano Kernels
+TODO: pictures of Peano kernels
 
 As an very important corollary we get the following.
 
@@ -254,6 +251,22 @@ As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differ
 	[x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f^{(n)}(x_{0})}{n!},
 \end{align*}
 which together with \ref{divdif_rec} is enough to describe the divided differences with values of the function and its derivative.
+
+\subsection{Basis elements}
+
+There's very instructive alternate way to think about theorem \ref{peano_theorem}.
+
+\begin{lause}
+	Let $f \in C^{k}(a, b)$. Then for any $a < c \leq x \leq d < b$ we have
+	\begin{align*}
+		f(x) = f(c) + (x - c) f'(c) + \ldots + (x - c)^{k - 1} \frac{f^{(k - 1)}(c)}{(k - 1)!} + \int_{c}^{d} g_{t, k}(x) dt.
+	\end{align*}
+\end{lause}
+\begin{proof}
+	This is just a restatement of the usual Taylor expansion.
+\end{proof}
+
+The previous observation could have also be used to prove the identity \ref{peano_identity} itself. TODO green's function
 
 \subsection{Identities}
 
@@ -306,22 +319,6 @@ Many of the familiar identities for the derivatives have analogs with divided di
 	\end{enumerate}
 \end{proof}
 
-\begin{huom}
-	As Taylor expansion lead to Taylor series, one might wonder under which conditions do Newton expansions lead to Newton series. That is, under which conditions for analytic $f : U \to \C$ and a sequence $z_{0}, z_{1}, \ldots, z_{n}, \ldots \in \C$ and $z \in \C$ the following converges
-	\begin{align*}
-		f(z) &= [z_{0}]_{f} \\
-		&+ [z_{0}, z_{1}]_{f} (z - z_{0})\\
-		&+ [z_{0}, z_{1}, z_{2}]_{f} (z - z_{0}) (z - z_{1}) \\
-		&+ \ldots \\
-		&+ [z_{0}, z_{1}, z_{2}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n - 1}) \\
-		&+ \ldots
-	\end{align*}
-	If the points coincide we recover the usual Taylor expansion and from the \ref{taylor_expansion} we see that the Taylor series converges on disc $\D(z_{0}, r)$ if $\left|\frac{f^{(n)}}{n!}\right| \leq C/r^{n}$ for some $C > 0$. If $f$ is entire, we have such bound for every $r$ and the series converges everywhere. In a similar vein,
-	if $f$ is entire and $Z = (z_{i})_{i \geq 0}$ is bounded, also Newton series converges for every $z \in \C$, but if $Z$ is not bounded, series need not converge for any $z$ outside $Z$.
-
-	For other domains the question is more subtle, and it's closely related to logarithmic potentials and subharmonic functions. (?)
-\end{huom}
-
 \subsection{$k$-tone functions}
 
 All these observations are more than enough to verify that our definition of divided differences gives us suitable notion $k$-tone functions.
@@ -357,7 +354,7 @@ TODO: quotient topological vector space
 
 \subsection{Cauchy's integral formula}
 
-Complex analysis offers a nice view on divided differences: if $f$ is analytic, we may interpret divided differences contour integrals.
+Complex analysis offers a nice view on divided differences: if $f$ is analytic, we may interpret divided differences as contour integrals.
 
 \begin{lem}[Cauchy's integral formula for divided differences]\label{div_cauchy}
 If $\gamma$ is a closed counter-clockwise curve enclosing the numbers $x_{0}, x_{1}, \ldots, x_{n}$, we have
@@ -546,7 +543,7 @@ Even though the previous argument isn't exactly sound (at least given our curren
 The first step is to connect the divided differences of a function to the divided differences (of one lower order) of the derivative.
 
 \begin{lem}
-	Let $f \in C^{1}(a, b)$. Then for any (pairwise distinct) $x_{0}, x_{1}, \ldots, x_{n}$ we have
+	Let $f \in C^{1}(a, b)$. Then for any (pairwise distinct) $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have
 	\begin{align}\label{derivative_divdif}
 		[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f'} = \sum_{i = 0}^{n - 1} [x_{0}, x_{1}, \ldots, x_{i - 1}, x_{i}, x_{i}, x_{i + 1}, \ldots, x_{n - 1}]_{f}
 	\end{align}
@@ -565,7 +562,7 @@ The first step is to connect the divided differences of a function to the divide
 		&= \lim_{h \to 0} \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f(\cdot + h)} -[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f}}{h} \\
 		&= \lim_{h \to 0} \frac{[x_{0} + h, x_{1} + h, \ldots, x_{n - 1} + h]_{f} -[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f}}{h}.
 	\end{align*}
-	Now the approach is basically the same as with differentiation of multivariate functions: we write the difference as sum of $n$ differences.
+	Now the approach is basically the same as with differentiation of multivariate functions: we write the difference as sum of $n$ differences: the difference can be expressed as sum of differences where only one of the entries are changed at time.
 	\begin{align*}
 		& \lim_{h \to 0} \frac{[x_{0} + h, x_{1} + h, \ldots, x_{n - 1} + h]_{f} -[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f}}{h} \\
 		=& \lim_{h \to 0} \left(\frac{[x_{0} + h, x_{1} + h, \ldots, x_{n - 1} + h]_{f} - [x_{0} + h, x_{1} + h, \ldots, x_{n - 2} + h,  x_{n - 1}]_{f}}{h} \right. \\
@@ -578,6 +575,14 @@ The first step is to connect the divided differences of a function to the divide
 
 	First equality of second claim was already essentially proved in the proof of theorem \ref{peano_theorem}; the second is a simple computation.
 \end{proof}
+
+Note that the proof essentially gives also the following identity.
+\begin{prop}\label{total_derivative}
+	Let $x_{0}, x_{1}, \ldots, x_{n}$ and $y_{0}, y_{1}, \ldots, y_{n}$ be pairwise distinct points on $(a, b)$. Then for any $f : (a, b) \to \R$ we have
+	\begin{align*}
+		[y_{0}, y_{1}, \ldots, y_{n - 1}]_{f} - [x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} = \sum_{i = 0}^{n - 1} [x_{0}, \ldots, x_{i - 1}, x_{i}, y_{i}, y_{i + 1}, \ldots, y_{n - 1}]_{f} (y_{i} - x_{i}).
+	\end{align*}
+\end{prop}
 
 Next step is to connect the regularity of divided differences to regularity of divided differences of the derivative. Denote
 \begin{align*}
@@ -657,11 +662,7 @@ Just like one can carry regularity information, one can carry boundedness inform
 \begin{proof}
 	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $n$'th divided difference corresponds to $n$'th derivative, if it is bounded, $(n - 1)$'th derivative should be continuous. Thus we should prove that this is indeed the case by proving that $(n - 1)$'th divided differences of $f$ extend continuously to the whole of $(a, b)^{n}$.
 
-	Note that for any two sequences $(x_{0}, x_{1}, \ldots, x_{n - 1})$ and $(y_{0}, y_{1}, \ldots, y_{n - 1})$ of distinct elements we have
-	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [y_{0}, y_{1}, \ldots, y_{n - 1}]_{f} = \sum_{i = 0}^{n - 1} [x_{0}, \ldots, x_{i - 1}, x_{i}, y_{i}, y_{i + 1}, \ldots, y_{n - 1}]_{f} (x_{i} - y_{i}).
-	\end{align*}
-	This implies that the $(n - 1)$'th divided differences are Lipschitz. But Lipschitz functions can be always extended as Lipschitz functions, so we are done by lemma \ref{weaktoreal_lemma}.
+	Note that lemma \ref{total_derivative} immediately implies that $(n - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions can be always extended as Lipschitz functions, so we are done by lemma \ref{weaktoreal_lemma}.
 \end{proof}
 
 \begin{lause}\label{bounded_div}
@@ -680,13 +681,7 @@ Finally, one can carry positivity.
 	Let $f : (a, b) \to \R$ and $k \geq 3$. Then $f$ is $k$-tone, if and only if $f' \in C^{1}(a, b)$ and $f'$ is $(k - 1)$-tone.
 \end{lem}
 \begin{proof}
-	Again, only the claim on the regularity is non-trivial as the $k$-tone claim follows easily from  \ref{derivative_divdif} and \ref{integral_divdif}. As with the bounded case the idea is that if $f$ is $k$-tone $f^{(k)}$ is positive and hence $f^{(k - 1)}$ is increasing, and consequently locally bounded. We should hence prove that the $(n - 1)$'th divided differences are bounded, as then \ref{boundtoreal_lemma} would imply the claim.
-
-	To this end pick any $a < c < b$ and numbers $a < y_{0}, y_{1}, \ldots, y_{k - 1} < c$. Now for any $c < x_{0}, x_{1}, \ldots, x_{n - 1} < b$ we have
-	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [y_{0}, y_{1}, \ldots, y_{n - 1}]_{f} = \sum_{i = 0}^{n - 1} [x_{0}, \ldots, x_{i - 1}, x_{i}, y_{i}, y_{i + 1}, \ldots, y_{n - 1}]_{f} (x_{i} - y_{i}) \geq 0.
-	\end{align*}
-	This implies that the $(n - 1)$'th divided differences of $f$ are bounded from below on $(c, b)$. The proof for the upper bound is analogous, and we are hence done.
+	Again, only the claim on the regularity is non-trivial as the $k$-tone claim follows easily from  \ref{derivative_divdif} and \ref{integral_divdif}. As with the bounded case the idea is that if $f$ is $k$-tone $f^{(k)}$ is positive and hence $f^{(k - 1)}$ is increasing, and consequently locally bounded. We should hence prove that the $(n - 1)$'th divided differences are bounded, as then \ref{boundtoreal_lemma} would imply the claim. But this follow easily from \ref{total_derivative}.
 \end{proof}
 
 With such tools we are ready to tackle the regularity of $k$-tone functions.
