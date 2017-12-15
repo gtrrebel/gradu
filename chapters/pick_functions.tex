@@ -46,7 +46,7 @@ This result far from clear: pointwise limits of analytic functions need not in g
 
 \section{Rigidity}
 
-\subsection{Schur functions}
+\subsection{Boundary}
 
 To understand the rigidity phenomena we take look at a close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
 
@@ -84,7 +84,7 @@ Recall that imaginary part of an analytic function determines also its real part
 	\begin{align*}
 		\frac{\Im(z)}{\pi}\int_{\R} \frac{\Im(\varphi)(\lambda)}{(\lambda - z)(\lambda - \overline{z})} d \lambda.
 	\end{align*}
-	This expression however equals $\Im(\varphi(z))$ by Poisson integral formula.
+	This expression however equals $\Im(\varphi(z))$ by Poisson integral formula. By letting $z \to \infty$ one sees that also the real constants match.
 
 	Alternatively one could observe that for a closed counter clockwise oriented curves $\gamma $on the upper half-plane, enclosing $z$, we have
 	\begin{align*}
@@ -97,7 +97,62 @@ Recall that imaginary part of an analytic function determines also its real part
 	But this is clear as $\varphi/(\cdot - \overline{z})$ is analytic in the upper half-plane.
 \end{proof}
 
+Compare this with theorem \ref{basis_k-tone}: in both cases we can express a (regular enough) positive element ($k$-tone functions and Pick functions) as a linear combination of some kind of basis elements.
+
+There's of course nothing really special about the decay assumption $\varphi(z) = O(|z|^{-\varepsilon})$; it's there just to make everything converge.
+
+One can guarantee the convergence also by other means. Note that the integrand behaves like $\frac{1}{\lambda - z}$, if we subtract something from it something behaving the same way at the infinity (something not depending on $z$), we ought to improve convergence, but only change the value of the function by a constant. As an example, consider the integral
+\begin{align*}
+	\frac{1}{\pi}\int_{\R} \left(\frac{1}{\lambda - z} - \frac{[|\lambda| > 1]}{\lambda} \right) \Im(\varphi)(\lambda)d \lambda.
+\end{align*}
+It converges as long as, say, $ \Im(\varphi)$ is bounded to an analytic function. As before, its imaginary part coincides with $\varphi$'s so the functions equal up to a real constant. Now it's not clear however that the functions should equal and indeed they need not: the right-hand side doesn't see real constants.
+
+Note that the previous idea could be used to construct Pick functions. Everything still makes sense if we replace $\Im(\varphi)$ by some other positive function, as long as the integral converges. Heck, we could replace it by any positive measure for which $\mu((\lambda^2 + 1)^{-1}) < \infty$.
+
+(Almost) all the examples given before are actually just special cases of this construction. The rational functions $\frac{1}{\lambda - z}$, where $\lambda \in \R$ are obtained by setting $\mu = \delta_{\lambda}$. The power functions are obtained as
+\begin{align*}
+	z^{p} &= c_{0} + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) \Im(\lambda^{p}) d \lambda \\
+	&= c_{0} + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) |\lambda|^{p} \sin(\pi p) d \lambda,
+\end{align*}
+for some constant $c_{0}$ (which can be seen to be $1$ by setting $z = 1$. Logarithm is even simpler:
+\begin{align*}
+	\log(z) = \int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) d \lambda.
+\end{align*}
+Tangent function could be obtained by putting $\delta$-measures to the points of the form $\frac{\pi}{2} + n \pi$, where $n \in \Z$, the singularities of tangent.
+
+The only exception is the function $z \mapsto \alpha z$ -- it can't be expressed as such integral. But even this failure is really more about poor point of view, as we will see in a minute. With these observations in mind it ought to be not too surprising that we have the following.
+
+\begin{lause}\label{pick_nevanlinna_herglotz_representation_theorem}
+	$\varphi \in \pickclass$, if and only
+	\begin{align}\label{pick_representation}
+		\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \left(\frac{1}{\lambda - z} - \frac{\lambda}{\lambda^2 + 1}\right) d \mu(\lambda)
+	\end{align}
+	for some $\alpha \geq 0$ and $\beta \in \R$ and a Borel measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
+\end{lause}
+
+Choosing $\lambda \mapsto \frac{\lambda}{\lambda^2 + 1}$ is common choice in the literature and is convenient as
+\begin{itemize}
+	\item It's real. This is really not too big of a deal though, but it aids in keeping track with the real and imaginary parts.
+	\item We may recover the constant $\beta$ as $\Re(\varphi(i))$.
+\end{itemize}
+
+To better explain the appearance of the linear term, we can write the integral in a sligtly different form. Denoting $d \nu(\lambda) = \frac{d \mu(\lambda)}{\lambda^2 + 1}$, the formula reads
+\begin{align*}
+	\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \frac{\lambda z + 1}{\lambda - z} d \nu(\lambda).
+\end{align*}
+Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition, at least for know.
+
+\subsection{Pick functionals}
+
+
+
+
 TODO
+
+
+
+
+
 
 Maximum modulus principle itself is consequence of the Cauchy's integral formula. There's also more symmetric form for Schwarz lemma, called Schwarz-Pick theorem.
 
@@ -843,14 +898,6 @@ Of course, one could use Arzel\`{a}-Ascoli to prove the Montel's theorem in the 
 \section{Pick-Nevanlinna-Herglotz representation theorem}
 
 One cannot simply talk about Pick functions without discussing Pick-Nevanlinna-Herglotz representation theorem.\footnote{TODO: (other names) Schwarz integral formula, Poisson formula}
-
-\begin{lause}\label{pick_nevanlinna_herglotz_representation_theorem}
-	$\varphi \in \pickclass$, if and only
-	\begin{align}\label{pick_representation}
-		\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \left(\frac{1}{\lambda - z} - \frac{\lambda}{\lambda^2 + 1}\right) d \mu(\lambda)
-	\end{align}
-	for some $\alpha \geq 0$ and $\beta \in \R$ and a Borel measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
-\end{lause}
 
 Where does such representation come from? The representation \ref{pick_representation} tells us that every Pick function is essentially a sum functions of the form $\frac{1}{\lambda - z}$ (and an affine term). If $\varphi$ is bounded and extends over the real axis, this looks almost like Cauchy's integral formula but the beauty is that $\mu$ is real, while with Cauchy's integral formula we can't control the phase. TODO
 

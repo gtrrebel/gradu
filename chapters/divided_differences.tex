@@ -256,7 +256,7 @@ which together with \ref{divdif_rec} is enough to describe the divided differenc
 
 There's very instructive alternate way to think about theorem \ref{peano_theorem}.
 
-\begin{lause}
+\begin{lause}\label{basis_k-tone}
 	Let $f \in C^{k}(a, b)$. Then for any $a < c \leq x \leq d < b$ we have
 	\begin{align*}
 		f(x) = f(c) + (x - c) f'(c) + \ldots + (x - c)^{k - 1} \frac{f^{(k - 1)}(c)}{(k - 1)!} + \int_{c}^{d} g_{t, k}(x) dt.
@@ -266,7 +266,7 @@ There's very instructive alternate way to think about theorem \ref{peano_theorem
 	This is just a restatement of the usual Taylor expansion.
 \end{proof}
 
-The previous observation could have also be used to prove the identity \ref{peano_identity} itself. TODO green's function
+The previous observation could have also be used to prove the identity \ref{peano_identity} itself. This is a kind of result elegance of which would benefit from the quotient point of view: should we consider $k$-tone functions only up to polynomials of degree less than $k$, would we get rid of the first $k$ summands.
 
 \subsection{Identities}
 
