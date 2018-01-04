@@ -44,6 +44,8 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 
 This result far from clear: pointwise limits of analytic functions need not in general be analytic. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals.
 
+\section{The Goal}
+
 \section{Rigidity}
 
 \subsection{Boundary}
@@ -70,6 +72,8 @@ This tells us that we should be able to recognize also Pick functions looking on
 \begin{proof}
 	This follows immediately from the minimum principle applied to the harmonic function $\Im(\varphi)$.
 \end{proof}
+
+\subsection{Integral representations}
 
 Recall that imaginary part of an analytic function determines also its real part, up to a constant, so we can also recover the function itself. This can be also done explicitely.
 
@@ -114,7 +118,7 @@ Note that the previous idea could be used to construct Pick functions. Everythin
 	z^{p} &= c_{0} + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) \Im(\lambda^{p}) d \lambda \\
 	&= c_{0} + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) |\lambda|^{p} \sin(\pi p) d \lambda,
 \end{align*}
-for some constant $c_{0}$ (which can be seen to be $1$ by setting $z = 1$. Logarithm is even simpler:
+for some constant $c_{0}$ (which can be seen to be $1$ by setting $z = 1$). Logarithm is even simpler:
 \begin{align*}
 	\log(z) = \int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) d \lambda.
 \end{align*}
@@ -140,12 +144,51 @@ To better explain the appearance of the linear term, we can write the integral i
 \begin{align*}
 	\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \frac{\lambda z + 1}{\lambda - z} d \nu(\lambda).
 \end{align*}
-Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition, at least for know.
+Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition, at least for know. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
+
+We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem} results yet, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
 
 \subsection{Pick functionals}
 
+\begin{quest}
+	How can we recover the measure $\mu$ from the Pick function?
+\end{quest}
 
+If $\mu$ is given by a continuous, bounded function, i.e. $d \mu(\lambda) = f(\lambda) d \lambda$, it's not very hard to see that
+\begin{align*}
+	f(\lambda) = \frac{1}{\pi}\lim_{y \to 0^{+}} \Im(\varphi(\lambda + i y)).
+\end{align*}
 
+This doesn't however work with rational functions with poles on the real line. One might try to salvage the situation by saying that poles should correspond to $\delta$-measures, but even if that would be true in some sense, we are only scratching the surface. What to do if the measure is for instance the uniform measure on the Cantor set?
+
+Beauty of the measure theory is of course that we don't even need to make sense of the measure pointwise; everything is hidden in the averages. Could we recover the measures of open intervals then? Is it true that
+\begin{align*}
+	\mu((a, b)) = \lim_{y \to 0^{+}}\frac{1}{\pi}\int_{a}^{b} \Im(\varphi(\lambda + i y)) d \lambda?
+\end{align*}
+Even this isn't quite true: the problem is that if $\mu$ contains $\delta$-measure at $a$ or at $b$, the right-hand side doesn't see this properly. It turns out that this is only problem though.
+
+We have however already encountered much better averages: the imaginary part of a Pick function $\varphi$ is a weighted average of the imaginary parts of $\varphi$ on the real line. We only proved this in the case of bounded $\varphi$, and indeed, the proper generalization should be 
+\begin{align*}
+	\Im(\varphi(z)) = \alpha \Im(z) + \frac{\Im(z)}{\pi}\int_{\R} \frac{d \mu(\lambda)}{(\lambda - z)(\lambda - \overline{z})}.
+\end{align*}
+Bear in mind that we also consider the constant $\alpha$ be part of the measure. One can take this idea much further: if $q$ is any rational function with simple poles, no poles on $\R$, and decay $O(|z|^{-2})$ at infinity, the expression
+\begin{align*}
+	\int_{\R} q(\lambda) d \mu(\lambda)
+\end{align*}
+makes sense. Even better, partial fraction expansion allows us to write this integral in terms of as a linear combination of values of $\varphi$ and its conjugate. Indeed, partial fraction decomposition allows us to write $q$ as
+\begin{align*}
+	q(\lambda) = c_{0}\frac{\lambda}{\lambda^2 + 1} + \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right),
+\end{align*}
+where $a_{i}$'s are the poles of $q$. The decay condition tells that $c_{0} = 0$. If $\Im(a_{i}) > 0$, term corresponds to multiple of $\varphi(a_{i})$, and if $\Im(a_{i}) < 0$, we get the conjugate. Explicitly, if we abuse notation a tad by writing $\varphi(a_{i}) = \overline{\varphi(\overline{a_{i}})}$ if $\Im(a_{i}) < 0$, we have
+\begin{align*}
+	\int_{\R} q(\lambda) d \mu(\lambda) &= \int_{\R} \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right)\mu(\lambda) \\
+	&= \sum_{i = 1}^{M} c_{i} \left(\varphi(a_{i}) - \alpha a_{i} - \beta\right),
+\end{align*}
+which rewrites to
+\begin{align*}
+	\sum_{i = 1}^{M} c_{i} \varphi(a_{i}) &= \sum_{i = 1}^{M} c_{i} \left(\alpha a_{i} + \beta\right) + \int_{\R} q(\lambda) d \mu(\lambda).
+\end{align*}
+We can get some kind of glimpse of the measure just by looking at linear combinations of the values of Pick function.
 
 TODO
 
@@ -937,6 +980,7 @@ TODO:
 	\item Examples of representing measures behind functions and functions behind representing measures
 	\item Spectral commutant lifting theorem
 	\item Use Morera's theorem to prove weak Hindmarsh's theorem
+	\item Nice formula for finite Pick extension (rational function case)
 \end{itemize}
 
 

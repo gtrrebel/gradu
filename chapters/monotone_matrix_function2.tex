@@ -1,0 +1,742 @@
+\chapter{Monotone matrix functions}
+
+We already introduced monotone matrix functions in the introduction, but now that we have properly defined and discussed underlying structures we should take a deeper look. As mentioned, monotone matrix functions are sort of generalizations for the standard properties of reals, and this is why we should undestand which of the phenomena for the real functions carry to matrix functions and which do not.
+
+\section{Basic properties}
+
+We first state the definition.
+
+\begin{maar}
+	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H^{n}_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
+\end{maar}
+
+We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. Note that in the notation we don't specify the space $V$; it doesn't really matter.
+
+\begin{prop}
+	If $\dim(V) = \dim(V')$, then $f$ is $n$-monotone in $V$ if and only if it is $n$-monotone in $V'$.
+\end{prop}
+\begin{proof}
+	The reason is rather clear: inner product spaces of same dimension are isometric.
+\end{proof}
+
+One immediately sees that that all the matrix monotone functions are monotone as real functions.
+
+\begin{prop}
+	If $f \in P_{n}(a, b)$, then $f$ is increasing.
+\end{prop}
+\begin{proof}
+	Take any $a < x \leq y < b$. Now for $xI, yI \in \H^{n}_{(a, b)}$ we have $x I \leq y I$ so by definition
+	\[
+		f(x) I = f(xI) \leq f(y I) = f(y) I,
+	\]
+	from which it follows that $f(x) \leq f(y)$. This is what we wanted.
+\end{proof}
+
+Actually, increasing functions have simple and expected role in $n$-monotone matrices.
+
+\begin{prop}
+	Let $(a, b)$ be an open interval and $f : (a, b) \to \R$. Then the following are equivalent:
+	\begin{enumerate}[(i)]
+		\item $f$ is increasing.
+		\item $f \in P_{1}(a, b)$.
+		\item For any positive integer $n$ and commuting $A, B \in \H^{n}_{(a, b)}$ such that $A \leq B$ we have $f(A) \leq f(B)$ .
+	\end{enumerate}
+\end{prop}
+\begin{proof}
+	Since $1 \times 1$ matrices are for our purposes just reals, $(i) \Leftrightarrow (ii)$ is clear. Also if $(iii)$ holds, since in particular $x I$ and $y I$ commute for every $x, y$, if $x \leq y$, then $x I \leq y I$, and by assumption hence $f(x) I = f(x I) \leq f(y I) = f(y) I$ so $f(x) \leq f(y)$, which is to say that $f$ is increasing.
+
+	Let us then prove that $(i) \Rightarrow (iii)$. If $A \leq B$ and $A$ and $B$ commute, by theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} a_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{v_{i}}$ for some $a_{1}, \ldots, a_{n}, b_{1}, \ldots, b_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $a_{i} \leq b_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(a_{i}) P_{v_{i}}$ and $\sum_{i = 1}^{n} f(b_{i}) P_{v_{i}}$ so
+	\begin{align*}
+		f(B) - f(A) = \sum_{i = 1}^{n} (f(b_{i}) - f(a_{i})) P_{v_{i}}
+	\end{align*}
+	is positive, as $f$ is increasing.
+\end{proof}
+
+The equivalence of the first two is almost obvious and from this point on we shall identify $1$-monotone and increasing functions. But the third point is very important: it is exactly the non-commutative nature which makes the classes of higher order interesting.
+
+Let us then have some examples.
+
+\begin{prop}
+	For any positive integer $n$, open interval $(a, b)$ and $\alpha, \beta \in \R$ such that $\alpha \geq 0$ we have that $(x \mapsto \alpha x + \beta) \in P_{n}(a, b)$.
+\end{prop}
+\begin{proof}
+	Assume that for $A, B \in \H_{(a, b)}$ we have $A \leq B$. Now
+	\[
+		f(B) - f(A) = (\alpha B + \beta I) - (\alpha A + \beta I) = \alpha (B - A).
+	\]
+	Since by assumption $B - A \geq $ and $\alpha \geq 0$, also $\alpha (B - A) \geq 0$, so by definition $f(B) \geq f(A)$. This is exactly what we wanted.
+\end{proof}
+
+That was easy. It's not very easy to come up with other examples, though.
+
+One of the main properties of the classes of matrix monotone functions has still avoided our discussion, namely the relationship between classes of different orders. We already noticed that matrix monotone functions of all orders all monotonic, or $P_{n}(a,b) \subset P_{1}(a, b)$ for any $n \geq 1$. It should not be very surprising that we can make much more precise inclusions.
+
+\begin{prop}
+	For any open interval $(a, b)$ and positive integer $n$ we have $P_{n + 1}(a, b) \subset P_{n}(a, b)$.
+\end{prop}
+\begin{proof}
+	The idea is that if $\dim(V) \leq \dim(V')$, we can essentially find copy of $V$ in $V'$. If $A, B \in \H^{n}(V)$, we can augment $A$ and $B$ to $V' = V \oplus \C$ by setting $A' = A \oplus c$ for any $c \in \R$.
+
+	Now if $A \leq B$, by picking any $c \in \R$ we see that $(A \oplus c) \leq (B \oplus c)$. Consequently if $f \in P_{n + 1}(a, b)$, we have
+	\begin{align*}
+		f(A) \oplus f(c) = f(A \oplus c) \leq f(B \oplus c) = f(B) \oplus f(c),
+	\end{align*}
+	which implies that $f(A) \leq f(B)$.
+\end{proof}
+
+One might ask whether these inclusions are strict. It turns out they are, as long as our interval is not the whole $\R$. We will come back to this.
+
+There are also more trivial inclusions: $P_{n}(a, b) \subset P_{n}(c, d)$ for any $(a, b) \supset (c, d)$. More interval, more matrices, more restrictions, less functions. To be precise, we only allowed functions with domain $(a, b)$ to the class $P_{n}(a, b)$, so maybe one should say instead something like: if $(a, b) \supset (c, d)$ and $f \in P_{n}(a, b)$, then also $\restr{f}{(c, d)} \in P_{n}(c, d)$. We will try not to worry too much about these technicalities.
+
+\section{Successes}
+
+As expected, certain basic properties of monotone functions carry to matrix monotone.
+
+\begin{prop}
+	For any positive integer $n$ and open interval $(a, b)$ the set $P_{n}(a, b)$ is a convex cone, i.e. it is closed under taking summation and multiplication by non-negative scalars.
+\end{prop}
+
+\begin{proof}
+	This is easy: closedness under summation and scalar multiplication with non-negative scalars correspond exaclty to the same property of positive matrices.
+\end{proof}
+
+We shall be using especially the previous result a lot.
+
+Similarly we have composition and pointwise limits.
+
+\begin{prop}
+	If $f : (a, b) \to (c, d)$ and $g : (c, d) \to \R$ are $n$-monotone, so is $g \circ f : (a, b) \to \R$.
+\end{prop}
+\begin{proof}
+	Fix any $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. By assumption $f(A) \leq f(B)$ and $f(A), f(B) \in \H^{n}_{(c, d)}$ so again by assumption, $g(f(A)) \leq g(f(B))$, our claim.
+\end{proof}
+
+\begin{prop}
+	If $n$-monotone functions $f_{i} : (a, b) \to \R$ converge pointwise to $f : (a, b) \to \R$ as $i \to \infty$, also $f$ is $n$-monotone.
+\end{prop}
+\begin{proof}
+	As always, fix $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. Now by assumption
+	\[
+		f(B) - f(A) = \lim_{i \to \infty} f_{i}(B) - \lim_{i \to \infty} f_{i}(A) = \lim_{i \to \infty} \left(f_{i}(B) - f_{i}(A)\right) \geq 0,
+	\]
+	so also $f \in P_{n}(a, b)$.
+\end{proof}
+
+
+\section{Failures}
+
+Most of the common monotone functions fail to be matrix monotone. Let's try some non-examples.
+
+\begin{prop}
+	Function $(x \mapsto x^2)$ is not $n$-monotone for any $n \geq 2$ and any open interval $(a, b) \subset \R$.
+\end{prop}
+\begin{proof}
+	Let us first think what goes wrong with the standard proof for the case $n = 1$.
+
+	Note that if $A \leq B$,
+	\[
+		B^2 - A^2 = (B - A) (B + A)
+	\]
+	is positive as a product of two positive matrices (real numbers).
+
+	There are two fatal flaws here when $n > 1$.
+	\begin{itemize}
+		\item $(B - A) (B + A) = B^2-A^2 + (B A - A B)$, not $B^2 - A^2$.
+		\item Product of two positive matrices need not be positive.
+	\end{itemize}
+	Note that both of these objections result from the non-commutativity and indeed, both would be fixed should $A$ and $B$ commute.
+
+	Let's write $B = A + H$ ($H \geq 0$). Now we are to investigate
+	\[
+		(A + H)^2-A^2 = A H + H A + H^2.
+	\]
+	Note that $H^2 \geq 0$, but as we have seen in proposition \ref{symmetric_fail}, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. We are ready to formulate our proof strategy: find $A \in \H^{n}_{(a, b)}$ and $\Hp^{n}$ such that $A H + H A \ngeq 0$. Then choose parameter $t > 0$ so small that $A + t H \in \H^{n}(a,b)$ and
+	\[
+		(A + t H)^2 - A^2 = t (A H + H A + t H^2) \ngeq 0
+	\]
+	and set the pair $(A, A + t H)$ as the counterexample.
+	TODO (arbitrary intervals)
+\end{proof}
+
+As a corollary with get
+
+\begin{kor}\label{chimon}
+	The function $\chi_{(0, \infty)}$ is not $n$-monotone for any $n \geq 2$.
+\end{kor}
+
+\begin{proof}
+	If $\chi_{x > 0}$ were $n$-monotone so would be
+	\begin{align*}
+		x^2 = \int_{0}^{\infty} 2 t \chi_{(t, \infty)}(x) dt.
+	\end{align*}
+\end{proof}
+
+The function $\chi_{(0, \infty)}$ is in some sense canonical counterexample: every increasing function is more or less positive linear combination of its tranlates, so if monotone functions are not all matrix monotone, the reason is that it is not matrix monotone. For this reason we should really understand why it is not $n$-monotone for any $n > 1$.
+
+The idea is the following: we are going to construct $A, B \in \H^{2}$ with the following properties:
+\begin{enumerate}
+	\item $A \leq B$
+	\item $A$ and $B$ have both exactly one positive eigenvalue
+	\item $A$ and $B$ don't commute
+\end{enumerate}
+If we can do this, $A$ and $B$ work as counterexamples. Indeed then $\chi_{(0, \infty)}(A) = P_{v_{1}}$ and $\chi_{(0, \infty)}(B) = P_{w_{1}}$ where eigenvectors $v_{1}$ and $w_{1}$ are eigenvectors of $A$ and $B$ corresponding to positive eigenvalues. But $\chi_{(0, \infty)}(A) \not\leq \chi_{(0, \infty)}(B)$ by \ref{projection_order}.
+
+Constructing such pair is very easy: just take $A$ with eigenvalues $-1$ and $1$ and consider $B$ of the form $A + t H$ for some $H \geq 0$, $t > 0$ and such that $A$ and $H$ do not commute. For small enough $H$ all of the conditions are easily satisfied.
+
+As many properties of real numbers break with real maps, similarly many properties of monotone functions break when $n > 1$. As we saw with the square function example, product of two $n$-monotone functions need not be n-monotone in general, even if they are both positive functions. Similarly, taking maximums doesn't preserve monotonicity.
+
+\begin{prop}
+	Maximum of two $n$-monotone functions need not be $n$-monotone for $n \geq 2$.
+\end{prop}
+\begin{proof}
+	Again, let's think what goes wrong with the standard proof for $n = 1$.
+
+	Fix open interval $(a, b)$, positive integer $n \geq 2$ and two functions $f, g \in P^{n}(a, b)$. Take any two $A, B \in \H_{(a, b)}^{n}$ with $A \leq B$. Now $f(A) \leq f(B) \leq \max(f, g)(B)$ and $f(A) \leq f(B) \leq \max(f, g)(B)$. It follows that
+	\[
+		\max(f, g)(A) = \max(f(A), g(A)) \leq \max(f, g)(B),
+	\]
+	as we wanted.
+
+	Here the flaw is in the expression $\max(f(A), g(A))$: what is maximum of two matrices? This is an interesting question and we will come back to it a bit later, but it turns out that however you try to define it, you can't satisfy the above inequality.
+
+	We still need proper counterexamples though. Let's try $f \equiv 0$ and $g = \id$. So far the only $n$-monotone functions we know are affine functions so that's essentially our only hope for counterexamples.
+
+	But now it is rather easy to see that we can take same pair as with $\chi_{(0, \infty)}$ as our counterexample.
+\end{proof}
+
+The maximum problem is not too bad; similar statement doesn't hold for $k$-tone functions in general either and maybe it's more of a pleasent surprise that it holds for usual monotone functions, anyway. But there is very fundamental problem hidden in the square example.
+
+\begin{prop}
+	There exists no $\alpha > 0$, and an open interval $(a, b) \subset \R$ such that $\alpha x + x^{2} \in P_{n}(a, b)$.
+\end{prop}
+\begin{proof}
+	Adding linear term means just translating domain and codomain, which is not going to help: $x^2 + \alpha x = (x + \frac{\alpha}{2})^2 - \frac{\alpha^2}{4}$.
+\end{proof}
+
+Why is this bad? If $f : (a, b) \to \R$ is not too bad (say Lipschitz), for large enough $\alpha$ the function defined by $g(x) = f(x) + \alpha x$ is increasing. But we can't do necessarily do the same thing in the matrix setting even for smooth or analytic functions. Although this might not be such a big surprise or a bad thing in the first place, it is worthwhile to investigate the underlying reason.
+
+Consider the case of entire $f$ and take $A, H \in \H^{n}_{(a, b)}$ with $H \geq 0$. As observed earlier, we have
+\begin{align*}
+	\lim_{t \to 0} \frac{f(A + t H) - f(A)}{t} &= a_{1} H \\
+	&+ a_{2} (H A + A H) \\
+	&+ a_{3} (H A^2 + A H A + A^2 H) \\
+	&+ \ldots.
+\end{align*}
+In the real setting we could just increase $a_{1}$ to make the previous expression positive. In the matrix setting there is a problem: note that if $H$ is of rank $1$, increasing $a_{1}$ means ``increasing the right-hand side only to one direction". The point is that if the right-hand side is not positive (map) in the first place, it might be (a priori) non-positive in a big subspace, so rank $1$ machinery is not going to save the day.
+
+On the other hand if $n = 2$, for instance, there is not too much room for things to go south. We still, a priori, can't guarantee positivity with $a_{1}$, but buffing first few Taylor coefficients starts to somehow affect the whole space.
+
+When $n$ gets larger we have more and more space to worry about, so we should start worrying about more and more Taylor coefficients.
+
+This is all just heuristics, but it leads us to expect two things:
+
+\begin{enumerate}
+	\item Something about things getting worse when $n$ get larger
+	\item Something about things being not too bad when $n$ is fixed as there is not too much space.
+\end{enumerate}
+
+We will later see that both of these phenomena occur.
+
+\section{Pick functions are matrix monotone}
+
+Fortunately the affine functions are not the only matrix monotone functions. We have already discussed a second example.
+
+\begin{prop}
+	We have $(x \mapsto -x^{-1}) \in P_{n}(a, b)$ for any $(a, b) \not\ni 0$ and $n \geq 1$.
+\end{prop}
+\begin{proof}
+	The result follows immediately from the theorem \ref{inverse_decreasing}.
+\end{proof}
+
+Now also the tranlations $(x \mapsto \frac{1}{\lambda - x}) \in P_{n}(a, b)$ for any $n \geq 1$ and $(a, b) \not\ni \lambda$ so by the cone property also all the functions of the form
+\begin{align}\label{finite_pick}
+	x \mapsto \alpha x + \beta + \sum_{i = 1}^{m} \frac{t_{i}}{\lambda_{i} - x}
+\end{align}
+are $n$-monotone on $(a, b)$ for any $n \geq 1$, $\alpha, t_{1}, t_{2}, \ldots, t_{m} \geq 0$ and $\beta, \lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ where $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m} \not\in (a, b)$.
+
+Taking pointwise limits we arrive at
+
+\begin{lause}
+	If $f \in P(a, b)$, then $f \in P_{n}(a, b)$ for every $n \geq 1$.
+\end{lause}
+\begin{proof}
+	The reason is of course that every element of $P(a, b)$ is pointwise limit of the functions of the form \ref{finite_pick}. Why is that exactly? One should be a bit careful as things aren't compactly supported. TODO (explain why everything is compact afterall)
+\end{proof}
+
+\section{Derivative and Loewner's characterization}
+
+As in the real case, also in the matrix world we may characterize monotonicity with derivatives.
+
+\begin{lause}\label{monotone_derivative}
+	Let $f \in C^{1}(a, b)$ and $n \geq 1$. Then the following are equivalent:
+	\begin{enumerate}[(i)]
+	\item $f \in P_{n}(a, b)$.
+	\item For any $A \in \H^{n}_{(a, b)}$ and $H \geq 0$ we have
+	\[
+		D^{1}_{n}f_{A}(H) \geq 0.
+	\]
+	\item For any $A \in \H^{n}_{(a, b)}$ and $P$ one dimensional (orthogonal) projection we have
+	\[
+		D^{1}_{n}f_{A}(P) \geq 0.
+	\]
+	\item For any $A \in \H^{n}_{(a, b)}$, $H \geq 0$ and $v \in V$ the map
+	\[
+		t \mapsto \langle f(A + t H) v, v \rangle
+	\]
+	is increasing.
+	\item For any $A \in \H^{n}_{(a, b)}$, $P$ one dimensional (orthogonal) projection and $v \in V$ the map
+	\[
+		t \mapsto \langle f(A + t P) v, v \rangle
+	\]
+	is increasing.
+	\end{enumerate}
+\end{lause}
+\begin{proof}
+	$(i) \Leftrightarrow (ii)$ follows from Spectral theorem linearity of $D^{1}_{n}$, and $(iii) \Leftrightarrow (iv)$ from Spectral theorem. One also easily sees that the derivative of the map
+	\[
+		t \mapsto \langle f(A + t H) v, v \rangle
+	\]
+	is the map
+	\[
+		t \mapsto \langle D^{1}_{n}f_{A}(H) v, v \rangle
+	\]
+	so also $(i) \Leftrightarrow (iii)$ is clear.
+\end{proof}
+
+We already noticed that we can express $D^{1}_{n}f_{A}(H) = ([\lambda_{i}, \lambda_{j}]_{f})_{1 \leq i, j \leq n}\circ H$, where Hadamard product is taken along eigenbasis of $A$. We can however make the following simple observation:
+
+\begin{lem}
+	Let $A \in \H$. Then $A \geq 0$, if and only if $A \circ B$ for every $B \geq 0$.
+\end{lem}
+
+\begin{proof}
+	If the Hadamard product is along $(e_{i})_{1 \leq i \leq n}$, we have $A = A \circ \left(\sqrt{n} P_{\frac{1}{\sqrt{n}}\sum_{1 \leq i \leq n} e_{i}} \right)$, and hence have the ``if". Note that for only if we only need to verify the inequality for $A$ and $B$ both one dimensional projections. But now one easily sees that $A \circ B$ is non-negative multiple of projection.
+\end{proof}
+
+We hence have the following characterization.
+
+\begin{lause}\label{loewner_char}
+	$f \in P_{n}(a, b) \cap C^{1}(a, b)$, if and only if the matrix
+	\begin{align}\label{Loewner_matrix}
+		\left([\lambda_{i}, \lambda_{j}]_{f}\right)_{i, j} \geq 0
+	\end{align}
+	for any $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in (a, b)$.
+\end{lause}
+
+This is the original characterization by Loewner, and it is pretty much just saying that function is matrix monotone if its (matrix) derivative is positive. The matrix \ref{Loewner_matrix} is called, appropriately, Loewner matrix (of function $f$ on points $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$). Using the characterization it is in general not very easy to check that the function is $n$-monotone: we would have to check positivity of the matrix for any tuple on the interval. Also the characterization is not local one: in order to check monotonicity we need to know the behaviour on the whole interval. This is just a reflection of the fact that the space in which we are working on, space of real maps, is itself in a way spread around the interval.
+
+\section{Local characterization}
+
+It nevertheless turns out that $n$-monotonicity is a local property.
+
+\begin{prop}
+	For any $n \geq 1$, $P_{n}$ is a local property meaning that whenever $f \in P_{n}(a, b)$ and $P_{n}(c, d)$ for some $a < c < b < d$, then also $f \in P_{n}(a, d)$.
+\end{prop}
+
+The reason for this is hidden in the Loewner matrix.
+
+Note that Loewner matrix is essentially something we saw before: it is just a Pick matrix when all the points are on the real line. We observed before that positivity of the Pick matrix was some kind of manifestation of the strength of the Cauchy's integral formula. Namely, if $f$ happens to analytic, in some suitable set, we can write
+\begin{align*}
+	\left([\lambda_{i}, \lambda_{j}]_{f}\right)_{i, j} = \frac{1}{2 \pi i}\int_{\gamma} \frac{f(z)}{(z - \lambda_{i})(z - \lambda_{j})} dz.
+\end{align*}
+Now the positivity the matrix means that for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ the quantity
+\begin{align*}
+	\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} [\lambda_{i}, \lambda_{j}]_{f} = \frac{1}{2 \pi i}\int_{\gamma}f(z) \left(\sum_{1 \leq i \leq n} \frac{c_{i}}{z - \lambda_{i}}\right) \left( \sum_{1 \leq i \leq n} \frac{\overline{c_{i}}}{z - \lambda_{i}}\right)dz.
+\end{align*}
+But here's the trick: we may write
+\begin{align*}
+	\sum_{1 \leq i \leq n} \frac{c_{i}}{z - \lambda_{i}} = \frac{q(z)}{\prod_{1 \leq i \leq n} (z - \lambda_{i})} = \frac{q(z)}{p_{\Lambda}(z)}
+\end{align*}
+for some polynomial of degree less than $n$, and indeed, if the $\lambda$'s are distinct there's a one-to-one correspondence between polynomials $q$ and the $\lambda$'s. It follows that we may rewrite the integral as
+\begin{align*}
+\frac{1}{2 \pi i}\int_{\gamma}f(z) \frac{q(z) \overline{q(\overline{z})}}{p_{\Lambda}(z)^2}dz.
+\end{align*}
+Note that $z \mapsto q(z)\overline{q(\overline{z})})$ is a polynomial of degree at most $(2 n - 2)$ non-negative on the real line. Easy application of the Fundamental theorem of algebra reveals that all such polynomials are actually of the previous form.
+
+\begin{lem}\label{polynomial_lemma}
+	$h$ is polynomial of degree at most $(2 n - 2)$ non-negative on $\R$, if and only if it is of the form $p(z) \overline{p(\overline{z})}$ for some complex polynomial of degree of at most $(n - 1)$.
+\end{lem}
+\begin{proof}
+	It is easy to see that all of the polynomials of the specific form fit the bill. Conversely, if $h$ is non-negative on real axis, it's roots all appear in pairs: either with strict complex conjugate pairs, of pairs of double real roots. We may take $p$ to be $\sqrt{a_{n}}\prod (z - z_{i})$ where $z_{i}$ range over representatives of all the pairs and $a_{n}$ is the leading coefficient of $h$.
+\end{proof}
+
+Write $h(z) = q(z)\overline{q(\overline{z})})$.
+
+Finally note that resulting expression,
+\begin{align*}
+\frac{1}{2 \pi i}\int_{\gamma}f(z) \frac{h(z)}{p_{\Lambda}(z)^2}dz
+\end{align*}
+is nothing but the divided difference of the function $f h$ at points $\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}$. By \ref{bootstrap_lemma} this extends to all $C^{1}(a, b)$. We would like to conclude that $f h$ is $(2 n - 1)$-tone, but unfortunately we only know the non-negativity of the divided differences of order $(2 n - 1)$ special sets of tuples. It however turns out that this is enough, as can be seen by using the same trick as in the proof of theorem \ref{bounded_div}.
+
+\begin{lem}
+	Let $k$ and $n$ be positive integers and $d_{1}, d_{2}, \ldots, d_{m}$ be positive integers with $d_{1} + d_{2} + \ldots + d_{m} = k + 1$. Assume that $n \geq \left(\max_{1 \leq i \leq m} d_{i} \right) - 1$. Let $f \in C^{n}(a, b)$. Then the following are equivalent.
+	\begin{enumerate}[(i)]
+		\item $f$ is $k$-tone.
+		\item For any $a < x_{1} < x_{2} < \ldots < x_{m} < b$ we have
+		\begin{align*}
+			[x_{1}, x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{m}, \ldots, x_{m}]_{f} \geq 0
+		\end{align*}
+		where $x_{i}$ appears $d_{i}$ times.
+	\end{enumerate}
+\end{lem}
+
+\begin{proof}
+	$(i) \Rightarrow (ii)$ is clear.
+
+	For the other direction let's take any $a < y_{1} < y_{2} < \ldots < y_{n} < y_{n + 1} < b$. We need to prove that
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{k}, y_{k + 1}]_{f} \geq 0.
+	\end{align*}
+	The idea is to bunch the variables together using the mean value theorem.
+
+	Let's consider the function $g_{1}(x) = [x, y_{d_{1} + 1}, y_{d_{1} + 2}, \ldots, y_{k + 1}]_{f}$. In terms of $g_{1}$ we need to prove that
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{d + 1}]_{g_{1}} \geq 0.
+	\end{align*}
+	Since $f \in C^{d_{1} - 1}(a, b)$, $g_{1} \in C^{d_{1} - 1}(a, y_{d_{1} + 1})$ and hence by the mean value theorem we have
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{d_{1}}]_{g} = [x_{1}, x_{1}, \ldots, x_{1}]_{g_{1}}
+	\end{align*}
+	for some $a < x_{1} < y_{d + 1}$. Consequently,
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{k}, y_{k + 1}]_{f} = [x_{1}, x_{1}, \ldots, x_{1}, y_{d_{1} + 1}, \ldots, y_{k + 1}]_{f}.
+	\end{align*}
+	Next step is to bunch together the next $d_{2}$ terms: consider now the map $g_{2}(x) = [x_{1}, x_{1}, \ldots, x_{1}, x, y_{d_{1} + d_{2} + 1, \ldots, y_{k + 1}}]_{f}$ and observe that we are to verify that
+	\[
+		[y_{d_{1} + 1}, \ldots, y_{d_{1} + d_{2}}]_{g_{2}} \geq 0.
+	\]
+	Again use mean value theorem to replace $y_{d_{1} + 1}, \ldots, y_{d_{1} + d_{2}}$ by $x_{2}$'s.
+
+	One should be bit careful here: the number $x_{1}$ certainly depends on all the $y$'s, so once we have fixed it we can't say that
+	\begin{align*}
+		[y_{d_{1} + 1}', y_{d_{1} + 2}', \ldots, y_{d_{1} + d_{2}}']_{g_{2}} = [y_{1}, \ldots, y_{d_{1}}, y_{d_{1} + 1}', \ldots, y_{d_{1} + d_{2}}', y_{d_{1} + d_{2} + 1}, \ldots, y_{k + 1}]_{f},
+	\end{align*}
+	for instance, anymore. This is of course not a problem.
+
+	Making $m$ steps of the previous form we finally find numbers $x_{1}, x_{2}, \ldots, x_{m}$ such that
+	\begin{align*}
+		[y_{1}, y_{2}, \ldots, y_{k}, y_{k + 1}]_{f} = [x_{1}, x_{1}, \ldots, x_{1}, x_{2}, \ldots, x_{2}, \ldots, x_{m}, \ldots, x_{m}]_{f} \geq 0
+	\end{align*}
+	and we are done.
+\end{proof}
+
+We have hence the following.
+
+\begin{lause}
+	Let $n \geq 1$ and $f \in C^{1}(a, b)$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on real line. 
+\end{lause}
+
+This result has a curious corollary.
+
+\begin{kor}\label{k_tone_cor}
+	If $n \geq 1$ and $f h$ is $(2 n + 1)$:tone for every polynomial $h$ of degree at most $2 n$, then $f h$ is $(2 n - 1)$-tone for every polynomial $h$ of degree at most $(2 n - 2)$. In particular $f$ is $k$-tone for every $k = 1, 3, 5, \ldots, 2n - 3, 2 n - 1, 2n + 1$.
+\end{kor}
+Although we strictly speaking only proved this corollary for $f \in C^{1}$, it holds true without extra assumptions, as can be seen with the following alternate proof.
+
+\begin{proof}[Proof of corollary \ref{k_tone_cor}]
+	Take any $h$, a polynomial of at most $(2 n - 2)$ non-negative on real axis and points $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n} < b$. We should prove that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \geq 0.
+	\end{align*}
+	The idea is the following: if $f$ is $C^{1}$, we have
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} = [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t, t]_{f h (\cdot - t)^2} \geq 0,
+	\end{align*}
+	Now, actually $f h (\cdot - t)^2$ is always differentiable at $t$, so the previous at least should hold without the smootness TODO, but one can take safer route.
+	For any $a < t, s < b$ we have
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, t, s]_{f h (\cdot - t)^2} \geq 0.
+	\end{align*}
+	Expanding this Leibniz rule leads to
+	\begin{align*}
+		0 &\leq [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
+		&+ (s - t) [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s]_{f h}
+	\end{align*}
+	But by choosing $t$ and $s$ suitably we can definitely make the second term non-positive, so the first term is non-negative, as we wanted. Indeed choose first arbitrary $s$ and then choose $t$ on $(a, s)$ or on $(s, b)$, depending on the sign of the divided difference. Or if one so prefers, we have
+	\begin{align*}
+		& 2 [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}]_{f h} \\
+		=& [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s + r, s]_{f h (\cdot - s - r)^2} \\
+		+& [\lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n}, s - r, s]_{f h (\cdot - s + r)^2}
+	\end{align*}
+	for small enough $r$.
+
+	Final claim follows by setting $h \equiv 1$.
+\end{proof}
+
+\section{Regularity}
+
+Finally, one might ask whether we can get rid of $C^{1}$-assumption, and it turns out that we can. This leads to question: why should matrix monotone functions be $C^{1}$? Why should they be even continuous?
+
+The continuity question we actually almost answered previously. There are not very many ways increasing function can be discontinuous. For every increasing function we have $\lim_{t \to 0^{-}} f(t) \leq f(0) \leq \lim_{t \to 0^{+}} f(t)$, and discontinuity means that at least one of the inequalities is strict. Thus every discontinuous increasing function looks like step function at discontinuity.
+
+\begin{lem}
+	Let $f \in P_{n}(a, b)$ for some $n > 1$. Then $f$ is continuous.
+\end{lem}
+\begin{proof}
+	Without loss of generality it suffices to check the continuity at $0$. We may decompose $f(t) = c(t) +  c_{1} \chi_{\{x > 0\}}(t) + c_{2} \chi_{\{x = 0\}}(t)$, where $c$ is continuous at $0$, and $0 \leq c_{2} \leq c_{1}$. We aim to prove that $c_{1} = 0$, in which case $f$ is also continuous at $0$.
+
+	As in the proof of corollary \ref{chimon} we $A \leq B$ (with non-zero eigenvalues) such that $\chi_{x > 0}(A) \not\leq \chi_{x > 0}(B)$. Now for small enough $t > 0$, we have $t A, t B \in \H_{(a, b)}$ and we have
+	\begin{align*}
+		f(t B) - f(t A) &= c(t B) - c(t A) \\
+		&+ c_{1} \left(\chi_{\{x > 0\}}(t B) - \chi_{\{x > 0\}}(t A)\right) \\
+		&+ c_{2} \left(\chi_{\{x = 0\}}(t B) - \chi_{\{x = 0\}}(t A) \right)
+	\end{align*}
+	The last difference vanishes as $t A$ and $t B$ have non-zero eigenvalues. By continuity of $c$ the first difference tends to zero with decreasing $t$. The second difference is independent of $t$, so as $f \in P_{n}(a, b)$, we conclude that
+	\begin{align*}
+		c_{1} \left(\chi_{\{x > 0\}}(B) - \chi_{\{x > 0\}}(A)\right) \geq 0,
+	\end{align*}
+	which is only possible if $c_{1} = 0$.
+\end{proof}
+
+Differentiablity is much more subtle however. Using similar ideas one could prove the matrix monotone function cannot have corners, i.e. cannot look locally like multiple of absolute value $+$ affine function (up to first order), but there are far worse ways in which continuous function can be non-differentiable.
+
+This is the point where divided differences come in. If one interprets matrix monotonicity solely with formulas, function being matrix monotone just means that some special set of linear combinations of the function values are positive. But this is precisely the type of condition we had with $k$-tone functions, and regularity started appearing. It is hence not such a big surprise that there should be some kind smoothness going on.
+
+\section{Main Theorem}
+
+\begin{lause}\label{main_theorem}
+	Let $n \geq 1$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on the real line. 
+\end{lause}
+\begin{proof}
+	For the version with extra assumption, the starting point was to take derivative of the matrix function. Although we now cannot do that, we can try to replicate the proof otherwise.
+
+	Instead of proving that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}]_{f h} \geq 0
+	\end{align*}
+	for any $a < \lambda_{1}, \lambda_{2}, \ldots, \lambda_{n - 1}, \lambda_{n} < b$, we should prove that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0.
+	\end{align*}
+	$\lambda$'s should be eigenvalues of some map, but now there are $2 n$ of them. Natural guess would be that they are eigenvalues of two maps, $A$ and $B$.
+
+	But now everything starts to make sense: whenever $A$, $B$ with $A \leq B$ and $w \in V$ the quantity
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle
+	\end{align*}
+	is non-negative. On the other hand this can be expanded as some kind of linear combination of values of $f$ at eigenvalues of $A$ and $B$. Same is true for the divided differences, so there might be a chance to choose $A$, $B$ and $w$ such that
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
+	\end{align*}
+	Moreover, should we find some kind of correspondence between triplets $(A, B, w)$ and pairs $((\lambda_{i})_{i = 1}^{2 n}, h)$, we would be done. This is the content of the main lemma.
+
+	\begin{lem}\label{main_lemma}
+		If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $h$ is polynomial of degree at most $(2 n - 2)$ non-negative on the real line, we may find a strict projection pair $(A, B)$ such that
+		\begin{align*}
+			\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}
+		\end{align*}
+		for any $f : (a, b) \to \R$.
+
+		Conversely, if $(A, B)$ is a strict projection pair and $w \in V$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $h$ of degree at most $(2 n - 2)$, non-negative on the real line such that for any $f : (a, b) \to \R$ we have
+		\begin{align*}
+			\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
+		\end{align*}
+	\end{lem}
+
+	Before proving the lemma we show how it implies the theorem.
+
+	Assume first that $f \in P_{n}(a, b)$. We need to prove that $f h$ is $(2 n - 1)$-tone for any $h$ polynomial of degree at most $(2 n - 2)$ non-negative on real line. But any divided difference of such $f h$ can be expressed by the main lemma \ref{main_lemma} as $\langle (f(B) - f(A)) w, w \rangle$ for some projection pair $(A, B)$, and the previous is non-negative by the assumption.
+
+	Conversely, assume that $f h$ is $(2 n - 1)$-tone for any suitable $h$ and take any $A \leq B$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$, as $f(B) - f(A)$ is sum of such terms. We may hence assume that $(A, B)$ projection pair.
+
+	We may also assume that $(A, B)$ is strict. Indeed, if this would not be the case, we could decompose $V = \vspan\{v_{1}\} \oplus V'$, where $v_{1}$ is the eigenvector, and factorize $A = \arestr{A}{\vspan\{v_{1}\}} \oplus \arestr{A}{V'}$ and $P_{w} = 0 \oplus \arestr{(P_{w})}{V'}$. But now checking that $f(B) - f(A) \geq 0$ boils down to checking that $f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. But this follows if we add the sentence ``We induct on $n$." as the first sentence of this proof and use lemma \ref{k_tone_cor}.
+
+	Finally in this case, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ such that
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0
+	\end{align*}
+	and we are finally done.
+
+	In the ``if"-direction we could alternatively make use of the continuity of $f$, which is guaranteed by the lemma \ref{k-tone_smooth}
+
+\end{proof}
+
+Let us then complete proof by proving the lemma \ref{main_lemma}.
+
+\begin{proof}[Proof of lemma \ref{main_lemma}]
+	The proof is based on lemmas \ref{projection_eigenvalues} and \ref{projection_eigenvalues_con}. To find the connection we first assume $f$ is entire. Then if and $(A, B)$ is a strict projetion pair with $B - A = v v^{*}$ for some $v \in V$ and $w \in V$ we have
+	\begin{align*}
+		&= \langle (f(B) - f(A)) w, w \rangle \\
+		&= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - B)^{-1} v, w \rangle  \langle (z I - A)^{-1} w, v \rangle f(z) dz \\
+		&= \frac{1}{2 \pi i}\int_{\gamma} \frac{\det(z I - A)\langle (z I - B)^{-1} v, w \rangle \det(z I - B) \langle (z I - A)^{-1} w, v \rangle}{\det(z I - A) \det(z I - B)} f(z) dz.
+	\end{align*}
+	The integrand equals
+	\begin{align*}
+		\frac{h(z)}{\prod_{i = 1}^{n}(z - \lambda_{i}(A)) \prod_{i = 1}^{n}(z - \lambda_{i}(B))} f(z),
+	\end{align*}
+	where $h(z) = \det(z I - B)\langle (z I - B)^{-1} v, w \rangle \det(z I - A) \langle (z I - A)^{-1} w, v \rangle$ and hence
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B)]_{f h}.
+	\end{align*}
+	Note that this identity evidently holds without any extra smootness assumptions.
+
+	Now when $(A, B)$ ranges over all strict projection pairs, the permutations of tuples
+	\begin{align}
+	(\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B))
+	\end{align}
+	range over all tuples of distinct numbers on $(a, b)$. Hence to prove the lemma, we should prove that for fixed strict projection pair $(A, B)$, as $w$ ranges over $V$, $h$ ranges over all polynomials of degree at most $(2 n - 2)$, non-negative on $\R$. This follows from lemma \ref{polynomial_lemma} and the following observation.
+
+	\begin{lem}
+		If $(A, B)$ is a projection pair with $B - A = v v^{*}$ then
+		\begin{align*}
+			\det(z I - A) (z I - A)^{-1} v = \det(z I - B) (z I - B)^{-1} v
+		\end{align*} 
+	\end{lem}
+	\begin{proof}
+		As $z I - A = z I - B + v v^{*}$, multiplying both sides from left by $(z I - A)$ leads to the equivalent
+		\begin{align*}
+			\det(z I - A) v = \det(z I - B) (1 + \langle (z I - B)^{-1} v, v \rangle) v
+		\end{align*}
+		which follows from \ref{projection_characteristic_polynomial}.
+	\end{proof}
+	It follows that if $p(z) = \det(z I - B) \langle (z I - B)^{-1} v, w \rangle$, $h(z) = p(z) \overline{p (\overline{z})}$, so to finish the proof, we need only need to observe that when $w$ ranges over $V$, $\det(z I - B) \langle (z I - B)^{-1} v, w \rangle$'s range over all complex polynomials of degree at most $(n - 1)$. But this is clear as components of $\det(z I - A)(z I - A)^{-1} v$ with respect to eigenbasis of $A$, $(e_{i})_{i = 1}^{n}$ are $p_{j}(z) = \prod_{i \neq j}(z - \lambda_{i}(B)) \langle v, e_{i} \rangle$, which are clearly linearly independent polynomials over $\C$.
+
+	To recap, the map
+	\begin{align*}
+		V &\to P_{n - 1}(\C) = \{\text{Complex polynomials of degree at most } (n - 1) \} \\
+		w &\mapsto \det(z I - A) \langle (z I - A)^{-1} v, w \rangle
+	\end{align*}
+	is antilinear bijection and the map
+	\begin{align*}
+		P_{n - 1}(\C) &\to \{\text{Complex polynomials of degree at most } (2 n - 2) \text{ non-negative on } \R \} \\
+		p(z) &\mapsto p(z) \overline{p(\overline{z})}
+	\end{align*}
+	is surjection: composition of these maps is the correspondence between $w$ and $h$.
+\end{proof}
+
+What's the moral of the story? If one unwraps all the definitions, matrix monotonicity is about positivity of some linear combinations of function values. Which linear combinations exactly? That is (more or less) explained in the main theorem.
+
+\section{A bit of history}
+
+Theorem \ref{main_theorem} is usually stated in somewhat different terms. Functions of the form $f h$ being $(2 n - 1)$-tone for some polynomials $h$ can be also understood as certain matrix being positive, \textit{Dobsch matrix}. Dobsch matrix (of order $n$) of $f : (a, b) \to \R$ at point $t \in (a, b)$ is the matrix
+\begin{align}\label{Dobsch_matrix}
+	&\begin{bmatrix}
+		\frac{f'(t)}{1!} & \frac{f^{(2)}(t)}{2!} & \cdots & \frac{f^{(n)}(t)}{n!} \\
+		\frac{f^{(2)}(t)}{2!} & \frac{f^{(3)}(t)}{3!} & \cdots & \frac{f^{(n + 1)}(t)}{(n + 1)!} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\frac{f^{(n)}(t)}{n!} & \frac{f^{(n + 1)}(t)}{(n + 1)!} & \cdots &  \frac{f^{(2 n - 1)}(t)}{(2 n - 1)!}
+	\end{bmatrix} \\
+	=&
+	\begin{bmatrix}
+	[t, t]_{f} & [t, t, t]_{f} & \cdots & [t, \ldots, t]_{f}\\
+	[t, t, t]_{f} & [t, t, t, t]_{f} & \cdots & [t, t, \ldots, t]_{f} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	[t, \ldots, t]_{f} & [t, t, \ldots, t]_{f} & \cdots &  [t, t, t, \ldots, t]_{f}.
+	\end{bmatrix} \nonumber
+\end{align}
+
+Now an alternative version of \ref{main_theorem} reads as follows.
+
+\begin{lause}
+	Let $n \geq 1$. Then $f \in P_{n}(a, b) \cap C^{2 n - 1}(a, b)$, if and only if all Dobsch matrices of $f$ of order $n$ are positive for every $t \in (a, b)$.
+\end{lause}
+\begin{proof}
+	By simple computation
+	\begin{align*}
+		\left.\frac{1}{(2 n - 1)!} \frac{d^{2 n - 1}\left(f(t) \left(\sum_{i = 1}^{n} c_{i} t^{n - i}\right) \left(\sum_{i = 1}^{n} \overline{c_{i}} t^{n - i}\right)\right)}{d t^{2 n - 1}} \right|_{t = 0} = \sum_{i,j = 1}^{n} c_{i} \overline{c_{j}} \frac{f^{(i + j - 1)}(0)}{(i + j - 1)!}.
+ 	\end{align*}
+\end{proof}
+
+One can again get rid of the smootness assumption by some careful considerations.
+
+TODO
+
+\section{Loewner's theorem}
+
+In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_char}, the classes $P_{n}(a, b)$, Loewner characterized the classes $P_{\infty}(a, b)$.
+
+\begin{lause}\label{loewners_theorem}
+	$f \in P_{\infty}(a, b)$, if and only if there exist Pick function $\varphi$ extending over the interval $(a, b)$ such that $\restr{\varphi}{(a, b)} = f$.
+\end{lause}
+
+\begin{proof}
+	The ``if" direction is not too hard: the Loewner matrices are essentially limits of Pick matrices so the result follows rather immediately from \ref{loewner_char}.
+
+	The ``only if" is the tricky part. Theorem \ref{loewner_char} tells us that the Dobsch matrices are positive on $(a, b)$. If we can somehow show that $f \in C^{\omega}(a, b)$, then we see that all points of $(a, b)$ are Pick points of $f$, and we can extend it to weakly Pick function on some open set of upper half-plane, from which it extends to unique Pick function by Pick--Nevanlinna theorem \ref{open_pick_nevanlinna}.
+
+	It suffices to proof the following result.
+
+	\begin{lem}
+		Let $f \in C^{\infty}(a, b)$ such that $f^{(2 n - 1)}(t) \geq 0$ for every $t \in (a, b)$. Then $f \in C^{\omega}(a, b)$.
+	\end{lem}
+	\begin{proof}
+		We shall verify the conditions of the theorem \ref{div_anal}.
+
+		The trick is first show that we have bound of the form $|f^{(n)}(t)| \leq n! C^{n + 1}$ for odd $n$, and then use the following result.
+		\begin{lem}
+			Let $f \in C^{2}(a, b)$ such that $|f(x)| \leq M_{0}$ and $|f^{(2)}(x)| \leq M_{2}$ for any $x \in (a, b)$. Then
+			\begin{align*}
+			|f'(x)| \leq \max\left(2\sqrt{M_{0} M_{2}}, \frac{8 M_{0}}{b - a}\right)
+			\end{align*}
+			for any $x \in (a, b)$.
+		\end{lem}
+		\begin{proof}
+			Take any $x_{0} \in (a, b)$ and set $f'(x_{0}) = c$: we shall prove the given bound of $c$. Without loss of generality we may assume that $c \geq 0$ and $x_{0} \leq \frac{a + b}{2}$. The idea is that as $f^{(2)}$ is not too big, $f'$ has to be positive and reasonably big interval around the point $x_{0}$ which means that $f$ has to increase a lot around $x_{0}$. By the assumption it can't increase more than $2 M_{0}$, however.
+
+			To make this argument precise and effective, we split into too cases.
+
+			\begin{enumerate}
+				\item $M_{2} (b - x_{0}) > c$: this means that we have
+				\begin{align*}
+					f'(x) \geq c - M_{2} (x - x_{0})
+				\end{align*}
+				for $x_{0} \leq x \leq \frac{c}{M_{2}} + x_{0}$ and hence
+				\begin{align*}
+					2 M_{0} \geq f\left(\frac{c}{M_{2}} + x_{0}\right) - f(x_{0}) \geq \int_{x_{0}}^{\frac{c}{M_{2}} + x_{0}} \left(c - M_{2} (x - x_{0})\right) dx \geq \frac{c^2}{2 M_{2}},
+				\end{align*}
+				which yields the first inequality.
+				\item $M_{2} (b - x_{0}) \leq c$: now we have
+				\begin{align*}
+					f'(x) \geq c \frac{b - x}{b - x_{0}},
+				\end{align*}
+				for every $x_{0} \leq x < b$
+				\begin{align*}
+					2 M_{0} \geq f(x) - f(x_{0}) \geq \int_{x_{0}}^{x}  c \frac{b - x}{b - x_{0}} d x \geq \frac{c}{2(b - x_{0})} \left((b - x_{0})^2 - (b - x)^2\right).
+				\end{align*}
+				Letting $x \to b$ and using $(b - x_{0}) \geq \frac{b - a}{2}$ we get the second inequality.
+			\end{enumerate}
+
+			TODO: pictures of function and it's derivatives
+			TODO: better proof
+		\end{proof}
+
+		To prove the bound for odd $n$, we would like to play the same game as in the proof of lemma \ref{bounded_div}, but the unfortunate thing is that the even order terms are breaking the inequality. We can salvage the situation by getting rid of them. Assume first that $0 \in (a, b)$. Trick is to consider the Taylor expansion for $f(x) - f(-x)$, centered at $0$, instead:
+		\begin{align*}
+			f(x) - f(-x) = 2 \left(\sum_{i = 1}^{n} \frac{f^{(2 i - 1)}(0)}{(2 i - 1)!}x^{2 i - 1}\right) + \int_{0}^{x} \frac{f^{(2 n + 1)}(t) + f^{(2 n + 1)}(-t)}{(2n)!} (x - t)^{2 n} dt.
+		\end{align*}
+		But now we can simply follow the same argument.
+	\end{proof}
+
+\end{proof}
+
+
+TODO:
+
+\begin{itemize}
+	\item Why smoothness
+	\item Examples
+	\item Pick functions are monotone
+	\item Heaviside function
+	\item Trace inequalities: if $f$ is monotone/convex then $\tr f$ is monotone/convex. Proof idea: we may write $\tr f$ as a limit of finite sum of translations of Heaviside functions (monotone case) or absolute values (convex case), so its sufficient to prove the claim for these functions. For monotone case it hence suffices to prove that if $A \leq B$, $B$ has at least as many non-negative eigenvalues as $A$. But this is clear by subspace characterization of non-negative eigenvalues. For convex case, it suffices to prove that $\tr |A| + \tr |B| \geq \tr |A + B|$ for any $A, B \in \H^{n}(a, b)$. For this, note that if $(e_{i})_{i = 1}^{n}$ is eigenbasis of $A + B$, we have
+	\begin{eqnarray*}
+		\tr |A + B| &=& \sum_{i = 1}^{n} \langle |A + B| e_{i}, e_{i} \rangle \\
+		= \sum_{i = 1}^{n} \left|\langle (A + B) e_{i}, e_{i} \rangle \right| &\leq& \sum_{i = 1}^{n} \left|\langle A e_{i}, e_{i} \rangle \right| + \sum_{i = 1}^{n} \left|\langle B e_{i}, e_{i} \rangle \right| \\
+		\leq \sum_{i = 1}^{n} \langle |A| e_{i}, e_{i} \rangle + \sum_{i = 1}^{n} \langle |B| e_{i}, e_{i} \rangle &=& \tr |A| + \tr |B|
+	\end{eqnarray*}
+	\item What about trace inequalities for $k$-tone functions? Eigen-package seems to find a counterexample for $6$-tone functions and $n = 2$, but it's hard to see if there's enough numerical stability. At divided differences of polynomials vanish. First non-trivial question would be:
+	If $A_{j} = A + j H$ for $0 \leq j \leq 3$ and $H \geq 0$. Then is it necessarily the case that
+	\[
+		\tr \left(A_{3} |A_{3}| - 3 A_{2}|A_{2}| + 3 A_{1} |A_{1}| - A_{0} |A_{0}| \right) \geq 0?
+	\]
+	This would imply that $3$-tone functions would lift to trace $3$-tone functions. Maybe expressing this as a contour integral from $-i \infty \to i \infty$ a same tricks as in the paper. First projection case: $H$ is projection. Or: approximate by integrals of heat kernels. It should be sufficient to proof things for $k$-fold integrals or heat kernel, or by scaling just for gaussian function.
+	\item How is the previous related to the $|\cdot|$ not being operator-convex: quadratic form inequality for eigenvectors is not enough.
+	\item The previous also implies that
+	\[
+		f(Q_{A}(v)) \leq Q_{f(A)}(v)
+	\]
+	for any convex $f$. Using this and Minkowski one sees that $p$-schatten norms are indeed norms.
+	\item For $f, g$ generalization (Look at $h(X) = g (\tr f(X))$) we need that $f$ is convex. What else? $h$ is convex if it is convex for diagonalizable matrices and $f$ is convex and $g$ increasing. For the diagonalizable maps it is sufficient that $f$ is increasing and $g = f^{-1}$ and $\log \circ f \circ \exp$ is convex.
+	\item Von Neumann trace inequality, more trace inequalities.
+	\item On Generalizations of Minkowski's Inequality in the Form of a Triangle Inequality, Mulholland
+	\item There should nice proof for Loewner theorem, like the blog post for Bernstein's big theorem.
+\end{itemize}

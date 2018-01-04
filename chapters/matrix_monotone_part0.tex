@@ -1,8 +1,20 @@
-\chapter{Introduction}
+\chapter{Matrix monotone functions -- part 0}
 
-\section{Foreword}
+\section{Introduction}
 
-This master's thesis delves into the theory of matrix monotone functions. Matrix monotonicity is generalization of standard monotonicity f real functions: now we are just having functions mapping matrices to matrices. Formally, $f$ is \textit{matrix monotone} if for any two matrices $A$ and $B$ such that
+TODO: quote on honesty
+
+Math is all about honesty, so let's be honest: this master's thesis is really not about matrix monotone functions. What is it about, then? Well, unfortunately the only way I know how to answer that question is to explain what the matrix monotone functions are.\footnote{Worry not: one need not read beyond this chapter to get some kind of cheap answer to the question.} Hence the title.
+
+\subsection{What are matrix monotone functions?}
+
+\begin{maar}
+	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any two $n \times n$ Hermitian matrices $A$ and $B$ with spectra in $(a, b)$, such that $B - A$ is positive semidefinite, also $f(B) - f(A)$ positive semidefinite. Here $f(A)$ and $f(B)$ are defined via functional calculus.
+\end{maar}
+
+If that makes sense to you, great! Feel free to skip this subsection. If not, what follows is an attempt to give some kind of handwavy picture of the setup. Alternatively, if you don't like handwaving, you may feel free to jump directly to the chapter 3 (TODO, which chapter) for rigorous foundations, although be warned: this might not be the book for you.
+
+Matrix monotonicity is generalization of standard monotonicity of real functions: now we are just having functions mapping matrices to matrices. Formally, $f$ is \textit{matrix monotone} if for any two matrices $A$ and $B$ such that
 \begin{align}
 	A \leq B
 \end{align}
@@ -14,7 +26,7 @@ we should also have
 This kind of function might be more properly called \textit{matrix increasing} but we will mostly stick to the monotonicity for couple of reasons:
 \begin{itemize}
 	\item For some reason, that is what people have been doing in the field.
-	\item It doesn't make much difference whether we talk about increasing or decreasing functions, so we might just ignore the latter but try to symmetrize our thinking by choice of words.
+	\item It doesn't make much difference whether we talk about increasing or decreasing functions, so we might just ignore the latter but try to symmetrize our thinking by the choice of words.
 	\item Somehow I can't satisfactorily fill the following table:
 	\begin{center}
 	\begin{tabular}{| c | c |}
@@ -41,21 +53,32 @@ For matrix ordering we should first understand which matrices are \textit{positi
 
 Matrix functions, i.e. ``how to apply function to matrix" is bit simpler to explain. Instead of considering arbitrary maps the idea is to take a real function ($f : \R \to \R$, say) and intepret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, and similarly analytic functions, or at least entire. Now, a perverse definition for matrix function for continuous functions would be some kind of a limit when function is uniformly approximated by polynomials (using Weierstrass approximation theorem). This works for Hermitian matrices, but one can do better: apply the function to the eigenvalues of the mapping to get another linear map.
 
-Lastly, one might wonder why should one be interested in the whole business of matrix monotone functions? It's all about point of view.\footnote{And there are some real applications too $\ldots$.} Let's consider a very simple inequality:
+\subsection{Why matrix monotone functions?}
 
-For any real numbers $0 < x \leq y$ we have
-\[
-	y^{-1} \leq x^{-1}.
-\]
-Of course, this is quite close to the axioms of the real numbers, but there's a rather fruitful interpretation. The function $(x \mapsto \frac{1}{x})$ is decreasing.
+There is nothing really special about matrix monotone functions per se. They have (apparently) some ``real" applications in quantum physics (see e.g. TODO) but such are not discussed in this thesis. Instead, what makes them special for us is that they are prime examples of complicated positive objects.
 
-Now there's this matrix version of the previous inequality:
+\section{What are positive objects?}
 
-For any two matrices $0 < A \leq B$ we have
-\[
-	B^{-1} \leq A^{-1}.
-\]
-This is already not trivial, and with previous interpretation in mind, could this be interpreted as the functions $(x \mapsto \frac{1}{x})$ could be \textit{matrix decreasing}? And is this just a special case of something bigger? Yes, and that's exactly what this thesis is about.
+Positive objects are objects which somehow work like positive numbers. Positive objects are modelled by \textit{closed salient cones}. 
+
+\begin{maar}
+	Let $V$ be a topological vector space over $\R$ or $\C$ and $C \subset V$. Then $C$ is \textit{closed salient cone} of $V$ if
+	\begin{enumerate}[(i)]
+		\item For every $v \in C$ and $\alpha > 0$ we have $\alpha v \in C$.
+		\item For every $v, w, \in C$ we have $v + w \in C$.
+		\item $0 \in C$.
+		\item If both $v \in C$ and $-v \in C$, then $v = 0$.
+		\item $C$ is closed.
+	\end{enumerate}
+\end{maar}
+
+Subsets of vector spaces satisfying the first one, two, three and four properties are called \textit{cones}, \textit{convex cones}, \textit{pointed cones} and \textit{salient cones}, respectively. To shorten the terminology we call closed salient cones \textbf{\textit{proper cones}}, as is also somewhat customary.
+
+(Pictures of every possibility)
+
+\begin{esim}
+	Let $(a, b)$ be an open interval and $V = \{ \text{functions $(a, b) \to \R$} \}$. Then $C = \{ \text{increasing functions $(a, b) \to \R$} \}$ is morally-but-not-quite proper cone of $V$.
+\end{esim}
 
 \section{Goals}
 
@@ -77,24 +100,7 @@ Why is that? Where does regularity come from? The only thing we know about matri
 	Positiveness leads to regularity.
 \end{phil}
 
-\section{Positive objects}
-
-One of the main themes in this thesis is the notion of \textit{closed salient cone}. They work like sets of positive numbers.
-
-\begin{maar}
-	Let $V$ be a topological vector space over $\R$ or $\C$ and $C \subset V$. Then $C$ is \textit{closed salient cone} of $V$ if
-	\begin{enumerate}[(i)]
-		\item For every $v \in C$ and $\alpha > 0$ we have $\alpha v \in C$.
-		\item For every $v, w, \in C$ we have $v + w \in C$.
-		\item $0 \in C$.
-		\item If both $v \in C$ and $-v \in C$, then $v = 0$.
-		\item $C$ is closed.
-	\end{enumerate}
-\end{maar}
-
-Subsets of vector spaces satisfying the first one, two, three and four properties are called \textit{cones}, \textit{convex cones}, \textit{pointed cones} and \textit{salient cones}, respectively. To shorten the terminology we call closed salient cones \textbf{\textit{proper cones}}, as is also somewhat customary.
-
-(Pictures of every possibility)
+\section{More on positive objects}
 
 As mentioned, proper cones are an attempt to generalize the set of non-negative real numbers to a vector space. The first four conditions are pretty much direct translations of the axioms of non-negative numbers to vector spaces. The closedness condition is more of a convenience. Every proper cone gives rise to partial order on the vector space. This makes the vector space (not surprisingly) \textit{ordered topological vector space}.
 
