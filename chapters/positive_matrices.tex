@@ -5,7 +5,7 @@
 \subsection{The right definition}
 
 \begin{maar}
-	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space and $A \in \L(V)$. We say that $A$ is \textit{positive map}, or simply \textit{positive}, and write $A \geq 0$, if for any $v \in V$ we have
+	Let $(V, \langle \cdot, \cdot \rangle)$ be an inner product space over $\C$ and $A \in \L(V)$. We say that $A$ is \textit{positive map}, or simply \textit{positive}, and write $A \geq 0$, if for any $v \in V$ we have
 	\begin{align*}
 		\langle A v, v \rangle \geq 0.
 	\end{align*}
@@ -15,29 +15,46 @@ Why is this the right definition for positivity? Do we really need an inner prod
 
 While these are both excellent questions (and one should definitely think about them), there is no way to satisfactorily answer them in the scope of this thesis. Instead, I just try to explain why the definition is pretty damn good.
 
-But first things first: we should check that this notion gives us a proper cone.
+Note that, contrary to the previous chapter, we snuck in the complex numbers and general vector space to the definition. It doesn't make much difference whether we talk about real or complex numbers but the author thinks that some of the arguments are more natural in the complex world. Also, having the general vector space $V$ is mostly just reminder of the fact that there is something tensorial going on.
 
-\begin{lause}\label{basic_positive}
-	The set
-	\begin{align*}
-		\{A \in \L(V) | \text{ $A$ is positive} \}
-	\end{align*}
-	is a proper cone (of $\L(V)$).
+Theorem \ref{dual_cone} immediately implies
+
+\begin{lause}
+The set
+\begin{align*}
+	\{A \in \L(V) | \text{ $A$ is positive} \}
+\end{align*}
+is a convex cone.
 \end{lause}
-\begin{proof}
-	We verify the five conditions.
-	\begin{enumerate}[(i)]
-		\item Take any $A \geq 0$. Then for every $\alpha > 0$ and $v \in V$ we have $\langle \alpha A v, v \rangle = \alpha \langle A v, v \rangle \geq 0$.
-		\item Take any two $A, B \geq 0$. Then for any $v \in V$ we have $\langle \alpha (A + B) v, v \rangle = \langle A v, v \rangle + \langle B v, v \rangle \geq 0$.
-		\item For any $v \subset V$ we have $\langle 0 v, v\rangle = 0 \geq 0$.
-		\item If $A, -A \geq 0$, then $\langle A v, v\rangle = 0$ for every $v \in V$. We should show that $A = 0$. We'll get back to this in a minute.
-		\item We should check that if $(A_{i})_{i = 1}^{\infty}$ are positive and $\lim_{i \to \infty} A_{i} = A$, also $A$ is positive. But as the inner product is continuous, for every $v \subset V$ we have $\langle (\lim_{i \to \infty} A_{i}) v, v \rangle = \lim_{i \to \infty}\langle A_{i} v, v \rangle \geq 0$.
-	\end{enumerate}
-\end{proof}
 
 We denote the cone of positive maps by $\H_{+}(V)$.
 
-Before completing the proof, one should stop and appreciate how elegent and general the construction really is. Indeed, it carries directly to a much more general setting:
+In general one should think that the convex cones are models of positive real numbers. Such model need not be very good however: the whole vector space is always a convex cone. To fix this problem one introduces the concept of salient cone.
+
+\begin{maar}
+	A convex cone $C \subset V$ is \textbf{salient cone}, or simply \textbf{salient}, if whenever both $v \in C$ and $-v \in C$, then necessarily $v = 0$.
+\end{maar}
+
+Conveniently enough $\H_{+}(V)$ is a salient cone, but this is by no means trivial property.
+
+\begin{lem}\label{inj_compr}
+	If $A \in \L(V)$ and $\langle A v, v \rangle = 0$ for any $v \subset V$, then $A = 0$.
+\end{lem} 
+\begin{proof}
+	The idea is that we can recover the inner product from norm. Indeed, if $v, w \in V$, then $\|v + w\|^2 = \|v\|^2 + \|w\|^2 + 2 \Re(\langle v, w \rangle)$, so knowing the norm, we at least know the real part of the inner product. Doing the same trick with $\|v + i w\|^2$ we can figure out the imaginary part.
+
+	How does this help us? By a similar argument $\langle A(v + w), v + w \rangle = \langle A v, v \rangle + \langle A w, w \rangle + \langle A v, w\rangle + \langle A w, v \rangle$, so given that the quadratic form is always zero, we have $\langle A v, w \rangle + \langle A w, v \rangle = 0$ for any $v, w \in V$. Expanding $\langle A (v + i w), v + i w \rangle$ we see that $-i \langle A v, w \rangle + i \langle A v, w \rangle = 0$, which together with the previous observation implies that $\langle A v , w \rangle = 0$ for any $v, w \in V$. Now setting $w = A v$ this implies that $\|A v\|^{2} = 0$ for every $v \in V$ so $A = 0$.
+\end{proof}
+
+It is also customary to give vector space a topology (and get a topological vector space in return). This leads to concept of \textbf{closed convex cone}, which is defined as one would expect. Note that as subset of dual lead to convex cones, subsets of continuous dual lead to closed convex cones.
+
+A closed convex cone that is also salient is, as is somewhat customary, called \textbf{proper cone}. We have now
+
+\begin{lause}\label{basic_positive}
+	$\H_{+}(V)$ is a proper cone (with usual topology).
+\end{lause}
+
+Previous arguments carry directly to a much more general setting:
 
 \begin{lause}\label{positive_machine}
 	Let $V$ be a topological vector space (over $\R$ or $\C$) and $C^{*}$ a subset of its continuous dual. Assume that
@@ -51,16 +68,7 @@ Before completing the proof, one should stop and appreciate how elegent and gene
 	is a proper convex cone of $V$.
 \end{lause}
 
-In our case the subset of the linear functional are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$. Now we are left to check the following.
-
-\begin{lem}[Injectivity of compression]\label{inj_compr}
-	If $A \in \L(V)$ and $\langle A v, v \rangle = 0$ for any $v \subset V$, then $A = 0$.
-\end{lem} 
-\begin{proof}
-	The idea is that we can recover the inner product from norm. Indeed, if $v, w \in V$, then $\|v + w\|^2 = \|v\|^2 + \|w\|^2 + 2 \Re(\langle v, w \rangle)$, so knowing the norm, we at least know the real part of the inner product. Doing the same trick with $\|v + i w\|^2$ we can figure out the imaginary part.
-
-	How does this help us? By a similar argument $\langle A(v + w), v + w \rangle = \langle A v, v \rangle + \langle A w, w \rangle + \langle A v, w\rangle + \langle A w, v \rangle$, so given that the quadratic form is always zero, we have $\langle A v, w \rangle + \langle A w, v \rangle = 0$ for any $v, w \in V$. Expanding $\langle A (v + i w), v + i w \rangle$ we see that $-i \langle A v, w \rangle + i \langle A v, w \rangle = 0$, which together with the previous observation implies that $\langle A v , w \rangle = 0$ for any $v, w \in V$. Now setting $w = A v$ this implies that $\|A v\|^{2} = 0$ for every $v \in V$ so $A = 0$.
-\end{proof}
+In our case the subset of the linear functionals are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$.
 
 As one would hope, map $v \to \alpha v$, i.e. $\alpha I$ is positive, if and only if $\alpha \geq 0$. In particular in one-dimensional spaces the notion works as expected. Fortunately there are other examples, also. Indeed, any orthogonal projection is positive.
 
@@ -110,7 +118,7 @@ Interestingly enough, we can also lift the concept of complex conjugate.
 	\end{align*}
 \end{lause}
 \begin{proof}
-	The uniqueness of adjoint is immediate from the injectivity of compression. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$: the maps of the form $A = (x \mapsto \langle x, v \rangle w)$ for $v, w \in V$ will do.
+	The uniqueness of adjoint is immediate from the lemma \ref{inj_compr}. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$: the maps of the form $A = (x \mapsto \langle x, v \rangle w)$ for $v, w \in V$ will do.
 
 	The quadratic form for such map is given by
 	\[
@@ -129,7 +137,7 @@ In more common terms: a adjoint of linear map $A \in \L(V)$ is the unique map $A
 \end{align*}
 for any $v, w \in V$.
 
-As real maps are their own adjoints, they are often called appropriately \textit{self-adjoint}.
+As real maps are their own adjoints, they are often called appropriately \textbf{self-adjoint}.
 
 The previous observation makes many of the basic properties of adjoint, which we collect below, evident.
 
@@ -149,7 +157,7 @@ The previous observation makes many of the basic properties of adjoint, which we
 Positive maps have many other desirable properties. First of all, eigenvalues of a positive map are non-negative. This fact is a corollary of a more general property.
 
 \begin{maar}
-	Let $W \subset V$ be a subspace and $A \in \L(V)$. Then the \textit{compression} of $A$ to $W$, denoted by $\arestr{A}{W}$ is the linear map
+	Let $W \subset V$ be a subspace and $A \in \L(V)$. Then the \textbf{compression} of $A$ to $W$, denoted by $\arestr{A}{W}$ is the linear map
 	\begin{align*}
 		P_{W} \circ A \circ \incl{V}{W} : W \to W
 	\end{align*}
@@ -296,7 +304,7 @@ It turns out that real maps commute only if they ``trivially" commute, in the fo
 \[
 	A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}} \; \text{ and } \; B = \sum_{1 \leq i \leq n} \lambda'_{i} P_{v_{i}},
 \]
-then $A$ and $B$ are said to be \textit{simultaneously diagonalizable}. Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are indeed simultenously diagonalizable.
+then $A$ and $B$ are said to be \textbf{simultaneously diagonalizable}. Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are indeed simultenously diagonalizable.
 
 To prove this statement, we start with a lemma, simplest non-trivial case of the statement.
 

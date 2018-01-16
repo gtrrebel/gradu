@@ -1,18 +1,22 @@
 \chapter{Matrix monotone functions -- part 0}
 
-\section{Introduction}
+\section{Disclaimer}
 
-TODO: quote on honesty
+Let's be honest: this master's thesis is really not about matrix monotone functions. What is it about, then? Well, unfortunately the only way I know how to answer that question is to explain what the matrix monotone functions are.\footnote{Worry not: one need not read beyond this chapter to get some kind of answer to the question.} Hence the title.
 
-Math is all about honesty, so let's be honest: this master's thesis is really not about matrix monotone functions. What is it about, then? Well, unfortunately the only way I know how to answer that question is to explain what the matrix monotone functions are.\footnote{Worry not: one need not read beyond this chapter to get some kind of cheap answer to the question.} Hence the title.
+\section{What are matrix monotone functions?}
 
-\subsection{What are matrix monotone functions?}
-
-\begin{maar}
-	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any two $n \times n$ Hermitian matrices $A$ and $B$ with spectra in $(a, b)$, such that $B - A$ is positive semidefinite, also $f(B) - f(A)$ positive semidefinite. Here $f(A)$ and $f(B)$ are defined via functional calculus.
+\begin{maar}\label{main_def}
+	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is \textbf{$n$-monotone} or \textbf{matrix monotone} of order \textbf{$n$} on $(a, b)$, if for any two $n \times n$ Hermitian matrices $A$ and $B$ with spectra in $(a, b)$, such that $B - A$ is positive semidefinite, also $f(B) - f(A)$ positive semidefinite. Here $f(A)$ and $f(B)$ are defined via functional calculus.
 \end{maar}
 
-If that makes sense to you, great! Feel free to skip this subsection. If not, what follows is an attempt to give some kind of handwavy picture of the setup. Alternatively, if you don't like handwaving, you may feel free to jump directly to the chapter 3 (TODO, which chapter) for rigorous foundations, although be warned: this might not be the book for you.
+Now, it might not be too big of a surprise that, on the surface level at least, the main question of this thesis is the following.
+
+\begin{quest}
+	Fix positive integer $n$ and an open interval $(a, b)$. Which functions are $n$-monotone on $(a, b)$?
+\end{quest}
+
+If all this makes sense to you, great! Feel free to skip this section. If not, what follows is an attempt to give some kind of handwavy picture of the setup. Alternatively, if you don't like handwaving, you may feel free to visit chapter 3 (TODO, which chapter) for rigorous foundations, although be warned: this might not be the book for you.
 
 Matrix monotonicity is generalization of standard monotonicity of real functions: now we are just having functions mapping matrices to matrices. Formally, $f$ is \textit{matrix monotone} if for any two matrices $A$ and $B$ such that
 \begin{align}
@@ -45,15 +49,180 @@ Of course, it's not really obvious how one should make any sense of these ``defi
 	\item How should matrices be ordered?
 	\item How should functions act on matrices?
 \end{itemize}
-Both of these questions can be (of course) answered in many ways, but for both of them, there is very natural answer. In both cases we can get something more general: instead of comparing matrices we can compare linear maps, and we can apply function to linear mapping.
+Both of these questions can be (of course) answered in many ways, but for both of them, there is very natural, in fact tensorial answer. Instead of comparing matrices we can compare bilinear forms, $(0, 2)$-tensors. Similarly we can naturally apply function to linear mappings, $(1, 1)$-tensors.
 
-Just to give a short glimpse of how these things might be defined, we should first fix our ground field (for matrices): let's say it's $\R$, at least for now.
+For matrix (bilinear form) ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We say that a form is positive if its diagonal is non-negative. This gives a partial order on the space of all bilinear forms.
 
-For matrix ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We can't have everything: For instance, it's not very hard to see that it is not possible to give notion of positivity on space of all real $n \times n$ matrices which respects similarity. If we give our space inner product, and restrict to a nice subspace of linear maps, called Hermitian maps, we can have a notion of positivity which respects unitary similarity.
+For matrix functions, i.e. ``how to apply function to matrix" the idea is to take a real function ($f : \R \to \R$, say) and intepret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, given the ring structure of linear maps themselves. If the argument (a linear map) is diagonalizable, this extension merely applies the function to the eigenvalues. This motivates to define $f(A)$ for linear map $A$ to be linear map with same eigenspace structure as $A$ but the eigenvalues changed from $\lambda \to f(\lambda)$ respectively. All this works for diagonalizable maps with real eigenvalues, so the domain isn't quite $\R^{n \times n}$ but that's okay. This extension idea is called \textbf{functional calculus}.
 
-Matrix functions, i.e. ``how to apply function to matrix" is bit simpler to explain. Instead of considering arbitrary maps the idea is to take a real function ($f : \R \to \R$, say) and intepret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, and similarly analytic functions, or at least entire. Now, a perverse definition for matrix function for continuous functions would be some kind of a limit when function is uniformly approximated by polynomials (using Weierstrass approximation theorem). This works for Hermitian matrices, but one can do better: apply the function to the eigenvalues of the mapping to get another linear map.
+All this is kind of enough to make sense of matrix monotonicity, but to drastically simplify the setup it is customary to restrict the attention to a special set of diagonalizable matrices, which in this text are called \textbf{real maps}. They are exactly the symmetric matrices and they hold special place amidst the set of all matrices.
 
-\subsection{Why matrix monotone functions?}
+\begin{itemize}
+	\item They exactly correspond to symmetric bilinear forms.
+	\item They correspond to diagonalizable linear maps with real eigenvalues and orthogonal eigenbasis.
+\end{itemize}
+
+In the second point we are thinking about everything in terms of standard inner product of $\R^n$. So the statement should be corrected to
+
+\begin{itemize}
+	\item If considered as matrix of a linear map with respect to the standard orthonormal basis of $\R^n$ (with the standard inner product), then the linear map is diagonalizable with real eigenvalues and has orthogonal eigenbasis.
+\end{itemize}
+
+Real maps are usually called \textbf{Hermitian or self-adjoint matrices} and positive matrices \textbf{positive semidefinite matrices}. Now the definition of matrix monotinicity \ref{main_def} should make sense. We will primarily call positive matrices \textbf{positive maps}.
+
+Whether one should think about real maps as matrices, bilinear forms or linear maps depends on the context. If one does calculations, one might think about matrices. If one thinks about additive structure, bilinear forms are better suited. And of course functional calculus makes only sense with linear maps. We use the (linear) map terminology throughout mainly because it short. Also, it is a constant reminder that there is something tensorial going on.
+
+\section{\ldots And why should we care?}
+
+It's easy to come up with one matrix monotone function: $x \mapsto \alpha x + \beta$ for $\alpha, \beta \in \R$ with $\alpha \geq 0$. It is $n$-monotone for every $n \geq 1$ on $(-\infty, \infty)$. This is the only easy example.
+
+But there are lot more.
+
+Matrix monotone functions are truly horrible. All matrix monotone functions are increasing (in the usual sense) but not vice versa. They have some obscure regularity properties. Constructing non-trivial matrix monotone functions is a pain. Although usual increasing real functions and matrix monotone functions should be very much interlinked, hardly any of the properties of increasing functions pass on to matrix monotonicity. Generally, if one attacks matrix monotone functions, especially of order $n > 2$, and doesn't use sophisticated weaponry, one will perish. The reader is encouraged to try.
+
+All this is exactly what makes them so interesting. One is driven to ask the question:
+
+\begin{quest}
+	How should one think about matrix monotone functions?
+\end{quest}
+
+If this sounds like the same question to you, think about increasing functions on $\R^n$. Function $f : \R^n \to \R$ is called $n$-increasing (this termonology lasts only for next couple of paragraphs) if $f(x_{1}, x_{2}, \ldots, x_{n}) \leq f(y_{1}, y_{2}, \ldots, y_{n})$ whenever $x_{i} \leq y_{i}$ for every $1 \leq i \leq n$. Which functions are $n$-increasing? I would argue that $n$-increasing functions are awful, much more awful than usual ($1$-)increasing functions. The reason is that they don't have good additive structure.
+
+TODO: pictures of $n$-increasing functions
+
+One might say that ``non-negative derivative" property (let's ignore smoothness issues for a while) makes increasing functions easy to understand, and while there is certain truth to that, I would argue that what makes them so simple is really the dual property: ``increasing functions are sums of increasing step functions". This roughly implies that in order to understand increasing functions, it is enough to understand step functions, or just step functions with one jump upwards.
+
+Note that we are heavily using the fact that increasing functions (of all types introduced before) form a convex cone:
+
+\begin{maar}
+	Subset $C$ of a vector space $V$ over $\R$ is a convex cone if whenever $v, w \in C$ and $\alpha, \beta \geq 0$, also $\alpha v + \beta w \in C$.
+\end{maar}
+
+Also, applicability of the ``only needing to understand step functions" is somewhat limited: it doesn't really explain smoothness phenomena all too well, for instance. But it is always nice to know that some objects are really sums of other much simpler objects.
+
+There's no such nice dual property for $n$-increasing functions (for $n > 1$). One can understand them locally with derivatives, but there are no simple decompositions. Same thing could be said about convex functions on $\R^n$.
+
+Much more importantly for us, these is no such nice additive structure for $n$-monotone functions. This is by no means trivial (as it is not even with $n$-increasing functions). It is also not even clear what one means by ``nice" and wheter even increasing functions are that ``nice" in the end. These ideas shall however merely work as our guideline, so one should not be troubled.
+
+All these issues can be, in a way, avoided by change of perspective: instead of trying to characterize matrix monotone functions by expressing them as sums of something simple, we express the definition itself as a sum of somethings simple. In particular we try to understand the ``dual" (or a ``predual" to be exact) of matrix monotone functions.
+
+\section{Dual cones}
+
+Let in the following $V$ be a vector space over $\R$ and denote its dual by $V^{*}$.
+
+\begin{maar}
+	For every subset $C^{*}$ of $V^{*}$ we define its \textbf{dual cone} to be
+	\begin{align*}
+		C = \{v \in V | w^{*} v \geq 0 \text{ for every $w^{*} \in V^{*}$}\} \subset V.
+	\end{align*}
+\end{maar}
+
+One immediately makes the following observation justifying the terminology.
+
+\begin{lause}\label{dual_cone}
+	Let $C^{*} \subset V^{*}$. Then the dual cone of $C^{*}$ is a convex cone.
+\end{lause}
+
+\begin{maar}
+	Let $C \subset V$. Then $C^{*}$ is a \textbf{predual} of $C$ if $C$ is the dual cone of $C^{*}$.
+\end{maar}
+
+Of course only convex cones have preduals. Easy examples show that preduals are not unique in general (in fact never).
+
+As an example for open interval $(a, b)$ consider the set
+\begin{align*}
+	P_{1}(a, b) := \{\text{Increasing functions $f : (a, b) \to \R$}\}.
+\end{align*}
+This set is a convex cone. If one denote the evaluation functional or measure at $x$ by $\delta_{x}$, i.e. $\delta_{x}(f) = f(x_{0})$, then one possible predual of $P_{1}(a, b)$ if given by
+\begin{align*}
+	\{\delta_{y} - \delta_{x} | a < x < y < b \}.
+\end{align*}
+
+I hope the reader agrees that this predual is in many ways much simpler than the set of increasing functions and yet it carries the information thereof. As we will see, if chosen suitably, preduals can offer convenient and clean way language to talk about cone itself. This is what this thesis is really about.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+
+\section{How should one think about matrix monotone functions?}
+
+Now, if one is seeking to characterize matrix monotone functions, this is the question one should answer first. Below three different ``answers" are given.
+
+\subsection{Answer 1}
+
+It should be no big surprise that the function $f : x \mapsto \alpha x + \beta$ is $n$-monotone for every $n \geq 1$ whenever $\alpha, \beta \in \R$ with $\alpha \geq 0$. As $f$ is polynomial, for every matrix we have $f(A) = \alpha A + \beta I$. Now we should prove that if $B - A$ is positive map then also $(\alpha B + \beta) - (\alpha A + \beta)$ is positive. But
+\begin{align*}
+	(\alpha B + \beta) - (\alpha A + \beta) = \alpha (B - A):
+\end{align*}
+as $B - A$ is positive, so is $\alpha (B - A)$, as non-negative multiple of positive map (bilinear form).
+
+That's pretty much only simple example of a matrix monotone function.
+
+See, there's a problem. In many ways positive maps work like positive real numbers, but some crucialities are missing. Properties of bilinear forms imply immediately that positive maps have the following properties:
+
+\begin{enumerate}
+	\item If $A$ and $B$ are positive, then so is $A + B$.
+	\item If $A$ is positive and $\alpha \geq 0$, then also $\alpha A$ is positive.
+\end{enumerate}
+
+But we can't take product (composition) of positive maps, or to be precise, there's no reason for composition to be positive.
+
+Why is this problem? The product property of reals implies that product of two positive increasing functions is increasing. As an example the function $f : x \mapsto x^2$ is increasing on $(0, \infty)$.
+
+Same argument cannot however be applied to prove the matrix counterpart, i.e. it's not clear whether $0 \leq A \leq B$ implies $A^2 \leq B^2$. It turns out that $f$ is \textbf{not} matrix monotone (for any $n > 1$).
+
+\subsection{Answer 2}
+
+
+
+\subsection{Answer 3}
+
+Firstly, how should one think about positive matrices? It turns out that positive matrices have non-negative eigenvalues and conversely symmetric matrices having non-negative eigenvalues are positive. So positive matrices are some kind of $n$-tuples with some kind of eigenspace information. Bilinear form can be thought of some kind of bilinear combination of the eigenvalues, where the eigenspaces tell us what kind of exactly. The diagonal of the bilinear form is some kind of positive linear combination of the eigenvalues.
+
+If symmetric matrices are thought of as tuples of real numbers with some extra (eigenspace) information, matrix functions simply act on the elements of the tuple separately.
+
+Now if $A \leq B$ for some symmetric matrices, the quadratic form of $B - A$ is non-negative, so the quadratic form of $A$ is smaller than that of $B$. This roughly means that the eigenvalues of $A$ are ``on average" smaller than the eigenvalues of $B$, where ``on averate" should be understood as combination of some kind of set of weighted averages determined by the respective eigenspaces of $A$ and $B$.
+
+Similarly, $f(A) \leq f(B)$ means that some kind of weighted averages of $f(\lambda)$ where $\lambda$ runs over the eigenvalues of $A$ are less than the respective weighted averages with $B$. So, all in all matrix monotone functions of order $n$ that preserve some kind of order of $n$-tuples.
+
+One way to write all this down is the following: a function $f$ is $n$-monotone if for every $i \in I$ we have
+\begin{align*}
+	\sum_{j = 1}^{n} a_{j, i} f(\lambda_{j, i}) \leq \sum_{j = 1}^{n} a_{j, i}' f(\lambda_{j, i}')
+\end{align*}
+where, as $i$ ranges over some indexing set $I$, the numbers
+\begin{align*}
+a_{1, i}, a_{2, i}, \ldots, a_{n, i}, \\
+a_{1, i}', a_{2, i}', \ldots, a_{n, i}', \\
+\lambda_{1, i}, \lambda_{2, i}, \ldots, \lambda_{n, i}, \\
+\lambda_{1, i}', \lambda_{2, i}', \ldots, \lambda_{n, i}'
+\end{align*}
+range over some set of $4 n$ tuples of real numbers.
+
+If all this sounds confusing and terribly vague$\ldots$ you're not alone. Unfortunately though, the relationship between eigenvalues and additive structure of real maps (both of which we need to understand matrix monotonicity) is really subtle and still rather poorly understood: it's not at all clear how to make all this explicit. But we will do it.
+
+\section{Why matrix monotone functions?}
 
 There is nothing really special about matrix monotone functions per se. They have (apparently) some ``real" applications in quantum physics (see e.g. TODO) but such are not discussed in this thesis. Instead, what makes them special for us is that they are prime examples of complicated positive objects.
 
@@ -349,5 +518,7 @@ Outline of the new structure:
 	\item Monotone matrix functions, part 2
 	\item Beyond
 \end{enumerate}
+
+\end{comment}
 
 

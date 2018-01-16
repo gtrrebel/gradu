@@ -42,13 +42,9 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-This result far from clear: pointwise limits of analytic functions need not in general be analytic. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals.
+This result far from clear: pointwise limits of analytic functions need not in general be analytic. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals, or better predual.
 
-\section{The Goal}
-
-\section{Rigidity}
-
-\subsection{Boundary}
+\section{Boundary}
 
 To understand the rigidity phenomena we take look at a close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
 
@@ -64,7 +60,7 @@ The textbook proof is based on two observations about analytic functions.
 
 The first observation might not be very surprising, and it holds for smooth functions also. The second, on the other hand, is a true manifestation of the nature of the analytic maps: we can bound analytic functions simply by bounding them on the boundary of the domain. More generally, one knows everything about an analytic function on a domain simply by knowing it on a boundary, by Cauchy's integral formula.
 
-This tells us that we should be able to recognize also Pick functions looking only at their boundary values. Actually even more is true: it suffices to look at the imaginary parts.
+This suggests that we should be able to recognize also Pick functions looking only at their boundary values. Actually even more is true: it suffices to look at the imaginary parts.
 
 \begin{prop}
 	Let $\varphi : U \to \C$ be analytic, such that $\overline{\Hp} \subset U$, and $\varphi$ is continuous at $\infty$. Then if the imaginary part of $\varphi$ is non-negative on the real axis, $\varphi$ is Pick function.
@@ -73,7 +69,7 @@ This tells us that we should be able to recognize also Pick functions looking on
 	This follows immediately from the minimum principle applied to the harmonic function $\Im(\varphi)$.
 \end{proof}
 
-\subsection{Integral representations}
+\section{Integral representations}
 
 Recall that imaginary part of an analytic function determines also its real part, up to a constant, so we can also recover the function itself. This can be also done explicitely.
 
@@ -148,7 +144,7 @@ Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend 
 
 We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem} results yet, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
 
-\subsection{Pick functionals}
+\section{Pick functionals}
 
 \begin{quest}
 	How can we recover the measure $\mu$ from the Pick function?
@@ -189,6 +185,69 @@ which rewrites to
 	\sum_{i = 1}^{M} c_{i} \varphi(a_{i}) &= \sum_{i = 1}^{M} c_{i} \left(\alpha a_{i} + \beta\right) + \int_{\R} q(\lambda) d \mu(\lambda).
 \end{align*}
 We can get some kind of glimpse of the measure just by looking at linear combinations of the values of Pick function.
+
+These ideas get really useful when $q$ is non-negative on the real line. It follows easily from the lemma \ref{polynomial_lemma} that such rational functions can be written in the form
+\begin{align*}
+	q(\lambda) = \left( \sum_{i = 1}^{n} \frac{c_{i}}{\lambda - \lambda_{i}}\right) \left(\sum_{i = 1}^{n}\frac{\overline{c_{i}}}{\lambda - \overline{\lambda_{i}}}\right)
+\end{align*}
+where $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$. Running through the same calculations we see that
+
+\begin{align*}
+	\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\varphi(\lambda_{i}) - \overline{(\varphi(\lambda_{j}))}}{\lambda_{i} - \overline{\lambda_{j}}} = \alpha \left|\sum_{i = 1}^{n} c_{i}\right|^2 + \int_{\R} q(\lambda) d \mu (\lambda) \geq 0.
+\end{align*}
+
+\begin{maar}
+	Functional in $\left(\C^{\Hp}\right)^{*}$ of the form
+	\begin{align*}
+		\sum_{1 \leq i, j \leq n} c_{i} c_{j} \frac{\delta_{\lambda_{i}} - \overline{\delta_{\lambda_{j}}}}{\lambda_{i} - \overline{\lambda_{j}}},
+	\end{align*}
+	$\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$, is called a \textbf{Pick functional}. This is all of course to say that
+	\begin{align*}
+		\varphi \mapsto \sum_{1 \leq i, j \leq n} c_{i} c_{j} \frac{\varphi(\lambda_{i}) - \overline{\varphi(\lambda_{j})}}{\lambda_{i} - \overline{\lambda_{j}}}.
+	\end{align*}
+\end{maar}
+
+Given $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$, the matrix
+\begin{align*}\label{Pick_matrix}
+	\begin{bmatrix}
+		[\lambda_{1}, \overline{\lambda_{1}}]_{\varphi} & [\lambda_{1}, \overline{\lambda_{2}}]_{\varphi} & \cdots & [\lambda_{1}, \overline{\lambda_{n}}]_{\varphi} \\
+		[\lambda_{2}, \overline{\lambda_{1}}]_{\varphi} & [\lambda_{2}, \overline{\lambda_{2}}]_{\varphi} & \cdots & [\lambda_{2}, \overline{\lambda_{n}}]_{\varphi} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		[\lambda_{n}, \overline{\lambda_{1}}]_{\varphi} & [\lambda_{n}, \overline{\lambda_{2}}]_{\varphi} & \cdots &  [\lambda_{n}, \overline{\lambda_{n}}]_{\varphi}
+	\end{bmatrix}
+\end{align*}
+is called a \textbf{Pick matrix}. Pick functionals are simply values of quadratic forms of Pick matrices.
+
+It turns out that the set of Pick functionals is a predual for Pick functions. This is by no means trivial.
+
+\section{Weakly Pick functions}
+
+\begin{maar}
+	We will call the elements of the dual cone of Pick functionals \textbf{weakly Pick}.
+\end{maar}
+
+The aim of this section is to show that weakly Pick functions are exactly the Pick functions. One of the directions is easier: all Pick functions are also weakly Pick.
+
+\begin{lause}
+	If $\varphi$ is a Pick functions, then it is also weakly Pick.
+\end{lause}
+\begin{proof}
+	Actually we have essentially proven this given the theorem \ref{pick_nevanlinna_herglotz_representation_theorem}. One can however give an alternative proof using only the alternative proven cases of \ref{pick_nevanlinna_herglotz_representation_theorem}: we already know that it holds for bounded Pick function, which extend analytically over the real line.
+
+	To this end, by the continuity of the Pick functionals (with the topology of pointwise convergence) it is enough to prove that the aforementioned bounded subclass is dense in Pick class. But for this it is enough to find a sequence of Pick functions $(g_{n})_{n = 1}^{\infty}$ such that
+	\begin{enumerate}
+		\item $g_{n}(z) \to z$ pointwise as $n \to \infty$,
+		\item $g_{n}$'s extend analytically over real line and $g_{n}(\overline{\H_{+}})$ is compact subset of $\H_{+}$ for every $n \geq 1$,
+	\end{enumerate}
+	as then we have $\varphi \circ g_{n} \to \varphi$ pointwise as $n \to \infty$ for every Pick function $\varphi$ the functions $\varphi \circ g_{n}$ are evidently bounded and extend analytically over the real line.
+
+	It is not very hard to check that we may take
+	\begin{align*}
+		g_{n}(z) = \frac{z + \frac{i}{n}}{1 - \frac{i z}{n}}.
+	\end{align*}
+\end{proof}
+
+The other direction is tricky. Note that weakly Pick maps map to the upper half-plane so it is sufficient so the interesting part is to prove that weakly Pick maps are analytic.
 
 TODO
 
