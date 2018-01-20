@@ -71,7 +71,7 @@ This suggests that we should be able to recognize also Pick functions looking on
 
 \section{Integral representations}
 
-Recall that imaginary part of an analytic function determines also its real part, up to a constant, so we can also recover the function itself. This can be also done explicitely.
+Recall that imaginary part of an analytic function determines also its real part, up to a constant, so we can also recover the function itself. This can be also done explicitly.
 
 \begin{lause}
 	Let $\varphi : U \to \C$ be analytic, such that $\overline{\Hp} \subset U$, and $\varphi(z) = O(|z|^{-\varepsilon})$ for some $\varepsilon > 0$ at infinity. Then for any $z \in \Hp$ we have
@@ -102,10 +102,10 @@ Compare this with theorem \ref{basis_k-tone}: in both cases we can express a (re
 There's of course nothing really special about the decay assumption $\varphi(z) = O(|z|^{-\varepsilon})$; it's there just to make everything converge.
 
 One can guarantee the convergence also by other means. Note that the integrand behaves like $\frac{1}{\lambda - z}$, if we subtract something from it something behaving the same way at the infinity (something not depending on $z$), we ought to improve convergence, but only change the value of the function by a constant. As an example, consider the integral
-\begin{align*}
+\begin{align}\label{easy_pick_repr}
 	\frac{1}{\pi}\int_{\R} \left(\frac{1}{\lambda - z} - \frac{[|\lambda| > 1]}{\lambda} \right) \Im(\varphi)(\lambda)d \lambda.
-\end{align*}
-It converges as long as, say, $ \Im(\varphi)$ is bounded to an analytic function. As before, its imaginary part coincides with $\varphi$'s so the functions equal up to a real constant. Now it's not clear however that the functions should equal and indeed they need not: the right-hand side doesn't see real constants.
+\end{align}
+It converges to an analytic function as long as, say, $ \Im(\varphi)$ is bounded. As before, its imaginary part coincides with $\varphi$'s so the functions equal up to a real constant. Now it's not clear however that the functions should equal and indeed they need not: the right-hand side doesn't see real constants.
 
 Note that the previous idea could be used to construct Pick functions. Everything still makes sense if we replace $\Im(\varphi)$ by some other positive function, as long as the integral converges. Heck, we could replace it by any positive measure for which $\mu((\lambda^2 + 1)^{-1}) < \infty$.
 
@@ -142,8 +142,15 @@ To better explain the appearance of the linear term, we can write the integral i
 \end{align*}
 Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition, at least for know. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
 
-We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem} results yet, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
+We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem} yet, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
 
+We will call the family
+
+\begin{align*}
+	\{z \mapsto z\} \cup \{z \mapsto \frac{1}{\lambda - z} | \lambda \in \R\}
+\end{align*}
+
+\textbf{extreme Pick functions}. Finite linear combinations of the extreme Pick functions are called \textbf{simple Pick functions}. Finally, we will call a Pick function extentable, if it is bounded and analytically extends over the real line. Such Pick functions enjoy representations of the form \ref{easy_pick_repr}.
 \section{Pick functionals}
 
 \begin{quest}
@@ -218,23 +225,24 @@ Given $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$, the m
 \end{align*}
 is called a \textbf{Pick matrix}. Pick functionals are simply values of quadratic forms of Pick matrices.
 
-It turns out that the set of Pick functionals is a predual for Pick functions. This is by no means trivial.
+We denote the set of Pick functionals by $\pickclass^{*}$.
 
-\section{Weakly Pick functions}
-
-\begin{maar}
-	We will call the elements of the dual cone of Pick functionals \textbf{weakly Pick}.
-\end{maar}
-
-The aim of this section is to show that weakly Pick functions are exactly the Pick functions. One of the directions is easier: all Pick functions are also weakly Pick.
-
-\begin{lause}
-	If $\varphi$ is a Pick functions, then it is also weakly Pick.
+\begin{lause}\label{pick_functionals}
+	Let $p^{*} \in \left(\C^{\Hp}\right)^{*}$. Then the following are equivalent.
+	\begin{enumerate}[(i)]
+		\item $p^{*} \in \pickclass^{*}$
+		\item $p^{*}(\varphi) \geq 0$ for any extreme Pick function $\varphi$.
+		\item $p^{*}(\varphi) \geq 0$ for any extentable Pick function $\varphi$.
+		\item $p^{*}(\varphi) \geq 0$ for any Pick function $\varphi$.
+	\end{enumerate}
 \end{lause}
 \begin{proof}
-	Actually we have essentially proven this given the theorem \ref{pick_nevanlinna_herglotz_representation_theorem}. One can however give an alternative proof using only the alternative proven cases of \ref{pick_nevanlinna_herglotz_representation_theorem}: we already know that it holds for bounded Pick function, which extend analytically over the real line.
+	The implications $(i) \Rightarrow (ii) \Rightarrow (iii)$ and $(iv) \Rightarrow (ii)$, up to one detail: if $p^{*}(\varphi) \geq 0$ for any extreme Pick function $\varphi$, we should prove that $p^{*}(1) = 0$. But follows as soon as one notes that
+	\begin{align*}
+		p^{*}\left(\frac{1}{\lambda - \cdot}\right) = \frac{p^{*}\left(1\right)}{\lambda} + O\left(\frac{1}{\lambda^2}\right).
+	\end{align*}
 
-	To this end, by the continuity of the Pick functionals (with the topology of pointwise convergence) it is enough to prove that the aforementioned bounded subclass is dense in Pick class. But for this it is enough to find a sequence of Pick functions $(g_{n})_{n = 1}^{\infty}$ such that
+	$(iii) \Rightarrow (iv)$: It suffices to prove that the extentable Pick functions are dense (with respect to the topology of Pointwise convergence) in the set of all Pick function. But for this it is enough to find a sequence of Pick functions $(g_{n})_{n = 1}^{\infty}$ such that
 	\begin{enumerate}
 		\item $g_{n}(z) \to z$ pointwise as $n \to \infty$,
 		\item $g_{n}$'s extend analytically over real line and $g_{n}(\overline{\H_{+}})$ is compact subset of $\H_{+}$ for every $n \geq 1$,
@@ -245,791 +253,152 @@ The aim of this section is to show that weakly Pick functions are exactly the Pi
 	\begin{align*}
 		g_{n}(z) = \frac{z + \frac{i}{n}}{1 - \frac{i z}{n}}.
 	\end{align*}
+
+	$(ii) \rightarrow (i)$: By the construction of the $\pickclass^{*}$ it contains all the functionals \textbf{with finite support}, which give positive values for all extreme Pick functions. Thus it remains to be noted that all the continuous functionals in $\left(\C^{\Hp}\right)^{*}$ have finite support. But this follows from the general fact that the dual of a product equals direct sum of the duals.
 \end{proof}
 
-The other direction is tricky. Note that weakly Pick maps map to the upper half-plane so it is sufficient so the interesting part is to prove that weakly Pick maps are analytic.
-
-TODO
-
-
-
-
-
-
-Maximum modulus principle itself is consequence of the Cauchy's integral formula. There's also more symmetric form for Schwarz lemma, called Schwarz-Pick theorem.
-
-\begin{lause}[Schwarz-Pick theorem]
-	Let $\psi : \D \to \D$ be analytic. Then for any $z_{1}, z_{2} \in \D$ we have
-	\[
-		\left|\frac{\psi(z_{1}) - \psi(z_{2})}{1 - \overline{\psi(z_{1})} \psi(z_{2})} \right| \leq \left|\frac{z_{1} - z_{2}}{1 - \overline{z_{1}}z_{2}}\right|,
-	\]
-	and
-	\[
-		\frac{\left|\psi'(z_{1})\right|}{1 - |\psi(z_{1})|^2} \leq \frac{1}{1 - |z_{1}|^2}.
-	\]
-	If the equality holds in one of the inequalities, $\psi$ is a Blaschke factor.
-\end{lause}
-
-Note that one obtains the usual Schwarz lemma if $z_{1} = 0 = \psi(z_{1})$. One may check that if $\psi$ is Blaschke factor, the inequalities hold as equalities.
-\begin{proof}
-	Consider the map $\psi_{1} = \rho_{\psi(z_{1})} \circ \psi \circ \rho_{z_{1}}$. The claim follows by using the previous form of the Schwarz lemma for the $\psi_{1}$ and point $z_{2}$.
-\end{proof}
-
-The previous result shows that Blaschke factors are exactly the analytic bijections $\D \to \D$.
-
-One can also make weaker estimates straight from Cauchy's integral formula. We can for instance write
-\[
-	\psi(a) = \frac{1}{2 \pi i}\int_{\gamma} \frac{\psi(z)}{z - a} dz
-\]
-for suitable $\gamma$. Now if $\psi$ extends over unit circle, letting $\gamma$ trace unit circle we have
-\[
-	|\psi(a)| \leq \left(\max_{|z| = 1} \left|\psi(z)\right| \right) \frac{1}{2 \pi}\int_{0}^{2 \pi} \frac{d t}{|e^{i t}  - a|}.
-\]
-This is not very strong estimate; the averaged integral tends to infinity as $|a| \to 1$, but the point is that by a simple argument we have can some bound on analytic function on a disc given only bound on its boundary values.
-
-The point in looking at Schur functions is that we can directly bring the claims for Schur functions to Pick functions with maps
+It is useful to note that one does not even need to test every extreme Pick function to check that functional is Pick functional, dense subset suffices. This is clear for the functions $z \mapsto \frac{1}{\lambda - z}$ but also holds for $z \mapsto z$, when this is intepreted as the function with $\lambda = \infty$ (and dense subset refers to the circle topology). Indeed, we have
 \begin{align*}
-	\toplane : \D \to \Hp & \hspace{1cm} \toplane (z) = i \frac{1 - z}{1 + z} \\
-	\tocircle : \Hp \to \D & \hspace{1cm} \tocircle (z) = \frac{i - z}{i + z}.
+	p^{*}\left(\frac{1}{\lambda - \cdot}\right) = p^{*}\left(\frac{1}{\lambda - \cdot} - \frac{1}{\lambda}\right) = \frac{p^{*}(\cdot)}{\lambda^2} + O\left(\frac{1}{\lambda^3}\right).
 \end{align*}
-If $\psi$ is Schur function then $\toplane \circ \psi \circ \tocircle$ is a Pick function, and conversely every Pick function $\varphi$ gives rise to Schur function $\tocircle \circ \varphi \circ \toplane$. We can directly translate Schwarz-Pick theorem to Pick functions.
 
-\begin{lause}[Schwarz-Pick theorem for the upper half-plane]
-	Let $\varphi : \Hp \to \Hp$ be analytic. Then for any $z_{1}, z_{2} \in \Hp$ we have
-	\[
-		\left|\frac{\varphi(z_{1}) - \varphi(z_{2})}{\varphi(z_{1}) - \overline{\varphi(z_{2})}} \right| \leq \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
-	\]
-\end{lause}
+Finally, the following correspondence should be clear by now.
 
-Correspondingly analytic bijections in $\pickclass$ are exactly function of the form
-\[
-	z \mapsto \frac{a z + b}{c z + d},
-\]
-where $a, b, c, d \in \R$ and $a d - b c > 0$. Among these mapping the map
-\[
-	f : z \mapsto \frac{z \Re(w_{0}) - (|w_{0}|^2 + \Im(w_{0}))}{(1 + \Im(w_{0})) z - \Re(w_{0}))}
-\]
-satisfies $f(i) = w_{0}$.
+\begin{lem}
+	There is a natural linear bijective linear map between non-negative rational functions vanishing at infinity and $\pickclass^{*}$.
+\end{lem}
 
-We denote
-\begin{align*}
-	\tilde{d}(z_{1}, z_{2}) = \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
-\end{align*}
-Schwarz-Pick theorem tells us that $\tilde{d} \circ \varphi \leq \tilde{d}$ for any Pick functions $\varphi$. Consequently $\tilde{d} \circ \varphi = \tilde{d}$ if $\varphi$ is an bijection.
+\section{Weakly Pick functions}
 
-\subsection{Pick matrices}
+Theorem \ref{pick_functionals} implies that$\pickclass^{*}$ is really just the dual cone of $\pickclass$. It turns out that the ``converse" is also true: $\pickclass^{*}$ is also a predual of $\pickclass$.
 
-We can also arrive at the previous estimate directly using Cauchy's integral theorem, a bit similarly as with unit disc. Assume first that $\varphi$ is a bounded Pick-function extending over real line. We can start by proving that if $\varphi$ has positive imaginary part on real line, then it has positive real part on whole upper half-plane The idea to consider
-\begin{align*}
-	\varphi(a) = \frac{1}{2 \pi i}\int_{\gamma} \frac{\varphi(z)}{z - a} dz,
-\end{align*}
-again for suitable closed curve $\gamma$. If $\varphi$ decays fast enough at infinitity, we can deform the contour $\gamma$ to coincide with real axis. The unfortunate thing is that the we can't say much about the real or imaginary part of $ \frac{\varphi(z)}{z - a}$. But there's a trick: we can fix our problem by considering
-\begin{align*}
-	\frac{1}{2 \pi i}\int_{-\infty}^{\infty} \frac{\varphi(z)}{(z - a) (z - \overline{a})} dz.
-\end{align*}
-This expression has positive real part, and by using the residue theorem, the real part equals
-\[
-	\frac{\varphi(a) - \overline{\varphi(a)}}{a - \overline{a}},
-\]
-hence the claim. Also, boundedness is enough for this computation.
+\begin{maar}
+	We will elements of $\left(\pickclass^{*}\right)^{*}$ \textbf{weakly Pick functions}.
+\end{maar}
 
-To arrive at Schwarz-Pick theorem consider integral
-\begin{align*}
-	\frac{1}{2 \pi i}\int_{-\infty}^{\infty} \varphi(z) \left(\frac{c_{1}}{z - z_{1}} + \frac{c_{2}}{z - z_{2}} \right) \left(\frac{\overline{c_{1}}}{z - \overline{z_{1}}} + \frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) dz.
-\end{align*}
-Again, the point is that writing $h(z) = \frac{c_{1}}{z - z_{1}} + \frac{c_{2}}{z - z_{2}}$, $h$ is meromorphic in upper half-plane expect for the simple poles at $z_{1}$ and $z_{2}$, thus giving information about $\varphi(z_{1})$ and $\varphi(z_{2})$, $\overline{h(\overline{z})}$ is analytic in the upper halfplane and $h(z)\overline{h(\overline{z})}$ is real on the real axis.
+In layman's terms, weakly Pick functions are ones, which look like Pick functions if one only considers linear functionals. The aim of this section is to show that weakly Pick functions are exactly the Pick functions. We already proved one direction in the theorem \ref{pick_functionals}. 
 
-Now this expression should have positive real part for any $c_{1}, c_{2} \in \C$, and computing the real part using the residue theorem, we arrive at
-\begin{align*}
-	[z_{1}, \overline{z_{1}}]_{\varphi} |c_{1}|^{2} &+ [z_{1}, \overline{z_{2}}]_{\varphi} c_{1} \overline{c_{2}} \\
-	[z_{2}, \overline{z_{1}}]_{\varphi} c_{2} \overline{c_{1}} &+ [z_{2}, \overline{z_{2}}]_{\varphi} |c_{2}|^{2},
-\end{align*}
-where we abuse the notation a little by writing $\varphi(\overline{z}) = \overline{\varphi(z)}$.
+The other direction is tricky. Note that weakly Pick maps map to the upper half-plane so the interesting part is to prove that weakly Pick maps are analytic. For this we are going to verify bounds for the divided differences of $\varphi$. Recall that by theorem \ref{bounded_div} it suffices to verify that the order $2$ divided differences are locally bounded to prove that $\varphi$ is (continuously) differentiable. Strictly speaking we only proved the result on real line, but the prove would be almost identical in the complex case.
 
-But this is to say that the matrix
-\begin{align*}
-	\left([z_{i}, \overline{z_{j}}]_{\varphi}\right)_{1 \leq i, j \leq 2} =
-	\begin{bmatrix}
-		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} \\
-		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}
-	\end{bmatrix}
-\end{align*}
-is positive. Now, it just so turns out that ``determinant of the matrix is non-negative" is equivalent to Schwarz-Pick theorem.
+The idea is the following: we are going to formulate everything terms of the linear functionals. This idea is best illustrated with an example.
 
-Indeed, straightforward although laborious computation shows that
-\begin{align}\label{pick2_determinant}
-	\det\left(
-	\begin{bmatrix}
-		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} \\
-		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}
-	\end{bmatrix}
-	\right)
-	=
-	\frac{|\varphi(z_{1}) - \varphi(z_{2})|^2}{4 \Im(z_{1}) \Im(z_{2})} \left( d(z_{1}, z_{2})^2 - d(\varphi(z_{1}), \varphi(z_{2})^2)\right).
-\end{align}
-
-It is not very hard to generalize the previous argument larger matrices, and we have arrived to
-\begin{lause}\label{pick-nevanlinna_theorem}
-	If $\varphi$ is Pick function and $z_{1}, z_{2}, \ldots, z_{n}$ are any points in the upper half-plane, then the matrix
-	\begin{align}\label{Pick_matrix}
-	\begin{bmatrix}
-		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
-		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
-	\end{bmatrix}
-	\end{align}
-	is positive.
-\end{lause}
-
-The matrix \ref{Pick_matrix} is called \textit{Pick matrix}.
-
-\begin{proof}
-	We have already proved the theorem in the case that $\varphi$ is bounded and extends analytically over the real line. For general case consider the sequence $g_{n}$ of Pick functions given by
-	\[
-		g_{n}(z) = \frac{(1 - \frac{1}{n})x + \frac{i}{n}}{(1 - \frac{1}{n}) - i\frac{x}{n}} = \toplane \circ \left(z \mapsto \left(1 - \frac{2}{n}\right)z\right) \circ \tocircle.
-	\]
-	Now
-	\begin{enumerate}
-		\item $g_{n}(z) \to z$ pointwise.
-		\item $g_{n}$'s extend analytically over real line and $g_{n}(\overline{\H_{+}})$ is compact subset of $\H_{+}$ for every $n \geq 1$.
-	\end{enumerate}
-	It follows $\varphi \circ g_{n} \to \varphi$ pointwise and $\varphi \circ g_{n}$'s satisfy the already proven case. Finally, also the corresponding Pick-matrices of $\varphi \circ g_{n}$'s converge to Pick matrix of $\varphi$, hence the general case.
-\end{proof}
-
-\section{Weak characterization}
-
-Theorem \ref{pick-nevanlinna_theorem} has a converse.
-
-\begin{lause}\label{pick-nevanlinna_converse}
-	If $\varphi : \Hp \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ the respective Pick matrix
+\begin{lem}[Harnack inequality]\label{pick_harnack_lemma}
+	Let $\varphi$ be a weakly Pick function. Then for every compact $K \subset \Hp$ there exists a constant $C_{K}$ such that
 	\begin{align*}
-	\begin{bmatrix}
-		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
-		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
-	\end{bmatrix}
+		\frac{\Im(\varphi(z))}{\Im(z)} \leq C_{K} \frac{\Im(\varphi(w))}{\Im(w)}
 	\end{align*}
-	is positive, then $\varphi$ is a Pick function.
-\end{lause}
+	for every $z, w \in K$.
+\end{lem}
+\begin{proof}
+	Note that the sought inequality can be rephrased as positivity of the linear functional
+	\begin{align*}
+		\varphi \mapsto C_{K} \frac{\Im(\varphi(w))}{\Im(w)} - \frac{\Im(\varphi(z))}{\Im(z)}.
+	\end{align*}
+	By theorem \ref{pick_functionals} it suffices to prove that there exists constant $C_{K}$ such that the previous inequality holds for any extreme Pick function. This implies that we should have
+	\begin{align*}
+		\frac{1}{|\lambda - z|^2} \leq \frac{C_{K}}{|\lambda - w|^2}
+	\end{align*}
+	for every $\lambda \in \R$. But
+	\begin{align*}
+		\left|\frac{\lambda - w}{\lambda - z}\right|^2 \leq \left|1 + \frac{z - w}{\lambda - z}\right|^2 \leq \left(1 + \frac{|z - w|}{\Im(z)}\right)^2,
+	\end{align*}
+	so we can definitely find such constant.
+\end{proof}
 
-Note that if all the Pick matrices are positive, function clearly has non-negative imaginary part. Thus we ``only" need to verify analyticity.
-
-Let's first check continuity. For this we only need positivity on $2 \times 2$-matrices.
+Similarly, one can prove that weakly Pick functions are continuous.
 
 \begin{lause}\label{pick_continuity_lemma}
-	Let $A \subset \Hp$ and $\varphi : A \to \Hpc$ such that for any $z_{1}, z_{2} \in \Hp$ Pick matrix
-	\begin{align*}
-	\begin{bmatrix}
-		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
-		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
-	\end{bmatrix}
-	\end{align*}
-	is positive. Then $f$ is locally Lipschitz, in particular continuous.
+	Let $\varphi$ be a weakly Pick function. Then $\varphi$ is continuous.
 \end{lause}
 \begin{proof}
-	It follows from \ref{pick2_determinant} that we have
+	Our aim is to bound the divided difference $|[z, w]_{\varphi}|$. Now the problem is that this expression is not linear in the function anymore. There's a way to fix this problem however: we bound $\Re(\omega [z, w]_{\varphi})$ for $\omega \in \unitcircle$. This expression is linear in the function, and we have
 	\begin{align*}
-		\left|\frac{\varphi(z_{1}) - \varphi(z_{2})}{\varphi(z_{1}) - \overline{\varphi(z_{2})}} \right| \leq \left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right|.
+		|z| \leq C \Leftrightarrow \Re(\omega z) \leq C \text{ for every $\omega \in \unitcircle$}.
 	\end{align*}
-	for any $z_{1}, z_{2} \in A$; we can draw the same conclusion as in the Schwarz lemma. Now it clearly suffices to check that $\varphi$ is bounded on any compact set. For any compact $K$ there exists $\varepsilon_{K}$ such that the expression
+	Observe that
 	\begin{align*}
-		\left|\frac{z_{1} - z_{2}}{z_{1} - \overline{z_{2}}} \right| < 1 - \varepsilon_{K},
+		\Re\left(\frac{\omega}{(\lambda - z)(\lambda - w)} \right) \leq \frac{1}{|\lambda - z||\lambda - w|} \leq \frac{1}{2} \left( \frac{1}{|\lambda - z|^2} + \frac{1}{|\lambda - w|^2}\right)
 	\end{align*}
-	whenever $z_{1}, z_{2} \in K$. If we fix $z_{2} \in K$, it is easily seen that we obtain uniform bound on $|\varphi(z_{1})|$, as
+	for every $\omega \in \unitcircle$. It follows that
 	\begin{align*}
-		\lim_{z \to \infty}  \left|\frac{z - w}{z - \overline{w}} \right| = 1.
+		|[z, w]_{\varphi}| \leq \frac{1}{2} \left(\frac{\Im(\varphi(z))}{\Im(z)} + \frac{\Im(\varphi(w))}{\Im(w)}\right)
 	\end{align*}
-	(Here $\infty$ denotes the complex infinity).
+	for any weakly Pick function. Combining this with Harnack inequality \ref{pick_harnack_lemma} yields that any weakly Pick function is locally Lipschitz, so in particular continuous.
 \end{proof}
 
-Curiosly enough, $\varphi$ is analytic as long as all its $3 \times 3$ Pick matrices are positive. This result is known as Hindmarsh's theorem.
+The previous argument can be easily extended to the following.
 
 \begin{lause}\label{Hindmarsh_theorem}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for every $z_{1}, z_{2}, z_{3} \in \Hp$ Pick matrix
+	Let $\varphi$ be a weakly Pick function. Then for any $n \geq 1$ and $z_{0}, z_{1}, \ldots, z_{n}$ we have
 	\begin{align*}
-	\begin{bmatrix}
-		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & [z_{1}, \overline{z_{3}}]_{\varphi}\\
-		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & [z_{2}, \overline{z_{3}}]_{\varphi}\\
-		[z_{3}, \overline{z_{1}}]_{\varphi} & [z_{3}, \overline{z_{2}}]_{\varphi} & [z_{3}, \overline{z_{3}}]_{\varphi}\\
-	\end{bmatrix}
+		|[z_{0}, z_{1}, \ldots, z_{n}]_{\varphi}| \leq \frac{1}{2 \Im(z_{2}) \Im(z_{3}) \ldots \Im(z_{n})} \left(\frac{\Im(\varphi(z_{0}))}{\Im(z_{0})} + \frac{\Im(\varphi(z_{1}))}{\Im(z_{1})}\right).
 	\end{align*}
-	is positive. Then $\varphi$ is analytic.
+	In particular any weakly Pick function is analytic and hence a Pick function.
 \end{lause}
 \begin{proof}
-	We are going to check that the quantity $[z_{1}, z_{2}, z_{3}]_{\varphi}$ is locally bounded, which implies the claim as in the proof of theorem \ref{bounded_div}. 
+	Simply note that
+	\begin{align*}
+		\Re\left(\frac{\omega}{(\lambda - z_{0})(\lambda - z_{1}) \cdots (\lambda - z_{n})} \right) \leq \frac{1}{\Im(z_{2}) \Im(z_{3}) \ldots \Im(z_{n})} \frac{1}{|\lambda - z_{0}||\lambda - z_{1}|}
+	\end{align*}
+	and follow the argument in the proof of theorem \ref{pick_continuity_lemma}.
 \end{proof}
 
-As an immediate corollary we get theorem \ref{pick-nevanlinna_converse}.
+It is worthwhile to note that as one really only needs to get bound for order $2$ divided differences in the proof of \ref{Hindmarsh_theorem}, one only needs to keep track of small family of pick functionals, in particular ones with support of at most $3$ points. This observation is known as the Hindmarsh theorem.
 
-\begin{proof}[Proof of theorem \ref{pick-nevanlinna_converse}]
-If all Pick matrices are positive, so are all $3 \times 3$ Pick matrices.
-\end{proof}
-
-We can hence characterize Pick functions purely with Pick matrices, without limits and concerns of regularity, ``weakly". As an immediate corollary we get proposition \ref{pick_convergence}.
+\begin{kor}\label{pick_weakly_pick}
+	$\varphi : \Hp \to \C$ is weakly Pick, if and only if it Pick function.
+\end{kor}
 
 \begin{proof}[Proof of theorem \ref{pick_convergence}]
-Pointwise limits preserve positivity of the Pick matrices.
+	This follows immediately from \ref{pick_weakly_pick}.
 \end{proof}
 
-One might still go even further and argue that one does not need Pick matrices larger than $3 \times 3$ to talk about Pick functions. They however carry interesting ``global" information.
+\section{Pick-Nevanlinna extrapolation theorem}
 
-\begin{lause}\label{open_pick_nevanlinna}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ such that for any $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in U$ the respective Pick matrix
-	\begin{align*}
-	\begin{bmatrix}
-		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
-		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
-	\end{bmatrix}
-	\end{align*}
-	is positive. Then $\varphi$ is a restriction of an unique Pick function.
-\end{lause}
-
-This tells us that we may recognise Pick functions from local information. To prove the theorem, we first introduce the notion of \textit{Pick point}.
+There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 
 \begin{maar}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. We say that $z \in U$ is Pick point of $\varphi$, if $\varphi$ is analytic at $z$ and the $n \times n$ matrix
-	\begin{align*}
-	\begin{bmatrix}
-		[z, \overline{z}]_{\varphi} & [z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
-		[z, z, \overline{z}]_{\varphi} & [z, z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		[z, z, \ldots, z, \overline{z}]_{\varphi} & [z, z, \ldots, z, \overline{z}, \overline{z} ]_{\varphi} & \cdots & [z, z, \ldots, z, \overline{z}, \overline{z}, \ldots, \overline{z}]_{\varphi} \\
-	\end{bmatrix}
-	\end{align*}
-	is positive for every $n$.
+	Let $X \subset \Hp$. We say that $\varphi : X \to \C$ is weakly Pick on $X$ if $p^{*}(\varphi) \geq 0$ for any Pick functional $p^{*}$ supported on $X$.
 \end{maar}
 
-Where does this definition come from? The idea is to answer the question: what does it mean the Pick matrices to be non-negative at a single point, say $z_{0}$? In the definition of Pick matrix we could let all the variables be equal and conclude that the matrix
-\begin{align*}
-\begin{bmatrix}
-	[z_{0}, \overline{z_{0}}]_{\varphi} & [z_{0}, \overline{z_{0}}]_{\varphi} & \cdots & [z_{0}, \overline{z_{0}}]_{\varphi} \\
-	[z_{0}, \overline{z_{0}}]_{\varphi} & [z_{0}, \overline{z_{0}}]_{\varphi} & \cdots & [z_{0}, \overline{z_{0}}]_{\varphi} \\
-	\vdots & \vdots & \ddots & \vdots \\
-	[z_{0}, \overline{z_{0}}]_{\varphi} & [z_{0}, \overline{z_{0}}]_{\varphi} & \cdots &  [z_{0}, \overline{z_{0}}]_{\varphi}
-\end{bmatrix}
-\end{align*}
-is positive, but this would only tell us that $[z_{0}, \overline{z_{0}}]_{\varphi}$ is non-negative. We need derivatives.
-
-The idea is to $*$-conjugate the Pick matrix first. Say $n = 2$. If we subtract first row from the second in the Pick matrix
-\begin{align*}
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
-	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
-\end{bmatrix}
-\end{align*}
-we get
-\begin{align*}
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
-	[z_{2}, \overline{z_{1}}]_{\varphi} - [z_{1}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} - [z_{1}, \overline{z_{2}}]_{\varphi}\\
-\end{bmatrix}
-=
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
-	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{2}}]_{\varphi}
-\end{bmatrix}.
-\end{align*}
-Now subtracting first column from the second results in
-\begin{align*}
-&\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} - [z_{1}, \overline{z_{1}}]_{\varphi}\\
-	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{2}}]_{\varphi} - (z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi}
-\end{bmatrix} \\
-=&
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & \overline{(z_{2} - z_{1})}[z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
-	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1}) \overline{(z_{2} - z_{1})}[z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
-\end{bmatrix}.
-\end{align*}
-In the language of matrices this really says that
-\begin{align*}
-&\begin{bmatrix}
-	1 & 0 \\
-	-1 & 1
-\end{bmatrix}
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
-	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
-\end{bmatrix}
-\begin{bmatrix}
-	1 & -1 \\
-	0 & 1
-\end{bmatrix} \\
-= &
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & \overline{(z_{2} - z_{1})}[z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
-	(z_{2} - z_{1})[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & (z_{2} - z_{1}) \overline{(z_{2} - z_{1})}[z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
-\end{bmatrix} \\
-= &
-\begin{bmatrix}
-	1 & 0 \\
-	0 & (z_{2} - z_{1})
-\end{bmatrix}
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
-	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
-\end{bmatrix}
-\begin{bmatrix}
-	1 & 0 \\
-	0 & \overline{(z_{2} - z_{1})}
-\end{bmatrix}:
-\end{align*}
-matrices
-\begin{align*}
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi}\\
-	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi}\\
-\end{bmatrix}
-\text{ and }
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}\\
-	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi}
-\end{bmatrix}
-\end{align*}
-are congruent.
-
-Generalizing this argument we see that the matrices
-\begin{gather*}
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
-	[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
-	\vdots & \vdots & \ddots & \vdots \\
-	[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
-\end{bmatrix} \\
-\text{ and } \\
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
-	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
-	\vdots & \vdots & \ddots & \vdots \\
-	[z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi}
-\end{bmatrix}
-\end{gather*}
-are congruent. We hence conclude the following.
-
-\begin{lem}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$. Assume that for some $r > 0$, for every $n \geq 1$ and $z_{1}, z_{2}, \ldots, z_{n} \in \D(z_{0}, r) \cap U$ the respective Pick matrix is positive. Then $z_{0}$ is Pick point of $\varphi$.
-\end{lem}
-\begin{proof}
-	By theorem \ref{Hindmarsh_theorem} $\varphi$ is analytic at $z_{0}$. By previous observation all the matrices of the form
-\begin{align}\label{extended_dobsch_matrix}
-\begin{bmatrix}
-	[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
-	[z_{1}, z_{2}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, z_{2}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi} \\
-	\vdots & \vdots & \ddots & \vdots \\
-	[z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}]_{\varphi} & [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{1}, z_{2}, \ldots, z_{n}, \overline{z_{1}}, \overline{z_{2}}, \ldots, \overline{z_{n}}]_{\varphi}
-\end{bmatrix}
-\end{align}
-are positive. By letting $z_{1}, z_{2}, \ldots, z_{n} \to z_{0}$ we get the claim.
-\end{proof}
-Matrix \ref{extended_dobsch_matrix} is called \textit{extended Pick matrix}.
-
-Again, one can, and should, interpret the extended Pick matrix as some kind of change of basis. In terms of a Cauchy's integral formula the original Pick matrix says that
-\begin{align*}
-	\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \overline{\lambda_{j}}}\right) \varphi(z) dz \right) \geq 0,
-\end{align*}
-for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in U$ while the extended Pick matrix says that
-\begin{align*}
-	\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{\prod_{1 \leq j' \leq j}(z - \lambda_{j'})}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{\prod_{1 \leq j' \leq j}(z - \overline{\lambda_{j'}})}\right) \varphi(z) dz \right) \geq 0
-\end{align*}
-for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in U$. This interpretation makes it clear that two different matrices are really about
-\begin{gather*}
-	\frac{1}{z - \lambda_{1}}, \frac{1}{z - \lambda_{2}}, \ldots, \frac{1}{z - \lambda_{n}} \\
-	\text{and} \\
-	\frac{1}{z - \lambda_{1}}, \frac{1}{(z - \lambda_{1})(z - \lambda_{2})}, \ldots, \frac{1}{(z - \lambda_{1}) (z - \lambda_{2}) \cdots (z - \lambda_{n})}
-\end{gather*}
-spanning the same set of rational functions (whenever $\lambda_{i}$'s are pairwise distinct).
-
-The idea of the proof of theorem \ref{open_pick_nevanlinna} is the following: we try to make every point in $\Hp$ is Pick point of $\varphi$. For this we need two lemmas. first one says that if point is a Pick point of $\varphi$, then $\varphi$ can be extended to a reasonable large disc around $z_{0}$, which is really to say that the Taylor coefficients of $\varphi$ at $z_{0}$ don't grow too fast. Second one tells us that if we managed to extend function to such disc, then all the points in the disc are Pick points.
-
-\begin{lem}
-	There exists absolute constant $c_{0}$ with the following property: Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Assume that $z_{0} \in U$ is a Pick point of $U$. Then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, c_{0} \Im(z_{0}))$. One may take $c_{0} = \frac{1}{9}$.
-\end{lem}
-\begin{proof}
-	By affine transformation we may assume that $z_{0} = i$ and $\varphi(i) = i$. We should prove that there exists an absolute constant $C_{0}$ such that $\left|\frac{\varphi^{(n)}(i)}{n!}\right| \leq C_{0}^{n + 1}$ for any $n$. Write $a_{k} = \varphi^{(k)}(i)/k!$. The claim follows quite easily if we can prove that for some constant $C_{0}'$. We have
-	\begin{align*}
-		|a_{k}| \leq C_{0}' \sum_{i = 0}^{k - 1} |a_{i}|
-	\end{align*}
-	for $k \geq 1$.
-
-	We are going to express the entries of the Dobsch matrix with respect to the Taylor coefficients.
-
-	For convenience, write
-	\begin{align*}
-		b_{k} = a_{k} (-2 i)^{k + 1}
-	\end{align*}
-
-	By staightforvard induction one sees that
-	\begin{align*}
-		&[i, i, \ldots, i, -i, -i, \ldots, -i]_{\varphi} \\
-		&= \frac{1}{(-2i)^{k_{1}} (2 i)^{k_{2}}} \left( \sum_{j = 0}^{n - 1} b_{j} \binom{m + n - 2 - j}{m - 1} + \sum_{j = 0}^{m - 1} \overline{b_{j}} \binom{m + n - 2 - j}{n - 1}\right).
-	\end{align*}
-	where $i$ and $-i$ appear $k_{1}$ and $k_{2}$ times in the divided difference.
-
-	The idea is to look at the $n \times n$ matrix and conclude the inequality for $b_{n - 1}$. It turns out that it is sufficient to look at the submatrix consisting of only first and the last row and column. We may interpret the resulting matrix as sum of $n$ matrices $A_{j}$, $0 \leq j \leq n - 1$, namely
-	\begin{align*}
-		A_{j} =
-		\begin{cases}
-			\begin{bmatrix}
-				\frac{1}{4}(b_{0} + \overline{b_{0}}) & \frac{1}{(-2i)^{n}(2i)}(b_{0} + \overline{b_{0}}) \\
-				\frac{1}{(-2 i)(2 i)^{n}}(b_{0} + \overline{b_{0}}) &  \frac{\binom{2 n - 2}{n - 1}}{2^{2 n}}(b_{0} + \overline{b_{0}})
-			\end{bmatrix}
-			& \text{ if } j = 0 \\
-			\begin{bmatrix}
-				0 &  \frac{1}{(-2i)^{n}(2i)}b_{j} \\
-				\frac{1}{(-2 i)(2 i)^{n}}\overline{b_{j}} & \frac{\binom{2 n - 2 - j}{n - 1}}{2^{2 n}}(b_{j} + \overline{b_{j}})
-			\end{bmatrix}
-			& \text{ otherwise}.
-		\end{cases}
-	\end{align*}
-	Using the trivial inequality $\binom{2 n - 2 - j}{n - 1} \leq 2^{2 n - 2 - j}$ one easily sees that $\|A_{j}\| \leq 2^{-j}|b_{j}|$ for any $0 \leq j \leq n - 1$. Additionally it is easy to verify that $A_{n - 1}$ has negative eigenvalue with absolute value at least $2^{- n - 2}|b_{n - 1}|$.
-
-	It follows that
-	\begin{align*}
-		\frac{|b_{n - 1}|}{2^{n - 1}} \leq 8 \sum_{j = 0}^{n - 2} \frac{|b_{j}|}{2^{j}},
-	\end{align*}
-	which implies that
-	\begin{align*}
-		|a_{n - 1}| \leq 8 \sum_{j = 0}^{n - 2} |a_{j}|.
-	\end{align*}
-	Since $a_{0} = 1$, we see by induction that $|a_{j}| \leq 9^{j}$, and we may hence take $c_{0} = \frac{1}{9}$.
-\end{proof}
-
-\begin{lem}\label{pick_point_lemma}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. Let $z_{0} \in U$ and $0 < r \leq \Im(z_{0})$. Assume that $z_{0}$ is Pick point of $\varphi$ and $\varphi$ is analytic in $\D(z_{0}, r)$. Then all Pick matrices of $\varphi$ are positive on $\D(z_{0}, r)$. Consequently, all the points in $\D(z_{0}, r)$ are Pick points of $z_{0}$.
-\end{lem}
-\begin{proof}
-	Rewriting things with Cauchy's integral formula, our goal is to prove that for any $c_{1}, c_{2}, \ldots, c_{n} \in \C$ and $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \D(z_{0}, r)$ we have
-	\begin{align*}
-		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}}{z - \lambda_{j}}\right)\left(\sum_{j = 1}^{n} \frac{\overline{c_{j}}}{z - \overline{\lambda_{j}}}\right) \varphi(z) dz \right) \geq 0
-	\end{align*}
-	where $\gamma$ traces a circle centered at $z_{0}$, enclosing the $\lambda$'s. What we know, again, in terms of Cauchy's integral formula, is that for any $c_{1}', c_{2}', \ldots, c_{n}' \in \C$ we have
-	\begin{align*}
-		\Re\left(\frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{j}'}{(z - z_{0})^{j}}\right) \left(\sum_{j = 1}^{n}\frac{\overline{c_{j}'}}{(z - \overline{z_{0}})^{j}}\right) \varphi(z) dz\right) \geq 0.
-	\end{align*}
-	The idea is to simply approximate upper integrand: if we manange to approximate terms of the form $\frac{1}{z - \lambda}$ uniformly on $\gamma$ by terms of the form $\sum_{j = 1}^{n} \frac{c_{j}'}{(z - z_{0})^{j}}$, then we can certainly make our goal expression as close to a non-negative number as we wish. But this is exactly what Laurent expansions are for.
-
-	One should not forget that also the conjugate part should be approximated, but since $|\overline{z} - z_{0}| > |z - z_{0}|$ for any $z \in \Hp$, the conjugated approximation is even better.
-\end{proof}
-
-\begin{proof}[Proof of theorem \ref{open_pick_nevanlinna}]
-	Consider all open sets $U \subset V \subset \Hp$ such that $\varphi$ may be extended to $V$ so that all the points of $V$ are Pick points of $\varphi$ (or the extension thereof). These sets trivially satisfy conditions of Zorn's lemma (where partial order is given by inclusion) so we may Pick maximal such set, $V$. We claim that this set is $\Hp$. If not, we may pick a point $z_{0}$ in $\Hp \cap \partial V$. Now pick $z \in V$ such that $|z - z_{0}| < \Im(z_{0}) c_{0}$: we may extend $\varphi$ now further to $\D(z_{0}, c_{0} \Im(z_{0}))$ by Taylor series and all points in the extension are Pick points, which contradicts the maximality.
-\end{proof}
-
-There is fundamental flaw with the second argument: when we extend $\varphi$ with Taylor series, how do we know that these extensions are consistent? If original set $U$ was, say, disjoint union of two discs, and Taylor series centered at a point of one disc would converge also at (some part of) other disc, how do we know that the Taylor series converges to the predefined values in the one disc? This is not at all clear.
-
-If $U$ is disc or more generally domain, we can use the monodromy theorem to show that this kind of extension is indeed possible. Indeed, upper half-plane is simply connected and by the previous lemmas we can continue $\varphi$ along any path. This, however, still doesn't fix the problem with two disjoint discs.
-
-We can salvage the proof by improving the second lemma. We have to somehow remember the information of the positivity of all the Pick matrices, otherwise we might run into problem. Let's have notion for this.
-
-\begin{maar}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$. We call $\varphi$ \textit{weakly Pick}, or say it is \textit{weak Pick function} if all its Pick matrices are positive.
-\end{maar}
-
-\begin{lem}
-	Let $U \subset \Hp$ be open and $\varphi : U \to \Hpc$ weakly Pick. Assume that for some $z_{0} \in U$ and $r > 0$ the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, r)$. Then the values of Taylor series in $\D(z_{0}, r) \cap U$ coincide with $\varphi$ and the resulting extension is weakly Pick in $U \cup \D(z_{0}, r)$.
-\end{lem}
-\begin{proof}
-	Let us first show that the extension coincides with the original function. Note that this not all that obvious and fails if without the weakly Pick -condition.
-
-	To do that, let $\tilde{\varphi} : \D(z_{0}, r) \to \C$ be the extension and let $z_{1} \in \D(z_{0}, r)$ and $z_{2} \in U$ be distinct. We prove that the matrix
-	\begin{align*}
-		\begin{bmatrix}
-		\frac{\tilde{\varphi}(z_{1}) -  \overline{\tilde{\varphi}(z_{1})}}{z_{1} - \overline{z_{1}}} & \frac{\tilde{\varphi}(z_{1}) -  \overline{\varphi(z_{2})}}{z_{1} - \overline{z_{2}}} \\
-		\frac{\varphi(z_{2}) -  \overline{\tilde{\varphi}(z_{1})}}{z_{2} - \overline{z_{1}}} & \frac{\varphi(z_{2}) -  \overline{\varphi(z_{2})}}{z_{2} - \overline{z_{2}}}
-		\end{bmatrix}
-	\end{align*}
-	is positive. As observed before, this shows that $|\tilde{\varphi}(z_{1}) - \varphi(z_{2})| \leq C_{\varphi, z_{2}} |z_{1} - z_{2}|$ which implies the claim. We could also consider the matrix where $z_{1}$ and $z_{2}$ are equal, but this is just for notational convenience.
-
-	The idea is to try to do the same thing as in the proof of lemma \ref{pick_point_lemma}. The problem is that we can't a priori express both $\varphi(z_{1})$ and $\tilde{\varphi}(z_{1})$ with Cauchy's integral formula with the same contour. But we can still follow the same approximation scheme, one just has to be more careful about error terms.
-
-	To make the notation slightly simpler 
-
-	If we already knew that the result was true, the positivity of matrix desired would be same as positivity of the real part of
-	\begin{align*}
-		\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}}{z - z_{1}} + \frac{c_{2}}{z - z_{2}} \right)  \left(\frac{\overline{c_{1}}}{z - \overline{z_{1}}} + \frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right)\varphi(z) dz.
-	\end{align*}
-
-	Plugging the identity
-	\begin{align*}
-	\frac{1}{z - z_{1}} = \sum_{j = 1}^{n} \frac{(z_{1} - z_{0})^{j - 1}}{(z - z_{0})^{j}} + \frac{(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}
-	\end{align*}
-	in the previous integral we arrive at
-	\begin{align*}
-		&\frac{1}{2 \pi i}\int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{1}(z_{1} - z_{0})^{j - 1}}{(z - z_{0})^{j}}  + \frac{c_{2}}{z - z_{2}} \right)  \left(\sum_{j = 1}^{n} \frac{\overline{c_{1}} (\overline{z_{1}} - \overline{z_{0}})^{j - 1}}{(z - \overline{z_{0}})^{j}} + \frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) \varphi(z) dz\\
-		+&\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\sum_{j = 1}^{n} \frac{\overline{c_{1}} (\overline{z_{1}} - \overline{z_{0}})^{j - 1}}{(z - \overline{z_{0}})^{j}}\right) \varphi(z) dz\\
-		+&\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) \varphi(z) dz\\
-		+&\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\frac{\overline{c_{1}}(\overline{z_{1}} - \overline{z_{0}})^{n}}{(z - \overline{z_{1}})(z - \overline{z_{0}})^{n}}\right) \varphi(z) dz \\
-		+& \frac{1}{2 \pi i}\int_{\gamma} \left(\sum_{j = 1}^{n} \frac{c_{1}(z_{1} - z_{0})^{j - 1}}{(z - z_{0})^{j}}\right) \left(\frac{\overline{c_{1}}(\overline{z_{1}} - \overline{z_{0}})^{n}}{(z - \overline{z_{1}})(z - \overline{z_{0}})^{n}}\right) \varphi(z) dz \\
-		+& \frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{2}}{z - z_{2}}\right) \left(\frac{\overline{c_{1}}(\overline{z_{1}} - \overline{z_{0}})^{n}}{(z - \overline{z_{1}})(z - \overline{z_{0}})^{n}}\right) \varphi(z) dz.
-	\end{align*}
-	Note all this could be expanded as sum linear combination of $\varphi(z_{1}), \varphi(z_{2})$ and $\varphi^{(j)}(z_{0})$ for $0 \leq j \leq n - 1$. Should one do that, the resulting identity would hold without any additional (to the lemma statement) smootness assumptions. The point again is that the first row gives the main term, and we know that it is non-negative. It hence suffices to prove that remaining terms tend to zero as $n \to \infty$.
-
-	Terms without $z_{2}$ are easy to estimate directly as they make also make honest sense. We can take $\gamma$ to be circle of radius $r'$ for some $|z_{1} - z_{0}| < r' < r$. Then for instance the first error term can be bounded by
-	\begin{align*}
-		\frac{|c_{1} c_{2}| |z_{1} - z_{0}|^{n}(r - r')}{r'^{n}} \left(\sum_{j = 1}^{n} \frac{|z_{1} - z_{0}|^{j - 1}}{{r'}^{j}}\right) \sup_{z \in \partial \D(z_{0}, r')}|\varphi(z)|,
-	\end{align*}
-	which clearly tends to $0$.
-
-	With $z_{2}$ terms one has to be bit more careful. First, write
-	\begin{align*}
-		& \frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \left(\frac{\overline{c_{2}}}{z - \overline{z_{2}}} \right) \varphi(z) dz \\
-		= & \frac{c_{1} \overline{c_{2}}}{z_{1} - \overline{z_{2}}}\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{(z_{1} - z_{0})^{n}}{(z - z_{1})(z - z_{0})^{n}}\right) \varphi(z) dz \\
-		-& \frac{c_{1} \overline{c_{2}}}{z_{1} - \overline{z_{2}}}\frac{1}{2 \pi i}\int_{\gamma} \left(\frac{c_{1}(z_{1} - z_{0})^{n}}{(z - \overline{z_{2}})(z - z_{0})^{n}}\right) \varphi(z) dz.
-	\end{align*}
-	First term is again easily estimated. The second integrand, so far formal, can be written as a sum
-	\begin{align*}
-		& \frac{(z_{1} - z_{0})^{n}}{(z - \overline{z_{2}})(z - z_{0})^{n}} \varphi(z)\\
-		=& \frac{(z_{1} - z_{0})^{n}}{(z - \overline{z_{2}})(z_{0} - \overline{z_{2}})^{n}}\varphi(z) - \sum_{i = 1}^{n} \frac{(z_{1} - z_{0})^{n}}{(z - z_{0})^{j} (z_{0} - \overline{z_{2}})^{n + 1 - j}}\varphi(z).
-	\end{align*}
-	First term evaluates to $0$ and the other terms are again easily estimated. For the another $z_{2}$ only
-	\begin{align*}
-		\frac{(z_{1} - z_{0})^{n}}{(z_{0} - \overline{z_{2}})^{n}} \varphi(z_{0})
-	\end{align*}
-	remains.
-
-	This argument also essentially proves that the extension is weakly Pick. We should prove that for any $n_{1}, n_{2} \geq 0$ and $z_{1}, \ldots, z_{n_{1}}, w_{1}, \ldots, w_{n_{2}} \in \C$ the matrix
-	\begin{align*}
-		\begin{bmatrix}
-			\frac{\tilde{\varphi}(z_{1}) - \overline{\tilde{\varphi}(z_{1})}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{\tilde{\varphi}(z_{1}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{z_{1} - \overline{z_{n_{1}}}} & \frac{\tilde{\varphi}(z_{1}) - \overline{\varphi(w_{1})}}{z_{1} - \overline{w_{1}}} & \ldots & \frac{\tilde{\varphi}(z_{1}) - \overline{\varphi(w_{n_{2}})}}{z_{1} - \overline{w_{n_{2}}}} \\
-			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-			\frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\tilde{\varphi}(z_{1})}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{z_{1} - \overline{z_{n_{1}}}} & \frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\varphi(w_{1})}}{z_{1} - \overline{w_{1}}} & \ldots & \frac{\tilde{\varphi}(z_{n_{1}}) - \overline{\varphi(w_{n_{2}})}}{z_{1} - \overline{w_{n_{2}}}} \\
-			\frac{\varphi(w_{1}) - \overline{\tilde{\varphi}(z_{1})}}{w_{1} - \overline{z_{1}}} & \cdots & \frac{\varphi(w_{1}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{w_{1} - \overline{z_{n_{1}}}} & \frac{\varphi(w_{1}) - \overline{\varphi(w_{1})}}{w_{1} - \overline{w_{1}}} & \ldots & \frac{\varphi(w_{1}) - \overline{\varphi(w_{n_{2}})}}{w_{1} - \overline{w_{n_{2}}}} \\
-			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
-			\frac{\varphi(w_{n_{2}}) - \overline{\tilde{\varphi}(z_{1})}}{w_{n_{2}} - \overline{z_{1}}} & \cdots & \frac{\varphi(w_{n_{2}}) - \overline{\tilde{\varphi}(z_{n_{1}})}}{w_{n_{2}} - \overline{z_{n_{1}}}} & \frac{\varphi(w_{n_{2}}) - \overline{\varphi(w_{1})}}{w_{n_{2}} - \overline{w_{1}}} & \ldots & \frac{\varphi(w_{n_{2}}) - \overline{\varphi(w_{n_{2}})}}{w_{n_{2}} - \overline{w_{n_{2}}}} \\
-		\end{bmatrix}
-	\end{align*}
-	is positive. Formally, this would mean that for any $c_{1}, \ldots, c_{n_{1}}, d_{1}, \ldots, d_{n_{2}} \in \C$ the real part of the integral
-	\begin{align*}
-		\frac{1}{2 \pi i}\int_{\gamma} \left(\sum_{i = 1}^{n_{1}} \frac{c_{i}}{z - z_{i}} + \sum_{i = 1}^{n_{2}} \frac{d_{i}}{z - w_{i}}\right) \left(\sum_{i = 1}^{n_{1}} \frac{\overline{c_{i}}}{z - \overline{z_{i}}} + \sum_{i = 1}^{n_{2}} \frac{\overline{d_{i}}}{z - \overline{w_{i}}}\right) \varphi(z) dz
-	\end{align*}
-	is positive. But one can simply do the same Laurent expansion, and error terms are estimated completely analogously.
-\end{proof}
-
-\begin{proof}[Fix of the proof of theorem \ref{open_pick_nevanlinna}]
-Now the Zorn's lemma works if we change the condition a bit: we look at all the weakly Pick extensions of $\varphi$ to open subsets of upper half-plane.
-
-Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture) and the lemmas would guarantee that we can always both extend further and extensions are always consistent and weakly Pick.
-\end{proof}
-
-\section{Pick-Nevanlinna Interpolation theorem}
-
-One can still considerably strenghten theorem \ref{open_pick_nevanlinna}: instead of open set, domain of $\varphi$ could be any set. Then we don't in general have unique extension. This is the content of Pick-Nevanlinna interpolation theorem.
-
-\begin{lause}[Pick-Nevanlinna interpolation theorem]\label{pick_nevanlinna_interpolation}
-	Let $A \subset \H_{+}$ and $\varphi : A \to \Hpc$ weakly Pick. Then $\varphi$ is a restriction of a Pick function to $A$.
+\begin{lause}\label{open_pick_interpolation}
+	Let $U \subset \Hp$ be ope and assume that $\varphi$ is weakly Pick on $U$. Then there exists a unique pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
-Note that the notion of weak Pick functions makes perfect sense in this more general setting. In the general setting we can't use Taylor series to extend the function anymore, but it turns out that this is not too big of a problem. The idea is again to extend $\varphi$ to larger and larger sets. Note that to do this we only need to be able to extend $\varphi$ to one new point so that all Pick matrices are again positive: we can then use the Zorn's lemma -trick again.
+The proof is based on the following lemma.
 
-Before the proof we need an interesting fact\footnote{We don't really need, but it is an interesting fact nonetheless.}.
-
-\begin{lem}\label{disc_lemma}
-	Let $\mathcal{D}$ be a non-empty family of (non-empty) closed discs such that for any $\D_{1}, \D_{2} \in \mathcal{D}$ there exists $\mathcal{D} \ni \D_{3} \subset \D_{1} \cap \D_{2}$. Then
-	\begin{align*}
-		\bigcap_{\D \in \mathcal{D}} \D
-	\end{align*}
-	is a (non-empty) closed disc.
+\begin{lem}\label{open_pick_lemma}
+	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Let $z_{0} \in U$. Then there exists unique weakly Pick $\tilde{\varphi} : U \cap \D(z_{0}, \Im(z_{0}))$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lem}
-\begin{proof}
-	Denote the intersection by $K$. Since $\mathcal{D}$ is family of compact sets with finite intersection property, $K$ is non-empty compact set. Hence we may take two points in $K$ with largest distance. If the points are equal, the intersection is a single points, and we are done. If not, without loss of generality we may assume that the points are $-1$ and $1$. Our aim is to prove that $K$ equals $\overline{\D}(0, 1)$.
-
-	Fix $r > 1$. We claim that there exists a disc $\D \in \mathcal{D}$ such that $\D$ is contained in the strip $S_{r} := \{z \in \C | |\Re(z)| < r\}$. For this note that for any $M > 0$ the family $\{[r - i M, r + i M] \cap \D | \D \in \mathcal{D}\}$ (where $[r - i M, r + i M]$ denotes the closed interval from $r - i M$ to $r + i M$) is family of compact sets with empty intersection, so they have finite subfamily with empty intersection. By the main condition if follows that we find a disc in $\mathcal{D}$ with empty intersection with the interval. Taking $M$ large enough we see that one of the discs has empty intesection with the line $\{z \in \C | \Re(z) = r\}$. Playing the same game with $-r$ and taking the intersection we find the required disc.
-
-	Next we claim that for any $r' < 1$ any disc in the family contains $\D(0, r')$. Note that since all the discs in the family have radius at least $1$, this is certainly true for any disc with center close enough to $0$. If $\D_{0} \in S_{r}$ has center $z_{0}$, we have $2 r^{2} \geq |1 - z_{0}|^2 + |1 + z_{0}|^2 = 2 + 2 |z_{0}|^2$. Taking $r$ close to $1$ we see that $z_{0}$ is close to $0$ and hence $\D_{0}$ contains $\D(0, r')$. Since by the intersection property every disc in $\mathcal{D}$ contains disc in $S_{r}$, also the second claim is proven.
-
-	Now as $K$ as compact, it contains the closed disc $\overline{\D}(0, 1)$. But since $K$ has diameter $2$, it can't contain anything else, so $K = \overline{\D}(0, 1)$ and we are done.
-
-	TODO picture
-\end{proof}
-
-Not surprisingly, the result remains true also in higher dimensions, as can be seen for instance by intersecting the closed balls with two dimensional planes and applying the 2d case.
-
-\begin{lem}\label{pick_extension_lemma}
-	Let $A \subset \H_{+}$ and $\varphi : A \to \Hpc$ weakly Pick. Then if $z_{0} \in \Hp \setminus A$ there exists $w_{0} \in \Hpc$ such that if we extend $\varphi$ to $z_{0}$ by setting $\varphi(z_{0}) = w_{0}$, also the extension is weakly Pick.
-\end{lem}
-\begin{proof}
-	Let's first consider the case of finite $A$, say $A = \{z_{1}, z_{2}, \ldots, z_{n}\}$ and denote $w_{i} = \varphi(z_{i})$. We should find $w_{0}$ such that the matrix
-	\begin{align*}
-		\begin{bmatrix}
-			\frac{w_{0} - \overline{w_{0}}}{z_{0} - \overline{z_{0}}} & \frac{w_{0} - \overline{w_{1}}}{z_{0} - \overline{z_{1}}} & \cdots & \frac{w_{0} - \overline{w_{n}}}{z_{0} - \overline{z_{n}}} \\
-			\frac{w_{1} - \overline{w_{0}}}{z_{1} - \overline{z_{0}}} & \frac{w_{1} - \overline{w_{1}}}{z_{1} - \overline{z_{1}}} & \cdots & \frac{w_{1} - \overline{w_{n}}}{z_{1} - \overline{z_{n}}} \\
-			\vdots & \vdots & \ddots & \vdots \\
-			\frac{w_{n} - \overline{w_{0}}}{z_{n} - \overline{z_{0}}} & \frac{w_{n} - \overline{w_{1}}}{z_{n} - \overline{z_{1}}} & \ldots & \frac{w_{n} - \overline{w_{n}}}{z_{n} - \overline{z_{n}}}
-		\end{bmatrix}
-	\end{align*}
-	is positive. Denote the matrix consisting of the last $n$ rows and columns of the matrix by $n$. We first assume that $M$ is invertible. Then the original matrix is positive if and only the the Schur complement with respect to the last $n$ rows is positive, that is
-	\begin{align*}
-		0 \leq &\frac{w_{0} - \overline{w_{0}}}{z_{0} - \overline{z_{0}}} - (w_{0} v - w)^{*} M^{-1} (w_{0} v - w) \\
-		=& -\langle M^{-1} v, v \rangle |w_{0}|^2 + \left(\frac{1}{z_{0} - \overline{z_{0}}} + \langle M^{-1} v, w \rangle \right) w_{0} \\
-		&+  \left(-\frac{1}{z_{0} - \overline{z_{0}}} + \langle M^{-1} w, v \rangle \right) \overline{w_{0}} - \langle M^{-1} w, w \rangle \\
-		=&  -\frac{1}{\langle M^{-1} v, v \rangle} \left|\langle M^{-1} v, v \rangle w_{0} +  \frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} \\
-		&+ \frac{\left|\frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle}{\langle M^{-1} v, v \rangle}
-	\end{align*}
-	where $v = (\frac{1}{z_{0} - \overline{z_{i}}})_{i = 1}^{n}$ and $w = (\frac{\overline{w_{i}}}{z_{0} - \overline{z_{i}}})_{i = 1}^{n}$. Now if we manage to prove that
-	\begin{align*}
-	\left|\frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle \geq 0,
-	\end{align*}
-	we can choose suitable $w_{0}$ and moreover set of suitable $w_{0}$'s is a closed disc.
-
-	The positivity follows from the following formula:
-	\begin{align*}
-		\left|\frac{1}{z_{0} - \overline{z_{0}}} - \langle M^{-1} w, v \rangle\right|^{2} - \langle M^{-1} v, v \rangle\langle M^{-1} w, w \rangle = \prod_{i = 1}^{n} \left|\frac{z_{i} - z_{0}}{z_{i} - \overline{z_{0}}}\right|^{2} = \prod_{i = 1}^{n} \tilde{d}(z_{1}, z_{0})^{2}
-	\end{align*}
-	Where does this come from? The idea is that the Pick matrix is of a really special form and as one easily checks, one has
-	\begin{align*}
-		\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}} -\frac{w_{k} - \overline{z_{0}}}{z_{k} - \overline{z_{0}}}\frac{\overline{w_{l}} - z_{0}}{\overline{z_{l}} - z_{0}} +  \frac{w_{k} - z_{0}}{z_{k} - \overline{z_{0}}}\frac{\overline{w_{l}} - \overline{z_{0}}}{\overline{z_{l}} - z_{0}} = \frac{z_{k} - z_{0}}{z_{k} - \overline{z_{0}}}\frac{\overline{z_{l}} - \overline{z_{0}}}{\overline{z_{l}} - z_{0}}\frac{w_{k} - \overline{w_{l}}}{z_{k} - \overline{z_{l}}}.
-	\end{align*}
-	This identity can be interpreted as $(M - v_{1} v_{1}^{*}) + v_{2} v_{2}^{*} = D^{*} M D$ where $v_{1}, v_{2}$ are some vectors and $D$ a diagonal matrix. Calculating the determinant from both sides, by multiplicativity on the right-hand side and using rank 1 update formulas in the bracketed order on the left-hand side, one will end up with the sought formula.
-
-	If $M$ is singular, one has to be bit careful. The trick is to shift the tuple a bit.
-
-	The matrix $\left(\frac{2 i}{z_{k} - \overline{z_{l}}}\right)_{1 \leq k,l \leq n}$ is strictly positive for any tuple of distinct numbers $z_{1}, \ldots, z_{n} \in \Hp$. Indeed, by the residue theorem we have
-	\begin{align*}
-		\sum_{1 \leq k,l \leq n} c_{k} \overline{c_{l}} \frac{2 i}{z_{k} - \overline{z_{l}}} = \frac{1}{2 \pi}\int_{-\infty}^{\infty} \left|\sum_{k = 1}^{n} \frac{c_{k}}{t - z_{k}}\right|^{2} d t
-	\end{align*}
-	and if the integrand is zero almost everywhere, and hence on at least $n$ points, then $c_{i}$'s are all zero.
-
-	Consequently, consider the extension problem for the values $w_{k} + \varepsilon i$ for some $\varepsilon > 0$, and let $D_{\varepsilon} + \varepsilon i$ be the respective set of suitable $w_{0}$'s for given $\varepsilon$. Since clearly $D_{\varepsilon} \subset D_{\varepsilon'}$ for any $\varepsilon \leq \varepsilon'$ and $D_{\varepsilon}$'s are closed discs, by lemma \ref{disc_lemma} the intersection
-	\begin{align*}
-		\cap_{\varepsilon > 0} D_{\varepsilon} =: D_{0}
-	\end{align*}
-	is also a closed disc, and one easily sees that it is exactly the set of suitable $w_{0}$'s.
-
-	Let's now consider case of arbitrary $A$. For every finite subset $F \subset A$ we know that the set of suitable $w_{0}$'s, say $W_{F}$, is a closed disc. We also know that $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$. But now it follows that the family
-	\begin{align*}
-		\{W_{F} \subset \Hp | \text{$F$ is finite (non-empty) subset of $A$} \}
-	\end{align*}
-	satisfies the conditions of the lemma \ref{disc_lemma} and hence the intersection is a closed disc. This intersection is exactly the set of suitable $w_{0}$'s.
-
-	TODO: express this as a hyperbolic disc with canonical center.
-\end{proof}
-
-\begin{proof}[Proof of theorem \ref{pick_nevanlinna_interpolation}]
-Let us consider the set of all weakly Pick extensions of $\varphi$, ordered by restriction. This family trivially satisfies conditions of the Zorn's lemma, so there's a maximal element, $\varphi_{0}$. But by the previous lemma $\varphi_{0}$ must be defined in the whole upper half-plane, since if not, we could extend it to one more point. Finally, by theorem \ref{pick-nevanlinna_converse} the resulting map is Pick function.
-\end{proof}
-
-Again, one doesn't really need the Zorn's lemma.
-
-\begin{proof}[Alternate proof of theorem \ref{pick_nevanlinna_interpolation}]
-	If $\Hp \setminus A$ is finite, simply apply lemma \ref{pick_extension_lemma} repeatedly. If not, we may pick a countable dense set in $C \subset \Hp \setminus A$ and extend $\varphi$ there. As a result we get a map in a dense subset of upper half-plane, which is continuous by lemma \ref{pick_continuity_lemma}. This means that we have continuous extension to whole upper half-plane, and by continuity also all the Pick matrices of the extension are positive. Finally, by theorem \ref{pick-nevanlinna_converse} the final extension is a Pick function.
-\end{proof}
-
-\section{Schur transform}
-
-Properties of Pick functions translate nicely to those of positive maps. Most obvious of these properties is the cone structure: Pick matrix is linear in the function. The automorphims of the upper half-plane correspond to one dimensional projections. Indeed, Pick matrix of map of the form $z \mapsto \frac{a z + b}{c z + d}$ is given by
-\begin{align*}
-	\left[\frac{\frac{a z_{i} + b}{c z_{i} + d} - \frac{a \overline{z_{j}} + b}{c \overline{z_{j}} + d}}{z_{i} - \overline{z_{j}}}\right]_{i, j = 1}^{n}
-	=
-	\left[\frac{a d - bc}{(c z_{i} + d) (c \overline{z_{i}} + d)}\right]_{i, j = 1}^{n},
-\end{align*}
-which is of rank $1$. Composition corresponds to Hadamard product: if $\varphi = \varphi_{2} \circ \varphi_{1}$, we have
-\begin{align*}
-	\left[\frac{\varphi(z_{i}) - \overline{\varphi(z_{j})}}{z_{i} - \overline{z_{j}}}\right]_{i, j = 1}^{n}
-	=
-	\left[\frac{\varphi_{2}(\varphi_{1}(z_{i})) - \overline{\varphi_{2}(\varphi_{1}(z_{j}))}}{\varphi_{1}(z_{i}) - \overline{\varphi_{1}(z_{j})}}\right]_{i, j = 1}^{n}
-	\circ
-	\left[\frac{\varphi_{1}(z_{i}) - \overline{\varphi_{1}(z_{j})}}{z_{i} - \overline{z_{j}}}\right]_{i, j = 1}^{n}.
-\end{align*}
-
-There's however more subtle connection, one between Schur transform and, rather appropriately, Schur complement.
-
-If $\psi$ is Schur function such that $\psi(0) = 0$, then, by the Schwarz lemma, also $\psi(z)/z$ is a Schur function. One may again translate this to Pick functions, and get an interesting corollary: if $\varphi$ is a Pick function such that $\varphi(i) = i$, then also
-\begin{align*}
-	\frac{\varphi(z) - z}{1 + z \varphi(z)}
-\end{align*}
-is a Pick function. Actually, this gives a bijection between Pick functions and Pick functions with $\varphi(i) = i \ldots$ almost: $z \mapsto -\frac{1}{z}$ would like to map to constant infinity.
-
-We could form similar bijection for any pair $(z, w) \in \H_{+}^{2}$: Pick functions for which $\varphi(z) = w$.
-
-The previous bijection translates nicely to Pick matrices. Take sequence of points $z_{1}, z_{2}, \ldots, z_{n} \in \H_{+} \setminus \{i\}$. Theorem \ref{pick-nevanlinna_theorem} for $\varphi$ and points $i, z_{1}, \ldots, z_{n}$ implies that the matrix
-\begin{align*}
-	\begin{bmatrix}
-		[i, -i]_{\varphi} & [i, \overline{z_{1}}]_{\varphi} & \cdots & [i, \overline{z_{n}}]_{\varphi} \\
-		[z_{1}, -i]_{\varphi} & [z_{1}, \overline{z_{1}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		[z_{n}, -i]_{\varphi} & [z_{n}, \overline{z_{1}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
-	\end{bmatrix}
-\end{align*}
-is positive. Since $[i, -i]_{\varphi} = 1$ is positive, taking Schur-complement with respect to upper-left corner this is equivalent to the matrix
-\begin{align*}
-	& \left([z_{i}, \overline{z_{j}}]_{\varphi} - [z_{i}, -i]_{\varphi}[i, \overline{z_{j}}]_{\varphi}\right)_{1 \leq i, j \leq n} \\
-	=& \left(\left(\frac{\varphi(z_{i})- \overline{\varphi(z_{j})}}{z_{i} - \overline{z_{j}}}\right) - \left(\frac{\varphi(z_{i}) + i}{z_{i} + i}\right)\left(\frac{i - \overline{\varphi(z_{j})}}{i - \overline{z_{j}}}\right)\right)_{1 \leq i, j \leq n} \\
-	=& \left(\frac{[z_{i}, \overline{z_{j}}]_{\varphi} (z_{i} \overline{z_{j}} + 1) - 1 - \varphi(z_{i}) \overline{\varphi(z_{j})}}{(z_{i} + i) (\overline{z_{j}} - i)}\right)_{1 \leq i, j \leq n}
-\end{align*}
-being positive. But if one applies the theorem to the function $\frac{\varphi(z) - z}{1 + z \varphi(z)}$ and points $z_{1}, z_{2}, \ldots, z_{n}$, one arrives at the matrix
-\begin{align*}
-	\left(\frac{[z_{i}, \overline{z_{j}}]_{\varphi} (z_{i} \overline{z_{j}} + 1) - 1 - \varphi(z_{i}) \overline{\varphi(z_{j})}}{(1 + z_{i} \varphi(z_{i}))(1 + \overline{z_{j}} \overline{\varphi(z_{j})})}\right)_{1 \leq i, j \leq n}.
-\end{align*}
-Two resulting matrices are evidently congruent.
-
-This line of thinking leads to alternate proof for the Pick-Nevanlinna interpolation theorem for finite domain $A$.
-
-\begin{proof}[Alternate proof of \ref{pick_nevanlinna_interpolation} for finite $A$]
-	We proceed by induction. Without loss of generality we may assume that $z_{1} = i = w_{1}$. We just noted that this matrix being positive is equivalent to smaller matrix, namely
-	\[
-		\left(\frac{\frac{w_{i} - z_{i}}{1 + z_{i} w_{i}} - \frac{\overline{w_{i}} - \overline{z_{i}}}{1 + \overline{z_{i}} \overline{w_{i}}}}{z_{i} - \overline{z_{j}}}\right)_{2 \leq i, j \leq n}
-	\]
-	being positive. By inductive hypothesis this then means that there exists a Pick function $\tilde{\varphi}$ with $\tilde{\varphi}(z_{i}) = \frac{w_{i} - z_{i}}{1 + z_{i} w_{i}}$. But then $\varphi(z) = \frac{\tilde{\varphi}(z) + z}{1 - z \tilde{\varphi}(z)}$ fits the bill.
-\end{proof}
-
-\section{Compactness}
-
-One can lift the previous argument of the Pick-Nevanlinna interpolation theorem to infinite sets by the following compactness result.
-
-\begin{lause}\label{pick_compactness}
-	Let $F = \{\varphi_{j} | j \in J \}$ be a family of Pick functions uniformly bounded in a point. Then $F$ is compact under the topology of pointwise convergence.
-\end{lause}
-\begin{proof}
-	Note that respective claim holds for Schur functions by Montel's theorem, so hence also holds for Pick functions $\ldots$ with one small caveat: the Schur function constant $-1$ corresponds to constant $\infty$, which isn't proper Pick function. But by the boundedness condition this is not a problem.
-\end{proof}
-
-There's really nothing special about Pick functions here: in the same way one could prove any family of analytic maps with common (non-whole-of-$\C$) simply connected codomain is compact. Of course we even get locally uniform convergence but that won't be important for us.
-
-One could also give ``weaker" proof.
-
-\begin{proof}[Alternate proof for the theorem \ref{pick_compactness}]
-	Fix sequence in $F$. By lemma \ref{pick_continuity_lemma} and the condition values $\sup_{z \in K}|\varphi_{j}(z)|$ are uniformly bounded for every compact set $K$. The proof of the lemma also easily implies that $\varphi_{j}$'s are uniformly Lipschitz on compact sets. By Arzel\`{a}-Ascoli theorem for every compact set $K$ we can find a subsequence convergent in $K$ and exhausting upper half-plane by sequence of nested compact sets and taking the diagonal sequence we get the claim. By proposition \ref{pick_convergence} the limit is also Pick function.
-\end{proof}
-
-Of course, one could use Arzel\`{a}-Ascoli to prove the Montel's theorem in the first place, but the idea is that we can also forget the analyticity and work with Pick matrices on the weak level.
-
-\section{Pick-Nevanlinna-Herglotz representation theorem}
-
-One cannot simply talk about Pick functions without discussing Pick-Nevanlinna-Herglotz representation theorem.\footnote{TODO: (other names) Schwarz integral formula, Poisson formula}
-
-Where does such representation come from? The representation \ref{pick_representation} tells us that every Pick function is essentially a sum functions of the form $\frac{1}{\lambda - z}$ (and an affine term). If $\varphi$ is bounded and extends over the real axis, this looks almost like Cauchy's integral formula but the beauty is that $\mu$ is real, while with Cauchy's integral formula we can't control the phase. TODO
-
-\begin{comment}
-We have however almost discussed such identities already. We for instance observed that
-\begin{align*}
-	& \frac{1}{2 \pi}\int_{-\infty}^{\infty} \frac{\Im\left(\varphi(z)\right)}{(z - a) (z - \overline{a})} dz \\
-	=& \Re\left(\frac{1}{2 \pi i}\int_{-\infty}^{\infty} \frac{\varphi(z)}{(z - a) (z - \overline{a})} dz\right) \\
-	=& \frac{\varphi(a) - \overline{\varphi(a)}}{a - \overline{a}} \\
-	=& \Im\left(\frac{\varphi(a)}{a}\right)
-\end{align*}
-\end{comment}
-
-\begin{lause}[Supplement to theorem \ref{pick_nevanlinna_herglotz_representation_theorem}]
-	In the representation \ref{pick_representation} we have
-	$\alpha = \lim_{y \to \infty} \frac{\varphi(i y)}{y}$, $\beta = \Re(\varphi(i))$ and we can recover the measure $\mu$ as
-	\begin{align}\label{measure_recovery}
-		\mu([a, b]) = \frac{1}{\pi}\lim_{x \to 0^{+}} \lim_{y \to 0^{+}} \int_{a - x + i y}^{b + x + i y} \Im(\varphi(z)) d z.
-	\end{align}
-\end{lause}
 
 \begin{proof}
-TODO
+	Take any sequence $z_{1}, z_{2}, \ldots$ converging to $z_{0}$. By \ref{Hindmarsh_theorem} the Newton series at converges in $\D(z_{0}, \Im(z_{0}))$. We claim that this series gives the (necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
+
+	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{0}, \Im(z_{0})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some non-negative rational function $r$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$ by truncation of Newton series, we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N}$): all the terms of the form $\frac{1}{\lambda - w_{0}}$ for $w_{0} \in \D(z_{0}, \Im(z_{0})) \setminus U$ are replaced by
+	\begin{align*}
+		\frac{1}{\lambda - z_{1}} + \frac{(w_{0} - z_{1})}{(\lambda - z_{1}) (\lambda - z_{2})} + \ldots + \frac{(w_{0} - z_{1})\cdots (w_{0} - z_{N - 1})}{(\lambda - z_{1})\cdots (\lambda - z_{N})},
+	\end{align*}
+	where $N$ is the point of truncation. Difference between these rational functions can be easily bounded by
+	\begin{align*}
+		\left(\frac{|w_{0} - z_{0}|}{\Im(z_{0})}\right)^{N}\frac{C}{|\lambda - z_{0}|^2},
+	\end{align*}
+	where $C$ is some constant not depending on $N$. But this means that $r_{N}$ can't be too small, as $r$ was non-negative to begin with. Indeed, by summing over all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$, we see that
+	\begin{align*}
+		r_{N} \geq -\frac{C'}{|\lambda - z_{0}|^2} \rho^{N}
+	\end{align*}
+	for some $\rho < 1$ and $C' > 0$ (again, not depending on $N$). It follows that
+	\begin{align*}
+		p^{*}(\tilde{\varphi}) = \lim_{N \to \infty} p^{*}_{N}(\tilde{\varphi}) \geq \lim_{N \to \infty} -C' \frac{\Im(\varphi(z_{0}))}{\Im(z_{0})} \rho^{N} = 0,
+	\end{align*}
+	hence the claim.
 \end{proof}
 
-We prove the statement in the chapter TODO. (Intuition on deforming contour, split the function to three pieces)
 
-The integral representation makes many of the properties of the Pick functions obvious. TODO
+\begin{proof}[Proof of theorem \ref{open_pick_interpolation}]
+	Consider all weakly Pick extensions of $\varphi$ (to open supersets of $U$), ordered by restriction. These maps trivially satisfy conditions of Zorn's lemma so we may Pick maximal map, $\tilde{\varphi}$. It follows immediately from lemma \ref{open_pick_lemma} that the domain of $\tilde{\varphi}$ is the whole $\Hp$.
 
-\section{Examples of representing measures}
+	Of course, Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture).
+\end{proof}
 
 \section{Notes and references}
 
