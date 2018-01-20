@@ -86,7 +86,7 @@ Recall that imaginary part of an analytic function determines also its real part
 	\end{align*}
 	This expression however equals $\Im(\varphi(z))$ by Poisson integral formula. By letting $z \to \infty$ one sees that also the real constants match.
 
-	Alternatively one could observe that for a closed counter clockwise oriented curves $\gamma $on the upper half-plane, enclosing $z$, we have
+	Alternatively one could observe that for a closed counter clockwise oriented curves $\gamma$ on the upper half-plane, enclosing $z$, we have
 	\begin{align*}
 		\varphi(z) = \frac{1}{2\pi i}\int_{\gamma} \frac{\varphi(\lambda)}{\lambda - z} d \lambda.
 	\end{align*}
@@ -362,23 +362,65 @@ There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 \end{maar}
 
 \begin{lause}\label{open_pick_interpolation}
-	Let $U \subset \Hp$ be ope and assume that $\varphi$ is weakly Pick on $U$. Then there exists a unique pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
+	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Then there exists a unique pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
-The proof is based on the following lemma.
+The proof of this result is based on two observations:
+
+\begin{enumerate}
+	\item If $\varphi$ is weakly Pick in some neighbourhood of $z_{0} \in \Hp$, then $\varphi$ can be extended by power series to $\D(z_{0}, \Im(z_{0}))$.s
+	\item If $\varphi$ can be extended by power series to some open disc centered at $z_{0}$, then the extension is weakly Pick in the disc.
+\end{enumerate}
+
+First of these observations follow immediately from \ref{Hindmarsh_theorem}. The second requires a calculation. Note that instead of power series, we can equivalently use a Newton series with some sequence converging to $z_{0}$.
+
+\begin{lem}\label{disc_open_pick_lemma}
+	Let $z_{0} \in \Hp$ and $z_{0} \in U \subset \D(z_{0}, \Im(z_{0}))$. Assume that $\varphi$ is weakly Pick in $U$ and analytic on $\D(z_{0}, \Im(z_{0}))$. Then the extension is also weakly pick on $\D(z_{0}, \Im(z_{0}))$.
+\end{lem}
+\begin{proof}
+	Note that $\varphi$ being weakly Pick on $U$ means that for any $r' < \Im(z_{0})$, $z_{1}, z_{2}, \ldots, z_{n} \in U \cap \D(z_{0}, r')$ and $c_{1}, c_{2}, \ldots, c_{n}$ we have
+	\begin{align*}
+		\Re\left(\frac{1}{2 \pi i} \int_{\partial \D(z_{0}, r')}\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - z_{i}}\right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z - \overline{z_{i}}}\right) \varphi(z) dz\right) \geq 0.
+	\end{align*}
+	Now take any $r' < \Im(z_{0})$, $w_{1}, w_{2}, \ldots, w_{n} \in \D(z_{0}, r')$ and $c_{1}, c_{2}, \ldots, c_{n}$. We should prove that similar inequality holds. Take any sequence $z_{1}, z_{2}, \ldots$ on $U \cap \D(z_{0}, r')$ converging to $z_{0}$. Note that for any $1 \leq i \leq n$ the rational function
+	\begin{align*}
+		\frac{1}{z - z_{1}} + \frac{(w_{i} - z_{1})}{(z - z_{1}) (z - z_{2})} + \ldots + \frac{(w_{i} - z_{1})\cdots (w_{i} - z_{N - 1})}{(z - z_{1})\cdots (z - z_{N})} =: g_{i, N}(z),
+	\end{align*}
+	converges to $\frac{1}{z - w_{i}}$ outside $\D(z_{0}, r')$ uniformly, as $N \to \infty$. It follows that the function
+	\begin{align*}
+		\left(\sum_{i = 1}^{n} c_{i} g_{i, N}(z) \right) \left(\sum_{i = 1}^{n} \overline{c_{i}} \overline{g_{i, N}(\overline{z})} \right)
+	\end{align*}
+	converges uniformly to
+	\begin{align*}
+		\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - w_{i}}\right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{w - \overline{z_{i}}}\right)
+	\end{align*}
+	on $\partial \D(z_{0}, r')$ as $N \to \infty$. But as we have
+	\begin{align*}
+		\Re\left(\frac{1}{2 \pi i} \int_{\partial \D(z_{0}, r')}\left(\sum_{i = 1}^{n} c_{i} g_{i, N}(z) \right) \left(\sum_{i = 1}^{n} \overline{c_{i}} \overline{g_{i, N}(\overline{z})} \right) \varphi(z) dz\right) \geq 0.
+	\end{align*}
+	for any $N \geq 1$, we also must have
+	\begin{align*}
+		\Re\left(\frac{1}{2 \pi i} \int_{\partial \D(z_{0}, r')}\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - w_{i}}\right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z - \overline{w_{i}}}\right) \varphi(z) dz\right) \geq 0,
+	\end{align*}
+	the claim.
+\end{proof}
+
+Note however that this isn't quite enough. First of all when we extend $\varphi$ by Newton series, it is a priori clear that the extension agrees with original function (where it should). Also, to verify that the extension is weakly Pick, we should also worry about points outside $\D(z_{0}, r)$, i.e. functional not localized on $\D(z_{0}, r)$.
+
+Luckily these problems can be fixed with the following improved version of the lemma.
 
 \begin{lem}\label{open_pick_lemma}
 	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Let $z_{0} \in U$. Then there exists unique weakly Pick $\tilde{\varphi} : U \cap \D(z_{0}, \Im(z_{0}))$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lem}
 
 \begin{proof}
-	Take any sequence $z_{1}, z_{2}, \ldots$ converging to $z_{0}$. By \ref{Hindmarsh_theorem} the Newton series at converges in $\D(z_{0}, \Im(z_{0}))$. We claim that this series gives the (necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
+	Again, take any sequence $z_{1}, z_{2}, \ldots$ converging to $z_{0}$: we claim the Newton series with nodes $z_{1}, z_{2}, \ldots$ gives the (necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
 
-	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{0}, \Im(z_{0})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some non-negative rational function $r$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$ by truncation of Newton series, we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N}$): all the terms of the form $\frac{1}{\lambda - w_{0}}$ for $w_{0} \in \D(z_{0}, \Im(z_{0})) \setminus U$ are replaced by
+	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{0}, \Im(z_{0})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some non-negative rational function $r$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$ by truncation of Newton series (with $N$ terms), we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N}$): all the terms of the form $\frac{1}{\lambda - w_{0}}$ for $w_{0} \in \D(z_{0}, \Im(z_{0})) \setminus U$ are replaced by
 	\begin{align*}
 		\frac{1}{\lambda - z_{1}} + \frac{(w_{0} - z_{1})}{(\lambda - z_{1}) (\lambda - z_{2})} + \ldots + \frac{(w_{0} - z_{1})\cdots (w_{0} - z_{N - 1})}{(\lambda - z_{1})\cdots (\lambda - z_{N})},
 	\end{align*}
-	where $N$ is the point of truncation. Difference between these rational functions can be easily bounded by
+	and similarly for conjugate terms. Difference between these rational functions can be easily bounded by
 	\begin{align*}
 		\left(\frac{|w_{0} - z_{0}|}{\Im(z_{0})}\right)^{N}\frac{C}{|\lambda - z_{0}|^2},
 	\end{align*}
@@ -388,7 +430,7 @@ The proof is based on the following lemma.
 	\end{align*}
 	for some $\rho < 1$ and $C' > 0$ (again, not depending on $N$). It follows that
 	\begin{align*}
-		p^{*}(\tilde{\varphi}) = \lim_{N \to \infty} p^{*}_{N}(\tilde{\varphi}) \geq \lim_{N \to \infty} -C' \frac{\Im(\varphi(z_{0}))}{\Im(z_{0})} \rho^{N} = 0,
+		p^{*}(\tilde{\varphi}) = \lim_{N \to \infty} p^{*}_{N}(\varphi) \geq \lim_{N \to \infty} -C' \frac{\Im(\varphi(z_{0}))}{\Im(z_{0})} \rho^{N} = 0,
 	\end{align*}
 	hence the claim.
 \end{proof}
@@ -404,7 +446,6 @@ The proof is based on the following lemma.
 
 TODO:
 \begin{itemize}
-	\item Poincaré metric: discs are discs, Apollonius circle
 	\item Examples of representing measures behind functions and functions behind representing measures
 	\item Spectral commutant lifting theorem
 	\item Use Morera's theorem to prove weak Hindmarsh's theorem
@@ -412,10 +453,7 @@ TODO:
 \end{itemize}
 
 
-How to rewrite majority of this section:
-\begin{itemize}
-	\item Concentrate on Pick-integrals
-	\item Proof open Pick interpolation by extending thinking about Pick-integrals and then showing that the extension is unique, thus showing that everything works.
-	\item Split the Pick measure weakly with $1/(x^2 + 1)$ (How to do the same thing with $k$-tone functions?)
-\end{itemize}
+
+
+
 

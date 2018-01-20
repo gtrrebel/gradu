@@ -65,7 +65,7 @@ Previous arguments carry directly to a much more general setting:
 	\begin{align*}
 		\{v \in V | w^{*}(v) \geq 0 \text{ for every $w^{*} \in C^{*}$}\}
 	\end{align*}
-	is a proper convex cone of $V$.
+	is a proper cone of $V$.
 \end{lause}
 
 In our case the subset of the linear functionals are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$.
@@ -294,6 +294,65 @@ The previous proposition has an useful corollary.
 	Assume first that $\arestr{(P_{W})}{W'} = 0$. Then by the lemma \ref{posnegfact} we have $W = \image(P_{W}) \subset W'^{\perp}$. The other direction is evident.
 \end{proof}
 
+\section{Matrix functions}
+
+\subsection{Functional calculus}
+
+After spectral theorem it is rather clear how one should define general matrix functions.
+
+\begin{maar}
+	For any $-\infty \leq a < b \leq \infty$ $f : (a, b) \to \R$ the associated matrix function on $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
+	\[
+		f_{V}\left(A\right) = \sum_{\lambda \in \spec(A)} f(\lambda) P_{E_{\lambda}}
+	\]
+	if $A = \sum_{\lambda \in \spec(A)} \lambda P_{E_{\lambda}}$.
+\end{maar}
+Hence to calculate the matrix function we just apply the function to the eigenvalues of the map and leave the eigenspaces as they are. Note as the spectral representation is unique this definition makes sense.
+
+We have already discussed four types of matrix functions: inverse, polynomials, square root and absolute value. All these notion coincide with the general notion of matrix function for real maps, as notion in (\ref{polynomial_matrix_function}) and TODO.
+
+Matrix functions enjoy many natural and useful properties.
+
+\begin{prop}\label{basic_matrix}
+	Let $f : (a,b) \to \R$ and $A \in \H_{(a, b)}$
+	\begin{enumerate}
+		\item If $f[(a, b)] \subset (c, d)$ then $f_{V}(A) \in \H_{(c, d)}$.
+		\item If also $g : (a, b) \to \R$ then $(f + g)_{V} = f_{V} + g_{V}$ and $(fg)_{V} = f_{V}g_{V}$.
+		\item $f_{V_{1} \oplus V_{2}} = f_{V_{1}} \oplus f_{V_{2}}$.
+		\item If $g : (a, b) \to \R$ and $f$ and $g$ agree on spectrum of $A$, then $f(A) = g(A)$.
+		\item If $f[(a, b)] \subset (c, d)$ and $g : (c, d) \to \R$ then $(g \circ f)_{V} = g_{V} \circ f_{V}$.
+		\item If $f_{n} : (a, b) \to \R$ converge pointwise to $f$, then the same holds true for $(f_{n})_{V}$'s.
+	\end{enumerate}
+\end{prop}
+
+These properties make it clear that such definition is natural. We will drop the subscript $V$ and identify $f$ with its matrix function $f_{V}$ if $V$ is clear from context.
+
+\subsection{Holomorphic functional calculus}
+
+If $f$ is entire, there's another way to appoach matrix functions. As $f$ can be written as
+\[
+	f(z) = \sum_{n = 0}^{\infty} a_{n} z^{n},
+\]
+power series convergent whole any $z \in \C$, we should have
+\[
+	f_{V}(A) = \sum_{n = 0}^{\infty} a_{n} A^{n}.
+\]
+This matrix power series indeed converges as $\|A^{n}\| \leq \|A\|^{n}$. Also, this definition coincides with the spectral one. Indeed, if one writes $f_{n} : z \mapsto  \sum_{k = 0}^{n} a_{n} z^{n}$, then we have, by definition,
+\[
+	\sum_{n = 0}^{\infty}a_{n} A^{n} = \lim_{n \to \infty} \left[(f_{n})_{V}(A) \right] = f_{V}(A),
+\]
+by point (6) of proposition (\ref{basic_matrix}).
+
+Note however that the power series definition makes perfect sense even if $a_{n} \notin \R$ and even better, $A$ need not be real.
+
+If $f$ is not entire, the power series might not converge every $A \in \H_{(a, b)}(V)$. Instead, we can more generally use Cauchy's integral formula for matrix functions.
+\[
+	f_{V}(A) = \int_{\gamma} (z I - A)^{-1} f(z) dz,
+\]
+where $\gamma$ is simple closed curve enclosing the spectrum of $A$. This formula is immediate when viewed in a eigenbasis of $A$. Again, this formula makes perfect sense even for non-real $A$, given that spectrum of $A$ lies in the domain of $f$.
+
+\section{Real maps and composition}
+
 \subsection{Commuting real maps}
 
 \textbf{Warning!} Composition of positive maps need not be positive!
@@ -434,265 +493,17 @@ Moreover, even if one adds positive buffer, things won't work in general.
 
 So in some sense, by taking non-commutative products, we really lose most of the structure.
 
-\section{Congruence}
-
 \subsection{$*$-conjugation}
 
-There is one very important way to produce positive maps from others, called congruence. Given any two positive maps $A$ and $B$, their composition need not be positive, but the map $BAB$ is. First of all, it is real as $(BAB)^{*} = B^{*} A^{*} B^{*} = BAB$. Also $Q_{BAB}(v) = \langle BAB v, v \rangle = \langle A (B v), (B v) \rangle \geq 0$ for any $v \in V$. We didn't really need the assumption on the positivity of $B$, but realness was not that important either. Namely for arbitrary linear $B$ we could consider the product $B^{*}AB$ instead: this is positive whenever $A$ is. If $C = B^{*}AB$ for some $B \in \L(V)$, we say that $C$ is $*$-conjugate of $A$.
+Despite all the negative news, there's is one non-trivial non-commutative way to build positive, called $*$-conjugation. There is one very important way to produce positive maps from others, called $*$-conjugation. Given any two positive maps $A$ and $B$, their composition need not be positive, but the map $BAB$ is. First of all, it is real as $(BAB)^{*} = B^{*} A^{*} B^{*} = BAB$. Also $Q_{BAB}(v) = \langle BAB v, v \rangle = \langle A (B v), (B v) \rangle \geq 0$ for any $v \in V$. We didn't really need the assumption on the positivity of $B$, but realness was not that important either. Namely for arbitrary linear $B$ we could consider the product $B^{*}AB$ instead: this is positive whenever $A$ is. If $C = B^{*}AB$ for some $B \in \L(V)$, we say that $C$ is $*$-conjugate of $A$.
 
 \begin{maar}
-	Let $A, B \in \H$. We say that $B$ is \textit{$*$-conjugate} of $A$ if for some $C \in \L(V)$ we have $B = C^{*} A C$.
+	Let $A, B \in \H$. We say that $B$ is \textbf{$*$-conjugate} of $A$ if for some $C \in \L(V)$ we have $B = C^{*} A C$.
 \end{maar}
 
-We also see that $Q_{B^{*}AB} = Q_{A} \circ B$: conjugation is a change of basis in the quadratic form. This is the main motivation for the definition of the $*$-conjugation. We have already seen that the quadratic form of a map is a good way to characterize many of its good properties, so to some extent to understand maps, we just to need to understand structure of their quadratic forms. By change of basis of the quadratic form we have a good control of what happens. We might however lose some information: if $B = 0$, for instance, the quadratic form after $*$-conjugation by $B$ doesn't tell much about $A$. But if $B$ is invertible, or equivalently if $C$ and $B$ are $*$-conjugates of each other, we shouldn't lose any information.
-
-\begin{maar}
-	Let $A, B \in \H$. We say that $A$ and $B$ are \textit{congruent} if they are $*$-conjugates of each other.
-\end{maar}
-
-It is easily verified that congruence is a equivalence relation.
-
-The construction of $*$-conjugation makes also sense for general linear map $A$, i.e. we could just as well $*$-conjugate non-positive, or even non-real maps. The result then need not be positive or real, and in general, $*$-conjugation loses its usefulness.
-
-The previous construction can be also performed between two spaces $V$ and $W$: given any map $B \in \L(V, W)$ and $A \in \H_{+}(W)/\H(W)/\L(W)$, we note that $B^{*}AB \in \H_{+}(V)/\H(V)/\L(V)$. For real maps we can say a lot more: while congruence doesn't in general preserve eigenvalues, it preserves their signs.
-
-\begin{lause}[Sylvester's Law of Inertia]
-	$A, B \in \H(V)$ are congruent, if and only if $A$ and $B$ have equally many positive, negative and zero eigenvalues, counted with multiplicity.
-\end{lause}
-\begin{proof}
-	Let's start with the ``if" part. Let's denote the eigenvalues of $A$ and $B$ by $\lambda_{1} \leq \lambda _{2} \leq \ldots \leq \lambda_{n}$ and $\lambda_{1}' \leq \lambda _{2}' \leq \ldots \leq \lambda_{n}'$, respectively, and the corresponding eigenvectors with $v_{1}, v_{2}, \ldots, v_{n}$ and $v_{1}', v_{2}', \ldots, v_{n}'$. By assumption $\lambda_{i}$ and $\lambda_{i}'$ have the same sign (or are both zero) for any $1 \leq i \leq n$, so we may find non-zero real numbers $t_{1}, t_{2}, \ldots, t_{n}$ such that $\lambda_{i} = \lambda_{i}' t_{i}^{2}$. Now consider a linear map $C$ with $C v_{i} = t_{i} v_{i}'$. $C$ is clearly a surjection and hence a bijection. Also if $v = \sum_{i = 1}^{n} x_{i} v_{i}$ $(Q_{B} \circ C)(v) = Q_{B}(\sum_{i = 1}^{n} x_{i} t_{i} v_{i}') = \sum_{i = 1}^{n} |x_{i}|^{2} t_{i}^2 \lambda_{i}' = \sum_{i = 1}^{n} |x_{i}|^{2} \lambda_{i} = Q_{A}(v)$ so $Q_{C^{*}BC} = Q_{B} \circ C = Q_{A}$. It follows that $C^{*}BC = A$ and hence $A$ and $B$ are congruent.
-
-	The ``only if" - part is a bit trickier. The idea is to find a good description for the number of positive non-negative eigenvalues. We noticed before that we can write quadratic forms in the form $Q_{A}(v) = \sum_{i = 1}^{n} \lambda_{i} |x_{i}|^{2}$ if $v = \sum_{i = 1}^{n} x_{i}v_{i}$, and $v_{i}$ are the eigenvectos of $A$ with $\lambda_{i}'s$ as the corresponding eigenvectors. In particular if say first $k$ eigenvalues are negative, $Q_{A}$ will be negative on $\vspan\{v_{i} | 1 \leq i \leq k\}$, a $k$-dimensional subspace, minus zero. Similarly, now $n - k$ of the eigenvalues are non-negative, so the quadratic form is non-negative on a subspace of dimension of at least $n - k$. But the dimensions can't be any bigger: if $Q_{A}$ were for instance negative on some $k + 1$ dimesional subspace, this subspace would necessarily intersect a subspace where $Q_{A}$ is non-negative, which is non-sense.
-
-	Congruence preserves the previous notion: if $Q_{B}$ is negative on a subspace of dimension $k$, so is $Q_{B} \circ C$ for any invertible $C$; namely in the inverse image. Same reasoning holds for the the subspace on which $Q_{B}$ is non-negative, so again, $Q_{B} \circ C$ has to have similar structure. We are done.
-\end{proof}
-
-In the proof we used the following useful linear algebra fact.
-
-\begin{lem}
-	Let $V$ be $n$-dimensional and $W_{1}, W_{2} \subset V$ subspaces such that $\dim(W_{1}) + \dim(W_{2}) > n$. Then $W_{1} \cap W_{2} \neq \{0\}$.
-\end{lem}
-\begin{proof}
-	We find non-trivial element $v \in W_{1} \cap W_{2}$. Take bases for $W_{1}$ and $W_{2}$, say $(e_{i})_{i = 1}^{n_{1}}$ and $(f_{i})_{i = 1}^{n_{2}}$ with $n_{1} + n_{2} > n$. Since $(e_{i})_{i = 1}^{n_{1}} \cup (f_{i})_{i = 1}^{n_{2}}$ can't be linearly independent, as that would mean $\dim(V) \geq \dim(W_{1}) + \dim(W_{2}) > n$, we can find non-trivial pair of sequence $(a_{i})_{i = 1}^{n_{1}}$'s and $(b_{i})_{i = 1}^{n_{2}}$ such that $\sum_{i = 1}^{n_{1}} a_{i} e_{i} + \sum_{i = 1}^{n_{2}} b_{i} f_{i} = 0$. But $W_{1} \ni \sum_{i = 1}^{n_{1}} a_{i} e_{i} = v = -\sum_{i = 1}^{n_{2}} b_{i} f_{i} \in W_{2}$, and since sequences are non-trivial, $v$ is non-trivial element in the intersection.
-\end{proof}
-
-If $n_{0}, n_{-}$ and $n_{+}$ denote the number of zero, negative and positive eigenvalues of $A$, \textit{inertia} of $A$ is the triplet $\{n_{0}, n_{-}, n_{+} \} := \{n_{0}(A), n_{-}(A), n_{+}(A) \}$. The previous theorem can be hence restated, that inertia is invariant under congruence.
-
-The proof also gives a useful characterization for the number of non-negative eigenvalues.
-
-\begin{kor}\label{subspace_lemma}
-	If $A \in \H(V)$, number of non-negative eigenvalues of $A$ equals largest non-negative integer $k$ such that for some subspace $W \subset V$ of dimension $k$ the quadratic form $Q_{A}$ is non-negative on $W$, or equivalently, $\arestr{A}{W} \geq 0$.
-\end{kor}
-
-Sylvester's Law of inertia gives another proof of the fact that strictly positive maps are exactly the maps congruent to the identity, and positive maps are the maps congruent to some projection. More precisely, the positive maps are partitioned to $n + 1$ congruence classes depending on their rank, $k$:th congruence class containing the projections to $k$-dimensional subspaces. $0$:th class contains only the zero map, the only rank $0$ positive map, and the $n$:th class is the class of strictly positive maps.
-
-If one $*$-conjugates with non-invertible, the inertia may change, but in quite obvious way only: some eigenvalues may move to $0$. In particular, we have the following even a bit more general version of the law.
-
-\begin{lause}[General Sylvester's Law of Inertia]
-	For $A, B \in \normal(V)$ and $A$ is $*$-conjugate of $B$, if and only if $n_{\pm}(A) \leq n_{\pm}(B)$.
-\end{lause}
-\begin{proof}
-	The proof is essentially the same.
-\end{proof}
-
-This extension draws a picture about the relation of previously mentioned congcruence classes. We can move to the congruence classes of lower indeces by $*$-conjugation, but cannot move up the ladder: the complexity of quadratic forms cannot increase. One could also think that $*$-congruence for linear maps corresponds to multiplication by non-negative real for real numbers.
-
-\subsection{Block decomposition}
-
-Congruence is a convenient to tool to investigate positivity. The idea is that with conguence we can perform sort of a Gaussian elimination. If $n = 2$ for instance, we can write any real map in the matrix form
-\[
-	M =
-	\begin{bmatrix}
-		a & b \\
-		\overline{b} & c
-	\end{bmatrix}
-\]
-for some $a, c \in \R$ and $b \in \C$. Now if $a \neq 0$, we could eliminate with
-\[
-	D =
-	\begin{bmatrix}
-		1 & -\frac{b}{a} \\
-		0 & 1
-	\end{bmatrix}
-\]
-to get
-\[
-	M D =
-	\begin{bmatrix}
-		a & b \\
-		\overline{b} & c
-	\end{bmatrix}
-	\begin{bmatrix}
-		1 & -\frac{b}{a} \\
-		0 & 1
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		a & 0 \\
-		\overline{b} & \frac{a c - |b|^2}{a}.
-	\end{bmatrix}
-\]
-The resulting map of course need not be real, but if we also eliminate from the other side by $D^{*}$, we get
-\[
-	D^{*} M D =
-	\begin{bmatrix}
-		a & 0 \\
-		0 & \frac{a c - |b|^2}{a}.
-	\end{bmatrix}
-	=: M'
-\]
-Now $D$ is evidently invertible, it's determinant being $1$, so $M$ and $M'$ are congruent. Sylvester's law of inertia tell's us hence that that if $a > 0$ and $\det(M) \geq 0$, then $M \geq 0$.
-
-We can generalize this thinking. For general $n$ if we have decomposition $V = W_{1} \oplus W_{2}$, then we can decompose any mapping $M$ as
-\[
-	M =
-	\begin{bmatrix}
-		A & B \\
-		B^{*} & C
-	\end{bmatrix},
-\]
-where $A, B$ and $C$ are the \textit{blocks} of $M$ given by $A = P_{W_{1}} \circ M \circ \incl{V}{W_{1}} = \arestr{M}{W_{1}}$, $B = P_{W_{1}} \circ M \circ \incl{V}{W_{2}}$ and $C = P_{W_{2}} \circ M \circ \incl{V}{W_{2}} = \arestr{M}{W_{2}}$. Now we can generalize the previous elimination: if $A$ happens to be invertible and we let
-\[
-	D =
-	\begin{bmatrix}
-		I & -A^{-1} B \\
-		0 & I
-	\end{bmatrix}
-\]
-then
-\[
-	D^{*} =
-	\begin{bmatrix}
-		I & 0 \\
-		-B^{*} A^{-1}  & I
-	\end{bmatrix}
-\]
-and
-\begin{align}\label{schur_complement}
-	D^{*} M D =
-	\begin{bmatrix}
-		I & 0 \\
-		-B^{*} A^{-1}  & I
-	\end{bmatrix}
-	\begin{bmatrix}
-		A & B \\
-		B^{*} & C
-	\end{bmatrix}
-	\begin{bmatrix}
-		I & -A^{-1} B \\
-		0 & I
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		A & 0 \\
-		0 & C - B^{*} A^{-1} B
-	\end{bmatrix}.
-\end{align}
-The map $(C - B^{*} A^{-1} B) : W_{2} \to W_{2}$ is called the \textit{Schur complement} of block $A$ of $M$, or maybe one should say Schur complement of $M$ with respect to $W_{1}$. We denote the Schur complement by $M/A$.
-
-Now again if $A$ is invertible, $M \geq 0$ if and only if $A > 0$ and $M/A \geq 0$.
-
-This observations leads to convenient characterization for strictly positivity, called Sylvester's criterion. If $W_{2}$ is $1$-dimensional, $M/A$ is just a real number and $M$ is stricly positive if and only if $A > 0$ and this real number is positive. On the other hand, by computing determinants we see that
-\[
-	\det(M) = \det \left(
-	\begin{bmatrix}
-		A & 0 \\
-		0 & M/A
-	\end{bmatrix}
-	\right)
-	=
-	\det(A) \det(M/A),
-\]
-as $\det(D) = 1$. Hence $M$ is positive if and only if $\det(M)$ is positive and $A > 0$. Applying the same idea inductively we arrive at
-\begin{lause}[Sylvester's criterion]
-	$A \in \H(V)$ is stricly positive if and only for some (and then for any) sequence of subspaces $W_{1} \subset W_{2} \subset \ldots \subset W_{n - 1} \subset W_{n} = V$ with $\dim(W_{m}) = m$ we have $\det(A_{W_{m}}) > 0$ for any $1 \leq m \leq n$.
-\end{lause}
-
-TODO: Explain what happend with non-strict case.
-
-One can solve $M$ from \ref{schur_complement} to arrive at so-called \textit{LDL-decomposition} of $M$:
-\begin{align}\label{ldl_decomposition}
-	M =
-	\begin{bmatrix}
-		A & B \\
-		B^{*} & C
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		I & 0 \\
-		B^{*} A^{-1}  & I
-	\end{bmatrix}
-	\begin{bmatrix}
-		A & 0 \\
-		0 & C - B^{*} A^{-1} B
-	\end{bmatrix}
-	\begin{bmatrix}
-		I & A^{-1} B \\
-		0 & I
-	\end{bmatrix}.
-\end{align}
-
-LDL-decomposition leads to many interesting identities. First of all, (given that $A$ is invertible), $M$ is invertible if and only if $C - B^{*} A^{-1} B$ is and its inverse is given by
-\begin{align*}
-	M^{-1} &=
-	\begin{bmatrix}
-		I & -A^{-1} B \\
-		0 & I
-	\end{bmatrix}
-	\begin{bmatrix}
-		A^{-1} & 0 \\
-		0 & (C - B^{*} A^{-1} B)^{-1}
-	\end{bmatrix}
-	\begin{bmatrix}
-		I & 0 \\
-		-B^{*} A^{-1}  & I
-	\end{bmatrix} \\
-	&=
-	\begin{bmatrix}
-		A^{-1} + A^{-1} B (C - B^{*} A^{-1} B)^{-1} B^{*} A^{-1} & -A^{-1} B (C - B^{*} A^{-1} B)^{-1} \\
-		-(C - B^{*} A^{-1} B)^{-1} B^{*} A^{-1} & (C - B^{*} A^{-1} B)^{-1}
-	\end{bmatrix}.
-\end{align*}
-
-If one take Schur complement with respect to $C$ instead one arrives at
-\begin{align*}
-	M^{-1}
-	&=
-	\begin{bmatrix}
-		(A - B C^{-1} B^{*})^{-1} & (A - B C^{-1} B^{*})^{-1} B C^{-1} \\
-		- C^{-1} B^{*} (A - B C^{-1} B^{*})^{-1} & C^{-1} + C^{-1} B^{*} (A - B C^{-1} B^{*})^{-1} B C^{-1}
-	\end{bmatrix},
-\end{align*}
-so by comparing blocks we see that for instance
-\begin{align}\label{woodbury_identity}
-	A^{-1} + A^{-1} B (C - B^{*} A^{-1} B)^{-1} B^{*} A^{-1} = (A - B C^{-1} B^{*})^{-1},
-\end{align}
-\textit{Woodbury matrix identity}. Why might such identity be useful? The idea is that if $\dim(W_{2}) \ll \dim(W_{1})$, the identity is way to connect inverse of $A - B C^{-1} B^{*}$, low rank update of $A$, and $A$. If $\dim(W_{2}) = 1$ for instance, by setting $C = -1$ for some $c > 0$ and $B = v$ for some $v \in V$ we get
-\begin{align*}
-	A^{-1} - \frac{A^{-1} v v^{*} A^{-1}}{1 + \langle A^{-1}v, v\rangle} = (A + v v^{*})^{-1}:
-\end{align*}
-inverse of rank 1 update can be easily calculated if one knows the inverse of the original map.
-
-In a similar vein one obtains formulas for determinants. Starting with $\det(M) = \det(A) \det(C - B^{*} A^{-1} B)$, if we happen to know determinant of a map and need determinant of a compression, it is sufficient to find it for a schur complement. This is particularly useful when $W_{2}$ is low dimensional. If $\dim(W_{2}) = 1$ and $W_{2} = \vspan(v)$, then
-\begin{align*}
-	\det(M) &= \det(A) \left(C - B^{*} A B\right) \\
-	&= \frac{\det(A) |v|^2}{\langle M^{-1} v, v \rangle}:
-\end{align*}
-Schur complement is inverse of compression $M$ to $W_{2}$. It follows that if $A$ is invertible, we have
-\begin{align}\label{compression_determinant}
-	\det(\arestr{A}{W}) = \det(A) \langle A^{-1} v, v \rangle.
-\end{align}
-By comparing determinants from two LDL-decompositions we arrive at
-\begin{align}\label{matrix_determinant_lemma}
-	\det(A) \det(C - B^{*} A^{-1} B) = \det(C) \det(A - B C^{-1} B^{*}),
-\end{align}
-\textit{matrix determinant lemma}. Again, by the choices for $B = v$ and $C = -1$ we arrive at
-\begin{align*}
-	\det(A) \left(1 + \langle A^{-1}v, v\rangle\right) = \det(A + v v^{*}):
-\end{align*}
-determinant of rank 1 update can be also easily calculated.
-
-Of course, once one knows the statements, such identities could also be easily verified by multiplying everything out, for instance, but this is how one might stumble upon them.
+\begin{prop}
+	If $A \geq 0$ and $B$ is $*$-conjugate of $A$, then also $B \geq 0$.
+\end{prop}
 
 \section{Loewner order}
 
@@ -720,7 +531,7 @@ Key thing here is to note what is missing from the standard real ordering: multi
 
 For example if $0 < a \leq b$, with real numbers one could multiply the inequalities by the positive number $(a b)^{-1}$ to get $0 < b^{-1} \leq a^{-1}$. This doesn't quite work with linear maps anymore.
 
-Congruence is way to at least partially fix this deficit: it's almost like multiplying by positive number. We have
+$*$-conjugation is way to at least partially fix this deficit: it's almost like multiplying by positive number. We have
 \begin{prop}
 	If $A \leq B$, then for any $C$ we have $C^{*} A C \leq C^{*} B C$.
 \end{prop}
@@ -785,67 +596,33 @@ But now since $I$ and $X$ commute, the claim is evident form the scalar inequali
 
 \section{Eigenvalue inequalities}
 
-There's great deal of things to be said about relationship between eigenvalues and Loewner order. Let's denote the eigenvalues of real map $A$ by $\lambda_{1}(A) \geq \lambda_{2} \geq \ldots \geq \lambda_{n}(A)$. One of the most basic result is the following.
+There's great deal of things to be said about relationship between eigenvalues and Loewner order. Let's denote the eigenvalues of real map $A$ by $\lambda_{1}(A) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(A)$. One of the most basic result is the following.
 
 \begin{prop}\label{loewner_eigenvalues}
 	Assume that $A \leq B$. Then for any $1 \leq k \leq n$ we have $\lambda_{k}(A) \leq \lambda_{k}(B)$.
 \end{prop}
-\begin{proof}
-	We first claim that $A$ has at most as many non-negative eigenvalues as $B$: if we manage to do this, we can apply the observation for the maps $A - \lambda I$ and $B - \lambda I$ and conclude that $B$ has at least $k$ eigenvalues in $[\lambda_{k}(A), \infty)$, which implies that $\lambda_{k}(A) \leq \lambda_{k}(B)$.
 
-	To prove the claim note that if $A$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's restriction to some $k$-dimensional subspace is positive. But then also the compression of $B$ to this subspace is positive, so also $B$ has at least $k$ non-negative eigenvalues.
-\end{proof}
+Such results are by no means trivial. In general it's hard to keep track of the relationship between the eigenvalues of two real maps $A$ and $B$ given their information of their difference, but if $B - A$ is of rank this can be done rather explicitly.
 
-In general that's all one can say: if numbers $a_{1} \geq a_{2} \geq \ldots a_{n}$ and $b_{1} \geq b_{2} \geq \ldots \geq b_{n}$ satisfy $a_{k} \leq b_{k}$, then we can definitely find $A$ and $B$ with $A \leq B$ and $a_{i}$'s and $b_{i}$'s as eigenvalues: simply take $A = \sum_{i = 1}^{n} a_{i} P_{e_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{e_{i}}$ where $(e_{i})_{i = 1}^{n}$ is an orthonormal basis.
+\begin{maar}
+	Let us call pair $(A, B) \in \H(V)^{2}$ a \textbf{projection pair} if $B - A = v v^{*}$ for some $v \in V$. Note that such $v$ is always unique up to phase. Let us say that a projection pair $(A, B)$ is \textbf{strict}, if whenever $B - A = v v^{*}$ then $v$ is not orthogonal to any eigenvector of $A$. 
+\end{maar}
 
-Eigenvalues work also desirably with compression.
-
-\begin{prop}[Cauchy interlacing theorem]\label{compression_eigenvalues}
-	If $A \in \H^{n}(V)$ and $W \subset V$ is of dimension $n - 1$, then we have
-	\begin{align*}
-		\lambda_{1}(A) \geq \lambda_{1}(\arestr{A}{W}) \geq \lambda_{2}(A) \geq \lambda_{2}(\arestr{A}{W}) \geq \ldots \geq \lambda_{n - 1}(A) \geq \lambda_{n - 1}(\arestr{A}{W}) \geq \lambda_{n}(A).
-	\end{align*}
-\end{prop}
-
-\begin{proof}
-	We use the same appoach and first prove that $A$ has at least as many non-negative eigenvalues as $\arestr{A}{W}$: again if we know this, we get inequalities of the form $\lambda_{k}(A) \geq \lambda_{k}(\arestr{A}{W})$. Then applying the idea for the $-A$, we get the reverse inequalities, and finally the complete chain.
-
-	To prove the claim, note again that if $\arestr{A}{W}$ has $k$ non-negative eigenvalues, by lemma \ref{subspace_lemma} it's compression to some $k$-dimensional subspace is positive. But then also compression of $A$ to this same subspace is positive and hence it has $k$ non-negative eigenvalues.
-\end{proof}
-
-TODO picture of eigenvalues changing when compressed
-
-Again one can prove that this result is strongest possible.
-
-\begin{prop}\label{compression_eigenvalues_con}
-	For any $a_{1} \geq b_{1} \geq a_{2} \geq \ldots \geq b_{n - 1} \geq a_{n}$ we may find $A \in \H^{n}(V)$ with $a_{i}$'s as spectra and $(n - 1)$-dimensional subspace $W$ of $V$ such that eigenvalues of $\arestr{A}{W}$ are the $b_{i}$'s.
-\end{prop}
-
-Before approaching the proof we note an interesting corollary.
-
-Let us call pair $(A, B) \in \H(V)^{2}$ a \textit{projection pair} if $B - A = v v^{*}$ for some $v \in V$. Note that such $v$ is always unique up to phase. Let us say that a projection pair $(A, B)$ is strict, if whenever $B - A = v v^{*}$ then $v$ is not orthogonal to any eigenvector of $A$. 
-
-\begin{kor}\label{projection_eigenvalues}
+\begin{lem}\label{projection_eigenvalues}
 	Let $(A, B)$ be a projection pair. Then
 	\begin{align*}
 		\lambda_{1}(B) \geq \lambda_{1}(A) \geq \lambda_{2}(B) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(B) \geq \lambda_{n}(A).
 	\end{align*}
-	$(A, B)$ is strict if and only if all the inequalities are strict. 
-\end{kor}
+	$(A, B)$ is strict if and only if all the inequalities are strict.
 
-\begin{proof}
-	By proposition \ref{loewner_eigenvalues} $\lambda_{k}(A) \leq \lambda_{k}(B)$, so we just need to prove that $\lambda_{k + 1}(B) \leq \lambda_{k}(A)$. Let $W$ be orthocomplement of $\vspan\{v\}$. Then $\arestr{A}{W} = \arestr{B}{W}$ and $W$ is $(n - 1)$-dimensional. Hence by lemma \ref{compression_eigenvalues} we have $\lambda_{k + 1}(B) \leq \lambda_{k}(\arestr{B}{W}) = \lambda_{k}(\arestr{A}{W}) \leq \lambda_{k}(A)$, which is what we wanted. TODO
-\end{proof}
+	Conversely, if we are given any two interlacing sequences $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \geq \ldots \geq b_{n} \geq a_{n}$ we may find a projection pair $(A, B)$ with $\spec(A) = \{a_{i}\}_{i = 1}^{n}$ and $\spec(B) = \{b_{i}\}_{i = 1}^{n}$.
+\end{lem}
 
-One could now use induction to make similar but more complicated statements about inequalities when compression is to subspace of bigger codimension or when $B - A$ is or larger rank. One could also ask what happens $B - A$ multiple of projection to $k$-dimensional subspace (TODO: what happens?).
 
-One also has a similar converse as in the compression case.
 
-\begin{prop}\label{projection_eigenvalues_con}
-	For any $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \ldots \geq b_{n} \geq a_{n}$ we may find projection pair $A, B \in \H^{n}(V)$ with $a_{i}$'s and $b_{i}$'s as spectra.
-\end{prop}
+Note that the proposition \ref{loewner_eigenvalues} follows immediately from this.
 
-We will first prove this converse. The idea is the following: the eigenvalues of roots of the characteristic polynomial, hence to control eigenvalues, we should control characteristic polyomials. It turns out that if two maps differ by map rank $1$, their characteristic polynomials are intimately related.
+This proposition is based on the following explicit relationship between characteristic polynomials of a projection pair.
 
 \begin{lem}\label{projection_characteristic_polynomial}
 	Let $A, B \in \H$ be a projection pair. Then
@@ -854,51 +631,100 @@ We will first prove this converse. The idea is the following: the eigenvalues of
 	\end{align*}
 \end{lem}
 \begin{proof}
-	This is just direct application of rank 1 version of matrix determinant lemma \ref{matrix_determinant_lemma}.
+	Write the the matrices $A$ and $B$ in the basis where the first vector is parallel to $v$. Now the matrices only differ at the upper-left corner, where the difference is $\|v\|^2$. Expanding the determinant this implies that
+	\begin{align*}
+		\det(B - z I) = \det(A - z I) + \|v\|^2 \left(\text{determinant of $A - zI$ with first row and column removed} \right).
+	\end{align*}
+	However, by the Cramer rule the determinant equals the upper-left corner of the matrix of $(A - z I)^{-1}$, i.e. $\det(A - z I)\frac{\langle (A - zI)^{-1} v, v \rangle}{\|v\|^2}$. Combining these observations yields the claim.
 \end{proof}
 
-\begin{proof}[Proof of propostion \ref{projection_eigenvalues_con}]
-	If $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, solve the remaining problem on smaller space to get $A'$ and $v'$ and take $A : V' \oplus \C \to V' \oplus \C$ to be $A' \oplus a_{i}$ and $v = v' \oplus 0$. We may hence assume that the numbers are distinct.
 
-	First take $A$ with the given eigenvalues. By the previous lemma we just want to choose $v$ in such a way that
+\begin{proof}[Proof of lemma \ref{projection_eigenvalues}]
+	Note that if $v$ is orthogonal to one of the eigenvectors of $A$, $P_{v}$ doesn't affect this eigenspace, so we may forget it and restrict our attention to a smaller space. Similarly for the converse: if $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, and solve the remaingn problem on smaller space. We may hence assume that the pair $(A, B)$ is strict and the numbers the inequalities in the converse are strict.
+
+	Consider the function
+	\begin{align*}
+		z \mapsto 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z}.
+	\end{align*}
+	It has $n$ poles of negative residue so it has a root between any two poles. Also it tends to $1$ at infinity so it has also root on $(a_{1}, \infty)$. Hence it has $n$ roots. All these roots are eigenvalues of $B$ so they are exactly the eigenvalues. This implies one direction.
+
+	For the converse take first $A$ with the given eigenvalues. By the previous lemma we now just want to choose $v$ in such a way that
 	\begin{align*}
 		\frac{p_{B}(z)}{p_{A}(z)} = 1 + \langle (A - z I)^{-1}v, v\rangle= 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z},
 	\end{align*}
-	where $e_{i}$'s are the eigenvectors of $A$ and $p_{A}$ and $p_{B}$ are polynomials with $a_{i}$'s and $b_{i}$'s as roots. But this is easily achieveable if can show that the residues of $p_{B}(z)/p_{A}(z)$ are negative, which follows easily from the interlacing property.
-
-	From the identity we can also easily deduce the other direction. If $\langle v, e_{i} \rangle \neq 0$ for any $1 \leq i \leq n$ the function
-	\begin{align*}
-		z \mapsto 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z}
-	\end{align*}
-	has $n$ poles of negative residue so it has a root between any two poles. Also it tends to $1$ at infinity so it has also root on $(a_{1}, \infty)$.
+	But this is clearly achieveable if can show that the residues of $p_{B}(z)/p_{A}(z)$ are negative, which follows easily from the interlacing property. Hence the converse.
 \end{proof}
 
-The proof of \ref{compression_eigenvalues_con} is similar: the aim to first connect the characteristic polynomials of $A$ and its compression and then do similar observations.
-
-\begin{lem}
-	Let $A \in \H(V)$ and $W \subset V$ a subspace of codimension $1$, orthocomplement of subspace spanned by unit vector $v$. Then
-	\begin{align*}
-		\det(\arestr{A}{W} - z I) = \det(A - z I) \langle (A - z I)^{-1}v, v\rangle
-	\end{align*}
-\end{lem}
-\begin{proof}
-	This is direct application of \ref{compression_determinant}.
-\end{proof}
-
-\begin{proof}[Proof of proposition \ref{compression_eigenvalues_con}]
-	Proof is just an easier version of the proof of \ref{projection_eigenvalues_con}
-\end{proof}
-
-These eigenvalue inequalities have interesting corollaries.
+The proposition \ref{projection_eigenvalues} has an useful corollary.
 
 \begin{kor}\label{spectrum_stability}
 	If $A, B \in \H^{n}(V)$, then $|\lambda_{i}(A) - \lambda_{i}(B)| \leq \sum_{i = 1}^{n} |\lambda_{i}(A - B)| \leq n \|A - B\|$ for any $1 \leq i \leq n$.
 \end{kor}
 \begin{proof}
-	If $B - A = \sum_{i = 1}^{n} \lambda_{i}(B - A) P_{v_{i}}$, write $A_{j} = A + \sum_{i = 1}^{j} \lambda_{i}(B - A) P_{v_{i}}$. By using lemma \ref{projection_eigenvalues_con} we may trace how the eigenvalues of $A_{j}$ change when $j$ increases. We conclude the given bound $\ldots$ almost: this implies bound for terms $|\lambda_{i}(A) - \lambda_{\sigma(i)}(B)|$ for some permutation $\sigma$ of $\{1, 2, \ldots, n\}$. But $\max_{1 \leq i \leq n} |\lambda_{i}(A) - \lambda_{i}(B)| \leq \max_{1 \leq i \leq n}|\lambda_{i}(A) - \lambda_{\sigma(i)}(B)|$ for any permutation $\sigma$ (as can be seen by simple exchange argument, for instance). The last inequality is trivial, so we are done.
+	If $B - A = \sum_{i = 1}^{n} \lambda_{i}(B - A) P_{v_{i}}$, write $A_{j} = A + \sum_{i = 1}^{j} \lambda_{i}(B - A) P_{v_{i}}$.
+
+	By using lemma \ref{projection_eigenvalues} we may trace how the eigenvalues of $A_{j}$ change when $j$ increases. Note that $A_{j + 1} - A_{j}$ is of rank one for any $0 \leq j < n$, so we have
+	\begin{align*}
+		\sum_{i = 1}^{n} (\lambda_{i}(A_{j + 1}) - \lambda_{i}(A_{j})) \leq \lambda_{j + 1}(B - A)
+	\end{align*}
+	As the numbers $(\lambda_{i}(A_{j + 1}) - \lambda_{i}(A_{j}))$ all have the same sign, they are all bounded by $|\lambda_{j + 1}(B - A)|$ in absolute value. Summing this over $j$ yields the first inequality. The second inequality is trivial.
 \end{proof}
 
-TODO: change order of compression and projection eigenvalues converses.
+\section{Derivative of a matrix function}
+
+If $f$ is analytic, for suitable $\gamma$ we have
+\begin{align*}
+	f(B) - f(A) &= \frac{1}{2 \pi i}\int_{\gamma} (z I - B)^{-1} f(z) dz - \int_{\gamma} (z I - A)^{-1} f(z) dz \\
+	&=  \frac{1}{2 \pi i}\int_{\gamma} (z I - B)^{-1} (B - A) (z I - A)^{-1} f(z) dz.
+\end{align*}
+Writing $B = A + t H$, and letting $t \to 0$ we get
+\begin{align*}
+	\lim_{t \to 0} \frac{f(A + tH) - f(A)}{t} &= \lim_{t \to 0}\int_{\gamma} (z I - A - t H)^{-1} H (z I - A)^{-1} f(z) dz \\
+	&= \int_{\gamma} (z I - A)^{-1} H (z I - A)^{-1} f(z) dz.
+\end{align*}
+
+Derivative of $f$ at $A$ is hence the linear map
+\begin{align*}
+	H \mapsto \int_{\gamma} (z I - A)^{-1} H (z I - A)^{-1} f(z) dz.
+\end{align*}
+
+If we write everything in the eigenbasis of $A$, $A = (\lambda_{i} \delta_{i, j})_{1 \leq i, j \leq n}$ and $H = (H_{i, j})_{1 \leq i,j \leq n}$, we have
+\begin{align*}
+	\int_{\gamma} (z I - A)^{-1} H (z I - A)^{-1} f(z) dz &= \left(H_{i, j} \int_{\gamma} (z - \lambda_{i})^{-1} (z - \lambda_{j})^{-1} f(z) dz \right)_{1 \leq i, j \leq n} \\
+	&= \left(H_{i, j} [\lambda_{i}, \lambda_{j}]_{f} \right)_{1 \leq i, j \leq n} \\
+	&= H \circ \left([\lambda_{i}, \lambda_{j}]_{f} \right)_{1 \leq i, j \leq n}.
+\end{align*}
+Here $\circ$ denotes the Hadamard product of matrices, given by $(A \circ B)_{i, j} = A_{i, j} \circ B_{i, j}$.
+
+This formula holds even if $f$ is not analytic, namely as long as $f \in \C^{1}(a, b)$. Indeed, by polynomial interpolation it is sufficient to prove the following lemma.
+\begin{lem}
+	If $f \in C^{1}(a, b)$, $A \in \H_{(a, b)}$ such that $f(\lambda_{i}) = 0 = f'(\lambda_{i})$ for $1 \leq i \leq n$, then
+	\[
+		\|f(A + H)\| = o(\|H\|).
+	\]
+\end{lem}
+\begin{proof}
+	By lemma \ref{spectrum_stability} we see that $|\lambda_{i}(A + H) - \lambda_{i}(A)| \leq n \|H\|$. Now by Taylor expansion $|f(\lambda_{i}(A + H))| =  n \|H\| f'(\xi_{i})$ for some $\xi_{i} = \xi_{i, A, H}$ on $(\lambda_{i}(A) - n \|H\|, \lambda_{i}(A) + n \|H\|)$. Now
+	\begin{align*}
+		\|f(A + H)\| \leq \sum_{i = 1}^{n} |\lambda_{i}(A + H)| \|P_{v_{i}}\| \leq n \|H\| \sum_{i = 1}^{n} |f'(\xi_{i, A, H})|.
+	\end{align*}
+	But by continuity of $f'$ the sum tends to zero as $\|H\| \to 0$.
+\end{proof}
+
+Derivative of matrix function can be also approached via power series. Since
+\begin{align*}
+	(A + t H)^{k} = \sum_{j = 0}^{k}t^{j}\sum_{\atop{i_{0}, i_{1}, \ldots, i_{j} \geq 0}{i_{0} + i_{1} + \ldots + i_{j} = k - j}}^{k - 1} A^{i_{0}} H A^{i_{1}} H \cdots H A^{i_{j}},
+\end{align*}
+we have
+\begin{align*}
+	\lim_{t \to 0}\frac{(A + t H)^{k} - A^{k}}{t} = \sum_{j = 0}^{k - 1}A^{j} H A^{k - 1 - j}.
+\end{align*}
+With the same notation as before, we have for eigenbasis of $A$
+\begin{align*}
+	\sum_{j = 0}^{k - 1}A^{j} H A^{k - 1 - j}= \sum_{j = 0}^{k - 1}\left( \lambda_{k}^{j}H_{k, l} \lambda_{l}^{k - 1 - j}\right)_{1 \leq k, l \leq n} = \left(H_{k, l} [\lambda_{k}, \lambda_{l}]_{(x \mapsto x^{k})}\right)_{1 \leq k, l \leq n}.
+\end{align*}
+Summing this identity over the Taylor terms yields the derivative formula for entire functions.
+
 
 \section{Notes and references}
 

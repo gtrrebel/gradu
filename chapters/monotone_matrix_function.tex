@@ -554,7 +554,7 @@ This is the point where divided differences come in. If one interprets matrix mo
 Let us then complete proof by proving the lemma \ref{main_lemma}.
 
 \begin{proof}[Proof of lemma \ref{main_lemma}]
-	The proof is based on lemmas \ref{projection_eigenvalues} and \ref{projection_eigenvalues_con}. To find the connection we first assume $f$ is entire. Then if and $(A, B)$ is a strict projetion pair with $B - A = v v^{*}$ for some $v \in V$ and $w \in V$ we have
+	The proof is based on lemmas \ref{projection_eigenvalues} and \ref{projection_eigenvalues}. To find the connection we first assume $f$ is entire. Then if and $(A, B)$ is a strict projetion pair with $B - A = v v^{*}$ for some $v \in V$ and $w \in V$ we have
 	\begin{align*}
 		&= \langle (f(B) - f(A)) w, w \rangle \\
 		&= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - B)^{-1} v, w \rangle  \langle (z I - A)^{-1} w, v \rangle f(z) dz \\
@@ -606,41 +606,6 @@ Let us then complete proof by proving the lemma \ref{main_lemma}.
 
 What's the moral of the story? If one unwraps all the definitions, matrix monotonicity is about positivity of some linear combinations of function values. Which linear combinations exactly? That is (more or less) explained in the main theorem.
 
-\section{A bit of history}
-
-Theorem \ref{main_theorem} is usually stated in somewhat different terms. Functions of the form $f h$ being $(2 n - 1)$-tone for some polynomials $h$ can be also understood as certain matrix being positive, \textit{Dobsch matrix}. Dobsch matrix (of order $n$) of $f : (a, b) \to \R$ at point $t \in (a, b)$ is the matrix
-\begin{align}\label{Dobsch_matrix}
-	&\begin{bmatrix}
-		\frac{f'(t)}{1!} & \frac{f^{(2)}(t)}{2!} & \cdots & \frac{f^{(n)}(t)}{n!} \\
-		\frac{f^{(2)}(t)}{2!} & \frac{f^{(3)}(t)}{3!} & \cdots & \frac{f^{(n + 1)}(t)}{(n + 1)!} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		\frac{f^{(n)}(t)}{n!} & \frac{f^{(n + 1)}(t)}{(n + 1)!} & \cdots &  \frac{f^{(2 n - 1)}(t)}{(2 n - 1)!}
-	\end{bmatrix} \\
-	=&
-	\begin{bmatrix}
-	[t, t]_{f} & [t, t, t]_{f} & \cdots & [t, \ldots, t]_{f}\\
-	[t, t, t]_{f} & [t, t, t, t]_{f} & \cdots & [t, t, \ldots, t]_{f} \\
-	\vdots & \vdots & \ddots & \vdots \\
-	[t, \ldots, t]_{f} & [t, t, \ldots, t]_{f} & \cdots &  [t, t, t, \ldots, t]_{f}.
-	\end{bmatrix} \nonumber
-\end{align}
-
-Now an alternative version of \ref{main_theorem} reads as follows.
-
-\begin{lause}
-	Let $n \geq 1$. Then $f \in P_{n}(a, b) \cap C^{2 n - 1}(a, b)$, if and only if all Dobsch matrices of $f$ of order $n$ are positive for every $t \in (a, b)$.
-\end{lause}
-\begin{proof}
-	By simple computation
-	\begin{align*}
-		\left.\frac{1}{(2 n - 1)!} \frac{d^{2 n - 1}\left(f(t) \left(\sum_{i = 1}^{n} c_{i} t^{n - i}\right) \left(\sum_{i = 1}^{n} \overline{c_{i}} t^{n - i}\right)\right)}{d t^{2 n - 1}} \right|_{t = 0} = \sum_{i,j = 1}^{n} c_{i} \overline{c_{j}} \frac{f^{(i + j - 1)}(0)}{(i + j - 1)!}.
- 	\end{align*}
-\end{proof}
-
-One can again get rid of the smootness assumption by some careful considerations.
-
-TODO
-
 \section{Loewner's theorem}
 
 In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_char}, the classes $P_{n}(a, b)$, Loewner characterized the classes $P_{\infty}(a, b)$.
@@ -652,11 +617,14 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 \begin{proof}
 	The ``if" direction is not too hard: the Loewner matrices are essentially limits of Pick matrices so the result follows rather immediately from \ref{loewner_char}.
 
-	TODO: Fix the following (no more Pick points)
+	The ``only if" is the tricky part. Our plan is the following:
+	\begin{enumerate}
+		\item First show that $f$ is real analytic on $(a, b)$.
+		\item Next, show that if we can extend $f$ analytically to $\D(x_{0}, r)$ for some $x_{0} \in (a, b)$ and $r > 0$, then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
+		\item Finally, by theorem \ref{open_pick_interpolation} we get Pick function, which agree with $f$ on $(x_{0} - r, x_{0} + r)$, so by real analyticity of $f$, on the whole interval $(a, b)$.
+	\end{enumerate}
 
-	The ``only if" is the tricky part. Theorem \ref{loewner_char} tells us that the Dobsch matrices are positive on $(a, b)$. If we can somehow show that $f \in C^{\omega}(a, b)$, then we see that all points of $(a, b)$ are Pick points of $f$, and we can extend it to weakly Pick function on some open set of upper half-plane, from which it extends to unique Pick function by Pick--Nevanlinna theorem \ref{open_pick_interpolation}.
-
-	It suffices to proof the following result.
+	Recall that $f$ being $n$ monotone implies that it is $(2 n - 1)$-tone. Thus for the first step it suffices to show the following.
 
 	\begin{lem}
 		Let $f \in C^{\infty}(a, b)$ such that $f^{(2 n - 1)}(t) \geq 0$ for every $t \in (a, b)$. Then $f \in C^{\omega}(a, b)$.
@@ -708,6 +676,20 @@ In addition to characterizing $n$-monotone functions, by theorem \ref{loewner_ch
 		\end{align*}
 		But now we can simply follow the same argument.
 	\end{proof}
+
+	For the step $2$ we should prove the following lemma.
+	\begin{lem}
+		Assume that $f \in P_{\infty}(a, b)$, $f$ is analytic at $x_{0} \in (a, b)$ such that it can analytically extended to $\D(x_{0}, r)$ for some $r > 0$. Then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
+	\end{lem}
+	\begin{proof}
+		As $f \in P_{\infty}(a, b)$, all its Loewner matrices are positive. As $f$ is analytic, this can rephrased as the posivity of the integral
+		\begin{align*}
+			\frac{1}{2 \pi i} \int_{\partial \D(x_{0}, r')}\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - z_{i}} \right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z - z_{i}} \right) f(z) dz
+		\end{align*}
+		for any $r' < r$, $x_{1}, x_{2}, \ldots, x_{n} \in (x_{0} - r', x_{0} + r')$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$. Rest of the argument is almost the same as with the proof of lemma \ref{disc_open_pick_lemma}: now we should just take the sequence $z_{1}, z_{2}, \ldots$ to be real. Also, since the the disc $\D(x_{0}, r')$ is symmetric with respect the real axis, verifying the uniform convergence of the integrand is just as easy.
+	\end{proof}
+
+	Step $3$ is clear, and we are hence done.
 
 \end{proof}
 
