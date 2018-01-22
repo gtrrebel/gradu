@@ -132,7 +132,7 @@ The only exception is the function $z \mapsto \alpha z$ -- it can't be expressed
 
 Choosing $\lambda \mapsto \frac{\lambda}{\lambda^2 + 1}$ is common choice in the literature and is convenient as
 \begin{itemize}
-	\item It's real. This is really not too big of a deal though, but it aids in keeping track with the real and imaginary parts.
+	\item It's real, so the integrand is Pick function for any $\lambda \in \R$.
 	\item We may recover the constant $\beta$ as $\Re(\varphi(i))$.
 \end{itemize}
 
@@ -147,10 +147,10 @@ We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem} 
 We will call the family
 
 \begin{align*}
-	\{z \mapsto z\} \cup \{z \mapsto \frac{1}{\lambda - z} | \lambda \in \R\}
+	\{z \mapsto z\} \cup \left\{z \mapsto \frac{1}{\lambda - z} | \lambda \in \R\right\}
 \end{align*}
 
-\textbf{extreme Pick functions}. Finite linear combinations of the extreme Pick functions are called \textbf{simple Pick functions}. Finally, we will call a Pick function extentable, if it is bounded and analytically extends over the real line. Such Pick functions enjoy representations of the form \ref{easy_pick_repr}.
+\textbf{extreme Pick functions}. Finite positive linear combinations of the extreme Pick functions are called \textbf{simple Pick functions}. Finally, we will call a Pick function extentable, if it is bounded and analytically extends over the real line. Such Pick functions enjoy representations of the form \ref{easy_pick_repr}.
 \section{Pick functionals}
 
 \begin{quest}
@@ -174,11 +174,11 @@ We have however already encountered much better averages: the imaginary part of 
 \begin{align*}
 	\Im(\varphi(z)) = \alpha \Im(z) + \frac{\Im(z)}{\pi}\int_{\R} \frac{d \mu(\lambda)}{(\lambda - z)(\lambda - \overline{z})}.
 \end{align*}
-Bear in mind that we also consider the constant $\alpha$ be part of the measure. One can take this idea much further: if $q$ is any rational function with simple poles, no poles on $\R$, and decay $O(|z|^{-2})$ at infinity, the expression
+Bear in mind that we also consider the constant $\alpha$ to be part of the measure. One can take this idea much further: if $q$ is any rational function with simple poles, no poles on $\R$, and decay $O(|z|^{-2})$ at infinity, the expression
 \begin{align*}
 	\int_{\R} q(\lambda) d \mu(\lambda)
 \end{align*}
-makes sense. Even better, partial fraction expansion allows us to write this integral in terms of as a linear combination of values of $\varphi$ and its conjugate. Indeed, partial fraction decomposition allows us to write $q$ as
+makes sense. Even better, partial fraction expansion allows us to write this integral in terms of as a linear combination of values of $\varphi$ and its conjugate. Indeed, we have
 \begin{align*}
 	q(\lambda) = c_{0}\frac{\lambda}{\lambda^2 + 1} + \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right),
 \end{align*}
@@ -206,11 +206,11 @@ where $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c
 \begin{maar}
 	Functional in $\left(\C^{\Hp}\right)^{*}$ of the form
 	\begin{align*}
-		\sum_{1 \leq i, j \leq n} c_{i} c_{j} \frac{\delta_{\lambda_{i}} - \overline{\delta_{\lambda_{j}}}}{\lambda_{i} - \overline{\lambda_{j}}},
+		\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\delta_{\lambda_{i}} - \overline{\delta_{\lambda_{j}}}}{\lambda_{i} - \overline{\lambda_{j}}},
 	\end{align*}
 	$\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$, is called a \textbf{Pick functional}. This is all of course to say that
 	\begin{align*}
-		\varphi \mapsto \sum_{1 \leq i, j \leq n} c_{i} c_{j} \frac{\varphi(\lambda_{i}) - \overline{\varphi(\lambda_{j})}}{\lambda_{i} - \overline{\lambda_{j}}}.
+		\varphi \mapsto \sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\varphi(\lambda_{i}) - \overline{\varphi(\lambda_{j})}}{\lambda_{i} - \overline{\lambda_{j}}}.
 	\end{align*}
 \end{maar}
 
@@ -237,12 +237,12 @@ We denote the set of Pick functionals by $\pickclass^{*}$.
 	\end{enumerate}
 \end{lause}
 \begin{proof}
-	The implications $(i) \Rightarrow (ii) \Rightarrow (iii)$ and $(iv) \Rightarrow (ii)$, up to one detail: if $p^{*}(\varphi) \geq 0$ for any extreme Pick function $\varphi$, we should prove that $p^{*}(1) = 0$. But follows as soon as one notes that
+	The implications $(i) \Rightarrow (ii) \Rightarrow (iii)$ and $(iv) \Rightarrow (ii)$ are clear, up to one detail: if $p^{*}(\varphi) \geq 0$ for any extreme Pick function $\varphi$, we should prove that $p^{*}(1) = 0$. But this follows as soon as one notes that
 	\begin{align*}
 		p^{*}\left(\frac{1}{\lambda - \cdot}\right) = \frac{p^{*}\left(1\right)}{\lambda} + O\left(\frac{1}{\lambda^2}\right).
 	\end{align*}
 
-	$(iii) \Rightarrow (iv)$: It suffices to prove that the extentable Pick functions are dense (with respect to the topology of Pointwise convergence) in the set of all Pick function. But for this it is enough to find a sequence of Pick functions $(g_{n})_{n = 1}^{\infty}$ such that
+	$(iii) \Rightarrow (iv)$: It suffices to prove that the extentable Pick functions are dense (with respect to the topology of pointwise convergence) in the set of all Pick function. But for this it is enough to find a sequence of Pick functions $(g_{n})_{n = 1}^{\infty}$ such that
 	\begin{enumerate}
 		\item $g_{n}(z) \to z$ pointwise as $n \to \infty$,
 		\item $g_{n}$'s extend analytically over real line and $g_{n}(\overline{\H_{+}})$ is compact subset of $\H_{+}$ for every $n \geq 1$,
@@ -264,9 +264,11 @@ It is useful to note that one does not even need to test every extreme Pick func
 
 Finally, the following correspondence should be clear by now.
 
-\begin{lem}
-	There is a natural linear bijective linear map between non-negative rational functions vanishing at infinity and $\pickclass^{*}$.
-\end{lem}
+\begin{prop}
+	There is a natural bijective ($\R$-)linear map between non-negative rational functions vanishing at infinity and $\pickclass^{*}$.
+\end{prop}
+
+This line of thought induces a dual pairing between rational function of decay $\lambda^{-2}$ at infinity and $\C^{\Hp}$. We denote this pairing by $\langle r, \varphi \rangle_{\pickclass}$.
 
 \section{Weakly Pick functions}
 
@@ -331,7 +333,7 @@ The previous argument can be easily extended to the following.
 \begin{lause}\label{Hindmarsh_theorem}
 	Let $\varphi$ be a weakly Pick function. Then for any $n \geq 1$ and $z_{0}, z_{1}, \ldots, z_{n}$ we have
 	\begin{align*}
-		|[z_{0}, z_{1}, \ldots, z_{n}]_{\varphi}| \leq \frac{1}{2 \Im(z_{2}) \Im(z_{3}) \ldots \Im(z_{n})} \left(\frac{\Im(\varphi(z_{0}))}{\Im(z_{0})} + \frac{\Im(\varphi(z_{1}))}{\Im(z_{1})}\right).
+		|[z_{0}, z_{1}, \ldots, z_{n}]_{\varphi}| \leq \frac{1}{\Im(z_{2}) \Im(z_{3}) \ldots \Im(z_{n})} \frac{1}{2}\left(\frac{\Im(\varphi(z_{0}))}{\Im(z_{0})} + \frac{\Im(\varphi(z_{1}))}{\Im(z_{1})}\right).
 	\end{align*}
 	In particular any weakly Pick function is analytic and hence a Pick function.
 \end{lause}
@@ -441,6 +443,62 @@ Luckily these problems can be fixed with the following improved version of the l
 
 	Of course, Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture).
 \end{proof}
+
+\section{Pick-Nevanlinna interpolation theorem}
+
+Although Pick-Nevanlinna extrapolation theorem is strong enough tool for our purposes, one cannot simply talk about it without discussing also its big brother, interpolation theorem.
+
+\begin{lause}\label{pick_interpolation}
+	Let $X \subset \Hp$ be arbitrary and assume that $\varphi$ is weakly Pick on $X$. Then there exists pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
+\end{lause}
+
+It's easy to see that such function extension it not unique in general.
+
+\begin{proof}
+	Hard part of the proof is to deal with the case of finite $X$.
+	\begin{lem}\label{finite_pick_extension_lemma}
+		Let $X \subset \Hp$ be finite and $z_{0} \in \Hp \setminus X$. Assume that $\varphi$ is weakly Pick on $X$. Then $\varphi$ can be extended to $z_{0}$, in such a way that the extension is weakly Pick $X \cup \{z_{0}\}$. Moreover, the set of possible values of the extension at $z_{0}$ is a compact subset of $\Hp$.
+	\end{lem}
+
+	Let us first proof the theorem given this lemma.
+
+	Firstly, the finite case implies the arbitrary sets.
+	\begin{lem}\label{pick_extension_lemma}
+		Let $X \subset \Hp$ and $z_{0} \in \Hp \setminus X$. Assume that $\varphi$ is weakly Pick on $X$. Then $\varphi$ can be extended to $z_{0}$, in such a way that the extension is weakly Pick $X \cup \{z_{0}\}$. Moreover, the set of possible values of the extension at $z_{0}$ is a compact subset of $\Hp$.
+	\end{lem}
+	\begin{proof}
+		For any finite set $F$ denote the set of possible values of the extension at by $W_{F}$. We clearly have $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$ and hence the family
+		\begin{align*}
+			\{ W_{F} | \text{$F$ is a finite subset of $X$}\}
+		\end{align*}
+		is family of compact sets with finite intersection property. Consequently their intersection is non-empty and compact.
+	\end{proof}
+
+	Now consider family of all weakly Pick extensions of $\varphi$ ordered by restriction. It is clear that this family satisfies the conditions of the Zorn's lemma and hence it has a maximal element. But by the previous lemma this a maximal element has to have the whole $\Hp$ as its domain, so it a sought extension.
+\end{proof}
+
+\begin{proof}[Proof of lemma \ref{finite_pick_extension_lemma}]
+		The idea is somewhat similar to the proof of \ref{cheapSpectral}: while in general the extension is very much not unique, if the situation is restricted enough, we are in better situation. Let us denote the sought extension by $\tilde{\varphi}$. Assume first that $\varphi$ is degenerate in $X$ in the sense that $p^{*}(\varphi) = 0$ for some non-zero $p^{*} \in \pickclass^{*}$. Let $r$ be the respective non-negative rational function so that we have $\langle r, \varphi \rangle_{\pickclass}$ . Note that since $(\lambda - z_{0})^{-1}$ is bounded on $\R$, by say $M$, we should have
+		\begin{align*}
+			\left|\langle r \frac{1}{\cdot - z_{0}}, \tilde{\varphi} \rangle_{\pickclass}\right| \leq M \langle r , \varphi \rangle_{\pickclass} = 0,
+		\end{align*}
+		and hence $\langle r (\cdot - z_{0})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. Note that then also $\langle r (\cdot - \overline{z_{0}})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. If $r(z_{0}) \neq 0$, this determines the value $\tilde{\varphi}(z_{0})$. But if $r(z_{0}) = 0$, the numerator of $r$ has factor $(\lambda - z_{0}) (\lambda - \overline{z_{0}}) = (\lambda - \Re(z_{0}))^2 + (\Im(z_{0}))^2$, so we may replace the factor by $(\Im(z_{0}))^2$. Continuing in the similar manner we may assume that $r(z_{0}) \neq 0$.
+
+		Now it remains to be proven that with this choice $\tilde{\varphi}$ is weakly Pick. To this end take any Pick functional supported on $X \cup \{z_{0}\}$ and let $s$ to be the respective rational function. Note that for any $a \in \C$ we have
+		\begin{align*}
+			\tilde{s}(\lambda) := s(\lambda) + \left(\frac{a}{\lambda - z_{0}} + \frac{\overline{a}}{\lambda - \overline{z_{0}}}\right) q(\lambda) + 2 |a| M q(\lambda) \geq 0.
+		\end{align*}
+		By picking $a$ suitably, $\tilde{s}$ doesn't have pole at $z_{0}$ (or $\overline{z_{0}}$), and since $\varphi$ is weakly Pick we have
+		\begin{align*}
+			\langle s, \tilde{\varphi} \rangle_{\pickclass} = \langle \tilde{s}, \tilde{\varphi} \rangle_{\pickclass} \geq 0,
+		\end{align*}
+		the claim.
+
+		If $\varphi$ is not-degenerate, we may certainly find $c_{0} > 0$ such that $\varphi_{c_{0}} := \varphi - c_{0} i$ is weakly Pick on $X$ and degenerate, and if we find extension for $\varphi_{c_{0}}$, we get one also for $\varphi$.
+	\end{proof}
+
+Again, one could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.
+
 
 \section{Notes and references}
 

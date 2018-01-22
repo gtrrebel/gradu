@@ -4,8 +4,6 @@ We already introduced monotone matrix functions in the introduction, but now tha
 
 \section{Basic properties}
 
-We first state the definition.
-
 \begin{maar}
 	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H^{n}_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
 \end{maar}
@@ -93,11 +91,11 @@ There are also more trivial inclusions: $P_{n}(a, b) \subset P_{n}(c, d)$ for an
 As expected, certain basic properties of monotone functions carry to matrix monotone.
 
 \begin{prop}
-	For any positive integer $n$ and open interval $(a, b)$ the set $P_{n}(a, b)$ is a convex cone, i.e. it is closed under taking summation and multiplication by non-negative scalars.
+	For any positive integer $n$ and open interval $(a, b)$ the set $P_{n}(a, b)$ is a closed convex cone.
 \end{prop}
 
 \begin{proof}
-	This is easy: closedness under summation and scalar multiplication with non-negative scalars correspond exaclty to the same property of positive matrices.
+	This is easy.
 \end{proof}
 
 We shall be using especially the previous result a lot.
@@ -109,17 +107,6 @@ Similarly we have composition and pointwise limits.
 \end{prop}
 \begin{proof}
 	Fix any $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. By assumption $f(A) \leq f(B)$ and $f(A), f(B) \in \H^{n}_{(c, d)}$ so again by assumption, $g(f(A)) \leq g(f(B))$, our claim.
-\end{proof}
-
-\begin{prop}
-	If $n$-monotone functions $f_{i} : (a, b) \to \R$ converge pointwise to $f : (a, b) \to \R$ as $i \to \infty$, also $f$ is $n$-monotone.
-\end{prop}
-\begin{proof}
-	As always, fix $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. Now by assumption
-	\[
-		f(B) - f(A) = \lim_{i \to \infty} f_{i}(B) - \lim_{i \to \infty} f_{i}(A) = \lim_{i \to \infty} \left(f_{i}(B) - f_{i}(A)\right) \geq 0,
-	\]
-	so also $f \in P_{n}(a, b)$.
 \end{proof}
 
 
