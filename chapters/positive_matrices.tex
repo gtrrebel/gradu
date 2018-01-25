@@ -273,8 +273,6 @@ Also, given $A \in \H(V)$, we may write any $x \in V$ in the form $v = \sum_{1 \
 \item $\|A x\|^{2} = \langle A x, A x \rangle = \sum_{1 \leq i \leq n} \lambda_{i}^{2} x_{i}^{2} \leq \left(\max_{1 \leq i \leq n} \lambda_{i}^2 \right) \sum_{1 \leq i \leq n} x_{i}^2 = \left(\max_{1 \leq i \leq n} \lambda_{i}^2 \right) \|x\|^{2}$. It follows that $\|A\| = \max_{1 \leq i \leq n} |\lambda_{i}|$.
 \end{itemize}
 
-Similarly, if $A \geq 0$, $A$ has a unique positive square root, which we denote by $A^{\frac{1}{2}}$: map such that $A^{\frac{1}{2}} A^{\frac{1}{2}} = A$. Given the spectral reprsentation $A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}}$, we can simply set $A^{\frac{1}{2}} = \sum_{1 \leq i \leq n} \lambda_{i}^{\frac{1}{2}} P_{v_{i}}$. As for the uniqueness, note that if $B$ is a positive square root for $A$ and $B = \sum_{1 \leq i \leq n} \lambda_{i}' P_{v_{i}'}$, then $B^2 = \sum_{1 \leq i \leq n} \lambda_{i}'^{2} P_{v_{i}'}$. It follows that eigenvalues of $B$ are simply square roots of eigenvalues of $A$ and the corresponding eigenspaces are equal. Of course, the whole uniqueness argument floats more naturally with unique spectral representation.
-
 Finally, one should note that the lemma \ref{spectralZeroLemma} enjoys following natural generalization.
 
 \begin{prop}\label{posnegfact}
@@ -330,25 +328,25 @@ These properties make it clear that such definition is natural. We will drop the
 \subsection{Holomorphic functional calculus}
 
 If $f$ is entire, there's another way to appoach matrix functions. As $f$ can be written as
-\[
+\begin{align*}
 	f(z) = \sum_{n = 0}^{\infty} a_{n} z^{n},
-\]
+\end{align*}
 power series convergent whole any $z \in \C$, we should have
-\[
+\begin{align*}
 	f_{V}(A) = \sum_{n = 0}^{\infty} a_{n} A^{n}.
-\]
+\end{align*}
 This matrix power series indeed converges as $\|A^{n}\| \leq \|A\|^{n}$. Also, this definition coincides with the spectral one. Indeed, if one writes $f_{n} : z \mapsto  \sum_{k = 0}^{n} a_{n} z^{n}$, then we have, by definition,
-\[
+\begin{align*}
 	\sum_{n = 0}^{\infty}a_{n} A^{n} = \lim_{n \to \infty} \left[(f_{n})_{V}(A) \right] = f_{V}(A),
-\]
+\end{align*}
 by point (6) of proposition (\ref{basic_matrix}).
 
 Note however that the power series definition makes perfect sense even if $a_{n} \notin \R$ and even better, $A$ need not be real.
 
 If $f$ is not entire, the power series might not converge every $A \in \H_{(a, b)}(V)$. Instead, we can more generally use Cauchy's integral formula for matrix functions.
-\[
-	f_{V}(A) = \int_{\gamma} (z I - A)^{-1} f(z) dz,
-\]
+\begin{align*}
+	f_{V}(A) = \frac{1}{2 \pi i}\int_{\gamma} (z I - A)^{-1} f(z) dz,
+\end{align*}
 where $\gamma$ is simple closed curve enclosing the spectrum of $A$. This formula is immediate when viewed in a eigenbasis of $A$. Again, this formula makes perfect sense even for non-real $A$, given that spectrum of $A$ lies in the domain of $f$.
 
 \section{Real maps and composition}
@@ -360,18 +358,18 @@ where $\gamma$ is simple closed curve enclosing the spectrum of $A$. This formul
 If $A, B \in \H_{+}(V)$, then, as we noticed, $(A B)^{*} = B^{*} A^{*} = B A$, so for $A B$ to be even real, $A$ and $B$ would at least need to commute. Natural question follows: when do two positive maps commute? Since $(c_{1} I + A)$ and $(c_{2} I + B)$ commute if and only if $A$ and $B$ do, this is same as asking when do two real maps commute.
 
 It turns out that real maps commute only if they ``trivially" commute, in the following sense. If there exists vectors $v_{1}, v_{2}, \ldots, v_{n}$ and numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and $\lambda'_{1}, \lambda'_{2}, \ldots, \lambda'_{n}$ such that
-\[
+\begin{align*}
 	A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}} \; \text{ and } \; B = \sum_{1 \leq i \leq n} \lambda'_{i} P_{v_{i}},
-\]
+\end{align*}
 then $A$ and $B$ are said to be \textbf{simultaneously diagonalizable}. Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are indeed simultenously diagonalizable.
 
 To prove this statement, we start with a lemma, simplest non-trivial case of the statement.
 
 \begin{lem}\label{projectionLemma}
 	Let $W_{1}, W_{2} \subset V$ be two subspaces. Then $P_{W_{1}}$ and $P_{W_{2}}$ commute if and only if there exists orthogonal subspaces $U_{1}, U_{2}$ and $U_{0}$ such that
-	\[
+	\begin{align*}
 		W_{1} = U_{1} + U_{0}  \; \text{ and } \; W_{2} = U_{2} + U_{0}.
-	\]
+	\end{align*}
 	We then have $P_{W_{1}} = P_{U_{1}} + P_{U_{0}}$ and $P_{W_{2}} = P_{U_{2}} + P_{U_{0}}$, and $U_{0} = W_{1} \cap W_{2}$.
 \end{lem}
 \begin{proof}
@@ -384,9 +382,9 @@ To prove this statement, we start with a lemma, simplest non-trivial case of the
 
 \begin{lause}\label{commuting_real_maps}
 	Let $\mathcal{A} = (A_{j})_{j \in J}$ by an arbitrary family of commuting real maps. Then there exists non-trivial orthogonal subspaces of $V$, $E_{1}, E_{2}, \ldots E_{m}$ with $E_{1} + E_{2} + \ldots + E_{m} = V$ and numbers $\lambda_{i, j}$ for $j \in J$ and $1 \leq i \leq n$ such that
-	\[
+	\begin{align*}
 		A_{j} = \sum_{1 \leq i \leq m} \lambda_{i, j} P_{E_{i}}
-	\]
+	\end{align*}
 	for any $j \in J$.
 \end{lause}
 \begin{proof}
@@ -441,9 +439,9 @@ TODO: independence of random variables.
 \subsection{Symmetric product}
 
 As normal product doesn't quite work with positivity, next attempt might be symmetrized product
-\[
+\begin{align*}
 	S(A, B) = AB + BA,
-\]
+\end{align*}
 (or maybe with normalizing constant $\frac{1}{2}$ in the front), instead of the usual one. It turns out that even this doesn't fix positivity.
 
 For one dimesional projections things go as badly as they possibly can.
@@ -475,14 +473,13 @@ For one dimesional projections things go as badly as they possibly can.
 	\end{proof}
 \end{proof}
 
-
 Moreover, even if one adds positive buffer, things won't work in general.
 
 \begin{prop}\label{symmetric_fail}
 	Let $\alpha, \beta, \gamma \in \C$ and $n \geq 2$. Then the expression $\alpha A^{2} + \beta AB + \overline{\beta} BA + \gamma B^{2}$ is positive for any $A, B \geq 0$ if and only if $\alpha, \gamma \in [0, \infty)$ and $|\beta|^{2} \leq \alpha \gamma$.
 \end{prop}
 \begin{proof}
-	By easy scaling arguments consideration we may reduce the considerations to the case $\alpha = \gamma = 1$. If $|\beta| \leq 1$, we may write
+	By easy scaling arguments we may reduce our considerations to the case $\alpha = \gamma = 1$. If $|\beta| \leq 1$, we may write
 	\begin{align*}
 		A^2 + \beta A B + \overline{\beta} B A + B^2 = (A + \beta B)^{*}(A + \beta B) + (1 - |\beta|^2) B^2 \geq 0.
 	\end{align*}
@@ -594,139 +591,9 @@ If one writes $X = A^{-\frac{1}{2}}B A^{-\frac{1}{2}}$, this rewrites to
 \]
 But now since $I$ and $X$ commute, the claim is evident form the scalar inequality. In a similar manner one could also prove that the geometric mean lies between arithmetic and harmonic.
 
-\section{Eigenvalue inequalities}
-
-There's great deal of things to be said about relationship between eigenvalues and Loewner order. Let's denote the eigenvalues of real map $A$ by $\lambda_{1}(A) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(A)$. One of the most basic result is the following.
-
-\begin{prop}\label{loewner_eigenvalues}
-	Assume that $A \leq B$. Then for any $1 \leq k \leq n$ we have $\lambda_{k}(A) \leq \lambda_{k}(B)$.
-\end{prop}
-
-Such results are by no means trivial. In general it's hard to keep track of the relationship between the eigenvalues of two real maps $A$ and $B$ given their information of their difference, but if $B - A$ is of rank this can be done rather explicitly.
-
-\begin{maar}
-	Let us call pair $(A, B) \in \H(V)^{2}$ a \textbf{projection pair} if $B - A = v v^{*}$ for some $v \in V$. Note that such $v$ is always unique up to phase. Let us say that a projection pair $(A, B)$ is \textbf{strict}, if whenever $B - A = v v^{*}$ then $v$ is not orthogonal to any eigenvector of $A$. 
-\end{maar}
-
-\begin{lem}\label{projection_eigenvalues}
-	Let $(A, B)$ be a projection pair. Then
-	\begin{align*}
-		\lambda_{1}(B) \geq \lambda_{1}(A) \geq \lambda_{2}(B) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(B) \geq \lambda_{n}(A).
-	\end{align*}
-	$(A, B)$ is strict if and only if all the inequalities are strict.
-
-	Conversely, if we are given any two interlacing sequences $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \geq \ldots \geq b_{n} \geq a_{n}$ we may find a projection pair $(A, B)$ with $\spec(A) = \{a_{i}\}_{i = 1}^{n}$ and $\spec(B) = \{b_{i}\}_{i = 1}^{n}$.
-\end{lem}
-
-
-
-Note that the proposition \ref{loewner_eigenvalues} follows immediately from this.
-
-This proposition is based on the following explicit relationship between characteristic polynomials of a projection pair.
-
-\begin{lem}\label{projection_characteristic_polynomial}
-	Let $A, B \in \H$ be a projection pair. Then
-	\begin{align*}
-		\det(B - z I) = \det(A - z I) \left(1 + \langle (A - z I)^{-1}v, v\rangle\right).
-	\end{align*}
-\end{lem}
-\begin{proof}
-	Write the the matrices $A$ and $B$ in the basis where the first vector is parallel to $v$. Now the matrices only differ at the upper-left corner, where the difference is $\|v\|^2$. Expanding the determinant this implies that
-	\begin{align*}
-		\det(B - z I) = \det(A - z I) + \|v\|^2 \left(\text{determinant of $A - zI$ with first row and column removed} \right).
-	\end{align*}
-	However, by the Cramer rule the determinant equals the upper-left corner of the matrix of $(A - z I)^{-1}$, i.e. $\det(A - z I)\frac{\langle (A - zI)^{-1} v, v \rangle}{\|v\|^2}$. Combining these observations yields the claim.
-\end{proof}
-
-
-\begin{proof}[Proof of lemma \ref{projection_eigenvalues}]
-	Note that if $v$ is orthogonal to one of the eigenvectors of $A$, $P_{v}$ doesn't affect this eigenspace, so we may forget it and restrict our attention to a smaller space. Similarly for the converse: if $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, and solve the remaingn problem on smaller space. We may hence assume that the pair $(A, B)$ is strict and the numbers the inequalities in the converse are strict.
-
-	Consider the function
-	\begin{align*}
-		z \mapsto 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z}.
-	\end{align*}
-	It has $n$ poles of negative residue so it has a root between any two poles. Also it tends to $1$ at infinity so it has also root on $(a_{1}, \infty)$. Hence it has $n$ roots. All these roots are eigenvalues of $B$ so they are exactly the eigenvalues. This implies one direction.
-
-	For the converse take first $A$ with the given eigenvalues. By the previous lemma we now just want to choose $v$ in such a way that
-	\begin{align*}
-		\frac{p_{B}(z)}{p_{A}(z)} = 1 + \langle (A - z I)^{-1}v, v\rangle= 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z},
-	\end{align*}
-	But this is clearly achieveable if can show that the residues of $p_{B}(z)/p_{A}(z)$ are negative, which follows easily from the interlacing property. Hence the converse.
-\end{proof}
-
-The proposition \ref{projection_eigenvalues} has an useful corollary.
-
-\begin{kor}\label{spectrum_stability}
-	If $A, B \in \H^{n}(V)$, then $|\lambda_{i}(A) - \lambda_{i}(B)| \leq \sum_{i = 1}^{n} |\lambda_{i}(A - B)| \leq n \|A - B\|$ for any $1 \leq i \leq n$.
-\end{kor}
-\begin{proof}
-	If $B - A = \sum_{i = 1}^{n} \lambda_{i}(B - A) P_{v_{i}}$, write $A_{j} = A + \sum_{i = 1}^{j} \lambda_{i}(B - A) P_{v_{i}}$.
-
-	By using lemma \ref{projection_eigenvalues} we may trace how the eigenvalues of $A_{j}$ change when $j$ increases. Note that $A_{j + 1} - A_{j}$ is of rank one for any $0 \leq j < n$, so we have
-	\begin{align*}
-		\sum_{i = 1}^{n} (\lambda_{i}(A_{j + 1}) - \lambda_{i}(A_{j})) \leq \lambda_{j + 1}(B - A)
-	\end{align*}
-	As the numbers $(\lambda_{i}(A_{j + 1}) - \lambda_{i}(A_{j}))$ all have the same sign, they are all bounded by $|\lambda_{j + 1}(B - A)|$ in absolute value. Summing this over $j$ yields the first inequality. The second inequality is trivial.
-\end{proof}
-
-\section{Derivative of a matrix function}
-
-If $f$ is analytic, for suitable $\gamma$ we have
-\begin{align*}
-	f(B) - f(A) &= \frac{1}{2 \pi i}\int_{\gamma} (z I - B)^{-1} f(z) dz - \int_{\gamma} (z I - A)^{-1} f(z) dz \\
-	&=  \frac{1}{2 \pi i}\int_{\gamma} (z I - B)^{-1} (B - A) (z I - A)^{-1} f(z) dz.
-\end{align*}
-Writing $B = A + t H$, and letting $t \to 0$ we get
-\begin{align*}
-	\lim_{t \to 0} \frac{f(A + tH) - f(A)}{t} &= \lim_{t \to 0}\int_{\gamma} (z I - A - t H)^{-1} H (z I - A)^{-1} f(z) dz \\
-	&= \int_{\gamma} (z I - A)^{-1} H (z I - A)^{-1} f(z) dz.
-\end{align*}
-
-Derivative of $f$ at $A$ is hence the linear map
-\begin{align*}
-	H \mapsto \int_{\gamma} (z I - A)^{-1} H (z I - A)^{-1} f(z) dz.
-\end{align*}
-
-If we write everything in the eigenbasis of $A$, $A = (\lambda_{i} \delta_{i, j})_{1 \leq i, j \leq n}$ and $H = (H_{i, j})_{1 \leq i,j \leq n}$, we have
-\begin{align*}
-	\int_{\gamma} (z I - A)^{-1} H (z I - A)^{-1} f(z) dz &= \left(H_{i, j} \int_{\gamma} (z - \lambda_{i})^{-1} (z - \lambda_{j})^{-1} f(z) dz \right)_{1 \leq i, j \leq n} \\
-	&= \left(H_{i, j} [\lambda_{i}, \lambda_{j}]_{f} \right)_{1 \leq i, j \leq n} \\
-	&= H \circ \left([\lambda_{i}, \lambda_{j}]_{f} \right)_{1 \leq i, j \leq n}.
-\end{align*}
-Here $\circ$ denotes the Hadamard product of matrices, given by $(A \circ B)_{i, j} = A_{i, j} \circ B_{i, j}$.
-
-This formula holds even if $f$ is not analytic, namely as long as $f \in \C^{1}(a, b)$. Indeed, by polynomial interpolation it is sufficient to prove the following lemma.
-\begin{lem}
-	If $f \in C^{1}(a, b)$, $A \in \H_{(a, b)}$ such that $f(\lambda_{i}) = 0 = f'(\lambda_{i})$ for $1 \leq i \leq n$, then
-	\[
-		\|f(A + H)\| = o(\|H\|).
-	\]
-\end{lem}
-\begin{proof}
-	By lemma \ref{spectrum_stability} we see that $|\lambda_{i}(A + H) - \lambda_{i}(A)| \leq n \|H\|$. Now by Taylor expansion $|f(\lambda_{i}(A + H))| =  n \|H\| f'(\xi_{i})$ for some $\xi_{i} = \xi_{i, A, H}$ on $(\lambda_{i}(A) - n \|H\|, \lambda_{i}(A) + n \|H\|)$. Now
-	\begin{align*}
-		\|f(A + H)\| \leq \sum_{i = 1}^{n} |\lambda_{i}(A + H)| \|P_{v_{i}}\| \leq n \|H\| \sum_{i = 1}^{n} |f'(\xi_{i, A, H})|.
-	\end{align*}
-	But by continuity of $f'$ the sum tends to zero as $\|H\| \to 0$.
-\end{proof}
-
-Derivative of matrix function can be also approached via power series. Since
-\begin{align*}
-	(A + t H)^{k} = \sum_{j = 0}^{k}t^{j}\sum_{\atop{i_{0}, i_{1}, \ldots, i_{j} \geq 0}{i_{0} + i_{1} + \ldots + i_{j} = k - j}}^{k - 1} A^{i_{0}} H A^{i_{1}} H \cdots H A^{i_{j}},
-\end{align*}
-we have
-\begin{align*}
-	\lim_{t \to 0}\frac{(A + t H)^{k} - A^{k}}{t} = \sum_{j = 0}^{k - 1}A^{j} H A^{k - 1 - j}.
-\end{align*}
-With the same notation as before, we have for eigenbasis of $A$
-\begin{align*}
-	\sum_{j = 0}^{k - 1}A^{j} H A^{k - 1 - j}= \sum_{j = 0}^{k - 1}\left( \lambda_{k}^{j}H_{k, l} \lambda_{l}^{k - 1 - j}\right)_{1 \leq k, l \leq n} = \left(H_{k, l} [\lambda_{k}, \lambda_{l}]_{(x \mapsto x^{k})}\right)_{1 \leq k, l \leq n}.
-\end{align*}
-Summing this identity over the Taylor terms yields the derivative formula for entire functions.
-
-
 \section{Notes and references}
+
+\begin{comment}
 
 \section{Ideas}
 
@@ -774,6 +641,8 @@ Summing this identity over the Taylor terms yields the derivative formula for en
 	\item Power series for positivity of inverse function.
 	\item Two notions of positivity: spectral and quadratic form. First works well with functional calculus and second with linear phenomena, but one shouldn't mix these two things.
 \end{itemize}
+
+\end{comment}
 
 
 

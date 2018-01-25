@@ -268,11 +268,11 @@ Finally, the following correspondence should be clear by now.
 	There is a natural bijective ($\R$-)linear map between non-negative rational functions vanishing at infinity and $\pickclass^{*}$.
 \end{prop}
 
-This line of thought induces a dual pairing between rational function of decay $\lambda^{-2}$ at infinity and $\C^{\Hp}$. We denote this pairing by $\langle r, \varphi \rangle_{\pickclass}$.
+This line of thought induces a dual pairing between rational functions $r$ with simple poles such that $(1 + (\cdot)^2) r$ is bounded on $\R$, and $\C^{\Hp}$. We denote this pairing by $\langle r, \varphi \rangle_{\pickclass}$.
 
 \section{Weakly Pick functions}
 
-Theorem \ref{pick_functionals} implies that$\pickclass^{*}$ is really just the dual cone of $\pickclass$. It turns out that the ``converse" is also true: $\pickclass^{*}$ is also a predual of $\pickclass$.
+Theorem \ref{pick_functionals} implies that $\pickclass^{*}$ is really just the dual cone of $\pickclass$. It turns out that the ``converse" is also true: $\pickclass^{*}$ is also a predual of $\pickclass$.
 
 \begin{maar}
 	We will elements of $\left(\pickclass^{*}\right)^{*}$ \textbf{weakly Pick functions}.
@@ -355,7 +355,7 @@ It is worthwhile to note that as one really only needs to get bound for order $2
 	This follows immediately from \ref{pick_weakly_pick}.
 \end{proof}
 
-\section{Pick-Nevanlinna extrapolation theorem}
+\section{Pick-Nevanlinna extension theorem}
 
 There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 
@@ -363,7 +363,7 @@ There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 	Let $X \subset \Hp$. We say that $\varphi : X \to \C$ is weakly Pick on $X$ if $p^{*}(\varphi) \geq 0$ for any Pick functional $p^{*}$ supported on $X$.
 \end{maar}
 
-\begin{lause}\label{open_pick_interpolation}
+\begin{lause}[Pick-Nevanlinna extension theorem]\label{open_pick_interpolation}
 	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Then there exists a unique pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
@@ -446,61 +446,60 @@ Luckily these problems can be fixed with the following improved version of the l
 
 \section{Pick-Nevanlinna interpolation theorem}
 
-Although Pick-Nevanlinna extrapolation theorem is strong enough tool for our purposes, one cannot simply talk about it without discussing also its big brother, interpolation theorem.
+Although Pick-Nevanlinna extension theorem is strong enough tool for our purposes, one cannot simply talk about it without discussing also its big brother, interpolation theorem.
 
-\begin{lause}\label{pick_interpolation}
+\begin{lause}[Pick-Nevanlinna interpolation theorem]\label{pick_interpolation}
 	Let $X \subset \Hp$ be arbitrary and assume that $\varphi$ is weakly Pick on $X$. Then there exists pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
 It's easy to see that such function extension it not unique in general.
 
-\begin{proof}
-	Hard part of the proof is to deal with the case of finite $X$.
-	\begin{lem}\label{finite_pick_extension_lemma}
-		Let $X \subset \Hp$ be finite and $z_{0} \in \Hp \setminus X$. Assume that $\varphi$ is weakly Pick on $X$. Then $\varphi$ can be extended to $z_{0}$, in such a way that the extension is weakly Pick $X \cup \{z_{0}\}$. Moreover, the set of possible values of the extension at $z_{0}$ is a compact subset of $\Hp$.
-	\end{lem}
+The proof is based on the following result.
 
-	Let us first proof the theorem given this lemma.
+\begin{lem}\label{pick_extension_lemma}
+	Let $X \subset \Hp$ non-empty and $z_{0} \in \Hp \setminus X$. Assume that $\varphi$ is weakly Pick on $X$. Then $\varphi$ can be extended to $z_{0}$, in such a way that the extension is weakly Pick $X \cup \{z_{0}\}$. Moreover, the set of possible values of the extension at $z_{0}$ is a compact subset of $\Hp$.
+\end{lem}
 
-	Firstly, the finite case implies the arbitrary sets.
-	\begin{lem}\label{pick_extension_lemma}
-		Let $X \subset \Hp$ and $z_{0} \in \Hp \setminus X$. Assume that $\varphi$ is weakly Pick on $X$. Then $\varphi$ can be extended to $z_{0}$, in such a way that the extension is weakly Pick $X \cup \{z_{0}\}$. Moreover, the set of possible values of the extension at $z_{0}$ is a compact subset of $\Hp$.
-	\end{lem}
-	\begin{proof}
-		For any finite set $F$ denote the set of possible values of the extension at by $W_{F}$. We clearly have $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$ and hence the family
-		\begin{align*}
-			\{ W_{F} | \text{$F$ is a finite subset of $X$}\}
-		\end{align*}
-		is family of compact sets with finite intersection property. Consequently their intersection is non-empty and compact.
-	\end{proof}
+Let us first proof the theorem given this lemma.
 
-	Now consider family of all weakly Pick extensions of $\varphi$ ordered by restriction. It is clear that this family satisfies the conditions of the Zorn's lemma and hence it has a maximal element. But by the previous lemma this a maximal element has to have the whole $\Hp$ as its domain, so it a sought extension.
+\begin{proof}[Proof of theorem \ref{pick_interpolation}]
+	Consider family of all weakly Pick extensions of $\varphi$ ordered by restriction. It is clear that this family satisfies the conditions of the Zorn's lemma and hence it has a maximal element. But by the previous lemma domain of this maximal element has to have the whole $\Hp$, so it a sought extension.
 \end{proof}
 
-\begin{proof}[Proof of lemma \ref{finite_pick_extension_lemma}]
-		The idea is somewhat similar to the proof of \ref{cheapSpectral}: while in general the extension is very much not unique, if the situation is restricted enough, we are in better situation. Let us denote the sought extension by $\tilde{\varphi}$. Assume first that $\varphi$ is degenerate in $X$ in the sense that $p^{*}(\varphi) = 0$ for some non-zero $p^{*} \in \pickclass^{*}$. Let $r$ be the respective non-negative rational function so that we have $\langle r, \varphi \rangle_{\pickclass}$ . Note that since $(\lambda - z_{0})^{-1}$ is bounded on $\R$, by say $M$, we should have
-		\begin{align*}
-			\left|\langle r \frac{1}{\cdot - z_{0}}, \tilde{\varphi} \rangle_{\pickclass}\right| \leq M \langle r , \varphi \rangle_{\pickclass} = 0,
-		\end{align*}
-		and hence $\langle r (\cdot - z_{0})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. Note that then also $\langle r (\cdot - \overline{z_{0}})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. If $r(z_{0}) \neq 0$, this determines the value $\tilde{\varphi}(z_{0})$. But if $r(z_{0}) = 0$, the numerator of $r$ has factor $(\lambda - z_{0}) (\lambda - \overline{z_{0}}) = (\lambda - \Re(z_{0}))^2 + (\Im(z_{0}))^2$, so we may replace the factor by $(\Im(z_{0}))^2$. Continuing in the similar manner we may assume that $r(z_{0}) \neq 0$.
+\begin{proof}[Proof of lemma \ref{pick_extension_lemma}]
+	Let us first deal with the case of finite $X$. The idea is somewhat similar to the proof of \ref{cheapSpectral}: while in general the extension is very much not unique, if the situation is restricted enough, we are in better situation. Let us denote the sought extension by $\tilde{\varphi}$. Assume first that $\varphi$ is degenerate in $X$ in the sense that $p^{*}(\varphi) = 0$ for some non-zero $p^{*} \in \pickclass^{*}$. Let $r$ be the respective non-negative rational function so that we have $\langle r, \varphi \rangle_{\pickclass}$ . Note that since $(\lambda - z_{0})^{-1}$ is bounded on $\R$, by say $M$, we should have
+	\begin{align*}
+		\left|\langle r \frac{1}{\cdot - z_{0}}, \tilde{\varphi} \rangle_{\pickclass}\right| \leq M \langle r , \varphi \rangle_{\pickclass} = 0,
+	\end{align*}
+	and hence $\langle r (\cdot - z_{0})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. Note that then also $\langle r (\cdot - \overline{z_{0}})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. If $r(z_{0}) \neq 0$, this determines the value $\tilde{\varphi}(z_{0})$. But if $r(z_{0}) = 0$, the numerator of $r$ has factor $(\lambda - z_{0}) (\lambda - \overline{z_{0}}) = (\lambda - \Re(z_{0}))^2 + (\Im(z_{0}))^2$, so we may replace the factor by $(\Im(z_{0}))^2$. Continuing in the similar manner we may assume that $r(z_{0}) \neq 0$.
 
-		Now it remains to be proven that with this choice $\tilde{\varphi}$ is weakly Pick. To this end take any Pick functional supported on $X \cup \{z_{0}\}$ and let $s$ to be the respective rational function. Note that for any $a \in \C$ we have
-		\begin{align*}
-			\tilde{s}(\lambda) := s(\lambda) + \left(\frac{a}{\lambda - z_{0}} + \frac{\overline{a}}{\lambda - \overline{z_{0}}}\right) q(\lambda) + 2 |a| M q(\lambda) \geq 0.
-		\end{align*}
-		By picking $a$ suitably, $\tilde{s}$ doesn't have pole at $z_{0}$ (or $\overline{z_{0}}$), and since $\varphi$ is weakly Pick we have
-		\begin{align*}
-			\langle s, \tilde{\varphi} \rangle_{\pickclass} = \langle \tilde{s}, \tilde{\varphi} \rangle_{\pickclass} \geq 0,
-		\end{align*}
-		the claim.
+	Now it remains to be proven that with this choice $\tilde{\varphi}$ is weakly Pick. To this end take any Pick functional supported on $X \cup \{z_{0}\}$ and let $s$ to be the respective rational function. Note that for any $a \in \C$ and $\lambda \in \R$ we have
+	\begin{align*}
+		\tilde{s}(\lambda) := s(\lambda) + \left(\frac{a}{\lambda - z_{0}} + \frac{\overline{a}}{\lambda - \overline{z_{0}}}\right) r(\lambda) + 2 |a| M r(\lambda) \geq 0.
+	\end{align*}
+	By picking $a$ suitably, $\tilde{s}$ doesn't have pole at $z_{0}$ (or $\overline{z_{0}}$), and since $\varphi$ is weakly Pick thus have
+	\begin{align*}
+		\langle s, \tilde{\varphi} \rangle_{\pickclass} = \langle \tilde{s}, \varphi \rangle_{\pickclass} \geq 0,
+	\end{align*}
+	the claim.
 
-		If $\varphi$ is not-degenerate, we may certainly find $c_{0} > 0$ such that $\varphi_{c_{0}} := \varphi - c_{0} i$ is weakly Pick on $X$ and degenerate, and if we find extension for $\varphi_{c_{0}}$, we get one also for $\varphi$.
-	\end{proof}
+	If $\varphi$ is not-degenerate, we may certainly find $c_{0} > 0$ such that $\varphi_{c_{0}} := \varphi - c_{0} i$ is weakly Pick on $X$ and degenerate, and if we find extension for $\varphi_{c_{0}}$, we get one also for $\varphi$.
+
+	The proof of \ref{pick_continuity_lemma} immediately implies that the set of suitable values $\tilde{\varphi}(z_{0})$ bounded, and hence it is also clearly closed, it is compact.
+
+	Let us now move to the case of general non-empty $X$. For any finite subset $F \subset X$ denote the set of possible values of a weakly Pick extension of $\restr{\varphi}{F}$ at $z_{0}$ by $W_{F}$. We clearly have $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$ and hence the family
+	\begin{align*}
+		\{ W_{F} | \text{$F$ is a finite subset of $X$}\}
+	\end{align*}
+	is family of compact sets with finite intersection property. Consequently their intersection is non-empty and compact.
+\end{proof}
 
 Again, one could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.
 
 
 \section{Notes and references}
+
+\begin{comment}
 
 TODO:
 \begin{itemize}
@@ -509,6 +508,8 @@ TODO:
 	\item Use Morera's theorem to prove weak Hindmarsh's theorem
 	\item Nice formula for finite Pick extension (rational function case)
 \end{itemize}
+
+\end{comment}
 
 
 

@@ -1,0 +1,211 @@
+\chapter{Matrix monotone functions -- part 2}
+
+\section{Eigenvalue dynamics}
+
+There's great deal of things to be said about relationship between eigenvalues and Loewner order. Let's denote the eigenvalues of real map $A$ by $\lambda_{1}(A) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(A)$. One of the most basic result is the following.
+
+\begin{prop}\label{loewner_eigenvalues}
+	Assume that $A \leq B$. Then for any $1 \leq k \leq n$ we have $\lambda_{k}(A) \leq \lambda_{k}(B)$.
+\end{prop}
+
+Such results are by no means trivial. In general it's hard to keep track of the relationship between the eigenvalues of two real maps $A$ and $B$ given their information of their difference, but if $B - A$ is of rank this can be done rather explicitly.
+
+\begin{maar}
+	Let us call pair $(A, B) \in \H(V)^{2}$ a \textbf{projection pair} if $B - A = v v^{*}$ for some $v \in V$. Note that such $v$ is always unique up to phase. Let us say that a projection pair $(A, B)$ is \textbf{strict}, if whenever $B - A = v v^{*}$ then $v$ is not orthogonal to any eigenvector of $A$. 
+\end{maar}
+
+\begin{lem}\label{projection_eigenvalues}
+	Let $(A, B)$ be a projection pair. Then
+	\begin{align*}
+		\lambda_{1}(B) \geq \lambda_{1}(A) \geq \lambda_{2}(B) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(B) \geq \lambda_{n}(A).
+	\end{align*}
+	$(A, B)$ is strict if and only if all the inequalities are strict.
+
+	Conversely, if we are given any two interlacing sequences $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \geq \ldots \geq b_{n} \geq a_{n}$ we may find a projection pair $(A, B)$ with $\spec(A) = \{a_{i}\}_{i = 1}^{n}$ and $\spec(B) = \{b_{i}\}_{i = 1}^{n}$.
+\end{lem}
+
+Note that the proposition \ref{loewner_eigenvalues} follows immediately from this.
+
+This proposition is based on the following explicit relationship between characteristic polynomials of a projection pair.
+
+\begin{lem}\label{projection_characteristic_polynomial}
+	Let $A, B \in \H$ be a projection pair. Then
+	\begin{align*}
+		\det(B - z I) = \det(A - z I) \left(1 + \langle (A - z I)^{-1}v, v\rangle\right).
+	\end{align*}
+\end{lem}
+\begin{proof}
+	Write the the matrices $A$ and $B$ in the basis where the first vector is parallel to $v$. Now the matrices only differ at the upper-left corner, where the difference is $\|v\|^2$. Expanding the determinant this implies that
+	\begin{align*}
+		\det(B - z I) =& \det(A - z I) \\
+		&+ \|v\|^2 \left(\text{determinant of $A - zI$ with first row and column removed} \right).
+	\end{align*}
+	However, by the Cramer rule the determinant equals the upper-left corner of the matrix of $(A - z I)^{-1}$, i.e. $\det(A - z I)\frac{\langle (A - zI)^{-1} v, v \rangle}{\|v\|^2}$. Combining these observations yields the claim.
+\end{proof}
+
+
+\begin{proof}[Proof of lemma \ref{projection_eigenvalues}]
+	Note that if $v$ is orthogonal to one of the eigenvectors of $A$, $P_{v}$ doesn't affect this eigenspace, so we may forget it and restrict our attention to a smaller space. Similarly for the converse: if $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, and solve the remaingn problem on smaller space. We may hence assume that the pair $(A, B)$ is strict and the numbers the inequalities in the converse are strict.
+
+	Consider the function
+	\begin{align*}
+		z \mapsto 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z}.
+	\end{align*}
+	It has $n$ poles of negative residue so it has a root between any two poles. Also it tends to $1$ at infinity so it has also root on $(a_{1}, \infty)$. Hence it has $n$ roots. All these roots are eigenvalues of $B$ so they are exactly the eigenvalues. This implies one direction.
+
+	For the converse take first $A$ with the given eigenvalues. By the previous lemma we now just want to choose $v$ in such a way that
+	\begin{align*}
+		\frac{p_{B}(z)}{p_{A}(z)} = 1 + \langle (A - z I)^{-1}v, v\rangle= 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z},
+	\end{align*}
+	But this is clearly achieveable if can show that the residues of $p_{B}(z)/p_{A}(z)$ are negative, which follows easily from the interlacing property. Hence the converse.
+\end{proof}
+
+The proposition \ref{projection_eigenvalues} has an useful corollary.
+
+\begin{kor}\label{spectrum_stability}
+	If $A, B \in \H^{n}(V)$, then $|\lambda_{i}(A) - \lambda_{i}(B)| \leq \sum_{i = 1}^{n} |\lambda_{i}(A - B)| \leq n \|A - B\|$ for any $1 \leq i \leq n$.
+\end{kor}
+\begin{proof}
+	If $B - A = \sum_{i = 1}^{n} \lambda_{i}(B - A) P_{v_{i}}$, write $A_{j} = A + \sum_{i = 1}^{j} \lambda_{i}(B - A) P_{v_{i}}$.
+
+	By using lemma \ref{projection_eigenvalues} we may trace how the eigenvalues of $A_{j}$ change when $j$ increases. Note that $A_{j + 1} - A_{j}$ is of rank one for any $0 \leq j < n$, so we have
+	\begin{align*}
+		\sum_{i = 1}^{n} (\lambda_{i}(A_{j + 1}) - \lambda_{i}(A_{j})) \leq \lambda_{j + 1}(B - A)
+	\end{align*}
+	As the numbers $(\lambda_{i}(A_{j + 1}) - \lambda_{i}(A_{j}))$ all have the same sign, they are all bounded by $|\lambda_{j + 1}(B - A)|$ in absolute value. Summing this over $j$ yields the first inequality. The second inequality is trivial.
+\end{proof}
+
+\begin{lem}\label{polynomial_lemma}
+	$h$ is polynomial of degree at most $(2 n - 2)$ non-negative on $\R$, if and only if it is of the form $p(z) \overline{p(\overline{z})}$ for some complex polynomial of degree of at most $(n - 1)$.
+\end{lem}
+\begin{proof}
+	It is easy to see that all of the polynomials of the specific form fit the bill. Conversely, if $h$ is non-negative on real axis, it's roots all appear in pairs: either with strict complex conjugate pairs, of pairs of double real roots. We may take $p$ to be $\sqrt{a_{n}}\prod (z - z_{i})$ where $z_{i}$ range over representatives of all the pairs and $a_{n}$ is the leading coefficient of $h$.
+\end{proof}
+
+\section{Main Theorem}
+
+\begin{lause}\label{main_theorem}
+	Let $n \geq 1$. Then $f \in P_{n}(a, b)$, if and only if $f h$ is $(2 n - 1)$-tone whenever $h$ is polynomial of degree at most $(2 n - 2)$, non-negative on the real line. 
+\end{lause}
+\begin{proof}
+	For the version with extra assumption, the starting point was to take derivative of the matrix function. Although we now cannot do that, we can try to replicate the proof otherwise.
+
+	Instead of proving that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{1}, \lambda_{2}, \lambda_{2}, \ldots, \lambda_{n}, \lambda_{n}]_{f h} \geq 0
+	\end{align*}
+	for any $a < \lambda_{1}, \lambda_{2}, \ldots, \lambda_{n - 1}, \lambda_{n} < b$, we should prove that
+	\begin{align*}
+		[\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0.
+	\end{align*}
+	$\lambda$'s should be eigenvalues of some map, but now there are $2 n$ of them. Natural guess would be that they are eigenvalues of two maps, $A$ and $B$.
+
+	But now everything starts to make sense: whenever $A$, $B$ with $A \leq B$ and $w \in V$ the quantity
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle
+	\end{align*}
+	is non-negative. On the other hand this can be expanded as some kind of linear combination of values of $f$ at eigenvalues of $A$ and $B$. Same is true for the divided differences, so there might be a chance to choose $A$, $B$ and $w$ such that
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
+	\end{align*}
+	Moreover, should we find some kind of correspondence between triplets $(A, B, w)$ and pairs $((\lambda_{i})_{i = 1}^{2 n}, h)$, we would be done. This is the content of the main lemma.
+
+	\begin{lem}\label{main_lemma}
+		If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $h$ is polynomial of degree at most $(2 n - 2)$ non-negative on the real line, we may find a strict projection pair $(A, B)$ such that
+		\begin{align*}
+			\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}
+		\end{align*}
+		for any $f : (a, b) \to \R$.
+
+		Conversely, if $(A, B)$ is a strict projection pair and $w \in V$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $h$ of degree at most $(2 n - 2)$, non-negative on the real line such that for any $f : (a, b) \to \R$ we have
+		\begin{align*}
+			\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h}.
+		\end{align*}
+	\end{lem}
+
+	Before proving the lemma we show how it implies the theorem.
+
+	Assume first that $f \in P_{n}(a, b)$. We need to prove that $f h$ is $(2 n - 1)$-tone for any $h$ polynomial of degree at most $(2 n - 2)$ non-negative on real line. But any divided difference of such $f h$ can be expressed by the main lemma \ref{main_lemma} as $\langle (f(B) - f(A)) w, w \rangle$ for some projection pair $(A, B)$, and the previous is non-negative by the assumption.
+
+	Conversely, assume that $f h$ is $(2 n - 1)$-tone for any suitable $h$ and take any $A \leq B$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$, as $f(B) - f(A)$ is sum of such terms. We may hence assume that $(A, B)$ projection pair.
+
+	We may also assume that $(A, B)$ is strict. Indeed, if this would not be the case, we could decompose $V = \vspan\{v_{1}\} \oplus V'$, where $v_{1}$ is the eigenvector, and factorize $A = \arestr{A}{\vspan\{v_{1}\}} \oplus \arestr{A}{V'}$ and $P_{w} = 0 \oplus \arestr{(P_{w})}{V'}$. But now checking that $f(B) - f(A) \geq 0$ boils down to checking that $f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. But this follows if we add the sentence ``We induct on $n$." as the first sentence of this proof.
+
+	Finally in this case, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ such that
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f h} \geq 0
+	\end{align*}
+	and we are finally done.
+
+	In the ``if"-direction we could alternatively make use of the continuity of $f$, which is guaranteed by the lemma \ref{k-tone_smooth}
+
+\end{proof}
+
+Let us then complete proof by proving the lemma \ref{main_lemma}.
+
+\begin{proof}[Proof of lemma \ref{main_lemma}]
+	The proof is based on lemmas \ref{projection_eigenvalues} and \ref{projection_eigenvalues}. To find the connection we first assume $f$ is entire. Then if and $(A, B)$ is a strict projetion pair with $B - A = v v^{*}$ for some $v \in V$ and $w \in V$ we have
+	\begin{align*}
+		&= \langle (f(B) - f(A)) w, w \rangle \\
+		&= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - B)^{-1} v, w \rangle  \langle (z I - A)^{-1} w, v \rangle f(z) dz \\
+		&= \frac{1}{2 \pi i}\int_{\gamma} \frac{\det(z I - A)\langle (z I - B)^{-1} v, w \rangle \det(z I - B) \langle (z I - A)^{-1} w, v \rangle}{\det(z I - A) \det(z I - B)} f(z) dz.
+	\end{align*}
+	The integrand equals
+	\begin{align*}
+		\frac{h(z)}{\prod_{i = 1}^{n}(z - \lambda_{i}(A)) \prod_{i = 1}^{n}(z - \lambda_{i}(B))} f(z),
+	\end{align*}
+	where $h(z) = \det(z I - B)\langle (z I - B)^{-1} v, w \rangle \det(z I - A) \langle (z I - A)^{-1} w, v \rangle$ and hence
+	\begin{align*}
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B)]_{f h}.
+	\end{align*}
+	Note that this identity evidently holds without any extra smootness assumptions.
+
+	Now when $(A, B)$ ranges over all strict projection pairs, the permutations of tuples
+	\begin{align}
+	(\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B))
+	\end{align}
+	range over all tuples of distinct numbers on $(a, b)$. Hence to prove the lemma, we should prove that for fixed strict projection pair $(A, B)$, as $w$ ranges over $V$, $h$ ranges over all polynomials of degree at most $(2 n - 2)$, non-negative on $\R$. This follows from lemma \ref{polynomial_lemma} and the following observation.
+
+	\begin{lem}
+		If $(A, B)$ is a projection pair with $B - A = v v^{*}$ then
+		\begin{align*}
+			\det(z I - A) (z I - A)^{-1} v = \det(z I - B) (z I - B)^{-1} v
+		\end{align*} 
+	\end{lem}
+	\begin{proof}
+		As $z I - A = z I - B + v v^{*}$, multiplying both sides from left by $(z I - A)$ leads to the equivalent
+		\begin{align*}
+			\det(z I - A) v = \det(z I - B) (1 + \langle (z I - B)^{-1} v, v \rangle) v
+		\end{align*}
+		which follows from \ref{projection_characteristic_polynomial}.
+	\end{proof}
+	It follows that if $p(z) = \det(z I - B) \langle (z I - B)^{-1} v, w \rangle$, $h(z) = p(z) \overline{p (\overline{z})}$, so to finish the proof, we need only need to observe that when $w$ ranges over $V$, $\det(z I - B) \langle (z I - B)^{-1} v, w \rangle$'s range over all complex polynomials of degree at most $(n - 1)$. But this is clear as components of $\det(z I - A)(z I - A)^{-1} v$ with respect to eigenbasis of $A$, $(e_{i})_{i = 1}^{n}$ are $p_{j}(z) = \prod_{i \neq j}(z - \lambda_{i}(B)) \langle v, e_{i} \rangle$, which are clearly linearly independent polynomials over $\C$.
+
+	To recap, the map
+	\begin{align*}
+		V &\to P_{n - 1}(\C) = \{\text{Complex polynomials of degree at most } (n - 1) \} \\
+		w &\mapsto \det(z I - A) \langle (z I - A)^{-1} v, w \rangle
+	\end{align*}
+	is antilinear bijection and the map
+	\begin{align*}
+		P_{n - 1}(\C) &\to \{\text{Complex polynomials of degree at most } (2 n - 2) \text{ non-negative on } \R \} \\
+		p(z) &\mapsto p(z) \overline{p(\overline{z})}
+	\end{align*}
+	is surjection: composition of these maps is the correspondence between $w$ and $h$.
+\end{proof}
+
+There's actually one more missing piece we need.
+
+\begin{lem}\label{k_tone_cor}
+	If $n \geq 1$ and $f h$ is $(2 n + 1)$:tone for every polynomial $h$ of degree at most $2 n$, then $f h$ is $(2 n - 1)$-tone for every polynomial $h$ of degree at most $(2 n - 2)$.
+\end{lem}
+
+\begin{proof}
+	We have
+	\begin{align*}
+		\frac{(x - a)^2}{(x - a) (x - \frac{a + b}{2})} + \frac{(x - b)^2}{(x - b) (x - \frac{a + b}{2})} = 2
+	\end{align*}
+	for any $x, a, b \in \R$ with $x \notin [a, b]$.
+\end{proof}
+
+What's the moral of the story? If one unwraps all the definitions, matrix monotonicity is about positivity of some linear combinations of function values. Which linear combinations exactly? That is (more or less) explained in the main theorem.

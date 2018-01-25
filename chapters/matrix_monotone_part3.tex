@@ -1,0 +1,123 @@
+\chapter{Matrix monotone functions -- part 3}
+
+\section{Loewner's theorem}
+
+\begin{lause}\label{loewners_theorem}
+	$f \in P_{\infty}(a, b)$, if and only if there exist Pick function $\varphi$ extending over the interval $(a, b)$ such that $\restr{\varphi}{(a, b)} = f$.
+\end{lause}
+
+\begin{proof}
+	The ``if" direction is not too hard: the Loewner matrices are limits of Pick matrices so the result follows immediately from TODO (loewner char).
+
+	The ``only if" is the tricky part. Our plan is the following:
+	\begin{enumerate}
+		\item First show that $f$ is real analytic on $(a, b)$.
+		\item Next, show that if we can extend $f$ analytically to $\D(x_{0}, r)$ for some $x_{0} \in (a, b)$ and $r > 0$, then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
+		\item Finally, by theorem \ref{open_pick_interpolation} we get Pick function, which agree with $f$ on $(x_{0} - r, x_{0} + r)$, so by real analyticity of $f$, on the whole interval $(a, b)$.
+	\end{enumerate}
+
+	Recall that $f$ being $n$ monotone implies that it is $(2 n - 1)$-tone. Thus for the first step it suffices to show the following.
+
+	\begin{lem}
+		Let $f \in C^{\infty}(a, b)$ such that $f^{(2 n - 1)}(t) \geq 0$ for every $t \in (a, b)$. Then $f \in C^{\omega}(a, b)$.
+	\end{lem}
+	\begin{proof}
+		We shall verify the conditions of the theorem \ref{div_anal}.
+
+		The trick is first show that we have bound of the form $|f^{(n)}(t)| \leq n! C^{n + 1}$ for odd $n$, and then use the following result.
+		\begin{lem}
+			Let $f \in C^{2}(a, b)$ such that $|f(x)| \leq M_{0}$ and $|f^{(2)}(x)| \leq M_{2}$ for any $x \in (a, b)$. Then
+			\begin{align*}
+			|f'(x)| \leq \max\left(2\sqrt{M_{0} M_{2}}, \frac{8 M_{0}}{b - a}\right)
+			\end{align*}
+			for any $x \in (a, b)$.
+		\end{lem}
+		\begin{proof}
+			Take any $x_{0} \in (a, b)$ and set $f'(x_{0}) = c$: we shall prove the given bound of $c$. Without loss of generality we may assume that $c \geq 0$ and $x_{0} \leq \frac{a + b}{2}$. The idea is that as $f^{(2)}$ is not too big, $f'$ has to be positive and reasonably big interval around the point $x_{0}$ which means that $f$ has to increase a lot around $x_{0}$. By the assumption it can't increase more than $2 M_{0}$, however.
+
+			To make this argument precise and effective, we split into too cases.
+
+			\begin{enumerate}
+				\item $M_{2} (b - x_{0}) > c$: this means that we have
+				\begin{align*}
+					f'(x) \geq c - M_{2} (x - x_{0})
+				\end{align*}
+				for $x_{0} \leq x \leq \frac{c}{M_{2}} + x_{0}$ and hence
+				\begin{align*}
+					2 M_{0} \geq f\left(\frac{c}{M_{2}} + x_{0}\right) - f(x_{0}) \geq \int_{x_{0}}^{\frac{c}{M_{2}} + x_{0}} \left(c - M_{2} (x - x_{0})\right) dx \geq \frac{c^2}{2 M_{2}},
+				\end{align*}
+				which yields the first inequality.
+				\item $M_{2} (b - x_{0}) \leq c$: now we have
+				\begin{align*}
+					f'(x) \geq c \frac{b - x}{b - x_{0}},
+				\end{align*}
+				for every $x_{0} \leq x < b$
+				\begin{align*}
+					2 M_{0} \geq f(x) - f(x_{0}) \geq \int_{x_{0}}^{x}  c \frac{b - x}{b - x_{0}} d x \geq \frac{c}{2(b - x_{0})} \left((b - x_{0})^2 - (b - x)^2\right).
+				\end{align*}
+				Letting $x \to b$ and using $(b - x_{0}) \geq \frac{b - a}{2}$ we get the second inequality.
+			\end{enumerate}
+
+			TODO: pictures of function and it's derivatives
+			TODO: better proof
+		\end{proof}
+
+		To prove the bound for odd $n$, we would like to play the same game as in the proof of lemma \ref{bounded_div}, but the unfortunate thing is that the even order terms are breaking the inequality. We can salvage the situation by getting rid of them. Assume first that $0 \in (a, b)$. Trick is to consider the Taylor expansion for $f(x) - f(-x)$, centered at $0$, instead:
+		\begin{align*}
+			f(x) - f(-x) = 2 \left(\sum_{i = 1}^{n} \frac{f^{(2 i - 1)}(0)}{(2 i - 1)!}x^{2 i - 1}\right) + \int_{0}^{x} \frac{f^{(2 n + 1)}(t) + f^{(2 n + 1)}(-t)}{(2n)!} (x - t)^{2 n} dt.
+		\end{align*}
+		But now we can simply follow the same argument.
+	\end{proof}
+
+	For the step $2$ we should prove the following lemma.
+	\begin{lem}
+		Assume that $f \in P_{\infty}(a, b)$, $f$ is analytic at $x_{0} \in (a, b)$ such that it can analytically extended to $\D(x_{0}, r)$ for some $r > 0$. Then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
+	\end{lem}
+	\begin{proof}
+		As $f \in P_{\infty}(a, b)$, all its Loewner matrices are positive. As $f$ is analytic, this can rephrased as the posivity of the integral
+		\begin{align*}
+			\frac{1}{2 \pi i} \int_{\partial \D(x_{0}, r')}\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - z_{i}} \right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z - z_{i}} \right) f(z) dz
+		\end{align*}
+		for any $r' < r$, $x_{1}, x_{2}, \ldots, x_{n} \in (x_{0} - r', x_{0} + r')$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$. Rest of the argument is almost the same as with the proof of lemma \ref{disc_open_pick_lemma}: now we should just take the sequence $z_{1}, z_{2}, \ldots$ to be real. Also, since the the disc $\D(x_{0}, r')$ is symmetric with respect the real axis, verifying the uniform convergence of the integrand is just as easy.
+	\end{proof}
+
+	Step $3$ is clear, and we are hence done.
+
+\end{proof}
+
+\section{Notes and references}
+
+\begin{comment}
+
+TODO:
+
+\begin{itemize}
+	\item Why smoothness
+	\item Examples
+	\item Pick functions are monotone
+	\item Heaviside function
+	\item Trace inequalities: if $f$ is monotone/convex then $\tr f$ is monotone/convex. Proof idea: we may write $\tr f$ as a limit of finite sum of translations of Heaviside functions (monotone case) or absolute values (convex case), so its sufficient to prove the claim for these functions. For monotone case it hence suffices to prove that if $A \leq B$, $B$ has at least as many non-negative eigenvalues as $A$. But this is clear by subspace characterization of non-negative eigenvalues. For convex case, it suffices to prove that $\tr |A| + \tr |B| \geq \tr |A + B|$ for any $A, B \in \H^{n}(a, b)$. For this, note that if $(e_{i})_{i = 1}^{n}$ is eigenbasis of $A + B$, we have
+	\begin{eqnarray*}
+		\tr |A + B| &=& \sum_{i = 1}^{n} \langle |A + B| e_{i}, e_{i} \rangle \\
+		= \sum_{i = 1}^{n} \left|\langle (A + B) e_{i}, e_{i} \rangle \right| &\leq& \sum_{i = 1}^{n} \left|\langle A e_{i}, e_{i} \rangle \right| + \sum_{i = 1}^{n} \left|\langle B e_{i}, e_{i} \rangle \right| \\
+		\leq \sum_{i = 1}^{n} \langle |A| e_{i}, e_{i} \rangle + \sum_{i = 1}^{n} \langle |B| e_{i}, e_{i} \rangle &=& \tr |A| + \tr |B|
+	\end{eqnarray*}
+	\item What about trace inequalities for $k$-tone functions? Eigen-package seems to find a counterexample for $6$-tone functions and $n = 2$, but it's hard to see if there's enough numerical stability. At divided differences of polynomials vanish. First non-trivial question would be:
+	If $A_{j} = A + j H$ for $0 \leq j \leq 3$ and $H \geq 0$. Then is it necessarily the case that
+	\[
+		\tr \left(A_{3} |A_{3}| - 3 A_{2}|A_{2}| + 3 A_{1} |A_{1}| - A_{0} |A_{0}| \right) \geq 0?
+	\]
+	This would imply that $3$-tone functions would lift to trace $3$-tone functions. Maybe expressing this as a contour integral from $-i \infty \to i \infty$ a same tricks as in the paper. First projection case: $H$ is projection. Or: approximate by integrals of heat kernels. It should be sufficient to proof things for $k$-fold integrals or heat kernel, or by scaling just for gaussian function.
+	\item How is the previous related to the $|\cdot|$ not being operator-convex: quadratic form inequality for eigenvectors is not enough.
+	\item The previous also implies that
+	\[
+		f(Q_{A}(v)) \leq Q_{f(A)}(v)
+	\]
+	for any convex $f$. Using this and Minkowski one sees that $p$-schatten norms are indeed norms.
+	\item For $f, g$ generalization (Look at $h(X) = g (\tr f(X))$) we need that $f$ is convex. What else? $h$ is convex if it is convex for diagonalizable matrices and $f$ is convex and $g$ increasing. For the diagonalizable maps it is sufficient that $f$ is increasing and $g = f^{-1}$ and $\log \circ f \circ \exp$ is convex.
+	\item Von Neumann trace inequality, more trace inequalities.
+	\item On Generalizations of Minkowski's Inequality in the Form of a Triangle Inequality, Mulholland
+	\item There should nice proof for Loewner theorem, like the blog post for Bernstein's big theorem.
+\end{itemize}
+
+\end{comment}

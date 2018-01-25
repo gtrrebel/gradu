@@ -270,7 +270,7 @@ The previous observation could have also be used to prove the identity \ref{pean
 
 \subsection{Identities}
 
-Many of the familiar identities for the derivatives have analogs with divided differences. We won't be really needing these formulas much, but it's nevertheless nice to know that there are such. Also, they are not really more complicated than the derivative counterparts, on the contrary; the author honestly thinks that they are in fact easier to remember. One of the downsides of the divided difference identities is however that they are usually not symmetric with respect to the sequence $x_{0}, x_{1}, \ldots, x_{n}$ anymore. That's life.
+Many of the familiar identities for the derivatives have analogs with divided differences. We won't be really needing these formulas, but it's nevertheless nice to know that there are such. Also, they are not really more complicated than the derivative counterparts, on the contrary; the author honestly thinks that they are in fact easier to remember. One of the downsides of the divided difference identities is however that they are usually not symmetric with respect to the sequence $x_{0}, x_{1}, \ldots, x_{n}$ anymore. That's life.
 
 \begin{prop}
 	Let $n$, $k$, $f, g$, $f_{1}, f_{2}, \ldots, f_{k}$ and $x_{0}, x_{1}, \ldots, x_{n}$ be such that the folliowing identities make sense.
@@ -720,7 +720,7 @@ By requiring (some kind of) regularity for the divided differences of all orders
 
 Of course, we could just as well replace the closed inteval by any compact subset of $(a, b)$. The previous result is some kind of relative of \ref{bounded_div}. Also theorem \ref{k-tone_smooth} has rather interesting relative.
 
-\begin{lause}[Bernstein's little theorem]
+\begin{lause}[Bernstein's theorem]
 	If $f : (a, b) \to \R$ is $k$-tone for every $k \geq 0$, then $f$ is real-analytic on $(a, b)$.
 \end{lause}
 \begin{proof}
@@ -735,19 +735,9 @@ Of course, we could just as well replace the closed inteval by any compact subse
 	Now given any interval $[c, d] \subset (a, b)$ we can make such estimate uniform over $x_{0} \in [c, d]$ simply by picking $x \in (d, b)$, and we are done.
 \end{proof}
 
-We could further conclude that $f$ in the previous theorem extends to a complex analytic function to $\D(a, |b - a|)$.
+\section{Notes and references}
 
-Usually by Bernstein's little theorem one means slightly weaker statement: if $f : (0, \infty) \to \R$ is smooth such that $(-1)^{n} f^{(n)}(t) \geq 0$ for any $t > 0$, then $f$ extends to analytic function to right half-plane. This is readily implied by the previous observation. Latter version has however a considerable strenghtening.
-
-\begin{lause}[Bernstein's big theorem]
-	If $f : (0, \infty) \to \R$ is smooth such that $(-1)^{n} f^{(n)}(t) \geq 0$ for any $t > 0$, then $f$ is Laplace transform of a radon measure $\mu$ on $[0, \infty)$, that is we have
-	\[
-		f(x) = \int_{0}^{\infty} e^{-x t} d \mu(t)
-	\]
-	for every $x > 0$.
-\end{lause}
-
-We will postpone the proof.
+\begin{comment}
 
 TODO:
 
@@ -774,3 +764,5 @@ TODO:
 	\item Are there better bounds for theorem \ref{bounded_div}?
 	\item The dual of completely monotone functions should be polynomials non-negative on $(0, 1)$.
 \end{itemize}
+
+\end{comment}
