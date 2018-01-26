@@ -266,7 +266,7 @@ for some $t_{1}, t_{2}, \ldots, t_{n} \in \C$, and vice versa: in $n$-dimensiona
 	If $f$ is a polynomial with $2 \leq \deg(f) \leq n$, then $f \notin P_{n}(a, b)$.
 \end{prop}
 
-If $f$ is not polynomial such conclusions are harder to make, as we can only control first $c_{i}$'s. If Nevertheless, also the converse holds.
+If $f$ is not polynomial such conclusions are harder to make, as we can only control first $c_{i}$'s. Nevertheless, also the converse holds.
 
 \begin{lause}\label{heuristic_loewner}
 	If $f \in P_{\infty}(a, b)$, then $f$ is analytic and the infinite matrix $(a_{i + j - 1})_{i, j \geq 1}$, where $a_{k} = f^{(k)}(x)/k!$ and $x \in (a, b)$, is positive for any $x \in (a, b)$.
@@ -282,10 +282,10 @@ Only now there's a problem: function in $P_{n}(a, b)$ need not be analytic, and 
 
 \subsection{Main argument}
 
-Let us try to prove these results modulo regularity issues (which are admittedly big issues).
+Let us try to prove these results modulo regularity issues.
 
 \begin{proof}[Proof ``sketch" of \ref{heuristic_main}]
-	Denote the matrix in question by $M = M_{n}(x, f)$. W.l.o.g. we may take $x = 0 \in (a, b)$. The idea is for given $v \in \C^{n}$ $\langle M v, v \rangle$ should be some kind of limit of derivatives: we should have
+	Denote the matrix in question by $M = M_{n}(x, f)$. W.l.o.g. we may take $x = 0 \in (a, b)$. The idea is that for given $v \in \C^{n}$ $\langle M v, v \rangle$ should be some kind of limit of derivatives: we should have
 	\begin{align*}
 		\lim_{\varepsilon \to 0} \langle D_{n} f_{A_{\varepsilon}} (H_{\varepsilon}) w_{\varepsilon}, w_{\varepsilon} \rangle = \langle M v, v \rangle
 	\end{align*}
@@ -325,7 +325,7 @@ Let us try to prove these results modulo regularity issues (which are admittedly
 	\begin{align*}
 		\sum_{1 \leq i, j \leq n} a_{i + j - 1} c_{i} \overline{c_{j}} &= \sum_{1 \leq i, j \leq n} a_{i, j} \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z) d z}{z^{i + j}} \\
 		&= \frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{i = 1}^{n} \frac{c_{i}}{z^{i}} \right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z^{i}} \right)f(z) dz \\
-		&= \frac{1}{2 \pi i} \int_{\gamma}  \frac{q(z) \overline{q(\overline{z})}}{z^{2 n}} \frac{f(z)}{z^2} dz,
+		&= \frac{1}{2 \pi i} \int_{\gamma}  \frac{q(z) \overline{q(\overline{z})}}{z^{2 n}} f(z) dz,
 	\end{align*}
 	where we write $q(z) = \sum_{i = 1}^{n} z^{n - i} c_{i}$.
 \end{proof}
@@ -336,7 +336,7 @@ Let us try to prove these results modulo regularity issues (which are admittedly
 
 This is essentially of the two main arguments of this thesis.
 
-The main problem of the argument is the regularity. While the analyticity is really just for convenience and it could be easily, we need some kind of regularity to make sense of the definition: it is a priori not even functions in $P_{\infty}(a, b)$ should be continuous. While these issues could be dealt as saying that everything is a distribution, it turns out that matrix monotone functions indeed have non-trivial regularity properties. Origin of these is the topic of the next chapter.
+The main problem of the argument is the regularity. While we assume entirity of $f$ mainly for convenience and it could be easily avoided, we need some kind of regularity to make sense of the definition: it is a priori not even functions in $P_{\infty}(a, b)$ should be continuous. While these issues could be dealt as saying that everything is a distribution, it turns out that matrix monotone functions indeed have non-trivial regularity properties. Origin of these is the topic of the next chapter.
 
 
 \section{Notes and references}

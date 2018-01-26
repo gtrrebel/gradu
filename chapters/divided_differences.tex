@@ -2,7 +2,7 @@
 
 \section{Motivation}
 
-As mentioned in the introduction, $k$-tone functions correspond to the functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should this mean?
+To understand the regularity properties of the matrix monotone functions we look at a closely related class of $k$-tone functions. $k$-tone functions are more or less functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should this mean?
 
 We already know the perfect answer for the case $k = 1$: $1$-tone functions should be the increasing functions.
 
@@ -427,105 +427,65 @@ If one thinks that $k$-tone functions have $k$'th derivative as a positive measu
 	We should prove that $\mu(f)$ is non-negative for every non-negative test function $f$ on $(a, d)$. But every such function can be written as sum of two non-negative test functions, $f_{1}$ and $f_{2}$, $f_{1}$ supported on $(a, b)$ and $f_{2}$ on $(c, d)$, so $\mu(f) = \mu(f_{1}) + \mu(f_{2}) \geq 0$ by the assumption.
 \end{proof}
 
-They key idea in the proof was to split the test functions to two parts, one supported on $(a, b)$ and one on $(c, d)$. It turns out that we can do the same thing with Peano kernels.
+They key idea in the proof was to split the test functions to two parts, one supported on $(a, b)$ and one on $(c, d)$. One cannot almost do the same with Peano Kernels, but larger the order $k$, the more parts we need. To closed mimic the proof we instead look at a generalization of Peano kernels, called splines.
 
-\begin{lem}\label{peano_splitting_theorem}
-	Let $a < c < b < d$ be reals and $w$ a Peano kernel supported on $(a, d)$. Then $w$ can written as a (finite) weighted average of Peano kernels, all of which are supported either on $(a, b)$ or on $(c, d)$.
-\end{lem}
-\begin{proof}
-	Let $n$ be the order of the Peano kernel and let $a < x_{0} < x_{1} < \ldots < x_{n} < d$ be the nodes or $w$.
-
-	The case $n = 1$ is rather clear: we simply split characteristic function of an interval to characteristic function of two intervals. TODO: picture. In terms of the kernels, if $a < x_{0} < c < b < x_{1} < d$, we can pick $c < y_{0} < b$ and write
-	\begin{align*}
-		w_{x_{0}, x_{1}} = \frac{y_{0} - x_{0}}{x_{1} - x_{0}} w_{x_{0}, y_{0}} + \frac{x_{1} - y_{0}}{x_{1} - x_{0}} w_{y_{0}, x_{1}}:
-	\end{align*}
-	this is a sought decomposition.
-
-	When $n = 2$ the goal is not much harder: we have a triangle whose corners have (distinct) $x$-coordinates on the interval $(a, d)$ and we should split it to smaller triangles in such a way that
-	\begin{itemize}
-		\item No triangle has two equal $x$-coordinates (this is the property of the Peano kernels)
-		\item All triangles have all their corners' $x$-coordinates either on $(a, b)$ and $(c, d)$.
-	\end{itemize}
-	TODO: picture
-	We call such triangles good. While the above picture should be rather convincing already, one can write an general algorithm generating such decomposition.
-	\begin{enumerate}[\textbf{Step} 1.]
-		\item If the triangle is good already, we are done.
-		\item Pick $y_{0} \in (c, b)$, which does not coincide any of the $x_{0}, x_{1}, x_{2}$.
-		\item Divide the triangle to two triagles with $x$-coordinates $(x_{0}, x_{1}, y_{0})$ and $(x_{1}, y_{0}, x_{2})$, as illustrated.
-		\item Run this algorithm recursively for these two triangles.
+\begin{maar}
+	Let $k \in \Z_{+}$ nd $(a, b)$ an open interval. We say that $f : (a, b) \to \R$ is \textbf{spline} of order $k$ (on $(a, b)$) if there exists non-negative integer $N$, and points $a < x_{1} < x_{2} < \ldots < x_{N} < b$ (nodes of $f$) such that
+	\begin{enumerate}
+		\item $f \in C^{k - 2}(a, b)$ (this is void for $k = 1$)
+		\item $f$ is polynomial of degree less than $k$ on intervals $(x_{1}, x_{2}), (x_{2}, x_{3}), \ldots, (x_{N - 1}, x_{N})$.
+		\item $f(x) = 0$ for $a < x < x_{1}$ and $x_{N} < x < b$.
+		\item $f$ is not polynomial on any neighbourhood of the points $x_{1}, x_{2}, \ldots, x_{N}$.
 	\end{enumerate}
-	Why does this algorithm terminate? Note that if any of the $x_{i}$'s are in $(c, b)$, the triangle is either good or $x_{1} \in (c, b)$ (or maybe both). In the former case we are done, and in the latter the two parts of the split are both good. If none of $x_{i}$'s are in $(c, b)$, both of the parts of the split has a coordinate in $(c, b)$, so also this case leads to a good split. In other words we can keep splitting triangles in such a way that they either become good or they have more nodes on $(c, b)$.
+	We also say that a spline is positive if it is non-negative (function).
+\end{maar}
 
-	It's easy to verify that splitting the triangle corresponds to the identity
-	\begin{align*}
-		w_{x_{0}, x_{1}, x_{2}} = \frac{y_{0} - x_{0}}{x_{2} - x_{0}} w_{x_{0}, x_{1}, y_{0}} + \frac{x_{1} - y_{0}}{x_{2} - x_{0}} w_{x_{1}, y_{0}, x_{2}}.
-	\end{align*}
+We denote the (positive) splines of order $k$ on interval $(a, b)$ by ($S_{+}^{k}(a, b)$) $S^{k}(a, b)$.
 
-	When $n > 2$ geometric picture is largely lost (at least by the author), but the algebra generalizes perfectly: we can still split Peano kernels using the following identity:
-	\begin{align}\label{peano_splitting}
-		w_{x_{0}, x_{1}, \ldots, x_{n}} = \frac{y_{0} - x_{0}}{x_{n} - x_{0}} w_{x_{0}, x_{1}, \ldots, x_{n - 1}, y_{0}} + \frac{x_{n} - y_{0}}{x_{n} - x_{0}} w_{x_{1}, \ldots, x_{n}, y_{0}}.
-	\end{align}
-	Where does this come from? Recall that the Peano kernels are nothing more than the divided differences of the functions $g_{t, n} = \frac{1}{(n - 1)!}((\cdot - t)_{+})^{n - 1}$,. The first identity immediately generalizes
-	\begin{align*}
-		[x_{0}, x_{1}]_{f} = \frac{y_{0} - x_{0}}{x_{1} - x_{0}} [x_{0}, y_{0}]_{f} + \frac{x_{1} - y_{0}}{x_{1} - x_{0}} [y_{0}, x_{1}]_{f},
-	\end{align*}
-	where $f$ is now any function. By the nesting property the identity \ref{peano_splitting} is nothing more than the previous identity applied to $f = [\cdot, x_{1}, \ldots, x_{n - 1}]_{g_{t, n}}$. Note that we need $x_{0} < y_{0} < x_{n}$, so that the weighted average is really a convex combination.
-
-	Now we are ready to generalize the algorighm to higher $n$:
-	\begin{enumerate}[\textbf{Step} 1.]
-		\item If the kernel is good already, we are done.
-		\item Pick $y_{0} \in (c, b)$, which does not coincide any of the $x_{0}, x_{1}, \ldots, x_{n}$.
-		\item Divide the kernel to two kernels with nodes $(x_{0}, x_{1}, \ldots, x_{n}, y_{0})$ and $(y_{0}, x_{1}, \ldots, x_{n})$ as in the \ref{peano_splitting}.
-		\item Run this algorithm recursively for these two kernels.
-	\end{enumerate}
-	This algorithm terminates basically because of the same reason: if the kernel isn't good already, the two splits have more nodes on $(c, b)$, and this quantity cannot increase forever.
-	TODO: figure
-\end{proof}
-
-While this property is of independent interest, the real use of it is its generalization to divided differences.
-
-\begin{lem}\label{divdif_splitting_theorem}
-	Let $a < c < b < d$ be reals and $x_{0}, x_{1}, \ldots, x_{n} \in (a, d)$. Then we may find $N, M \in \N$, sequences $(y_{0, i}, \ldots, y_{n, i})$ and $(z_{0, j}, \ldots, z_{n, j})$ and numbers $p_{i}$ and $q_{j}$ for $1 \leq i \leq N$ and $1 \leq j \leq M$, such that
-	\begin{itemize}
-		\item $\sum_{i = 1}^{N} p_{i} + \sum_{j = 1}^{M} q_{j} = 0$ and $p_{i}, q_{j} \geq 0$ for every $1 \leq i \leq N$ and $1 \leq j \leq M$.
-		\item $y_{0, i}, y_{1, i}, \ldots, y_{n, i}$ are pairwise distinct elements of $(a, b)$ for every $1 \leq i \leq N$.
-		\item $z_{0, j}, z_{1, j}, \ldots, z_{n, j}$ are pairwise distinct elements of $(c, d)$ for every $1 \leq i \leq M$.
-		\item For every $f : (a, d) \to \R$ we have
+\begin{lause}
+	Let $k \in \Z_{+}$ and $(a, b)$ an open interval. Then
+	\begin{enumerate}[(i)]
+		\item If $f \in S^{k}(a, b)$ and $x_{1}, x_{2}, \ldots, x_{N}$ are the nodes of $f$, then there exists non-zero constants $t_{1}, t_{2}, \ldots, t_{N}$ such that
 		\begin{align*}
-			[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 1}^{N} p_{i} [y_{0, i}, y_{1, i}, \ldots, y_{n, i}]_{f} +  \sum_{j = 1}^{M} q_{j} [z_{0, j}, z_{1, j}, \ldots, z_{n, j}]_{f}.
+			f(x) = \sum_{i = 1}^{N} t_{i} (x - x_{i})_{+}^{k - 1}
 		\end{align*}
-	\end{itemize}
-\end{lem}
+		for any $x \in (a, b) \setminus \{x_{1}, x_{2}, \ldots, x_{N}\}$.
+		\item If $f \in S^{k}(a, b)$ and $f \neq 0$, then $f$ has at least $k + 1$ nodes.
+		\item $S^{k}(a, b) = \vspan \{ f : (a, b) \to \R | \text{$f$ is a Peano Kernel on $(a,b)$}\}$
+		\item $S_{+}^{k}(a, b) = \text{cone} \{ f : (a, b) \to \R | \text{$f$ is a Peano Kernel on $(a,b)$}\}$
+	\end{enumerate}
+\end{lause}
 \begin{proof}
-	Proof is almost identical to that of the lemma \ref{peano_splitting_theorem}: we more-or-less just replace the identity \ref{peano_splitting} by
-	\begin{align}\label{divdif_splitting_property}
-		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{y_{0} - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}, y_{0}]_{f} + \frac{x_{n} - y_{0}}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}, y_{0}]_{f},
-	\end{align}
-	which is valid because of essentially the same reasoning, and replace the word ``kernel" with word ``tuple".
+	\begin{enumerate}[(i)]
+		\item TODO
+		\item TODO
+		\item TODO
+		\item TODO
+	\end{enumerate}
 \end{proof}
 
-We are now ready to prove the locality property of the $k$-tone functions.
+The previous result implies that for $k \in \Z_{+}$ and open interval $(a, b)$ we have a unique dual pairing $\langle \cdot, \cdot \rangle_{S}$ between $\R^{(a, b)}$ and $S^{k}(a, b)$, satisfying
+\begin{align*}
+	\langle f, w_{x_{0}, x_{1}, \ldots, x_{k}} \rangle_{S} = [x_{0}, x_{1}, \ldots, x_{k}]_{f}
+\end{align*}
+for any $f \in \R^{(a, b)}$ and $a < x_{0} < x_{1} < \ldots < x_{k} < b$.
+
+\begin{lem}\label{spline_splitting_theorem}
+	Let $a < c < b < d$ be reals, $k \in Z_{+}$ and $f \in S^{k}_{+}(a, b)$. Then there exists $f_{1}, f_{2} \in S^{k}_{+}(a, b)$ such that $\supp(f_{1}) \subset (a, b)$ and $\supp(f_{2}) \subset (c, d)$. 
+\end{lem}
+
+\begin{proof}
+	TODO
+\end{proof}
+
+Now we are ready to translate the proof.
 
 \begin{prop}
 	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
 \end{prop}
 \begin{proof}
-	This follows immediately from lemma \ref{divdif_splitting_theorem}.
+	This follows immediately from lemma \ref{spline_splitting_theorem}.
 \end{proof}
-
-Note that we could have also used the splitting property \ref{divdif_splitting_property} to slightly simplify the proof of theorem \ref{peano_theorem}. In the induction step we managed to prove that we have
-\begin{align*}
-	[x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} = \frac{1}{n - 1}[x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} =  \frac{1}{n - 1} w_{x_{0}, \ldots, x_{n - 1}}(t)\geq 0
-\end{align*}
-for any $x_{0}, x_{1}, \ldots, x_{n - 1}$. But this readily implies that the divided differences are non-negative on all tuples as we have
-\begin{align*}
-	w_{x_{0}, x_{1}, \ldots, x_{n - 1}, x_{n}} &= [x_{0}, x_{1}, \ldots, x_{n - 1}, x_{n}]_{g_{t, n}} \\
-	&= \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} + \frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}, t]_{g_{t, n}} \\
-	&= \frac{1}{n - 1} \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}]_{g_{t, n - 1}} \\
-	&= \frac{1}{n - 1}  \frac{t - x_{0}}{x_{n} - x_{0}} w_{x_{0}, x_{1}, \ldots, x_{n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} w_{x_{1}, \ldots, x_{n}} \\
-	&\geq 0.
-\end{align*}
-Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, but if this is not the case, as observed, the divided differences are zero anyway. The previous identity can be also used to recursively compute Peano kernels.
 
 \section{Regularity}
 
@@ -690,7 +650,7 @@ With such tools we are ready to tackle the regularity of $k$-tone functions.
 	Yet again, simply apply lemma \ref{postoreal_lemma} inductively.
 \end{proof}
 
-\section{Analyticity and Bernstein's theorems}
+\section{Analyticity and Bernstein's theorem}
 
 By requiring (some kind of) regularity for the divided differences of all orders, occasionally we get more than smoothness, namely analyticity. Most basic result of this kind is the following.
 
