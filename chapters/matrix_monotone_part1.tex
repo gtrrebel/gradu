@@ -269,22 +269,34 @@ for some $t_{1}, t_{2}, \ldots, t_{n} \in \C$, and vice versa: in $n$-dimensiona
 If $f$ is not polynomial such conclusions are harder to make, as we can only control first $c_{i}$'s. Nevertheless, also the converse holds.
 
 \begin{lause}\label{heuristic_loewner}
-	If $f \in P_{\infty}(a, b)$, then $f$ is analytic and the infinite matrix $(a_{i + j - 1})_{i, j \geq 1}$, where $a_{k} = f^{(k)}(x)/k!$ and $x \in (a, b)$, is positive for any $x \in (a, b)$.
+	$f \in P_{\infty}(a, b)$, if and only if $f$ is analytic and the infinite matrix $(a_{i + j - 1})_{i, j \geq 1}$, where $a_{k} = f^{(k)}(x)/k!$ and $x \in (a, b)$, is positive for any $x \in (a, b)$.
 \end{lause}
 
 As one would hope, there's corresponding result for the classes $P_{n}(a, b)$.
 
 \begin{lause}\label{heuristic_main}
-	If $f \in P_{n}(a, b)$, then the matrix $(a_{i + j - 1})_{1 \leq i, j \leq n}$, where $a_{k} = f^{(k)}(x)/k!$ and $x \in (a, b)$, is positive for any $x \in (a, b)$.
+	$f \in P_{n}(a, b)$, if and only if $(a_{i + j - 1})_{1 \leq i, j \leq n}$, where $a_{k} = f^{(k)}(x)/k!$ and $x \in (a, b)$, is positive for any $x \in (a, b)$.
 \end{lause}
 
 Only now there's a problem: function in $P_{n}(a, b)$ need not be analytic, and even worse it need not be $(2 n - 1)$, so the matrix need not be defined, and condition should be understood in weak sense.
 
+The matrix
+\begin{align*}
+	\begin{bmatrix}
+		\frac{f'(t)}{1!} & \frac{f^{(2)}(t)}{2!} & \cdots & \frac{f^{(n)}(t)}{n!} \\
+		\frac{f^{(2)}(t)}{2!} & \frac{f^{(3)}(t)}{3!} & \cdots & \frac{f^{(n + 1)}(t)}{(n + 1)!} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\frac{f^{(n)}(t)}{n!} & \frac{f^{(n + 1)}(t)}{(n + 1)!} & \cdots &  \frac{f^{(2 n - 1)}(t)}{(2 n - 1)!}
+	\end{bmatrix}
+\end{align*}
+
+is called \textit{Dobsch matrix} (of order $n$) of $f$ at $t$.
+
 \subsection{Main argument}
 
-Let us try to prove these results modulo regularity issues.
+Let us try to prove the ``only if" -directions of these results modulo regularity issues.
 
-\begin{proof}[Proof ``sketch" of \ref{heuristic_main}]
+\begin{proof}[Proof ``sketch" of the ``only if" of \ref{heuristic_main}]
 	Denote the matrix in question by $M = M_{n}(x, f)$. W.l.o.g. we may take $x = 0 \in (a, b)$. The idea is that for given $v \in \C^{n}$ $\langle M v, v \rangle$ should be some kind of limit of derivatives: we should have
 	\begin{align*}
 		\lim_{\varepsilon \to 0} \langle D_{n} f_{A_{\varepsilon}} (H_{\varepsilon}) w_{\varepsilon}, w_{\varepsilon} \rangle = \langle M v, v \rangle
@@ -330,7 +342,7 @@ Let us try to prove these results modulo regularity issues.
 	where we write $q(z) = \sum_{i = 1}^{n} z^{n - i} c_{i}$.
 \end{proof}
 
-\begin{proof}[Proof ``sketch" of \ref{heuristic_loewner}]
+\begin{proof}[Proof ``sketch" of the ``only if" of \ref{heuristic_loewner}]
 	This follows immeditaly from \ref{heuristic_main}.
 \end{proof}
 
