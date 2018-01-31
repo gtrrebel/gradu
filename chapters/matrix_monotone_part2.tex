@@ -6,10 +6,14 @@ Let's come back to theorem \ref{heuristic_loewner}. In the proof we noticed that
 \begin{align*}
 	\frac{1}{2 \pi i} \int_{\gamma}  \frac{q(z) \overline{q(\overline{z})}}{z^{2 n}} f(z) dz
 \end{align*}
-should be all positive. This integral evaluates to $(2 n - 1)$'th derivative of the function $f q(z) \overline{q(\overline{z})}$. With the $k$-tone language theorem rewrites to
+should be all positive. This integral evaluates to $(2 n - 1)$'th derivative of the function $f(z) q(z) \overline{q(\overline{z})}$. Given polynomial $q$, we denote by $N(q)$ polynomial with
+\begin{align*}
+	N(q)(z) = q(z) \overline{q(\overline{z})}.
+\end{align*}
+With the $k$-tone language theorem rewrites to
 
 \begin{lause}\label{main_theorem}
-	$f \in P_{n}(a, b)$, if and only if $f q(z) \overline{q(\overline{z})}$ is $(2 n - 1)$-tone for every (complex) polynomial $q$ of degree less than $n$.
+	$f \in P_{n}(a, b)$, if and only if $f N(q)$ is $(2 n - 1)$-tone for every (complex) polynomial $q$ of degree less than $n$.
 \end{lause}
 
 This statement makes sense without regularity issues and it is true. There's also many different ways to talk about the polynomial part.
@@ -17,7 +21,7 @@ This statement makes sense without regularity issues and it is true. There's als
 	Let $h : \C \to \C$ and $n \geq 1$. Then the following are equivalent.
 	\begin{enumerate}[(i)]
 		\item $h$ is polynomial non-negative on real line and of degree less than $2 n$.
-		\item There exists complex polynomial of degree less than $n$ such that $h = q \overline{q(\overline{\cdot})}$.
+		\item There exists complex polynomial of degree less than $n$ such that $h = N(q)$.
 		\item There exists two real polynomials $q_{1}$ and $q_{2}$ of degree less than $n$ such that $h = q_{1}^2 + q_{2}^2$.
 	\end{enumerate}
 \end{lem}
@@ -28,9 +32,9 @@ This statement makes sense without regularity issues and it is true. There's als
 	\begin{align*}
 		(z - z_{0}) (z - \overline{z_{0}}) = z^2 - 2 \Re(z_{0}) + |z_{0}|^2 = (z - \Re(z_{0}))^2 + \Im(z_{0})^2,
 	\end{align*}
-	so we may take $q_{1} = \cdot - \Re(z_{0})$ and $q_{2} = \Im(z_{0})$. But if $ q \overline{q(\overline{\cdot})} = q_{1}^2 + q_{2}^2$ and $ r \overline{r(\overline{\cdot})} = r_{1}^2 + r_{2}^2$, then
+	so we may take $q_{1} = \cdot - \Re(z_{0})$ and $q_{2} = \Im(z_{0})$. But if $ N(q) = q_{1}^2 + q_{2}^2$ and $ N(r) = r_{1}^2 + r_{2}^2$, then
 	\begin{align*}
-		q r \overline{q r(\overline{\cdot})} = (q_{1} r_{1} + q_{2} r_{2})^2 + (q_{1} r_{2} - q_{2} r_{1})^2,
+		N(q r) = N(q) N(r) = (q_{1} r_{1} + q_{2} r_{2})^2 + (q_{1} r_{2} - q_{2} r_{1})^2,
 	\end{align*}
 	so polynomial of higher order can be dealt with inductively.
 
@@ -42,12 +46,12 @@ Theorem \ref{main_theorem} gives nice resolution for the regularity issues of it
 Aim of this chapter is to give a honest proof for \ref{main_theorem}: we aim to prove that given $n \geq 1$, open interval $(a, b)$ and $f : (a, b) \to \R$, we have 
 \begin{align*}
 	& f \in P_{n}(a, b) \\
-	\Leftrightarrow &[x_{0}, x_{1}, x_{2}, \ldots, x_{2 n - 1}]_{f q \overline{q(\overline{\cdot})}} \text{ for any $q \in \C_{n - 1}[x]$ and $a < x_{0} < \ldots < x_{2 n - 1} < b$}.
+	\Leftrightarrow &[x_{0}, x_{1}, x_{2}, \ldots, x_{2 n - 1}]_{f N(q)} \text{ for any $q \in \C_{n - 1}[x]$ and $a < x_{0} < \ldots < x_{2 n - 1} < b$}.
 \end{align*}
 Note that we proof of \ref{heuristic_loewner} can be interpreted as saying
 \begin{align*}
 	& D_{n} f_{A}(H) \geq 0 \text{ for any $A \in \H^{n}_{(a, b)}$ and $H \geq 0$ with $\rank(H) = 1$} \\
-	\Leftrightarrow &[\lambda_{1}, \lambda_{1}, \ldots, \lambda_{2 n}, \lambda_{2 n}]_{f q \overline{q(\overline{\cdot})}} \text{ for any $q \in \C_{n - 1}[x]$ and $a < \lambda_{1} < \ldots < \lambda_{n} < b$}.
+	\Leftrightarrow &[\lambda_{1}, \lambda_{1}, \ldots, \lambda_{2 n}, \lambda_{2 n}]_{f N(q)} \text{ for any $q \in \C_{n - 1}[x]$ and $a < \lambda_{1} < \ldots < \lambda_{n} < b$}.
 \end{align*}
 The idea of the proof was to note that the quadratic form of the derivative rewrites to such divided difference, and $\lambda$'s are the eigenvalues of $A$.
 
@@ -60,13 +64,13 @@ To avoid regularity issues we simply do the same thing without limits.
 \begin{lem}\label{main_lemma}
 	If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$, we may find a strict projection pair $(A, B)$ such that
 	\begin{align*}
-		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f q \overline{q(\overline{\cdot})}}
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f N(q)}
 	\end{align*}
 	for any $f : (a, b) \to \R$.
 
 	Conversely, if $(A, B)$ is a strict projection pair and $w \in V$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $q \in \C_{n - 1}[x]$, such that for any $f : (a, b) \to \R$ we have
 	\begin{align*}
-		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f q \overline{q(\overline{\cdot})}}.
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f N(q)}.
 	\end{align*}
 \end{lem}
 
@@ -81,26 +85,12 @@ Before trying to understanding the lemma we use it to prove theorem \ref{main_th
 
 	Finally in this case, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$ such that
 	\begin{align*}
-		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f q \overline{q(\overline{\cdot})}} \geq 0
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f N(q)} \geq 0
 	\end{align*}
 	and we are finally done.
 
 	In the ``if"-direction we could alternatively make use of the continuity of $f$, which is guaranteed by the lemma \ref{k-tone_smooth}
 
-\end{proof}
-
-Besides lemma \ref{main_lemma} there's one more missing piece we need in the proof.
-
-\begin{lem}\label{k_tone_cor}
-	If $n \geq 1$ and $f h$ is $(2 n + 1)$:tone for every polynomial $h$ of degree at most $2 n$, then $f h$ is $(2 n - 1)$-tone for every polynomial $h$ of degree at most $(2 n - 2)$.
-\end{lem}
-
-\begin{proof}
-	We have
-	\begin{align*}
-		\frac{(x - a)^2}{(x - a) (x - \frac{a + b}{2})} + \frac{(x - b)^2}{(x - b) (x - \frac{a + b}{2})} = 2
-	\end{align*}
-	for any $x, a, b \in \R$ with $x \notin [a, b]$.
 \end{proof}
 
 \section{Main lemma}
@@ -180,7 +170,7 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 	By the previous lemma we have $\det(z I - B) \langle (z I - B)^{-1} w, v \rangle = \overline{\det(\overline{z} I - A) \langle (\overline{z} I - A)^{-1} w, v \rangle}$ so
 	if we write $q(z) = \det(z I - A) \langle (z I - A)^{-1} w, v \rangle$, we have
 	\begin{align*}
-		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B)]_{f q \overline{q(\overline{\cdot})}}.
+		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B)]_{f N(q)}.
 	\end{align*}
 	Note that this identity evidently holds without any extra smootness assumptions.
 
@@ -198,8 +188,82 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 	is antilinear bijection, the correspondece between $w$ and $q$.
 \end{proof}
 
-\section{Not the end of the story}
+\section{Dual pairing}
 
-This is not the end of the story.
+Proof of theorem \ref{main_theorem} is actually missing one more detail we need in the induction step.
+
+\begin{lem}\label{k_tone_cor}
+	If $n \geq 1$ and $f N(q)$ is $(2 n + 1)$:tone for $h \in \C_{n}[x]$, then $f N(r)$ is $(2 n - 1)$-tone for every $r \in \C_{n - 1}[x]$.
+\end{lem}
+
+To understand this result, recall that for analytic $f$ and $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$ we have
+\begin{align*}
+	[x_{0}, x_{1}, \ldots, x_{2 n - 1}]_{f N(q)} = \frac{1}{2 \pi i} \int_{\gamma} \frac{N(q)}{(z - z_{0}) (z - z_{1}) \cdots (z - z_{2 n - 1})} f(z) dz,
+\end{align*}
+for suitable $\gamma$. One way to interpret this identity is to consider it as a linear map: for given analytic $f$ we have the map
+\begin{align*}
+	r \mapsto  \frac{1}{2 \pi i} \int_{\gamma} r(z) f(z) dz,
+\end{align*}
+where $r$ is a rational functions with its poles in the domain of $f$. Note that all this makes formally sense for arbitrary $f$ given that the poles of $r$ are simple. This motivates us to define a dual pairing $\langle \cdot, \cdot \rangle_{L}$ (over $\R$) between $\R^{(a, b)}$ and rational functions with simple poles on $(a, b)$, for which
+\begin{align*}
+	\langle f, r \rangle_{L} = \frac{1}{2 \pi i} \int_{\gamma} r(z) f(z) dz,
+\end{align*}
+for analytic $f$. We could of course replace $(a, b)$ by any subset of $\C$.
+
+Now theorem \ref{main_theorem} is just saying that $f \in P_{n}(a, b)$ if $\langle f, r \rangle_{L}$ for $r$ of the form
+\begin{align*}
+	r(z) = \frac{N(q)}{(z - z_{0}) (z - z_{1}) \cdots (z - z_{2 n - 1})}
+\end{align*}
+where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us denote this family of rational functions by $R_{n}(a, b)$. Now, in order to prove the lemma we should prove that we have
+\begin{align*}
+	\cone(R_{n}(a, b)) \subset \cone(R_{n + 1}(a, b))
+\end{align*}
+
+\begin{proof}[Proof lemma \ref{k_tone_cor}]
+	Take any $r \in R_{n}(a, b)$. If there was no condition on the order of the poles, we could simply note that
+	\begin{align*}
+		r = r \frac{N(z - c)}{(z - c) (z - c)} \in R_{n + 1}(a, b).
+	\end{align*}
+	Even though that doesn't quite work, we can modify the trick a little: we have
+	\begin{align*}
+		r = \frac{1}{2} r \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} r\frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{n + 1}(a, b)).
+	\end{align*}
+	Now simply choose $c, d \in (a, b)$ so that the poles remain simple.
+\end{proof}
+
+\section{Section title}
+
+Let's move our focus to classes $P_{\infty}(a, b)$. Using the earlies ideas we rewrite theorem \ref{heuristic_loewner} in the following form.
+
+\begin{lause}\label{better_loewner}
+	$f \in P_{\infty}(a, b)$, if and only if $f$ is analytic and for every $n \geq 1$ and $q \in \C_{n - 1}[x]$ the function $f N(q)$ is $(2 n - 1)$-tone.
+\end{lause}
+
+Without the analyticity condition this would immediately follow from \ref{main_theorem}, and the statement would make perfect sense without it. It is nevertheless true that the functions in class $P_{\infty}(a, b)$ are analytic. One could use Bernstein type arguments and tricks (see proof of the theorem \ref{bernstein_theorem}) to convince oneself that this indeed the case, but actually there's a lot more going on.
+
+First of all, the dual pairing thinking leads much more satisfactory conclusion in the case $n = \infty$.
+
+\begin{lem}
+	We have
+	\begin{align*}
+		&R_{\infty}(a, b) := \bigcup_{n = 1}^{\infty} R_{n}(a, b) = \cone\left( \bigcup_{n = 1}^{\infty} R_{n}(a, b)\right) \\
+		= &\{ \text{rational functions with simple poles on $(a, b)$ non-negative} \\
+		& \text{ on $\R \setminus (a, b)$ and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
+	\end{align*}
+\end{lem}
+\begin{proof}
+	It is sufficient to prove that if $r$ is rational function with simple poles on $(a, b)$, which is non-negative on $\R \setminus (a, b)$ and has decay $r(z) = O(|z|^{-2})$ at $\infty$, then $r \in R_{n}(a, b)$ for some $n \geq 1$. So pick such $r$.
+
+	Let $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$ be the points where $r$ changes its sign. Now $p := r \prod_{i = 0}^{2 n - 1} (\cdot - x_{i})$ is polynomial of degree less than $2 n$ non-negative on $\R$, so it is of the form $N(q)$ for some $q \in \C_{n - 1}[x]$. Hence we have
+	\begin{align*}
+		r = \frac{N(q)}{p} \in R_{n}(a, b).
+	\end{align*}
+\end{proof}
+
+There's one little problem with the previous proof: $r$ might change its sign at $a$ or at $b$ in which case the argument fails. So we actually proved
+\begin{align*}
+	&R_{\infty}(a, b) = \{ \text{rational functions with simple poles on $(a, b)$ non-negative} \\
+	& \text{ on $\R \setminus [c, d]$ for some $a < c < d < b$, and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
+\end{align*}
 
 \section{Notes and references}
