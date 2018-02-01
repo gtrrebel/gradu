@@ -21,7 +21,7 @@ There are (luckily) more interesting examples: all the functions of the form $x^
 \end{eqnarray*}
 and $y$ and $\tanh(y)$ have the same sign.
 
-As one might have guessed by now, Pick functions are our set of ``positive analytic functions".
+Pick functions can be thought of a set of ``positive analytic functions".
 
 \begin{lause}
 	$\pickclass \subset \{\text{analytic maps on $\Hp$} \}$ is a proper cone.
@@ -142,7 +142,7 @@ To better explain the appearance of the linear term, we can write the integral i
 \end{align*}
 Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition, at least for know. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
 
-We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem} yet, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
+We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
 
 We will call the family
 
@@ -367,56 +367,14 @@ There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Then there exists a unique pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
-The proof of this result is based on two observations:
-
-\begin{enumerate}
-	\item If $\varphi$ is weakly Pick in some neighbourhood of $z_{0} \in \Hp$, then $\varphi$ can be extended by power series to $\D(z_{0}, \Im(z_{0}))$.s
-	\item If $\varphi$ can be extended by power series to some open disc centered at $z_{0}$, then the extension is weakly Pick in the disc.
-\end{enumerate}
-
-First of these observations follow immediately from \ref{Hindmarsh_theorem}. The second requires a calculation. Note that instead of power series, we can equivalently use a Newton series with some sequence converging to $z_{0}$.
-
-\begin{lem}\label{disc_open_pick_lemma}
-	Let $z_{0} \in \Hp$ and $z_{0} \in U \subset \D(z_{0}, \Im(z_{0}))$. Assume that $\varphi$ is weakly Pick in $U$ and analytic on $\D(z_{0}, \Im(z_{0}))$. Then the extension is also weakly pick on $\D(z_{0}, \Im(z_{0}))$.
-\end{lem}
-\begin{proof}
-	Note that $\varphi$ being weakly Pick on $U$ means that for any $r' < \Im(z_{0})$, $z_{1}, z_{2}, \ldots, z_{n} \in U \cap \D(z_{0}, r')$ and $c_{1}, c_{2}, \ldots, c_{n}$ we have
-	\begin{align*}
-		\Re\left(\frac{1}{2 \pi i} \int_{\partial \D(z_{0}, r')}\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - z_{i}}\right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z - \overline{z_{i}}}\right) \varphi(z) dz\right) \geq 0.
-	\end{align*}
-	Now take any $r' < \Im(z_{0})$, $w_{1}, w_{2}, \ldots, w_{n} \in \D(z_{0}, r')$ and $c_{1}, c_{2}, \ldots, c_{n}$. We should prove that similar inequality holds. Take any sequence $z_{1}, z_{2}, \ldots$ on $U \cap \D(z_{0}, r')$ converging to $z_{0}$. Note that for any $1 \leq i \leq n$ the rational function
-	\begin{align*}
-		\frac{1}{z - z_{1}} + \frac{(w_{i} - z_{1})}{(z - z_{1}) (z - z_{2})} + \ldots + \frac{(w_{i} - z_{1})\cdots (w_{i} - z_{N - 1})}{(z - z_{1})\cdots (z - z_{N})} =: g_{i, N}(z),
-	\end{align*}
-	converges to $\frac{1}{z - w_{i}}$ outside $\D(z_{0}, r')$ uniformly, as $N \to \infty$. It follows that the function
-	\begin{align*}
-		\left(\sum_{i = 1}^{n} c_{i} g_{i, N}(z) \right) \left(\sum_{i = 1}^{n} \overline{c_{i}} \overline{g_{i, N}(\overline{z})} \right)
-	\end{align*}
-	converges uniformly to
-	\begin{align*}
-		\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - w_{i}}\right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{w - \overline{z_{i}}}\right)
-	\end{align*}
-	on $\partial \D(z_{0}, r')$ as $N \to \infty$. But as we have
-	\begin{align*}
-		\Re\left(\frac{1}{2 \pi i} \int_{\partial \D(z_{0}, r')}\left(\sum_{i = 1}^{n} c_{i} g_{i, N}(z) \right) \left(\sum_{i = 1}^{n} \overline{c_{i}} \overline{g_{i, N}(\overline{z})} \right) \varphi(z) dz\right) \geq 0.
-	\end{align*}
-	for any $N \geq 1$, we also must have
-	\begin{align*}
-		\Re\left(\frac{1}{2 \pi i} \int_{\partial \D(z_{0}, r')}\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - w_{i}}\right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z - \overline{w_{i}}}\right) \varphi(z) dz\right) \geq 0,
-	\end{align*}
-	the claim.
-\end{proof}
-
-Note however that this isn't quite enough. First of all when we extend $\varphi$ by Newton series, it is a priori clear that the extension agrees with original function (where it should). Also, to verify that the extension is weakly Pick, we should also worry about points outside $\D(z_{0}, r)$, i.e. functional not localized on $\D(z_{0}, r)$.
-
-Luckily these problems can be fixed with the following improved version of the lemma.
+The proof of this result is based on the following observation:
 
 \begin{lem}\label{open_pick_lemma}
 	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Let $z_{0} \in U$. Then there exists unique weakly Pick $\tilde{\varphi} : U \cap \D(z_{0}, \Im(z_{0}))$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lem}
 
 \begin{proof}
-	Again, take any sequence $z_{1}, z_{2}, \ldots$ converging to $z_{0}$: we claim the Newton series with nodes $z_{1}, z_{2}, \ldots$ gives the (necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
+	Take any sequence $z_{1}, z_{2}, \ldots$ converging to $z_{0}$: we claim the Newton series with nodes $z_{1}, z_{2}, \ldots$ gives the (by analyticity necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
 
 	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{0}, \Im(z_{0})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some non-negative rational function $r$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$ by truncation of Newton series (with $N$ terms), we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N}$): all the terms of the form $\frac{1}{\lambda - w_{0}}$ for $w_{0} \in \D(z_{0}, \Im(z_{0})) \setminus U$ are replaced by
 	\begin{align*}

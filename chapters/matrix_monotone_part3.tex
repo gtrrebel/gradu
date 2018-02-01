@@ -2,87 +2,45 @@
 
 \section{Loewner's theorem}
 
-\begin{lause}\label{loewners_theorem}
-	$f \in P_{\infty}(a, b)$, if and only if there exist Pick function $\varphi$ extending over the interval $(a, b)$ such that $\restr{\varphi}{(a, b)} = f$.
-\end{lause}
+Aim of this chapter is to prove theorem \ref{weak_loewner}. The proof is in several steps. First, ``if"-direction is the easy part.
 
+\begin{lem}\label{weak_loewner_converse}
+	Let $f$ be a Pick function, which analytically extends to $(\C \setminus \R) \cup (a, b)$. Assume further that $\restr{f}{(a, b)}$ is real. Then $\restr{f}{(a, b)} \in P_{\infty}(a, b)$.
+\end{lem}
 \begin{proof}
-	The ``if" direction is not too hard: the Loewner matrices are limits of Pick matrices so the result follows immediately from TODO (loewner char).
+	Since $\restr{f}{(a, b)}$ is smooth, it suffices to prove that for any $n \geq 1$ and $q \in \C_{n - 1}[x]$ the $(2n - 1)$'th derivative of $f N(q)$ is non-negative. But as $f$ is a Pick function, we have for any $t \in (a, b)$
+	\begin{align*}
+		\frac{1}{(2 n - 1)!} \frac{d^{2 n - 1}(f(t) N(q)(t))}{d t^{2 n - 1}} = \lim_{\atop{z_{1}, \ldots, z_{n} \in \Hp}{z_{1}, \ldots, z_{n} \to t}} [z_{1}, \overline{z_{1}}, \ldots, z_{n}, \overline{z_{n}}]_{f N(q)} \geq 0.
+	\end{align*}
+\end{proof}
 
-	The ``only if" is the tricky part. Our plan is the following:
-	\begin{enumerate}
-		\item First show that $f$ is real analytic on $(a, b)$.
-		\item Next, show that if we can extend $f$ analytically to $\D(x_{0}, r)$ for some $x_{0} \in (a, b)$ and $r > 0$, then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
-		\item Finally, by theorem \ref{open_pick_interpolation} we get Pick function, which agree with $f$ on $(x_{0} - r, x_{0} + r)$, so by real analyticity of $f$, on the whole interval $(a, b)$.
-	\end{enumerate}
+The ``only if" is the tricky part. Our plan is the following:
+\begin{enumerate}
+	\item First show that $f$ is real analytic on $(a, b)$.
+	\item Next, show that if we can extend $f$ analytically to $\D(x_{0}, r)$ for some $x_{0} \in (a, b)$ and $r > 0$, then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
+	\item Finally, by theorem \ref{open_pick_interpolation} we get Pick function, which agree with $f$ on $(x_{0} - r, x_{0} + r)$, so by real analyticity of $f$, on the whole interval $(a, b)$.
+\end{enumerate}
 
-	Recall that $f$ being $n$ monotone implies that it is $(2 n - 1)$-tone. Thus for the first step it suffices to show the following.
+\begin{lem}\label{loewner_analytic}
+	Let $f \in P_{\infty}(a, b)$. Then $f$ is real analytic.
+\end{lem}
+\begin{proof}
+	Proof is almost the same as that of theorem \ref{Hindmarsh_theorem}. In the class $P_{\infty}(a, b)$ we have
+	\begin{align*}
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \leq \frac{1}{\dist(x_{2}, \R \setminus (a, b)) \cdots \dist(x_{2}, \R \setminus (a, b))} [x_{0}, x_{1}]_{f}
+	\end{align*}
+	for any $a < x_{0}, x_{1}, \ldots, x_{n} < b$. As the first divided differences are locally bounded, conditions of the theorem \ref{div_anal} are satisfied.
+\end{proof}
 
-	\begin{lem}
-		Let $f \in C^{\infty}(a, b)$ such that $f^{(2 n - 1)}(t) \geq 0$ for every $t \in (a, b)$. Then $f \in C^{\omega}(a, b)$.
-	\end{lem}
-	\begin{proof}
-		We shall verify the conditions of the theorem \ref{div_anal}.
+\begin{lem}\label{loewner_extension}
+	Assume that $f \in P_{\infty}(a, b)$, $f$ is analytic at $x_{0} \in (a, b)$ such that it can analytically extended to $\D(x_{0}, r)$ for some $r > 0$. Then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
+\end{lem}
+\begin{proof}
+	Again, proof is almost the same as that of theorem \ref{open_pick_lemma}: now just choose the sequence $z_{1}, z_{2}, \ldots$ on $(a, b)$ and do estimates on $\R \setminus (a, b)$.
+\end{proof}
 
-		The trick is first show that we have bound of the form $|f^{(n)}(t)| \leq n! C^{n + 1}$ for odd $n$, and then use the following result.
-		\begin{lem}
-			Let $f \in C^{2}(a, b)$ such that $|f(x)| \leq M_{0}$ and $|f^{(2)}(x)| \leq M_{2}$ for any $x \in (a, b)$. Then
-			\begin{align*}
-			|f'(x)| \leq \max\left(2\sqrt{M_{0} M_{2}}, \frac{8 M_{0}}{b - a}\right)
-			\end{align*}
-			for any $x \in (a, b)$.
-		\end{lem}
-		\begin{proof}
-			Take any $x_{0} \in (a, b)$ and set $f'(x_{0}) = c$: we shall prove the given bound of $c$. Without loss of generality we may assume that $c \geq 0$ and $x_{0} \leq \frac{a + b}{2}$. The idea is that as $f^{(2)}$ is not too big, $f'$ has to be positive and reasonably big interval around the point $x_{0}$ which means that $f$ has to increase a lot around $x_{0}$. By the assumption it can't increase more than $2 M_{0}$, however.
-
-			To make this argument precise and effective, we split into too cases.
-
-			\begin{enumerate}
-				\item $M_{2} (b - x_{0}) > c$: this means that we have
-				\begin{align*}
-					f'(x) \geq c - M_{2} (x - x_{0})
-				\end{align*}
-				for $x_{0} \leq x \leq \frac{c}{M_{2}} + x_{0}$ and hence
-				\begin{align*}
-					2 M_{0} \geq f\left(\frac{c}{M_{2}} + x_{0}\right) - f(x_{0}) \geq \int_{x_{0}}^{\frac{c}{M_{2}} + x_{0}} \left(c - M_{2} (x - x_{0})\right) dx \geq \frac{c^2}{2 M_{2}},
-				\end{align*}
-				which yields the first inequality.
-				\item $M_{2} (b - x_{0}) \leq c$: now we have
-				\begin{align*}
-					f'(x) \geq c \frac{b - x}{b - x_{0}},
-				\end{align*}
-				for every $x_{0} \leq x < b$
-				\begin{align*}
-					2 M_{0} \geq f(x) - f(x_{0}) \geq \int_{x_{0}}^{x}  c \frac{b - x}{b - x_{0}} d x \geq \frac{c}{2(b - x_{0})} \left((b - x_{0})^2 - (b - x)^2\right).
-				\end{align*}
-				Letting $x \to b$ and using $(b - x_{0}) \geq \frac{b - a}{2}$ we get the second inequality.
-			\end{enumerate}
-
-			TODO: pictures of function and it's derivatives
-			TODO: better proof
-		\end{proof}
-
-		To prove the bound for odd $n$, we would like to play the same game as in the proof of lemma \ref{bounded_div}, but the unfortunate thing is that the even order terms are breaking the inequality. We can salvage the situation by getting rid of them. Assume first that $0 \in (a, b)$. Trick is to consider the Taylor expansion for $f(x) - f(-x)$, centered at $0$, instead:
-		\begin{align*}
-			f(x) - f(-x) = 2 \left(\sum_{i = 1}^{n} \frac{f^{(2 i - 1)}(0)}{(2 i - 1)!}x^{2 i - 1}\right) + \int_{0}^{x} \frac{f^{(2 n + 1)}(t) + f^{(2 n + 1)}(-t)}{(2n)!} (x - t)^{2 n} dt.
-		\end{align*}
-		But now we can simply follow the same argument.
-	\end{proof}
-
-	For the step $2$ we should prove the following lemma.
-	\begin{lem}
-		Assume that $f \in P_{\infty}(a, b)$, $f$ is analytic at $x_{0} \in (a, b)$ such that it can analytically extended to $\D(x_{0}, r)$ for some $r > 0$. Then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
-	\end{lem}
-	\begin{proof}
-		As $f \in P_{\infty}(a, b)$, all its Loewner matrices are positive. As $f$ is analytic, this can rephrased as the posivity of the integral
-		\begin{align*}
-			\frac{1}{2 \pi i} \int_{\partial \D(x_{0}, r')}\left(\sum_{i = 1}^{n} \frac{c_{i}}{z - z_{i}} \right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z - z_{i}} \right) f(z) dz
-		\end{align*}
-		for any $r' < r$, $x_{1}, x_{2}, \ldots, x_{n} \in (x_{0} - r', x_{0} + r')$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$. Rest of the argument is almost the same as with the proof of lemma \ref{disc_open_pick_lemma}: now we should just take the sequence $z_{1}, z_{2}, \ldots$ to be real. Also, since the the disc $\D(x_{0}, r')$ is symmetric with respect the real axis, verifying the uniform convergence of the integrand is just as easy.
-	\end{proof}
-
-	Step $3$ is clear, and we are hence done.
-
+\begin{proof}[Proof of theorem \ref{weak_loewner}]
+	This follows immediately from \ref{weak_loewner_converse}, \ref{loewner_analytic}, \ref{loewner_extension} and \ref{open_pick_interpolation}.
 \end{proof}
 
 \section{Notes and references}

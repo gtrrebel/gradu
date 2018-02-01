@@ -193,7 +193,7 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 Proof of theorem \ref{main_theorem} is actually missing one more detail we need in the induction step.
 
 \begin{lem}\label{k_tone_cor}
-	If $n \geq 1$ and $f N(q)$ is $(2 n + 1)$:tone for $h \in \C_{n}[x]$, then $f N(r)$ is $(2 n - 1)$-tone for every $r \in \C_{n - 1}[x]$.
+	If $n \geq 1$ and $f N(q)$ is $(2 n + 1)$:tone for $q \in \C_{n}[x]$, then $f N(r)$ is $(2 n - 1)$-tone for every $r \in \C_{n - 1}[x]$.
 \end{lem}
 
 To understand this result, recall that for analytic $f$ and $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$ we have
@@ -226,12 +226,12 @@ where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us d
 	\end{align*}
 	Even though that doesn't quite work, we can modify the trick a little: we have
 	\begin{align*}
-		r = \frac{1}{2} r \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} r\frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{n + 1}(a, b)).
+		r = \frac{1}{2} r \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} r\frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{n + 1}(a, b))
 	\end{align*}
-	Now simply choose $c, d \in (a, b)$ so that the poles remain simple.
+	as soon as we choose $c, d \in (a, b)$ so that the poles remain simple.
 \end{proof}
 
-\section{Section title}
+\section{Loewner's theorems}
 
 Let's move our focus to classes $P_{\infty}(a, b)$. Using the earlies ideas we rewrite theorem \ref{heuristic_loewner} in the following form.
 
@@ -248,22 +248,49 @@ First of all, the dual pairing thinking leads much more satisfactory conclusion 
 	\begin{align*}
 		&R_{\infty}(a, b) := \bigcup_{n = 1}^{\infty} R_{n}(a, b) = \cone\left( \bigcup_{n = 1}^{\infty} R_{n}(a, b)\right) \\
 		= &\{ \text{rational functions with simple poles on $(a, b)$ non-negative} \\
-		& \text{ on $\R \setminus (a, b)$ and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
+		& \text{ on $\R \setminus (c, d)$ for some $a < c < d < b$, and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
 	\end{align*}
 \end{lem}
 \begin{proof}
 	It is sufficient to prove that if $r$ is rational function with simple poles on $(a, b)$, which is non-negative on $\R \setminus (a, b)$ and has decay $r(z) = O(|z|^{-2})$ at $\infty$, then $r \in R_{n}(a, b)$ for some $n \geq 1$. So pick such $r$.
 
-	Let $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$ be the points where $r$ changes its sign. Now $p := r \prod_{i = 0}^{2 n - 1} (\cdot - x_{i})$ is polynomial of degree less than $2 n$ non-negative on $\R$, so it is of the form $N(q)$ for some $q \in \C_{n - 1}[x]$. Hence we have
+	Note that $r$ changes its sign even number of times, and only on interval $(a, b)$, say at points $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$. Write $p := \prod_{i = 0}^{2 n - 1} (\cdot - x_{i})$. Note that is $p r$ is necessarily a polynomial of degree less than $2 n$ non-negative on $\R$, so it is of the form $N(q)$ for some $q \in \C_{n - 1}[x]$. Hence we have
 	\begin{align*}
 		r = \frac{N(q)}{p} \in R_{n}(a, b).
 	\end{align*}
 \end{proof}
 
-There's one little problem with the previous proof: $r$ might change its sign at $a$ or at $b$ in which case the argument fails. So we actually proved
+So $R_{\infty}(a, b)$ is the dual cone of $P_{\infty}(a, b)$. Now it might not be too big of surprise that the class $R_{\infty}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$ (with uniform norm). This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{\infty}(a, b)$
 \begin{align*}
-	&R_{\infty}(a, b) = \{ \text{rational functions with simple poles on $(a, b)$ non-negative} \\
-	& \text{ on $\R \setminus [c, d]$ for some $a < c < d < b$, and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
+	\langle f, r \rangle_{L} = \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
 \end{align*}
+This is almost true. As the functions $R_{\infty}(a, b)$ are not compactly supported, there's a problem at infinity.  Nevertheless, the previous holds with slight modification.
+
+\begin{lause}\label{integral_loewner}[Loewner's theorem, version $1$]
+	Let $f \in P_{\infty}(a, b)$. Then there exists a unique Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ and $\alpha \geq 0$ such that for any $r \in R_{\infty}(a, b)$ we have
+	\begin{align*}
+		\langle f, r \rangle_{L} = \alpha \left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right) + \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
+	\end{align*}
+	In particular for any $x,y \in (a, b)$ we have
+	\begin{align*}
+		[x, y]_{f} = \alpha + \int_{\R \setminus (a, b)} \frac{d \mu_{f}(\lambda)}{(\lambda - x) (\lambda - y)}.
+	\end{align*}
+\end{lause}
+
+Note that the limit $\left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right)$ exists and is non-negative for any $r \in R_{\infty}(a, b)$. It is clear that the converse of this theorem also holds. Note also that examples \ref{finite_pick} fit in the this framework: they corresponds to positive linear combination of $\delta$-measures.
+
+Although it would not be terribly tricky to fill in the details to our argument, we will not prove \ref{integral_loewner}. Instead we look into one of its corollaries:
+
+\begin{kor}
+	Every $f \in P_{\infty}(a, b)$ has an analytic extension $\tilde{f}$ on $\C \setminus \R$. Extension maps (open) upper half-plane $\Hp$ to closed upper half-plane $\overline{\Hp}$.
+\end{kor}
+
+In fact, also this corollary has a converse.
+
+\begin{lause}\label{weak_loewner}[Loewner's theorem, version $2$]
+	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only there exists a analytic function $\tilde{f}$ on $(\C \setminus \R) \cup (a, b)$ such that $\restr{\tilde{f}}{(a, b)} = f$ and $\tilde{f}$ maps the upper half-plane to its closure.
+\end{lause}
+
+Analytic functions (on upper half-plane) mapping upper half-plane to its closure are called Pick functions. They are studied in the next chapter.
 
 \section{Notes and references}
