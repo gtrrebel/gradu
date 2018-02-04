@@ -16,7 +16,7 @@ With the $k$-tone language theorem rewrites to
 	$f \in P_{n}(a, b)$, if and only if $f N(q)$ is $(2 n - 1)$-tone for every (complex) polynomial $q$ of degree less than $n$.
 \end{lause}
 
-This statement makes sense without regularity issues and it is true. There's also many different ways to talk about the polynomial part.
+This is the correct interpretation and it makes sense without regularity issues. There's also many different ways to talk about the polynomial part.
 \begin{lem}\label{polynomial_lemma}
 	Let $h : \C \to \C$ and $n \geq 1$. Then the following are equivalent.
 	\begin{enumerate}[(i)]
@@ -41,14 +41,14 @@ This statement makes sense without regularity issues and it is true. There's als
 	$(iii) \Rightarrow (i)$: This is clear.
 \end{proof}
 
-Theorem \ref{main_theorem} gives nice resolution for the regularity issues of its predecessor, theorem \ref{heuristic_loewner}. Recall that $(2 n - 1)$-tone functions are $C^{2 n - 3}$ and their $(2 n - 3)$'th derivative is convex. As convex functions are are twice differentiable almost everywhere, the Dobsch matrix makes sense almost everywhere, so the condition can be understood in the ``almost everywhere" -sense.
+Theorem \ref{main_theorem} gives a resolution for the regularity issues of its predecessor, theorem \ref{heuristic_loewner}. Recall that $(2 n - 1)$-tone functions are $C^{2 n - 3}$ and their $(2 n - 3)$'th derivative is convex. As convex functions are are twice differentiable almost everywhere, the Dobsch matrix makes sense almost everywhere, so the condition can be understood in the ``almost everywhere" -sense.
 
 Aim of this chapter is to give a honest proof for \ref{main_theorem}: we aim to prove that given $n \geq 1$, open interval $(a, b)$ and $f : (a, b) \to \R$, we have 
 \begin{align*}
 	& f \in P_{n}(a, b) \\
 	\Leftrightarrow &[x_{0}, x_{1}, x_{2}, \ldots, x_{2 n - 1}]_{f N(q)} \text{ for any $q \in \C_{n - 1}[x]$ and $a < x_{0} < \ldots < x_{2 n - 1} < b$}.
 \end{align*}
-Note that we proof of \ref{heuristic_loewner} can be interpreted as saying
+Note that the proof of \ref{heuristic_loewner} can be interpreted as saying
 \begin{align*}
 	& D_{n} f_{A}(H) \geq 0 \text{ for any $A \in \H^{n}_{(a, b)}$ and $H \geq 0$ with $\rank(H) = 1$} \\
 	\Leftrightarrow &[\lambda_{1}, \lambda_{1}, \ldots, \lambda_{2 n}, \lambda_{2 n}]_{f N(q)} \text{ for any $q \in \C_{n - 1}[x]$ and $a < \lambda_{1} < \ldots < \lambda_{n} < b$}.
@@ -81,15 +81,15 @@ Before trying to understanding the lemma we use it to prove theorem \ref{main_th
 
 	Conversely, assume that $f h$ is $(2 n - 1)$-tone for any suitable $h$ and take any $A \leq B$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$, as $f(B) - f(A)$ is sum of such terms. We may hence assume that $(A, B)$ projection pair.
 
-	We may also assume that $(A, B)$ is strict. Indeed, if this would not be the case, we could decompose $V = \vspan\{v_{1}\} \oplus V'$, where $v_{1}$ is the eigenvector, and factorize $A = \arestr{A}{\vspan\{v_{1}\}} \oplus \arestr{A}{V'}$ and $P_{w} = 0 \oplus \arestr{(P_{w})}{V'}$. But now checking that $f(B) - f(A) \geq 0$ boils down to checking that $f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. But this follows if we add the sentence ``We induct on $n$." as the first sentence of this proof.
+	We may also assume that $(A, B)$ is strict. Indeed, if this would not be the case, we could decompose $V = \vspan\{v_{1}\} \oplus V'$, where $v_{1}$ is the eigenvector, and factorize $A = \arestr{A}{\vspan\{v_{1}\}} \oplus \arestr{A}{V'}$ and $P_{w} = 0 \oplus \arestr{(P_{w})}{V'}$. But now $f(B) - f(A) \geq 0$, if and only if$f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. So we should just add the sentence ``We induct on $n$." as the first sentence of this proof.
 
-	Finally in this case, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$ such that
+	Finally in the strict case, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$ such that
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f N(q)} \geq 0
 	\end{align*}
 	and we are finally done.
 
-	In the ``if"-direction we could alternatively make use of the continuity of $f$, which is guaranteed by the lemma \ref{k-tone_smooth}
+	In the ``if"-direction we could have alternatively made use of the continuity of $f$, which is guaranteed by the lemma \ref{k-tone_smooth}
 
 \end{proof}
 
@@ -224,7 +224,7 @@ where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us d
 	\begin{align*}
 		r = r \frac{N(z - c)}{(z - c) (z - c)} \in R_{n + 1}(a, b).
 	\end{align*}
-	Even though that doesn't quite work, we can modify the trick a little: we have
+	Even though that doesn't quite work, we can modify the idea a little: we have
 	\begin{align*}
 		r = \frac{1}{2} r \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} r\frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{n + 1}(a, b))
 	\end{align*}
@@ -233,21 +233,21 @@ where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us d
 
 \section{Loewner's theorems}
 
-Let's move our focus to classes $P_{\infty}(a, b)$. Using the earlies ideas we rewrite theorem \ref{heuristic_loewner} in the following form.
+Let's move our focus to classes $P_{\infty}(a, b)$. Using the earlies ideas we can rewrite theorem \ref{heuristic_loewner} in the following form.
 
 \begin{lause}\label{better_loewner}
 	$f \in P_{\infty}(a, b)$, if and only if $f$ is analytic and for every $n \geq 1$ and $q \in \C_{n - 1}[x]$ the function $f N(q)$ is $(2 n - 1)$-tone.
 \end{lause}
 
-Without the analyticity condition this would immediately follow from \ref{main_theorem}, and the statement would make perfect sense without it. It is nevertheless true that the functions in class $P_{\infty}(a, b)$ are analytic. One could use Bernstein type arguments and tricks (see proof of the theorem \ref{bernstein_theorem}) to convince oneself that this indeed the case, but actually there's a lot more going on.
+Without the analyticity condition this would immediately follow from \ref{main_theorem}, and the statement would also make perfect sense without it. It is nevertheless true that the functions in class $P_{\infty}(a, b)$ are analytic. One could use Bernstein type arguments and tricks (see proof of the theorem \ref{bernstein_theorem}) to convince oneself that this indeed the case, but actually there's a lot more going on.
 
-First of all, the dual pairing thinking leads much more satisfactory conclusion in the case $n = \infty$.
+First of all, the dual pairing thinking leads to much more satisfactory conclusion in the case $n = \infty$.
 
 \begin{lem}
 	We have
 	\begin{align*}
 		&R_{\infty}(a, b) := \bigcup_{n = 1}^{\infty} R_{n}(a, b) = \cone\left( \bigcup_{n = 1}^{\infty} R_{n}(a, b)\right) \\
-		= &\{ \text{rational functions with simple poles on $(a, b)$ non-negative} \\
+		= &\{ \text{rational functions with only simple, real poles, non-negative} \\
 		& \text{ on $\R \setminus (c, d)$ for some $a < c < d < b$, and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
 	\end{align*}
 \end{lem}
@@ -277,7 +277,7 @@ This is almost true. As the functions $R_{\infty}(a, b)$ are not compactly suppo
 	\end{align*}
 \end{lause}
 
-Note that the limit $\left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right)$ exists and is non-negative for any $r \in R_{\infty}(a, b)$. It is clear that the converse of this theorem also holds. Note also that examples \ref{finite_pick} fit in the this framework: they corresponds to positive linear combination of $\delta$-measures.
+Note that the limit $\left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right)$ exists and is non-negative for any $r \in R_{\infty}(a, b)$. It is clear that the converse of this theorem also holds. Note also that examples \ref{finite_pick} fit in the this framework: they corresponds to positive linear combination of $\delta$-measures. Theorem \ref{integral_loewner} can be interpreted as saying that all functions in the class $P_{\infty}(a, b)$ are more-or-less of the form \ref{finite_pick}; only summation is replaced with integration with respect to (somewhat) arbitrary measure.
 
 Although it would not be terribly tricky to fill in the details to our argument, we will not prove \ref{integral_loewner}. Instead we look into one of its corollaries:
 
@@ -290,7 +290,5 @@ In fact, also this corollary has a converse.
 \begin{lause}\label{weak_loewner}[Loewner's theorem, version $2$]
 	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only there exists a analytic function $\tilde{f}$ on $(\C \setminus \R) \cup (a, b)$ such that $\restr{\tilde{f}}{(a, b)} = f$ and $\tilde{f}$ maps the upper half-plane to its closure.
 \end{lause}
-
-Analytic functions (on upper half-plane) mapping upper half-plane to its closure are called Pick functions. They are studied in the next chapter.
 
 \section{Notes and references}

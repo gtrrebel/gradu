@@ -14,7 +14,7 @@ The map $z \mapsto -\frac{1}{z}$ is evidently a Pick function. Hence are also al
 \]
 where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$, $\beta \in \Hp$ and $\lambda_{1}, \ldots, \lambda_{N} \in \Hp$. So far we have constructed our function by adding simple poles to the closure of lower half-plane. We could further add poles of higher order at lower half plane, and change residues and so on, but then we have to be a bit more careful.
 
-There are (luckily) more interesting examples: all the functions of the form $x^{p}$ where $0 < p < 1$ are Pick functions. To be precise, one should choose branch for the previous so that they are real at positive real axis. Also $\log$ yields Pick function when branch is chosen properly i.e. naturally again. Another classic example is $\tan$. Indeed, by the addition formula
+There are (luckily) more interesting examples. All the functions of the form $x^{p}$ where $0 < p < 1$ are Pick function, with natural branch, similarly for $\log$. Another classic example is $\tan$. Indeed, by the addition formula
 \begin{eqnarray*}
 	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
 	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
@@ -24,17 +24,13 @@ and $y$ and $\tanh(y)$ have the same sign.
 Pick functions can be thought of a set of ``positive analytic functions".
 
 \begin{lause}
-	$\pickclass \subset \{\text{analytic maps on $\Hp$} \}$ is a proper cone.
+	$\pickclass \subset \{\text{analytic maps on $\Hp$} \}$ is a closed convex cone.
 \end{lause}
 \begin{proof}
-	Again, since the evaluation functionals are continuous, we are essentially left to check that the fourth condition, i.e. we should prove that
-	\begin{align*}
-		\Im(\varphi) = 0 \Leftrightarrow \varphi = 0.
-	\end{align*}
-	And again, this isn't quite true, even for analytic functions. Imaginary part being constant merely implies that function is a real constant. Good enough.
+	Again, this is clear.
 \end{proof}
 
-Again, one could instead consider the quotient space, analytic maps up to a constant, and we would have a proper cone, but this kind of thinking isn't bringing much to the discussion.
+$\pickclass$ is almost salient: if $\varphi$ is analytic and $\Im(\varphi) = 0$, then $\varphi$ is a real constant (by Cauchy-Riemann equations, for instance). And again, this suggests that one should think about Pick functions up to a real constant.
 
 So far we have made no mention on the topology, as it's usually taken to be the topology of locally uniform convergence. This definitely works (as it makes the evaluation functionals continuous), but we can do much better. It namely turns out that we can consider the set of Pick functions as a proper cone of $\C^{\Hp}$, set of all functions, with product topology.
 
@@ -97,8 +93,6 @@ Recall that imaginary part of an analytic function determines also its real part
 	But this is clear as $\varphi/(\cdot - \overline{z})$ is analytic in the upper half-plane.
 \end{proof}
 
-Compare this with theorem \ref{basis_k-tone}: in both cases we can express a (regular enough) positive element ($k$-tone functions and Pick functions) as a linear combination of some kind of basis elements.
-
 There's of course nothing really special about the decay assumption $\varphi(z) = O(|z|^{-\varepsilon})$; it's there just to make everything converge.
 
 One can guarantee the convergence also by other means. Note that the integrand behaves like $\frac{1}{\lambda - z}$, if we subtract something from it something behaving the same way at the infinity (something not depending on $z$), we ought to improve convergence, but only change the value of the function by a constant. As an example, consider the integral
@@ -140,7 +134,7 @@ To better explain the appearance of the linear term, we can write the integral i
 \begin{align*}
 	\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \frac{\lambda z + 1}{\lambda - z} d \nu(\lambda).
 \end{align*}
-Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition, at least for know. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
+Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
 
 We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
 
@@ -150,7 +144,7 @@ We will call the family
 	\{z \mapsto z\} \cup \left\{z \mapsto \frac{1}{\lambda - z} | \lambda \in \R\right\}
 \end{align*}
 
-\textbf{extreme Pick functions}. Finite positive linear combinations of the extreme Pick functions are called \textbf{simple Pick functions}. Finally, we will call a Pick function extentable, if it is bounded and analytically extends over the real line. Such Pick functions enjoy representations of the form \ref{easy_pick_repr}.
+\textbf{extreme Pick functions}. Finite positive linear combinations of the extreme Pick functions are called \textbf{simple Pick functions}. Finally, we will call a Pick function \textbf{extentable}, if it is bounded and analytically extends over the real line. Such Pick functions enjoy representations of the form \ref{easy_pick_repr}.
 \section{Pick functionals}
 
 \begin{quest}
@@ -268,7 +262,7 @@ Finally, the following correspondence should be clear by now.
 	There is a natural bijective ($\R$-)linear map between non-negative rational functions vanishing at infinity and $\pickclass^{*}$.
 \end{prop}
 
-This line of thought induces a dual pairing between rational functions $r$ with simple poles such that $(1 + (\cdot)^2) r$ is bounded on $\R$, and $\C^{\Hp}$. We denote this pairing by $\langle r, \varphi \rangle_{\pickclass}$.
+This line of thought induces a dual pairing between rational functions $r$ with simple poles such that $(1 + (\cdot)^2) r$ is bounded on $\R$, and $\C^{\Hp}$. We denote this pairing by $\langle r, \varphi \rangle_{\pickclass}$ and the class of rational functions by $R_{\infty}(\Hp)$. For $X \subset \Hp$ we also denote by $R_{\infty}(X)$ those functions on $R_{\infty}(\Hp)$, whose poles are on $X$ (and on its reflection with respect to $\R$).
 
 \section{Weakly Pick functions}
 
@@ -348,7 +342,7 @@ The previous argument can be easily extended to the following.
 It is worthwhile to note that as one really only needs to get bound for order $2$ divided differences in the proof of \ref{Hindmarsh_theorem}, one only needs to keep track of small family of pick functionals, in particular ones with support of at most $3$ points. This observation is known as the Hindmarsh theorem.
 
 \begin{kor}\label{pick_weakly_pick}
-	$\varphi : \Hp \to \C$ is weakly Pick, if and only if it Pick function.
+	$\varphi : \Hp \to \C$ is weakly Pick, if and only if it is Pick function.
 \end{kor}
 
 \begin{proof}[Proof of theorem \ref{pick_convergence}]
@@ -374,9 +368,9 @@ The proof of this result is based on the following observation:
 \end{lem}
 
 \begin{proof}
-	Take any sequence $z_{1}, z_{2}, \ldots$ converging to $z_{0}$: we claim the Newton series with nodes $z_{1}, z_{2}, \ldots$ gives the (by analyticity necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
+	Take any sequence $z_{1}, z_{2}, \ldots \in U$ converging to $z_{0}$: we claim the Newton series with nodes $z_{1}, z_{2}, \ldots$ gives the (by analyticity necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
 
-	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{0}, \Im(z_{0})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some non-negative rational function $r$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$ by truncation of Newton series (with $N$ terms), we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N}$): all the terms of the form $\frac{1}{\lambda - w_{0}}$ for $w_{0} \in \D(z_{0}, \Im(z_{0})) \setminus U$ are replaced by
+	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{0}, \Im(z_{0})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some $r \in R_{\infty}(\D(z_{0}, \Im(z_{0})) \cup U)$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$ by truncation of Newton series (with $N$ terms), we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N} \in R_{\infty}(U)$): all the terms of the form $(\lambda - w_{0})^{-1}$ for $w_{0} \in \D(z_{0}, \Im(z_{0})) \setminus U$ are replaced by
 	\begin{align*}
 		\frac{1}{\lambda - z_{1}} + \frac{(w_{0} - z_{1})}{(\lambda - z_{1}) (\lambda - z_{2})} + \ldots + \frac{(w_{0} - z_{1})\cdots (w_{0} - z_{N - 1})}{(\lambda - z_{1})\cdots (\lambda - z_{N})},
 	\end{align*}
@@ -410,7 +404,7 @@ Although Pick-Nevanlinna extension theorem is strong enough tool for our purpose
 	Let $X \subset \Hp$ be arbitrary and assume that $\varphi$ is weakly Pick on $X$. Then there exists pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
-It's easy to see that such function extension it not unique in general.
+It's easy to see that such extension it not unique in general.
 
 The proof is based on the following result.
 
@@ -421,21 +415,23 @@ The proof is based on the following result.
 Let us first proof the theorem given this lemma.
 
 \begin{proof}[Proof of theorem \ref{pick_interpolation}]
-	Consider family of all weakly Pick extensions of $\varphi$ ordered by restriction. It is clear that this family satisfies the conditions of the Zorn's lemma and hence it has a maximal element. But by the previous lemma domain of this maximal element has to have the whole $\Hp$, so it a sought extension.
+	Consider family of all weakly Pick extensions of $\varphi$ ordered by restriction. It is clear that this family satisfies the conditions of the Zorn's lemma and hence it has a maximal element. But by the previous lemma domain of this maximal element has to have the whole $\Hp$, so it is a sought extension.
 \end{proof}
 
 \begin{proof}[Proof of lemma \ref{pick_extension_lemma}]
-	Let us first deal with the case of finite $X$. The idea is somewhat similar to the proof of \ref{cheapSpectral}: while in general the extension is very much not unique, if the situation is restricted enough, we are in better situation. Let us denote the sought extension by $\tilde{\varphi}$. Assume first that $\varphi$ is degenerate in $X$ in the sense that $p^{*}(\varphi) = 0$ for some non-zero $p^{*} \in \pickclass^{*}$. Let $r$ be the respective non-negative rational function so that we have $\langle r, \varphi \rangle_{\pickclass}$ . Note that since $(\lambda - z_{0})^{-1}$ is bounded on $\R$, by say $M$, we should have
+	Let us first deal with the case of finite $X$. The idea is somewhat similar to the proof of \ref{cheapSpectral}: while in general the extension is very much not unique, if the situation is restricted enough, we are in better situation. Let us denote the sought extension by $\tilde{\varphi}$. Assume first that $\varphi$ is degenerate in $X$ in the sense that $\langle \varphi, r\rangle_{\pickclass} = 0$ for some non-zero $r \in R_{\infty}(X)$. We may clearly assume that $r$ has only real roots. Indeed, if $r(z_{1}) = 0$ for some $\Im(z_{1}) > 0$, let $\tilde{r} := r \Im(z_{1})^2/N(\cdot - z_{1}) \in R_{\infty}(X)$. As $\tilde{r} \leq r$, also  $\langle \varphi, \tilde{r}\rangle_{\pickclass} = 0$, and $\tilde{r}$ has less non-real roots than $r$.
+
+	Note that since $(\lambda - z_{0})^{-1}$ is bounded on $\R$, by say $M$, we should have
 	\begin{align*}
 		\left|\langle r \frac{1}{\cdot - z_{0}}, \tilde{\varphi} \rangle_{\pickclass}\right| \leq M \langle r , \varphi \rangle_{\pickclass} = 0,
 	\end{align*}
-	and hence $\langle r (\cdot - z_{0})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. Note that then also $\langle r (\cdot - \overline{z_{0}})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. If $r(z_{0}) \neq 0$, this determines the value $\tilde{\varphi}(z_{0})$. But if $r(z_{0}) = 0$, the numerator of $r$ has factor $(\lambda - z_{0}) (\lambda - \overline{z_{0}}) = (\lambda - \Re(z_{0}))^2 + (\Im(z_{0}))^2$, so we may replace the factor by $(\Im(z_{0}))^2$. Continuing in the similar manner we may assume that $r(z_{0}) \neq 0$.
+	and hence $\langle r (\cdot - z_{0})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. Note that then also $\langle r (\cdot - \overline{z_{0}})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. As $r(z_{0}) \neq 0$, this determines the value $\tilde{\varphi}(z_{0})$.
 
-	Now it remains to be proven that with this choice $\tilde{\varphi}$ is weakly Pick. To this end take any Pick functional supported on $X \cup \{z_{0}\}$ and let $s$ to be the respective rational function. Note that for any $a \in \C$ and $\lambda \in \R$ we have
+	Now it remains to be proven that with this choice $\tilde{\varphi}$ is weakly Pick. To this end take any $s \in R_{\infty}(X \cup \{z_{0}\})$. Note that for any $a \in \C$ and $\lambda \in \R$ we have
 	\begin{align*}
 		\tilde{s}(\lambda) := s(\lambda) + \left(\frac{a}{\lambda - z_{0}} + \frac{\overline{a}}{\lambda - \overline{z_{0}}}\right) r(\lambda) + 2 |a| M r(\lambda) \geq 0.
 	\end{align*}
-	By picking $a$ suitably, $\tilde{s}$ doesn't have pole at $z_{0}$ (or $\overline{z_{0}}$), and since $\varphi$ is weakly Pick thus have
+	By picking $a$ suitably, $\tilde{s}$ doesn't have pole at $z_{0}$ (or $\overline{z_{0}}$), and since $\varphi$ is weakly Pick, we thus have
 	\begin{align*}
 		\langle s, \tilde{\varphi} \rangle_{\pickclass} = \langle \tilde{s}, \varphi \rangle_{\pickclass} \geq 0,
 	\end{align*}
@@ -443,13 +439,13 @@ Let us first proof the theorem given this lemma.
 
 	If $\varphi$ is not-degenerate, we may certainly find $c_{0} > 0$ such that $\varphi_{c_{0}} := \varphi - c_{0} i$ is weakly Pick on $X$ and degenerate, and if we find extension for $\varphi_{c_{0}}$, we get one also for $\varphi$.
 
-	The proof of \ref{pick_continuity_lemma} immediately implies that the set of suitable values $\tilde{\varphi}(z_{0})$ bounded, and hence it is also clearly closed, it is compact.
+	The proof of \ref{pick_continuity_lemma} immediately implies that the set of suitable values $\tilde{\varphi}(z_{0})$ bounded, and as it is also clearly closed, it is compact.
 
-	Let us now move to the case of general non-empty $X$. For any finite subset $F \subset X$ denote the set of possible values of a weakly Pick extension of $\restr{\varphi}{F}$ at $z_{0}$ by $W_{F}$. We clearly have $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$ and hence the family
+	Let us now move to the case of general non-empty $X$. For any finite subset $F \subset X$ denote the set of possible values of a weakly Pick extension of $\restr{\varphi}{F}$ at $z_{0}$ by $W_{F}$. We clearly have $W_{F_{1} \cup F_{2}} \subset W_{F_{1}} \cap W_{F_{2}}$ and hence
 	\begin{align*}
 		\{ W_{F} | \text{$F$ is a finite subset of $X$}\}
 	\end{align*}
-	is family of compact sets with finite intersection property. Consequently their intersection is non-empty and compact.
+	is a family of compact sets with finite intersection property. Consequently their intersection is non-empty and compact.
 \end{proof}
 
 Again, one could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.

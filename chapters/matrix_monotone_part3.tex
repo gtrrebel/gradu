@@ -10,7 +10,7 @@ Aim of this chapter is to prove theorem \ref{weak_loewner}. The proof is in seve
 \begin{proof}
 	Since $\restr{f}{(a, b)}$ is smooth, it suffices to prove that for any $n \geq 1$ and $q \in \C_{n - 1}[x]$ the $(2n - 1)$'th derivative of $f N(q)$ is non-negative. But as $f$ is a Pick function, we have for any $t \in (a, b)$
 	\begin{align*}
-		\frac{1}{(2 n - 1)!} \frac{d^{2 n - 1}(f(t) N(q)(t))}{d t^{2 n - 1}} = \lim_{\atop{z_{1}, \ldots, z_{n} \in \Hp}{z_{1}, \ldots, z_{n} \to t}} [z_{1}, \overline{z_{1}}, \ldots, z_{n}, \overline{z_{n}}]_{f N(q)} \geq 0.
+		\frac{(f N(q))^{(2 n - 1)}(t)}{(2 n - 1)!} = \lim_{\atop{z_{1}, \ldots, z_{n} \in \Hp}{z_{1}, \ldots, z_{n} \to t}} [z_{1}, \overline{z_{1}}, \ldots, z_{n}, \overline{z_{n}}]_{f N(q)} \geq 0.
 	\end{align*}
 \end{proof}
 
@@ -27,7 +27,7 @@ The ``only if" is the tricky part. Our plan is the following:
 \begin{proof}
 	Proof is almost the same as that of theorem \ref{Hindmarsh_theorem}. In the class $P_{\infty}(a, b)$ we have
 	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \leq \frac{1}{\dist(x_{2}, \R \setminus (a, b)) \cdots \dist(x_{2}, \R \setminus (a, b))} [x_{0}, x_{1}]_{f}
+		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \leq \frac{1}{\dist(x_{2}, \R \setminus (a, b)) \cdots \dist(x_{n}, \R \setminus (a, b))} [x_{0}, x_{1}]_{f}
 	\end{align*}
 	for any $a < x_{0}, x_{1}, \ldots, x_{n} < b$. As the first divided differences are locally bounded, conditions of the theorem \ref{div_anal} are satisfied.
 \end{proof}

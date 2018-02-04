@@ -2,7 +2,7 @@
 
 \section{Motivation}
 
-To understand the regularity properties of the matrix monotone functions we look at a closely related class of $k$-tone functions. $k$-tone functions are more or less functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should this mean?
+To understand the regularity properties of the matrix monotone functions we look at a closely related class of $k$-tone functions. $k$-tone functions are more or less functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should that mean?
 
 We already know the perfect answer for the case $k = 1$: $1$-tone functions should be the increasing functions.
 
@@ -143,7 +143,7 @@ The name ``divided differences" stems from the fact that the higher order divide
 \begin{proof}
 	The simpler case is easy to check directly. For more general case note that both
 	\begin{align*}
-	[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} \text{ and } [y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}
+		[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} \text{ and } [y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}
 	\end{align*}
 	satisfy the simpler case (as a function of the $y$'s) and they agree when $m = 1$.
 \end{proof}
@@ -157,9 +157,9 @@ We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{
 \end{prop}
 \begin{proof}
 	As the Lagrange interpolation polynomial of a polynomial of degree at most $n$ on a dataset of $(n + 1)$ pairs is the polynomial itself, the second claim readily implies the first. Recall that the Lagrange interpolation polynomial of a dataset $(x_{0}, y_{0}), (x_{1}, y_{1}), \ldots, (x_{n}, y_{n})$ is given by
-	\[
+	\begin{align*}
 		\sum_{i = 0}^{n} y_{i} \frac{\prod_{j \neq i}(x - x_{j})}{\prod_{j \neq i}(x_{i} - x_{j})},
-	\]
+	\end{align*}
 	and the leading coefficient of this polynomial is exactly the divided difference.
 \end{proof}
 
@@ -222,7 +222,7 @@ As an very important corollary we get the following.
 \begin{lause}[Mean value theorem for divided differences]
 	Let $n \geq 1$ and $f \in C^{n}(a, b)$. Then for any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have
 	\begin{align*}
-	\min_{0 \leq i \leq n}(x_{i}) < \xi < \max_{0 \leq i \leq n}(x_{i})
+		\min_{0 \leq i \leq n}(x_{i}) < \xi < \max_{0 \leq i \leq n}(x_{i})
 	\end{align*}
 	such that
 	\begin{align}\label{mean_value}
@@ -251,22 +251,6 @@ As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differ
 	[x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f^{(n)}(x_{0})}{n!},
 \end{align*}
 which together with \ref{divdif_rec} is enough to describe the divided differences with values of the function and its derivative.
-
-\subsection{Basis elements}
-
-There's very instructive alternate way to think about theorem \ref{peano_theorem}.
-
-\begin{lause}\label{basis_k-tone}
-	Let $f \in C^{k}(a, b)$. Then for any $a < c \leq x \leq d < b$ we have
-	\begin{align*}
-		f(x) = f(c) + (x - c) f'(c) + \ldots + (x - c)^{k - 1} \frac{f^{(k - 1)}(c)}{(k - 1)!} + \int_{c}^{d} g_{t, k}(x) dt.
-	\end{align*}
-\end{lause}
-\begin{proof}
-	This is just a restatement of the usual Taylor expansion.
-\end{proof}
-
-The previous observation could have also be used to prove the identity \ref{peano_identity} itself. This is a kind of result elegance of which would benefit from the quotient point of view: should we consider $k$-tone functions only up to polynomials of degree less than $k$, would we get rid of the first $k$ summands.
 
 \subsection{Identities}
 
@@ -325,9 +309,9 @@ All these observations are more than enough to verify that our definition of div
 
 \begin{maar}
 	$f : (a, b) \to \R$ is called $k$-tone if for any $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ of distinct points we have
-	\[
+	\begin{align*}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \geq 0,
-	\]
+	\end{align*}
 	i.e. the $n$'th divided difference is non-negative.
 \end{maar}
 
@@ -337,20 +321,27 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 	Let $k$ be an non-negative integer and $(a, b)$ an open interval. Then $P^{(k)}(a, b) \subset \R^{(a, b)}$ is (almost) a proper cone.
 \end{lause}
 \begin{proof}
+	This is clear.
 	Since the divided differences are continuous linear functional result follows if we can prove that
 	\begin{align*}
 		[\cdot, \cdot, \ldots, \cdot]_{f} = 0 \Leftrightarrow f = 0.
 	\end{align*}
 	This isn't quite true, instead we have
 	\begin{align*}
-		[\cdot, \cdot, \ldots, \cdot]_{f} = 0 \Leftrightarrow \text{ $f$ is a polynomial of degree less $n$}.
+		[\cdot, \cdot, \ldots, \cdot]_{f} = 0 \Leftrightarrow \text{ $f$ is a polynomial of degree less $k$}.
 	\end{align*}
 	To see why this is true, note that we already proved ``$\Leftarrow$" -direction. The other direction follows immediately from the Newton expansion \ref{newton_expansion}.
 \end{proof}
 
 Mean value theorem tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative.
 
-TODO: quotient topological vector space
+The cones $P^{(k)}(a, b)$ aren't quite salient. Instead we have
+\begin{align*}
+	[\cdot, \cdot, \ldots, \cdot]_{f} = 0 \Leftrightarrow \text{ $f$ is a polynomial of degree less than $k$}.
+\end{align*}
+
+This suggests that better object of study should be $\R^{(a, b)}$ quotiented by polynomials of degree less than $k$. We won't follow that trail.
+
 
 \subsection{Cauchy's integral formula}
 
@@ -358,62 +349,28 @@ Complex analysis offers a nice view on divided differences: if $f$ is analytic, 
 
 \begin{lem}[Cauchy's integral formula for divided differences]\label{div_cauchy}
 If $\gamma$ is a closed counter-clockwise curve enclosing the numbers $x_{0}, x_{1}, \ldots, x_{n}$, we have
-\[
+\begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz.
-\]
+\end{align*}
 \end{lem}
 \begin{proof}
 Easy induction, verifying \ref{divdif_rec}, by taking Cauchy's integral formula as a base case. Alternatively, the claim is a direct consequence of the Residue theorem.
-
-There's another rather instructive proof for the statement. Write Newton expansion for $f$ and integrate both sides along $\gamma$. We get
-\begin{align*}
-	\frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz &= \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}]_{f}}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz \\
-	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}]_{f}}{(z - x_{1}) \cdots (z - x_{n})} dz \\
-	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}]_{f}}{(z - x_{2}) \cdots (z - x_{n})} dz \\
-	&+ \ldots \\
-	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}, \ldots, x_{n - 1}]_{f}}{(z - x_{n - 1})(z - x_{n})} dz \\
-	&+ \frac{1}{2 \pi i} \int_{\gamma} \frac{[x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}}{(z - x_{n})} dz \\
-	&+ \frac{1}{2 \pi i} \int_{\gamma} [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f} dz \\
-\end{align*}
-As $z \mapsto [z, x_{0}, x_{1}, x_{2}, \ldots, x_{n}]_{f}$ is analytic, (as will be proven later) the last integral vanishes. First $n$ integrals vanish also, since the integrands decay at least as $|z|^{-2}$. Finally, the $(n + 1)$:th term gives exactly what we wanted.
 \end{proof}
 
 If all the points coincide, we get the familiar formula for the $n$'th derivative. Also, if $f$ is polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ and hence the divided differences vanish. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Now we have
-\[
+\begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{p_{X}(z)} dz.
-\]
+\end{align*}
 
 Cauchy's integral formula is a convenient way to think about severel identities.
 
 \begin{esim}
 We may express the Lagrange interpolation polynomial of a analytic function $f$ and sequence $X = (x_{i})_{i = 0}^{n}$ by
-\[
-	P_{X}(x) = \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [x_{0}, x_{1}, \ldots, x_{n}]_{f [x, \cdot]_{p_{X}}}.
-\]
-More generally, if some of the points coincide, we get so-called Hermite interpolation polynomial.
+\begin{align*}
+	x \mapsto \frac{1}{2 \pi i} \int_{\gamma} \frac{p_{X}(x) - p_{X}(z)}{x - z}\frac{f(z)}{p_{X}(z)} dz = [x_{0}, x_{1}, \ldots, x_{n}]_{f [x, \cdot]_{p_{X}}}.
+\end{align*}
+More generally, if some of the points coincide, we get the Hermite interpolation polynomial.
 \end{esim}
-As an another example one can give variant of the proof the Leibniz rule using the ideas from complex analysis.
-\begin{proof}[Alternate proof for the Leibniz rule for the divided differences]
-	Write Newton expansion for $f$ and $g$ with points reversed for $g$. The rest follows as in the final proof of Theorem (\ref{div_cauchy}).
-\end{proof}
-
-Actually, we are not quite done yet. Cauchy's integral formula only works for analytic functions. We can however extend the prove with the following useful observation.
-\begin{lem}\label{bootstrap_lemma}
-	Let $n, m \geq 0$. Assume that for some constants $c_{i, j}$ and $a_{i, j} \in (a, b)$ we have
-	\begin{align*}
-	\sum_{\atop{0 \leq i \leq n}{1 \leq j \leq m}} c_{i, j} f^{(i)}(a_{i, j}) = 0
-	\end{align*}
-	for every polynomial. Then the numbers $c_{i, j}$ are all zeroes.
-\end{lem}
-\begin{proof}
-	By Hermite interpolation TODO we can find for any pair $(i, j)$ polynomial with $f^{(i)}(a_{i, j}) = 1$ and $f^{(j')}(a_{i', j'})$ for every other pair $(i', j')$. Consequently $c_{i, j} = 0$ and we have the claim.
-\end{proof}
-
-Of course there's nothing really special about the functional being linear, but the point is: if the $F : C^{n}(a, b) \to \R$ depends only $f$ and it's derivatives up to some fixed order at some finite set of fixed points, then we know $F$ just by knowing the values at polynomials.
-
-\begin{proof}[Rest of the alternate proof]
-	Note that if we expand the divided differences, we are almost in the situation of the lemma \ref{bootstrap_lemma}; now we just have product of two functions instead. Story is the same.
-\end{proof}
 
 \subsection{Locality}
 
@@ -487,7 +444,7 @@ While this property is of independent interest, the real use of it is its genera
 \begin{lem}\label{divdif_splitting_theorem}
 	Let $a < c < b < d$ be reals and $x_{0}, x_{1}, \ldots, x_{n} \in (a, d)$. Then we may find $N, M \in \N$, sequences $(y_{0, i}, \ldots, y_{n, i})$ and $(z_{0, j}, \ldots, z_{n, j})$ and numbers $p_{i}$ and $q_{j}$ for $1 \leq i \leq N$ and $1 \leq j \leq M$, such that
 	\begin{itemize}
-		\item $\sum_{i = 1}^{N} p_{i} + \sum_{j = 1}^{M} q_{j} = 0$ and $p_{i}, q_{j} \geq 0$ for every $1 \leq i \leq N$ and $1 \leq j \leq M$.
+		\item $\sum_{i = 1}^{N} p_{i} + \sum_{j = 1}^{M} q_{j} = 1$ and $p_{i}, q_{j} \geq 0$ for every $1 \leq i \leq N$ and $1 \leq j \leq M$.
 		\item $y_{0, i}, y_{1, i}, \ldots, y_{n, i}$ are pairwise distinct elements of $(a, b)$ for every $1 \leq i \leq N$.
 		\item $z_{0, j}, z_{1, j}, \ldots, z_{n, j}$ are pairwise distinct elements of $(c, d)$ for every $1 \leq i \leq M$.
 		\item For every $f : (a, d) \to \R$ we have
@@ -697,8 +654,6 @@ With such tools we are ready to tackle the regularity of $k$-tone functions.
 \end{proof}
 
 \section{Analyticity and Bernstein's theorems}
-
-By requiring (some kind of) regularity for the divided differences of all orders, occasionally we get more than smoothness, namely analyticity. Most basic result of this kind is the following.
 
 \begin{lause}\label{div_anal}
 	Let $f : (a, b) \to \R$. Then $f$ is real analytic, if and only if for every closed subinteval $[c, d]$ of $(a, b)$ there exists constant $C$ such that for any $n \geq 1$

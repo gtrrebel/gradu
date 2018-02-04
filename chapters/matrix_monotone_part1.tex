@@ -3,14 +3,28 @@
 We already introduced monotone matrix functions in the introduction, but now are ready to take deeper look. 
 
 \begin{maar}
-	Let $(a,b) \subset \R$ be an open, possibly unbounded interval and $n$ positive integer. We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H^{n}_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
+	We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H^{n}_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
 \end{maar}
 
-We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. We obviously have
+We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. We will also denote
+\begin{align*}
+	P_{\infty}(a, b) = \bigcap_{n \geq 1} P_{n}(a, b).
+\end{align*}
+
+We obviously have
 
 \begin{prop}
-	For any positive integer $n$ and open interval $(a, b)$ the set $P_{n}(a, b)$ is a closed convex cone.
+	The sets $P_{n}(a, b)$ and $P_{\infty}(a, b)$ are closed convex cones for any open interval $(a, b)$ and positive integer $n$.
 \end{prop}
+
+Note that in the notation $P_{n}(a, b)$ we don't specify the space $V$; it doesn't matter.
+
+\begin{prop}
+	If $\dim(V) = \dim(V')$, then $f$ is $n$-monotone in $V$ if and only if it is $n$-monotone in $V'$.
+\end{prop}
+\begin{proof}
+	The reason is rather clear: inner product spaces of same dimension are isometric.
+\end{proof}
 
 \section{Examples}
 
@@ -40,21 +54,7 @@ are $n$-monotone on $(a, b)$ for any $n \geq 1$, $\alpha, t_{1}, t_{2}, \ldots, 
 
 \section{Basic properties}
 
-We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. Note that in the notation we don't specify the space $V$; it doesn't really matter.
-
-\begin{prop}
-	If $\dim(V) = \dim(V')$, then $f$ is $n$-monotone in $V$ if and only if it is $n$-monotone in $V'$.
-\end{prop}
-\begin{proof}
-	The reason is rather clear: inner product spaces of same dimension are isometric.
-\end{proof}
-
-We will also denote
-\begin{align*}
-	P_{\infty}(a, b) = \bigcap_{n \geq 1} P_{n}(a, b).
-\end{align*}
-
-In some sense the main goal of this thesis is to understand the sets $P_{n}(a, b)$. Below we collect many natural properties of these classes.
+Below we collect many natural properties of the cones $P_{n}(a, b)$.
 
 \begin{prop}
 	Let $(a, b)$ be an open interval and $f : (a, b) \to \R$. Then the following are equivalent:
@@ -82,22 +82,11 @@ In some sense the main goal of this thesis is to understand the sets $P_{n}(a, b
 \end{proof}
 
 \begin{prop}
-	For any positive integer $n$ and open interval $(a, b)$ the set $P_{n}(a, b)$ is a closed convex cone.
-\end{prop}
-
-\begin{proof}
-	This is easy.
-\end{proof}
-
-
-\begin{prop}
 	If $f : (a, b) \to (c, d)$ and $g : (c, d) \to \R$ are $n$-monotone, so is $g \circ f : (a, b) \to \R$.
 \end{prop}
 \begin{proof}
 	Fix any $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. By assumption $f(A) \leq f(B)$ and $f(A), f(B) \in \H^{n}_{(c, d)}$ so again by assumption, $g(f(A)) \leq g(f(B))$, our claim.
 \end{proof}
-
-The equivalence of the first two is almost obvious and from this point on we shall identify $1$-monotone and increasing functions. But the third point is very important: it is exactly the non-commutative nature which makes the classes of higher order interesting.
 
 \begin{prop}
 	For any open interval $(a, b)$ and positive integer $n$ we have $P_{n + 1}(a, b) \subset P_{n}(a, b)$.
@@ -121,7 +110,7 @@ There are also more trivial inclusions: $P_{n}(a, b) \subset P_{n}(c, d)$ for an
 Most of the common monotone functions fail to be matrix monotone. Let's try some non-examples.
 
 \begin{prop}
-	Function $(x \mapsto x^2)$ is not $n$-monotone for any $n \geq 2$ and any open interval $(a, b) \subset \R$.
+	Function $(x \mapsto x^2)$ is not $n$-monotone for any $n \geq 2$ on open interval $(0, \infty)$.
 \end{prop}
 \begin{proof}
 	Let us first think what goes wrong with the standard proof for the case $n = 1$.
@@ -143,13 +132,10 @@ Most of the common monotone functions fail to be matrix monotone. Let's try some
 	\[
 		(A + H)^2-A^2 = A H + H A + H^2.
 	\]
-	Note that $H^2 \geq 0$, but as we have seen in proposition \ref{symmetric_fail}, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. We are ready to formulate our proof strategy: find $A \in \H^{n}_{(a, b)}$ and $\Hp^{n}$ such that $A H + H A \ngeq 0$. Then choose parameter $t > 0$ so small that $A + t H \in \H^{n}(a,b)$ and
-	\[
-		(A + t H)^2 - A^2 = t (A H + H A + t H^2) \ngeq 0
-	\]
-	and set the pair $(A, A + t H)$ as the counterexample.
-	TODO (arbitrary intervals)
+	Note that $H^2 \geq 0$, but as we have seen in proposition \ref{symmetric_projection}, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. To be entirely honest, we only gave examples of $A, H \geq 0$ with $A H + H A \not\geq 0$ with $A$ and $H$ rank one, so $A \notin \H^{n}_{(0, \infty)}$. This deficit is however easily fixed by looking at $A_{\varepsilon} = A + \varepsilon I$ for $\varepsilon > 0$.
 \end{proof}
+
+By a bit more careful arguments one could show that $(x \mapsto x^2)$ is not $n$-monotone for any $n \geq 2$ on any open interval.
 
 As a corollary with get
 
@@ -215,7 +201,7 @@ Let $f(x) = \alpha x + x^2$ and take $A, H \geq 0$. As observed earlier, we have
 \end{align*}
 In the real setting we could just increase $\alpha$ to make the previous expression positive. In the matrix setting there is a problem: note that if $H$ is of rank $1$, increasing $\alpha$ means ``increasing the right-hand side only to one direction". The point is that if the right-hand side is not positive (map) in the first place, it might be (a priori) non-positive in a big subspace, so rank $1$ machinery is not going to save the day. Note also that even if we let $A \to 0$ (look at matrix function at $0$), the situation isn't a priori better.
 
-On the other hand if $n = 2$, for instance, there is not too much room for things to go south. We still, a priori, can't guarantee positivity with $\alpha$, but adding $\beta x^3$ for some $\beta > 0$ might. In the end, there isn't too much space in the $2$-dimensional space. We will later see that this will indeed happen. TODO
+On the other hand if $n = 2$, for instance, there is not too much room for things to go south. We still, a priori, can't guarantee positivity with $\alpha$, but adding something extra, say $\beta x^3$ for some $\beta > 0$ might. In the end, there isn't too much space in the $2$-dimensional space. We will later see that this will indeed happen. TODO
 
 When $n$ gets larger we have more and more space to worry about, so we should start worrying about more and more Taylor coefficients.
 
@@ -232,9 +218,9 @@ We will later see that both of these phenomena occur.
 
 \subsection{Taylor coefficients}
 
-Let us try to push the ideas of the previous chapter further. Take entire $f(x) = \sum_{i = 0}^{\infty} a_{i} x^{i}$ and $(a, b) \ni 0$. Note that as for any $k > 0$ we have
+Let us try to push the ideas of the previous chapter further. Take entire $f(x) = \sum_{k = 0}^{\infty} a_{k} x^{k}$ and $(a, b) \ni 0$. Note that as for any $k > 0$ we have
 \begin{align*}
-	(A + B)^k = \sum_{i = 0}^{k} \sum_{\atop{j_{0}, \ldots, j_{k} \geq 0}{j_{0} + \ldots + j_{k} = k - i}} A^{j_{0}} B A_{j_{1}} B \cdots B A^{j_{k}},
+	(A + B)^k = \sum_{i = 0}^{k} \sum_{\atop{j_{0}, \ldots, j_{i} \geq 0}{j_{0} + \ldots + j_{i} = k - i}} A^{j_{0}} B A^{j_{1}} B \cdots B A^{j_{k}},
 \end{align*}
 we have
 \begin{align*}
@@ -244,7 +230,7 @@ If $f \in P_{\infty}(a, b)$, this expression should be positive for $A \in \H^{n
 \begin{align*}
 	D_{n} f_{A}(H) := \lim_{t \to 0} \frac{f(A + t H) - f(A))}{t},
 \end{align*}
-derivative of a matrix function (on $n$-dimensional space). This limit is certainly well-defined for entire functions.\footnote{It will also make sense more generally for $C^{1}(a, b)$-maps, see appendix TODO} As the map $D_{n} f_{A} : \H \to \H$ is linear, we only need to worry about the case of rank $1$ $H$. So let's say $H = v v^{*}$ for some $v \in V$ and take any $w \in V$. Now we should have
+derivative of a matrix function (on $n$-dimensional space). This limit is certainly well-defined for entire functions.\footnote{It will also make sense more generally for $C^{1}(a, b)$-maps, but we won't need that fact.} As the map $D_{n} f_{A} : \H \to \H$ is linear, we only need to worry about the case of rank one $H$. So let's say $H = v v^{*}$ for some $v \in V$ and take any $w \in V$. Now we should have
 \begin{align*}
 	\langle D_{n} f_{A}(H) w, w \rangle &= \sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} \langle A^{j} H A^{i - 1 - j} w, w \rangle \\
 	&= \sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} \langle  A^{i - 1 - j} w, v \rangle \langle A^{j} v, w \rangle \\
@@ -278,7 +264,7 @@ As one would hope, there's corresponding result for the classes $P_{n}(a, b)$.
 	$f \in P_{n}(a, b)$, if and only if $(a_{i + j - 1})_{1 \leq i, j \leq n}$, where $a_{k} = f^{(k)}(x)/k!$ and $x \in (a, b)$, is positive for any $x \in (a, b)$.
 \end{lause}
 
-Only now there's a problem: function in $P_{n}(a, b)$ need not be analytic, and even worse it need not be $(2 n - 1)$, so the matrix need not be defined, and condition should be understood in weak sense.
+Only now there's a problem: function in $P_{n}(a, b)$ need not be analytic, and even worse it need not be $(2 n - 1)$: the condition should be understood in weak sense.
 
 The matrix
 \begin{align*}
@@ -297,11 +283,11 @@ is called \textit{Dobsch matrix} (of order $n$) of $f$ at $t$.
 Let us try to prove the ``only if" -directions of these results modulo regularity issues.
 
 \begin{proof}[Proof ``sketch" of the ``only if" of \ref{heuristic_main}]
-	Denote the matrix in question by $M = M_{n}(x, f)$. W.l.o.g. we may take $x = 0 \in (a, b)$. The idea is that for given $v \in \C^{n}$ $\langle M v, v \rangle$ should be some kind of limit of derivatives: we should have
+	Denote the matrix in question by $M = M_{n}(x, f)$. We may w.l.o.g. take $x = 0 \in (a, b)$. The idea is the following: we know that for any $\langle D_{n} f_{A} (H) w, w \rangle$ is positive for any $A \in \H^{n}_{(a, b)}, H \geq 0$ and $w \in V$ and should prove that for any $v \in \C^{n}$ $\langle M v, v \rangle \geq 0$. So best we could hope for is that we would have
 	\begin{align*}
 		\lim_{\varepsilon \to 0} \langle D_{n} f_{A_{\varepsilon}} (H_{\varepsilon}) w_{\varepsilon}, w_{\varepsilon} \rangle = \langle M v, v \rangle
 	\end{align*}
-	for some $H_{\varepsilon} \geq 0$, $w_{\varepsilon} \in \C^{n}$, $A_{\varepsilon} \in \H^{n}_{(a, b)}$, with $\lim_{\varepsilon \to 0} A_{\varepsilon} = 0$.
+	for some $H_{\varepsilon} \geq 0$, $w_{\varepsilon} \in \C^{n}$, $A_{\varepsilon} \in \H^{n}_{(a, b)}$, with $\lim_{\varepsilon \to 0} A_{\varepsilon} = 0$. This works.
 
 	To find $H_{\varepsilon}, w_{\varepsilon}, A_{\varepsilon}$, we change the point of view. Recall that if $f$ is entire we have
 	\begin{align*}
@@ -346,9 +332,7 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 	This follows immeditaly from \ref{heuristic_main}.
 \end{proof}
 
-This is essentially of the two main arguments of this thesis.
-
-The main problem of the argument is the regularity. While we assume entirity of $f$ mainly for convenience and it could be easily avoided, we need some kind of regularity to make sense of the definition: it is a priori not even functions in $P_{\infty}(a, b)$ should be continuous. While these issues could be dealt as saying that everything is a distribution, it turns out that matrix monotone functions indeed have non-trivial regularity properties. Origin of these is the topic of the next chapter.
+The main problem of the argument is the regularity. While we assume entireity of $f$ mainly for convenience and it could be easily avoided, we need some kind of regularity to make sense of the definition: it is a priori not even clear that functions in $P_{\infty}(a, b)$ should be continuous. While these issues could be dealt with by saying that everything is a distribution, it turns out that matrix monotone functions indeed have non-trivial regularity properties. Origin of these is the topic of the next chapter.
 
 
 \section{Notes and references}
