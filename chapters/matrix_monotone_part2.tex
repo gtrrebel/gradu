@@ -2,18 +2,10 @@
 
 \section{Main theorem}
 
-Let's come back to theorem \ref{heuristic_loewner}. In the proof we noticed that if $f$ is $n$-monotone and analytic, then the integrals
-\begin{align*}
-	\frac{1}{2 \pi i} \int_{\gamma}  \frac{q(z) \overline{q(\overline{z})}}{z^{2 n}} f(z) dz
-\end{align*}
-should be all positive. This integral evaluates to $(2 n - 1)$'th derivative of the function $f(z) q(z) \overline{q(\overline{z})}$. Given polynomial $q$, we denote by $N(q)$ polynomial with
-\begin{align*}
-	N(q)(z) = q(z) \overline{q(\overline{z})}.
-\end{align*}
-With the $k$-tone language theorem rewrites to
+Let's come back to theorem \ref{heuristic_loewner}: with the $k$-tone language it rewrites to
 
 \begin{lause}\label{main_theorem}
-	$f \in P_{n}(a, b)$, if and only if $f N(q)$ is $(2 n - 1)$-tone for every (complex) polynomial $q$ of degree less than $n$.
+	$f \in P_{n}(a, b)$, if and only if $f N(q)$ is $(2 n - 1)$-tone for any $q \in \C_{n - 1}[x]$.
 \end{lause}
 
 This is the correct interpretation and it makes sense without regularity issues. There's also many different ways to talk about the polynomial part.
@@ -41,7 +33,7 @@ This is the correct interpretation and it makes sense without regularity issues.
 	$(iii) \Rightarrow (i)$: This is clear.
 \end{proof}
 
-Theorem \ref{main_theorem} gives a resolution for the regularity issues of its predecessor, theorem \ref{heuristic_loewner}. Recall that $(2 n - 1)$-tone functions are $C^{2 n - 3}$ and their $(2 n - 3)$'th derivative is convex. As convex functions are are twice differentiable almost everywhere, the Dobsch matrix makes sense almost everywhere, so the condition can be understood in the ``almost everywhere" -sense.
+Theorem \ref{main_theorem} gives also a resolution to the regularity issues of its predecessor, theorem \ref{heuristic_loewner}. Recall that $(2 n - 1)$-tone functions are $C^{2 n - 3}$ and their $(2 n - 3)$'th derivative is convex. As convex functions are twice differentiable almost everywhere, $f N(q)$ is $(2 n - 1)$ times differentiable almost everywhere.
 
 Aim of this chapter is to give a honest proof for \ref{main_theorem}: we aim to prove that given $n \geq 1$, open interval $(a, b)$ and $f : (a, b) \to \R$, we have 
 \begin{align*}
@@ -50,7 +42,7 @@ Aim of this chapter is to give a honest proof for \ref{main_theorem}: we aim to 
 \end{align*}
 Note that the proof of \ref{heuristic_loewner} can be interpreted as saying
 \begin{align*}
-	& D_{n} f_{A}(H) \geq 0 \text{ for any $A \in \H^{n}_{(a, b)}$ and $H \geq 0$ with $\rank(H) = 1$} \\
+	& D f_{A}(H) \geq 0 \text{ for any $A \in \H_{(a, b)}$ and $H \geq 0$ with $\rank(H) = 1$} \\
 	\Leftrightarrow &[\lambda_{1}, \lambda_{1}, \ldots, \lambda_{2 n}, \lambda_{2 n}]_{f N(q)} \text{ for any $q \in \C_{n - 1}[x]$ and $a < \lambda_{1} < \ldots < \lambda_{n} < b$}.
 \end{align*}
 The idea of the proof was to note that the quadratic form of the derivative rewrites to such divided difference, and $\lambda$'s are the eigenvalues of $A$.
@@ -58,17 +50,17 @@ The idea of the proof was to note that the quadratic form of the derivative rewr
 To avoid regularity issues we simply do the same thing without limits.
 
 \begin{maar}
-	Let us call pair $(A, B) \in \H(V)^{2}$ a \textbf{projection pair} if $B - A = v v^{*}$ for some $v \in V$. Note that such $v$ is always unique up to phase. Let us say that a projection pair $(A, B)$ is \textbf{strict}, if whenever $B - A = v v^{*}$ then $v$ is not orthogonal to any eigenvector of $A$. 
+	Let us call pair $(A, B, v) \in \H(V)^{2} \times V$ a \textbf{projection pair} if $B - A = v v^{*}$. Let us further say that a projection pair $(A, B, v)$ is \textbf{strict}, if $v$ is not orthogonal to any eigenvector of $A$. 
 \end{maar}
 
 \begin{lem}\label{main_lemma}
-	If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$, we may find a strict projection pair $(A, B)$ such that
+	If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$, we may find a strict projection pair $(A, B, v)$ such that
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f N(q)}
 	\end{align*}
 	for any $f : (a, b) \to \R$.
 
-	Conversely, if $(A, B)$ is a strict projection pair and $w \in V$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $q \in \C_{n - 1}[x]$, such that for any $f : (a, b) \to \R$ we have
+	Conversely, if $(A, B, v)$ is a strict projection pair and $w \in V$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $q \in \C_{n - 1}[x]$, such that for any $f : (a, b) \to \R$ we have
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4}, \ldots, \lambda_{2n - 1}, \lambda_{2 n}]_{f N(q)}.
 	\end{align*}
@@ -77,11 +69,11 @@ To avoid regularity issues we simply do the same thing without limits.
 Before trying to understanding the lemma we use it to prove theorem \ref{main_theorem}.
 
 \begin{proof}
-	Assume first that $f \in P_{n}(a, b)$. We need to prove that $f q \overline{q(\overline{\cdot})}$ is $(2 n - 1)$-tone for any $q \in \C_{n - 1}[x]$ But any divided difference of such $f q \overline{q(\overline{\cdot})}$ can be expressed by the main lemma \ref{main_lemma} as $\langle (f(B) - f(A)) w, w \rangle$ for some projection pair $(A, B)$, and the previous is non-negative by the assumption.
+	Assume first that $f \in P_{n}(a, b)$. We need to prove that $f N(q)$ is $(2 n - 1)$-tone for any $q \in \C_{n - 1}[x]$ But any divided difference of such $f N(q)$ can be expressed by the main lemma \ref{main_lemma} as $\langle (f(B) - f(A)) w, w \rangle$ for some projection pair $(A, B, v)$, and the previous is non-negative by the assumption.
 
-	Conversely, assume that $f h$ is $(2 n - 1)$-tone for any suitable $h$ and take any $A \leq B$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$, as $f(B) - f(A)$ is sum of such terms. We may hence assume that $(A, B)$ projection pair.
+	Conversely, assume that $f h$ is $(2 n - 1)$-tone for any suitable $h$ and take any $A \leq B$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$, as $f(B) - f(A)$ is sum of such terms. We may hence assume that $(A, B, v)$ projection pair.
 
-	We may also assume that $(A, B)$ is strict. Indeed, if this would not be the case, we could decompose $V = \vspan\{v_{1}\} \oplus V'$, where $v_{1}$ is the eigenvector, and factorize $A = \arestr{A}{\vspan\{v_{1}\}} \oplus \arestr{A}{V'}$ and $P_{w} = 0 \oplus \arestr{(P_{w})}{V'}$. But now $f(B) - f(A) \geq 0$, if and only if$f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. So we should just add the sentence ``We induct on $n$." as the first sentence of this proof.
+	We may also assume that $(A, B, v)$ is strict. Indeed, if this would not be the case, we could decompose $V = (v_{1}) \oplus V'$, where $v_{1}$ is the eigenvector, and factorize $A = \arestr{A}{(v_{1})} \oplus \arestr{A}{V'}$ and $B = \arestr{A}{(v_{1})} \oplus \arestr{B}{V'}$. But now $f(B) - f(A) \geq 0$, if and only if$f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. So we should just add the sentence ``We induct on $n$." as the first sentence of this proof.
 
 	Finally in the strict case, by the lemma \ref{main_lemma} we may find $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$ such that
 	\begin{align*}
@@ -98,11 +90,11 @@ Before trying to understanding the lemma we use it to prove theorem \ref{main_th
 It remains to understand what is going on with lemma \ref{main_lemma}. The surprising part about it is the following fact about eigenvalues.
 
 \begin{lem}\label{projection_eigenvalues}
-	Let $(A, B)$ be a projection pair. Then
+	Let $(A, B, v)$ be a projection pair. Then
 	\begin{align*}
 		\lambda_{1}(B) \geq \lambda_{1}(A) \geq \lambda_{2}(B) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(B) \geq \lambda_{n}(A).
 	\end{align*}
-	$(A, B)$ is strict if and only if all the inequalities are strict.
+	$(A, B, v)$ is strict if and only if all the inequalities are strict.
 
 	Conversely, if we are given any two interlacing sequences $b_{1} \geq a_{1} \geq b_{2} \geq a_{2} \geq \ldots \geq b_{n} \geq a_{n}$ we may find a projection pair $(A, B)$ with $\spec(A) = \{a_{i}\}_{i = 1}^{n}$ and $\spec(B) = \{b_{i}\}_{i = 1}^{n}$.
 \end{lem}
@@ -110,7 +102,7 @@ It remains to understand what is going on with lemma \ref{main_lemma}. The surpr
 This proposition is based on the following explicit relationship between characteristic polynomials of a projection pair.
 
 \begin{lem}\label{projection_characteristic_polynomial}
-	Let $A, B \in \H$ be a projection pair. Then
+	Let $(A, B, v)$ be a projection pair. Then
 	\begin{align*}
 		\det(B - z I) = \det(A - z I) \left(1 + \langle (A - z I)^{-1}v, v\rangle\right).
 	\end{align*}
@@ -143,7 +135,7 @@ This proposition is based on the following explicit relationship between charact
 Let us then complete the proof of theorem \ref{main_theorem} by proving the lemma \ref{main_lemma}.
 
 \begin{proof}[Proof of lemma \ref{main_lemma}]
-	The proof is based on lemmas \ref{projection_eigenvalues} and \ref{projection_eigenvalues}. To find the connection we first assume $f$ is entire. Then if and $(A, B)$ is a strict projetion pair with $B - A = v v^{*}$ for some $v \in V$ and $w \in V$ we have
+	The proof is based on lemmas \ref{projection_eigenvalues} and \ref{projection_eigenvalues}. To find the connection we first assume $f$ is entire. Then if and $(A, B, v)$ is a strict projetion pair and $w \in V$ we have
 	\begin{align*}
 		&= \langle (f(B) - f(A)) w, w \rangle \\
 		&= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - B)^{-1} v, w \rangle  \langle (z I - A)^{-1} w, v \rangle f(z) dz \\

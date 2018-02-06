@@ -57,15 +57,15 @@ A closed convex cone that is also salient is, as is somewhat customary, called \
 Previous arguments carry directly to a much more general setting:
 
 \begin{lause}\label{positive_machine}
-	Let $V$ be a topological vector space (over $\R$ or $\C$) and $C^{*}$ a subset of its continuous dual. Assume that
+	Let $V$ be a topological vector space (over $\R$ or $\C$) and $C^{*}$ a subset of its continuous dual. Then
 	\begin{align*}
-		\{v \in V | w^{*}(v) = 0 \text{ for every $w^{*} \in C^{*}$} \} = \{0\}.
+		C := \{v \in V | w^{*}(v) \geq 0 \text{ for every $w^{*} \in C^{*}$}\}
 	\end{align*}
-	Then
+	is a closed convex cone of $V$. If also
 	\begin{align*}
-		\{v \in V | w^{*}(v) \geq 0 \text{ for every $w^{*} \in C^{*}$}\}
+		\{v \in V | w^{*}(v) = 0 \text{ for every $w^{*} \in C^{*}$} \} = \{0\},
 	\end{align*}
-	is a proper cone of $V$.
+	then $C$ is proper.
 \end{lause}
 
 In our case the subset of the linear functionals are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$.
