@@ -4,22 +4,7 @@
 
 \section{Examples and basic properties}
 
-Most obvious examples of Pick functions might be functions of the form $\alpha z + \beta$ where $\alpha, \beta \in \R$ and $\alpha \geq 0$. Of course one could also take $\beta \in \Hpc$. Actually real constants are the only Pick functions failing to map $\Hp \to \Hp$: non-constant analytic functions are open mappings.
-
-Sum of two Pick functions is a Pick function and one can multiply a Pick function by non-negative constant to get a new Pick function. Same is true for composition.
-
-The map $z \mapsto -\frac{1}{z}$ is evidently a Pick function. Hence are also all functions of the form
-\[
-	\alpha z + \beta + \sum_{i = 1}^{N} \frac{m_{i}}{\lambda_{i}- z},
-\]
-where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$, $\beta \in \Hp$ and $\lambda_{1}, \ldots, \lambda_{N} \in \Hp$. So far we have constructed our function by adding simple poles to the closure of lower half-plane. We could further add poles of higher order at lower half plane, and change residues and so on, but then we have to be a bit more careful.
-
-There are (luckily) more interesting examples. All the functions of the form $x^{p}$ where $0 < p < 1$ are Pick function, with natural branch, similarly for $\log$. Another classic example is $\tan$. Indeed, by the addition formula
-\begin{eqnarray*}
-	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
-	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
-\end{eqnarray*}
-and $y$ and $\tanh(y)$ have the same sign.
+Most obvious examples of Pick functions might be functions of the form $\alpha z + \beta$ where $\alpha, \beta \in \R$ and $\alpha \geq 0$. Of course one could also take $\beta \in \Hpc$. As non-constant analytic functions are open mappings, real constants are the only Pick functions failing to map $\Hp \to \Hp$.
 
 Pick functions can be thought of a set of ``positive analytic functions".
 
@@ -27,25 +12,40 @@ Pick functions can be thought of a set of ``positive analytic functions".
 	$\pickclass \subset \{\text{analytic maps on $\Hp$} \}$ is a closed convex cone.
 \end{lause}
 \begin{proof}
-	Again, this is clear.
+	Again, this follows immediately from \ref{positive_machine}.
 \end{proof}
+
+Also a composition of Pick functions is a Pick function.
+
+The map $z \mapsto -\frac{1}{z}$ is evidently a Pick function. Hence are also all functions of the form
+\begin{align*}
+	\alpha z + \beta + \sum_{i = 1}^{N} \frac{m_{i}}{\lambda_{i}- z},
+\end{align*}
+where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$, $\beta \in \Hp$ and $\lambda_{1}, \ldots, \lambda_{N} \in \Hm$.
+
+There are (luckily) more interesting examples. All the functions of the form $x^{p}$ (with natural branch) where $0 < p < 1$ are Pick functions; similarly for $\log$. Another classic example is $\tan$. Indeed, by the addition formula
+\begin{eqnarray*}
+	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
+	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
+\end{eqnarray*}
+and $y$ and $\tanh(y)$ have the same sign.
 
 $\pickclass$ is almost salient: if $\varphi$ is analytic and $\Im(\varphi) = 0$, then $\varphi$ is a real constant (by Cauchy-Riemann equations, for instance). And again, this suggests that one should think about Pick functions up to a real constant.
 
-So far we have made no mention on the topology, as it's usually taken to be the topology of locally uniform convergence. This definitely works (as it makes the evaluation functionals continuous), but we can do much better. It namely turns out that we can consider the set of Pick functions as a proper cone of $\C^{\Hp}$, set of all functions, with product topology.
+So far we have made no mention on the topology, as it's usually taken to be the topology of locally uniform convergence. This definitely works (as it makes the evaluation functionals continuous), but we can do much better. It namely turns out that we can consider the set of Pick functions as a proper cone of $\C^{\Hp}$, set of all functions, with the topology of pointwise convergence.
 
 \begin{prop}\label{pick_convergence}
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-This result far from clear: pointwise limits of analytic functions need not in general be analytic. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals, or better predual.
+This result far from clear: pointwise limits of analytic functions need not analytic in general. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals, or better predual.
 
 \section{Boundary}
 
-To understand the rigidity phenomena we take look at a close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
+To understand the rigidity phenomena we take a brief look at a close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
 
 \begin{lause}[Schwarz lemma]
-	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$ and hence also $|\psi'(0)| \leq 1$. If $|\psi(z)| = |z|$ for some $z \in \D \setminus \{0\}$ or $|\psi'(0)| = 1$, $\psi(z) = \omega z$ for some $\omega \in \mathbb{S}$.
+	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$.
 \end{lause}
 
 The textbook proof is based on two observations about analytic functions.
@@ -54,7 +54,7 @@ The textbook proof is based on two observations about analytic functions.
 	\item If $\varphi$ is analytic on closed unit disc and $|\varphi| \leq 1$ on the boundary of the disc, then $|\varphi| \leq 1$ inside the disc.
 \end{itemize}
 
-The first observation might not be very surprising, and it holds for smooth functions also. The second, on the other hand, is a true manifestation of the nature of the analytic maps: we can bound analytic functions simply by bounding them on the boundary of the domain. More generally, one knows everything about an analytic function on a domain simply by knowing it on a boundary, by Cauchy's integral formula.
+The first observation might not be very surprising, and it holds for smooth functions also. The second, on the other hand, is a true manifestation of the nature of the analytic maps: we can bound analytic functions simply by bounding them on the boundary of the domain. More generally: one knows everything about an analytic function on a domain simply by knowing it on a boundary, by Cauchy's integral formula.
 
 This suggests that we should be able to recognize also Pick functions looking only at their boundary values. Actually even more is true: it suffices to look at the imaginary parts.
 
@@ -95,24 +95,24 @@ Recall that imaginary part of an analytic function determines also its real part
 
 There's of course nothing really special about the decay assumption $\varphi(z) = O(|z|^{-\varepsilon})$; it's there just to make everything converge.
 
-One can guarantee the convergence also by other means. Note that the integrand behaves like $\frac{1}{\lambda - z}$, if we subtract something from it something behaving the same way at the infinity (something not depending on $z$), we ought to improve convergence, but only change the value of the function by a constant. As an example, consider the integral
+One can guarantee the convergence also by other means. Note that as the integrand behaves like $(\lambda - z)^{-1}$, if we subtract from it something (not depending on $z$) behaving the same way at the infinity, we ought to improve convergence, but only change the value of the function by a constant. As an example, consider the integral
 \begin{align}\label{easy_pick_repr}
 	\frac{1}{\pi}\int_{\R} \left(\frac{1}{\lambda - z} - \frac{[|\lambda| > 1]}{\lambda} \right) \Im(\varphi)(\lambda)d \lambda.
 \end{align}
-It converges to an analytic function as long as, say, $ \Im(\varphi)$ is bounded. As before, its imaginary part coincides with $\varphi$'s so the functions equal up to a real constant. Now it's not clear however that the functions should equal and indeed they need not: the right-hand side doesn't see real constants.
+It converges to an analytic function as long as, say, $\Im(\varphi)$ is bounded. As before, its imaginary part coincides with $\varphi$'s so the functions are equal up to a real constant. Now, however, there's no reason for the real constants to match and indeed they need not.
 
 Note that the previous idea could be used to construct Pick functions. Everything still makes sense if we replace $\Im(\varphi)$ by some other positive function, as long as the integral converges. Heck, we could replace it by any positive measure for which $\mu((\lambda^2 + 1)^{-1}) < \infty$.
 
 (Almost) all the examples given before are actually just special cases of this construction. The rational functions $\frac{1}{\lambda - z}$, where $\lambda \in \R$ are obtained by setting $\mu = \delta_{\lambda}$. The power functions are obtained as
 \begin{align*}
-	z^{p} &= c_{0} + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) \Im(\lambda^{p}) d \lambda \\
-	&= c_{0} + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) |\lambda|^{p} \sin(\pi p) d \lambda,
+	z^{p} &= 1 + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) \Im(\lambda^{p}) d \lambda \\
+	&=1 + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) |\lambda|^{p} \sin(\pi p) d \lambda,
 \end{align*}
-for some constant $c_{0}$ (which can be seen to be $1$ by setting $z = 1$). Logarithm is even simpler:
+Logarithm is even simpler:
 \begin{align*}
 	\log(z) = \int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) d \lambda.
 \end{align*}
-Tangent function could be obtained by putting $\delta$-measures to the points of the form $\frac{\pi}{2} + n \pi$, where $n \in \Z$, the singularities of tangent.
+Tangent function could be obtained by putting $\delta$-measures to its poles, the points of the form $\frac{\pi}{2} + n \pi$, where $n \in \Z$.
 
 The only exception is the function $z \mapsto \alpha z$ -- it can't be expressed as such integral. But even this failure is really more about poor point of view, as we will see in a minute. With these observations in mind it ought to be not too surprising that we have the following.
 
@@ -121,7 +121,7 @@ The only exception is the function $z \mapsto \alpha z$ -- it can't be expressed
 	\begin{align}\label{pick_representation}
 		\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \left(\frac{1}{\lambda - z} - \frac{\lambda}{\lambda^2 + 1}\right) d \mu(\lambda)
 	\end{align}
-	for some $\alpha \geq 0$ and $\beta \in \R$ and a Borel measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
+	for some $\alpha \geq 0$ and $\beta \in \R$ and a Radon measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
 \end{lause}
 
 Choosing $\lambda \mapsto \frac{\lambda}{\lambda^2 + 1}$ is common choice in the literature and is convenient as
@@ -176,7 +176,7 @@ makes sense. Even better, partial fraction expansion allows us to write this int
 \begin{align*}
 	q(\lambda) = c_{0}\frac{\lambda}{\lambda^2 + 1} + \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right),
 \end{align*}
-where $a_{i}$'s are the poles of $q$. The decay condition tells that $c_{0} = 0$. If $\Im(a_{i}) > 0$, term corresponds to multiple of $\varphi(a_{i})$, and if $\Im(a_{i}) < 0$, we get the conjugate. Explicitly, if we abuse notation a tad by writing $\varphi(a_{i}) = \overline{\varphi(\overline{a_{i}})}$ if $\Im(a_{i}) < 0$, we have
+where $a_{i}$'s are the poles of $q$. The decay condition tells that $c_{0} = 0$. If $\Im(a_{i}) > 0$, term corresponds to multiple of $\varphi(a_{i})$, and if $\Im(a_{i}) < 0$, we get the conjugate. Explicitly: if we abuse notation a tad by writing $\varphi(a_{i}) = \overline{\varphi(\overline{a_{i}})}$ if $\Im(a_{i}) < 0$, we have
 \begin{align*}
 	\int_{\R} q(\lambda) d \mu(\lambda) &= \int_{\R} \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right)\mu(\lambda) \\
 	&= \sum_{i = 1}^{M} c_{i} \left(\varphi(a_{i}) - \alpha a_{i} - \beta\right),
@@ -202,7 +202,7 @@ where $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c
 	\begin{align*}
 		\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\delta_{\lambda_{i}} - \overline{\delta_{\lambda_{j}}}}{\lambda_{i} - \overline{\lambda_{j}}},
 	\end{align*}
-	$\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$, is called a \textbf{Pick functional}. This is all of course to say that
+	$\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$, is called a \textbf{Pick functional}. In other words
 	\begin{align*}
 		\varphi \mapsto \sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\varphi(\lambda_{i}) - \overline{\varphi(\lambda_{j})}}{\lambda_{i} - \overline{\lambda_{j}}}.
 	\end{align*}
@@ -248,7 +248,7 @@ We denote the set of Pick functionals by $\pickclass^{*}$.
 		g_{n}(z) = \frac{z + \frac{i}{n}}{1 - \frac{i z}{n}}.
 	\end{align*}
 
-	$(ii) \rightarrow (i)$: By the construction of the $\pickclass^{*}$ it contains all the functionals \textbf{with finite support}, which give positive values for all extreme Pick functions. Thus it remains to be noted that all the continuous functionals in $\left(\C^{\Hp}\right)^{*}$ have finite support. But this follows from the general fact that the dual of a product equals direct sum of the duals.
+	$(ii) \rightarrow (i)$: By the construction of the $\pickclass^{*}$, it contains all the functionals with finite support, which give positive values for all extreme Pick functions. Thus it remains to be noted that all the continuous functionals in $\left(\C^{\Hp}\right)^{*}$ have finite support. But this follows from the general fact that the dual of a product equals direct sum of the duals.
 \end{proof}
 
 It is useful to note that one does not even need to test every extreme Pick function to check that functional is Pick functional, dense subset suffices. This is clear for the functions $z \mapsto \frac{1}{\lambda - z}$ but also holds for $z \mapsto z$, when this is intepreted as the function with $\lambda = \infty$ (and dense subset refers to the circle topology). Indeed, we have

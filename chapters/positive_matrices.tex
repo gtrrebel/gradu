@@ -282,11 +282,11 @@ This implies that if $p$ is the characteristic polynomial of $A$, then $p(A) = 0
 
 But even better, if $p$ is polynomial with all except one, say $\lambda_{i}$, of the eigenvalues of $A$ as roots, then $p(A) = p(\lambda_{i}) P_{E_{\lambda_{i}}}$. In particular, the projections to eigenspaces of $A$ are actually polynomials of $A$.
 
-Also, given $A \in \H(V)$, we may write any $x \in V$ in the form $v = \sum_{1 \leq i \leq n} \langle x, v_{i} \rangle v_{i}$, where $(v_{i})_{i = 1}^{n}$ is a eigenbasis for $A$. Now $A x = \sum_{1 \leq i \leq n} \lambda_{i} \langle x, v_{i} \rangle v_{i}$, so for instance
+Fix $A \in \H(V)$ with eigenbasis $(v_{i})_{i = 1}^{n}$. For any $v \in V$ we have $A v = \sum_{1 \leq i \leq n} \lambda_{i} \langle v, v_{i} \rangle v_{i}$, so for instance
 
 \begin{itemize}
-\item $\langle A x, x \rangle = \sum_{1 \leq i \leq n} \lambda_{i} |\langle x, v_{i} \rangle|^{2}$. Thus the quadratic form is just a positive linear combination of eigenvalues.
-\item $\|A x\|^{2} = \sum_{1 \leq i \leq n} \lambda_{i}^{2} |\langle x, v_{i} \rangle|^{2} \leq \left(\max_{1 \leq i \leq n} \lambda_{i}^2 \right) \|x\|^{2}$. Hence $\|A\| = \max_{1 \leq i \leq n} |\lambda_{i}|$.
+\item $\langle A v, v \rangle = \sum_{1 \leq i \leq n} \lambda_{i} |\langle v, v_{i} \rangle|^{2}$: the quadratic form is just a positive linear combination of eigenvalues.
+\item $\|A v\|^{2} = \sum_{1 \leq i \leq n} \lambda_{i}^{2} |\langle v, v_{i} \rangle|^{2} \leq \left(\max_{1 \leq i \leq n} \lambda_{i}^2 \right) \|v\|^{2}$. Hence $\|A\| = \max_{1 \leq i \leq n} |\lambda_{i}|$.
 \end{itemize}
 
 \section{Matrix functions}
@@ -355,9 +355,9 @@ It turns out that real maps commute only if they ``trivially" commute, in the fo
 \begin{align*}
 	A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}} \; \text{ and } \; B = \sum_{1 \leq i \leq n} \lambda'_{i} P_{v_{i}},
 \end{align*}
-then $A$ and $B$ are said to be \textbf{simultaneously diagonalizable}. Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are indeed simultenously diagonalizable.
+then $A$ and $B$ are said to be \textbf{simultaneously diagonalizable}. Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are simultenously diagonalizable.
 
-To prove this statement, we start with a lemma, simplest non-trivial case of the statement.
+To prove this, we start with a lemma.
 
 \begin{lem}\label{projectionLemma}
 	Let $W_{1}, W_{2} \subset V$ be two subspaces. Then $P_{W_{1}}$ and $P_{W_{2}}$ commute if and only if there exists orthogonal subspaces $U_{1}, U_{2}$ and $U_{0}$ such that
@@ -390,10 +390,10 @@ To prove this statement, we start with a lemma, simplest non-trivial case of the
 
 	Now the algorithm is the following: pick pairs of projections with non-orthogonal subspaces and perform the replacing procedure. But there's a problem : it's not clear that the new family is any simpler than $\mathcal{A}$! It could well have more elements than $\mathcal{A}$ so we can't just do straightforward induction. What could happen also is that some of the subspaces $U_{0}, U_{1}, U_{2}$ coincide with the subspaces already present in the family, so the size of the family doesn't increase, and it could even decrease. This will indeed happen. One way to see this is to look at the sum of dimensions of all the projections of the family: if we change the family this sum cannot increase. Moreover, if we pick two subspaces $W_{1}$ and $W_{2}$ which are not orthogonal, this sum will decrease! So the algorithm eventually terminates and remaining projections give us the subspaces $E_{i}$ (complemented by the complement of the union of these subspaces if necessary).
 
-	There are many ways to bootstrap the previous argument for arbitrary families. For any finite subfamily we can form the set of generating projections. If we add one more map, the set of projections might get refined: some of the subspaces might get split to pieces. Since sizes of all these generating families are bounded by $n$ so we may pick one with most number of elements. Now if $A$ is any projection in $\mathcal{A}$, by maximality, adding it to the family does not refine the generating set. But this means that the generating set generates any element of $\mathcal{A}$ and we are done.
+	There are many ways to bootstrap the previous argument for arbitrary families. For any finite subfamily we can form the set of generating projections. If we add one more map, the set of projections might get refined: some of the subspaces might get split to pieces. Since sizes of all these generating families are bounded by $n$ so we may pick one with most elements. Now if $A$ is any projection in $\mathcal{A}$, by maximality, adding it to the family does not refine the generating set. But this means that the generating set generates any element of $\mathcal{A}$ and we are done.
 \end{proof}
 
-The message is: if one wants products to preserve positivity, everything degenerates to $\R^{m}$, or to diagonal maps, which isn't all that exciting.
+The message is: if one wants products to preserve positivity, everything degenerates to $\R^{m}$, i.e. diagonal maps.
 
 \begin{phil}
 	Commutativity kills the exciting phenomena.
@@ -434,7 +434,7 @@ For one dimesional projections things go as badly as they possibly can.
 		If $A = P_{v} + P_{w} = I$, then $v$ and $w$ are orthogonal.
 	\end{lem}
 	\begin{proof}
-		Note that $\langle v, v \rangle = \rangle A v, v \rangle = \langle P_{v} v, v \rangle + \langle P_{w} v, v \rangle = \langle v, v \rangle + |\langle v, w \rangle|^2/\langle v, v\rangle$, so $\langle v, w \rangle = 0$.
+		Note that $\langle v, v \rangle = \langle A v, v \rangle = \langle P_{v} v, v \rangle + \langle P_{w} v, v \rangle = \langle v, v \rangle + |\langle v, w \rangle|^2/\langle v, v\rangle$, so $\langle v, w \rangle = 0$.
 	\end{proof}
 	\begin{lem}
 		If $A = P_{v} + P_{w} = 2 P_{u}$ for some $u \in V$, then $v, w$ and $u$ are all parallel.
@@ -468,7 +468,7 @@ Despite all the negative news, there's one non-trivial non-commutative way to pr
 	If $A, B \in \H(V)$, we write that $A \leq B$ ($A$ is smaller than $B$) if $B - A \geq 0$, $B - A$ is positive. If $B - A$ is strictly positive, we write $A < B$.
 \end{maar}
 
-Proposition \ref{basic_positive} tells us that such order is indeed partial order on the $\R$-vector space of real maps. More explicitly, we have the following properties:
+Proposition \ref{basic_positive} tells us that $\leq$, Loewner order, is indeed a partial order on the $\R$-vector space of real maps. More explicitly, we have the following properties:
 
 \begin{prop}\label{basic_loewner}
 	\begin{enumerate}[(i)]
@@ -486,7 +486,7 @@ Proposition \ref{basic_positive} tells us that such order is indeed partial orde
 	\end{align*}
 \end{esim}
 
-Key thing here is to note what is missing from the standard real ordering: multiplication by positive map doesn't preserve usual ordering. This is the reason many standard arguments don't work for general real maps.
+Key thing here is to note that multiplication by positive map doesn't preserve Loewner order. This is the reason many standard arguments don't work for general real maps.
 
 For example if $0 < a \leq b$, with real numbers one could multiply the inequalities by the positive number $(a b)^{-1}$ to get $0 < b^{-1} \leq a^{-1}$. This doesn't quite work with linear maps anymore.
 
@@ -514,13 +514,11 @@ Using this one can salvage the above argument.
 \end{proof}
 
 \begin{huom}
-
 Alternatively, we could conjugate both sides by $X^{-\frac{1}{2}}$ to arrive at the conclusion. Note that by doing this we have only used $*$-conjugation in the proof: actually we have $*$-conjugated altogether with 
 \[
 	A^{-\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{-\frac{1}{2}} A^{-\frac{1}{2}} = (A^{\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{\frac{1}{2}} A^{\frac{1}{2}})^{-1}.
 \]
 The map $A^{\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{\frac{1}{2}} A^{\frac{1}{2}}$, which is real, is usually called the geometric mean of $A$ and $B$. The point is: somewhat curiously we can almost do the original proof: just replace multiplication by $*$-conjugation by square root, and replace square root of product by geometric mean.
-
 \end{huom}
 
 \section{Notes and references}

@@ -1,7 +1,7 @@
 \chapter{Matrix monotone functions -- part 1}
 
 \begin{maar}
-	We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H^{n}_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
+	We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
 \end{maar}
 
 We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. We will also denote
@@ -38,10 +38,10 @@ Note that in the notation $P_{n}(a, b)$ we don't specify the space $V$; it doesn
 \end{proof}
 
 \begin{prop}
-	We have $(x \mapsto -x^{-1}) \in P_{n}(a, b)$ if $0 \notin (a, b)$.
+	If $0 \notin (a, b)$, we have $(x \mapsto -x^{-1}) \in P_{n}(a, b)$.
 \end{prop}
 \begin{proof}
-	The result follows immediately from the theorem \ref{inverse_decreasing}.
+	The result follows immediately from theorem \ref{inverse_decreasing}.
 \end{proof}
 
 Now also $(x \mapsto (\lambda - x)^{-1} \in P_{n}(a, b)$ for any $\lambda \notin (a, b)$ so by the cone property also
@@ -72,9 +72,9 @@ Below we collect many natural properties of the cones $P_{n}(a, b)$.
 	$(iii) \Rightarrow (ii)$: All $1 \times 1$ matrices commute.
 	
 
-	$(i) \Rightarrow (iii)$: If $A \leq B$ and $A$ and $B$ commute, by theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} a_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{v_{i}}$ for some $a_{1}, \ldots, a_{n}, b_{1}, \ldots, b_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $a_{i} \leq b_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(a_{i}) P_{v_{i}}$ and $\sum_{i = 1}^{n} f(b_{i}) P_{v_{i}}$ so
+	$(i) \Rightarrow (iii)$: If $A \leq B$ and $A$ and $B$ commute, by theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} a_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{v_{i}}$ for some $\lambda_{1}, \ldots, \lambda_{n}, \lambda'_{1}, \ldots, \lambda'_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $\lambda_{i} \leq \lambda'_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(\lambda_{i}) P_{v_{i}}$ and $\sum_{i = 1}^{n} f(\lambda'_{i}) P_{v_{i}}$ so
 	\begin{align*}
-		f(B) - f(A) = \sum_{i = 1}^{n} (f(b_{i}) - f(a_{i})) P_{v_{i}}
+		f(B) - f(A) = \sum_{i = 1}^{n} (f(\lambda'_{i}) - f(\lambda_{i})) P_{v_{i}}
 	\end{align*}
 	is positive, as $f$ is increasing.
 \end{proof}
@@ -83,14 +83,14 @@ Below we collect many natural properties of the cones $P_{n}(a, b)$.
 	If $f : (a, b) \to (c, d)$ and $g : (c, d) \to \R$ are $n$-monotone, so is $g \circ f : (a, b) \to \R$.
 \end{prop}
 \begin{proof}
-	Fix any $A, B \in \H^{n}_{(a, b)}$ with $A \leq B$. By assumption $f(A) \leq f(B)$ and $f(A), f(B) \in \H^{n}_{(c, d)}$ so again by assumption, $g(f(A)) \leq g(f(B))$, our claim.
+	Fix any $A, B \in \H_{(a, b)}$ with $A \leq B$. By assumption $f(A) \leq f(B)$ and $f(A), f(B) \in \H^{n}_{(c, d)}$ so again by assumption, $g(f(A)) \leq g(f(B))$, our claim.
 \end{proof}
 
 \begin{prop}
 	We have $P_{n + 1}(a, b) \subset P_{n}(a, b)$.
 \end{prop}
 \begin{proof}
-	Take $A, B \in \H_{(a,)}(V)$ with $A \leq B$. For any $c \in (a, b)$ we have $(A \oplus c), (B \oplus c) \in \H(V \oplus \C)$ and $(A \oplus c) \leq (B \oplus c)$. Consequently, if $f \in P_{n + 1}(a, b)$, we have
+	Take $A, B \in \H_{(a,b)}(V)$ with $A \leq B$. For any $c \in (a, b)$ we have $(A \oplus c), (B \oplus c) \in \H(V \oplus \C)$ and $(A \oplus c) \leq (B \oplus c)$. Consequently, if $f \in P_{n + 1}(a, b)$, we have
 	\begin{align*}
 		f_{V}(A) \oplus f(c) = f_{V \oplus \C}(A \oplus c) \leq f_{V \oplus \C}(B \oplus c) = f_{V}(B) \oplus f(c),
 	\end{align*}
@@ -158,7 +158,7 @@ If we can do this, $A$ and $B$ work as counterexamples. Indeed then $\chi_{(0, \
 
 Constructing such pair is very easy: just take $A$ with eigenvalues $-1$ and $1$ and consider $B$ of the form $A + t H$ for some $H \geq 0$, $t > 0$ and such that $A$ and $H$ do not commute. For small enough $H$ all of the conditions are easily satisfied.
 
-As many properties of real numbers break with real maps, similarly many properties of monotone functions break when $n > 1$. As we saw with the square function example, product of two $n$-monotone functions need not be $n$-monotone in general, even if they are both positive functions. Similarly, taking maximums doesn't preserve monotonicity.
+As we saw with the square function example, product of two $n$-monotone functions need not be $n$-monotone in general, even if they are both positive functions. Similarly, taking maximums doesn't preserve monotonicity.
 
 \begin{prop}
 	Maximum of two $n$-monotone functions need not be $n$-monotone for $n \geq 2$.
@@ -172,7 +172,7 @@ As many properties of real numbers break with real maps, similarly many properti
 	\end{align*}
 	as we wanted.
 
-	Here the flaw is in the expression $\max(f(A), g(A))$: what is maximum of two matrices? It turns out that however you try to define it, you can't satisfy the above inequality.
+	Here the flaw is in the expression $\max(f(A), g(A))$: what is maximum of two matrices? It turns out that however one tries to define it, the above inequality doesn't work.
 
 	For counterexamples take $f \equiv 0$ and $g = \id$: it's easy to see that we can take same pair as with $\chi_{(0, \infty)}$ as our counterexample.
 \end{proof}
@@ -186,16 +186,16 @@ The maximum problem is not too bad and maybe it's more of a pleasent surprise an
 	Adding linear term means just translating domain and codomain, which is not going to help: $x^2 + \alpha x = (x + \frac{\alpha}{2})^2 - \frac{\alpha^2}{4}$.
 \end{proof}
 
-Why is this bad? If $f : (a, b) \to \R$ is not too bad (say Lipschitz), for large enough $\alpha$ the function defined by $g(x) = f(x) + \alpha x$ is increasing. But we can't do necessarily do the same thing in the matrix setting even for smooth or analytic functions. Although this might not be such a big surprise or a bad thing in the first place, it is worthwhile to investigate the underlying reason.
+Why is this bad? If $f : (a, b) \to \R$ is not too bad (say Lipschitz), for large enough $\alpha$ the function defined by $g(x) = f(x) + \alpha x$ is increasing. But we can't necessarily do the same thing in the matrix setting even for smooth or analytic functions. Although this might not be such a big surprise or a bad thing in the first place, it is worthwhile to investigate the underlying reason.
 
 Let $f(x) = \alpha x + x^2$ and take $A, H \geq 0$. As observed earlier, we have
 \begin{align*}
 	\lim_{t \to 0} \frac{f(A + t H) - f(A))}{t} &= \alpha H \\
 	&+ H A + A H\\
 \end{align*}
-In the real setting we could just increase $\alpha$ to make the previous expression positive. In the matrix setting there is a problem: note that if $H$ is of rank $1$, increasing $\alpha$ means ``increasing the right-hand side only to one direction". The point is that if the right-hand side is not positive (map) in the first place, it might be (a priori) non-positive in a big subspace, so rank $1$ machinery is not going to save the day. Note also that even if we let $A \to 0$ (look at matrix function at $0$), the situation isn't a priori better.
+In the real setting we could just increase $\alpha$ to make the previous expression positive. In the matrix setting there is a problem: note that if $H$ is of rank $1$, increasing $\alpha$ means ``increasing the right-hand side only to one direction". Now, if the right-hand side is not positive (map) in the first place, it might be non-positive in a big subspace, so rank $1$ machinery is not going to save the day. Note also that even if we let $A \to 0$ (look at matrix function at $0$), the situation isn't a priori better.
 
-On the other hand if $n = 2$, for instance, there is not too much room for things to go south. We still, a priori, can't guarantee positivity with $\alpha$, but adding something extra, say $\beta x^3$ for some $\beta > 0$ might. In the end, there isn't too much space in the $2$-dimensional space. We will later see that this will indeed happen. TODO
+On the other hand if $n = 2$, for instance, there is not too much room for things to go south. We still, a priori, can't guarantee positivity with $\alpha$, but adding also something extra, say $\beta x^3$ for some $\beta > 0$ might work. In the end, there isn't too much space in the $2$-dimensional space. We will later see that this will indeed happen. TODO
 
 When $n$ gets larger we have more and more space to worry about, so we should start worrying about more and more Taylor coefficients.
 
@@ -222,7 +222,7 @@ If $f \in P_{\infty}(a, b)$, this expression should be positive for $A \in \H_{(
 \begin{align*}
 	D f_{A}(H) := \lim_{t \to 0} \frac{f(A + t H) - f(A))}{t},
 \end{align*}
-derivative of a matrix function at $A$ in the direction $H$. This limit is certainly well-defined and linear in $H$ for entire functions\footnote{It will also make sense more generally for $C^{1}(a, b)$-maps, but we won't need that fact.}, so it suffices to consider the case of rank one $H$. Let's say $H = v v^{*}$ for some $v \in V$ and take any $w \in V$. Now we should have
+derivative of a matrix function at $A$ in the direction $H$. As the derivative is linear in $H$, it suffices to consider the case $\rank(H) = 1$. Let's say $H = v v^{*}$ for some $v \in V$ and take any $w \in V$. Now we should have
 \begin{align*}
 	\langle D f_{A}(H) w, w \rangle &= \sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} \langle A^{j} H A^{i - 1 - j} w, w \rangle \\
 	&= \sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} \langle  A^{i - 1 - j} w, v \rangle \langle A^{j} v, w \rangle \\
@@ -256,7 +256,7 @@ As one would hope, there's corresponding result for the classes $P_{n}(a, b)$.
 	$f \in P_{n}(a, b)$, if and only if $(a_{i + j - 1})_{1 \leq i, j \leq n}$, where $a_{k} = f^{(k)}(x)/k!$ and $x \in (a, b)$, is positive for any $x \in (a, b)$.
 \end{lause}
 
-Only now there's a problem: function in $P_{n}(a, b)$ need not be analytic, and even worse it need not be $(2 n - 1)$ so the condition should be understood in weak (distributional) sense.
+Only now there's a problem: it turns out that function in $P_{n}(a, b)$ need not be analytic, or even $(2 n - 1)$ times differentiable, so the condition should be understood in the distributional sense.
 
 \subsection{Main argument}
 
@@ -267,7 +267,7 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 	\begin{align*}
 		\lim_{\varepsilon \to 0} \langle D f_{A_{\varepsilon}} (H_{\varepsilon}) w_{\varepsilon}, w_{\varepsilon} \rangle = \langle M v, v \rangle
 	\end{align*}
-	for some $H_{\varepsilon} \geq 0$, $w_{\varepsilon} \in \C^{n}$, $A_{\varepsilon} \in \H^{n}_{(a, b)}$, with $\lim_{\varepsilon \to 0} A_{\varepsilon} = 0$. This works.
+	for some $H_{\varepsilon} \geq 0$, $w_{\varepsilon} \in \C^{n}$, $A_{\varepsilon} \in \H_{(a, b)}$, with $\lim_{\varepsilon \to 0} A_{\varepsilon} = 0$. This works.
 
 	To find $H_{\varepsilon}, w_{\varepsilon}, A_{\varepsilon}$, we change the point of view. Recall that if $f$ is entire we have
 	\begin{align*}
@@ -287,7 +287,7 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 		\langle D f_{A}(H) w, w \rangle &= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - A)^{-1} v v^{*} (z I - A)^{-1} w, w \rangle f(z) dz \\
 		&= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - A)^{-1} v, w \rangle \langle (z I - A)^{-1} w, v \rangle f(z) dz.
 	\end{align*}
-	Note that we can write $\langle (z I - A)^{-1} v, w \rangle = \det(z I - A)^{-1} q(z)$ where $q$ is some polynomial of degree less than $n$. Moreover, if $A$ has $n$ distinct roots, varying $w$ gives all such polynomials $q$. We can rewrite our object as
+	Note that we can write $\langle (z I - A)^{-1} v, w \rangle = \det(z I - A)^{-1} q(z)$ where $q$ is some polynomial of degree less than $n$. Moreover, if $A$ has $n$ distinct roots, varying $w$ gives all such polynomials $q$, so we can rewrite our object as
 	\begin{align*}
 		\frac{1}{2 \pi i}\int_{\gamma} \det(z I - A)^{-2} q(z) \overline{q(\overline{z})} f(z) dz.
 	\end{align*}
@@ -312,14 +312,14 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 	This follows immeditaly from \ref{heuristic_main}.
 \end{proof}
 
-Note that the proof gives also alternate interpretation to the matrix $M$. Positivity of $M$ means simply that for $q \in \C_{n - 1}[x]$ the function $f(x) q(x) \overline{q(\overline{x})} = f(x) |q(x)|^2$ has non-negative $(2 n - 1)$'th derivative.
+Note that the proof gives also alternate interpretation for the matrix $M$. Positivity of $M$ means simply that for $q \in \C_{n - 1}[x]$ the function $f(x) q(x) \overline{q(\overline{x})} = f(x) |q(x)|^2$ has non-negative $(2 n - 1)$'th derivative.
 
-Given polynomial $q$, we denote by $N(q)$ polynomial with
+Given polynomial $q$, we denote by $N(q)$ the polynomial with
 \begin{align*}
 	N(q)(z) = q(z) \overline{q(\overline{z})}.
 \end{align*}
 
-The main problem of the argument is the regularity. While we assume entireity of $f$ mainly for convenience and it could be easily avoided, we need some kind of regularity to make sense of the definition: it is a priori not even clear that functions in $P_{\infty}(a, b)$ should be continuous. Origin of these regularity properties is the topic of the next chapter.
+The main problem of the argument is the regularity. While we assume $f$ to be entire mainly for convenience, we need some kind of regularity to make sense of the definition: it is a priori not even clear that functions in $P_{\infty}(a, b)$ should be continuous. Origin of these regularity properties is the topic of the next chapter.
 
 
 \section{Notes and references}

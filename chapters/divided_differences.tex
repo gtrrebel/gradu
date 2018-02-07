@@ -281,7 +281,7 @@ Indeed: $P_{X, f}(x_{i})$ evaluates to $f(x_{i})$ by Cauchy's integral formula. 
 
 While the previous argument works stricly speaking only for analytic function (and even then one would have to be careful with $\gamma$), the identity holds more generally. The expression for $P_{X, f}$ can be expanded as some kind polynomial, coefficients of which are linear combinations of evaluations $f(x_{i})$: such expressions make perfect sense irrespective of regularity of $f$. Same is true for the evaluations of this polynomial at points $x_{i}$, numbers $P_{X, f}(x_{i})$. We know that $P_{X, f}(x_{i}) = f(x_{i})$ holds for all analytic (or at least entire) functions. On the other hand the map $f \mapsto P_{X, f}(x_{i}) - f(x_{i})$ is simply a finite linear combination of point evaluations, so it vanishes for any function if we manage to prove that
 
-\begin{lem}
+\begin{lem}\label{entire_interpolation}
 	For any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in \C$ and $y_{0}, y_{1}, \ldots, y_{n} \in \C$ there exists an entire function $f$ with $f(x_{i}) = y_{i}$.
 \end{lem}
 \begin{proof}
@@ -378,7 +378,7 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 	Let $k$ be an non-negative integer and $(a, b)$ an open interval. Then $P^{(k)}(a, b) \subset \R^{(a, b)}$ is closed convex cone.
 \end{lause}
 \begin{proof}
-	This is clear.
+	This follows immediately from \ref{positive_machine}.
 \end{proof}
 
 Mean value theorem tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative.
@@ -453,7 +453,7 @@ They key idea in the proof was to split the test functions to two parts, one sup
 	Now we are ready to generalize the algorighm to bigger $n$:
 
 	\noindent \textbf{Input:} Peano kernel of order $n$ supported on $(a, d)$. \\
-	\noindent \textbf{Output:} Decomposition of the input as positive linear combination of Peano Kernels of order $n$, all supported completely either on $(a, b)$ or $(c, d)$.
+	\noindent \textbf{Output:} Decomposition of the input as positive linear combination of Peano kernels of order $n$, all supported completely either on $(a, b)$ or $(c, d)$.
 	\begin{enumerate}[\textbf{Step} 1.]
 		\item If the kernel is good already, we are done.
 		\item Pick $y_{0} \in (c, b)$, which does not coincide any of the $x_{0}, x_{1}, \ldots, x_{n}$.
@@ -565,9 +565,9 @@ The first step is to connect the divided differences of a function to the divide
 Note that the proof essentially gives also the following identity.
 \begin{prop}\label{total_derivative}
 	Let $x_{0}, x_{1}, \ldots, x_{n}$ and $y_{0}, y_{1}, \ldots, y_{n}$ be pairwise distinct points on $(a, b)$. Then for any $f : (a, b) \to \R$ we have
-	\begin{align*}
+	\begin{align}
 		[y_{0}, y_{1}, \ldots, y_{n - 1}]_{f} - [x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} = \sum_{i = 0}^{n - 1} [x_{0}, \ldots, x_{i - 1}, x_{i}, y_{i}, y_{i + 1}, \ldots, y_{n - 1}]_{f} (y_{i} - x_{i}).
-	\end{align*}
+	\end{align}
 \end{prop}
 
 Next step is to connect the regularity of divided differences to regularity of divided differences of the derivative. Denote
@@ -575,10 +575,10 @@ Next step is to connect the regularity of divided differences to regularity of d
 	D_{n, m} = \{x \in \R^{n} | x_{i_{1}} = x_{i_{2}} = \ldots = x_{i_{m}} \text{ for some $1 \leq i_{1} < i_{2} < \ldots < i_{m} \leq n$} \}.
 \end{align*}
 
-Note that $D_{n + 1, 2}$ is exactly the set where the divided differences aren't defined. Still, if $f$ is smooth enough, we should be able to continuosly extend the divided differences to this set, or at least to some subset set of it. This thinking leads to the following notion of the regularity of a function.
+Note that $D_{n + 1, 2}$ is exactly the set where the divided differences aren't defined. Still, if $f$ is smooth enough, we should be able to continuously extend the divided differences to this set, or at least to some subset set of it. This thinking leads to the following notion of the regularity of a function.
 
 \begin{maar}
-	Let $f : (a, b) \to \R$ and $k \geq 0$. We call $f$ \textit{weakly $C^{k}$} (on $(a, b)$), or write $f \in C_{w}^{k}(a, b)$, if its order $k$ divided differences can be continuosly extended to $(a, b)^{k + 1}$.
+	Let $f : (a, b) \to \R$ and $k \geq 0$. We call $f$ \textit{weakly $C^{k}$} (on $(a, b)$), or write $f \in C_{w}^{k}(a, b)$, if its order $k$ divided differences can be continuously extended to $(a, b)^{k + 1}$.
 \end{maar}
 
 Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$. Note that this trivially holds for $k = 0$.
@@ -593,21 +593,17 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 	\end{align*}
 	As $S(k, k, f)$ is just saying that $f \in C_{w}^{k}(a, b)$, it is enough to prove that for any $n > k$ we have $S(n - 1, k, f) \Leftrightarrow S(n, k, f)$.
 
-	$\Rightarrow$: assume that $S(n - 1, k, f)$, i.e. order $n - 1$ divided differences of $f$ extend continuously to $(a, b)^{n} \setminus D_{n, k + 2}$. Now take any $(x_{0}, x_{1}, \ldots, x_{n}) \in (a, b)^{n + 1} \setminus D_{n + 1, k + 2}$. Consider any sequence of tuples $(y_{0, j}, y_{1, j}, \ldots, y_{n, j})_{j = 1}^{\N}$ such that $(y_{i, j}) \to x_{i}$ as $j \to \infty$ for every $0 \leq i \leq n$ and for every fixed $j \in \N$. We should prove that the sequence
+	$\Rightarrow$: Assume that $S(n - 1, k, f)$ and take any $x = (x_{0}, x_{1}, \ldots, x_{n}) \in (a, b)^{n + 1} \setminus D_{n + 1, k + 2}$. Since $n + 1 \geq k + 2$, we may assume that $x_{0} \neq x_{n}$. But now by the assumption the map
 	\begin{align*}
-		([y_{0, j}, y_{1, j}, \ldots, y_{n, j}]_{f})_{j = 1}^{\N}
+		(y_{0}, y_{1}, \ldots, y_{n}) \mapsto \frac{[y_{0}, y_{1}, \ldots, y_{n - 1}]_{f} - [y_{1}, y_{2}, \ldots, y_{n}]_{f}}{y_{0} - y_{n}}
 	\end{align*}
-	converges. By permutation we may assume that $x_{0} \neq x_{n}$. But since
-	\begin{align*}
-		[y_{0, j}, y_{1, j}, \ldots, y_{n, j}]_{f} = \frac{[y_{0, j}, y_{1, j}, \ldots, y_{n - 1, j}]_{f} - [y_{1, j}, y_{2, j}, \ldots, y_{n, j}]_{f}}{y_{0, j} - y_{n, j}},
-	\end{align*}
-	$(y_{0, j}, \ldots, y_{n - 1, j}), (y_{1, j}, \ldots, y_{n, j}) \in (a, b)^{n} \setminus D_{n, k + 2}$ for every $j \in \N$, and these sequences converge, we see that the divided differences in the numerator converge. As also the denominator converges to non-zero number, the whole expression converges, and hence $S(n, k, f)$
+	extends continuously to some neighbourhood of $x$ (in $(a, b)^{n + 1} \setminus D_{n + 1, k + 2}$), and since this map agrees with the $n$'th order divided differences on $(a, b)^{n + 1} \setminus D_{n + 1, 2}$ by \ref{divdif_rec}, it gives the continuous extension to $x$.
 
-	$\Leftarrow$: Assume then that $S(n, k, f)$. Take any sequence $(y_{0, j}, y_{1, j}, \ldots, y_{n - 1, j})_{j = 1}^{\N}$ converging to $(x_{0}, x_{1}, \ldots, x_{n - 1}) \in (a, b)^{n} \setminus D_{n, k + 2}$ and choose additional sequence $(z_{0}, z_{1}, \ldots, z_{n - 1})$ of pairwise distinct points distinct from all the $x_{i}$'s and $y_{i, j}$'s. Now we can write
+	$\Leftarrow$: Assume then that $S(n, k, f)$. Take any $x = (x_{0}, x_{1}, \ldots, x_{n - 1}) \in (a, b)^{n} \setminus D_{n, k + 2}$ and additional point $(z_{0}, z_{1}, \ldots, z_{n - 1})$ with pairwise distinct components and $x_{i} \neq z_{j}$ for $0 \leq i, j \leq n - 1$. Now the map
 	\begin{align*}
-		[y_{0, j}, \ldots, y_{n - 1, j}]_{f} &= [z_{0}, z_{1}, \ldots, z_{n - 1}]_{f} + \sum_{i = 0}^{n - 1}[z_{0}, \ldots, z_{i - 1} z_{i}, y_{i, j}, y_{i + 1, j}, \ldots, y_{n - 1, j}]_{f} (y_{i, j} - z_{i}).
+		(y_{0}, \ldots, y_{n - 1}) \to [z_{0}, z_{1}, \ldots, z_{n - 1}]_{f} + \sum_{i = 0}^{n - 1}[z_{0}, \ldots, z_{i - 1} z_{i}, y_{i}, y_{i + 1}, \ldots, y_{n - 1}]_{f} (y_{i} - z_{i})
 	\end{align*}
-	As by the induction hypothesis the right-hand side converges, so does the left-hand side, and hence $S(n - 1, k, f)$.
+	is continuous on some neighbourhood of $x$ in $(a, b)^{n + 1} \setminus D_{n + 1, k + 2}$, and it since it agrees with the order $n$ divided differences on $(a, b)^{n} \setminus D_{n, 2}$ (by \ref{total_derivative}), it gives the extension at $x$.
 \end{proof}
 
 \begin{lause}\label{weaktoreal_lemma}
@@ -615,21 +611,16 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 \end{lause}
 
 \begin{proof}
-	We start with the ``$\Rightarrow$"-direction.
 
-	Let's start by proving that $f$ is continuouly differentiable. Lemma \ref{weaklyCk_basic} easily implies that it is sufficient prove this for the case $k = 1$. But in this case we now that the limits $\lim_{x \to x_{0}} [x, x_{0}]_{f} = [x_{0}, x_{0}]_{f}$ exist and $f$ is hence differentiable with $f'(x) = [x, x]_{f}$. Also, $x \mapsto [x, x]_{f} = f'(x)$ is continuous.
+	``$\Rightarrow$": Let's start by proving that $f$ is continuouly differentiable. Lemma \ref{weaklyCk_basic} easily implies that it is sufficient prove this for the case $k = 1$. But in this case we now that the limits $\lim_{x \to x_{0}} [x, x_{0}]_{f} = [x_{0}, x_{0}]_{f}$ exist and $f$ is hence differentiable with $f'(x) = [x, x]_{f}$. Also, $x \mapsto [x, x]_{f} = f'(x)$ is continuous.
 
 	Now the identity \ref{derivative_divdif} easily implies the claim.
 
-	For the ``$\Leftarrow$"-direction take any sequence $(y_{0,j}, \ldots, y_{k, j})_{j = 1}^{\N}$ of elements of $(a, b)^{k + 1}$ converging to $(x_{0}, \ldots, x_{k}) \in (a, b)^{k + 1}$. Now by \ref{integral_divdif}
+	``$\Leftarrow$": By \ref{integral_divdif} it suffices to prove that the map
 	\begin{align*}
-		[y_{0, j}, y_{1, j}, \ldots, y_{k, j}]_{f} = \int_{0}^{1}[s y_{0, j} + (1 - s) y_{k, j}, \ldots, s y_{k - 1, j} + (1 - s) y_{k, j}]_{f'} s^{k - 1} d s
+		(x_{0}, x_{1}, \ldots, x_{k}) \to \int_{0}^{1}[s x_{0} + (1 - s) x_{k}, \ldots, s x_{k - 1} + (1 - s) y_{k}]_{f'} s^{k - 1} d s.
 	\end{align*}
-	As $j \to \infty, $, we have $(y_{0,j}, \ldots, y_{n, j}) \to (x_{0}, x_{1}, \ldots, x_{k})$ and hence also $(s y_{0, j} + (1 - s) y_{k, j}, \ldots, s y_{k - 1, j} + (1 - s) y_{k, j}) \to (s x_{0} + (1 - s) x_{n}, \ldots, s x_{n - 1} + (1 - s) x_{k})$ uniformly (over $s$). As $(n - 1)$'th divided differences of $f'$ extend continuosly, they are uniformly continuous over all the compact sets, so in particular the integrand converges uniformly to
-	\begin{align*}
-		[s x_{0} + (1 - s) x_{n}, \ldots, s x_{n - 1} + (1 - s) x_{k}]_{f'} s^{n - 1},
-	\end{align*}
-	and hence also the integral converges, which was to be shown.
+	is continuous. Since $f' \in C_{w}^{k - 1}(a, b)$, the order $(k - 1)$ divided differences are uniformly continuous on any compact subset of $(a, b)^{k + 1}$. The integrand is consequently continuous with $\sup$-norm and hence the whole map continuous.
 \end{proof}
 
 \begin{kor}
@@ -642,21 +633,21 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 Just like one can carry regularity information, one can carry boundedness information.
 
 \begin{lem}\label{boundtoreal_lemma}
-	Let $f : (a, b) \to \R$ and $n \geq 2$. Then the $n$'th order divided differences of $f$ are bounded, if and only if $f \in C^{1}$ and the order $(n - 1)$ divided differences of $f'$ are bounded. Moreover, the bounds satisfy
+	Let $f : (a, b) \to \R$ and $k \geq 2$. Then the $k$'th order divided differences of $f$ are bounded, if and only if $f \in C^{1}$ and the order $(k - 1)$ divided differences of $f'$ are bounded. Moreover, the bounds satisfy
 	\begin{align*}
-		\sup_{a < x_{0} < x_{1} < \ldots < x_{n - 1} < b} |[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f'}| = n \sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}|
+		\sup_{a < x_{0} < x_{1} < \ldots < x_{k - 1} < b} |[x_{0}, x_{1}, \ldots, x_{k - 1}]_{f'}| = k \sup_{a < x_{0} < x_{1} < \ldots < x_{k}< b} |[x_{0}, x_{1}, \ldots, x_{k}]_{f}|
 	\end{align*}
 \end{lem}
 \begin{proof}
-	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $n$'th divided difference corresponds to $n$'th derivative, if it is bounded, $(n - 1)$'th derivative should be continuous. Thus we should prove that this is indeed the case by proving that $(n - 1)$'th divided differences of $f$ extend continuously to the whole of $(a, b)^{n}$.
+	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $k$'th divided difference corresponds to $k$'th derivative, if it is bounded, $(k - 1)$'th derivative should be continuous. Thus we should prove that this is indeed the case by proving that $(k - 1)$'th divided differences of $f$ extend continuously to the whole of $(a, b)^{k}$.
 
-	Note that lemma \ref{total_derivative} immediately implies that $(n - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions can be always extended as Lipschitz functions, so we are done by lemma \ref{weaktoreal_lemma}.
+	Note that lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions can be always extended as Lipschitz functions, so we are done by lemma \ref{weaktoreal_lemma}.
 \end{proof}
 
 \begin{lause}\label{bounded_div}
-	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{n - 1}(a, b)$ and $f^{(n - 1)}$ is Lipschitz, if and only if $n$:th divided difference of $f$ is bounded. Moreover,
+	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{k - 1}(a, b)$ and $f^{(k - 1)}$ is Lipschitz, if and only if $k$:th divided difference of $f$ is bounded. Moreover,
 	\begin{align*}
-		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| = \frac{\Lip(f^{(n - 1)})}{n!}
+		\sup_{a < x_{0} < x_{1} < \ldots < x_{k}< b} |[x_{0}, x_{1}, \ldots, x_{k}]_{f}| = \frac{\Lip(f^{(k - 1)})}{k!}
 	\end{align*}
 \end{lause}
 \begin{proof}
@@ -672,13 +663,11 @@ Finally, one can carry positivity.
 	Again, only the claim on the regularity is non-trivial as the $k$-tone claim follows easily from  \ref{derivative_divdif} and \ref{integral_divdif}. As with the bounded case the idea is that if $f$ is $k$-tone $f^{(k)}$ is positive and hence $f^{(k - 1)}$ is increasing, and consequently locally bounded. We should hence prove that the $(n - 1)$'th divided differences are bounded, as then \ref{boundtoreal_lemma} would imply the claim. But this follow easily from \ref{total_derivative}.
 \end{proof}
 
-With such tools we are ready to tackle the regularity of $k$-tone functions.
-
 \begin{proof}[Proof of the theorem \ref{k-tone_smooth}]
 	Yet again, simply apply lemma \ref{postoreal_lemma} inductively.
 \end{proof}
 
-\section{Analyticity and Bernstein's theorem}
+\section{Analyticity}
 
 \begin{lause}\label{div_anal}
 	Let $f : (a, b) \to \R$. Then $f$ is real analytic, if and only if for every closed subinteval $[c, d]$ of $(a, b)$ there exists constant $c$ such that for any $n \geq 1$
@@ -687,13 +676,13 @@ With such tools we are ready to tackle the regularity of $k$-tone functions.
 	\end{align*}
 \end{lause}
 \begin{proof}
-	Let's first prove that ``if"-direction. We need to prove that the for any $x_{0} \in (a, b)$ Taylor series at $x_{0}$ converges in some neighbourhood of $x_{0}$. As observed before, the $n$:th error term in Taylor series is given by
+	``$\Leftarrow$": We need to prove that the for any $x_{0} \in (a, b)$ Taylor series at $x_{0}$ converges in some neighbourhood of $x_{0}$. As observed before, the $n$:th error term in Taylor series is given by
 	\begin{align*}
 		[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n}
 	\end{align*}
 	with $n$ $x_{0}$'s. Now choose $a < c < x_{0} < d < b$ and take any $x$ with $x \in [c, d]$ and $|x - x_{0}| c < 1$, where $c$ is given by the assumption for interval $c, d$. But then the error term tends to zero and we are done.
 
-	For the other direction note that if $x_{0} \in (a, b)$ and $f$ extends to analytic function on $\D(x_{0}, r)$, we definititely have $\left|\frac{f^{(n)}(x_{0})}{n!}\right| \leq c^{n + 1}$ for some $c$. If $|x - x_{0}| < r$ we have
+	``$\Rightarrow$": Note that if $x_{0} \in (a, b)$ and $f$ extends to analytic function on $\D(x_{0}, r)$, we definititely have $\left|\frac{f^{(n)}(x_{0})}{n!}\right| \leq c^{n + 1}$ for some $c$. If $|x - x_{0}| < r$ we have
 	\begin{align*}
 		\frac{f^{(k)}(x)}{k!} = \sum_{n = k}^{\infty} \binom{n}{k} \frac{f^{(n)}(x_{0})}{n!} (x - x_{0})^{n - k},
 	\end{align*}
@@ -718,7 +707,7 @@ The previous result is some kind of relative of \ref{bounded_div}. Also theorem 
 	\begin{align*}
 		0 \leq \frac{f^{(n)}(x_{0})}{n!} \leq f(x) (x - x_{0})^{-n}.
 	\end{align*}
-	Now given any interval $[c, d] \subset (a, b)$ we can make such estimate uniform over $x_{0} \in [c, d]$ simply by picking $x \in (d, b)$, and we are done.
+	Now given any interval $[c, d] \subset (a, b)$ we can make such estimate uniform over $x_{0} \in [c, d]$ simply by picking $x \in (d, b)$.
 \end{proof}
 
 \section{Notes and references}
