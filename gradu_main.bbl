@@ -1,118 +1,29 @@
 \begin{thebibliography}{10}
 
-\bibitem{Ando}
-T.~Ando.
-\newblock Majorization, doubly stochastic matrices, and comparison of
-  eigenvalues.
-\newblock {\em Linear Algebra and Its Applications}, 118:163--248, 1989.
-
 \bibitem{Ando2}
 T.~Ando.
 \newblock Parameterization of minimal points of some convex sets of matrices.
 \newblock {\em Acta Scientiarum Mathematicarum (Szeged)}, 57:3--10, 1993.
-
-\bibitem{Ando3}
-T.~Ando.
-\newblock Majorizations and inequalities in matrix theory.
-\newblock {\em Linear algebra and its Applications}, 199:17--67, 1994.
-
-\bibitem{Antezana}
-J.~Antezana, E.~R. Pujals, and D.~Stojanoff.
-\newblock Iterated aluthge transforms: a brief survey.
-\newblock {\em Revista de la Uni{\'o}n Matem{\'a}tica Argentina}, 49(1):29--41,
-  2008.
-
-\bibitem{Arnold}
-B.~C. Arnold.
-\newblock Majorization: Here, there and everywhere.
-\newblock {\em Statistical Science}, pages 407--413, 2007.
-
-\bibitem{Atiyah}
-M.~F. Atiyah.
-\newblock Convexity and commuting {H}amiltonians.
-\newblock {\em Bull. London Math. Soc.}, 14(1):1--15, 1982.
-
-\bibitem{Azagra}
-D.~Azagra.
-\newblock Global approximation of convex functions.
-\newblock {\em arXiv preprint arXiv:1112.1042}, 2011.
 
 \bibitem{Ben}
 J.~Bendat and S.~Sherman.
 \newblock Monotone and convex operator functions.
 \newblock {\em Trans. Amer. Math. Soc.}, 79:58--71, 1955.
 
-\bibitem{Berco}
-H.~Bercovici, C.~Foias, and A.~Tannenbaum.
-\newblock A spectral commutant lifting theorem.
-\newblock {\em Transactions of the American Mathematical Society},
-  325(2):741--763, 1991.
-
-\bibitem{Bhatia}
+\bibitem{Bhatia2}
 R.~Bhatia.
 \newblock {\em Positive definite matrices}.
 \newblock Princeton university press, 2009.
 
-\bibitem{Bhatia2}
+\bibitem{Bhatia}
 R.~Bhatia.
 \newblock {\em Matrix analysis}, volume 169.
 \newblock Springer Science \& Business Media, 2013.
 
-\bibitem{Brady}
-Z.~Brady.
-\newblock Inequalities and higher order convexity.
-\newblock {\em arXiv preprint arXiv:1108.5249}, 2011.
-
-\bibitem{Bullen}
-P.~Bullen.
-\newblock A criterion for n-convexity.
-\newblock {\em Pacific Journal of Mathematics}, 36(1):81--98, 1971.
-
-\bibitem{Burgdorf}
-S.~Burgdorf.
-\newblock {\em Trace-positive polynomials, sums of hermitian squares and the
-  tracial moment problem}.
-\newblock PhD thesis, 2011.
-
-\bibitem{Cafuta}
-K.~Cafuta, I.~Klep, and J.~Povh.
-\newblock A note on the nonexistence of sum of squares certificates for the
-  bessis--moussa--villani conjecture.
-\newblock {\em Journal of Mathematical Physics}, 51(8):083521, 2010.
-
-\bibitem{Carlen}
-E.~Carlen.
-\newblock Trace inequalities and quantum entropy: an introductory course.
-\newblock {\em Entropy and the quantum}, 529:73--140, 2010.
-
-\bibitem{Chan}
-P.~Chansangiam.
-\newblock A survey on operator monotonicity, operator convexity, and operator
-  means.
-\newblock {\em Int. J. Anal.}, pages Art. ID 649839, 8, 2015.
-
-\bibitem{Clivaz2}
-F.~Clivaz.
-\newblock {\em Stahl's Theorem: Insights and Intuition on its Proof and
-  Physical Context}.
-\newblock PhD thesis, 2014.
-
-\bibitem{Clivaz}
-F.~Clivaz.
-\newblock Stahl’s theorem (aka bmv conjecture): Insights and intuition on its
-  proof.
-\newblock In {\em Spectral Theory and Mathematical Physics}, pages 107--117.
-  Springer, 2016.
-
 \bibitem{Boor2}
-C.~de~boor.
+C.~de~Boor.
 \newblock {\em A practical guide to splines}.
 \newblock Springer Verlag., 1978.
-
-\bibitem{Boo}
-C.~de~Boor.
-\newblock Divided differences.
-\newblock {\em Surv. Approx. Theory}, 1:46--69, 2005.
 
 \bibitem{Dob}
 O.~Dobsch.
@@ -125,148 +36,27 @@ W.~F. Donoghue, Jr.
 \newblock Springer-Verlag, New York-Heidelberg, 1974.
 \newblock Die Grundlehren der mathematischen Wissenschaften, Band 207.
 
-\bibitem{Eremenko}
-A.~Eremenko.
-\newblock Herbert stahl's proof of the bmv conjecture.
-\newblock {\em arXiv preprint arXiv:1312.6003}, 2013.
+\bibitem{Heina}
+O.~Hein{\"a}vaara.
+\newblock Local characterizations for the matrix monotonicity and convexity of
+  fixed order.
+\newblock {\em arXiv preprint arXiv:1608.07516}, 2016.
 
-\bibitem{Floater}
-M.~Floater and T.~Lyche.
-\newblock Two chain rules for divided differences and faa di bruno’s formula.
-\newblock {\em Mathematics of Computation}, 76(258):867--877, 2007.
-
-\bibitem{Franz}
-U.~Franz, F.~Hiai, and E.~Ricard.
-\newblock Higher order extension of {L}\"owner's theory: operator {$k$}-tone
-  functions.
-\newblock {\em Trans. Amer. Math. Soc.}, 366(6):3043--3074, 2014.
-
-\bibitem{Frobenius}
-G.~Frobenius.
-\newblock Ueber die {E}ntwickelung analytischer {F}unctionen in {R}eihen, die
-  nach gegebenen {F}unctionen fortschreiten.
-\newblock {\em J. Reine Angew. Math.}, 73:1--30, 1871.
-
-\bibitem{Hansen2}
-F.~Hansen.
-\newblock Trace functions as laplace transforms.
-\newblock {\em Journal of mathematical physics}, 47(4):043504, 2006.
-
-\bibitem{Han}
-F.~Hansen.
-\newblock The fast track to {L}\"owner's theorem.
-\newblock {\em Linear Algebra Appl.}, 438(11):4557--4571, 2013.
-
-\bibitem{Hansen}
-F.~Hansen and G.~Kj{\ae}rg{\aa}rd~Pedersen.
-\newblock Jensen's inequality for operators and l{\"o}wner's theorem.
-\newblock {\em Mathematische Annalen}, 258(3):229--241, 1982.
-
-\bibitem{Tom}
-F.~Hansen and J.~Tomiyama.
-\newblock Differential analysis of matrix convex functions.
-\newblock {\em Linear Algebra Appl.}, 420(1):102--116, 2007.
-
-\bibitem{Tom2}
-F.~Hansen and J.~Tomiyama.
-\newblock Differential analysis of matrix convex functions. {II}.
-\newblock {\em JIPAM. J. Inequal. Pure Appl. Math.}, 10(2):Article 32, 5, 2009.
-
-\bibitem{Hardy}
-G.~H. Hardy, J.~E. Littlewood, and G.~P{\'o}lya.
-\newblock {\em Inequalities}.
-\newblock Cambridge university press, 1952.
-
-\bibitem{Helmke}
-U.~Helmke and J.~Rosenthal.
-\newblock Eigenvalue inequalities and schubert calculus.
-\newblock {\em Mathematische Nachrichten}, 171:207--226, 1995.
-
-\bibitem{Petz}
-F.~Hiai and D.~Petz.
-\newblock {\em Introduction to matrix analysis and applications}.
-\newblock Springer Science \& Business Media, 2014.
-
-\bibitem{Hillar}
-C.~J. Hillar.
-\newblock Advances on the bessis--moussa--villani trace conjecture.
-\newblock {\em Linear algebra and its applications}, 426(1):130--142, 2007.
+\bibitem{Hiai}
+F.~Hiai.
+\newblock Matrix analysis: matrix monotone functions, matrix means, and
+  majorization.
+\newblock {\em Interdisciplinary Information Sciences}, 16(2):139--248, 2010.
 
 \bibitem{Hind}
 A.~Hindmarsh.
 \newblock Pick’s conditions and analyticity.
 \newblock {\em Pacific Journal of Mathematics}, 27(3):527--531, 1968.
 
-\bibitem{Holbrook}
-J.~A. Holbrook.
-\newblock Spectral variation of normal matrices.
-\newblock {\em Linear algebra and its applications}, 174:131--144, 1992.
-
-\bibitem{Horn}
-R.~A. Horn and C.~R. Johnson.
-\newblock {\em Matrix analysis}.
-\newblock Cambridge university press, 2012.
-
-\bibitem{Johnson}
-C.~R. Johnson and C.~J. Hillar.
-\newblock Eigenvalues of words in two positive definite letters.
-\newblock {\em SIAM journal on matrix analysis and applications},
-  23(4):916--928, 2002.
-
-\bibitem{Karam}
-J.~Karamata.
-\newblock Sur une in{\'e}galit{\'e} relative aux fonctions convexes.
-\newblock {\em Publications de l'Institut mathematique}, 1(1):145--147, 1932.
-
-\bibitem{Klep}
-I.~Klep and M.~Schweighofer.
-\newblock Sums of hermitian squares and the bmv conjecture.
-\newblock {\em Journal of Statistical Physics}, 133(4):739--760, 2008.
-
-\bibitem{Klyachko}
-A.~A. Klyachko.
-\newblock Stable bundles, representation theory and {H}ermitian operators.
-\newblock {\em Selecta Math. (N.S.)}, 4(3):419--445, 1998.
-
-\bibitem{Allen}
-A.~Knutson and T.~Tao.
-\newblock Honeycombs and sums of {H}ermitian matrices.
-\newblock {\em Notices Amer. Math. Soc.}, 48(2):175--186, 2001.
-
-\bibitem{Kowal}
-G.~Kowalewski.
-\newblock {\em Interpolation und gen{\"a}herte Quadratur}.
-\newblock Teubner Leipzig und Berlin, 1932.
-
-\bibitem{Kra}
-F.~Kraus.
-\newblock \"{U}ber konvexe {M}atrixfunktionen.
-\newblock {\em Math. Z.}, 41(1):18--42, 1936.
-
 \bibitem{Low}
 K.~L{\"o}wner.
 \newblock \"{U}ber monotone {M}atrixfunktionen.
 \newblock {\em Math. Z.}, 38(1):177--216, 1934.
-
-\bibitem{Marsh}
-A.~W. Marshall, I.~Olkin, and B.~C. Arnold.
-\newblock {\em Inequalities: theory of majorization and its applications}.
-\newblock Springer Series in Statistics. Springer, New York, second edition,
-  2011.
-
-\bibitem{Muirhead}
-R.~F. Muirhead.
-\newblock Some methods applicable to identities and inequalities of symmetric
-  algebraic functions of n letters.
-\newblock {\em Proceedings of the Edinburgh Mathematical Society}, 21:144--162,
-  1902.
-
-\bibitem{Mulholland}
-H.~Mulholland.
-\newblock On generalizations of minkowski's inequality in the form of a
-  triangle inequality.
-\newblock {\em Proceedings of the London Mathematical Society}, 2(1):294--307,
-  1949.
 
 \bibitem{Nevan}
 R.~Nevanlinna.
@@ -280,58 +70,9 @@ G.~Pick.
   vorgegebene funktionswerte bewirkt werden.
 \newblock {\em Mathematische Annalen}, 77(1):7--23, 1915.
 
-\bibitem{Pinkus}
-A.~Pinkus and D.~Wulbert.
-\newblock Extending n-convex functions.
-\newblock {\em Studia Math}, 171(2):125--152, 2005.
-
-\bibitem{Popoviciu}
-T.~Popoviciu.
-\newblock {\em Les fonctions convexes}, volume 992.
-\newblock Bussi{\`e}re, 1945.
-
-\bibitem{Roberts}
-A.~W. Roberts and D.~E. Varberg.
-\newblock {\em Convex functions}, volume~57.
-\newblock Academic Press, 1974.
-
-\bibitem{Sarason}
-D.~Sarason.
-\newblock Generalized interpolation in {$H^{\infty }$}.
-\newblock {\em Trans. Amer. Math. Soc.}, 127:179--203, 1967.
-
-\bibitem{Sarason2}
-D.~Sarason.
-\newblock Nevanlinna-pick interpolation with boundary data.
-\newblock {\em Integral Equations and Operator Theory}, 30(2):231--250, 1998.
-
-\bibitem{Stahl}
-H.~R. Stahl et~al.
-\newblock Proof of the bmv conjecture.
-\newblock {\em Acta Mathematica}, 211(2):255--290, 2013.
-
-\bibitem{Sag}
-{The Sage Developers}.
-\newblock {\em {S}ageMath, the {S}age {M}athematics {S}oftware {S}ystem
-  ({V}ersion 7.1)}, 2016.
-\newblock {\tt http://www.sagemath.org}.
-
-\bibitem{Tropp}
-J.~A. Tropp et~al.
-\newblock An introduction to matrix concentration inequalities.
-\newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
-  8(1-2):1--230, 2015.
-
-\bibitem{Weyl}
-H.~Weyl.
-\newblock Das asymptotische verteilungsgesetz der eigenwerte linearer
-  partieller differentialgleichungen (mit einer anwendung auf die theorie der
-  hohlraumstrahlung).
-\newblock {\em Mathematische Annalen}, 71(4):441--479, 1912.
-
-\bibitem{Zhang}
-F.~Zhang.
-\newblock {\em Matrix theory: basic results and techniques}.
-\newblock Springer Science \& Business Media, 2011.
+\bibitem{Sparr}
+G.~Sparr.
+\newblock A new proof of l{\"o}wner's theorem on monotone matrix functions.
+\newblock {\em Mathematica Scandinavica}, 47(2):266--274, 1981.
 
 \end{thebibliography}

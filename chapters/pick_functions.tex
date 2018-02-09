@@ -243,7 +243,7 @@ We denote the set of Pick functionals by $\pickclass^{*}$.
 	\end{enumerate}
 	as then we have $\varphi \circ g_{n} \to \varphi$ pointwise as $n \to \infty$ for every Pick function $\varphi$ the functions $\varphi \circ g_{n}$ are evidently bounded and extend analytically over the real line.
 
-	It is not very hard to check that we may take
+	It is not very hard to check that we may, for instance, take
 	\begin{align*}
 		g_{n}(z) = \frac{z + \frac{i}{n}}{1 - \frac{i z}{n}}.
 	\end{align*}
@@ -272,11 +272,11 @@ Theorem \ref{pick_functionals} implies that $\pickclass^{*}$ is really just the 
 	We will elements of $\left(\pickclass^{*}\right)^{*}$ \textbf{weakly Pick functions}.
 \end{maar}
 
-In layman's terms, weakly Pick functions are ones, which look like Pick functions if one only considers linear functionals. The aim of this section is to show that weakly Pick functions are exactly the Pick functions. We already proved one direction in the theorem \ref{pick_functionals}. 
+In layman's terms, weakly Pick functions are ones which look like Pick functions, if one only looks at evaluations with linear functionals. The aim of this section is to show that weakly Pick functions are exactly the Pick functions. We already proved one direction in the theorem \ref{pick_functionals}. 
 
-The other direction is tricky. Note that weakly Pick maps map to the upper half-plane so the interesting part is to prove that weakly Pick maps are analytic. For this we are going to verify bounds for the divided differences of $\varphi$. Recall that by theorem \ref{bounded_div} it suffices to verify that the order $2$ divided differences are locally bounded to prove that $\varphi$ is (continuously) differentiable. Strictly speaking we only proved the result on real line, but the prove would be almost identical in the complex case.
+The other direction is tricky. Note that weakly Pick maps map to the upper half-plane so the interesting part is to prove that weakly Pick maps are analytic. For this we are going to verify bounds for the divided differences of $\varphi$. Recall that by theorem \ref{bounded_div} it suffices to verify that the order $2$ divided differences are locally bounded to prove that $\varphi$ is (continuously) differentiable. Strictly speaking we only proved the result on real line, but the proof would be almost identical in the complex case.
 
-The idea is the following: we are going to formulate everything terms of the linear functionals. This idea is best illustrated with an example.
+The idea is the following: we are going to formulate everything in terms of linear functionals. This idea is best illustrated with an example.
 
 \begin{lem}[Harnack inequality]\label{pick_harnack_lemma}
 	Let $\varphi$ be a weakly Pick function. Then for every compact $K \subset \Hp$ there exists a constant $C_{K}$ such that
@@ -290,15 +290,14 @@ The idea is the following: we are going to formulate everything terms of the lin
 	\begin{align*}
 		\varphi \mapsto C_{K} \frac{\Im(\varphi(w))}{\Im(w)} - \frac{\Im(\varphi(z))}{\Im(z)}.
 	\end{align*}
-	By theorem \ref{pick_functionals} it suffices to prove that there exists constant $C_{K}$ such that the previous inequality holds for any extreme Pick function. This implies that we should have
+	By theorem \ref{pick_functionals} it suffices to prove that there exists a constant $C_{K}$ such that the previous inequality holds for any extreme Pick function, i.e. we should have
 	\begin{align*}
 		\frac{1}{|\lambda - z|^2} \leq \frac{C_{K}}{|\lambda - w|^2}
 	\end{align*}
-	for every $\lambda \in \R$. But
+	for every $\lambda \in \R$. This follows from
 	\begin{align*}
-		\left|\frac{\lambda - w}{\lambda - z}\right|^2 \leq \left|1 + \frac{z - w}{\lambda - z}\right|^2 \leq \left(1 + \frac{|z - w|}{\Im(z)}\right)^2,
+		\left|\frac{\lambda - w}{\lambda - z}\right|^2 \leq \left|1 + \frac{z - w}{\lambda - z}\right|^2 \leq \left(1 + \frac{|z - w|}{\Im(z)}\right)^2.
 	\end{align*}
-	so we can definitely find such constant.
 \end{proof}
 
 Similarly, one can prove that weakly Pick functions are continuous.
@@ -319,10 +318,10 @@ Similarly, one can prove that weakly Pick functions are continuous.
 	\begin{align*}
 		|[z, w]_{\varphi}| \leq \frac{1}{2} \left(\frac{\Im(\varphi(z))}{\Im(z)} + \frac{\Im(\varphi(w))}{\Im(w)}\right)
 	\end{align*}
-	for any weakly Pick function. Combining this with Harnack inequality \ref{pick_harnack_lemma} yields that any weakly Pick function is locally Lipschitz, so in particular continuous.
+	for any weakly Pick function. Combining this with the Harnack inequality \ref{pick_harnack_lemma} implies that any weakly Pick function is locally Lipschitz, so in particular continuous.
 \end{proof}
 
-The previous argument can be easily extended to the following.
+The previous argument can be easily extended to higher order divided differences.
 
 \begin{lause}\label{Hindmarsh_theorem}
 	Let $\varphi$ be a weakly Pick function. Then for any $n \geq 1$ and $z_{0}, z_{1}, \ldots, z_{n}$ we have
@@ -361,40 +360,44 @@ There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Then there exists a unique pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
-The proof of this result is based on the following observation:
+Note that the proof \ref{Hindmarsh_theorem} implies that if $\varphi$ is weakly Pick on an open set, it is analytic. The proof of this result is based on the following observation:
 
 \begin{lem}\label{open_pick_lemma}
-	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Let $z_{0} \in U$. Then there exists unique weakly Pick $\tilde{\varphi} : U \cap \D(z_{0}, \Im(z_{0}))$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
+	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Let $z_{\infty} \in U$. Then there exists unique weakly Pick $\tilde{\varphi}$ on $U \cap \D(z_{\infty}, \Im(z_{\infty}))$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lem}
 
 \begin{proof}
-	Take any sequence $z_{1}, z_{2}, \ldots \in U$ converging to $z_{0}$: we claim the Newton series with nodes $z_{1}, z_{2}, \ldots$ gives the (by analyticity necessarily unique) extension for $\varphi$ to $\D(z_{0}, \Im(z_{0})) \setminus U$.
+	Take any sequence $z_{0}, z_{1}, \ldots \in U$ converging to $z_{\infty}$: we claim that the Newton series with nodes $z_{0}, z_{1}, \ldots$ gives the (by analyticity necessarily unique) extension for $\varphi$ to $\D(z_{\infty}, \Im(z_{\infty})) \setminus U$.
 
-	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{0}, \Im(z_{0})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some $r \in R_{\infty}(\D(z_{0}, \Im(z_{0})) \cup U)$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$ by truncation of Newton series (with $N$ terms), we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N} \in R_{\infty}(U)$): all the terms of the form $(\lambda - w_{0})^{-1}$ for $w_{0} \in \D(z_{0}, \Im(z_{0})) \setminus U$ are replaced by
+	To this end take any Pick functional $p^{*}$ supported on  $\D(z_{\infty}, \Im(z_{\infty})) \cup U$ and apply it to our $\tilde{\varphi}$. The functional correponds to some $r \in R_{\infty}(\D(z_{\infty}, \Im(z_{\infty})) \cup U)$. Now if we replace all the evaluations of $p^{*}$ at $\D(z_{\infty}, \Im(z_{\infty})) \setminus U$ by truncation of Newton series (with $N$ terms), we can interpret the result as a new linear functional, say $p^{*}_{N}$. The corresponding rational function is also changed (say to $r_{N} \in R_{\infty}(U)$): all the terms of the form $(\lambda - w)^{-1}$ for $w_{0} \in \D(z_{\infty}, \Im(z_{\infty})) \setminus U$ are replaced by
 	\begin{align*}
-		\frac{1}{\lambda - z_{1}} + \frac{(w_{0} - z_{1})}{(\lambda - z_{1}) (\lambda - z_{2})} + \ldots + \frac{(w_{0} - z_{1})\cdots (w_{0} - z_{N - 1})}{(\lambda - z_{1})\cdots (\lambda - z_{N})},
+		\frac{1}{\lambda - z_{0}} + \frac{(w - z_{0})}{(\lambda - z_{0}) (\lambda - z_{1})} + \ldots + \frac{(w - z_{0})\cdots (w - z_{N - 1})}{(\lambda - z_{0})\cdots (\lambda - z_{N})},
 	\end{align*}
-	and similarly for conjugate terms. Difference between these rational functions can be easily bounded by
+	and similarly for conjugate terms. Difference between these rational functions,
 	\begin{align*}
-		\left(\frac{|w_{0} - z_{0}|}{\Im(z_{0})}\right)^{N}\frac{C}{|\lambda - z_{0}|^2},
+		\frac{(w - z_{0})\cdots (w - z_{N - 1}) (w - z_{N})}{(\lambda - w) (\lambda - z_{0}) \cdots (\lambda - z_{N})},
 	\end{align*}
-	where $C$ is some constant not depending on $N$. But this means that $r_{N}$ can't be too small, as $r$ was non-negative to begin with. Indeed, by summing over all the evaluations of $p^{*}$ at $\D(z_{0}, \Im(z_{0})) \setminus U$, we see that
+	can be easily bounded below by
 	\begin{align*}
-		r_{N} \geq -\frac{C'}{|\lambda - z_{0}|^2} \rho^{N}
+		-\frac{c}{|\lambda - z_{\infty}|^2} \rho^{N},
 	\end{align*}
-	for some $\rho < 1$ and $C' > 0$ (again, not depending on $N$). It follows that
+	for some $\rho < 1$ and $c$ not depending on $N$. But this means that $r_{N}$ can't be too small, as $r$ was non-negative to begin with. Indeed, by summing over all the evaluations of $p^{*}$ at $\D(z_{\infty}, \Im(z_{\infty})) \setminus U$, we see that
 	\begin{align*}
-		p^{*}(\tilde{\varphi}) = \lim_{N \to \infty} p^{*}_{N}(\varphi) \geq \lim_{N \to \infty} -C' \frac{\Im(\varphi(z_{0}))}{\Im(z_{0})} \rho^{N} = 0,
+		r_{N} \geq -\frac{c'}{|\lambda - z_{\infty}|^2} (\rho')^{N}
+	\end{align*}
+	for some $\rho' < 1$ and $c' > 0$ (again, not depending on $N$). It follows that
+	\begin{align*}
+		p^{*}(\tilde{\varphi}) = \lim_{N \to \infty} p^{*}_{N}(\varphi) \geq \lim_{N \to \infty} -c' \frac{\Im(\varphi(z_{\infty}))}{\Im(z_{\infty})} (\rho')^{N} = 0,
 	\end{align*}
 	hence the claim.
 \end{proof}
 
 
 \begin{proof}[Proof of theorem \ref{open_pick_interpolation}]
-	Consider all weakly Pick extensions of $\varphi$ (to open supersets of $U$), ordered by restriction. These maps trivially satisfy conditions of Zorn's lemma so we may Pick maximal map, $\tilde{\varphi}$. It follows immediately from lemma \ref{open_pick_lemma} that the domain of $\tilde{\varphi}$ is the whole $\Hp$.
-
-	Of course, Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture).
+	Consider all weakly Pick extensions of $\varphi$ (to open supersets of $U$), ordered by restriction. These maps trivially satisfy the conditions of Zorn's lemma so we may Pick maximal map, $\tilde{\varphi}$. It follows immediately from lemma \ref{open_pick_lemma} that the domain of $\tilde{\varphi}$ is the whole $\Hp$.
 \end{proof}
+
+Of course, Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture).
 
 \section{Pick-Nevanlinna interpolation theorem}
 
@@ -450,8 +453,9 @@ Let us first proof the theorem given this lemma.
 
 Again, one could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.
 
-
 \section{Notes and references}
+
+Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick-Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved by independently by \cite{Pick} and \cite{Nevan}. Since then, many different approaches exist. Approach taken in text is similar to (?). \ref{open_pick_interpolation} first appeared in \cite{Hind} (formulated in terms of Pick matrices).
 
 \begin{comment}
 

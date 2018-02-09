@@ -50,7 +50,7 @@ The idea of the proof was to note that the quadratic form of the derivative rewr
 To avoid regularity issues we simply do the same thing without limits.
 
 \begin{maar}
-	Let us call pair $(A, B, v) \in \H(V)^{2} \times V$ a \textbf{projection pair} if $B - A = v v^{*}$. Let us further say that a projection pair $(A, B, v)$ is \textbf{strict}, if $v$ is not orthogonal to any eigenvector of $A$. 
+	Let us call a triplet $(A, B, v) \in \H(V)^{2} \times V$ a \textbf{projection pair} if $B - A = v v^{*}$. Let us further say that a projection pair $(A, B, v)$ is \textbf{strict}, if $v$ is not orthogonal to any eigenvector of $A$. 
 \end{maar}
 
 \begin{lem}\label{main_lemma}
@@ -76,6 +76,13 @@ Before trying to understand the lemma we use it to prove theorem \ref{main_theor
 	We may also assume that $(A, B, v)$ is strict. Indeed, if this is not the case, we can decompose $V = (v_{1}) \oplus V'$, where $v_{1}$ is aeigenvector of $A$ orthogonal to $v$, and factorize $A = \arestr{A}{(v_{1})} \oplus \arestr{A}{V'}$ and $B = \arestr{A}{(v_{1})} \oplus \arestr{B}{V'}$. But now $f(B) - f(A) \geq 0$, if and only if $f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. So we should just add the sentence ``We induct on $n$." as the first sentence of this proof.
 
 	The strict case follows immediately from the lemma \ref{main_lemma}.
+\end{proof}
+
+\begin{kor}
+	$P_{n}$ is a local property: if $a < c < b < d$ and $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P_{n}(a, b)$ and $\restr{f}{(c, d)} \in P_{n}(c, d)$, then $f \in P_{n}(a, d)$.
+\end{kor}
+\begin{proof}
+	This follows immediately from \ref{main_theorem} and \ref{k_tone_local}.
 \end{proof}
 
 \section{Main lemma}
@@ -169,7 +176,7 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 	\begin{align}
 	(\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B))
 	\end{align}
-	range over all tuples of distinct numbers on $(a, b)$. Hence to prove the lemma, we should prove that for fixed strict projection pair $(A, B, v)$, as $w$ ranges over $V$, $q$ ranges over $\C_{n - 1}[x]$. Note that the components of $\det(z I - A)(z I - A)^{-1} v$ with respect to an eigenbasis of $A$, $(e_{i})_{i = 1}^{n}$, are $p_{j}(z) = \prod_{i \neq j}(z - \lambda_{i}(A)) \langle v, e_{i} \rangle$. But since $p_{j}(\lambda_{i}(A)) \neq 0$, if and only if $i = j$, the components are linearly independent over $\C$ and hence span $\C_{n - 1}[x]$.
+	range over all tuples of $2 n$ distinct numbers on $(a, b)$. Hence to prove the lemma, we should prove that for fixed strict projection pair $(A, B, v)$, as $w$ ranges over $V$, $q$ ranges over $\C_{n - 1}[x]$. Note that the components of $\det(z I - A)(z I - A)^{-1} v$ with respect to an eigenbasis of $A$, $(e_{i})_{i = 1}^{n}$, are $p_{j}(z) = \prod_{i \neq j}(z - \lambda_{i}(A)) \langle v, e_{i} \rangle$. But since $p_{j}(\lambda_{i}(A)) \neq 0$, if and only if $i = j$, the components are linearly independent over $\C$ and hence span $\C_{n - 1}[x]$.
 
 	To recap, the map
 	\begin{align*}
@@ -251,7 +258,7 @@ First of all, the dual pairing thinking leads to much more satisfactory conclusi
 	\end{align*}
 \end{proof}
 
-$R_{\infty}(a, b)$ is hence the dual cone of $P_{\infty}(a, b)$. Now, it might not be too big of a surprise that the class $R_{\infty}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$ (with uniform norm). This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{\infty}(a, b)$
+$R_{\infty}(a, b)$ is hence the dual cone of $P_{\infty}(a, b)$. Now, it might not be too big of a surprise that the class $R_{\infty}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$ (with uniform norm). This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{\infty}(a, b)$
 \begin{align*}
 	\langle f, r \rangle_{L} = \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
 \end{align*}
@@ -285,3 +292,5 @@ In fact, also this corollary has a converse.
 This is the version of the Loewner's theorem we are going to focus on.
 
 \section{Notes and references}
+
+This chapter is largely original (?), although heavily inspired by multiple sources. Key ideas are an extension to \cite{Heina}. \ref{main_theorem} is new formulation of \ref{heuristic_main}. Lemma \ref{projection_eigenvalues} (or some variant of it) is present in many discussions of the matrix monotonicity, see for instance \cite{Don}. While \ref{main_lemma} is new (?) it can be seen as a variant of lemma $1$ in \cite{Sparr}. Theorem \ref{weak_loewner} appears in the original paper of Loewner \cite{Low}. \ref{integral_loewner} was first discussed in \cite{Ben}. Sparr in \cite{Sparr} gives proof of \ref{integral_loewner} somewhat similar in nature to our argument sketch (...).

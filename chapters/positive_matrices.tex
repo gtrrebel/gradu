@@ -232,7 +232,7 @@ The most important result in the theory of positive and real maps is the Spectra
 
 	More generally, if it so happens that for some $v \in V$ we have $\langle A v, v \rangle = 0$, we must have $v_{i} \perp v$ for any $1 \leq i \leq m$. But this means that were there such representation, we should have the following.
 
-	\begin{lem}\label{spectralZeroLemma}
+	\begin{lem}\label{spectral_zero_lemma}
 		If $A \in \H_{+}(V)$ and $\langle A v, v \rangle = 0$ for some $v \in V$, then $A v = 0$ and $A w \perp v$ for any $w \in v$.
 	\end{lem}
 
@@ -245,7 +245,7 @@ The most important result in the theory of positive and real maps is the Spectra
 	Note that the previous trick also covers the case of general real map.
 \end{proof}
 
-\begin{proof}[Proof of lemma \ref{spectralZeroLemma}]
+\begin{proof}[Proof of lemma \ref{spectral_zero_lemma}]
 	Take any $w \in V$. Now by assumption for any $c \in \C$ we have
 	\[
 		\langle A (c v + w), c v + w \rangle = |c|^{2} \langle A v, v \rangle + c \langle A v, w \rangle + \overline{c} \langle A w, v \rangle + \langle A w, w \rangle \geq 0
@@ -351,11 +351,11 @@ where $\gamma$ is simple closed curve enclosing the spectrum of $A$. This formul
 
 If $A, B \in \H_{+}(V)$, then, as we noticed, $(A B)^{*} = B^{*} A^{*} = B A$, so for $A B$ to be even real, $A$ and $B$ would at least need to commute. Natural question follows: when do two positive maps commute? Since $(c_{1} I + A)$ and $(c_{2} I + B)$ commute if and only if $A$ and $B$ do, this is same as asking when do two real maps commute.
 
-It turns out that real maps commute only if they ``trivially" commute, in the following sense. If there exists vectors $v_{1}, v_{2}, \ldots, v_{n}$ and numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and $\lambda'_{1}, \lambda'_{2}, \ldots, \lambda'_{n}$ such that
+It turns out that real maps commute only if they ``trivially" commute, in the following sense. Real maps are said to \textbf{simultaneously diagonalizable} if there exists vectors $v_{1}, v_{2}, \ldots, v_{n}$ and numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and $\lambda'_{1}, \lambda'_{2}, \ldots, \lambda'_{n}$ such that
 \begin{align*}
-	A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}} \; \text{ and } \; B = \sum_{1 \leq i \leq n} \lambda'_{i} P_{v_{i}},
+	A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}} \; \text{ and } \; B = \sum_{1 \leq i \leq n} \lambda'_{i} P_{v_{i}}.
 \end{align*}
-then $A$ and $B$ are said to be \textbf{simultaneously diagonalizable}. Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are simultenously diagonalizable.
+Simultaneosly diagonalizable maps trivially commute, and it turns out that if two real maps commute, they are simultenously diagonalizable.
 
 To prove this, we start with a lemma.
 
@@ -375,7 +375,7 @@ To prove this, we start with a lemma.
 \end{maar}
 
 \begin{lause}\label{commuting_real_maps}
-	Let $\mathcal{A} = (A_{j})_{j \in J}$ by an arbitrary family of commuting real maps. Then there exists non-trivial orthogonal subspaces of $V$, $E_{1}, E_{2}, \ldots E_{m}$ with $E_{1} + E_{2} + \ldots + E_{m} = V$ and numbers $\lambda_{i, j}$ for $j \in J$ and $1 \leq i \leq n$ such that
+	Let $\mathcal{A} = (A_{j})_{j \in J}$ be an arbitrary family of commuting real maps. Then there exists non-trivial orthogonal subspaces of $V$, $E_{1}, E_{2}, \ldots E_{m}$ with $E_{1} + E_{2} + \ldots + E_{m} = V$ and numbers $\lambda_{i, j}$ for $j \in J$ and $1 \leq i \leq n$ such that
 	\begin{align*}
 		A_{j} = \sum_{1 \leq i \leq m} \lambda_{i, j} P_{E_{i}}
 	\end{align*}
@@ -392,6 +392,8 @@ To prove this, we start with a lemma.
 
 	There are many ways to bootstrap the previous argument for arbitrary families. For any finite subfamily we can form the set of generating projections. If we add one more map, the set of projections might get refined: some of the subspaces might get split to pieces. Since sizes of all these generating families are bounded by $n$ so we may pick one with most elements. Now if $A$ is any projection in $\mathcal{A}$, by maximality, adding it to the family does not refine the generating set. But this means that the generating set generates any element of $\mathcal{A}$ and we are done.
 \end{proof}
+
+It's not very hard to see that the previous constructions gives unique minimal decomposition.
 
 The message is: if one wants products to preserve positivity, everything degenerates to $\R^{m}$, i.e. diagonal maps.
 
@@ -480,7 +482,7 @@ Proposition \ref{basic_positive} tells us that $\leq$, Loewner order, is indeed 
 \end{prop}
 
 \begin{esim}\label{projection_order}
-	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Converse follows immediately from the observation that for any $W \subset V$ we have
+	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Converse follows as soon as one notes that by \ref{spectral_zero_lemma} for any $W \subset V$ we have
 	\begin{align*}
 		\{v \in V | \langle P_{W} v, v\rangle = 0\} = W^{\perp}.
 	\end{align*}
@@ -522,6 +524,8 @@ The map $A^{\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{\frac{1}{2}} A^{\
 \end{huom}
 
 \section{Notes and references}
+
+All results in this chapter are classic and can be found in numerous books on linear algebra, for instance in \cite{Bhatia} and \cite{Bhatia2} (?). Proof of the spectral theorem is due to (Who?). Proof of \ref{commuting_real_maps} is from (Where?).
 
 \begin{comment}
 

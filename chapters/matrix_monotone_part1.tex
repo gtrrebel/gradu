@@ -1,6 +1,6 @@
 \chapter{Matrix monotone functions -- part 1}
 
-\begin{maar}
+\begin{maar}\label{n_mon_maar}
 	We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
 \end{maar}
 
@@ -125,10 +125,10 @@ Most of the common monotone functions fail to be matrix monotone. Let's try some
 	Note that both of these objections result from the non-commutativity and indeed, both would be fixed should $A$ and $B$ commute.
 
 	Let's write $B = A + H$ ($H \geq 0$). Now we are to investigate
-	\[
+	\begin{align*}
 		(A + H)^2-A^2 = A H + H A + H^2.
-	\]
-	Note that $H^2 \geq 0$, but as we have seen in proposition \ref{symmetric_projection}, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. To be entirely honest, we only gave examples of $A, H \geq 0$ with $A H + H A \not\geq 0$ with $A$ and $H$ rank one, so $A \notin \H^{n}_{(0, \infty)}$. This deficit is however easily fixed by looking at $A_{\varepsilon} = A + \varepsilon I$ for $\varepsilon > 0$.
+	\end{align*}
+	While $H^2 \geq 0$, as we have noticed in proposition \ref{symmetric_projection}, $A H + H A$ need not be positive! Also, if $H$ is small enough, $H^2$ is negligible compared to $AH + HA$. So simply pick $A, H \geq 0$ such that $A H + H A \not\geq 0$: for small enough $t > 0$ we have $(A + t H)^2 - A^2 \not\geq 0$. To be entirely honest, we only gave examples of such $A$ and $H$ with $\rank(A) = 1$, so $A \notin \H_{(0, \infty)}$. This deficit is however easily fixed by looking at $A_{\varepsilon} = A + \varepsilon I$ for $\varepsilon > 0$.
 \end{proof}
 
 By a bit more careful arguments one could show that $(x \mapsto x^2)$ is not $n$-monotone for any $n \geq 2$ on any open interval.
@@ -166,7 +166,7 @@ As we saw with the square function example, product of two $n$-monotone function
 \begin{proof}
 	Again, let's think what goes wrong with the standard proof for $n = 1$.
 
-	Take $n \geq 2$, $f, g \in P_{n}(a, b)$ and $A, B \in \H_{(a, b)}^{n}$ with $A \leq B$. Now $f(A) \leq f(B) \leq \max(f, g)(B)$ and $f(A) \leq f(B) \leq \max(f, g)(B)$. It follows that
+	Take $n \geq 2$, $f, g \in P_{n}(a, b)$ and $A, B \in \H_{(a, b)}$ with $A \leq B$. Now $f(A) \leq f(B) \leq \max(f, g)(B)$ and $f(A) \leq f(B) \leq \max(f, g)(B)$. It follows that
 	\begin{align*}
 		\max(f, g)(A) = \max(f(A), g(A)) \leq \max(f, g)(B),
 	\end{align*}
@@ -309,17 +309,31 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 \end{proof}
 
 \begin{proof}[Proof ``sketch" of the ``only if" of \ref{heuristic_loewner}]
-	This follows immeditaly from \ref{heuristic_main}.
+	This follows immediately from \ref{heuristic_main}.
 \end{proof}
 
 Note that the proof gives also alternate interpretation for the matrix $M$. Positivity of $M$ means simply that for $q \in \C_{n - 1}[x]$ the function $f(x) q(x) \overline{q(\overline{x})} = f(x) |q(x)|^2$ has non-negative $(2 n - 1)$'th derivative.
 
-Given polynomial $q$, we denote by $N(q)$ the polynomial with
+Given polynomial $q$, we denote $q^{*}$ the polynomial with
 \begin{align*}
-	N(q)(z) = q(z) \overline{q(\overline{z})}.
+	q^{*}(z) = \overline{q(\overline{z})}.
 \end{align*}
+Write further that $N(q) = q q^{*}$.
 
 The main problem of the argument is the regularity. While we assume $f$ to be entire mainly for convenience, we need some kind of regularity to make sense of the definition: it is a priori not even clear that functions in $P_{\infty}(a, b)$ should be continuous. Origin of these regularity properties is the topic of the next chapter.
 
-
 \section{Notes and references}
+
+Matrix monotone functions were first introduced by Loewner in \cite{Low}. Basic properties of the $n$-monotone functions are examined in numerous sources; see for instance \cite{Hiai}. Maximum of real maps is discussed in detail in \cite{Ando2}. Loewner characterized the $n$-monotone functions on $(a, b)$ as functions for which the matrix
+\begin{align*}
+	\begin{bmatrix}
+		f'(\lambda_{1}) & \frac{f(\lambda_{1}) - f(\lambda_{2})}{\lambda_{1} - \lambda_{2}} & \cdots & \frac{f(\lambda_{1}) - f(\lambda_{n})}{\lambda_{1} - \lambda_{n}} \\
+		\frac{f(\lambda_{2}) - f(\lambda_{1})}{\lambda_{2} - \lambda_{1}} & f'(\lambda_{2}) & \cdots & \frac{f(\lambda_{2}) - f(\lambda_{n})}{\lambda_{2} - \lambda_{n}} \\
+		\vdots & \vdots & & \vdots \\
+		\frac{f(\lambda_{n}) - f(\lambda_{1})}{\lambda_{n} - \lambda_{1}} & \frac{f(\lambda_{b}) - f(\lambda_{2})}{\lambda_{n} - \lambda_{2}} & \cdots & f'(\lambda_{n}) 
+	\end{bmatrix},
+\end{align*}
+called Loewner matrix, is positive for any $a < \lambda_{1}, \ldots, \lambda_{n} < b$. \ref{heuristic_main} and \ref{heuristic_loewner} were first observed by Dobsch (a student of Loewner) in \cite{Dob}. Heuristics in this chapter appear essentially in (Where?).
+
+
+

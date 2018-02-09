@@ -348,18 +348,18 @@ One might ask under what kind of conditions \ref{newton_expansion} leads to Newt
 for some sequence $x_{0}, x_{1}, \ldots$ and analytic $f$. While Newton series can be globally rather subtle, locally they work almost like Taylor series.
 
 \begin{prop}
-	Let $f : \D(w_{0}, \rho) \to \C$ be analytic and $z_{0}, z_{1}, \ldots \in \D(w_{0}, r)$ sequence converging to $w_{0}$. Then \ref{newton_series} holds for any $z \in \D(w_{0}, r)$.
+	Let $f : \D(z_{\infty}, \rho) \to \C$ be analytic and $z_{0}, z_{1}, \ldots \in \D(z_{\infty}, r)$ sequence converging to $z_{\infty}$. Then \ref{newton_series} holds for any $z \in \D(z_{\infty}, r)$.
 \end{prop}
 \begin{proof}
-	We simply need to verify that the error term $[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n})$ tends to zero as $n \to \infty$. But for any $\rho' < \rho$ such that $z, z_{i} \in \D(w_{0}, \rho')$ for any $i \geq 0$ we have
+	We need to verify that the error term $[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n})$ tends to zero as $n \to \infty$. But for any $\rho' < \rho$ such that $z, z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho')$ we have
 	\begin{align*}
 		&[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n}) \\
-		= & \frac{1}{2 \pi i} \int_{\partial \D(w_{0}, \rho')} \frac{(z - z_{0}) (z - z_{1}) \cdots (z - z_{n})}{(w - z)(w - z_{0}) (w - z_{1}) \cdots (w - z_{n})} f(w) dw.
+		= & \frac{1}{2 \pi i} \int_{\partial \D(z_{\infty}, \rho')} \frac{(z - z_{0}) (z - z_{1}) \cdots (z - z_{n})}{(w - z)(w - z_{0}) (w - z_{1}) \cdots (w - z_{n})} f(w) dw.
 	\end{align*}
-	But as $z_{n} \to w_{0}$, absolute values the quotients $(z - z_{n})/(w - z_{n})$ tend to $|z - w_{0}|/|\rho'| < 1$, uniformly on $\partial \D(w_{0}, \rho')$ and hence the integrand tends uniformly to $0$.
+	But as $z_{n} \to z_{\infty}$, the absolute values of the quotients $(z - z_{n})/(w - z_{n})$ tend to $|z - z_{\infty}|/|\rho'| < 1$ uniformly on $\partial \D(z_{\infty}, \rho')$ and hence the integrand tends uniformly to $0$.
 \end{proof}
 
-In similar vein one could prove that if $f$ is entire, its Newton series converge whenever $(z_{i})_{i \geq 0}$ is bounded.
+In similar vein one could prove that if $f$ is entire, its Newton series converge whenever $(z_{i})_{i \geq 0}$ is bounded. Note that \ref{newton_series} easily implies the identity theorem for analytic functions.
 
 
 \subsection{$k$-tone functions}
@@ -429,35 +429,35 @@ They key idea in the proof was to split the test functions to two parts, one sup
 	\noindent \textbf{Output:} Decomposition of the input as positive linear combination of triangles all supported completely either on $(a, b)$ or $(c, d)$.
 	\begin{enumerate}[\textbf{Step} 1.]
 		\item If the triangle is good already, we are done.
-		\item Pick $y_{0} \in (c, b)$, which does not coincide any of the $x_{0}, x_{1}, x_{2}$.
-		\item Divide the triangle to two triagles with $x$-coordinates $(x_{0}, x_{1}, y_{0})$ and $(x_{1}, y_{0}, x_{2})$, as illustrated.
+		\item Pick $y_{0} \in (c, b)$, which does not coincide with any of the $x_{0}, x_{1}, x_{2}$.
+		\item Divide the triangle to two triagles with $x$-coordinates $(x_{0}, x_{1}, y_{0})$ and $(x_{1}, x_{2},  y_{0})$, as illustrated.
 		\item Run this algorithm recursively for these two triangles.
 	\end{enumerate}
 	Why does this algorithm terminate? Note that if any of the $x_{i}$'s are in $(c, b)$, the triangle is either good or $x_{1} \in (c, b)$ (or maybe both). In the former case we are done, and in the latter the two parts of the split are both good. If none of $x_{i}$'s are in $(c, b)$, both of the parts of the split has a coordinate in $(c, b)$, so also this case leads to a good split. In other words we can keep splitting triangles in such a way that they either become good or they have more nodes on $(c, b)$.
 
 	It's easy to verify that splitting the triangle corresponds to the identity
 	\begin{align*}
-		w_{x_{0}, x_{1}, x_{2}} = \frac{y_{0} - x_{0}}{x_{2} - x_{0}} w_{x_{0}, x_{1}, y_{0}} + \frac{x_{1} - y_{0}}{x_{2} - x_{0}} w_{x_{1}, y_{0}, x_{2}}.
+		w_{x_{0}, x_{1}, x_{2}} = \frac{y_{0} - x_{0}}{x_{2} - x_{0}} w_{x_{0}, x_{1}, y_{0}} + \frac{x_{2} - y_{0}}{x_{2} - x_{0}} w_{x_{1}, x_{2}, y_{0}}.
 	\end{align*}
 
-	When $n > 2$ geometric picture is largely lost (at least by the author), but the algebra generalizes perfectly: we can still split Peano kernels using the following identity:
+	When $n > 2$, the geometric picture is largely lost (at least by the author), but the algebra generalizes perfectly: we can still split Peano kernels using the following identity:
 	\begin{align}\label{peano_splitting}
 		w_{x_{0}, x_{1}, \ldots, x_{n}} = \frac{y_{0} - x_{0}}{x_{n} - x_{0}} w_{x_{0}, x_{1}, \ldots, x_{n - 1}, y_{0}} + \frac{x_{n} - y_{0}}{x_{n} - x_{0}} w_{x_{1}, \ldots, x_{n}, y_{0}}.
 	\end{align}
-	Where does this come from? Recall that the Peano kernels are nothing more than the divided differences of the functions $g_{t, n} = \frac{1}{(n - 1)!}((\cdot - t)_{+})^{n - 1}$,. The first identity immediately generalizes
+	Where does this come from? Recall that the Peano kernels are just the divided differences of the functions $g_{t, n} = ((\cdot - t)_{+})^{n - 1}/(n - 1)!$. The first identity immediately generalizes to
 	\begin{align*}
 		[x_{0}, x_{1}]_{f} = \frac{y_{0} - x_{0}}{x_{1} - x_{0}} [x_{0}, y_{0}]_{f} + \frac{x_{1} - y_{0}}{x_{1} - x_{0}} [y_{0}, x_{1}]_{f},
 	\end{align*}
 	where $f$ is now any function. By the nesting property the identity \ref{peano_splitting} is nothing more than the previous identity applied to $f = [\cdot, x_{1}, \ldots, x_{n - 1}]_{g_{t, n}}$. Note that we need $x_{0} < y_{0} < x_{n}$, so that the weighted average is really a convex combination.
 
-	Now we are ready to generalize the algorighm to bigger $n$:
+	Now we are ready to generalize the algorithm to bigger $n$:
 
 	\noindent \textbf{Input:} Peano kernel of order $n$ supported on $(a, d)$. \\
 	\noindent \textbf{Output:} Decomposition of the input as positive linear combination of Peano kernels of order $n$, all supported completely either on $(a, b)$ or $(c, d)$.
 	\begin{enumerate}[\textbf{Step} 1.]
 		\item If the kernel is good already, we are done.
-		\item Pick $y_{0} \in (c, b)$, which does not coincide any of the $x_{0}, x_{1}, \ldots, x_{n}$.
-		\item Divide the kernel to two kernels with nodes $(x_{0}, x_{1}, \ldots, x_{n}, y_{0})$ and $(y_{0}, x_{1}, \ldots, x_{n})$ as in the \ref{peano_splitting}.
+		\item Pick $y_{0} \in (c, b)$, which does not coincide with any of the $x_{0}, x_{1}, \ldots, x_{n}$.
+		\item Divide the kernel to two kernels with nodes $(x_{0}, x_{1}, \ldots, y_{0})$ and $(x_{1}, \ldots, x_{n}, y_{0})$ as in the \ref{peano_splitting}.
 		\item Run this algorithm recursively for these two kernels.
 	\end{enumerate}
 	This algorithm terminates basically because of the same reason: if the kernel isn't good already, the two splits have more nodes on $(c, b)$, and this quantity cannot increase forever.
@@ -471,7 +471,7 @@ While this property is of independent interest, the real use of it is its genera
 	\begin{itemize}
 		\item $\sum_{i = 1}^{N} p_{i} + \sum_{j = 1}^{M} q_{j} = 1$ and $p_{i}, q_{j} \geq 0$ for every $1 \leq i \leq N$ and $1 \leq j \leq M$.
 		\item $y_{0, i}, y_{1, i}, \ldots, y_{n, i}$ are pairwise distinct elements of $(a, b)$ for every $1 \leq i \leq N$.
-		\item $z_{0, j}, z_{1, j}, \ldots, z_{n, j}$ are pairwise distinct elements of $(c, d)$ for every $1 \leq i \leq M$.
+		\item $z_{0, j}, z_{1, j}, \ldots, z_{n, j}$ are pairwise distinct elements of $(c, d)$ for every $1 \leq j \leq M$.
 		\item For every $f : (a, d) \to \R$ we have
 		\begin{align*}
 			[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 1}^{N} p_{i} [y_{0, i}, y_{1, i}, \ldots, y_{n, i}]_{f} +  \sum_{j = 1}^{M} q_{j} [z_{0, j}, z_{1, j}, \ldots, z_{n, j}]_{f}.
@@ -486,9 +486,11 @@ While this property is of independent interest, the real use of it is its genera
 	which is valid because of essentially the same reasoning, and replace the word ``kernel" with word ``tuple".
 \end{proof}
 
+Proof of \ref{peano_splitting_theorem} gives that we may take $N$ and $M$ (in \ref{divdif_splitting_theorem}) with $N + M \leq 2^{n}$. With slightly more careful argument one can achieve $M + N \leq n + 1$.
+
 We are now ready to prove the locality property of the $k$-tone functions.
 
-\begin{prop}
+\begin{prop}\label{k_tone_local}
 	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
 \end{prop}
 \begin{proof}
@@ -507,10 +509,10 @@ for any $x_{0}, x_{1}, \ldots, x_{n - 1}$. But this readily implies that the div
 	&= \frac{1}{n - 1}  \frac{t - x_{0}}{x_{n} - x_{0}} w_{x_{0}, x_{1}, \ldots, x_{n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} w_{x_{1}, \ldots, x_{n}} \\
 	&\geq 0.
 \end{align*}
-Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, but if this is not the case, as observed, the divided differences are zero anyway. The previous identity can be also used to recursively compute Peano kernels.
+Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, but if this is not the case, the divided differences are zero anyway. The previous identity can be also used to recursively compute Peano kernels.
 
 \begin{huom}
-	The previous arguments are a bit awkward and one might be tempted to think that one should instead consider positive linear combinations of Peano Kernels, called (positive) splines, to get better analogue for the ``locality of distributions" -proof. For $k \leq 3$ positive splines can be also characterized as suitable non-negative piecewise polynomial functions, but for $k > 3$ there's a problem: positive splines are merely subclass thereof.
+	The previous arguments are a bit awkward and one might be tempted to think that one should instead consider positive linear combinations of Peano kernels, called (positive) splines, to get better analogue for the ``locality of distributions" -proof. For $k \leq 3$ positive splines can be also characterized as suitable non-negative piecewise polynomial functions, but for $k > 3$ there's a problem: positive splines are merely subclass thereof.
 \end{huom}
 
 \section{Regularity}
@@ -620,7 +622,7 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 	\begin{align*}
 		(x_{0}, x_{1}, \ldots, x_{k}) \to \int_{0}^{1}[s x_{0} + (1 - s) x_{k}, \ldots, s x_{k - 1} + (1 - s) y_{k}]_{f'} s^{k - 1} d s.
 	\end{align*}
-	is continuous. Since $f' \in C_{w}^{k - 1}(a, b)$, the order $(k - 1)$ divided differences are uniformly continuous on any compact subset of $(a, b)^{k + 1}$. The integrand is consequently continuous with $\sup$-norm and hence the whole map continuous.
+	is continuous. Since $f' \in C_{w}^{k - 1}(a, b)$, the order $(k - 1)$ divided differences are uniformly continuous on any compact subset of $(a, b)^{k}$. The integrand is consequently continuous with $\sup$-norm and hence the whole map continuous.
 \end{proof}
 
 \begin{kor}
@@ -645,7 +647,7 @@ Just like one can carry regularity information, one can carry boundedness inform
 \end{proof}
 
 \begin{lause}\label{bounded_div}
-	Let $f : (a, b) \to \R$ and $n \geq 1$. Then $f \in C^{k - 1}(a, b)$ and $f^{(k - 1)}$ is Lipschitz, if and only if $k$:th divided difference of $f$ is bounded. Moreover,
+	Let $f : (a, b) \to \R$. Then $f \in C^{k - 1}(a, b)$ and $f^{(k - 1)}$ is Lipschitz, if and only if $k$:th divided difference of $f$ is bounded. Moreover,
 	\begin{align*}
 		\sup_{a < x_{0} < x_{1} < \ldots < x_{k}< b} |[x_{0}, x_{1}, \ldots, x_{k}]_{f}| = \frac{\Lip(f^{(k - 1)})}{k!}
 	\end{align*}
@@ -711,6 +713,7 @@ The previous result is some kind of relative of \ref{bounded_div}. Also theorem 
 \end{proof}
 
 \section{Notes and references}
+Results of this chapter can be found in \cite{Boor2}.
 
 \begin{comment}
 
