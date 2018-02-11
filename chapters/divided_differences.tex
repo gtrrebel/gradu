@@ -32,7 +32,7 @@ While this proof by the mean value theorem works in more general setting, if $f 
 	Note that on the right-hand side we have average of the derivative over the interval. This means that the claim can be translated to: continuous function is non-negative, if and only if its averages over all intervals are non-negative. But this is clear.
 \end{proof}
 
-This is really powerful point of view. While one would like to say the increasing functions are the functions with non-negative derivative, that's a bit of a lie. Instead, one can say that they are the functions whose derivative is non-negative on average, and all the problems are gone. This should rougly mean that the derivative defines a positive distribution and it is hence a measure. Thus all increasing functions should be integrals of a positive measure (at least almost everywhere). Although this kind of thinking could be carried out, the details aren't important for us. The main point is that one should think that increasing functions, i.e. the $1$-tone functions are functions whose first derivative is a (positive) measure. The divided differences are an averaged (i.e. weak) way of talking about the positivity of the derivative (measure).
+This is a really powerful point of view. While one would like to say the increasing functions are the functions with non-negative derivative, that's a bit of a lie. Instead, one can say that they are the functions whose derivative is non-negative on average, and all the problems are gone. This should rougly mean that the derivative defines a positive distribution and it is hence a measure. Thus all increasing functions should be integrals of a positive measure (at least almost everywhere). Although this kind of thinking could be carried out, the details aren't important for us. The main point is that one should think that increasing functions, i.e. the $1$-tone functions are functions whose first derivative is a (positive) measure. The divided differences are an averaged (i.e. weak) way of talking about the positivity of the derivative (measure).
 
 This is essentially distributional way of thinking, and we could keep going and end up with the whole business of weak derivatives and stuff. But we don't have to: the plain averages suffice. We write
 \begin{align*}
@@ -44,7 +44,7 @@ Aside from capturing the first derivative, divided difference has two rather con
 
 \begin{itemize}
 	\item For given $x$ and $y$, $f \mapsto [x, y]_{f}$ defines a linear map, which is continuous with the topology of pointwise convergence (i.e. the product topology).
-	\item Divided differences are local in the sense that if $f$ and $g$ agree on $\{x, y\}$, divided differences agree; this observation readily implies the previous continuity claim.
+	\item Divided differences are local in the sense that if $f$ and $g$ agree on $\{x, y\}$, divided differences agree; this observation readily implies the continuity claim.
 \end{itemize}
 
 These are the ways divided difference is a compromise between the real derivative and the weak derivative. The first point says that one doesn't have worry too much, only about pointwise convergence, while the second says that things are still rather concrete (and it makes the life whole lotta easier).
@@ -228,7 +228,7 @@ As an very important corollary we get the following.
 	\end{align}
 \end{lause}
 \begin{proof}
-	This follows immediately from \ref{peano_theorem}.
+	t.f.i.f. \ref{peano_theorem}.
 
 	One can also give a proof using mean value theorem and with slightly weaker assumptions: it suffices to assume that $f$ is $n$ times differentiable.
 
@@ -288,7 +288,7 @@ While the previous argument works stricly speaking only for analytic function (a
 	Simply take $f$ to be the interpolating polynomial.
 \end{proof}
 
-One can also interpret such identities to be strictly formal: Cauchy's integral formula can be thought as a bijection between rational functions with simple poles and the span of $\delta$-measures. Many measures look simpler as rational functions.
+One can also interpret such identities to be strictly formal: Cauchy's integral formula can be thought as a bijection between rational functions with simple poles and the span of $\delta$-measures. Many such signed measures look simpler as rational functions.
 
 \subsection{Identities}
 
@@ -351,12 +351,12 @@ for some sequence $x_{0}, x_{1}, \ldots$ and analytic $f$. While Newton series c
 	Let $f : \D(z_{\infty}, \rho) \to \C$ be analytic and $z_{0}, z_{1}, \ldots \in \D(z_{\infty}, r)$ sequence converging to $z_{\infty}$. Then \ref{newton_series} holds for any $z \in \D(z_{\infty}, r)$.
 \end{prop}
 \begin{proof}
-	We need to verify that the error term $[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n})$ tends to zero as $n \to \infty$. But for any $\rho' < \rho$ such that $z, z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho')$ we have
+	We need to verify that the error term $[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n})$ in Newton expansion tends to zero as $n \to \infty$. But for any $\rho' < \rho$ such that $z, z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho')$ we have
 	\begin{align*}
 		&[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n}) \\
 		= & \frac{1}{2 \pi i} \int_{\partial \D(z_{\infty}, \rho')} \frac{(z - z_{0}) (z - z_{1}) \cdots (z - z_{n})}{(w - z)(w - z_{0}) (w - z_{1}) \cdots (w - z_{n})} f(w) dw.
 	\end{align*}
-	But as $z_{n} \to z_{\infty}$, the absolute values of the quotients $(z - z_{n})/(w - z_{n})$ tend to $|z - z_{\infty}|/|\rho'| < 1$ uniformly on $\partial \D(z_{\infty}, \rho')$ and hence the integrand tends uniformly to $0$.
+	As $z_{n} \to z_{\infty}$, the absolute values of the quotients $(z - z_{n})/(w - z_{n})$ tend to $|z - z_{\infty}|/|\rho'| < 1$ uniformly on $\partial \D(z_{\infty}, \rho')$ and hence the integrand tends uniformly to $0$.
 \end{proof}
 
 In similar vein one could prove that if $f$ is entire, its Newton series converge whenever $(z_{i})_{i \geq 0}$ is bounded. Note that \ref{newton_series} easily implies the identity theorem for analytic functions.
@@ -378,7 +378,7 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 	Let $k$ be an non-negative integer and $(a, b)$ an open interval. Then $P^{(k)}(a, b) \subset \R^{(a, b)}$ is closed convex cone.
 \end{lause}
 \begin{proof}
-	This follows immediately from \ref{positive_machine}.
+	t.f.i.f \ref{positive_machine}.
 \end{proof}
 
 Mean value theorem tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative.
@@ -494,7 +494,7 @@ We are now ready to prove the locality property of the $k$-tone functions.
 	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
 \end{prop}
 \begin{proof}
-	This follows immediately from lemma \ref{divdif_splitting_theorem}.
+	t.f.i.f. lemma \ref{divdif_splitting_theorem}.
 \end{proof}
 
 Note that we could have also used the splitting property \ref{divdif_splitting_property} to slightly simplify the proof of theorem \ref{peano_theorem}. In the induction step we managed to prove that we have

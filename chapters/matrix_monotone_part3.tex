@@ -2,7 +2,7 @@
 
 \section{Loewner's theorem}
 
-Aim of this chapter is to prove theorem \ref{weak_loewner}. The proof is in several steps. First, ``if"-direction is the easy part.
+Aim of this chapter is to prove theorem \ref{weak_loewner}. The proof is in several steps. First, ``$\Rightarrow$"-direction is the easy part.
 
 \begin{lem}\label{weak_loewner_converse}
 	Let $f$ be a Pick function, which analytically extends to $(\C \setminus \R) \cup (a, b)$. Assume further that $\restr{f}{(a, b)}$ is real. Then $\restr{f}{(a, b)} \in P_{\infty}(a, b)$.
@@ -14,11 +14,11 @@ Aim of this chapter is to prove theorem \ref{weak_loewner}. The proof is in seve
 	\end{align*}
 \end{proof}
 
-The ``only if" is the tricky part. Our plan is the following:
+The ``$\Leftarrow$" is the tricky part. Our plan is the following:
 \begin{enumerate}
 	\item First show that $f$ is real analytic on $(a, b)$.
-	\item Next, show that if we can extend $f$ analytically to $\D(x_{0}, r)$ for some $x_{0} \in (a, b)$ and $r > 0$, then the extension is weakly Pick on $\D(x_{0}, r) \cap \Hp$.
-	\item Finally, by theorem \ref{open_pick_interpolation} we get Pick function, which agree with $f$ on $(x_{0} - r, x_{0} + r)$, so by real analyticity of $f$, on the whole interval $(a, b)$.
+	\item Next, show that if we can extend $f$ analytically to $\D(x_{0}, \rho)$ for some $x_{0} \in (a, b)$ and $\rho > 0$, then the extension is weakly Pick on $\D(x_{0}, \rho) \cap \Hp$.
+	\item Finally, by theorem \ref{open_pick_interpolation} we get Pick function, which agree with $f$ on $(x_{0} - \rho, x_{0} + \rho)$, so by real analyticity of $f$, on the whole interval $(a, b)$.
 \end{enumerate}
 
 \begin{lem}\label{loewner_analytic}
@@ -40,7 +40,7 @@ The ``only if" is the tricky part. Our plan is the following:
 \end{proof}
 
 \begin{proof}[Proof of theorem \ref{weak_loewner}]
-	This follows from \ref{weak_loewner_converse}, \ref{loewner_analytic}, \ref{loewner_extension} and \ref{open_pick_interpolation}.
+	t.f.i.f \ref{weak_loewner_converse}, \ref{loewner_analytic}, \ref{loewner_extension} and \ref{open_pick_interpolation}.
 \end{proof}
 
 \section{Notes and references}

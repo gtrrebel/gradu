@@ -66,12 +66,22 @@
 \theoremstyle{definition}
 \newtheorem{maar}[equation]{Definition}
 \newtheorem{konj}[equation]{Conjecture}
-\newtheorem{esim}[equation]{Example}
 \newtheorem{phil}[equation]{Philosophy}
 \newtheorem{quest}[equation]{Question}
 
+\newtheorem{esimx}[equation]{Example}
+
+\newenvironment{esim}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\esimx}
+  {\popQED\endesimx}
+
+\newtheorem{huomx}[equation]{Remark}
+
+\newenvironment{huom}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\huomx}
+  {\popQED\endhuomx}
+
 %\theoremstyle{remark}
-\newtheorem{huom}[equation]{Remark}
 
 \pagestyle{plain}
 \setcounter{page}{1}

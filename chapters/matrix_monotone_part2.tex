@@ -1,6 +1,8 @@
 \chapter{Matrix monotone functions -- part 2}
 
-\section{Main theorem}
+\section{Characterization}
+
+\subsection{Main theorem}
 
 Let's come back to theorem \ref{heuristic_loewner}: with the $k$-tone language it rewrites to
 
@@ -43,7 +45,7 @@ Aim of this chapter is to give a honest proof for \ref{main_theorem}: we aim to 
 Note that the proof of \ref{heuristic_loewner} can be interpreted as saying
 \begin{align*}
 	& D f_{A}(H) \geq 0 \text{ for any $A \in \H_{(a, b)}$ and $H \geq 0$ with $\rank(H) = 1$} \\
-	\Leftrightarrow &[\lambda_{1}, \lambda_{1}, \ldots, \lambda_{2 n}, \lambda_{2 n}]_{f N(q)} \text{ for any $q \in \C_{n - 1}[x]$ and $a < \lambda_{1} < \ldots < \lambda_{n} < b$}.
+	\Leftrightarrow &[\lambda_{1}, \lambda_{1}, \ldots, \lambda_{n}, \lambda_{n}]_{f N(q)} \text{ for any $q \in \C_{n - 1}[x]$ and $a < \lambda_{1} < \ldots < \lambda_{n} < b$}.
 \end{align*}
 The idea of the proof was to note that the quadratic form of the derivative rewrites to such divided difference, and $\lambda$'s are the eigenvalues of $A$.
 
@@ -54,13 +56,13 @@ To avoid regularity issues we simply do the same thing without limits.
 \end{maar}
 
 \begin{lem}\label{main_lemma}
-	If $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and $q \in \C_{n - 1}[x]$, we may find a strict projection pair $(A, B, v)$ such that
+	If $a < \lambda_{0} < \lambda_{1} < \ldots < \lambda_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$, we may find a strict projection pair $(A, B, v)$ such that
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{0}, \lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n - 1}]_{f N(q)}
 	\end{align*}
 	for any $f : (a, b) \to \R$.
 
-	Conversely, if $(A, B, v)$ is a strict projection pair and $w \in V$, then there exists $a < \lambda_{1} < \lambda_{2} < \ldots < \lambda_{2 n - 1} < \lambda_{2 n} < b$ and polynomial $q \in \C_{n - 1}[x]$, such that for any $f : (a, b) \to \R$ we have
+	Conversely, if $(A, B, v)$ is a strict projection pair and $w \in V$, then there exists $a < \lambda_{0} < \lambda_{1} < \ldots < \lambda_{2 n - 1} < b$ and polynomial $q \in \C_{n - 1}[x]$, such that for any $f : (a, b) \to \R$ we have
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{0}, \lambda_{1}, \lambda_{2}, \ldots, \lambda_{2 n - 1}]_{f N(q)}.
 	\end{align*}
@@ -69,7 +71,7 @@ To avoid regularity issues we simply do the same thing without limits.
 Before trying to understand the lemma we use it to prove theorem \ref{main_theorem}.
 
 \begin{proof}
-	``$\Rightarrow$": This follows immediately from the lemma \ref{main_lemma}.
+	``$\Rightarrow$": t.f.i.f lemma \ref{main_lemma}.
 
 	``$\Leftarrow$": Take any $a I < A \leq B < b I$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$. We may hence assume that $(A, B, v)$ projection pair.
 
@@ -82,10 +84,10 @@ Before trying to understand the lemma we use it to prove theorem \ref{main_theor
 	$P_{n}$ is a local property: if $a < c < b < d$ and $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P_{n}(a, b)$ and $\restr{f}{(c, d)} \in P_{n}(c, d)$, then $f \in P_{n}(a, d)$.
 \end{kor}
 \begin{proof}
-	This follows immediately from \ref{main_theorem} and \ref{k_tone_local}.
+	t.f.i.f \ref{main_theorem} and \ref{k_tone_local}.
 \end{proof}
 
-\section{Main lemma}
+\subsection{Main lemma}
 
 It remains to understand what is going on with lemma \ref{main_lemma}. The surprising part about it is the following fact about eigenvalues.
 
@@ -163,14 +165,14 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 	\end{proof}
 	By the previous lemma we have
 	\begin{align*}
-		\det(z I - B) \langle (z I - B)^{-1} w, v \rangle = \overline{\det(\overline{z} I - A) \langle (\overline{z} I - A)^{-1} w, v \rangle}
+		\det(z I - B) \langle (z I - B)^{-1} v, w \rangle = \overline{\det(\overline{z} I - A) \langle (\overline{z} I - A)^{-1} w, v \rangle}
 	\end{align*}
 	so
 	if we write $q(z) = \det(z I - A) \langle (z I - A)^{-1} w, v \rangle$, we have
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B)]_{f N(q)}.
 	\end{align*}
-	By \ref{entire_interpolation} or by interpreting everything formally one sees that this identity holds without any extra smootness assumptions.
+	By \ref{entire_interpolation} or by interpreting everything formally one sees that this identity holds without any regularity assumptions.
 
 	Now when $(A, B, v)$ ranges over all strict projection pairs, the permutations of tuples
 	\begin{align}
@@ -180,18 +182,18 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 
 	To recap, the map
 	\begin{align*}
-		V &\to \C_{n - 1}[x] = \{\text{Complex polynomials of degree at most } (n - 1) \} \\
+		V &\to \C_{n - 1}[x] \\
 		w &\mapsto \det(z I - A) \langle (z I - A)^{-1} v, w \rangle
 	\end{align*}
 	is antilinear bijection, the correspondence between $w$ and $q$.
 \end{proof}
 
-\section{Dual pairing}
+\subsection{Dual pairing}
 
 Proof of theorem \ref{main_theorem} is actually missing one more detail we need in the induction step.
 
 \begin{lem}\label{k_tone_cor}
-	If $n \geq 1$ and $f N(q)$ is $(2 n + 1)$-tone for $q \in \C_{n}[x]$, then $f N(r)$ is $(2 n - 1)$-tone for every $r \in \C_{n - 1}[x]$.
+	If $n \geq 1$ and $f N(q)$ is $(2 n + 1)$-tone for $q \in \C_{n}[x]$, then $f N(\tilde{q})$ is $(2 n - 1)$-tone for every $\tilde{q} \in \C_{n - 1}[x]$.
 \end{lem}
 
 To understand this result, recall that for analytic $f$ and $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$ we have
@@ -218,13 +220,13 @@ where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us d
 \end{align*}
 
 \begin{proof}[Proof lemma \ref{k_tone_cor}]
-	Take any $r \in R_{n}(a, b)$. If there was no condition on the order of the poles, we could simply note that
+	Take any $\tilde{q} \in R_{n}(a, b)$. If there was no condition on the order of the poles, we could simply note that
 	\begin{align*}
-		r = r \frac{N(z - c)}{(z - c) (z - c)} \in R_{n + 1}(a, b).
+		\tilde{q} = \tilde{q} \frac{N(z - c)}{(z - c) (z - c)} \in R_{n + 1}(a, b).
 	\end{align*}
 	Even though that doesn't quite work, we can modify the idea a little: we have
 	\begin{align*}
-		r = \frac{1}{2} r \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} r\frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{n + 1}(a, b))
+		\tilde{q} = \frac{1}{2} \tilde{q} \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} \tilde{q}\frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{n + 1}(a, b))
 	\end{align*}
 	as soon as we choose $c, d \in (a, b)$ so that the poles remain simple.
 \end{proof}

@@ -2,7 +2,7 @@
 
 \section{Disclaimer}
 
-Let's be honest: this master's thesis is really not about matrix monotone functions. What is it about, then? Well, unfortunately the only way I know how to answer that question is to explain what the matrix monotone functions are.\footnote{Worry not: one need not read beyond this chapter to get some kind of answer to the question.} Hence the title.
+Let's be honest: this master's thesis is not really about matrix monotone functions. What is it about, then? Well, unfortunately the only way I know how to answer that question is to explain what the matrix monotone functions are.\footnote{Worry not: one need not read beyond this chapter to get some kind of answer to the question.} Hence the title.
 
 \section{What are matrix monotone functions?}
 
@@ -19,15 +19,15 @@ Now, it might not be too big of a surprise that, on the surface level at least, 
 If all this makes sense to you, great! Feel free to skip this section. If not, what follows is an attempt to give some kind of handwavy picture of the setup. Alternatively, if you don't like handwaving, you may feel free to visit chapter 2 for rigorous foundations.
 
 Matrix monotonicity is a generalization of standard monotonicity of real functions: now we are just having functions mapping matrices to matrices. Formally, $f$ is \textbf{matrix monotone} if for any two matrices $A$ and $B$ such that
-\begin{align}
+\begin{align*}
 	A \leq B
-\end{align}
+\end{align*}
 we also have
-\begin{align}
+\begin{align*}
 	f(A) \leq f(B).
-\end{align}
+\end{align*}
 
-This kind of function might be more properly called \textbf{matrix increasing} but we will mostly stick to monotonicity for couple of reasons:
+This kind of function might be more properly called \textbf{matrix increasing} but we will stick to monotonicity for couple of reasons:
 \begin{itemize}
 	\item For some reason, that is what people have been doing in the field.
 	\item It doesn't make much difference whether we talk about increasing or decreasing functions, so we might just ignore the latter but try to symmetrize our thinking by the choice of words.
@@ -44,16 +44,16 @@ This kind of function might be more properly called \textbf{matrix increasing} b
 	How very inconvenient.
 \end{itemize}
 
-Of course, it's not really obvious how one should make any sense of this ``definition''. There two things to understand.
+Of course, it's not really obvious how one should make any sense of this ``definition''. There are essentially two things to understand.
 \begin{itemize}
 	\item How should matrices be ordered?
 	\item How should functions act on matrices?
 \end{itemize}
-Both of these questions can be (of course) answered in many ways, but for both of them, there is very natural, in fact tensorial answer. Instead of comparing matrices we can compare bilinear forms, $(0, 2)$-tensors (bilinear maps $V^2 \to \R)$. Similarly we can naturally apply function to linear mappings, $(1, 1)$-tensors (bilinear maps $V^{*} \times V \to \R$).
+Both of these questions can be of course answered in many ways, but for both of them there is very natural, in fact tensorial, answer. Instead of comparing matrices we can compare bilinear forms, $(0, 2)$-tensors (bilinear maps $V^2 \to \R)$. Similarly we can naturally apply function to linear mappings, $(1, 1)$-tensors (bilinear maps $V^{*} \times V \to \R$). Here $V$ is a $n$-dimensional vector space over $\R$.
 
 For matrix (bilinear form) ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We say that a form is positive if its diagonal is non-negative. This gives a partial order on the space of all bilinear forms.
 
-For matrix functions, i.e. ``how to apply function to matrix" the idea is to take a real function ($f : \R \to \R$, say) and interpret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, given the ring structure of linear maps themselves. If the argument (a linear map) is diagonalizable, this extension merely applies the function to the eigenvalues. This motivates us to define $f(A)$ for linear map $A$ to be linear map with same eigenspace structure as $A$ but the eigenvalues changed from $\lambda \to f(\lambda)$, respectively. All this works for diagonalizable maps with real eigenvalues, so the domain isn't quite $\R^{n \times n}$ but that's okay. This extension idea is called \textbf{functional calculus}.
+For matrix functions, i.e. ``how to apply function to matrix" the idea is to take a real function, $f : \R \to \R$, and interpret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, given the ring structure of linear maps themselves. If the argument (a linear map) is diagonalizable, this extension merely applies the function to the eigenvalues. This motivates us to define $f(A)$ for linear map $A$ to be linear map with same eigenspace structure as $A$ but the eigenvalues changed from $\lambda \to f(\lambda)$, respectively. All this works for diagonalizable maps with real eigenvalues, so the domain isn't quite $\R^{n \times n}$. This extension idea is called \textbf{functional calculus}.
 
 All this is kind of enough to make sense of matrix monotonicity, but to drastically simplify the setup it is customary to restrict the attention to a special set of diagonalizable matrices, which in this text are called \textbf{real maps}. They are exactly the symmetric matrices and they hold special place amidst the set of all matrices.
 
@@ -111,7 +111,7 @@ All these issues can be, in a way, avoided by change of perspective: instead of 
 Let in the following $V$ be a vector space over $\R$ and denote its dual by $V^{*}$.
 
 \begin{maar}
-	For every subset $C^{*}$ of $V^{*}$ we define its \textbf{dual cone} to be
+	For a subset $C^{*}$ of $V^{*}$ we define its \textbf{dual cone} to be
 	\begin{align*}
 		C = \{v \in V | w^{*} v \geq 0 \text{ for every $w^{*} \in V^{*}$}\} \subset V.
 	\end{align*}
@@ -129,7 +129,7 @@ One immediately makes the following observation justifying the terminology.
 
 Of course only convex cones have preduals. Easy examples show that preduals are not unique in general (in fact never).
 
-As an example, for open interval $(a, b)$ consider the set
+As an example, for an open interval $(a, b)$ consider the set
 \begin{align*}
 	P_{1}(a, b) := \{\text{Increasing functions $f : (a, b) \to \R$}\}.
 \end{align*}
@@ -154,11 +154,15 @@ Aim of the chapters entitled ``Matrix monotone functions -- part $i$" for $0 \le
 
 The whole theory of matrix monotone functions originates from a 1934 paper by Charles Loewner (then known as Karl Löwner) entitled ``Über monotone Matrixfunktionen" \cite{Low}. In the paper Loewner asked the questions \ref{question_1} and \ref{question_2}, and gave them both answers. Since then the theory has been reworked and expanded by various authors, and many open question remain. This text is an amalgamation of countless works on the subject. ``Notes and references" -sections at the end of each chapter (except this one) are an attempt to give attribution to these ancestors.
 
-Arguments of this thesis are largely elementary, requiring only basic calculus, complex analysis, linear algebra and topology. Many of the underlying ideas and heuristics are however inspired by functional analysis and measure theory, so it pays to have good understanding of them.
+Arguments of this thesis are largely elementary, requiring only basic calculus, complex analysis, linear algebra and topology. Many of the underlying ideas and heuristics are however inspired by functional analysis and measure theory, so it pays to have a good understanding of them.
 
 \section{Notation and conventions}
 
+TODO: fix this
+
 \begin{tabular}{r l}
+	w.l.o.g & without loss of generality \\
+	t.f.i.f & this follows immediately from \\
 	$V^{*}$ & (continuous) dual of (topological) vector space $V$ \\
 	$\L(V)$ & linear self-maps over vector space $V$ \\
 	$\H(V)$ & real maps over inner product space $V$ \\

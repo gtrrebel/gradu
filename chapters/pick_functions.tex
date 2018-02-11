@@ -12,7 +12,7 @@ Pick functions can be thought of a set of ``positive analytic functions".
 	$\pickclass \subset \{\text{analytic maps on $\Hp$} \}$ is a closed convex cone.
 \end{lause}
 \begin{proof}
-	Again, this follows immediately from \ref{positive_machine}.
+	Again, t.f.i.f \ref{positive_machine}.
 \end{proof}
 
 Also a composition of Pick functions is a Pick function.
@@ -40,7 +40,9 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 
 This result far from clear: pointwise limits of analytic functions need not analytic in general. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals, or better predual.
 
-\section{Boundary}
+\section{Rigidity}
+
+\subsection{Boundary}
 
 To understand the rigidity phenomena we take a brief look at a close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
 
@@ -62,10 +64,10 @@ This suggests that we should be able to recognize also Pick functions looking on
 	Let $\varphi : U \to \C$ be analytic, such that $\overline{\Hp} \subset U$, and $\varphi$ is continuous at $\infty$. Then if the imaginary part of $\varphi$ is non-negative on the real axis, $\varphi$ is Pick function.
 \end{prop}
 \begin{proof}
-	This follows immediately from the minimum principle applied to the harmonic function $\Im(\varphi)$.
+	t.f.i.f the minimum principle applied to the harmonic function $\Im(\varphi)$.
 \end{proof}
 
-\section{Integral representations}
+\subsection{Integral representations}
 
 Recall that imaginary part of an analytic function determines also its real part, up to a constant, so we can also recover the function itself. This can be also done explicitly.
 
@@ -145,7 +147,9 @@ We will call the family
 \end{align*}
 
 \textbf{extreme Pick functions}. Finite positive linear combinations of the extreme Pick functions are called \textbf{simple Pick functions}. Finally, we will call a Pick function \textbf{extentable}, if it is bounded and analytically extends over the real line. Such Pick functions enjoy representations of the form \ref{easy_pick_repr}.
-\section{Pick functionals}
+
+\section{Weakly Pick functions}
+\subsection{Pick functionals}
 
 \begin{quest}
 	How can we recover the measure $\mu$ from the Pick function?
@@ -162,9 +166,9 @@ Beauty of the measure theory is of course that we don't even need to make sense 
 \begin{align*}
 	\mu((a, b)) = \lim_{y \to 0^{+}}\frac{1}{\pi}\int_{a}^{b} \Im(\varphi(\lambda + i y)) d \lambda?
 \end{align*}
-Even this isn't quite true: the problem is that if $\mu$ contains $\delta$-measure at $a$ or at $b$, the right-hand side doesn't see this properly. It turns out that this is only problem though.
+Even this isn't quite true: the problem is that if $\mu$ contains $\delta$-measure at $a$ or at $b$, the right-hand side doesn't see this properly.
 
-We have however already encountered much better averages: the imaginary part of a Pick function $\varphi$ is a weighted average of the imaginary parts of $\varphi$ on the real line. We only proved this in the case of bounded $\varphi$, and indeed, the proper generalization should be 
+We have however already encountered much good averages: the imaginary part of a Pick function $\varphi$ is a weighted average of the imaginary parts of $\varphi$ on the real line. We only proved this in the case of bounded $\varphi$, and indeed, the proper generalization should be 
 \begin{align*}
 	\Im(\varphi(z)) = \alpha \Im(z) + \frac{\Im(z)}{\pi}\int_{\R} \frac{d \mu(\lambda)}{(\lambda - z)(\lambda - \overline{z})}.
 \end{align*}
@@ -264,7 +268,7 @@ Finally, the following correspondence should be clear by now.
 
 This line of thought induces a dual pairing between rational functions $r$ with simple poles such that $(1 + (\cdot)^2) r$ is bounded on $\R$, and $\C^{\Hp}$. We denote this pairing by $\langle r, \varphi \rangle_{\pickclass}$ and the class of rational functions by $R_{\infty}(\Hp)$. For $X \subset \Hp$ we also denote by $R_{\infty}(X)$ those functions on $R_{\infty}(\Hp)$, whose poles are on $X$ (and on its reflection with respect to $\R$).
 
-\section{Weakly Pick functions}
+\subsection{Weakly Pick functions}
 
 Theorem \ref{pick_functionals} implies that $\pickclass^{*}$ is really just the dual cone of $\pickclass$. It turns out that the ``converse" is also true: $\pickclass^{*}$ is also a predual of $\pickclass$.
 
@@ -294,9 +298,13 @@ The idea is the following: we are going to formulate everything in terms of line
 	\begin{align*}
 		\frac{1}{|\lambda - z|^2} \leq \frac{C_{K}}{|\lambda - w|^2}
 	\end{align*}
-	for every $\lambda \in \R$. This follows from
+	for every $\lambda \in \R$. But since
 	\begin{align*}
-		\left|\frac{\lambda - w}{\lambda - z}\right|^2 \leq \left|1 + \frac{z - w}{\lambda - z}\right|^2 \leq \left(1 + \frac{|z - w|}{\Im(z)}\right)^2.
+		\left|\frac{\lambda - w}{\lambda - z}\right|^2 \leq \left|1 + \frac{z - w}{\lambda - z}\right|^2 \leq \left(1 + \frac{|z - w|}{\Im(z)}\right)^2
+	\end{align*}
+	we may take
+	\begin{align*}
+		C_{K} := \left(1 + \frac{\diam(K)}{\dist(\R, K)}\right)^2
 	\end{align*}
 \end{proof}
 
@@ -345,10 +353,12 @@ It is worthwhile to note that as one really only needs to get bound for order $2
 \end{kor}
 
 \begin{proof}[Proof of theorem \ref{pick_convergence}]
-	This follows immediately from \ref{pick_weakly_pick}.
+	t.f.i.f \ref{pick_weakly_pick}.
 \end{proof}
 
-\section{Pick-Nevanlinna extension theorem}
+\section{Pick-Nevanlinna interpolation theorem}
+
+\subsection{Open version}
 
 There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 
@@ -356,7 +366,7 @@ There's a remarkable generalization to the theorem \ref{pick_weakly_pick}.
 	Let $X \subset \Hp$. We say that $\varphi : X \to \C$ is weakly Pick on $X$ if $p^{*}(\varphi) \geq 0$ for any Pick functional $p^{*}$ supported on $X$.
 \end{maar}
 
-\begin{lause}[Pick-Nevanlinna extension theorem]\label{open_pick_interpolation}
+\begin{lause}[Open Pick-Nevanlinna interpolation theorem]\label{open_pick_interpolation}
 	Let $U \subset \Hp$ be open and assume that $\varphi$ is weakly Pick on $U$. Then there exists a unique pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
 \end{lause}
 
@@ -394,12 +404,16 @@ Note that the proof \ref{Hindmarsh_theorem} implies that if $\varphi$ is weakly 
 
 
 \begin{proof}[Proof of theorem \ref{open_pick_interpolation}]
-	Consider all weakly Pick extensions of $\varphi$ (to open supersets of $U$), ordered by restriction. These maps trivially satisfy the conditions of Zorn's lemma so we may Pick maximal map, $\tilde{\varphi}$. It follows immediately from lemma \ref{open_pick_lemma} that the domain of $\tilde{\varphi}$ is the whole $\Hp$.
+	We may assume w.l.o.g that $i \in U$. Consider the sequence $z_{k} = (3/2)^{k - 1} i$ so that we have $z_{k + 1} \in \D(z_{k}, \Im(z_{k}))$ for any $k \geq 1$. Applying lemma \ref{open_pick_lemma} repeatedly we may construct functions $(\varphi_{k})_{k > 0}$ such that
+	\begin{itemize}
+		\item $\varphi_{k} : U_{k} \to \C$, where $U_{k} := U \cup \D(z_{k}, \Im(z_{k}))$, is weakly Pick.
+		\item $\restr{\varphi_{k}}{U_{k'}} = \varphi_{k'}$ for any $k \geq k' \geq 1$.
+		\item $\restr{\varphi_{k}}{U} = \varphi_{0} := \varphi$ for any $k \geq 1$.
+	\end{itemize}
+	Since $\cup_{k \geq 1} U_{k} = \Hp$ and $\varphi_{k}$'s agree on their common domains, they determine a function $\tilde{\varphi} : \Hp \to \C$, which trivially satisfies the conditions of the theorem statement.
 \end{proof}
 
-Of course, Zorn's lemma is not really necessary here: one could write explicit extension scheme (TODO: picture).
-
-\section{Pick-Nevanlinna interpolation theorem}
+\subsection{General version}
 
 Although Pick-Nevanlinna extension theorem is strong enough tool for our purposes, one cannot simply talk about it without discussing also its big brother, interpolation theorem.
 
@@ -451,11 +465,11 @@ Let us first proof the theorem given this lemma.
 	is a family of compact sets with finite intersection property. Consequently their intersection is non-empty and compact.
 \end{proof}
 
-Again, one could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.
+One could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.
 
 \section{Notes and references}
 
-Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick-Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved by independently by \cite{Pick} and \cite{Nevan}. Since then, many different approaches exist. Approach taken in text is similar to (?). \ref{open_pick_interpolation} first appeared in \cite{Hind} (formulated in terms of Pick matrices).
+Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick-Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist. Approach taken in text is similar to (?). \ref{open_pick_interpolation} first appeared in \cite{Hind} (formulated in terms of Pick matrices).
 
 \begin{comment}
 
