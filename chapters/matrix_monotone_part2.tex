@@ -10,7 +10,7 @@ Let's come back to theorem \ref{heuristic_loewner}: with the $k$-tone language i
 	$f \in P_{n}(a, b)$, if and only if $f N(q)$ is $(2 n - 1)$-tone for any $q \in \C_{n - 1}[x]$.
 \end{lause}
 
-This is the correct interpretation and it makes sense without regularity issues. There's also many different ways to talk about the polynomial part.
+This is the correct interpretation and it makes sense without further regularity assumptions. There are also many different ways to talk about the polynomial part.
 \begin{lem}\label{polynomial_lemma}
 	Let $h : \C \to \C$. Then the following are equivalent:
 	\begin{enumerate}[(i)]
@@ -89,7 +89,7 @@ Before trying to understand the lemma we use it to prove theorem \ref{main_theor
 
 \subsection{Main lemma}
 
-It remains to understand what is going on with lemma \ref{main_lemma}. The surprising part about it is the following fact about eigenvalues.
+It remains to understand what is going on with lemma \ref{main_lemma}. The surprising part about it is the following fact about eigenvalues of real maps.
 
 \begin{lem}\label{projection_eigenvalues}
 	Let $(A, B, v)$ be a projection pair. Then
@@ -121,15 +121,15 @@ This proposition is based on the following explicit relationship between charact
 \end{proof}
 
 \begin{proof}[Proof of lemma \ref{projection_eigenvalues}]
-	Note that if $v$ is orthogonal to one of the eigenvectors of $A$, $P_{v}$ doesn't affect this eigenspace, so we may forget it and restrict our attention to a smaller space. Similarly for the converse: if $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, and solve the remaining problem on smaller space. We may hence assume that the pair $(A, B, v)$ and the inequalities in the converse are strict.
+	Note that if $v$ is orthogonal to one of the eigenvectors of $A$, $P_{v}$ doesn't affect this eigenspace, so we may forget $v$ and restrict our attention to a smaller space. Similarly for the converse: if $a_{i} = b_{j}$ for some $1 \leq i, j \leq n$ we can forget $a_{i}$ and $b_{j}$, and solve the remaining problem on smaller space. We may hence assume that the pair $(A, B, v)$ and the inequalities in the converse are strict.
 
 	Let $(e_{i})_{i = 1}^{n}$ be the eigenbasis of $A$ and consider the rational function
 	\begin{align*}
 		z \mapsto 1 + \langle (A - z I)^{-1}v, v\rangle = 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{\lambda_{i}(A) - z}.
 	\end{align*}
-	It has $n$ poles of negative residue so it has a root between any two poles. Also it tends to $1$ at infinity so it has a root on $(\lambda_{1}(A), \infty)$. Hence it has $n$ distinct roots. All these roots are eigenvalues of $B$ so they are exactly the eigenvalues. This implies the first claim.
+	It has $n$ poles of negative residue so it has a root between any two poles. Also it tends to $1$ at infinity so it has a root on $(\lambda_{1}(A), \infty)$. It has hence $n$ distinct roots. All these roots are eigenvalues of $B$ so they are exactly the eigenvalues. This implies the first claim.
 
-	For the converse take first $A$ with the given eigenvalues. By the previous lemma we now just want to choose $v$ in such a way that
+	For the converse, first take $A$ with the given eigenvalues. By the previous lemma we now just want to choose $v$ in such a way that
 	\begin{align*}
 		\frac{p_{B}(z)}{p_{A}(z)} = 1 + \langle (A - z I)^{-1}v, v\rangle= 1 + \sum_{i = 1}^{n} \frac{|\langle v, e_{i} \rangle|^2}{a_{i} - z},
 	\end{align*}
@@ -167,8 +167,7 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 	\begin{align*}
 		\det(z I - B) \langle (z I - B)^{-1} v, w \rangle = \overline{\det(\overline{z} I - A) \langle (\overline{z} I - A)^{-1} w, v \rangle}
 	\end{align*}
-	so
-	if we write $q(z) = \det(z I - A) \langle (z I - A)^{-1} w, v \rangle$, we have
+	so if we write $q(z) = \det(z I - A) \langle (z I - A)^{-1} w, v \rangle$, we have
 	\begin{align*}
 		\langle (f(B) - f(A)) w, w \rangle = [\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B)]_{f N(q)}.
 	\end{align*}
@@ -260,7 +259,7 @@ First of all, the dual pairing thinking leads to much more satisfactory conclusi
 	\end{align*}
 \end{proof}
 
-$R_{\infty}(a, b)$ is hence the dual cone of $P_{\infty}(a, b)$. Now, it might not be too big of a surprise that the class $R_{\infty}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$ (with uniform norm). This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{\infty}(a, b)$
+$R_{\infty}(a, b)$ is hence a predual cone of $P_{\infty}(a, b)$. Now, it might not be too big of a surprise that the class $R_{\infty}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$ (with uniform norm). This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{\infty}(a, b)$
 \begin{align*}
 	\langle f, r \rangle_{L} = \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
 \end{align*}
@@ -279,7 +278,7 @@ This is almost true. As the functions $R_{\infty}(a, b)$ are not compactly suppo
 
 Note that the limit $\left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right)$ exists and is non-negative for any $r \in R_{\infty}(a, b)$. It is clear that the converse of this theorem also holds. Note also that examples \ref{finite_pick} fit in the this framework: they corresponds to positive linear combination of $\delta$-measures. Theorem \ref{integral_loewner} can be interpreted as saying that all functions in the class $P_{\infty}(a, b)$ are more or less of the form \ref{finite_pick}; only summation is replaced with integration with respect to (somewhat) arbitrary measure.
 
-Although it would not be terribly tricky to fill in the details to our argument, we will not prove \ref{integral_loewner}. Instead we look into one of its corollaries:
+Although it would not be terribly tricky to fill in the details to the previous argument, we will not prove \ref{integral_loewner}. Instead we look into one of its corollaries:
 
 \begin{kor}
 	Every $f \in P_{\infty}(a, b)$ has an analytic extension $\tilde{f}$ on $\C \setminus \R$. This extension maps (open) upper half-plane $\Hp$ to closed upper half-plane $\overline{\Hp}$.
@@ -295,4 +294,4 @@ This is the version of the Loewner's theorem we are going to focus on.
 
 \section{Notes and references}
 
-This chapter is largely original (?), although heavily inspired by multiple sources. Key ideas are an extension to \cite{Heina}. \ref{main_theorem} is new formulation of \ref{heuristic_main}. Lemma \ref{projection_eigenvalues} (or some variant of it) is present in many discussions of the matrix monotonicity, see for instance \cite{Don}. While \ref{main_lemma} is new (?) it can be seen as a variant of lemma $1$ in \cite{Sparr}. Theorem \ref{weak_loewner} appears in the original paper of Loewner \cite{Low}. \ref{integral_loewner} was first discussed in \cite{Ben}. Sparr in \cite{Sparr} gives proof of \ref{integral_loewner} somewhat similar in nature to our argument sketch (...).
+This chapter is largely original (?), although heavily inspired by multiple sources. Key ideas are an extension to \cite{Heina}. \ref{main_theorem} is new formulation of \ref{heuristic_main}. Lemma \ref{projection_eigenvalues} (or some variant of it) is present in many discussions of the matrix monotonicity, see for instance \cite{Don}. While \ref{main_lemma} is new (?) it can be seen as a variant of lemma $1$ in \cite{Sparr}. Theorem \ref{weak_loewner} appears in the original paper of Loewner \cite{Low}. \ref{integral_loewner} was first discussed in \cite{Ben}. Sparr in \cite{Sparr} gives proof of \ref{integral_loewner} somewhat similar in nature to our argument sketch (...). Bernstein type arguments for the analyticity are discussed in \cite{Ben}.

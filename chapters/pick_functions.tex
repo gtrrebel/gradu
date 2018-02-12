@@ -38,7 +38,7 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-This result far from clear: pointwise limits of analytic functions need not analytic in general. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals, or better predual.
+This result is far from clear: pointwise limits of analytic functions need not analytic in general. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals, or better predual.
 
 \section{Rigidity}
 
@@ -168,37 +168,37 @@ Beauty of the measure theory is of course that we don't even need to make sense 
 \end{align*}
 Even this isn't quite true: the problem is that if $\mu$ contains $\delta$-measure at $a$ or at $b$, the right-hand side doesn't see this properly.
 
-We have however already encountered much good averages: the imaginary part of a Pick function $\varphi$ is a weighted average of the imaginary parts of $\varphi$ on the real line. We only proved this in the case of bounded $\varphi$, and indeed, the proper generalization should be 
+We have however already encountered good averages: the imaginary part of a Pick function $\varphi$ is a weighted average of the imaginary parts of $\varphi$ on the real line. We only proved this in the case of bounded $\varphi$, and indeed, the proper generalization should be 
 \begin{align*}
 	\Im(\varphi(z)) = \alpha \Im(z) + \frac{\Im(z)}{\pi}\int_{\R} \frac{d \mu(\lambda)}{(\lambda - z)(\lambda - \overline{z})}.
 \end{align*}
-Bear in mind that we also consider the constant $\alpha$ to be part of the measure. One can take this idea much further: if $q$ is any rational function with simple poles, no poles on $\R$, and decay $O(|z|^{-2})$ at infinity, the expression
+Bear in mind that we also consider the constant $\alpha$ to be part of the measure. One can take this idea much further: if $r$ is any rational function with simple poles, no poles on $\R$, and decay $O(|z|^{-2})$ at infinity, the expression
 \begin{align*}
-	\int_{\R} q(\lambda) d \mu(\lambda)
+	\int_{\R} r(\lambda) d \mu(\lambda)
 \end{align*}
 makes sense. Even better, partial fraction expansion allows us to write this integral in terms of as a linear combination of values of $\varphi$ and its conjugate. Indeed, we have
 \begin{align*}
-	q(\lambda) = c_{0}\frac{\lambda}{\lambda^2 + 1} + \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right),
+	r(\lambda) = c_{0}\frac{\lambda}{\lambda^2 + 1} + \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right),
 \end{align*}
-where $a_{i}$'s are the poles of $q$. The decay condition tells that $c_{0} = 0$. If $\Im(a_{i}) > 0$, term corresponds to multiple of $\varphi(a_{i})$, and if $\Im(a_{i}) < 0$, we get the conjugate. Explicitly: if we abuse notation a tad by writing $\varphi(a_{i}) = \overline{\varphi(\overline{a_{i}})}$ if $\Im(a_{i}) < 0$, we have
+where $a_{i}$'s are the poles of $r$. The decay condition tells that $c_{0} = 0$. If $\Im(a_{i}) > 0$, term corresponds to a multiple of $\varphi(a_{i})$, and if $\Im(a_{i}) < 0$, we get the conjugate. Explicitly: if we abuse notation a tad by writing $\varphi(a_{i}) = \overline{\varphi(\overline{a_{i}})}$ if $\Im(a_{i}) < 0$, we have
 \begin{align*}
-	\int_{\R} q(\lambda) d \mu(\lambda) &= \int_{\R} \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right)\mu(\lambda) \\
+	\int_{\R} r(\lambda) d \mu(\lambda) &= \int_{\R} \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right)\mu(\lambda) \\
 	&= \sum_{i = 1}^{M} c_{i} \left(\varphi(a_{i}) - \alpha a_{i} - \beta\right),
 \end{align*}
 which rewrites to
 \begin{align*}
-	\sum_{i = 1}^{M} c_{i} \varphi(a_{i}) &= \sum_{i = 1}^{M} c_{i} \left(\alpha a_{i} + \beta\right) + \int_{\R} q(\lambda) d \mu(\lambda).
+	\sum_{i = 1}^{M} c_{i} \varphi(a_{i}) &= \sum_{i = 1}^{M} c_{i} \left(\alpha a_{i} + \beta\right) + \int_{\R} r(\lambda) d \mu(\lambda).
 \end{align*}
 We can get some kind of glimpse of the measure just by looking at linear combinations of the values of Pick function.
 
-These ideas get really useful when $q$ is non-negative on the real line. It follows easily from the lemma \ref{polynomial_lemma} that such rational functions can be written in the form
+These ideas get really useful when $r$ is non-negative on the real line. It follows easily from the lemma \ref{polynomial_lemma} that such rational functions can be written in the form
 \begin{align*}
-	q(\lambda) = \left( \sum_{i = 1}^{n} \frac{c_{i}}{\lambda - \lambda_{i}}\right) \left(\sum_{i = 1}^{n}\frac{\overline{c_{i}}}{\lambda - \overline{\lambda_{i}}}\right)
+	r(\lambda) = \left( \sum_{i = 1}^{n} \frac{c_{i}}{\lambda - \lambda_{i}}\right) \left(\sum_{i = 1}^{n}\frac{\overline{c_{i}}}{\lambda - \overline{\lambda_{i}}}\right)
 \end{align*}
 where $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$. Running through the same calculations we see that
 
 \begin{align*}
-	\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\varphi(\lambda_{i}) - \overline{(\varphi(\lambda_{j}))}}{\lambda_{i} - \overline{\lambda_{j}}} = \alpha \left|\sum_{i = 1}^{n} c_{i}\right|^2 + \int_{\R} q(\lambda) d \mu (\lambda) \geq 0.
+	\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\varphi(\lambda_{i}) - \overline{(\varphi(\lambda_{j}))}}{\lambda_{i} - \overline{\lambda_{j}}} = \alpha \left|\sum_{i = 1}^{n} c_{i}\right|^2 + \int_{\R} r(\lambda) d \mu (\lambda) \geq 0.
 \end{align*}
 
 \begin{maar}
@@ -223,7 +223,16 @@ Given $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$, the m
 \end{align*}
 is called a \textbf{Pick matrix}. Pick functionals are simply values of quadratic forms of Pick matrices.
 
-We denote the set of Pick functionals by $\pickclass^{*}$.
+One can also interpret the Pick functionals as divided differences. Indeed, if $r$ is a rational function with above properties, it can be written in the form
+\begin{align*}
+	r(z) = \frac{N(q)}{|z - z_{1}|^2 \cdots |z - z_{n}|^2}
+\end{align*}
+for some $n \geq 1$, $q \in \C_{n - 1}[x]$ and pairwise distinct $z_{1}, z_{2}, \ldots, z_{n} \in \C$. But this means that the respective Pick functional is given by
+\begin{align*}
+	\varphi \mapsto [z_{1}, \overline{z_{1}}, \ldots, z_{n}, \overline{z_{n}}]_{\varphi N(q)}.
+\end{align*}
+
+We denote the set of Pick functionals by $\pickclass^{*}$. 
 
 \begin{lause}\label{pick_functionals}
 	Let $p^{*} \in \left(\C^{\Hp}\right)^{*}$. Then the following are equivalent.
@@ -346,8 +355,6 @@ The previous argument can be easily extended to higher order divided differences
 	and follow the argument in the proof of theorem \ref{pick_continuity_lemma}.
 \end{proof}
 
-It is worthwhile to note that as one really only needs to get bound for order $2$ divided differences in the proof of \ref{Hindmarsh_theorem}, one only needs to keep track of small family of pick functionals, in particular ones with support of at most $3$ points. This observation is known as the Hindmarsh theorem.
-
 \begin{kor}\label{pick_weakly_pick}
 	$\varphi : \Hp \to \C$ is weakly Pick, if and only if it is Pick function.
 \end{kor}
@@ -355,6 +362,8 @@ It is worthwhile to note that as one really only needs to get bound for order $2
 \begin{proof}[Proof of theorem \ref{pick_convergence}]
 	t.f.i.f \ref{pick_weakly_pick}.
 \end{proof}
+
+It is worthwhile to note that as one really only needs to get bound for order $2$ divided differences in the proof of \ref{Hindmarsh_theorem}, one only needs to keep track of small family of pick functionals, in particular ones with support of at most $3$ points. This observation is known as the Hindmarsh theorem.
 
 \section{Pick-Nevanlinna interpolation theorem}
 
@@ -415,7 +424,7 @@ Note that the proof \ref{Hindmarsh_theorem} implies that if $\varphi$ is weakly 
 
 \subsection{General version}
 
-Although Pick-Nevanlinna extension theorem is strong enough tool for our purposes, one cannot simply talk about it without discussing also its big brother, interpolation theorem.
+Although open Pick-Nevanlinna interpolation theorem is a tool strong enough for our purposes, one cannot simply talk about it without discussing also its big brother, the general case.
 
 \begin{lause}[Pick-Nevanlinna interpolation theorem]\label{pick_interpolation}
 	Let $X \subset \Hp$ be arbitrary and assume that $\varphi$ is weakly Pick on $X$. Then there exists pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{U} = \varphi$.
@@ -435,14 +444,16 @@ Let us first proof the theorem given this lemma.
 	Consider family of all weakly Pick extensions of $\varphi$ ordered by restriction. It is clear that this family satisfies the conditions of the Zorn's lemma and hence it has a maximal element. But by the previous lemma domain of this maximal element has to have the whole $\Hp$, so it is a sought extension.
 \end{proof}
 
+One could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.
+
 \begin{proof}[Proof of lemma \ref{pick_extension_lemma}]
-	Let us first deal with the case of finite $X$. The idea is somewhat similar to the proof of \ref{cheapSpectral}: while in general the extension is very much not unique, if the situation is restricted enough, we are in better situation. Let us denote the sought extension by $\tilde{\varphi}$. Assume first that $\varphi$ is degenerate in $X$ in the sense that $\langle \varphi, r\rangle_{\pickclass} = 0$ for some non-zero $r \in R_{\infty}(X)$. We may clearly assume that $r$ has only real roots. Indeed, if $r(z_{1}) = 0$ for some $\Im(z_{1}) > 0$, let $\tilde{r} := r \Im(z_{1})^2/N(\cdot - z_{1}) \in R_{\infty}(X)$. As $\tilde{r} \leq r$, also  $\langle \varphi, \tilde{r}\rangle_{\pickclass} = 0$, and $\tilde{r}$ has less non-real roots than $r$.
+	Let us first deal with the case of finite $X$. The idea is somewhat similar to the proof of \ref{cheapSpectral}: while in general the extension is very much not unique, if the situation is restricted enough, we are in better situation. Let us denote the sought extension by $\tilde{\varphi}$. Assume first that $\varphi$ is degenerate in $X$ in the sense that $\langle \varphi, r\rangle_{\pickclass} = 0$ for some non-zero $r \in R_{\infty}(X)$.
 
 	Note that since $(\lambda - z_{0})^{-1}$ is bounded on $\R$, by say $M$, we should have
 	\begin{align*}
 		\left|\langle r \frac{1}{\cdot - z_{0}}, \tilde{\varphi} \rangle_{\pickclass}\right| \leq M \langle r , \varphi \rangle_{\pickclass} = 0,
 	\end{align*}
-	and hence $\langle r (\cdot - z_{0})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. Note that then also $\langle r (\cdot - \overline{z_{0}})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. As $r(z_{0}) \neq 0$, this determines the value $\tilde{\varphi}(z_{0})$.
+	and hence $\langle r (\cdot - z_{0})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. Note that then also $\langle r (\cdot - \overline{z_{0}})^{-1}, \tilde{\varphi} \rangle_{\pickclass} = 0$. If $r(z_{0}) \neq 0$, this determines the value $\tilde{\varphi}(z_{0})$. But we may assume that $r$ has only real roots. Indeed, if $r(z_{1}) = 0$ for some $\Im(z_{1}) > 0$, let $\tilde{r} := r \Im(z_{1})^2/N(\cdot - z_{1}) \in R_{\infty}(X)$. As $\tilde{r} \leq r$, also  $\langle \varphi, \tilde{r}\rangle_{\pickclass} = 0$, and $\tilde{r}$ has less non-real roots than $r$.
 
 	Now it remains to be proven that with this choice $\tilde{\varphi}$ is weakly Pick. To this end take any $s \in R_{\infty}(X \cup \{z_{0}\})$. Note that for any $a \in \C$ and $\lambda \in \R$ we have
 	\begin{align*}
@@ -462,14 +473,12 @@ Let us first proof the theorem given this lemma.
 	\begin{align*}
 		\{ W_{F} | \text{$F$ is a finite subset of $X$}\}
 	\end{align*}
-	is a family of compact sets with finite intersection property. Consequently their intersection is non-empty and compact.
+	is a family of compact sets with finite intersection property. Consequently, their intersection is non-empty and compact.
 \end{proof}
-
-One could avoid the use of Zorn's lemma by, for instance, first extending $\varphi$ to dense subset of $\Hp$ and then noting that this extension continuously extends to the whole of $\Hp$, to a weakly Pick function.
 
 \section{Notes and references}
 
-Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick-Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist. Approach taken in text is similar to (?). \ref{open_pick_interpolation} first appeared in \cite{Hind} (formulated in terms of Pick matrices).
+Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick-Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist, see (?) for a survey. Approach taken in text is similar to (?). \ref{open_pick_interpolation} first appeared in \cite{Hind} (formulated in terms of Pick matrices).
 
 \begin{comment}
 

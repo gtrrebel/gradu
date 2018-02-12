@@ -32,24 +32,24 @@ While this proof by the mean value theorem works in more general setting, if $f 
 	Note that on the right-hand side we have average of the derivative over the interval. This means that the claim can be translated to: continuous function is non-negative, if and only if its averages over all intervals are non-negative. But this is clear.
 \end{proof}
 
-This is a really powerful point of view. While one would like to say the increasing functions are the functions with non-negative derivative, that's a bit of a lie. Instead, one can say that they are the functions whose derivative is non-negative on average, and all the problems are gone. This should rougly mean that the derivative defines a positive distribution and it is hence a measure. Thus all increasing functions should be integrals of a positive measure (at least almost everywhere). Although this kind of thinking could be carried out, the details aren't important for us. The main point is that one should think that increasing functions, i.e. the $1$-tone functions are functions whose first derivative is a (positive) measure. The divided differences are an averaged (i.e. weak) way of talking about the positivity of the derivative (measure).
+This is a really powerful point of view. While one would like to say the increasing functions are the functions with non-negative derivative, that's a bit of a lie. Instead, one can say that they are the functions whose derivative is non-negative on average, and all the problems are gone. This should roughly mean that the derivative defines a positive distribution and it is hence a measure. Thus all increasing functions should be integrals of a positive measure (at least almost everywhere). Although this kind of thinking could be carried out, the details aren't important for us. The main point is that one should think that increasing functions, i.e. the $1$-tone functions are functions whose first derivative is a (positive) measure. The divided differences are an averaged (i.e. weak) way of talking about the positivity of the derivative (measure).
 
-This is essentially distributional way of thinking, and we could keep going and end up with the whole business of weak derivatives and stuff. But we don't have to: the plain averages suffice. We write
+This is essentially the distributional way of thinking, and we could keep going and end up with the whole business of weak derivatives and stuff. But we don't have to: the plain averages suffice. We write
 \begin{align*}
 	[x, y]_{f} := \frac{f(x) - f(y)}{x - y},
 \end{align*}
 and say that $[\cdot, \cdot]_{f}$ is the (first) divided difference of $f$. The domain of $[\cdot, \cdot]_{f}$ should naturally be $(a, b)^{2}$ minus the diagonal. And of course, if $f \in C^{1}$, we should extend $[\cdot, \cdot]_{f}$ to the diagonal, as the derivative. Divided differences then becomes a continuous function on the whole set $(a, b)^2$.
 
-Aside from capturing the first derivative, divided difference has two rather convenient properties.
+Aside from capturing the first derivative, divided difference have two rather convenient properties.
 
 \begin{itemize}
 	\item For given $x$ and $y$, $f \mapsto [x, y]_{f}$ defines a linear map, which is continuous with the topology of pointwise convergence (i.e. the product topology).
-	\item Divided differences are local in the sense that if $f$ and $g$ agree on $\{x, y\}$, divided differences agree; this observation readily implies the continuity claim.
+	\item Divided differences are local in the sense that if $f$ and $g$ agree on $\{x, y\}$, divided differences agree.
 \end{itemize}
 
-These are the ways divided difference is a compromise between the real derivative and the weak derivative. The first point says that one doesn't have worry too much, only about pointwise convergence, while the second says that things are still rather concrete (and it makes the life whole lotta easier).
+These are the ways that divided difference is a compromise between the real derivative and the weak derivative. The first point says that one doesn't have worry too much, only about pointwise convergence, while the second says that things are still rather concrete.
 
-The real power of this approach comes with larger $k$. What about the case $k = 2$? Again, we already know the perfect answer: $2$-tone functions should be the convex functions.
+What about the case $k = 2$? Again, we already know the perfect answer: $2$-tone functions should be the convex functions.
 
 \begin{lause}\label{2-tone}
 	Let $f : (a, b) \to \R$ be twice differentiable. Then $f$ is convex, if and only if $f^{(2)}(x) \geq 0$ for every $x \in (a, b)$.
@@ -70,8 +70,6 @@ The real power of this approach comes with larger $k$. What about the case $k = 
 	\begin{align*}
 		t (x - a)_{+} + (1 - t) (y - a)_{+} - (t x + (1 - t) y - a)_{+} = w(a).
 	\end{align*}
-	TODO: picture
-
 	Now, while the steps taken might have contained some leaps of faith, it can be easily verified with partial integration that the given $w$ really works.
 \end{proof}
 
@@ -85,26 +83,26 @@ If we denote $z = t x + (1 - t) y$, we can solve that $t = \frac{z - y}{x - y}$ 
 \end{eqnarray*}
 
 If $t \notin \{0, 1\}$, $-(z - y)(z - x)$ is positive, so if $f$ is convex,
-\[
+\begin{align*}
 	\frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)} \geq 0
-\]
-for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This new expression is symmetric in its variables, so actually there's no need to assume anything on the order of $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction: if the expression is non-negative for any distinct $x, y$ and $z$, $f$ is convex. This motivates us to define
-\[
-	[x, y, z]_{f} := \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)},
-\]
-the second divided difference of $f$.
+\end{align*}
+for any $x, y$ and $z$ such that $z$ is between $x$ and $y$. This new expression is symmetric in its variables, so actually there's no need to assume anything on the order of $x, y$ and $z$, just that they're distinct. We can also easily carry this argument to the other direction: if the expression is non-negative for any distinct $x, y$ and $z$, then $f$ is convex. This motivates us to define
+\begin{align*}
+	[x, y, z]_{f} := \frac{f(x)}{(x - y)(x - z)} + \frac{f(y)}{(y - z)(y - x)} + \frac{f(z)}{(z - x)(z - y)}
+\end{align*}
+as the second divided difference of $f$.
 
 One would hope that by setting
-\[ 
+\begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} := \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})},
-\]
+\end{align*}
 one obtains something that naturally generalizes divided differences for higher orders. This is indeed the case.
 
 \section{Divided differences}
 
 Define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i < j \leq n$}\}$.
 \begin{maar}
-Let $n \geq 0$. For any real function $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
+Let $n \geq 0$. For any $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})}.
 \end{align*}
@@ -135,9 +133,9 @@ The name ``divided differences" stems from the fact that the higher order divide
 	\begin{align}\label{divdif_rec}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f} - [x_{1}, x_{2}, \ldots, x_{n}]_{f}}{x_{0} - x_{n}} = [x_{0}, x_{n}]_{[\cdot, x_{1}, \ldots, x_{n - 1}]_f}
 	\end{align}
-	More generally, for any pairwise distinct $x_{1}, x_{2}, \ldots, x_{n}, y_{1}, y_{2}, \ldots, y_{m} \in (a, b)$ we have
+	More generally, for any pairwise distinct $x_{1}, x_{2}, \ldots, x_{n}, y_{0}, y_{1}, y_{2}, \ldots, y_{m} \in (a, b)$ we have
 	\begin{align}\label{nesting_rule}
-		[y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} = [y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}.
+		[y_{0}, y_{1}, y_{2}, \ldots, y_{m}]_{[\cdot, x_{1}, x_{2}, \ldots, x_{n}]_{f}} = [y_{0}, y_{1}, y_{2}, \ldots, y_{m}, x_{1}, x_{2}, \ldots, x_{n}]_{f}.
 	\end{align}
 \end{prop}
 \begin{proof}
@@ -148,9 +146,9 @@ The name ``divided differences" stems from the fact that the higher order divide
 	satisfy \ref{divdif_rec} (as a function of the $y$'s) and they agree when $m = 1$.
 \end{proof}
 
-We call \ref{nesting_rule} the \textit{nesting property} of divided differences. Although the analogy isn't perfect, one could think that this identity says that $m$'th derivative of the $n$'th derivative is the $(n + m)$'th derivative. 
+We call \ref{nesting_rule} the \textit{nesting property} of divided differences. Although the analogy isn't perfect, one could think that this identity says that $m$'th derivative of the $n$'th derivative is the $(m + n)$'th derivative. 
 
-The following observation tells us that the divided differences work as $n$'th derivative insomuch that it kills polynomials of degree less than $n$ and works with degree $n$ as expected, up to a constant at least.
+The following observation tells us that the divided differences work as $n$'th derivative insomuch that it kills polynomials of degree less than $n$, and works with degree $n$ as expected, up to a constant at least.
 
 \begin{prop}\label{lagrange_divided}
 We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1}), \ldots, (x_{n}, f(x_{n}))$.
@@ -165,7 +163,7 @@ We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{
 
 \subsection{Peano representation}
 
-Coming back to the original motivation, divided differences enjoy an integral representation also for larger $n$, albeit somewhat more complicated.
+Coming back to the original motivation, divided differences enjoy an integral representation also for larger $n$.
 
 \begin{lause}\label{peano_theorem}
 	If $f \in C^{n}(a, b)$, then for any pairwise distinct $a < x_{0}, x_{1}, x_{2}, \ldots, x_{n} < b$ we have
@@ -213,9 +211,7 @@ Coming back to the original motivation, divided differences enjoy an integral re
 
 The weight \ref{peano_weight} is called \textbf{Peano kernel} (of order $n$). The points $x_{0}, x_{1}, \ldots, x_{n}$ are called the \textbf{nodes} of $w$.
 
-TODO: pictures of Peano kernels
-
-As an very important corollary we get the following.
+As a very important corollary we get the following.
 
 \begin{lause}[Mean value theorem for divided differences]
 	Let $f \in C^{n}(a, b)$. Then for any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ we have
@@ -242,9 +238,9 @@ As an very important corollary we get the following.
 	\end{proof}
 \end{proof}
 
-The mean value theorem could be also used to prove the non-negativity of the weight $w$: if $w$ were somewhere negative, one could construct function with non-negative derivative and negative divided difference, which would contradict \ref{mean_value}.
+The mean value theorem could be also used to prove the non-negativity of the weight $w$: if $w$ were somewhere negative, one could construct a function with non-negative derivative and negative divided difference, which would contradict \ref{mean_value}.
 
-As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differences to the set $D_{n + 1}$, we should do that, and we identify the resulting function with the original one. We will later proof that, as expected, this can be done, if and only $f \in C^{n}(a, b)$. In this case by \ref{mean_value} the extesion satisfies
+As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differences to the set $D_{n + 1}$, we should do that; we identify the resulting function with the original one. We will later proof that, as expected, this can be done, if and only $f \in C^{n}(a, b)$. In this case by \ref{mean_value} the extesion satisfies
 \begin{align*}
 	[x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f^{(n)}(x_{0})}{n!},
 \end{align*}
@@ -255,13 +251,13 @@ which together with \ref{divdif_rec} is enough to expand the divided differences
 Complex analysis offers a nice view on divided differences: if $f$ is analytic, we may interpret divided differences as contour integrals.
 
 \begin{lem}[Cauchy's integral formula for divided differences]\label{div_cauchy}
-If $\gamma$ is a closed counter-clockwise curve enclosing the numbers $x_{0}, x_{1}, \ldots, x_{n}$, we have
+If $\gamma$ is a simple closed counter-clockwise curve enclosing the numbers $x_{0}, x_{1}, \ldots, x_{n}$, we have
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{(z - x_{0})(z - x_{1}) \cdots (z - x_{n})} dz.
 \end{align*}
 \end{lem}
 \begin{proof}
-This is direct consequence of the Residue theorem.
+	This is a direct consequence of the Residue theorem.
 \end{proof}
 
 If all the points coincide, we get the familiar formula for the $n$'th derivative. If $f$ is a polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ (at infinity) and the divided differences vanish, as expected. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Now we have
@@ -279,7 +275,7 @@ We may express an interpolation polynomial of an analytic function $f$ and seque
 Indeed: $P_{X, f}(x_{i})$ evaluates to $f(x_{i})$ by Cauchy's integral formula. More generally, if some of the points coincide, we get the Hermite interpolation polynomial, as can be shown with slightly more careful considerations.
 \end{esim}
 
-While the previous argument works stricly speaking only for analytic function (and even then one would have to be careful with $\gamma$), the identity holds more generally. The expression for $P_{X, f}$ can be expanded as some kind polynomial, coefficients of which are linear combinations of evaluations $f(x_{i})$: such expressions make perfect sense irrespective of regularity of $f$. Same is true for the evaluations of this polynomial at points $x_{i}$, numbers $P_{X, f}(x_{i})$. We know that $P_{X, f}(x_{i}) = f(x_{i})$ holds for all analytic (or at least entire) functions. On the other hand the map $f \mapsto P_{X, f}(x_{i}) - f(x_{i})$ is simply a finite linear combination of point evaluations, so it vanishes for any function if we manage to prove that
+While the previous argument works stricly speaking only for analytic function (and even then one would have to be careful with domains and $\gamma$), the identity holds more generally. The expression for $P_{X, f}$ can be expanded as some kind polynomial, coefficients of which are linear combinations of evaluations $f(x_{i})$: such expressions make perfect sense irrespective of the regularity of $f$. Same is true for the evaluations of this polynomial at points $x_{i}$, numbers $P_{X, f}(x_{i})$. We know that $P_{X, f}(x_{i}) = f(x_{i})$ holds for all analytic (or at least entire) functions. On the other hand the map $f \mapsto P_{X, f}(x_{i}) - f(x_{i})$ is simply a finite linear combination of point evaluations, so it vanishes for any function if we manage to prove that
 
 \begin{lem}\label{entire_interpolation}
 	For any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in \C$ and $y_{0}, y_{1}, \ldots, y_{n} \in \C$ there exists an entire function $f$ with $f(x_{i}) = y_{i}$.
@@ -375,7 +371,7 @@ In similar vein one could prove that if $f$ is entire, its Newton series converg
 We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$.
 
 \begin{lause}
-	Let $k$ be an non-negative integer and $(a, b)$ an open interval. Then $P^{(k)}(a, b) \subset \R^{(a, b)}$ is closed convex cone.
+	Let $k$ be an non-negative integer. Then $P^{(k)}(a, b) \subset \R^{(a, b)}$ is a closed convex cone.
 \end{lause}
 \begin{proof}
 	t.f.i.f \ref{positive_machine}.
@@ -392,7 +388,7 @@ This suggests that better object of study should be $\R^{(a, b)}$ quotiented by 
 
 \section{Locality}
 
-One of the properties of the divided differences, which might not be clear from the definition, is that they can also be used to model local phenomena. One of the important properties of the $k$-tone functions is that if a function is $k$-tone on two overlapping intervals, then the function is $k$-tone on their union. While this definitely holds for $C^{k}$ functions, it's not really clear how to change this argument for the general case.
+One of the properties of the divided differences, which might not be clear from the definition, is that they can also be used to model local phenomena. One of the important properties of the $k$-tone functions is that if a function is $k$-tone on two overlapping intervals, then the function is $k$-tone on their union. While this definitely holds for $C^{k}$ functions, it's not really clear how to change the argument for the general case.
 
 If one thinks that $k$-tone functions have $k$'th derivative as a positive measure, the locality property should be a special case of the general property of distributions.
 \begin{prop}
@@ -410,27 +406,26 @@ They key idea in the proof was to split the test functions to two parts, one sup
 \begin{proof}
 	Let $n$ be the order of the Peano kernel and let $a < x_{0} < x_{1} < \ldots < x_{n} < d$ be the nodes or $w$.
 
-	The case $n = 1$ is rather clear: we simply split characteristic function of an interval to characteristic function of two intervals. TODO: picture. In terms of the kernels, if $a < x_{0} < c < b < x_{1} < d$, we can pick $c < y_{0} < b$ and write
+	The case $n = 1$ is rather clear: we simply split characteristic function of an interval to characteristic function of two intervals. In terms of the kernels, if $a < x_{0} < c < b < x_{1} < d$, we can pick $c < y_{0} < b$ and write
 	\begin{align*}
 		w_{x_{0}, x_{1}} = \frac{y_{0} - x_{0}}{x_{1} - x_{0}} w_{x_{0}, y_{0}} + \frac{x_{1} - y_{0}}{x_{1} - x_{0}} w_{y_{0}, x_{1}}:
 	\end{align*}
 	this is a sought decomposition.
 
-	When $n = 2$ the goal is not much harder. Peano kernels of order $2$ are essentially triangles sitting on $x$-axis, corners of which have distinct $x$-coordinates. So we have one such triangle and we should split it to smaller triangles in such a way that
+	The case $n = 2$ is not much harder. Peano kernels of order $2$ are essentially triangles sitting on $x$-axis, corners of which have distinct $x$-coordinates. So we have one such triangle and we should split it to smaller triangles in such a way that
 
 	\begin{itemize}
 		\item No triangle has two equal $x$-coordinates.
 		\item All triangles have all their corners' $x$-coordinates either on $(a, b)$ and $(c, d)$.
 	\end{itemize}
-	TODO: picture
 	We call such triangles good. While the above picture should be rather convincing already, one can write an general algorithm generating such decomposition.
 
 	\noindent \textbf{Input:} A triangle (Peano kernel of order $2$) supported on $(a, d)$. \\
-	\noindent \textbf{Output:} Decomposition of the input as positive linear combination of triangles all supported completely either on $(a, b)$ or $(c, d)$.
+	\noindent \textbf{Output:} A decomposition of the input as a positive linear combination of triangles all supported completely either on $(a, b)$ or $(c, d)$.
 	\begin{enumerate}[\textbf{Step} 1.]
 		\item If the triangle is good already, we are done.
 		\item Pick $y_{0} \in (c, b)$, which does not coincide with any of the $x_{0}, x_{1}, x_{2}$.
-		\item Divide the triangle to two triagles with $x$-coordinates $(x_{0}, x_{1}, y_{0})$ and $(x_{1}, x_{2},  y_{0})$, as illustrated.
+		\item Divide the triangle into two triagles with $x$-coordinates $(x_{0}, x_{1}, y_{0})$ and $(x_{1}, x_{2},  y_{0})$.
 		\item Run this algorithm recursively for these two triangles.
 	\end{enumerate}
 	Why does this algorithm terminate? Note that if any of the $x_{i}$'s are in $(c, b)$, the triangle is either good or $x_{1} \in (c, b)$ (or maybe both). In the former case we are done, and in the latter the two parts of the split are both good. If none of $x_{i}$'s are in $(c, b)$, both of the parts of the split has a coordinate in $(c, b)$, so also this case leads to a good split. In other words we can keep splitting triangles in such a way that they either become good or they have more nodes on $(c, b)$.
@@ -452,8 +447,8 @@ They key idea in the proof was to split the test functions to two parts, one sup
 
 	Now we are ready to generalize the algorithm to bigger $n$:
 
-	\noindent \textbf{Input:} Peano kernel of order $n$ supported on $(a, d)$. \\
-	\noindent \textbf{Output:} Decomposition of the input as positive linear combination of Peano kernels of order $n$, all supported completely either on $(a, b)$ or $(c, d)$.
+	\noindent \textbf{Input:} A Peano kernel of order $n$ supported on $(a, d)$. \\
+	\noindent \textbf{Output:} A Decomposition of the input as a positive linear combination of Peano kernels of order $n$, all supported completely either on $(a, b)$ or $(c, d)$.
 	\begin{enumerate}[\textbf{Step} 1.]
 		\item If the kernel is good already, we are done.
 		\item Pick $y_{0} \in (c, b)$, which does not coincide with any of the $x_{0}, x_{1}, \ldots, x_{n}$.
@@ -461,7 +456,6 @@ They key idea in the proof was to split the test functions to two parts, one sup
 		\item Run this algorithm recursively for these two kernels.
 	\end{enumerate}
 	This algorithm terminates basically because of the same reason: if the kernel isn't good already, the two splits have more nodes on $(c, b)$, and this quantity cannot increase forever.
-	TODO: figure
 \end{proof}
 
 While this property is of independent interest, the real use of it is its generalization to divided differences.
@@ -486,7 +480,7 @@ While this property is of independent interest, the real use of it is its genera
 	which is valid because of essentially the same reasoning, and replace the word ``kernel" with word ``tuple".
 \end{proof}
 
-Proof of \ref{peano_splitting_theorem} gives that we may take $N$ and $M$ (in \ref{divdif_splitting_theorem}) with $N + M \leq 2^{n}$. With slightly more careful argument one can achieve $M + N \leq n + 1$.
+The proof of \ref{peano_splitting_theorem} gives that we may take $N$ and $M$ (in \ref{divdif_splitting_theorem}) with $N + M \leq 2^{n}$. With slightly more careful argument one can achieve $M + N \leq n + 1$.
 
 We are now ready to prove the locality property of the $k$-tone functions.
 
@@ -613,7 +607,6 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 \end{lause}
 
 \begin{proof}
-
 	``$\Rightarrow$": Let's start by proving that $f$ is continuouly differentiable. Lemma \ref{weaklyCk_basic} easily implies that it is sufficient prove this for the case $k = 1$. But in this case we now that the limits $\lim_{x \to x_{0}} [x, x_{0}]_{f} = [x_{0}, x_{0}]_{f}$ exist and $f$ is hence differentiable with $f'(x) = [x, x]_{f}$. Also, $x \mapsto [x, x]_{f} = f'(x)$ is continuous.
 
 	Now the identity \ref{derivative_divdif} easily implies the claim.
@@ -625,11 +618,26 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 	is continuous. Since $f' \in C_{w}^{k - 1}(a, b)$, the order $(k - 1)$ divided differences are uniformly continuous on any compact subset of $(a, b)^{k}$. The integrand is consequently continuous with $\sup$-norm and hence the whole map continuous.
 \end{proof}
 
-\begin{kor}
+\begin{kor}\label{div_cont}
 	$f \in C_{w}^{k}(a, b)$ if and only if $f \in C^{k}(a, b)$.
 \end{kor}
 \begin{proof}
 	Simply apply lemma \ref{weaktoreal_lemma} inductively.
+\end{proof}
+
+This continuity results implies (among many other things) that mean value theorem also holds for general tuples.
+\begin{kor}[General mean value theorem for divided differences]
+	Let $f \in C^{n}(a, b)$ and $a < x_{0}, x_{1}, \ldots, x_{n} < b$. Then there exists $\xi$ with
+	\begin{align*}
+		\min_{0 \leq i \leq n}(x_{i}) \leq \xi \geq \max_{0 \leq i \leq n}(x_{i})
+	\end{align*}
+	such that
+	\begin{align}
+		[x_{0}, x_{1}, \ldots, x_{n}] = \frac{f^{(n)}(\xi)}{n!}.
+	\end{align}
+\end{kor}
+\begin{proof}
+	t.f.i.f \ref{mean_value} and \ref{div_cont}.
 \end{proof}
 
 Just like one can carry regularity information, one can carry boundedness information.
@@ -713,7 +721,7 @@ The previous result is some kind of relative of \ref{bounded_div}. Also theorem 
 \end{proof}
 
 \section{Notes and references}
-Results of this chapter can be found in \cite{Boor2}.
+Results of this chapter, with plentiful of illustrations, can be found in \cite{Boor2} (?).
 
 \begin{comment}
 
