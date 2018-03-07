@@ -64,15 +64,15 @@ TODO:
 	\end{eqnarray*}
 	\item What about trace inequalities for $k$-tone functions? Eigen-package seems to find a counterexample for $6$-tone functions and $n = 2$, but it's hard to see if there's enough numerical stability. At divided differences of polynomials vanish. First non-trivial question would be:
 	If $A_{j} = A + j H$ for $0 \leq j \leq 3$ and $H \geq 0$. Then is it necessarily the case that
-	\[
+	\begin{align*}
 		\tr \left(A_{3} |A_{3}| - 3 A_{2}|A_{2}| + 3 A_{1} |A_{1}| - A_{0} |A_{0}| \right) \geq 0?
-	\]
+	\end{align*}
 	This would imply that $3$-tone functions would lift to trace $3$-tone functions. Maybe expressing this as a contour integral from $-i \infty \to i \infty$ a same tricks as in the paper. First projection case: $H$ is projection. Or: approximate by integrals of heat kernels. It should be sufficient to proof things for $k$-fold integrals or heat kernel, or by scaling just for gaussian function.
 	\item How is the previous related to the $|\cdot|$ not being operator-convex: quadratic form inequality for eigenvectors is not enough.
 	\item The previous also implies that
-	\[
+	\begin{align*}
 		f(Q_{A}(v)) \leq Q_{f(A)}(v)
-	\]
+	\end{align*}
 	for any convex $f$. Using this and Minkowski one sees that $p$-schatten norms are indeed norms.
 	\item For $f, g$ generalization (Look at $h(X) = g (\tr f(X))$) we need that $f$ is convex. What else? $h$ is convex if it is convex for diagonalizable matrices and $f$ is convex and $g$ increasing. For the diagonalizable maps it is sufficient that $f$ is increasing and $g = f^{-1}$ and $\log \circ f \circ \exp$ is convex.
 	\item Von Neumann trace inequality, more trace inequalities.

@@ -22,7 +22,7 @@ We already know the perfect answer for the case $k = 1$: $1$-tone functions shou
 	Now if the derivatives are non-negative, so are the divided differences, so the function is increasing.
 \end{proof}
 
-While this proof by the mean value theorem works in more general setting, if $f \in C^{1}$, one has more instructive proof.\footnote{Of course, the following argument would also work with slightly weaker assumptions, but that's not important to us.}
+While this proof by the mean value theorem works in more general setting, if $f \in C^{1}$, one has more instructive proof.\footnote{The following argument would also work with slightly weaker assumptions, but that's not important to us.}
 
 \begin{proof}[Alternate proof for the theorem \ref{increasing_1tone} (in the case $f \in C^{1}(a, b)$)]
 	Note that if $f \in C^{1}(a, b)$, we may write
@@ -56,11 +56,11 @@ What about the case $k = 2$? Again, we already know the perfect answer: $2$-tone
 \end{lause}
 
 \begin{proof}
-	While the result is true as stated, let us only proof the case $f \in C^{2}(a, b)$ (we'll come back to the more general case). Recall that $f$ is convex, if and only if for any $x, y \in (a, b)$ and $t \in [0, 1]$ we have
+	While the result is true as stated, let us only prove the case $f \in C^{2}(a, b)$ (we'll come back to the more general case). Recall that $f$ is convex, if and only if for any $x, y \in (a, b)$ and $t \in [0, 1]$ we have
 	\begin{align*}
 		t f(x) + (1 - t) f(y) \geq f(t x + (1 - t)y).
 	\end{align*}
-	This suggest that we may write
+	The alternate proof of theorem \ref{increasing_1tone} suggests that we may write
 	\begin{align*}
 		t f(x) + (1 - t) f(y) - f(t x + (1 - t)y) = \int_{x}^{y} w(t) f^{(2)}(t) dt
 	\end{align*}
@@ -151,7 +151,7 @@ We call \ref{nesting_rule} the \textit{nesting property} of divided differences.
 The following observation tells us that the divided differences work as $n$'th derivative insomuch that it kills polynomials of degree less than $n$, and works with degree $n$ as expected, up to a constant at least.
 
 \begin{prop}\label{lagrange_divided}
-We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1}), \ldots, (x_{n}, f(x_{n}))$.
+We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial p of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1}), \ldots, (x_{n}, f(x_{n}))$.
 \end{prop}
 \begin{proof}
 	As the interpolation polynomial of a polynomial of degree at most $n$ on a dataset of $(n + 1)$ pairs is the polynomial itself, the second claim readily implies the first. Recall that the Lagrange form of the interpolation polynomial of a dataset $(x_{0}, y_{0}), (x_{1}, y_{1}), \ldots, (x_{n}, y_{n})$ is given by
@@ -194,7 +194,7 @@ Coming back to the original motivation, divided differences enjoy an integral re
 
 	Applying the identity to $x \mapsto x^{n}$ shows the claim on the integral of $w$.
 
-	Only non-negativity remains: we prove it by induction on $n$. The case $n = 1$ is clear. The idea is rather simple: we should prove that the functions $g_{t, n}$ has non-negative divided differences, which should roughly mean it has non-negative $n$'th derivative (being $\delta_{t}$). By the nesting property we have
+	Only non-negativity remains: we prove it by induction on $n$. The case $n = 1$ is clear. The idea is rather simple: we should prove that the functions $g_{t, n}$ have non-negative divided differences, which should roughly mean it has non-negative $n$'th derivative (being $\delta_{t}$). By the nesting property we have
 	\begin{align*}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{g_{t, n}} = [x_{0}, x_{1}, \ldots, x_{n - 1}]_{[\cdot, x_{n}]_{g_{t, n}}}.
 	\end{align*}
@@ -204,7 +204,7 @@ Coming back to the original motivation, divided differences enjoy an integral re
 	\end{align*}
 	we have
 	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n}]_{[\cdot, x_{n}]_{g_{t, n}}} = \int_{0}^{1} [x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}(s \cdot + (1 - s) x_{n})} ds,
+		[x_{0}, x_{1}, \ldots, x_{n - 1}]_{[\cdot, x_{n}]_{g_{t, n}}} = \int_{0}^{1} [x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}(s \cdot + (1 - s) x_{n})} ds,
 	\end{align*}
 	Now since all the divided differences of $g_{t, n - 1}$ are non-negative, the same is clearly true for $g_{t, n - 1}(s \cdot + (1 - s) x_{n})$, so we are done.
 \end{proof}
@@ -224,12 +224,10 @@ As a very important corollary we get the following.
 	\end{align}
 \end{lause}
 \begin{proof}
-	t.f.i.f. \ref{peano_theorem}.
-
-	One can also give a proof using mean value theorem and with slightly weaker assumptions: it suffices to assume that $f$ is $n$ times differentiable.
-
+	t.f.i.f. \ref{peano_theorem} and mean value theorem for integrals.
+\end{proof}
+\begin{proof}[Alternate proof]
 	By linearity and proposition \ref{lagrange_divided} it suffices to verify the claim in the case where $f(x_{i}) = 0$ for $0 \leq i \leq n$.
-
 	\begin{lem}
 		If $f$ is $n$ times differentiable, and has $n + 1$ roots, then $f^{(n)}$ has a root (in the interior of the convex hull of the roots).
 	\end{lem}
@@ -238,9 +236,11 @@ As a very important corollary we get the following.
 	\end{proof}
 \end{proof}
 
+Note that the alternate proofs works even if $f$ is merely $n$ times differentiable.
+
 The mean value theorem could be also used to prove the non-negativity of the weight $w$: if $w$ were somewhere negative, one could construct a function with non-negative derivative and negative divided difference, which would contradict \ref{mean_value}.
 
-As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differences to the set $D_{n + 1}$, we should do that; we identify the resulting function with the original one. We will later proof that, as expected, this can be done, if and only $f \in C^{n}(a, b)$. In this case by \ref{mean_value} the extesion satisfies
+As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differences to the set $D_{n + 1}$, we should do that; we identify the resulting function with the original one. We will later prove that, as expected, this can be done, if and only $f \in C^{n}(a, b)$. In this case by \ref{mean_value} the extesion satisfies
 \begin{align*}
 	[x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f^{(n)}(x_{0})}{n!},
 \end{align*}
@@ -260,7 +260,7 @@ If $\gamma$ is a simple closed counter-clockwise curve enclosing the numbers $x_
 	This is a direct consequence of the Residue theorem.
 \end{proof}
 
-If all the points coincide, we get the familiar formula for the $n$'th derivative. If $f$ is a polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ (at infinity) and the divided differences vanish, as expected. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. Formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Now we have
+If all the points coincide, we get the familiar formula for the $n$'th derivative. If $f$ is a polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ (at infinity) and the divided differences vanish, as expected. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. This formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Now we have
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{p_{X}(z)} dz.
 \end{align*}
@@ -284,7 +284,7 @@ While the previous argument works stricly speaking only for analytic function (a
 	Simply take $f$ to be the interpolating polynomial.
 \end{proof}
 
-One can also interpret such identities to be strictly formal: Cauchy's integral formula can be thought as a bijection between rational functions with simple poles and the span of $\delta$-measures. Many such signed measures look simpler as rational functions.
+One can also interpret such identities to be strictly formal: Cauchy's integral formula can be thought as a bijection between rational functions with simple poles and the span of $\delta$-measures. Such signed measures look often simpler as rational functions.
 
 \subsection{Identities}
 
@@ -314,7 +314,7 @@ Many of the familiar identities for the derivatives have analogs with divided di
 		\end{align}
 		More generally
 		\begin{align*}
-			[x_{0}, x_{1}, \ldots, x_{n}]_{f_{1} f_{2} \cdots f_{k}} &= \sum_{0 = i_{0} < i_{1} < i_{2} < \ldots < i_{k - 1} < i_{k} = n} \prod_{j = 1}^{k} [x_{i_{j - 1}, \ldots, x_{i_{j}}}]_{f_{j}}
+			[x_{0}, x_{1}, \ldots, x_{n}]_{f_{1} f_{2} \cdots f_{k}} &= \sum_{0 = i_{0} < i_{1} < i_{2} < \ldots < i_{k - 1} < i_{k} = n} \prod_{j = 1}^{k} [x_{i_{j - 1}}, \ldots, x_{i_{j}}]_{f_{j}}
 		\end{align*}
 		\item (Chain rule)
 		\begin{align*}
@@ -323,7 +323,7 @@ Many of the familiar identities for the derivatives have analogs with divided di
 		\item (Fa\`{a} di Bruno formula)
 		\begin{align*}
 			& [x_{0}, x_{1}, \ldots, x_{n}]_{f \circ g} \\
-			=& \sum_{k = 1}^{n} \sum_{0 = i_{0}< i_{1} < i_{2} < \ldots < i_{k - 1} < i_{k} =  n} [g(x_{i_{0}}), g(x_{i_{1}})\ldots , g(x_{i_{k}})]_{f} \prod_{j = 1}^{k} [x_{i_{j - 1}, \ldots, x_{i_{j}}}]_{g}
+			=& \sum_{k = 1}^{n} \sum_{0 = i_{0}< i_{1} < i_{2} < \ldots < i_{k - 1} < i_{k} =  n} [g(x_{i_{0}}), g(x_{i_{1}})\ldots , g(x_{i_{k}})]_{f} \prod_{j = 1}^{k} [x_{i_{j - 1}}, \ldots, x_{i_{j}}]_{g}
 		\end{align*}
 	\end{enumerate}
 \end{prop}
@@ -339,7 +339,7 @@ Many of the familiar identities for the derivatives have analogs with divided di
 
 One might ask under what kind of conditions \ref{newton_expansion} leads to Newton series, i.e. we have
 \begin{align}\label{newton_series}
-	f(z) = \sum_{i = 0}^{\infty} [z_{0}, z_{1}, \ldots, z_{i}] (z - z_{0}) (z - x_{0}) \cdots (z - z_{i - 1}),
+	f(z) = \sum_{i = 0}^{\infty} [z_{0}, z_{1}, \ldots, z_{i}]_{f} (z - z_{0}) (z - x_{0}) \cdots (z - z_{i - 1}),
 \end{align}
 for some sequence $x_{0}, x_{1}, \ldots$ and analytic $f$. While Newton series can be globally rather subtle, locally they work almost like Taylor series.
 
@@ -361,7 +361,7 @@ In similar vein one could prove that if $f$ is entire, its Newton series converg
 \subsection{$k$-tone functions}
 
 \begin{maar}
-	$f : (a, b) \to \R$ is called $k$-tone if for any $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ of distinct points we have
+	Function $f : (a, b) \to \R$ is called $k$-tone if for any $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ of distinct points we have
 	\begin{align*}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \geq 0,
 	\end{align*}
@@ -384,13 +384,13 @@ The cones $P^{(k)}(a, b)$ aren't quite salient. Instead we have
 	[\cdot, \cdot, \ldots, \cdot]_{f} = 0 \Leftrightarrow \text{ $f$ is a polynomial of degree less than $k$}.
 \end{align*}
 
-This suggests that better object of study should be $\R^{(a, b)}$ quotiented by polynomials of degree less than $k$. We won't follow that trail.
+This suggests that a better object of study should be $\R^{(a, b)}$ quotiented by polynomials of degree less than $k$. We won't follow that trail, however.
 
 \section{Locality}
 
 One of the properties of the divided differences, which might not be clear from the definition, is that they can also be used to model local phenomena. One of the important properties of the $k$-tone functions is that if a function is $k$-tone on two overlapping intervals, then the function is $k$-tone on their union. While this definitely holds for $C^{k}$ functions, it's not really clear how to change the argument for the general case.
 
-If one thinks that $k$-tone functions have $k$'th derivative as a positive measure, the locality property should be a special case of the general property of distributions.
+If one thinks that $k$-tone functions have $k$'th derivative as a positive measure, the locality property should be thought of a special case of a general property of distributions.
 \begin{prop}
 	Let $a < c < b < d$ and $\mu$ distribution on $(a, d)$, restriction of which to $(a, b)$ and $(c, d)$ is a positive measure. Then $\mu$ is a positive measure.
 \end{prop}
@@ -506,7 +506,7 @@ for any $x_{0}, x_{1}, \ldots, x_{n - 1}$. But this readily implies that the div
 Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, but if this is not the case, the divided differences are zero anyway. The previous identity can be also used to recursively compute Peano kernels.
 
 \begin{huom}
-	The previous arguments are a bit awkward and one might be tempted to think that one should instead consider positive linear combinations of Peano kernels, called (positive) splines, to get better analogue for the ``locality of distributions" -proof. For $k \leq 3$ positive splines can be also characterized as suitable non-negative piecewise polynomial functions, but for $k > 3$ there's a problem: positive splines are merely subclass thereof.
+	The above arguments are a bit awkward and one might be tempted to think that one should instead consider positive linear combinations of Peano kernels, called (positive) splines, to get better analogue for the ``locality of distributions" -proof. For $k \leq 3$ positive splines can be also characterized as suitable non-negative piecewise polynomial functions, but for $k > 3$ there's a problem: positive splines are merely subclass thereof.
 \end{huom}
 
 \section{Regularity}
@@ -589,17 +589,17 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 	\end{align*}
 	As $S(k, k, f)$ is just saying that $f \in C_{w}^{k}(a, b)$, it is enough to prove that for any $n > k$ we have $S(n - 1, k, f) \Leftrightarrow S(n, k, f)$.
 
-	$\Rightarrow$: Assume that $S(n - 1, k, f)$ and take any $x = (x_{0}, x_{1}, \ldots, x_{n}) \in (a, b)^{n + 1} \setminus D_{n + 1, k + 2}$. Since $n + 1 \geq k + 2$, we may assume that $x_{0} \neq x_{n}$. But now by the assumption the map
+	$\Rightarrow$: Assume $S(n - 1, k, f)$ and take any $x = (x_{0}, x_{1}, \ldots, x_{n}) \in (a, b)^{n + 1} \setminus D_{n + 1, k + 2}$. Since $n + 1 \geq k + 2$, we may assume that $x_{0} \neq x_{n}$. But now by the assumption the map
 	\begin{align*}
 		(y_{0}, y_{1}, \ldots, y_{n}) \mapsto \frac{[y_{0}, y_{1}, \ldots, y_{n - 1}]_{f} - [y_{1}, y_{2}, \ldots, y_{n}]_{f}}{y_{0} - y_{n}}
 	\end{align*}
 	extends continuously to some neighbourhood of $x$ (in $(a, b)^{n + 1} \setminus D_{n + 1, k + 2}$), and since this map agrees with the $n$'th order divided differences on $(a, b)^{n + 1} \setminus D_{n + 1, 2}$ by \ref{divdif_rec}, it gives the continuous extension to $x$.
 
-	$\Leftarrow$: Assume then that $S(n, k, f)$. Take any $x = (x_{0}, x_{1}, \ldots, x_{n - 1}) \in (a, b)^{n} \setminus D_{n, k + 2}$ and additional point $(z_{0}, z_{1}, \ldots, z_{n - 1})$ with pairwise distinct components and $x_{i} \neq z_{j}$ for $0 \leq i, j \leq n - 1$. Now the map
+	$\Leftarrow$: Assume then $S(n, k, f)$. Take any $x = (x_{0}, x_{1}, \ldots, x_{n - 1}) \in (a, b)^{n} \setminus D_{n, k + 2}$ and additional point $(z_{0}, z_{1}, \ldots, z_{n - 1})$ with pairwise distinct components and $x_{i} \neq z_{j}$ for $0 \leq i, j \leq n - 1$. Now the map
 	\begin{align*}
 		(y_{0}, \ldots, y_{n - 1}) \to [z_{0}, z_{1}, \ldots, z_{n - 1}]_{f} + \sum_{i = 0}^{n - 1}[z_{0}, \ldots, z_{i - 1} z_{i}, y_{i}, y_{i + 1}, \ldots, y_{n - 1}]_{f} (y_{i} - z_{i})
 	\end{align*}
-	is continuous on some neighbourhood of $x$ in $(a, b)^{n + 1} \setminus D_{n + 1, k + 2}$, and it since it agrees with the order $n$ divided differences on $(a, b)^{n} \setminus D_{n, 2}$ (by \ref{total_derivative}), it gives the extension at $x$.
+	is continuous on some neighbourhood of $x$ in $(a, b)^{n} \setminus D_{n, k + 2}$, and since it agrees with the order $n$ divided differences on $(a, b)^{n} \setminus D_{n, 2}$ (by proposition \ref{total_derivative}), it gives the extension at $x$.
 \end{proof}
 
 \begin{lause}\label{weaktoreal_lemma}
@@ -629,7 +629,7 @@ This continuity results implies (among many other things) that mean value theore
 \begin{kor}[General mean value theorem for divided differences]
 	Let $f \in C^{n}(a, b)$ and $a < x_{0}, x_{1}, \ldots, x_{n} < b$. Then there exists $\xi$ with
 	\begin{align*}
-		\min_{0 \leq i \leq n}(x_{i}) \leq \xi \geq \max_{0 \leq i \leq n}(x_{i})
+		\min_{0 \leq i \leq n}(x_{i}) \leq \xi \leq \max_{0 \leq i \leq n}(x_{i})
 	\end{align*}
 	such that
 	\begin{align}
@@ -705,7 +705,7 @@ Finally, one can carry positivity.
 
 The previous result is some kind of relative of \ref{bounded_div}. Also theorem \ref{k-tone_smooth} has rather interesting relative.
 
-\begin{lause}\label{bernstein_theorem}[Bernstein's theorem]
+\begin{lause}[Bernstein's theorem]\label{bernstein_theorem}
 	If $f : (a, b) \to \R$ is $k$-tone for every $k \geq 0$, then $f$ is real-analytic on $(a, b)$.
 \end{lause}
 \begin{proof}

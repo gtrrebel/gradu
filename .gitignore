@@ -2,3 +2,6 @@
 *.aux
 *.toc
 .DS_store
+*.blg
+*.bbl
+*.gcx

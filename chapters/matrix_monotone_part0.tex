@@ -49,7 +49,7 @@ Of course, it's not really obvious how one should make any sense of this ``defin
 	\item How should matrices be ordered?
 	\item How should functions act on matrices?
 \end{itemize}
-Both of these questions can be of course answered in many ways, but for both of them there is very natural, in fact tensorial, answer. Instead of comparing matrices we can compare bilinear forms, $(0, 2)$-tensors (bilinear maps $V^2 \to \R)$. Similarly we can naturally apply function to linear mappings, $(1, 1)$-tensors (bilinear maps $V^{*} \times V \to \R$). Here $V$ is a $n$-dimensional vector space over $\R$.
+Both of these questions can be certainly answered in many ways, but for both of them there is very natural, in fact tensorial, answer. Instead of comparing matrices we can compare bilinear forms, $(0, 2)$-tensors (bilinear maps $V^2 \to \R)$. Similarly we can naturally apply function to linear mappings, $(1, 1)$-tensors (bilinear maps $V^{*} \times V \to \R$). Here $V$ is a $n$-dimensional vector space over $\R$.
 
 For matrix (bilinear form) ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We say that a form is positive if its diagonal is non-negative. This gives a partial order on the space of all bilinear forms.
 
@@ -86,7 +86,7 @@ All this is exactly what makes them so interesting. One is driven to ask the que
 	How should one think about matrix monotone functions?
 \end{quest}
 
-If this sounds like the same question to you, think about increasing functions on $\R^n$. Function $f : \R^n \to \R$ is called $n$-increasing (this termonology lasts only for next couple of paragraphs) if $f(x_{1}, x_{2}, \ldots, x_{n}) \leq f(y_{1}, y_{2}, \ldots, y_{n})$ whenever $x_{i} \leq y_{i}$ for every $1 \leq i \leq n$. Which functions are $n$-increasing? I would argue that $n$-increasing functions are awful, much more awful than usual ($1$-)increasing functions. The reason is that they don't have good additive structure.
+If this sounds like the same question to you, think about increasing functions on $\R^n$. Function $f : \R^n \to \R$ is called $n$-increasing (this termonology lasts only for next couple of paragraphs) if $f(x_{1}, x_{2}, \ldots, x_{n}) \leq f(y_{1}, y_{2}, \ldots, y_{n})$ whenever $x_{i} \leq y_{i}$ for every $1 \leq i \leq n$. Which functions are $n$-increasing? I would argue that $n$-increasing functions are awful, much more so than the usual ($1$-)increasing functions. The reason is that they don't have good ``building blocks".
 
 One might say that ``non-negative derivative" property (let's ignore regularity issues for a while) makes increasing functions easy to understand, and while there is certain truth to that, I would argue that what makes them so simple is really the dual property: ``increasing functions are sums of increasing step functions". This roughly implies that in order to understand increasing functions, it is enough to understand step functions, or just step functions with one jump upwards.
 
@@ -100,7 +100,7 @@ Also, applicability of the ``only needing to understand step functions" is somew
 
 There's no such nice dual property for $n$-increasing functions (for $n > 1$). One can understand them locally with derivatives, but there are no simple decompositions. Same thing could be said about convex functions on $\R^n$.
 
-Much more importantly for us, these is no such nice additive structure for $n$-monotone functions. This is by no means trivial (as it is not even with $n$-increasing functions). It is also not even clear what one means by ``nice" and whether even increasing functions are that ``nice" in the end. These ideas shall however merely work as our guideline, so one should not be too troubled.
+Much more importantly for us, these is no such nice additive structure for $n$-monotone functions. This is by no means trivial (as it is not even with $n$-increasing functions). It is also not even clear what one means by ``nice" and whether even increasing functions are that ``nice" in the end. These ideas shall however merely work as our guideline, so one should not feel too troubled.
 
 All these issues can be, in a way, avoided by change of perspective: instead of trying to characterize matrix monotone functions by expressing them as sums of something simple, we express the definition itself as a sum of somethings simple. In particular we try to understand the ``dual" (or a ``predual" to be exact) of matrix monotone functions.
 
@@ -150,7 +150,7 @@ It turns out that this question has a surprisingly simple answer, given as theor
 
 Aim of the chapters entitled ``Matrix monotone functions -- part $i$" for $0 \leq i \leq 3$ is to answer to these questions. Other chapters, ones with even number, offer supplementary information.
 
-The whole theory of matrix monotone functions originates from a 1934 paper by Charles Loewner (then known as Karl Löwner) entitled ``Über monotone Matrixfunktionen" \cite{Low}. In the paper Loewner asked the questions \ref{question_1} and \ref{question_2}, and gave them both answers. Since then the theory has been reworked and expanded by various authors, and many open question remain. This text is an amalgamation of countless works on the subject. ``Notes and references" -sections at the end of each chapter (except this one) are an attempt to give attribution to these ancestors.
+The whole theory of matrix monotone functions originates from a 1934 paper by Charles Loewner (then known as Karl Löwner) entitled ``Über monotone Matrixfunktionen" \cite{Low}. In the paper Loewner asked the questions \ref{question_1} and \ref{question_2}, and gave them both answers. Since then the theory has been reworked and expanded by various authors, and many open questions remain. This text is an amalgamation of countless works on the subject. ``Notes and references" -sections at the end of each chapter (except this one) are an attempt to give attribution to these ancestors.
 
 Arguments of this thesis are largely elementary, requiring only basic calculus, complex analysis, linear algebra and topology. Many of the underlying ideas and heuristics are however inspired by functional analysis and measure theory, so it pays to have a good understanding of them.
 
@@ -179,13 +179,20 @@ TODO: fix this
 We also preserve certain letters to have particular meaning.
 \\
 \begin{tabular}{r l}
-	$a, b$ & extended real with $-\infty \leq a < b \leq \infty$ \\ 
+	$a, b$ & extended reals with $-\infty \leq a < b \leq \infty$ \\ 
 	$n, k$ & positive integers \\
-	$V$ & inner product space over $\C$ with inner product $\langle \cdot, \cdot \rangle$, of dimension $n$ \\
+	$V$ & inner product space over $\C$ (with inner product $\langle \cdot, \cdot \rangle$) of dimension $n$ \\
 \end{tabular}
 
 
 \section{TODO}
+
+\begin{itemize}
+	\item remark on the even more general case (Taylor expansion at points)
+	\item Open Pick-Nevanlinna works if $X$ has an accumulation point. More general philosophy: if $\varphi$ is a Pick function, the dual pairing is continuous with the $(\lambda^2 + 1)$-topology on $R_{\infty}(\Hp)$. Then, for open Pick-Nevanlinna interpolation it is sufficient to prove that functions $(\lambda - z)^{-1}$ with $z \in X$ where $X$ has an accumulation point is are dense in the space of all rational functions with poles not on $\R$. Similarly for the Loewner's theorem. What if $X$ doesn't have accumulation point?
+	\item If two Pick functions agree on a sequence with distance to boundaries summing to infinity, then they agree everywhere.
+	\item Interpret everything as separating hyperplane theorem/ Riesz extension theorem.
+\end{itemize}
 
 TODO: check the TODO-lists (in comments).
 

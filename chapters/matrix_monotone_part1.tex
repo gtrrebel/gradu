@@ -1,7 +1,7 @@
 \chapter{Matrix monotone functions -- part 1}
 
 \begin{maar}\label{n_mon_maar}
-	We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any $A, B \in \H_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
+	We say that $f : (a, b) \to \R$ is $n$-monotone or matrix monotone of order $n$, if for any ($n \times n$ matrices) $A, B \in \H_{(a, b)}$, such that $A \leq B$ we have $f(A) \leq f(B)$.
 \end{maar}
 
 We will denote the space of $n$-monotone functions on open interval $(a, b)$ by $P_{n}(a, b)$. We will also denote
@@ -18,7 +18,7 @@ By \ref{positive_machine} we have
 Note that in the notation $P_{n}(a, b)$ we don't specify the space $V$; it doesn't matter.
 
 \begin{prop}
-	If $\dim(V) = \dim(V')$, then $f$ is $n$-monotone in $V$ if and only if it is $n$-monotone in $V'$.
+	If $\dim(V) = \dim(V')$, then $f$ is $n$-monotone in $V$, if and only if it is $n$-monotone in $V'$.
 \end{prop}
 \begin{proof}
 	The reason is rather clear: inner product spaces of same dimension are isometric.
@@ -64,9 +64,9 @@ Below we collect many natural properties of the cones $P_{n}(a, b)$.
 \end{prop}
 \begin{proof}
 	$(ii) \Rightarrow (i)$: Take any $a < x \leq y < b$. Now for $xI, yI \in \H_{(a, b)}$ we have $x I \leq y I$ so by definition
-	\[
+	\begin{align*}
 		f(x) I = f(xI) \leq f(y I) = f(y) I,
-	\]
+	\end{align*}
 	from which it follows that $f(x) \leq f(y)$.
 
 	$(iii) \Rightarrow (ii)$: All $1 \times 1$ matrices commute.
@@ -267,7 +267,7 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 	\begin{align*}
 		\lim_{\varepsilon \to 0} \langle D f_{A_{\varepsilon}} (H_{\varepsilon}) w_{\varepsilon}, w_{\varepsilon} \rangle = \langle M v, v \rangle
 	\end{align*}
-	for some $H_{\varepsilon} \geq 0$, $w_{\varepsilon} \in \C^{n}$, $A_{\varepsilon} \in \H_{(a, b)}$, with $\lim_{\varepsilon \to 0} A_{\varepsilon} = 0$. This works.
+	for some $H_{\varepsilon} \geq 0$, $w_{\varepsilon} \in V$, $A_{\varepsilon} \in \H_{(a, b)}$, with $\lim_{\varepsilon \to 0} A_{\varepsilon} = 0$. This works.
 
 	To find $H_{\varepsilon}, w_{\varepsilon}, A_{\varepsilon}$, we change the point of view. Recall that if $f$ is entire we have
 	\begin{align*}
@@ -282,12 +282,12 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 	\begin{align*}
 		D f_{A}(H) = \frac{1}{2 \pi i}\int_{\gamma} (z I - A)^{-1} H (z I - A)^{-1} f(z) dz.
 	\end{align*}
-	Next, take $H = v v^{*}$ for $v \in V$ and $w \in V$: we have
+	Next, take $H = v v^{*}$ for $v \in V$ and pick $w \in V$: we have
 	\begin{align*}
 		\langle D f_{A}(H) w, w \rangle &= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - A)^{-1} v v^{*} (z I - A)^{-1} w, w \rangle f(z) dz \\
 		&= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - A)^{-1} v, w \rangle \langle (z I - A)^{-1} w, v \rangle f(z) dz.
 	\end{align*}
-	Note that we can write $\langle (z I - A)^{-1} v, w \rangle = \det(z I - A)^{-1} q(z)$ where $q$ is some polynomial of degree less than $n$. Moreover, if $A$ has $n$ distinct roots, varying $w$ gives all such polynomials $q$, so we can rewrite our object as
+	Note that we can write $\langle (z I - A)^{-1} v, w \rangle = \det(z I - A)^{-1} q(z)$ where $q$ is some polynomial of degree less than $n$. Moreover, if $A$ has $n$ distinct roots and $v$ is not orthogonal to any eigenvector of $A$, varying $w$ gives all such polynomials $q$, so we can rewrite our object as
 	\begin{align*}
 		\frac{1}{2 \pi i}\int_{\gamma} \det(z I - A)^{-2} q(z) \overline{q(\overline{z})} f(z) dz.
 	\end{align*}
@@ -314,7 +314,7 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 
 Note that the proof gives also alternate interpretation for the matrix $M$. Positivity of $M$ means simply that for $q \in \C_{n - 1}[x]$ the function $f(x) q(x) \overline{q(\overline{x})} = f(x) |q(x)|^2$ has non-negative $(2 n - 1)$'th derivative.
 
-Given polynomial $q$, we denote $q^{*}$ the polynomial with
+Given polynomial $q$, we henceforth denote by $q^{*}$ the polynomial with
 \begin{align*}
 	q^{*}(z) = \overline{q(\overline{z})}.
 \end{align*}

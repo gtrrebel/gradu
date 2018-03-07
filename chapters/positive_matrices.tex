@@ -4,6 +4,8 @@
 
 \subsection{The right definition}
 
+Throughout this thesis, if not stated otherwise, $V = (V, \langle \cdot, \cdot \rangle)$ denotes an inner product space over $\C$ of dimension $n$ (where $n$ is an arbitrary but fixed positive integer).
+
 \begin{maar}
 	We say that $A$ is \textit{positive map}, or simply \textit{positive}, and write $A \geq 0$, if for any $v \in V$ we have
 	\begin{align*}
@@ -216,7 +218,7 @@ In addition, (direct) sum of two positive map is positive.
 
 \section{Spectral theorem}
 
-The most important result in the theory of positive and real maps is the Spectral theorem.
+The most important result in the theory of positive and real maps is the spectral theorem.
 
 \begin{lause}[Spectral theorem, version $1$]\label{cheapSpectral}
 	$A \in \L(V)$ is real if and only there exists real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and for pairwise orthogonal vectors $v_{1}, v_{2}, \ldots, v_{n} \in V$ such that
@@ -294,7 +296,7 @@ Fix $A \in \H(V)$ with eigenbasis $(v_{i})_{i = 1}^{n}$. For any $v \in V$ we ha
 
 \subsection{Functional calculus}
 
-Given the spectral theorem, it is rather clear how one should define general matrix functions.
+Given the spectral theorem, it is rather clear how one should define general matrix functions. We denote by $\H_{(a, b)}$ elements of $\H$ spectra of which lie in $(a, b)$.
 
 \begin{maar}
 	For any $-\infty \leq a < b \leq \infty$ $f : (a, b) \to \R$ the associated matrix function on $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
@@ -313,16 +315,41 @@ Note that as the spectral representation is unique this definition makes sense. 
 		\item $f_{V_{1} \oplus V_{2}} = f_{V_{1}} \oplus f_{V_{2}}$.
 		\item If $g : (a, b) \to \R$ and $f$ and $g$ agree on spectrum of $A$, then $f(A) = g(A)$.
 		\item If $f[(a, b)] \subset (c, d)$ and $g : (c, d) \to \R$ then $(g \circ f)_{V} = g_{V} \circ f_{V}$.
-		\item If $f_{n} : (a, b) \to \R$ converge pointwise to $f$, then the same holds true for $(f_{n})_{V}$'s.
-		\item If $f$ is continuous, then so is $f_{V}$.
+		\item If $f_{n} : (a, b) \to \R$ converge pointwise to $f$, then the same holds true for $(f_{n})_{V}$'s. In other words, the map $f \mapsto f_{V}$ is continuous.
 	\end{enumerate}
 \end{prop}
 
 These properties make it clear that such definition is natural. We will drop the subscript $V$ and identify $f$ with its matrix function $f_{V}$ if there is no fear of confusion.
 
+There is one more property which is not all that trivial.
+
+\begin{prop}\label{matrix_continuous}
+	If $f : (a, b) \to \R$ is continuous, then so is $f_{V}$.
+\end{prop}
+
+Ultimately this is a statement about eigenvalue dynamics: if two real maps are close to each other, so are their eigenvalues.
+\begin{lem}\label{eig_lem1}
+	For any $A, H \in \H$ we have $\spec(A + H) \subset \spec(A) + [-\|H\|, \|H\|]$.
+\end{lem}
+\begin{proof}
+	We prove a claim evidently equivalent: if all eigenvalues of $A$ are greater than $\|H\|$ in absolute value, then $A + H$ is invertible. Note that in this case the eigenvalues of $A^{-1}$ are less than $\|H\|^{-1}$ in absolute value and hence $\|A^{-1} H\| \leq \|A^{-1}\| \|H\| < 1$. This means that all eigenvalues $A^{-1} H$ are less than $1$ in absolute value, so $I + A^{-1} H$ is invertible: hence is also $A (I + A^{-1} H) = A + H$.
+\end{proof}
+
+Note that the previous lemma implies that $\H_{(a, b)}$ or more generally $\H_{U}$ is an open set (in $\H)$ for any open $U \subset \R$, where $\H_{U}$ is defined as one would expect.
+
+\begin{proof}[Proof of proposition \ref{matrix_continuous}]
+	By lemma \ref{eig_lem1} $f_{V}$ is clearly continuous at $A \in \H_{(a, b)}$ at least if $f(A) = 0$. But if this is not the case, we may interpolate $f_{V}$ by polynomial: find a polynomial $p$ with $p(\lambda) = f(\lambda)$ for $\lambda \in \spec(A)$ and write $f = p + g$. Now $g_{V}$ is continuous at $A$. Also, as
+	\begin{align*}
+		(A + H)^{k} = A^{k} + O(\|H\|)
+	\end{align*}
+	for any $k \geq 0$, so is $p_{V}$ and hence also $f_{V}$.
+\end{proof}
+
+Previous argument also implies a bit more general claim: $f_{V}$ is continuous at $A$, if and only if $f$ is continuous at $\spec(A)$.
+
 \subsection{Holomorphic functional calculus}
 
-If $f$ is entire, there's another way to appoach matrix functions. As $f$ can be written as
+If $f$ is entire, there's another way to appoach the concept of matrix functions. Since $f$ can be written as
 \begin{align*}
 	f(z) = \sum_{n = 0}^{\infty} a_{n} z^{n},
 \end{align*}
@@ -334,15 +361,15 @@ This matrix power series indeed converges as $\|A^{n}\| \leq \|A\|^{n}$. Also, t
 \begin{align*}
 	\sum_{n = 0}^{\infty}a_{n} A^{n} = \lim_{n \to \infty} \left[(f_{n})_{V}(A) \right] = f_{V}(A)
 \end{align*}
-by point (6) of proposition (\ref{basic_matrix}).
+by part (6) of proposition (\ref{basic_matrix}).
 
 Note that the power series definition makes perfect sense even if $a_{n} \notin \R$ or if $A$ is not real.
 
-If $f$ is not entire, the power series might not converge every $A \in \H_{(a, b)}(V)$. Instead, we can more generally use Cauchy's integral formula for matrix functions.
+If $f$ is not entire, the power series might not converge every $A \in \H_{(a, b)}$. Instead, we can use Cauchy's integral formula for matrix functions.
 \begin{align*}
 	f_{V}(A) = \frac{1}{2 \pi i}\int_{\gamma} (z I - A)^{-1} f(z) dz,
 \end{align*}
-where $\gamma$ is simple closed curve enclosing the spectrum of $A$ (contained in the domain of $f$). This formula is immediate when viewed in a eigenbasis of $A$. Again, this formula makes perfect sense even if $A$ is not real.
+where $\gamma$ is simple closed curve enclosing the spectrum of $A$ (contained in the domain of $f$). This formula is immediate when viewed in a eigenbasis of $A$ and again, the formula makes perfect sense even if $A$ is not real.
 
 \section{Real maps and composition}
 
@@ -350,7 +377,7 @@ where $\gamma$ is simple closed curve enclosing the spectrum of $A$ (contained i
 
 \textbf{Warning!} Composition of positive maps need not be positive!
 
-Since for any $A, B \in \H(V)$ we have $(A B)^{*} = B^{*} A^{*} = B A$, product of two real maps is real, if and only the maps commute. So: when do two real maps commute?
+Since for any $A, B \in \H(V)$ we have $(A B)^{*} = B^{*} A^{*} = B A$, product of two real maps is real, if and only if the maps commute. So: when do two real maps commute?
 
 It turns out that real maps commute, if and only if they are \textbf{simultaneously diagonalizable}, i.e. if there exists vectors $v_{1}, v_{2}, \ldots, v_{n}$ and numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and $\lambda'_{1}, \lambda'_{2}, \ldots, \lambda'_{n}$ such that
 \begin{align*}
@@ -366,9 +393,10 @@ A similar statement holds for arbitrary families of commuting real maps.
 	\end{align*}
 \end{lause}
 \begin{proof}
+	As with the spectral theorem, the main difficulty is finding the ``eigenspaces" $E_{i}$. TODO
 	Let $\mathcal{A}' \subset \L(V)$ be the smallest (unital) algebra containing $\mathcal{A}$. Note that $\mathcal{A}'$ is commutative and elements of it are real maps. As $\H(V)$ is finite dimensional and closed under taking polynomials, $\mathcal{A}'$ is spanned by projections to a finite set of subspaces of $V$. Let $\{E_{i}\}_{i = 1}^{m}$ be such set of subspaces minimizing $\sum \dim(E_{i})$. If we manage to prove that the subspaces $E_{i}$ are orthogonal we are done, as the respective projections span $I$ and the family $\mathcal{A}$.
 
-	Note that for any $1 \leq i < j \leq m$ the map $A := P_{E_{i}} P_{E_{j}}$ is a projection, as it is real ($P_{E_{i}}$ and $P_{E_{j}}$ commute) and $A^{2} = P_{E_{i}} P_{E_{j}} P_{E_{i}} P_{E_{j}} = P_{E_{i}}^2 P_{E_{j}}^2 = P_{E_{i}} P_{E_{j}} = A$. But as $\image(A) \subset P_{E_{i}}, P_{E_{j}}$, the maps $P_{E_{0}} := A, P_{E_{i}'} := P_{E_{i}} - A$ and $P_{E_{j}'} := P_{E_{j}} - A$, are projections in $\mathcal{A}'$ spanning $P_{E_{i}}$ and $P_{E_{j}}$. Since $\dim(E_{0}) + \dim(E_{i}') + \dim(E_{j}') = \dim(E_{i}) + \dim(E_{j}) - \dim(E_{0})$, by the minimality of $(E_{i})_{i = 1}^{m}$ we must have $\dim(E_{0}) = 0$. Indeed, otherwise we could replace $E_{i}$ and $E_{j}$ by $E_{0}$, $E_{i}'$ and $E_{j}'$. Consequently $P_{E_{i}} P_{E_{j}} = 0$, and hence $E_{i} \perp E_{j}$.
+	Note that for any $1 \leq i < j \leq m$ the map $A := P_{E_{i}} P_{E_{j}}$ is a projection, as it is real ($P_{E_{i}}$ and $P_{E_{j}}$ commute) and $A^{2} = P_{E_{i}} P_{E_{j}} P_{E_{i}} P_{E_{j}} = P_{E_{i}}^2 P_{E_{j}}^2 = P_{E_{i}} P_{E_{j}} = A$. But as $\image(A) \subset E_{i}, E_{j}$, the maps $P_{E_{0}} := A, P_{E_{i}'} := P_{E_{i}} - A$ and $P_{E_{j}'} := P_{E_{j}} - A$, are projections in $\mathcal{A}'$ spanning $P_{E_{i}}$ and $P_{E_{j}}$. Since $\dim(E_{0}) + \dim(E_{i}') + \dim(E_{j}') = \dim(E_{i}) + \dim(E_{j}) - \dim(E_{0})$, by the minimality of $(E_{i})_{i = 1}^{m}$ we must have $\dim(E_{0}) = 0$. Indeed, otherwise we could replace $E_{i}$ and $E_{j}$ by $E_{0}$, $E_{i}'$ and $E_{j}'$. Consequently $P_{E_{i}} P_{E_{j}} = 0$, and hence $E_{i} \perp E_{j}$.
 \end{proof}
 
 It is not very hard to see that decomposition with minimal $m \geq 1$ is unique and attained by the previous construction.
@@ -409,7 +437,7 @@ For one dimesional projections things go as badly as they possibly can.
 	\begin{align*}
 		P_{v} P_{w} + P_{w} P_{v} = (P_{v} + P_{w})^2 - P_{v}^2 - P_{w}^2 = (P_{v} + P_{w})^2 - P_{v} - P_{w} = A^2 - A = A (A - I),
 	\end{align*}
-	where $A := P_{v} + P_{w}$. This is positive, if and only if the eigenvalues of $A$ are outside the interval $(0, 1)$. But since $\tr(A) = 2$ and $A \geq 0$, the only way this can happen is that either $A$ has double eigenvalues $1$ or $A$ has eigenvalues $0$ and $2$. To conclude the claim itself, we are left to do two reality checks:
+	where $A := P_{v} + P_{w}$. This is positive, if and only if the eigenvalues of $A$ lie outside the interval $(0, 1)$. But since $\tr(A) = 2$ and $A \geq 0$, the only way this can happen is that either $A$ has double eigenvalue $1$ or $A$ has eigenvalues $0$ and $2$. To conclude the claim itself, we are left to do two reality checks:
 	\begin{lem}
 		If $A = P_{v} + P_{w} = I$, then $v$ and $w$ are orthogonal.
 	\end{lem}
@@ -470,10 +498,10 @@ Key thing here is to note that multiplication by positive map doesn't preserve L
 
 For example if $0 < a \leq b$, with real numbers one could multiply the inequality by the positive number $(a b)^{-1}$ to get $0 < b^{-1} \leq a^{-1}$. This doesn't quite work with linear maps anymore.
 
-$*$-conjugation is way to partially fix this deficiency: it works almost like multiplying by positive number.
+$*$-conjugation is a way to partially fix this deficiency: it works almost like multiplying by a positive number.
 
 \begin{prop}
-	If $A \leq B$, then for any $C$ we have $C^{*} A C \leq C^{*} B C$.
+	If $A \leq B$, then for any $C \in \L(V)$ we have $C^{*} A C \leq C^{*} B C$.
 \end{prop}
 
 Using the previous observation one can salvage the above argument.
@@ -534,15 +562,15 @@ All results in this chapter are classic and can be found in numerous books on li
 	\item One would like to get such order with restrictions. Maybe this is related to sectional curvature.
 	\item What happens if $n = 2$, $A, B \in \H$, and $\tr(B) = 0$ and $\tr(AB) \geq 0$. What can be said about the relation between $A$ and $A + B$.
 	\item We have up to first order that if $\lambda_{1} \geq \lambda_{2} \geq \ldots \geq \lambda_{n}$ are the eigenvalues of $A$, with respective eigenvectors $v_{i}$, then we should have
-	\[
+	\begin{align*}
 		\sum_{i = 1}^{k} \langle \dot{A} v_{i}, v_{i}\rangle \geq 0,
-	\]
+	\end{align*}
 	for any $1 \leq k \leq n$ with equality for $k = n$.
 	\item Is the right condition something like: for any $t \in \R$ we should have $A \cdot \chi_{(t, \infty)} \leq B \cdot \chi_{(t, \infty)}$ or something like that.
 	\item Does the following work? We say that $A \leq_{2} B$ if for any orthonormal basis $(e_{i})_{i = 1}^{n}$ we have
-	\[
+	\begin{align*}
 		(\langle A e_{i}, e_{i} \rangle)_{i = 1}^{n} \prec_{2} (\langle B e_{i}, e_{i} \rangle)_{i = 1}^{n}.
-	\]
+	\end{align*}
 	Does this correspond to the case $n = 1$? This probably doesn't work: if $n = 2$, $\tr(A) = \tr(B) = 0$ and $e_{1}$ is in Kernel of $B$, then the right-hand sequence is zero sequence.
 	\item Lorenz order?
 	\item BMV-conjecture (theorem)
