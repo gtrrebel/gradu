@@ -602,12 +602,12 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 	is continuous on some neighbourhood of $x$ in $(a, b)^{n} \setminus D_{n, k + 2}$, and since it agrees with the order $n$ divided differences on $(a, b)^{n} \setminus D_{n, 2}$ (by proposition \ref{total_derivative}), it gives the extension at $x$.
 \end{proof}
 
-\begin{lause}\label{weaktoreal_lemma}
+\begin{lem}\label{weaktoreal_lemma}
 	Let $f : (a, b) \to \R$, $k \geq 1$. Then $f \in C_{w}^{k}(a, b)$, if and only if $f \in C^{1}(a, b)$ and $f' \in C_{w}^{k - 1}(a, b)$.
-\end{lause}
+\end{lem}
 
 \begin{proof}
-	``$\Rightarrow$": Let's start by proving that $f$ is continuouly differentiable. Lemma \ref{weaklyCk_basic} easily implies that it is sufficient prove this for the case $k = 1$. But in this case we now that the limits $\lim_{x \to x_{0}} [x, x_{0}]_{f} = [x_{0}, x_{0}]_{f}$ exist and $f$ is hence differentiable with $f'(x) = [x, x]_{f}$. Also, $x \mapsto [x, x]_{f} = f'(x)$ is continuous.
+	``$\Rightarrow$": Let's start by proving that $f$ is continuouly differentiable. Lemma \ref{weaklyCk_basic} easily implies that it is sufficient prove this for the case $k = 1$. But in this case we know that the limits $\lim_{x \to x_{0}} [x, x_{0}]_{f} = [x_{0}, x_{0}]_{f}$ exist and $f$ is hence differentiable with $f'(x) = [x, x]_{f}$. Also, $x \mapsto [x, x]_{f} = f'(x)$ is continuous.
 
 	Now the identity \ref{derivative_divdif} easily implies the claim.
 
@@ -622,7 +622,7 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 	$f \in C_{w}^{k}(a, b)$ if and only if $f \in C^{k}(a, b)$.
 \end{kor}
 \begin{proof}
-	Simply apply lemma \ref{weaktoreal_lemma} inductively.
+	Simply apply Lemma \ref{weaktoreal_lemma} inductively.
 \end{proof}
 
 This continuity results implies (among many other things) that mean value theorem also holds for general tuples.
@@ -651,7 +651,7 @@ Just like one can carry regularity information, one can carry boundedness inform
 \begin{proof}
 	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $k$'th divided difference corresponds to $k$'th derivative, if it is bounded, $(k - 1)$'th derivative should be continuous. Thus we should prove that this is indeed the case by proving that $(k - 1)$'th divided differences of $f$ extend continuously to the whole of $(a, b)^{k}$.
 
-	Note that lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions can be always extended as Lipschitz functions, so we are done by lemma \ref{weaktoreal_lemma}.
+	Note that lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions on dense set can be always extended to the whole space (as Lipschitz functions), so we are done by lemma \ref{weaktoreal_lemma}.
 \end{proof}
 
 \begin{lause}\label{bounded_div}
@@ -670,7 +670,7 @@ Finally, one can carry positivity.
 	Let $f : (a, b) \to \R$ and $k \geq 3$. Then $f$ is $k$-tone, if and only if $f' \in C^{1}(a, b)$ and $f'$ is $(k - 1)$-tone.
 \end{lem}
 \begin{proof}
-	Again, only the claim on the regularity is non-trivial as the $k$-tone claim follows easily from  \ref{derivative_divdif} and \ref{integral_divdif}. As with the bounded case the idea is that if $f$ is $k$-tone $f^{(k)}$ is positive and hence $f^{(k - 1)}$ is increasing, and consequently locally bounded. We should hence prove that the $(n - 1)$'th divided differences are bounded, as then \ref{boundtoreal_lemma} would imply the claim. But this follow easily from \ref{total_derivative}.
+	Again, only the claim on the regularity is non-trivial as the $k$-tone claim follows straightforwardly from  \ref{derivative_divdif} and \ref{integral_divdif}. As with the bounded case the idea is that if $f$ is $k$-tone $f^{(k)}$ is positive and hence $f^{(k - 1)}$ is increasing, and consequently locally bounded. We should hence prove that the $(n - 1)$'th divided differences are bounded, as then \ref{boundtoreal_lemma} would imply the claim. But this follow easily from \ref{total_derivative}.
 \end{proof}
 
 \begin{proof}[Proof of the theorem \ref{k-tone_smooth}]

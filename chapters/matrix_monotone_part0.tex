@@ -161,17 +161,19 @@ TODO: fix this
 \begin{tabular}{r l}
 	w.l.o.g & without loss of generality \\
 	t.f.i.f & this follows immediately from \\
+	$Lip(f)$ & (the best) Lipschitz constant of $f$ \\
 	$V^{*}$ & (continuous) dual of (topological) vector space $V$ \\
 	$\L(V)$ & linear self-maps over vector space $V$ \\
 	$\H(V)$ & real maps over inner product space $V$ \\
 	$\H_{+}(V)$ & positive maps over inner product space $V$ \\
-	$\H_{(a, b)}(V)$ & real maps over inner product space $V$ with spectra over $(a, b)$ \\
+	$\H_{(a, b)}(V)$ & real maps over inner product space $V$ with spectra on $(a, b)$ \\
 	$P_{n}(a, b)$ & $n$-monotone functions on $(a, b)$ (change this?) \\
 	$P_{\infty}(a, b)$ & intersection of $P_{n}(a, b)$ for $n \geq 1$ \\
 	$P_{W} = P_{W, V}$ & orthogonal projection to $W \subset V$ \\
 	$A^{*}$ & adjoint of a map $A \in \L(V)$ \\
 	$f_{V}$ & matrix function lift of $f$ to $V$ \\
-	$\C_{n}[x]$ & change this? \\
+	$\R_{n}[x]$ & Real polynomials of degree at most $n$\\
+	$\C_{n}[x]$ & Complex polynomial of degree at most $n$\\
 	$q^{*}$ & for given polynomial $q$, $q^{*}$ is a polynomial with $q^{*}(z) = \overline{q(\overline{z})}$ \\
 	$N(q)$ & $q q^{*}$
 \end{tabular}
@@ -188,10 +190,11 @@ We also preserve certain letters to have particular meaning.
 \section{TODO}
 
 \begin{itemize}
-	\item remark on the even more general case (Taylor expansion at points)
+	\item remark on the even more general case for Pick Nevanlinna interpolation (Taylor expansion at points)
 	\item Open Pick-Nevanlinna works if $X$ has an accumulation point. More general philosophy: if $\varphi$ is a Pick function, the dual pairing is continuous with the $(\lambda^2 + 1)$-topology on $R_{\infty}(\Hp)$. Then, for open Pick-Nevanlinna interpolation it is sufficient to prove that functions $(\lambda - z)^{-1}$ with $z \in X$ where $X$ has an accumulation point is are dense in the space of all rational functions with poles not on $\R$. Similarly for the Loewner's theorem. What if $X$ doesn't have accumulation point?
 	\item If two Pick functions agree on a sequence with distance to boundaries summing to infinity, then they agree everywhere.
 	\item Interpret everything as separating hyperplane theorem/ Riesz extension theorem.
+	\item Main theorem simplification: note that the rational function is non-negative outside $(a, b)$ just by monotonicity of inverse function. What kind of rational functions will there be?
 \end{itemize}
 
 TODO: check the TODO-lists (in comments).

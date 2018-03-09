@@ -38,7 +38,12 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-This result is far from clear: pointwise limits of analytic functions need not analytic in general. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that we are missing some better functionals, or better predual.
+This result is far from clear: pointwise limits of analytic functions need not analytic in general. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that question one should ask is:
+
+\begin{quest}\label{pick_predual}
+	What is the ``correct" predual for $\pickclass$?
+\end{quest}
+
 
 \section{Rigidity}
 
@@ -138,154 +143,94 @@ To better explain the appearance of the linear term, we can write the integral i
 \end{align*}
 Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
 
-We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation. In order to understand Pick functions, we should understand their boundaries.
+We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation. Instead, we prove somewhat weaker claim.
+\begin{lem}\label{pick_dense}
+	Under the topology of pointwise convergence one has
+	\begin{align*}
+		\pickclass \subset \overline{\vspan}\{(\lambda - z)^{-1} | \lambda \in \R\}.
+	\end{align*}
+\end{lem}
+\begin{proof}
+	Denote the closure of the span by $\pickclass_{e}$. As $\lim_{\lambda \to \pm \infty}|\lambda|(\lambda - z)^{-1} = \pm 1$, $\R \in \pickclass_{e}$ Now by \ref{easy_pick_repr} all the bounded Pick functions extending analytically over $\R$ are also in $\pickclass_{e}$. We finish the proof by showing that such functions are dense in the set of all Pick functions: we denote this class by $\pickclass_{b}$.
 
-We will call the family
-
-\begin{align*}
-	\{z \mapsto z\} \cup \left\{z \mapsto \frac{1}{\lambda - z} | \lambda \in \R\right\}
-\end{align*}
-
-\textbf{extreme Pick functions}. Finite positive linear combinations of the extreme Pick functions are called \textbf{simple Pick functions}. Finally, we will call a Pick function \textbf{extentable}, if it is bounded and analytically extends over the real line. Such Pick functions enjoy representations of the form \ref{easy_pick_repr}.
+	It is straightforward to check that
+	\begin{align*}
+		g_{\varepsilon}(z) = \frac{z + i \varepsilon}{1 - i \varepsilon z} \in \pickclass_{b}
+	\end{align*}
+	for any $\varepsilon > 0$. But now for any $\varphi \in \pickclass$ and $\varepsilon > 0$ also $\varphi \circ g_{\varepsilon} \in \pickclass_{b}$. Finally $\varphi = \lim_{\varepsilon \to 0} \varphi \circ g_{\varepsilon} \in \pickclass_{b}$, as we wanted.
+\end{proof}
 
 \section{Weakly Pick functions}
 \subsection{Pick functionals}
 
-\begin{quest}
-	How can we recover the measure $\mu$ from the Pick function?
-\end{quest}
-
-If $\mu$ is given by a continuous, bounded function, i.e. $d \mu(\lambda) = f(\lambda) d \lambda$, it's not very hard to see that
-\begin{align*}
-	f(\lambda) = \frac{1}{\pi}\lim_{y \to 0^{+}} \Im(\varphi(\lambda + i y)).
-\end{align*}
-
-This doesn't however work with rational functions with poles on the real line. One might try to salvage the situation by saying that poles should correspond to $\delta$-measures, but even if that would be true in some sense, we are only scratching the surface. What to do if the measure is for instance the uniform measure on the Cantor set?
-
-Beauty of the measure theory is of course that we don't even need to make sense of the measure pointwise; everything is hidden in the averages. Could we recover the measures of open intervals then? Is it true that
-\begin{align*}
-	\mu((a, b)) = \lim_{y \to 0^{+}}\frac{1}{\pi}\int_{a}^{b} \Im(\varphi(\lambda + i y)) d \lambda?
-\end{align*}
-Even this isn't quite true: the problem is that if $\mu$ contains $\delta$-measure at $a$ or at $b$, the right-hand side doesn't see this properly.
-
-We have however already encountered good averages: the imaginary part of a Pick function $\varphi$ is a weighted average of the imaginary parts of $\varphi$ on the real line. We only proved this in the case of bounded $\varphi$, and indeed, the proper generalization should be 
-\begin{align*}
-	\Im(\varphi(z)) = \alpha \Im(z) + \frac{\Im(z)}{\pi}\int_{\R} \frac{d \mu(\lambda)}{(\lambda - z)(\lambda - \overline{z})}.
-\end{align*}
-Bear in mind that we also consider the constant $\alpha$ to be part of the measure. One can take this idea much further: if $r$ is any rational function with simple poles, no poles on $\R$, and decay $O(|z|^{-2})$ at infinity, the expression
-\begin{align*}
-	\int_{\R} r(\lambda) d \mu(\lambda)
-\end{align*}
-makes sense. Even better, partial fraction expansion allows us to write this integral in terms of as a linear combination of values of $\varphi$ and its conjugate. Indeed, we have
-\begin{align*}
-	r(\lambda) = c_{0}\frac{\lambda}{\lambda^2 + 1} + \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right),
-\end{align*}
-where $a_{i}$'s are the poles of $r$. The decay condition tells that $c_{0} = 0$. If $\Im(a_{i}) > 0$, term corresponds to a multiple of $\varphi(a_{i})$, and if $\Im(a_{i}) < 0$, we get the conjugate. Explicitly: if we abuse notation a tad by writing $\varphi(a_{i}) = \overline{\varphi(\overline{a_{i}})}$ if $\Im(a_{i}) < 0$, we have
-\begin{align*}
-	\int_{\R} r(\lambda) d \mu(\lambda) &= \int_{\R} \sum_{i = 1}^{M} c_{i} \left(\frac{1}{\lambda - a_{i}} - \frac{\lambda}{\lambda^2 + 1}\right)\mu(\lambda) \\
-	&= \sum_{i = 1}^{M} c_{i} \left(\varphi(a_{i}) - \alpha a_{i} - \beta\right),
-\end{align*}
-which rewrites to
-\begin{align*}
-	\sum_{i = 1}^{M} c_{i} \varphi(a_{i}) &= \sum_{i = 1}^{M} c_{i} \left(\alpha a_{i} + \beta\right) + \int_{\R} r(\lambda) d \mu(\lambda).
-\end{align*}
-We can get some kind of glimpse of the measure just by looking at linear combinations of the values of Pick function.
-
-These ideas get really useful when $r$ is non-negative on the real line. It follows easily from the lemma \ref{polynomial_lemma} that such rational functions can be written in the form
-\begin{align*}
-	r(\lambda) = \left( \sum_{i = 1}^{n} \frac{c_{i}}{\lambda - \lambda_{i}}\right) \left(\sum_{i = 1}^{n}\frac{\overline{c_{i}}}{\lambda - \overline{\lambda_{i}}}\right)
-\end{align*}
-where $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$. Running through the same calculations we see that
-
-\begin{align*}
-	\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\varphi(\lambda_{i}) - \overline{(\varphi(\lambda_{j}))}}{\lambda_{i} - \overline{\lambda_{j}}} = \alpha \left|\sum_{i = 1}^{n} c_{i}\right|^2 + \int_{\R} r(\lambda) d \mu (\lambda) \geq 0.
-\end{align*}
-
+Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} suggests also an answer to the question \ref{pick_predual}: linear functionals on $\pickclass$ should be thought of some kind of rational functions.
 \begin{maar}
-	Functional in $\left(\C^{\Hp}\right)^{*}$ of the form
-	\begin{align*}
-		\sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\delta_{\lambda_{i}} - \overline{\delta_{\lambda_{j}}}}{\lambda_{i} - \overline{\lambda_{j}}},
-	\end{align*}
-	$\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$ and $c_{1}, c_{2}, \ldots, c_{n} \in \C$, is called a \textbf{Pick functional}. In other words
-	\begin{align*}
-		\varphi \mapsto \sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{\varphi(\lambda_{i}) - \overline{\varphi(\lambda_{j})}}{\lambda_{i} - \overline{\lambda_{j}}}.
-	\end{align*}
+	Let $X \subset \Hp$. We will denote by $R(X)$ the class of rational functions $r$ such that
+	\begin{itemize}
+		\item All poles of $r$ are simple and lie in $X \cup X^{*} = X \cup \{z \in \C | \overline{z} \in X\}$.
+		\item $r(z) = O(|z|^{-2})$ at infinity.
+	\end{itemize}
+	We will also write $R_{+}(X)$ for the functions in $R(X)$, which are non-negative on $\R$.
 \end{maar}
-
-Given $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n} \in \C \setminus \R$, the matrix
-\begin{align*}\label{Pick_matrix}
-	\begin{bmatrix}
-		[\lambda_{1}, \overline{\lambda_{1}}]_{\varphi} & [\lambda_{1}, \overline{\lambda_{2}}]_{\varphi} & \cdots & [\lambda_{1}, \overline{\lambda_{n}}]_{\varphi} \\
-		[\lambda_{2}, \overline{\lambda_{1}}]_{\varphi} & [\lambda_{2}, \overline{\lambda_{2}}]_{\varphi} & \cdots & [\lambda_{2}, \overline{\lambda_{n}}]_{\varphi} \\
-		\vdots & \vdots & \ddots & \vdots \\
-		[\lambda_{n}, \overline{\lambda_{1}}]_{\varphi} & [\lambda_{n}, \overline{\lambda_{2}}]_{\varphi} & \cdots &  [\lambda_{n}, \overline{\lambda_{n}}]_{\varphi}
-	\end{bmatrix}
+With the norm
+\begin{align*}
+	\|r\|_{R} = \sup_{x \in \R} |r(x)| (x^2 + 1)
 \end{align*}
-is called a \textbf{Pick matrix}. Pick functionals are simply values of quadratic forms of Pick matrices.
+$R(X)$ becomes a topological vector space (over $\R$ or $\C$) and $R_{+}(X)$ its closed convex cone. Similarly to the previous chapter we have the dual pairing $\langle f, r \rangle_{L}$ between $\C^{X}$ and $R(X)$. Indeed, we may set
+\begin{align*}
+	\langle f, (z - a)^{-1} \rangle_{L} =
+	\begin{cases}
+		f(a) & \text{ if $a \in X$} \\
+		\overline{f(\overline{a})} & \text{ if $a \in X^{*}$}
+	\end{cases}
+\end{align*}
+and extend linearly.
 
-One can also interpret the Pick functionals as divided differences. Indeed, if $r$ is a rational function with above properties, it can be written in the form
+\begin{lause}\label{pick_functionals}
+	$R_{+}(\Hp)$ is the dual cone of $\pickclass$ in the sense of $\langle \cdot, \cdot \rangle$. In other words: all continuous linear functionals on $p^{*} \in \C^{\Hp}$ such that $p^{*}(\varphi) \geq 0$ for any $\varphi \in \pickclass$ are of the form $p^{*}(\varphi) = \langle \varphi, r \rangle_{L}$ for some $r \in R_{+}(\Hp)$.
+\end{lause}
+\begin{proof}
+	$\pickclass^{*} \subset R_{+}(\Hp)$: It is well known that continuous dual of a product is direct sum dual (see for instance TODO). In other words elements of $\pickclass$ are finitely supported (i.e. finite linear combinations of evaluation functionals)\footnote{This fact is not important to us and we could have restricted our attention to finitely supported functionals anyway.}. We may hence interpret $p^{*} \in \pickclass^{*}$ as an rational function, $r$, with poles on $\Hp \cup \Hm$ and $r(\infty)$, acting with $\langle \cdot, r \rangle_{L}$. It is easy to see that $r \in R_{+}(\Hp)$ if we can verify that $r$ is non-negative. But as $(\lambda - z)^{-1} \in \pickclass$ for any $\lambda \in \R$, we have
+	\begin{align*}
+		p^{*}((\lambda - z)^{-1}) = \langle (\lambda - z)^{-1}, r \rangle_{L} = r(\lambda) \geq 0
+	\end{align*}
+	for any $\lambda \in \R$, as desired.
+
+	$R_{+}(\Hp) \subset \pickclass^{*}$: As by the previous part $\langle (\lambda - z)^{-1}, r \rangle_{L}$ for any $\lambda \in \R$ and $r \in R_{+}(\Hp)$, we are done by Lemma \ref{pick_dense}.
+\end{proof}
+
+The rational functions $R_{+}(X)$ (identified with the respective linear maps $f \mapsto \langle f, r \rangle_{L}$) are called \textbf{Pick functionals} (on $X \subset \Hp$).
+
+One can also interpret the Pick functionals as divided differences. Indeed, if $r \in R_{+}(X)$, it is easy to see that
 \begin{align*}
 	r(z) = \frac{N(q)}{|z - z_{1}|^2 \cdots |z - z_{n}|^2}
 \end{align*}
-for some $n \geq 1$, $q \in \C_{n - 1}[x]$ and pairwise distinct $z_{1}, z_{2}, \ldots, z_{n} \in \C$. But this means that the respective Pick functional is given by
+for some $n \geq 1$, $q \in \C_{n - 1}[x]$ and pairwise distinct $z_{1}, z_{2}, \ldots, z_{n} \in X$. But this means that the respective Pick functional is given by
 \begin{align*}
 	\varphi \mapsto [z_{1}, \overline{z_{1}}, \ldots, z_{n}, \overline{z_{n}}]_{\varphi N(q)}.
 \end{align*}
 
-We denote the set of Pick functionals by $\pickclass^{*}$. 
-
-\begin{lause}\label{pick_functionals}
-	Let $p^{*} \in \left(\C^{\Hp}\right)^{*}$. Then the following are equivalent.
-	\begin{enumerate}[(i)]
-		\item $p^{*} \in \pickclass^{*}$
-		\item $p^{*}(\varphi) \geq 0$ for any extreme Pick function $\varphi$.
-		\item $p^{*}(\varphi) \geq 0$ for any extentable Pick function $\varphi$.
-		\item $p^{*}(\varphi) \geq 0$ for any Pick function $\varphi$.
-	\end{enumerate}
-\end{lause}
-\begin{proof}
-	The implications $(i) \Rightarrow (ii) \Rightarrow (iii)$ and $(iv) \Rightarrow (ii)$ are clear, up to one detail: if $p^{*}(\varphi) \geq 0$ for any extreme Pick function $\varphi$, we should prove that $p^{*}(1) = 0$. But this follows as soon as one notes that
-	\begin{align*}
-		p^{*}\left(\frac{1}{\lambda - \cdot}\right) = \frac{p^{*}\left(1\right)}{\lambda} + O\left(\frac{1}{\lambda^2}\right).
-	\end{align*}
-
-	$(iii) \Rightarrow (iv)$: It suffices to prove that the extentable Pick functions are dense (with respect to the topology of pointwise convergence) in the set of all Pick function. But for this it is enough to find a sequence of Pick functions $(g_{n})_{n = 1}^{\infty}$ such that
-	\begin{enumerate}
-		\item $g_{n}(z) \to z$ pointwise as $n \to \infty$,
-		\item $g_{n}$'s extend analytically over real line and $g_{n}(\overline{\H_{+}})$ is compact subset of $\H_{+}$ for every $n \geq 1$,
-	\end{enumerate}
-	as then we have $\varphi \circ g_{n} \to \varphi$ pointwise as $n \to \infty$ for every Pick function $\varphi$ the functions $\varphi \circ g_{n}$ are evidently bounded and extend analytically over the real line.
-
-	It is not very hard to check that we may, for instance, take
-	\begin{align*}
-		g_{n}(z) = \frac{z + \frac{i}{n}}{1 - \frac{i z}{n}}.
-	\end{align*}
-
-	$(ii) \rightarrow (i)$: By the construction of the $\pickclass^{*}$, it contains all the functionals with finite support, which give positive values for all extreme Pick functions. Thus it remains to be noted that all the continuous functionals in $\left(\C^{\Hp}\right)^{*}$ have finite support. But this follows from the general fact that the dual of a product equals direct sum of the duals.
-\end{proof}
-
-It is useful to note that one does not even need to test every extreme Pick function to check that functional is Pick functional, dense subset suffices. This is clear for the functions $z \mapsto \frac{1}{\lambda - z}$ but also holds for $z \mapsto z$, when this is intepreted as the function with $\lambda = \infty$ (and dense subset refers to the circle topology). Indeed, we have
-\begin{align*}
-	p^{*}\left(\frac{1}{\lambda - \cdot}\right) = p^{*}\left(\frac{1}{\lambda - \cdot} - \frac{1}{\lambda}\right) = \frac{p^{*}(\cdot)}{\lambda^2} + O\left(\frac{1}{\lambda^3}\right).
-\end{align*}
-
-Finally, the following correspondence should be clear by now.
-
-\begin{prop}
-	There is a natural bijective ($\R$-)linear map between non-negative rational functions vanishing at infinity and $\pickclass^{*}$.
-\end{prop}
-
-This line of thought induces a dual pairing between rational functions $r$ with simple poles such that $(1 + (\cdot)^2) r$ is bounded on $\R$, and $\C^{\Hp}$. We denote this pairing by $\langle r, \varphi \rangle_{\pickclass}$ and the class of rational functions by $R_{\infty}(\Hp)$. For $X \subset \Hp$ we also denote by $R_{\infty}(X)$ those functions on $R_{\infty}(\Hp)$, whose poles are on $X$ (and on its reflection with respect to $\R$).
-
 \subsection{Weakly Pick functions}
 
-Theorem \ref{pick_functionals} implies that $\pickclass^{*}$ is really just the dual cone of $\pickclass$. It turns out that the ``converse" is also true: $\pickclass^{*}$ is also a predual of $\pickclass$.
+While Theorem \ref{pick_functionals} implies that $R_{+}(\Hp)$ is the dual cone of $\pickclass$, it turns out that it is also the predual we were looking for\footnote{While preduals are not unique in general, as $R_{+}(\Hp)$ is the dual cone of $\pickclass$, if $R_{+}(\Hp)$ is a predual of $\pickclass$, is unique maximal predual.}. This is far from clear: if $\varphi \in \C^{\Hp}$ is such that $\langle \varphi, r \rangle_{L} \geq 0$ for any $r \in R_{+}(\Hp)$, we only know that some kind of linear combinations of evaluations of $\varphi$ are non-negative. Where does the analyticity come from? Then again, in view of the theory of divided differences, particularly Theorems \ref{k-tone_smooth} and \ref{bernstein_theorem}, we have already seen this kind of phenomena.
 
 \begin{maar}
-	We will elements of $\left(\pickclass^{*}\right)^{*}$ \textbf{weakly Pick functions}.
+	We will denote
+	\begin{align*}
+		\pickclass(X) = (R_{+}(X))^{*} = \{\varphi \in \C^{X} | \langle \varphi, r \rangle_{L} \geq 0 \text{ for any $r \in R_{+}(X)$}\}.
+	\end{align*}
+	and call elements of $\pickclass(X)$ \textbf{weakly Pick functions} (on $X$).
 \end{maar}
 
-In layman's terms, weakly Pick functions are ones which look like Pick functions, if one only looks at evaluations with linear functionals. The aim of this section is to show that weakly Pick functions are exactly the Pick functions. We already proved one direction in the theorem \ref{pick_functionals}. 
+With this terminology the claim ``$R_{+}(\Hp)$ is the predual of"
+
+\begin{lause}
+	We have $\pickclass(\Hp) = \pickclass$ i.e. all weakly Pick functions are Pick functions.
+\end{lause}
+
+Note that $\pickclass \subset \pickclass(\Hp)$ follows from \ref{pick_functionals}.
+
+TODO
 
 The other direction is tricky. Note that weakly Pick maps map to the upper half-plane so the interesting part is to prove that weakly Pick maps are analytic. For this we are going to verify bounds for the divided differences of $\varphi$. Recall that by theorem \ref{bounded_div} it suffices to verify that the order $2$ divided differences are locally bounded to prove that $\varphi$ is (continuously) differentiable. Strictly speaking we only proved the result on real line, but the proof would be almost identical in the complex case.
 
