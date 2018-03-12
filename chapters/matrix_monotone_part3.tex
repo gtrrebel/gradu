@@ -2,46 +2,78 @@
 
 \section{Loewner's theorem}
 
-Aim of this chapter is to prove theorem \ref{weak_loewner}. The proof is in several steps. First, ``$\Rightarrow$"-direction is the easy part.
+Aim of this chapter is to prove Theorem \ref{weak_loewner}. Before we start with the proof, we reinterpret Theorem \ref{weak_loewner} in terms of duals.
 
-\begin{lem}\label{weak_loewner_converse}
-	Let $f$ be a Pick function, which analytically extends to $(\C \setminus \R) \cup (a, b)$. Assume further that $\restr{f}{(a, b)}$ is real. Then $\restr{f}{(a, b)} \in P_{\infty}(a, b)$.
-\end{lem}
-\begin{proof}
-	Since $\restr{f}{(a, b)}$ is smooth, it suffices to prove that for any $n \geq 1$ and $q \in \C_{n - 1}[x]$ the $(2n - 1)$'th derivative of $f N(q)$ is non-negative. But as $f$ is a Pick function, we have for any $t \in (a, b)$
+\begin{maar}
+	We will denote
 	\begin{align*}
-		\frac{(f N(q))^{(2 n - 1)}(t)}{(2 n - 1)!} = \lim_{\atop{z_{1}, \ldots, z_{n} \in \Hp}{z_{1}, \ldots, z_{n} \to t}} [z_{1}, \overline{z_{1}}, \ldots, z_{n}, \overline{z_{n}}]_{f N(q)} \geq 0.
+		\pickclass(a, b) := (R_{+}(a, b))^{*}
 	\end{align*}
+	and call elements of $\pickclass(a, b)$ \textbf{weakly Pick functions} (on $(a, b)$).
+\end{maar}
+
+Let us first come back to Theorem \ref{better_loewner}. With the dual language it rewrites to (modulo analyticity) to
+\begin{lause}\label{bester_loewner}
+	The natural map $P_{\infty}(a, b)/\R \to \pickclass(a, b)$ is bijection.
+\end{lause}
+\begin{proof}
+	We already observed in the end of the chapter $5$ that every function $f \in P_{\infty}(a, b)$ defines an element in $\pickclass(a, b)$. Using the arguments of the proof of theorem \ref{weakly_pick_nonsense} it's easy to check that any element in $\pickclass(a, b)$ is induced by an function $\R^{(a, b)}$ up to a constant, and such function is in $P_{\infty}(a, b)$ by Theorem \ref{better_loewner}.
 \end{proof}
 
-The ``$\Leftarrow$" is the tricky part. Our plan is the following:
-\begin{enumerate}
-	\item First show that $f$ is real analytic on $(a, b)$.
-	\item Next, show that if we can extend $f$ analytically to $\D(x_{0}, \rho)$ for some $x_{0} \in (a, b)$ and $\rho > 0$, then the extension is weakly Pick on $\D(x_{0}, \rho) \cap \Hp$.
-	\item Finally, by theorem \ref{open_pick_interpolation} we get a Pick function, which agrees with $f$ on $(x_{0} - \rho, x_{0} + \rho)$, so by real analyticity of $f$ on the whole interval $(a, b)$.
-\end{enumerate}
+Let us denote
+\begin{align*}
+	\tilde{\pickclass}(a, b) := \text{$\varphi$ extends analytically to $(\Hp \cup \Hm) \cup (a, b)$ such that $\varphi[(a, b)] \subset \R.$}\}.
+\end{align*}
 
-\begin{lem}\label{loewner_analytic}
-	Let $f \in P_{\infty}(a, b)$. Then $f$ is real analytic.
-\end{lem}
+We prove Theorem \ref{weak_loewner} in the following form.
+\begin{lause}\label{better_weak_loewner}
+	The restriction $\tilde{\pickclass}(a, b) \to P_{\infty}(a, b)$ is bijection.
+\end{lause}
 \begin{proof}
-	Proof is almost the same as that of theorem \ref{Hindmarsh_theorem}. In the class $P_{\infty}(a, b)$ we have
+	Well-definedness: Pick any $\varphi \in \tilde{\pickclass}(a, b)$. Note that for any $q \in \C_{n - 1}[x]$ and $t \in (a, b)$ one has
 	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \leq \frac{1}{\dist(x_{2}, \R \setminus (a, b)) \cdots \dist(x_{n}, \R \setminus (a, b))} [x_{0}, x_{1}]_{f}
+		\frac{(\varphi N(q))^{(2 n - 1)}(t)}{(2 n - 1)!} = \lim_{\atop{z_{1}, \ldots, z_{n} \in \Hp}{z_{1}, \ldots, z_{n} \to t}} [z_{1}, \overline{z_{1}}, \ldots, z_{n}, \overline{z_{n}}]_{\varphi N(q)} \geq 0.
 	\end{align*}
-	for any $a < x_{0}, x_{1}, \ldots, x_{n} < b$. As the first divided differences are locally bounded, conditions of the theorem \ref{div_anal} are satisfied.
+	By Theorem \ref{main_theorem} $\restr{\varphi}{(a, b)} \in P_{\infty}(a, b)$.
+
+	Injectivity: This follows immediately from the basic properties of analytic functions.
+
+	Surjectivity: The main idea is to interpret the claim via duals. Recall that by Theorem \ref{bester_loewner} any $f \in P_{\infty}(a, b)$ corresponds to some $p^{*} \in \pickclass(a, b)$. The class $R(a, b) := \vspan_{\C}(R_{+}(a, b))$ can be given norm $\|r\|_{(a, b)} = \sup_{\lambda \in \R \setminus (a, b)} |r(\lambda)| (\lambda^{2} + 1)$.
+	\begin{lem}\label{pick_norm_estimate_2}
+		For every $p^{*} \in \pickclass(a, b)$ there exists constant $C(p^{*})$ such that
+		\begin{align*}
+			\left|p^{*} (r)\right| \leq C(p^{*}) \|r\|_{(a, b)}
+		\end{align*}
+		for any $r \in R(a, b)$.
+	\end{lem}
+	\begin{proof}
+		Not much changes from the proof of Lemma \ref{pick_norm_estimate}. We can again assume that $r \in R_{\pm}(a, b) := \vspan_{\R}(R_{+}(a, b))$. Fix $a < c < d < b$. It's easy to see that there exists a constant $C_{c, d}$ such that
+		\begin{align*}
+			-\frac{C_{c, d}\|r\|_{(a, b)}}{(\lambda - c) (\lambda - d)} \leq r(\lambda) \leq \frac{C_{c, d}\|r\|_{(a, b)}}{(\lambda - c) (\lambda - d)}
+		\end{align*}
+		holds for $\lambda \in \R \setminus (c', d')$ for some $a < c' < c < d < d' < b$. But now just by the definition of $\pickclass(a, b)$ we have $|p^{*}(r)| \leq C_{c, d}\|r\|_{(a, b)} [c, d]_{\varphi_{p^{*}}}$.
+	\end{proof}
+	\begin{lem}\label{pick_dual_dense_2}
+		$\pickclass(a, b)$ is dense in $\pickclass((a, b) \cup \Hp)$ with norm $\|\cdot\|_{(a, b)}$.
+	\end{lem}
+	\begin{proof}
+		Again, not much changes from the proof of Lemma \ref{pick_dual_dense}. We take sequence $x_{0}, x_{1}, \ldots $ converging to $x_{\infty} \in (a, b)$. Note that
+		\begin{align*}
+			\left\|\frac{(w - x_{0}) \cdots (w - x_{n})}{(\lambda - w)(\lambda - x_{0}) \cdots (\lambda - x_{n})}\right\|_{(a, b)}
+		\end{align*}
+		tends to zero as $n \to \infty$ whenever $|w - x_{\infty}| < \min(x_{\infty} - a, b - x_{\infty})$. But this means that $\pickclass(a, b)$ is dense in $\pickclass((a, b) \cup \D(x_{\infty}, \min(x_{\infty} - a, b - x_{\infty})))$, which is dense in $\pickclass((a, b) \cup \Hp)$ by Lemma \ref{pick_dual_dense} (and the fact that $\|\cdot\|_{(a, b)} \leq \|\cdot\|_{R}$).
+	\end{proof}
+	By Lemmas \ref{pick_norm_estimate_2} and \ref{pick_dual_dense_2} we may extend $p^{*} \in \pickclass(a, b)$ to $R((a, b) \cup \Hp)^{*}$. It is easy to see that the extension satisfies the estimate of Lemma \ref{pick_norm_estimate_2} and $p^{*}(r) \geq 0$ for any $r \in R_{+}((a, b) \cup \Hp)$. The extension lies hence in $\pickclass((a, b) \cup \Hp)$ and so defines an extension $\varphi_{p^{*}}$ for $f$ on $\Hp \cup \Hm \cup (a, b)$. That such function lies in $\tilde{\pickclass}(a, b)$ follows immediately from the following estimate, which can be easily shown.
+	\begin{lem}\label{pick_div_dif_estimate_2}
+		For every compact $K \subset \Hp \cup \Hm \cup (a, b)$ and $p^{*} \in \pickclass((a, b) \cup \Hp)$ there exists a constant $C(K, p^{*})$ such that
+		\begin{align*}
+			\left|[z_{0}, z_{1}, \ldots, z_{k}]_{\varphi_{p^{*}}}\right| \leq \frac{C(K, p^{*})}{\dist(z_{0}, \R \setminus (a, b)) \dist(z_{1}, \R \setminus (a, b)) \cdots \dist(z_{n}, \R \setminus (a, b))}
+		\end{align*}
+		for any $k \geq 1$ and $z_{0}, z_{1}, \ldots, z_{k} \in K$. In particular $\varphi_{p^{*}}$ is analytic.
+	\end{lem}
 \end{proof}
 
-\begin{lem}\label{loewner_extension}
-	Assume that $f \in P_{\infty}(a, b)$, $f$ is analytic at $x_{\infty} \in (a, b)$ such that it can analytically extended to $\D(x_{\infty}, \rho)$ for some $\rho > 0$. Then the extension is weakly Pick on $\D(x_{\infty}, \rho) \cap \Hp$.
-\end{lem}
-\begin{proof}
-	Again, proof is almost the same as that of theorem \ref{open_pick_lemma}: now just choose the sequence $z_{0}, z_{1}, \ldots$ on $(a, b)$ and do estimates on $\R \setminus (a, b)$.
-\end{proof}
-
-\begin{proof}[Proof of theorem \ref{weak_loewner}]
-	t.f.i.f \ref{weak_loewner_converse}, \ref{loewner_analytic}, \ref{loewner_extension} and \ref{open_pick_interpolation}.
-\end{proof}
+Note that by the Schwarz reflection principle the class $\tilde{\pickclass}(a, b)$ coincides with the set of Pick functions that continuously extend to $(a, b)$ in such a way that the extension is real on $(a, b)$.
 
 \section{Notes and references}
 

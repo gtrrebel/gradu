@@ -203,19 +203,19 @@ Now theorem \ref{main_theorem} is just saying that $f \in P_{n}(a, b)$, if and o
 \begin{align*}
 	r(z) = \frac{N(q)}{(z - z_{0}) (z - z_{1}) \cdots (z - z_{2 n - 1})}
 \end{align*}
-where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us denote this family of rational functions by $R_{n}(a, b)$. Now, in order to prove the lemma we should prove that we have
+where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us denote this family of rational functions by $R_{+, n}(a, b)$. Now, in order to prove the lemma we should prove that we have
 \begin{align*}
-	\cone(R_{n}(a, b)) \subset \cone(R_{n + 1}(a, b))
+	\cone(R_{+, n}(a, b)) \subset \cone(R_{+, n + 1}(a, b))
 \end{align*}
 
 \begin{proof}[Proof lemma \ref{k_tone_cor}]
-	Take any $r \in R_{n}(a, b)$. If there was no condition on the order of the poles, we could simply note that
+	Take any $r \in R_{+, n}(a, b)$. If there was no condition on the order of the poles, we could simply note that
 	\begin{align*}
-		r = r \frac{N(z - c)}{(z - c) (z - c)} \in R_{n + 1}(a, b).
+		r = r \frac{N(z - c)}{(z - c) (z - c)} \in R_{+, n + 1}(a, b).
 	\end{align*}
 	Even though that doesn't quite work, we can modify the idea a little: we have
 	\begin{align*}
-		r = \frac{1}{2} r \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} r \frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{n + 1}(a, b))
+		r = \frac{1}{2} r \frac{N((z - c))}{(z - c) (z - \frac{c + d}{2})} +  \frac{1}{2} r \frac{N((z - d))}{(z - d) (z - \frac{c + d}{2})} \in \cone(R_{+, n + 1}(a, b))
 	\end{align*}
 	as soon as we choose $c, d \in (a, b)$ so that the poles remain simple.
 \end{proof}
@@ -235,28 +235,28 @@ First of all, the dual pairing thinking leads to much more satisfactory conclusi
 \begin{lem}
 	We have
 	\begin{align*}
-		&R_{\infty}(a, b) := \bigcup_{n = 1}^{\infty} R_{n}(a, b) = \cone\left( \bigcup_{n = 1}^{\infty} R_{n}(a, b)\right) \\
+		&R_{+}(a, b) := \bigcup_{n = 1}^{\infty} R_{+, n}(a, b) = \cone\left( \bigcup_{n = 1}^{\infty} R_{+, n}(a, b)\right) \\
 		= &\{ \text{rational functions with only simple, real poles; non-negative} \\
 		& \text{ on $\R \setminus (c, d)$ for some $a < c < d < b$; and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
 	\end{align*}
 \end{lem}
 \begin{proof}
-	It is sufficient to prove that if $r$ is a rational function as in the lemma statement, then $r \in R_{n}(a, b)$ for some $n \geq 1$. So pick such $r$.
+	It is sufficient to prove that if $r$ is a rational function as in the lemma statement, then $r \in R_{+, n}(a, b)$ for some $n \geq 1$. So pick such $r$.
 
 	Note that $r$ changes its sign even number of times, and only on interval $(a, b)$, say at points $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$. Write $p := \prod_{i = 0}^{2 n - 1} (\cdot - x_{i})$. Now $p r$ is a polynomial of degree less than $2 n$ non-negative on $\R$, so it is of the form $N(q)$ for some $q \in \C_{n - 1}[x]$. Hence we have
 	\begin{align*}
-		r = \frac{N(q)}{p} \in R_{n}(a, b).
+		r = \frac{N(q)}{p} \in R_{+, n}(a, b).
 	\end{align*}
 \end{proof}
 
-$R_{\infty}(a, b)$ is hence a predual cone of $P_{\infty}(a, b)$. Now, it might not be too big of a surprise that the class $R_{\infty}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$ (with uniform norm). This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{\infty}(a, b)$
+Now, it might not be too big of a surprise that the class $R(a, b) := \vspan R_{+}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$, compactly supported continuous functions on $\R \setminus (a, b)$ with $\sup$-norm. This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{+}(a, b)$
 \begin{align*}
 	\langle f, r \rangle_{L} = \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
 \end{align*}
-This is almost true. As the functions $R_{\infty}(a, b)$ are not compactly supported, there's a problem at infinity.  Nevertheless, the previous holds with slight modification.
+This is almost true. As the functions $R_{+}(a, b)$ are not compactly supported, there's a problem at infinity.  Nevertheless, the previous holds with slight modification.
 
 \begin{lause}[Loewner's theorem, version $1$]\label{integral_loewner}
-	Let $f \in P_{\infty}(a, b)$. Then there exists a unique Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ and $\alpha \geq 0$ such that for any $r \in R_{\infty}(a, b)$ we have
+	Let $f \in P_{\infty}(a, b)$. Then there exists a unique Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ and $\alpha \geq 0$ such that for any $r \in R_{+}(a, b)$ we have
 	\begin{align*}
 		\langle f, r \rangle_{L} = \alpha \left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right) + \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
 	\end{align*}
@@ -266,18 +266,18 @@ This is almost true. As the functions $R_{\infty}(a, b)$ are not compactly suppo
 	\end{align*}
 \end{lause}
 
-Note that the limit $\left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right)$ exists and is non-negative for any $r \in R_{\infty}(a, b)$. It is clear that the converse of this theorem also holds. Note also that examples \ref{finite_pick} fit in the this framework: they correspond to positive linear combinations of $\delta$-measures. Theorem \ref{integral_loewner} can be interpreted as saying that all functions in the class $P_{\infty}(a, b)$ are more or less of the form \ref{finite_pick}; only summation is replaced with integration with respect to (somewhat) arbitrary measure.
+Note that the limit $\left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right)$ exists and is non-negative for any $r \in R_{+}(a, b)$. It is clear that the converse of this theorem also holds. Note also that examples \ref{finite_pick} fit in the this framework: they correspond to positive linear combinations of $\delta$-measures. Theorem \ref{integral_loewner} can be interpreted as saying that all functions in the class $P_{\infty}(a, b)$ are more or less of the form \ref{finite_pick}; only summation is replaced with integration with respect to (somewhat) arbitrary measure.
 
 Although it would not be terribly tricky to fill in the details to the previous argument, we will not prove \ref{integral_loewner}. Instead we look into one of its corollaries:
 
 \begin{kor}
-	Every $f \in P_{\infty}(a, b)$ has an analytic extension $\tilde{f}$ on $\C \setminus \R$. This extension maps (open) upper half-plane $\Hp$ to closed upper half-plane $\overline{\Hp}$.
+	Every $f \in P_{\infty}(a, b)$ has an analytic extension $\tilde{f}$ on $\Hp \cup \Hm$. This extension maps (open) upper half-plane $\Hp$ to closed upper half-plane $\overline{\Hp}$.
 \end{kor}
 
 In fact, also this corollary has a converse.
 
 \begin{lause}[Loewner's theorem, version $2$]\label{weak_loewner}
-	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only there exists a analytic function $\tilde{f}$ on $(\C \setminus \R) \cup (a, b)$ such that $\restr{\tilde{f}}{(a, b)} = f$ and $\tilde{f}$ maps the upper half-plane to its closure.
+	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only there exists a analytic function $\tilde{f}$ on $(\Hp \cup \Hm) \cup (a, b)$ such that $\restr{\tilde{f}}{(a, b)} = f$ and $\tilde{f}$ maps the upper half-plane to its closure.
 \end{lause}
 
 This is the version of the Loewner's theorem we are going to focus on.

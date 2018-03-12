@@ -682,7 +682,7 @@ Finally, one can carry positivity.
 \begin{lause}\label{div_anal}
 	Let $f : (a, b) \to \R$. Then $f$ is real analytic, if and only if for every closed subinteval $[c, d]$ of $(a, b)$ there exists constant $c$ such that for any $n \geq 1$
 	\begin{align*}
-		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| \leq c^{n + 1}.
+		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| \leq C_{c, d}^{n + 1}.
 	\end{align*}
 \end{lause}
 \begin{proof}
@@ -690,17 +690,17 @@ Finally, one can carry positivity.
 	\begin{align*}
 		[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n}
 	\end{align*}
-	with $n$ $x_{0}$'s. Now choose $a < c < x_{0} < d < b$ and take any $x$ with $x \in [c, d]$ and $|x - x_{0}| c < 1$, where $c$ is given by the assumption for interval $c, d$. But then the error term tends to zero and we are done.
+	with $n$ $x_{0}$'s. Now choose $a < c < x_{0} < d < b$ and take any $x$ with $x \in [c, d]$ and $|x - x_{0}| C_{c, d} < 1$. But then the error term tends to zero and we are done.
 
-	``$\Rightarrow$": Note that if $x_{0} \in (a, b)$ and $f$ extends to analytic function on $\D(x_{0}, r)$, we definititely have $\left|\frac{f^{(n)}(x_{0})}{n!}\right| \leq c^{n + 1}$ for some $c$. If $|x - x_{0}| < r$ we have
+	``$\Rightarrow$": Note that if $x_{0} \in (a, b)$ and $f$ extends to analytic function on $\D(x_{0}, r)$, we definititely have $\left|\frac{f^{(n)}(x_{0})}{n!}\right| \leq C_{x_{0}}^{n + 1}$ for some $C_{x_{0}}$. For $|x - x_{0}| < r$ we have
 	\begin{align*}
 		\frac{f^{(k)}(x)}{k!} = \sum_{n = k}^{\infty} \binom{n}{k} \frac{f^{(n)}(x_{0})}{n!} (x - x_{0})^{n - k},
 	\end{align*}
 	which may be estimated by
 	\begin{align*}
-	 \left|\frac{f^{(k)}(x)}{k!}\right| \leq c^{k + 1}\sum_{n = k}^{\infty} \binom{n}{k} c^{n - k} (x - x_{0})^{n - k} = \frac{c^{k + 1} }{(1 - |x - x_{0}| c)^{k}},
+	 \left|\frac{f^{(k)}(x)}{k!}\right| \leq C_{x_{0}}^{k + 1}\sum_{n = k}^{\infty} \binom{n}{k} C_{x_{0}}^{n - k} (x - x_{0})^{n - k} = \frac{C_{x_{0}}^{k + 1} }{(1 - |x - x_{0}| C_{x_{0}})^{k}},
 	\end{align*}
-	whenever $|x - x_{0}| c < 1$. By the mean value theorem for divided differences it follows that we get required bound for some neighbourhood of $x_{0}$ and consequently, by compactness for any closed subinteval of $(a, b)$.
+	whenever $|x - x_{0}| C_{x_{0}} < 1$. By the mean value theorem for divided differences it follows that we get required bound for some neighbourhood of $x_{0}$ and consequently, by compactness for any closed subinteval of $(a, b)$.
 \end{proof}
 
 The previous result is some kind of relative of \ref{bounded_div}. Also theorem \ref{k-tone_smooth} has rather interesting relative.
