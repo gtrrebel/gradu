@@ -154,7 +154,7 @@ The idea is the following: we are going to take $n = 2$ and construct $A, B \in 
 	\item $A$ and $B$ have both exactly one positive eigenvalue
 	\item $A$ and $B$ don't commute
 \end{enumerate}
-If we can do this, $A$ and $B$ work as counterexamples. Indeed then $\chi_{(0, \infty)}(A) = P_{v_{1}}$ and $\chi_{(0, \infty)}(B) = P_{w_{1}}$ where eigenvectors $v_{1}$ and $w_{1}$ are eigenvectors of $A$ and $B$ corresponding to positive eigenvalues. But $\chi_{(0, \infty)}(A) \not\leq \chi_{(0, \infty)}(B)$ by \ref{projection_order}.
+If we can do this, $A$ and $B$ work as counterexamples. Indeed then $\chi_{(0, \infty)}(A) = P_{v_{1}}$ and $\chi_{(0, \infty)}(B) = P_{w_{1}}$ where eigenvectors $v_{1}$ and $w_{1}$ are eigenvectors of $A$ and $B$ corresponding to positive eigenvalues. Since $A$ and $B$ don't commute, $v_{1} \neq w_{1}$, and hence $\chi_{(0, \infty)}(A) \not\leq \chi_{(0, \infty)}(B)$ by \ref{projection_order}.
 
 Constructing such pair is very easy: just take $A$ with eigenvalues $-1$ and $1$ and consider $B$ of the form $A + t H$ for some $H \geq 0$, $t > 0$ and such that $A$ and $H$ do not commute. For small enough $H$ all of the conditions are easily satisfied.
 
@@ -238,11 +238,24 @@ It is not very hard to see that
 \begin{align*}
 c_{j} = \sum_{i = 1}^{n} t_{i} \lambda_{i}(A)^{j}
 \end{align*}
-for some $t_{1}, t_{2}, \ldots, t_{n} \in \C$. Conversely, if the eigenvalues of $A$ are simple, we can control first $n$ terms of $(c_{i})_{i = 1}^{\infty}$ by choice of $v$ and $w$. This implies the following:
+for some $t_{1}, t_{2}, \ldots, t_{n} \in \C$. Conversely, if the eigenvalues of $A$ are simple, we can control first $n$ terms of $(c_{i})_{i = 1}^{\infty}$ by choice of $v$ and $w$. Indeed: this is just saying that the matrix $(\lambda_{j}(A)^{i - 1})_{i, j}^{n}$ has full column rank, which follows from the fact that its row rank is full by polynomial interpolation. This implies the following:
 
 \begin{prop}
 	If $f$ is a polynomial with $2 \leq \deg(f) \leq n$, then $f \notin P_{n}(a, b)$.
 \end{prop}
+\begin{proof}
+	Observe that if the matrix
+	\begin{align*}
+		\begin{bmatrix}
+			a_{1} & a_{2} & \ldots & a_{n - 1} & a_{n} \\
+			a_{2} & a_{3} & \ldots & a_{n} & 0 \\
+			\vdots & \vdots & \ddots & 0 & 0 \\
+			a_{n - 1} & a_{n} & \ldots & 0 & 0 \\
+			a_{n} & 0 & \ldots & 0 & 0 \\
+		\end{bmatrix}
+	\end{align*}
+	is positive, then $a_{2} = a_{3} = \ldots = a_{n} = 0$.
+\end{proof}
 
 If $f$ is not polynomial such conclusions are harder to make, as we can only control first $c_{i}$'s. Nevertheless, also the converse holds.
 

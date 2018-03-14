@@ -1,6 +1,6 @@
-\chapter{Pick-Nevanlinna functions}
+\chapter{Pick--Nevanlinna functions}
 
-\textit{Pick-Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative imaginary part. Such functions are sometimes also called Herglotz or $\R$ functions; we will call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
+\textit{Pick--Nevanlinna function} is an analytic function defined in upper half-plane with a non-negative imaginary part. Such functions are sometimes also called Herglotz or $\R$ functions; we will call them just \textit{Pick functions}. The class of Pick functions is denoted by $\pickclass$.
 
 \section{Examples and basic properties}
 
@@ -15,15 +15,15 @@ Pick functions can be thought of a set of ``positive analytic functions".
 	Again, t.f.i.f \ref{positive_machine}.
 \end{proof}
 
-Also a composition of Pick functions is a Pick function.
+Composition of Pick functions (whenever defined) is a Pick function.
 
-The map $z \mapsto -\frac{1}{z}$ is evidently a Pick function. Hence are also all functions of the form
+The map $z \mapsto -z^{-1}$ is evidently a Pick function. Hence are also all functions of the form
 \begin{align*}
 	\alpha z + \beta + \sum_{i = 1}^{N} \frac{m_{i}}{\lambda_{i}- z},
 \end{align*}
 where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$, $\beta \in \Hp$ and $\lambda_{1}, \ldots, \lambda_{N} \in \Hm$.
 
-There are (luckily) more interesting examples. All the functions of the form $x^{p}$ (with natural branch) where $0 < p < 1$ are Pick functions; similarly for $\log$. Another classic example is $\tan$. Indeed, by the addition formula
+There are (luckily) more interesting examples. All the functions of the form $z \mapsto z^{p}$ where $0 < p < 1$ (with natural branch) are Pick functions; similarly for $\log$. Another classic example is $\tan$. Indeed, by the addition formula
 \begin{eqnarray*}
 	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
 	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
@@ -38,7 +38,7 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-This result is far from clear: pointwise limits of analytic functions need not analytic in general. We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of a subset of all functions, the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that question one should ask is:
+This result is far from clear: pointwise limits of analytic functions need not analytic in general (see for instance TODO). We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought as a subset of all functions ($\C^{\Hp}$), the definition of the cone doesn't really fit the general framework of theorem \ref{positive_machine}. This suggests that question one should ask is:
 
 \begin{quest}\label{pick_predual}
 	What is the ``correct" predual for $\pickclass$?
@@ -49,7 +49,7 @@ This result is far from clear: pointwise limits of analytic functions need not a
 
 \subsection{Boundary}
 
-To understand the rigidity phenomena we take a brief look at a close relative to Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
+To understand the rigidity phenomena we take a brief look at a close relative of Pick functions, \textit{Schur functions}. Schur funtions are analytic maps from open unit disc to closed unit disc. Classic fact about these functions is the Schwarz lemma.
 
 \begin{lause}[Schwarz lemma]
 	Let $\psi : \D \to \D$ be analytic such that $\psi(0) = 0$. Then $|\psi(z)| \leq |z|$ for any $z \in \D$.
@@ -110,7 +110,7 @@ It converges to an analytic function as long as, say, $\Im(\varphi)$ is bounded.
 
 Note that the previous idea could be used to construct Pick functions. Everything still makes sense if we replace $\Im(\varphi)$ by some other positive function, as long as the integral converges. Heck, we could replace it by any positive measure for which $\mu((\lambda^2 + 1)^{-1}) < \infty$.
 
-(Almost) all the examples given before are actually just special cases of this construction. The rational functions $\frac{1}{\lambda - z}$, where $\lambda \in \R$ are obtained by setting $\mu = \delta_{\lambda}$. The power functions are obtained as
+(Almost) all the examples given before are actually just special cases of this construction. The rational functions $(\lambda - z)^{-1}$, where $\lambda \in \R$ are obtained by setting $\mu = \delta_{\lambda}$. The power functions are obtained as
 \begin{align*}
 	z^{p} &= 1 + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) \Im(\lambda^{p}) d \lambda \\
 	&=1 + \frac{1}{\pi}\int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) |\lambda|^{p} \sin(\pi p) d \lambda,
@@ -119,7 +119,7 @@ Logarithm is even simpler:
 \begin{align*}
 	\log(z) = \int_{-\infty}^{0} \left(\frac{1}{\lambda - z} - \frac{1}{\lambda - 1}\right) d \lambda.
 \end{align*}
-Tangent function could be obtained by putting $\delta$-measures to its poles, the points of the form $\frac{\pi}{2} + n \pi$, where $n \in \Z$.
+Tangent function could be obtained by putting $\delta$-measures to its poles, the points of the form $\pi/2 + n \pi$, where $n \in \Z$.
 
 The only exception is the function $z \mapsto \alpha z$ -- it can't be expressed as such integral. But even this failure is really more about poor point of view, as we will see in a minute. With these observations in mind it ought to be not too surprising that we have the following.
 
@@ -131,19 +131,19 @@ The only exception is the function $z \mapsto \alpha z$ -- it can't be expressed
 	for some $\alpha \geq 0$ and $\beta \in \R$ and a Radon measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$.
 \end{lause}
 
-Choosing $\lambda \mapsto \frac{\lambda}{\lambda^2 + 1}$ is common choice in the literature and is convenient as
+Choosing $\lambda \mapsto \lambda/(\lambda^2 + 1)$ to ensure convergence is common choice in the literature and is convenient as
 \begin{itemize}
 	\item It's real, so the integrand is Pick function for any $\lambda \in \R$.
 	\item We may recover the constant $\beta$ as $\Re(\varphi(i))$.
 \end{itemize}
 
-To better explain the appearance of the linear term, we can write the integral in a sligtly different form. Denoting $d \nu(\lambda) = \frac{d \mu(\lambda)}{\lambda^2 + 1}$, the formula reads
+To better explain the appearance of the linear term, we can write the integral in a sligtly different form. Denoting $d \nu(\lambda) = (\lambda^2 + 1)^{-1} d \mu(\lambda)$, the formula reads
 \begin{align*}
 	\varphi(z) = \alpha z + \beta + \int_{-\infty}^{\infty} \frac{\lambda z + 1}{\lambda - z} d \nu(\lambda).
 \end{align*}
-Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are here merely for intuition. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
+Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at the infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are merely for intuition. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
 
-We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation. Instead, we prove somewhat weaker claim.
+We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation. It is however useful to note the following slightly weaker result.
 \begin{lem}\label{pick_dense}
 	Under the topology of pointwise convergence one has
 	\begin{align*}
@@ -151,7 +151,7 @@ We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem},
 	\end{align*}
 \end{lem}
 \begin{proof}
-	Denote the closure of the cone by $\pickclass_{e}$. As $\lim_{\lambda \to \pm \infty}|\lambda|(\lambda - z)^{-1} = \pm 1$, $\R \in \pickclass_{e}$ Now by \ref{easy_pick_repr} all the bounded Pick functions extending analytically over $\R$ are also in $\pickclass_{e}$. We finish the proof by showing that such functions are dense in the set of all Pick functions: we denote this class by $\pickclass_{b}$.
+	Denote the closure of the cone by $\pickclass_{e}$. As $\lim_{\lambda \to \pm \infty}|\lambda|(\lambda - z)^{-1} = \pm 1$, $\R \in \pickclass_{e}$ Now by \ref{easy_pick_repr} all the bounded Pick functions extending analytically over $\R$ are also in $\pickclass_{e}$. We finish the proof by showing that such functions, denoted by $\pickclass_{b}$, are dense in the set of all Pick functions.
 
 	It is straightforward to check that
 	\begin{align*}
@@ -170,15 +170,15 @@ Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} sheds light to Que
 		\item All poles of $r$ are simple and lie in $X \cup X^{*} = X \cup \{z \in \C |\, \overline{z} \in X\}$.
 		\item $r(\lambda) = O(|\lambda|^{-2})$ at infinity.
 	\end{itemize}
-	We will also write $R_{+}(X)$ for the functions in $R(X)$, which are non-negative on $\R$.
+	We will also write $R_{+}(X)/R_{\pm}(X)$ for the functions in $R(X)$, which are non-negative/real on $\R$.
 \end{maar}
 It is useful to note that
 \begin{align}\label{pick_functional_span}
-	\vspan_{\R}(R_{+}(X)) &= \{r \in R(X) | r(\R) \subset \R \} =: R_{\pm}(X) \nonumber\\
+	\vspan_{\R}(R_{+}(X)) &= R_{\pm}(X) \nonumber \\
 	&\text{and} \\
 	\vspan_{\C}(R_{+}(X)) &= R(X). \nonumber
 \end{align}
-Similarly to the previous chapter we have the dual pairing $\langle f, r \rangle_{L}$ between $\C^{X}$ and $R(X)$. Indeed, we may set
+Similarly to the previous chapter we have a dual pairing $\langle f, r \rangle_{L}$ between $\C^{X}$ and $R(X)$. Indeed, we may set
 \begin{align*}
 	\langle f, (z - a)^{-1} \rangle_{L} =
 	\begin{cases}
@@ -192,7 +192,7 @@ and extend linearly.
 	$R_{+}(\Hp)$ is the dual cone of $\pickclass$ in the sense of $\langle \cdot, \cdot \rangle_{L}$. In other words: all continuous linear functionals $p^{*} \in \C^{\Hp}$ such that $p^{*}(\varphi) \geq 0$ for any $\varphi \in \pickclass$ are of the form $p^{*}(\varphi) = \langle \varphi, r \rangle_{L}$ for some $r \in R_{+}(\Hp)$.
 \end{lause}
 \begin{proof}
-	$\pickclass^{*} \subset R_{+}(\Hp)$: It is well known that continuous dual of a product is direct sum of duals (see for instance TODO). In other words, the elements of $\pickclass$ are finitely supported (i.e. finite linear combinations of evaluation functionals)\footnote{This fact is not important to us and we could have restricted our attention to finitely supported functionals anyway.}. We may hence interpret $p^{*} \in \pickclass^{*}$ as an rational function, $r$, with poles on $\Hp \cup \Hm$ and $r(\infty) = 0$, acting as $\varphi \to \langle \varphi, r \rangle_{L}$. It is easy to see that $r \in R_{+}(\Hp)$ if we can verify that $r$ is non-negative. But as $(\lambda - z)^{-1} \in \pickclass$ for any $\lambda \in \R$, we have
+	$\pickclass^{*} \subset R_{+}(\Hp)$: It is well known that continuous dual of a product is direct sum of duals (see for instance TODO). In other words, the elements of $\pickclass$ are finitely supported (i.e. finite linear combinations of evaluation functionals)\footnote{This fact is not important to us and we could have restricted our attention to finitely supported functionals anyway.}. We may hence interpret $p^{*} \in \pickclass^{*}$ as an rational function, $r$, with poles on $\Hp \cup \Hm$ and $r(\infty) = 0$, acting as $\varphi \to \langle \varphi, r \rangle_{L}$. It is easy to see that $r \in R_{+}(\Hp)$, if we can verify that $r$ is non-negative. But as $(\lambda - z)^{-1} \in \pickclass$ for any $\lambda \in \R$, we have
 	\begin{align*}
 		p^{*}((\lambda - z)^{-1}) = \langle (\lambda - z)^{-1}, r \rangle_{L} = r(\lambda) \geq 0
 	\end{align*}
@@ -203,9 +203,9 @@ and extend linearly.
 
 The rational functions $R_{+}(X)$ (identified with the respective linear maps $f \mapsto \langle f, r \rangle_{L}$) are called \textbf{Pick functionals} (on $X \subset \Hp$).
 
-One can also interpret the Pick functionals also with divided differences. Indeed, if $r \in R_{+}(X)$, it is easy to see that
+One can write the Pick functionals also in terms of divided differences. If $r \in R_{+}(X)$, simple application of Lemma \ref{polynomial_lemma} implies that
 \begin{align*}
-	r(z) = \frac{N(q)}{|z - z_{1}|^2 \cdots |z - z_{n}|^2}
+	r(z) = \frac{N(q)(z)}{|z - z_{1}|^2 \cdots |z - z_{n}|^2}
 \end{align*}
 for some $n \geq 1$, $q \in \C_{n - 1}[x]$ and pairwise distinct $z_{1}, z_{2}, \ldots, z_{n} \in X$. But this means that the respective Pick functional is given by
 \begin{align*}
@@ -228,11 +228,11 @@ First off: why should the elements of $\pickclass(X)$ be called weakly Pick func
 \begin{align*}
 	\varphi_{p^{*}}(z) = p^{*}((\lambda - z)^{-1}).
 \end{align*}
-Strictly speaking $(\lambda - z)^{-1} \notin R(X)$, so the above equality should be interpreted suitably and function $\varphi_{p^{*}}$ will be only defined up to a constant. Apart from that the correspondence is bijective and the resulting map
+Strictly speaking $(\lambda - z)^{-1} \notin R(X)$, so the above equality should be interpreted suitably and function $\varphi_{p^{*}}$ will be only defined up to a constant. Apart from this the correspondence is bijective: the resulting map
 \begin{align*}
 	R(X)^{*} \to \C^{X \cup X^{*}}/\C
 \end{align*}
-is isomorphism, as one easily checks. If one restricts the domain to $R_{+}(X)^{*}$, additional reflectional symmetry is obtained
+is (linear) bijection. If one restricts the domain to $R_{+}(X)^{*}$, additional reflectional symmetry is obtained.
 \begin{lem}\label{weakly_pick_nonsense}
 	There exists a unique injection
 	\begin{align*}
@@ -257,36 +257,36 @@ is isomorphism, as one easily checks. If one restricts the domain to $R_{+}(X)^{
 	For injectivity, note that if $p^{*} \in R(X)^{*}$ such that $\varphi_{p^{*}}$ is real constant, then $p^{*}$ kills functions of the form $(\lambda - z)^{-1} -(\lambda - \overline{w})^{-1}$. Since such functions span $R(X)$, $p^{*} = 0$. 
 \end{proof}
 
-Now the statement ``$R_{+}(\Hp)$ is the predual of $\pickclass$" makes sense.
+Now the statement ``$R_{+}(\Hp)$ is the predual of $\pickclass$" makes sense and rewrites to
 
 \begin{lause}\label{pick_weakly_pick}
 	The natural map $\pickclass/\R \to \pickclass(\Hp)$ is bijection.
 \end{lause}
 
-Why is this useful? The message is that Pick functions are completely determined by Pick functionals. If function on $\C$ looks like a Pick function, in the sense that it gives non-negative values on every Pick functional, then it is a Pick function. As set of such functions is certainly closed, so is $\pickclass$. In particular:
+Why is this useful? The message is that Pick functions are completely determined by Pick functionals. If function on $\C$ looks like a Pick function, in the sense that it gives non-negative values on every Pick functional, then it is a Pick function. As set of such functions is certainly closed (with topology of pointwise convergence), so is $\pickclass$. In particular:
 
 \begin{proof}[Proof of theorem \ref{pick_convergence}]
 	t.f.i.f \ref{pick_weakly_pick}.
 \end{proof}
 
-Theorem \ref{pick_weakly_pick} is kind of a result that would definitely benefit from quotient point of view: Pick functions should be defined up to a constant in the first place. One shouldn't worry too much, however: whether one thinks that weakly Pick functions (elements of $R_{+}(X)$) are really functions (elements of $\C^{X}$) or functions up to a constant (elements of $\C^{X}/\R$) doesn't make much difference.
+Theorem \ref{pick_weakly_pick} is kind of a result that would definitely benefit from the quotient point of view: Pick functions should be defined up to a constant in the first place. One shouldn't worry too much, however: whether one thinks that weakly Pick functions (elements of $R_{+}(X)$) are really functions (elements of $\C^{X}$) or functions up to a constant (elements of $\C^{X}/\R$) doesn't make much difference.
 
 \begin{proof}[Proof of Theorem \ref{pick_weakly_pick}]
-	Well-definedness: this follows immediately from \ref{pick_functionals}.
+	\textbf{Well-definedness}: This follows immediately from \ref{pick_functionals}.
 
-	Injectivity: Take any $\varphi \in \C^{X}/\R$ such that $\langle \varphi, r \rangle_{L} = 0$ for any $r \in R_{+}(X)$. As $R(X) = \vspan_{\C}(R_{+}(X))$, for any $z, w \in \Hp$ we have $0 = \langle \varphi, (\lambda - z)^{-1} - (\lambda - \overline{w})^{-1}\rangle_{L} = \varphi(z) - \overline{\varphi(w)}$, which immediately implies that $\varphi$ is constant.
+	\textbf{Injectivity}: Take any $\varphi \in \C^{X}/\R$ such that $\langle \varphi, r \rangle_{L} = 0$ for any $r \in R_{+}(X)$. As $R(X) = \vspan_{\C}(R_{+}(X))$, for any $z, w \in \Hp$ we have $0 = \langle \varphi, (\lambda - z)^{-1} - (\lambda - \overline{w})^{-1}\rangle_{L} = \varphi(z) - \overline{\varphi(w)}$, which immediately implies that $\varphi$ is real constant.
 
-	Surjectivity: This is the tricky part. We should prove that for any $p^{*} \in \pickclass(\Hp)$ the map $\varphi_{p^{*}}$ is a Pick function. Note that (\ref{weakly_pick_condition_2}) implies that $\varphi_{p^{*}}$ maps upper half-plane to its closure. So ``only" analyticity remains to be checked.
+	\textbf{Surjectivity}: This is the tricky part. We should prove that for any $p^{*} \in \pickclass(\Hp)$ the map $\varphi_{p^{*}}$ is a Pick function. Note that (\ref{weakly_pick_condition_2}) implies that $\varphi_{p^{*}}$ maps upper half-plane to its closure. So ``only" analyticity remains to be checked.
 
 	Let us first prove something slightly easier: $\varphi_{p^{*}}$ is continuous. This amounts to showing that for any $w \in \Hp$
 	\begin{align*}
 		\lim_{z \to w} p^{*}\left(\frac{1}{\lambda - z} - \frac{1}{\lambda - w} \right) = \lim_{z \to w}\left(\varphi_{p^{*}}(z) - \varphi_{p^{*}}(w)\right) = 0.
 	\end{align*}
-	The function $r_{z, w}(\lambda) = (\lambda - z)^{-1} - (\lambda - w)^{-1}$ tends to zero (in some sense) as $z \to w$, so something like this should be true: $R(\Hp)$ should have topology for which this convergence happens and the map $r \to p^{*} r$ is continuous.
+	The function $r_{z, w}(\lambda) = (\lambda - z)^{-1} - (\lambda - w)^{-1}$ tends to zero (in some sense) as $z \to w$, so something like this should be true: $R(\Hp)$ should have topology for which this convergence happens and the map $r \to p^{*} (r)$ is continuous.
 
 	And indeed, there is one:
 	\begin{align*}
-		\|r\|_{R} = \sup_{x \in \R} |r(x)| (x^2 + 1).
+		\|r\|_{R} = \sup_{\lambda \in \R} |r(\lambda)| (\lambda^2 + 1).
 	\end{align*}
 	\begin{lem}\label{pick_norm_estimate}
 		For every $p^{*} \in \pickclass(\Hp)$ there exists constant $C(p^{*})$ such that
@@ -298,12 +298,12 @@ Theorem \ref{pick_weakly_pick} is kind of a result that would definitely benefit
 	\begin{proof}
 		Write $r = r_{1} + i r_{2}$ where $r_{1}, r_{2} \in R_{\pm}(\Hp)$. Since clearly
 		\begin{align*}
-			\max(\|r_{1}\|_{R}, \|r_{2}\|_{R}) \leq \|r\| \leq \|r_{1}\|_{R} + \|r_{2}\|_{R}
-		\end{align*} it suffices cook up such bound for $R_{\pm}(\Hp)$. But such functions satisfy
+			\|r\|_{R} \geq \max(\|r_{1}\|_{R}, \|r_{2}\|_{R})
+		\end{align*} it suffices cook up such estimate for $R_{\pm}(\Hp)$. But such functions satisfy
 		\begin{align*}
 			-\frac{\|r\|_{R}}{\lambda^2 + 1} \leq r(\lambda) \leq \frac{\|r\|_{R}}{\lambda^2 + 1} 
 		\end{align*}
-		so $|p^{*}(r)| \leq \Im(\varphi_{p^{*}}(i)) \|r\|_{R}$.
+		for any $\lambda \in \R$ so $|p^{*}(r)| \leq \Im(\varphi_{p^{*}}(i)) \|r\|_{R}$.
 	\end{proof}
 	Now in order to prove the continuity is suffices to check that $\lim_{w \to z} \|r_{z, w}\|_{R} = 0$. But this follows from
 	\begin{align*}
@@ -311,13 +311,13 @@ Theorem \ref{pick_weakly_pick} is kind of a result that would definitely benefit
 		= & |z - w| \sup_{\lambda \in \R}\left|\left(1 + \frac{z - i}{\lambda - z}\right) \left(1 + \frac{w + i}{\lambda - w}\right)\right| \\
 		\leq & |z - w| \left(1 + \frac{|z - i|}{\Im(z)}\right) \left(1 + \frac{|w + i|}{\Im(w)}\right).
 	\end{align*}
-	Proving analyticity is not much harder. Note that if we manage to show that the order $2$ divided differences of $\varphi_{p^{*}}$ are locally bounded, Theorem \ref{bounded_div} implies the claim. Strictly speaking we only proved \ref{bounded_div} on real line, but the proof would be almost identical in the complex case. Observe that for any $z_{0}, z_{1}, z_{2} \in \Hp$ we have
+	Proving analyticity is not much harder. Note that if we manage to show that the order $2$ divided differences of $\varphi_{p^{*}}$ are locally bounded, Theorem \ref{bounded_div} implies the claim. Strictly speaking we only proved Theorem \ref{bounded_div} on real line, but the proof would be almost identical in the complex case. Observe that for any $z_{0}, z_{1}, z_{2} \in \Hp$ we have
 	\begin{align*}
 		[z_{0}, z_{1}, z_{2}]_{\varphi_{p^{*}}} = p^{*}\left(\frac{1}{(\lambda - z_{0}) (\lambda - z_{1}) (\lambda - z_{2})} \right).
 	\end{align*}
-	Hence, by \ref{pick_norm_estimate} we can bound the divided difference just by estimating $\|(\lambda - z_{0})^{-1} (\lambda - z_{1})^{-1} (\lambda - z_{2})^{-1}\|_{R}$. But this is straighforward: one has, for instance,
+	Hence, by Lemma \ref{pick_norm_estimate} we can bound the divided difference just by estimating $\|(\lambda - z_{0})^{-1} (\lambda - z_{1})^{-1} (\lambda - z_{2})^{-1}\|_{R}$. But this is straighforward: one has, for instance,
 	\begin{align*}
-		\left\|\frac{1}{(\lambda - z_{0}) (\lambda - z_{1}) (\lambda - z_{2})}\right\|_{R} \leq \frac{1}{\Im(z_{0})} \left(1 + \frac{|z - i|}{\Im(z)}\right) \left(1 + \frac{|w + i|}{\Im(w)}\right).
+		\left\|\frac{1}{(\lambda - z_{0}) (\lambda - z_{1}) (\lambda - z_{2})}\right\|_{R} \leq \frac{1}{\Im(z_{0})} \left(1 + \frac{|z_{1} - i|}{\Im(z_{1})}\right) \left(1 + \frac{|z_{2} + i|}{\Im(z_{2})}\right).
 	\end{align*}
 \end{proof}
 
@@ -334,21 +334,21 @@ It can be easily checked that the estimates in the proof can be generalized and 
 	\begin{align*}
 		\left|[z_{0}, z_{1}, \ldots, z_{k}]_{\varphi_{p^{*}}}\right| \leq \frac{C(K, p^{*})}{\Im(z_{0}) \Im(z_{1}) \cdots \Im(z_{k})}
 	\end{align*}
-	for any $k \geq 1$ and $z_{0}, z_{1}, \ldots, z_{k} \in X \cap K$. In particular $\varphi_{p^{*}}$ is continuous and analytic at every interior point of $X$.
+	for any $k \geq 1$ and $z_{0}, z_{1}, \ldots, z_{k} \in X \cap K$. In particular $\varphi_{p^{*}}$ is continuous, and analytic at every interior point of $X$.
 \end{prop}
 
 \section{Pick-Nevanlinna interpolation theorem}
 
-There's an interesting generalization to Theorem \ref{pick_weakly_pick}.
+Note that Proposition \ref{pick_div_dif_estimate} implies that if $X \subset \Hp$, $\varphi \in \pickclass(X)$ and $z_{0}$ is an interior point of $X$, then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, \Im(z_{0}))$. It turns out that this gives an extension for $\varphi$ to $X \cup \D(z_{0}, \Im(z_{0}))$, and this extension is still in $\pickclass(X \cup \D(z_{0}, \Im(z_{0})))$. One may bootstrap this argument to extend $\varphi$ to $\Hp$, to a Pick function. If $X$ doesn't contain interior points, Taylor series trick doesn't work. Nevertheless, there is such extension, albeit non-unique in general. This is the content of Pick--Nevanlinna interpolation theorem.
 
-\begin{lause}[Pick-Nevanlinna interpolation theorem]\label{pick_interpolation}
+\begin{lause}[Pick--Nevanlinna interpolation theorem]\label{pick_interpolation}
 	Let $X \subset \Hp$. Then the restriction map $\pickclass(\Hp) = \pickclass/\R \to \pickclass(X)$ is surjection. In other words: for any $\varphi \in \pickclass(X)$ there exists a Pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{X} = \varphi$.
 \end{lause}
 
 \begin{proof}
 	So we have an element in $p^{*} \in (R(X))^{*}$ such that $p^{*}(r) \geq 0$ for any $r \in R_{+}(X)$ and should prove that there exists $\tilde{p^{*}} \in R(\Hp)^{*}$ such that $\restr{\tilde{p^{*}}}{R(X)} = p^{*}$ and $\tilde{p^{*}}(r) \geq 0$ for any $r \in R_{+}(\Hp)$: we should extend a linear functional preverving its positivity.
 
-	Such extension is not unique in general. Nevertheless, if it so happens that $R(X)$ is dense in $R(\Hp)$ with respect to $\|\cdot\|_{L}$, then, as $p^{*}$ is Lipschitz by \ref{general_pick_norm_estimate}, $\tilde{p^{*}}$ is unique. In this case $R_{+}(X)$ is dense in $R_{+}(\Hp)$ so the extension is really a Pick function. This already covers large variety of sets $X$.
+	As mentioned, such extension is not unique in general. However, if it so happens that $R(X)$ is dense in $R(\Hp)$ with respect to $\|\cdot\|_{L}$, then, as $p^{*}$ is Lipschitz by \ref{general_pick_norm_estimate}, it has unique extension. Then also $R_{+}(X)$ is dense in $R_{+}(\Hp)$ so the extension is also a Pick function. This already covers large variety of sets $X$.
 	\begin{lem}\label{pick_dual_dense}
 		If $X \subset \Hp$ has an accumulation point in $\Hp$, then $R(X)$ is dense in $R(\Hp)$.
 	\end{lem}
@@ -359,46 +359,48 @@ There's an interesting generalization to Theorem \ref{pick_weakly_pick}.
 		\end{align*}
 		If $|w - i| < 1$, norm of the error term tends to zero. It follows that $R(X)$ is dense in $R(X \cup \D(i, 1))$. But as $2 i$ is an accumulation point of $X \cup \D(i, 1)$, we may repeat the previous argument: $R(X)$ is dense in $R(X \cup \D(2 i, 2))$. Bootstrapping along the sequence $(2^{n} i)_{n = 1}^{\infty}$ yields the claim.
 	\end{proof}
+	Note that the previous proof is really just the Taylor series (with Newton series, though) extension scheme in disguise.
+
 	For the general case one has to work slighty harder. Observe first that one only needs to prove the following lemma.
 	\begin{lem}\label{pick_one_point_extension}
 		For any $X \in \Hp$ and $w \in \Hp \setminus X$ the restriction map $\pickclass(X \cup \{w\}) \to \pickclass(X)$ is surjective.
 	\end{lem}
-	Given this lemma one can, for instance, use transfinite induction (or Zorn's lemma if one so prefers) to extend any element of $\pickclass(X)$ to $\pickclass(\Hp)$. Or one may inductively extend $X$ by a countable set with an accumulation point, after which there exists a unique extension by the already proven dense case.
+	Given this lemma, one can, for instance, use transfinite induction (or Zorn's lemma if one so prefers) to extend any element of $\pickclass(X)$ to $\pickclass(\Hp)$. Or one may inductively extend $X$ by a countable set with an accumulation point, after which there exists a unique extension by the already proven dense case.
 
 	\begin{proof}[Proof of Lemma \ref{pick_one_point_extension}]
 		Fix $z_{0} \in X$. Note that any $r \in R_{+}(X \cup \{w\})$ is of the form
 		\begin{align*}
-		\Re\left(a \left(\frac{1}{\lambda - w} - \frac{1}{\lambda - z_{0}}\right)\right) + s,
+		\lambda \mapsto \Re\left(a \left(\frac{1}{\lambda - w} - \frac{1}{\lambda - z_{0}}\right)\right) + r(\lambda),
 		\end{align*}
-		where $a \in \C$ and $s \in R(X)$. Writing $r_{w}(\lambda) = (\lambda - w)^{-1} - (\lambda - z_{0})^{-1}$, the extension should satisfy
+		where $a \in \C$ and $r \in R_{\pm}(X)$. Writing $r_{w}(\lambda) = (\lambda - w)^{-1} - (\lambda - z_{0})^{-1}$, the extension should hence satisfy
 		\begin{align}\label{pick_extension_ineq}
-			\Re\left(a p^{*}(r_{w})\right) + p^{*}(s) \geq 0
+			\Re\left(a p^{*}(r_{w})\right) + p^{*}(r) \geq 0
 		\end{align}
-		for some family of $\mathcal{F}$ pairs $(a, s) \in \C \times R(X)$. Note that if we find a value $p^{*}(r_{w})$ which satisfies all such inequalities, it determines an extension for $p^{*}$ to $\pickclass(X \cup \{w\})$.
+		for some family of $\mathcal{F}$ pairs $(a, r) \in \C \times R_{\pm}(X)$. Note that if we find a value $p^{*}(r_{w})$ which satisfies all such inequalities, it determines an extension for $p^{*}$ to $\pickclass(X \cup \{w\})$.
 
-		Each of the inequalities of the form \ref{pick_extension_ineq} (where $a \neq 0$) force $p^{*}(r_{w})$ in some closed half-space of $\C$. It is easy to check that for any $a \in \C$ there exist $(a, s) \in \mathcal{F}$: $p^{*}(r_{w})$ is constrained by half-spaces of all directions. This implies that set of suitable $p^{*}(r_{w})$'s can be expressed as intersection of compact sets, certain finite intersections of half-spaces in $\mathcal{F}$. We hence just have to verify that all such finite intersections are non-empty.
+		Each of the inequalities of the form \ref{pick_extension_ineq} (where $a \neq 0$) force $p^{*}(r_{w})$ in some closed half-space of $\C$. It is easy to check that for any $a \in \C$ there exist $(a, r) \in \mathcal{F}$: $p^{*}(r_{w})$ is constrained by half-spaces of all directions. This implies that set of suitable $p^{*}(r_{w})$'s can be expressed as intersection of compact sets, certain finite intersections of half-spaces in $\mathcal{F}$. We hence just have to verify that all such finite intersections are non-empty.
 
 		This, finally, follows almost immediately from the Farkas' lemma.
 		\begin{lem}[Farkas' lemma]\label{farkas_lemma}
-			Let $m \geq 1$, $a_{1}, a_{2}, \ldots, a_{m} \in \R^{n}$ and $c_{1}, c_{2}, \ldots, c_{m} \in \R$. Assume that whenever $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ are such that
+			Let $n, m \geq 1$, $(V, \langle \cdot, \cdot \rangle)$ $n$-dimensional inner product space over $\R$, $v_{1}, v_{2}, \ldots, v_{m} \in V$ and $c_{1}, c_{2}, \ldots, c_{m} \in \R$. Assume that whenever $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ are such that
 			\begin{align*}
-				t_{1} a_{1} + t_{2} a_{2} + \ldots + t_{m} a_{m} = 0,
+				t_{1} v_{1} + t_{2} v_{2} + \ldots + t_{m} v_{m} = 0,
 			\end{align*}
 			then also
 			\begin{align*}
 				t_{1} c_{1} + t_{2} c_{2} + \ldots + t_{m} c_{m} \geq 0.
 			\end{align*}
-			Then there exists $b \in \R^{n}$ such that $a_{i} \cdot b + c_{i} \geq 0$ for any $1 \leq i \leq m$.
+			Then there exists $u \in V$ such that $\langle v_{i}, u\rangle + c_{i} \geq 0$ for any $1 \leq i \leq m$.
 		\end{lem}
-		Indeed: the inequalities in \ref{pick_extension_ineq} can be interpreted in $\R^{2}$, in the sense of Farkas' lemma. Let's then check the condition. Pick any finite set of pairs $(a_{1}, s_{1}), (a_{2}, s_{2}), \ldots, (a_{m}, s_{m}) \in \mathcal{F}$. Take also $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ with $\sum_{i = 1}^{m} t_{i} a_{i} = 0$. Now
+		Indeed: the inequalities in \ref{pick_extension_ineq} can be interpreted in the sense of Farkas' lemma, where $V = \C$, is two-dimensional inner product space over $\R$ with $\langle z, w \rangle_{\C} = \Re(z \overline{w})$ as the inner product. To check the condition of the lemma, pick any finite set of pairs $(a_{1}, r_{1}), (a_{2}, r_{2}), \ldots, (a_{m}, r_{m}) \in \mathcal{F}$. Take also $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ with $\sum_{i = 1}^{m} t_{i} a_{i} = 0$. Now
 		\begin{align*}
-			0 \leq \sum_{i = 1}^{m} t_{i} \left(\Re(a_{i} r_{w}) + s_{i}\right) = \Re\left(\sum_{i = 1}^{m} t_{i} a_{i} r_{w}\right) + \sum_{i = 1}^{m} t_{i} s_{i} = \sum_{i = 1}^{m} t_{i} s_{i}
+			0 \leq \sum_{i = 1}^{m} t_{i} \left(\Re(a_{i} r_{w}) + r_{i}\right) = \Re\left(\sum_{i = 1}^{m} t_{i} a_{i} r_{w}\right) + \sum_{i = 1}^{m} t_{i} r_{i} = \sum_{i = 1}^{m} t_{i} r_{i}
 		\end{align*}
-		and hence $\sum_{i = 1}^{m} t_{i} p^{*}(s_{i}) \geq 0$. By Farkas' lemma we can find $p^{*}(r_{w}) \in \C$ such that
+		pointwise, and hence $\sum_{i = 1}^{m} t_{i} p^{*}(r_{i}) \geq 0$. By Farkas' lemma we can find $p^{*}(r_{w}) \in \C$ such that
 		\begin{align*}
-			\Re(a_{i} p^{*}(r_{w})) + p^{*}(s_{i}) \geq 0
+			\Re(a_{i} p^{*}(r_{w})) + p^{*}(r_{i}) \geq 0
 		\end{align*}
-		for any $1 \leq i \leq m$. This is just what we wanted.
+		for any $1 \leq i \leq m$. This is exactly what we wanted.
 	\end{proof}
 \end{proof}
 
@@ -407,48 +409,48 @@ For completeness, we also prove Farkas' lemma.
 \begin{proof}[Proof of Lemma \ref{farkas_lemma}]
 	Proof is by induction on $n$.
 
-	The case $n = 1$: We may clearly ignore all the zeros from the $a_{i}$'s. If all $a_{i}$'s are positive or negative, claim is trivial. Assume then that there are both positive and negative $a_{i}$'s. We may scale $a_{i}$'s (with $c_{i}$'s) such that they are all $1$ or $-1$: w.l.o.g. first $k$ $a_{i}$'s are ones. We should prove that one may choose $b$ such that $b + c_{i} \geq 0$ for any $1 \leq i \leq k$ and $-b + c_{j} \geq 0$ for any $k + 1 \leq j \leq m$. This is clearly possible if $c_{i} + c_{j} \geq 0$ for any $1 \leq i \leq k < j \leq m$. But if one sets $t_{i} = 1$ and $t_{j} = 1$ and other $t_{l}$'s to zero in the main condition, this is exactly the inequality one gets.
+	Case $n = 1$: We may clearly ignore all the zeros from the $v_{i}$'s. If all $v_{i}$'s are positive or negative, claim is trivial. Assume then that there are both positive and negative $v_{i}$'s. We may scale $v_{i}$'s (with $c_{i}$'s) such that they are all $1$ or $-1$: w.l.o.g. first $k$ $v_{i}$'s are ones. We should prove that one may choose $b$ such that $u + c_{i} \geq 0$ for any $1 \leq i \leq k$ and $-u + c_{j} \geq 0$ for any $k + 1 \leq j \leq m$. This is clearly possible if $c_{i} + c_{j} \geq 0$ for any $1 \leq i \leq k < j \leq m$. But if one sets $t_{i} = 1$ and $t_{j} = 1$ and other $t_{l}$'s to zero in the main condition, this is exactly the inequality one gets.
 
 	Induction step: We split into two cases.
 	\begin{itemize}
-		\item Case 1: There exists $t_{1}, t_{2}, \ldots, t_{m} \geq 0$, not all zero, such that $\sum_{i = 1}^{m} t_{i} a_{i} = 0$.
+		\item Case 1: There exists $t_{1}, t_{2}, \ldots, t_{m} \geq 0$, not all zero, such that $\sum_{i = 1}^{m} t_{i} v_{i} = 0$.
 		\item Case 2: The complement of case 1.
 	\end{itemize}
 	Let us also denote
 	\begin{align*}
-		C = \cone \{a_{i} | 1 \leq i \leq m\}.
+		C = \cone \{v_{i} | 1 \leq i \leq m\}.
 	\end{align*}
-	Case 1: it follows that there exist nonzero $v \in \R^{n}$ such that $v, -v \in C$. Decompose $\R^{n} = \vspan(v) \oplus W$, $a_{i} = a_{i}^{(v)} + a_{i}^{W}$ and $b = b^{(v)} + b^{W}$. The idea is to interpret the problem of finding $b$ as parametrized problem of finding $b^{W}$. We should find $b^{(v)}$ such that the following condition holds: whenever $t_{1}, t_{2}, \ldots, t_{m}$ are such that
+	\textbf{Case} 1: It follows that there exist nonzero $w \in V$ such that $w, -w \in C$. Decompose $V = \vspan(w) \oplus W$, $v_{i} = v_{i}^{(w)} + v_{i}^{W}$ and $u = u^{(w)} + u^{W}$. The idea is to interpret the problem of finding $u$ as parametrized problem of finding $u^{W}$. We should find $u^{(w)}$ such that the following condition holds: whenever $t_{1}, t_{2}, \ldots, t_{m}$ are such that
 	\begin{align*}
-		\sum_{i = 1}^{m} t_{i} a_{i}^{W} = 0
+		\sum_{i = 1}^{m} t_{i} v_{i}^{W} = 0
 	\end{align*}
 	then
 	\begin{align*}
-		0 \leq \sum_{i = 1}^{m} t_{i} (c_{i} + a_{i}^{(v)} b^{(v)}) = \sum_{i = 1}^{m} t_{i} c_{i} + b^{(v)}\sum_{i = 1}^{m} t_{i} a_{i}^{(v)}.
+		0 \leq \sum_{i = 1}^{m} t_{i} (c_{i} + v_{i}^{(w)} u^{(w)}) = \sum_{i = 1}^{m} t_{i} c_{i} + u^{(w)}\sum_{i = 1}^{m} t_{i} v_{i}^{(w)}.
 	\end{align*}
-	Then by $n - 1$ dimensional case there exists $b^{W}$ such that
+	Then, by $n - 1$ dimensional case on $W$, there exists $u^{W}$ such that
 	\begin{align*}
-		0 \leq c_{i} + a_{i}^{(v)} b^{(v)} + a_{i}^{W} \cdot b^{W} = a_{i} \cdot b + c_{i}.
+		0 \leq c_{i} + v_{i}^{(w)} u^{(w)} + \langle v_{i}^{W}, u^{W} \rangle = \langle v_{i}, u \rangle + c_{i}.
 	\end{align*}
-	This can be interpreted as one-dimensional problem where $a_{i}$'s are sums $\sum_{i = 1}^{m} t_{i} a_{i}^{(v)}$ and $c_{i}$'s sums $\sum_{i = 1}^{m} t_{i} c_{i}$ where $t_{i}$'s range over all tuples of non-negative numbers with $\sum_{i = 1}^{m} t_{i} a_{i}^{W} = 0$. But now there are infinitely many conditions so we can't immediately use the case $n = 1$. However, by the extra assumption $v, -v \in C$, so one can find $t_{i}$'s such that $\sum_{i = 1}^{m} t_{i} a_{i}^{W} = 0$ and $\sum_{i = 1}^{m} t_{i} a_{i}^{(v)}$ is both positive and negative. This means that it suffices to check that the condition holds for all pairs of such tuples. So take $s_{1}, s_{2} \geq 0$ and numbers $t_{i, 1}, t_{i, 2} \geq 0$ for $1 \leq i \leq m$ such that $\sum_{i = 1}^{m} t_{i, 1} a_{i}^{W} = \sum_{i = 1}^{m} t_{i, 2} a_{i}^{W} = 0$ and
+	This can be interpreted as one-dimensional problem where $v_{i}$'s are sums $\sum_{i = 1}^{m} t_{i} v_{i}^{(w)}$ and $c_{i}$'s sums $\sum_{i = 1}^{m} t_{i} c_{i}$ where $t_{i}$'s range over all tuples of non-negative numbers with $\sum_{i = 1}^{m} t_{i} v_{i}^{W} = 0$. But now there are infinitely many conditions so we can't immediately use the case $n = 1$. However, by the extra assumption $w, -w \in C$, so one can find $t_{i}$'s such that $\sum_{i = 1}^{m} t_{i} v_{i}^{W} = 0$ and $\sum_{i = 1}^{m} t_{i} v_{i}^{(w)}$ is both positive and negative. This means that the set of suitable $u^{(w)}$'s is intersection of bounded closed intervals so, as in the case $n = 1$, it suffices to consider only pairs of conditions. So take $s_{1}, s_{2} \geq 0$ and $t_{i, 1}, t_{i, 2} \geq 0$ for $1 \leq i \leq m$ such that $\sum_{i = 1}^{m} t_{i, 1} v_{i}^{W} = \sum_{i = 1}^{m} t_{i, 2} v_{i}^{W} = 0$ and
 	\begin{align*}
-		s_{1} \sum_{i = 1}^{m} t_{i, 1} a_{i}^{(v)} + s_{2} \sum_{i = 1}^{m} t_{i, 2} a_{i}^{(v)} = 0.
+		s_{1} \sum_{i = 1}^{m} t_{i, 1} v_{i}^{(w)} + s_{2} \sum_{i = 1}^{m} t_{i, 2} v_{i}^{(w)} = 0.
 	\end{align*}
-	Then $\sum_{i = 1}^{m} \left(s_{1} t_{i, 1} + s_{2} t_{i, 2} \right) a_{i} = 0$ so by the main condition
+	Then $\sum_{i = 1}^{m} \left(s_{1} t_{i, 1} + s_{2} t_{i, 2} \right) v_{i} = 0$ so by the main condition
 	\begin{align*}
 		0 \leq \sum_{i = 1}^{m} \left(s_{1} t_{i, 1} + s_{2} t_{i, 2} \right) c_{i} = s_{1} \sum_{i = 1}^{m} t_{i, 1} c_{i} + s_{2}\sum_{i = 1}^{m} t_{i, 2} c_{i},
 	\end{align*}
 	as desired.
 
-	Case 2: We first claim that there exists $v \in \R^{n}$ such that $v, -v \notin C$. Assuming otherwise, take $1 \leq j < l \leq m$ (the case $m = 1$ is clear as $n > 1$). Now as $a_{j} - a_{l} \in C$ or $a_{j} - a_{l} \in C$, w.l.o.g. $a_{j} = a_{l} + \sum_{i = 1}^{m} t_{i} a_{i}$ for some $t_{1}, \ldots, t_{m} \geq 0$. If $t_{j} \geq 1$, we have found non-trivial decomposition for $0$, a contradiction. If on the other hand $t_{j} < 1$, we see that $a_{j} \in \cone\{a_{i} | i \neq j\}$, so we may forget $a_{j}$. Inducting on $m$ finishes the claim.
+	\textbf{Case} 2: We first claim that there exists $w \in V$ such that $w, -w \notin C$. Assuming otherwise, take $1 \leq j < l \leq m$ (the case $m = 1$ is clear as $n > 1$). Now as $v_{j} - v_{l} \in C$ or $v_{l} - v_{j} \in C$, w.l.o.g. $v_{j} = v_{l} + \sum_{i = 1}^{m} t_{i} v_{i}$ for some $t_{1}, \ldots, t_{m} \geq 0$. If $t_{j} \geq 1$, we have found non-trivial decomposition for $0$, a contradiction. If on the other hand $t_{j} < 1$, we see that $v_{j} \in \cone\{a_{v} | i \neq j\}$, so we may forget $v_{j}$. Inducting on $m$ finishes the claim.
 
-	Again, decompose $\R^{n} = \vspan(v) \oplus W$, $a_{i} = a_{i}^{(v)} + a_{i}^{W}$ and $b = b^{(v)} + b^{W}$. We prove that we may set $b^{(v)} = 0$ and also the reduced problem falls in the case 2. Indeed, if $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ are such that $\sum_{i = 1}^{m} t_{i} a_{i}^{W} = 0$ then $\sum_{i = 1}^{m} t_{i} a_{i}^{(v)} \in C \cap \vspan(v) \subset \{0\}$. Consequently $\sum_{i = 1}^{m} t_{i} a_{i} = 0$ and hence $t_{i} = 0$ for any $1 \leq i \leq m$.
+	Again, decompose $V = \vspan(w) \oplus W$, $v_{i} = v_{i}^{(w)} + v_{i}^{W}$ and $u = u^{(w)} + u^{W}$. We prove that we may set $u^{(w)} = 0$ and also the reduced problem in $W$ falls in the case 2. Indeed, if $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ are such that $\sum_{i = 1}^{m} t_{i} v_{i}^{W} = 0$ then $\sum_{i = 1}^{m} t_{i} v_{i}^{(w)} \in C \cap \vspan(w) = \{0\}$. Consequently $\sum_{i = 1}^{m} t_{i} v_{i} = 0$ and hence $t_{i} = 0$ for any $1 \leq i \leq m$.
 \end{proof}
 
-\begin{huom}
-	Pick Nevanlinna interpolation can be extended in many ways. One such extension concerns Taylor sections.
+\begin{huom}\label{taylor_section_rem}
+	Pick Nevanlinna interpolation theorem can be extended in many ways. One such extension concerns Taylor sections.
 	\begin{maar}
-		Let $d : \Hp \to \N \cup \{\infty\}$. Extend $d$ to $\C$ with $d(z) = d(\overline{z})$ for any $z \in \Hp$ and $d(\lambda) = 0$ for any $\lambda \in \R$. We denote by $R(d)$ the set of rational functions $r$ with the properties
+		Let $d : \Hp \to \N \cup \{\infty\}$. Extend $d$ to $\C$ with $d(z) = d(\overline{z})$ for any $z \in \Hm$ and $d(\lambda) = 0$ for any $\lambda \in \R$. We denote by $R(d)$ the set of rational functions $r$ with the properties
 		\begin{itemize}
 			\item Pole of $r$ at $z \in \C$ (if any) has order at most $d(z)$.
 			\item $r(\lambda) = O(|\lambda|^{-2})$ at infinity.
@@ -458,7 +460,7 @@ For completeness, we also prove Farkas' lemma.
 	\begin{lause}\label{pick_taylor_sections}
 		Let $d : \Hp \to \N \cup \{\infty\}$. Then the natural map $\pickclass/\R \to \pickclass(d) =: (R(d))^{*}$ is surjection.
 	\end{lause}
-	What does this result has to do with Taylor sections? Fix any $d : \Hp \to \N \cup \{\infty\}$. Now Theorem \ref{pick_taylor_sections} is just saying that for any $p^{*} \in \pickclass(d)$, there exists a Pick function $\varphi_{p^{*}}$ for which
+	What does this result has to do with Taylor sections? Fix any $d : \Hp \to \N \cup \{\infty\}$. Now Theorem \ref{pick_taylor_sections} implies that for any $p^{*} \in \pickclass(d)$, there exists a Pick function $\varphi_{p^{*}}$ for which
 	\begin{align*}
 		\frac{\varphi_{p^{*}}^{(m)}(z)}{m!} = p^{*}\left(\frac{1}{(\lambda - z)^{m + 1}}\right)
 	\end{align*}
@@ -467,9 +469,48 @@ For completeness, we also prove Farkas' lemma.
 	Theorem \ref{pick_taylor_sections} could be proved with pretty much same ideas as Theorem \ref{pick_interpolation}; we're not going to do that, however.
 \end{huom}
 
+\begin{huom}
+	Lemma \ref{pick_dual_dense} can be generalized in many ways.
+	\begin{prop}
+		If $X \subset \Hp$ is such that
+		\begin{align*}
+			\sum_{z \in X} \frac{\Im(z)}{|z|^2 + 1} = \infty,
+		\end{align*}
+		then $\pickclass(X)$ is dense in $\pickclass(\Hp)$.
+	\end{prop}
+	\begin{proof}[Proof sketch]
+		Numerate $X = \{z_{0}, z_{1}, \ldots \}$, let $w \in \Hp \setminus X$ and denote
+		\begin{align*}
+			r_{n}(\lambda) = \frac{1}{\lambda - w} \frac{w - z_{0}}{z - z_{0}} \prod_{i = 1}^{n} \frac{w - z_{i}}{z - z_{i}} \frac{z - \overline{z_{i}}}{w - \overline{z_{i}}}.
+		\end{align*}
+		Then $r_{n} \in R(X \cup \{w\})$, residue of $r_{n}$ at $w$ is $1$, and $\|r_{n}\|_{R} \to 0$ as $n \to \infty$.
+	\end{proof}
+	More generally, with the terminology of the remark \ref{taylor_section_rem} one has
+	\begin{prop}
+		Let $d : \Hp \to \N \cup \{\infty\}$ is such that
+		\begin{align*}
+			\sum_{z \in \Hp} d(z) \frac{\Im(z)}{|z|^2 + 1} = \infty,
+		\end{align*}
+		then $\pickclass(d)$ is dense in $\pickclass(\Hp \mapsto \infty)$.
+	\end{prop}
+
+	It can be shown that the conditions of these theorems are also necessary (?) (see TODO).
+\end{huom}
+
 \section{Notes and references}
 
-Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick-Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist, see (?) for a survey. Approach taken in this text is similar to (?).
+Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick--Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist, see (?) for a survey. Usually the treatment builds on the notion of Pick matrix: given $\varphi : \Hp \to \C$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ one may define a matrix
+\begin{align*}
+	\begin{bmatrix}
+		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
+		[z_{2}, \overline{z_{1}}]_{\varphi} & [z_{2}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{2}, \overline{z_{n}}]_{\varphi} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
+	\end{bmatrix}.
+\end{align*}
+One may check that quadratic functionals of such matrices are just Pick functionals in disguise. Consequently: $\varphi$ is a Pick function, if and only if all such matrices are positive.
+
+Approach taken in this text is similar to (?).
 \begin{comment}
 
 TODO:

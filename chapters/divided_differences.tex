@@ -491,17 +491,16 @@ We are now ready to prove the locality property of the $k$-tone functions.
 	t.f.i.f. lemma \ref{divdif_splitting_theorem}.
 \end{proof}
 
-Note that we could have also used the splitting property \ref{divdif_splitting_property} to slightly simplify the proof of theorem \ref{peano_theorem}. In the induction step we managed to prove that we have
+Note that we could have also used the splitting property \ref{divdif_splitting_property} to slightly simplify the proof of theorem \ref{peano_theorem}. Recall that in the induction step we were to prove that the function $g_{t, n}$ is $n$-tone for any $n \geq 1$. We also observed that by the induction hypothesis
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} = \frac{1}{n - 1}[x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} =  \frac{1}{n - 1} w_{x_{0}, \ldots, x_{n - 1}}(t)\geq 0
 \end{align*}
 for any $x_{0}, x_{1}, \ldots, x_{n - 1}$. But this readily implies that the divided differences are non-negative on all tuples as we have
 \begin{align*}
-	w_{x_{0}, x_{1}, \ldots, x_{n - 1}, x_{n}} &= [x_{0}, x_{1}, \ldots, x_{n - 1}, x_{n}]_{g_{t, n}} \\
-	&= \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} + \frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}, t]_{g_{t, n}} \\
-	&= \frac{1}{n - 1} \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}]_{g_{t, n - 1}} \\
-	&= \frac{1}{n - 1}  \frac{t - x_{0}}{x_{n} - x_{0}} w_{x_{0}, x_{1}, \ldots, x_{n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} w_{x_{1}, \ldots, x_{n}} \\
-	&\geq 0.
+	& [x_{0}, x_{1}, \ldots, x_{n - 1}, x_{n}]_{g_{t, n}} \\
+	=& \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} + \frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}, t]_{g_{t, n}} \\
+	=& \frac{1}{n - 1} \frac{t - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} + \frac{1}{n - 1}\frac{x_{n} - t}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}]_{g_{t, n - 1}} \\
+	\geq & 0.
 \end{align*}
 Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, but if this is not the case, the divided differences are zero anyway. The previous identity can be also used to recursively compute Peano kernels.
 
@@ -520,7 +519,7 @@ The real power of the divided differences comes in when they are used to carry r
 	Let $f \in P^{(k)}(a, b)$. Since $f^{(k)}$ is a positive measure, $f^{(k - 1)}$ is increasing and $f^{(k - 2)}$ is convex. As convex functions are continuous, we are done with $\Rightarrow$. Conversely, if $f \in C^{k - 2}(a, b)$ and $f^{(k - 2)}$ is convex, then $f^{(k - 2)}$ has second derivative as a positive measure. But this measure is also the $k$'th derivative of $f$, so $f \in P^{(k)}(a, b)$.
 \end{proof}
 
-Even though the previous argument isn't exactly sound (at least given our current machinery), the result is true. In this section we will translate the proof to the language of the divided differences.
+In this section we will translate the previous argument to the language of the divided differences.
 
 The first step is to connect the divided differences of a function to the divided differences (of one lower order) of the derivative.
 
