@@ -143,7 +143,127 @@ To better explain the appearance of the linear term, we can write the integral i
 \end{align*}
 Here $\nu$ is just a finite Borel measure. Now it kind of makes sense to extend the domain of this measure to infinity: the linear term merely corresponds to $\delta$-measure at the infinity point. Of course, should one formalize this line of thought, the question on the type of extended real line had to be asked and one should address the topology. The answer is that one should glue the real line into a circle. One shouldn't worry about such issues, though, as these thoughts are merely for intuition. The giveaway is that $\alpha$ should be really thought as a part of the measure $\mu$, even though this might not make perfect sense.
 
-We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation. It is however useful to note the following slightly weaker result.
+We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem}, but it shall work as a motivation.
+
+\section{Dual thinking}
+
+\subsection{What is happening?}
+
+Let's return to Question \ref{pick_predual}: our goal is to find some set of linear functionals on $\C^{\Hp}$, i.e. a subset of $\subset (\C^{\Hp})^{*}$, such that $\pickclass$ is dual cone of $C^{*}$. Note that most of the cones of past chapters were defined directly via some predual:
+
+\begin{itemize}
+	\item $\H_{+}(V)$, the cone of positive maps, was defined as dual cone of quadratic functionals: maps of the form $A \mapsto \langle A v, v \rangle$ for $v \in V$.
+	\item $P^{(k)}(a, b)$, the cone of $k$-tone functions (on $(a, b)$), was defined as dual cone of order $k$ divided differences: maps of the form $f \mapsto [x_{0}, x_{1}, \ldots, x_{k}]_{f}$, where $a < x_{0}, x_{1}, \ldots, x_{k} < b$ are pairwise distinct.
+	\item $P_{n}(a, b)$, the cone of $n$-monotone functions (on $(a, b)$), was defined as dual cone maps of the form $f \mapsto \langle (f(B) - f(A)) v, v \rangle$, were $v \in V$ and $A, B \in \H_{(a, b)}$ are such that $A \leq B$.
+\end{itemize}
+
+In chapter $5$ we managed to find some kind of answers to Questions \ref{question_1} and \ref{question_2}: we gave simpler preduals for $P_{n}(a, b)$ and $P_{\infty}(a, b)$:
+
+\begin{itemize}
+	\item The functionals of the form $f \mapsto [x_{0}, x_{1}, \ldots, x_{2 n - 1}]_{f N(q)}$ (for pairwise distinct $a < x_{0}, x_{1}, \ldots, x_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$) form a predual for $P_{n}(a, b)$.
+	\item The functionals of the form $f \mapsto \langle f, r \rangle_{L}$ (for $r \in R_{+}(a, b)$) form a predual for $P_{\infty}(a, b)$.
+\end{itemize}
+
+Now we have an inverse problem: we have set of functions (Pick functions) and would like to find such a predual. Moreover, we would like to interpret $\pickclass$ as a subset $\C^{\Hp}$ with product topology, i.e. the topology of pointwise convergence. Note that if we find such predual (let's denote it by $C^{*}$ for a short while), we get Proposition \ref{pick_convergence} for free.
+
+\begin{proof}[Proof of Proposition \ref{pick_convergence} (given the existence of $C^{*}$)]
+	By the extra assumption we have $C^{*} \subset (\C^{\Hp})^{*}$, a set of linear functionals such that
+	\begin{align*}
+		\varphi &\in \pickclass \\
+		&\Leftrightarrow \\
+		p^{*}(\varphi) \geq 0 &\text{ for any $p^{*} \in C^{*}$}.
+	\end{align*}
+	Take a sequence $(\varphi_{i})_{i = 1}^{\infty}$ of Pick functions converging poinwise to $\varphi_{\infty}$, and take any $p^{*} \in C^{*}$. Since $p^{*}$ is continuous, and $C^{*}$ is a predual of $\pickclass$, we have
+	\begin{align*}
+		p^{*}(\varphi_{\infty}) = \lim_{i \to \infty} p^{*}(\varphi_{i}) \geq 0.
+	\end{align*}
+	But this means that $\varphi$ lies in the dual cone of $C^{*}$, i.e. in $\pickclass$, as desired.
+\end{proof}
+
+Of course, one can show Proposition \ref{pick_convergence} by many other means, but as we will see later on, the predual $C^{*}$ itself is the true reward for our troubles.
+
+So, how is one to find the\footnote{As we have noted before, preduals are very much non-unique, so perhaps one shouldn't talk about \textbf{the} predual.} predual? We are going to perform our search along the following path:
+
+\begin{enumerate}[\textbf{Step} 1.]
+	\item Which functionals $p^{*} \in (\C^{\Hp})^{*}$ satisfy
+	\begin{align*}
+		p^{*}(\varphi) \geq 0
+	\end{align*}
+	for any $\varphi \in \pickclass$? Note that $C^{*}$ should be definitely subset of such functionals. But then again, we don't really lose anything if we pick all such functionals to $C^{*}$. So if there is such $C^{*}$, we could (and will) set
+	\begin{align*}
+		C^{*} := \{p^{*} \in (\C^{\Hp})^{*} | p^{*}(\varphi) \geq 0 \text{ for any $\varphi \in \pickclass$}\}.
+	\end{align*}
+	Note that this (potential) predual is maximal in some sense: it is a union of all possible preduals for $\pickclass$; so it actually makes sense to talk about \textbf{the} predual.
+	\item Now that we have found potential predual $C^{*}$, is $\pickclass$ really its dual cone? Note that by definition the definition of $C^{*}$, all Pick functions are contained in its dual cone. But it might a priori contain more functions! So we should check that every element in $\C^{\Hp}$ which gives non-negative values on every functional on $C^{*}$ should
+	\begin{enumerate}[(i)]
+		\item map upper half-plane to its closure and
+		\item be analytic.
+	\end{enumerate}
+\end{enumerate}
+
+\begin{comment}
+To further highlight the step $3$, let's return to the realm of $k$-tone functions for a while. Recall that we set out to define $k$-tone functions as a set of functions that are more or less functions with non-negative $k$'th derivative. So, why not just define them as the set of functions with non-negative $k$'th derivative? The problem is that such functions are rather fragile. They are, for instance, not closed under pointwise convergence. Now, one could try to run the above steps for such functions. Let's say we are investigating $k$-tone functions on $(a, b)$. At step $1$ one would observe that one should think about $(\R^{(a, b)})^{*}$ as some kind of piecewise polynomial functions. At step $2$ one could choose non-negative such functions as $C^{*}$. Or some subset of them: we chose Peano kernels. But at step $3$ there's a problem: we get more functions.
+\end{comment}
+
+\subsection{Step 1}
+
+First off: how should one even interpret $(\C^{\Hp})^{*}$? Should $\C^{\Hp}$ be a vector space over $\C$, or maybe over $\R$? The correct answer is neither.
+
+Let us first look at $\C$-linear functionals $\C^{\Hp} \to \C$. It is a general fact that continuous dual of a product consists of functionals of finite support, i.e. it is the direct sum of the duals of the factors (see for instance TODO)\footnote{This fact is not important to us and we could have restricted our attention to finitely supported functionals anyway.}.
+
+This is all just to say that $\C$-linear functionals on $\C^{\Hp}$ are of the form
+\begin{align*}
+	\varphi \mapsto \sum_{i = 1}^{m} c_{i} \varphi(z_{i}),
+\end{align*}
+where $m \geq 0$, $c_{1}, c_{2}, \ldots, c_{m} \in \C$ and $z_{1}, z_{2}, \ldots, z_{m} \in \Hp$. So the question is: for which tuples $c_{i}$'s and $z_{i}$'s is such sum always non-negative real number if $\varphi$ is a Pick function?
+
+This is where the integral representations of the previous sections come in. If one is to believe in \ref{pick_nevanlinna_herglotz_representation_theorem}, for any Pick function $\varphi$ we have
+\begin{align*}
+	\sum_{i = 1}^{m} c_{i} \varphi(z_{i}) &= \sum_{i = 1}^{m} c_{i} \left(\alpha z_{i} + \beta + \int_{-\infty}^{\infty} \left(\frac{1}{\lambda - z_{i}} - \frac{\lambda}{\lambda^2 + 1}\right) d \mu(\lambda)\right) \\
+	&= \alpha \sum_{i = 1}^{m} c_{i} z_{i} + \beta \sum_{i = 1}^{m} c_{i} + \int_{-\infty}^{\infty} \left( \sum_{i = 1}^{m}\frac{c_{i}}{\lambda - z_{i}} - \frac{\lambda}{\lambda^2 + 1} \sum_{i = 1}^{m} c_{i} \right) d \mu(\lambda)
+\end{align*}
+Since $\beta$ can be any real, we should have $\sum_{i = 1}^{m} c_{i} = 0$. Setting $\alpha = 0$ we see that the integral
+\begin{align*}
+	 \int_{-\infty}^{\infty} \sum_{i = 1}^{m}\frac{c_{i}}{\lambda - z_{i}} d \mu(\lambda)
+\end{align*}
+should be non-negative real for any Radon measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$. By choosing $\mu = \delta_{\lambda}$ and write $r(\lambda) =  \sum_{i = 1}^{m} c_{i}/(\lambda - z_{i})$ the sum
+\begin{align*}
+	r(\lambda) = \sum_{i = 1}^{m}\frac{c_{i}}{\lambda - z_{i}}
+\end{align*}
+should be non-negative for any $\lambda \in \R$. Consequently $r$ is a rational function, real on reals, so its poles have to lie symmetrically with respect to real axis. But since all poles of $r$ lie in $\Hp$, this means that $r$ is zero, and hence all $c_{i}$'s are zeroes.
+
+So there are no non-trivial $\C$-linear functionals on $\C^{\Hp}$, non-negative on Pick functions.
+
+What about real functionals? It's easy to see that all $\R$-linear functionals $\C^{\Hp} \to \R$ are given by real parts of the complex functionals. So again, pick $m \geq 0$, $c_{1}, c_{2}, \ldots, c_{m} \in \C$ and $z_{1}, z_{2}, \ldots, z_{m} \in \Hp$ and consider linear functional of the form
+\begin{align*}
+	\varphi \mapsto \sum_{i = 1}^{m} \Re\left(c_{i} \varphi(z_{i})\right).
+\end{align*}
+If $\varphi$ is a Pick function, we have, as in the complex case,
+\begin{align*}
+	\sum_{i = 1}^{m} \Re(c_{i} \varphi(z_{i})) &= \alpha \sum_{i = 1}^{m} \Re(c_{i} z_{i}) + \beta \sum_{i = 1}^{m} \Re(c_{i}) + \int_{-\infty}^{\infty} \Re\left( \sum_{i = 1}^{m}\frac{c_{i}}{\lambda - z_{i}} - \frac{\lambda}{\lambda^2 + 1} \sum_{i = 1}^{m} c_{i} \right) d \mu(\lambda) \\
+	&= \frac{\alpha}{2} \sum_{i = 1}^{m} \left(c_{i} z_{i} + \overline{c_{i}} \overline{z_{i}}\right) + \frac{1}{2}\int_{-\infty}^{\infty} \left( \sum_{i = 1}^{m} \left(\frac{c_{i}}{\lambda - z_{i}} + \frac{\overline{c_{i}}}{\lambda - \overline{z_{i}}}\right)\right) d \mu(\lambda).
+\end{align*}
+By setting $\mu = \delta_{\lambda}$ we see that the rational function
+\begin{align*}
+	r(\lambda) := \sum_{i = 1}^{m} \left(\frac{c_{i}}{\lambda - z_{i}} + \frac{\overline{c_{i}}}{\lambda - \overline{z_{i}}}\right)
+\end{align*}
+should be non-negative. If this is the case, then also $\sum_{i = 1}^{m} \left(c_{i} z_{i} + \overline{c_{i}} \overline{z_{i}}\right) \geq 0$. Indeed, we have
+\begin{align*}
+	\frac{c_{i}}{\lambda - z_{i}} &= \frac{c_{i} z_{i}}{\lambda (\lambda - z_{i})} + \frac{c_{i}}{\lambda} = \frac{c_{i} z_{i}}{\lambda^2} + \frac{c_{i}}{\lambda} + O(\frac{1}{\lambda^{3}})
+\end{align*}
+so
+\begin{align*}
+	r(\lambda) = \frac{\sum_{i = 1}^{m} \left(c_{i} z_{i} + \overline{c_{i}} \overline{z_{i}}\right)}{\lambda^{2}} + O\left(\frac{1}{\lambda^{3}}\right)
+\end{align*}
+at infinity, i.e. $\sum_{i = 1}^{m} \left(c_{i} z_{i} + \overline{c_{i}} \overline{z_{i}}\right) = \lim_{\lambda \to \infty} r(\lambda) \lambda^{2} \geq 0$.
+
+
+
+
+
+TODO
+
+It is however useful to note the following slightly weaker result.
 \begin{lem}\label{pick_dense}
 	Under the topology of pointwise convergence one has
 	\begin{align*}
@@ -160,7 +280,10 @@ We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem},
 	for any $\varepsilon > 0$. But now for any $\varphi \in \pickclass$ and $\varepsilon > 0$ also $\varphi \circ g_{\varepsilon} \in \pickclass_{b}$. Finally $\varphi = \lim_{\varepsilon \to 0} \varphi \circ g_{\varepsilon} \in \pickclass_{b}$, as we wanted.
 \end{proof}
 
-\section{Dual thinking}
+\subsection{Step 2}
+
+
+
 \subsection{Pick functionals}
 
 Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} sheds light to Question \ref{pick_predual}: linear functionals on $\pickclass$ should be thought of some kind of rational functions.
@@ -241,7 +364,7 @@ is (linear) bijection. If one restricts the domain to $R_{+}(X)^{*}$, additional
 	\end{align*}
 	satisfying
 	\begin{align}\label{weakly_pick_function_condition}
-		\varphi_{p^{*}}(z) - \overline{\varphi_{p^{*}}(w)} = p^{*}\left(\frac{1}{(\lambda - z)} -\frac{1}{(\lambda - \overline{w})}\right)
+		\varphi_{p^{*}}(z) - \overline{\varphi_{p^{*}}(w)} = p^{*}\left(\frac{1}{\lambda - z} -\frac{1}{\lambda - \overline{w}}\right)
 	\end{align}
 	for any $z, w \in X$ and $p^{*} \in (R_{+}(X))^{*}$.
 \end{lem}
@@ -282,30 +405,31 @@ Theorem \ref{pick_weakly_pick} is kind of a result that would definitely benefit
 	\begin{align*}
 		\lim_{z \to w} p^{*}\left(\frac{1}{\lambda - z} - \frac{1}{\lambda - w} \right) = \lim_{z \to w}\left(\varphi_{p^{*}}(z) - \varphi_{p^{*}}(w)\right) = 0.
 	\end{align*}
-	The function $r_{z, w}(\lambda) = (\lambda - z)^{-1} - (\lambda - w)^{-1}$ tends to zero (in some sense) as $z \to w$, so something like this should be true: $R(\Hp)$ should have topology for which this convergence happens and the map $r \to p^{*} (r)$ is continuous.
+	The function $r_{z, w}(\lambda) = (\lambda - z)^{-1} - (\lambda - w)^{-1}$ tends to zero (in some sense) as $z \to w$, so something like this ought to be true: $R(\Hp)$ should have topology for which this convergence happens and the map $r \mapsto p^{*} (r)$ is continuous.
 
 	And indeed, there is one:
 	\begin{align*}
 		\|r\|_{R} = \sup_{\lambda \in \R} |r(\lambda)| (\lambda^2 + 1).
 	\end{align*}
 	\begin{lem}\label{pick_norm_estimate}
-		For every $p^{*} \in \pickclass(\Hp)$ there exists constant $C(p^{*})$ such that
+		For every $p^{*} \in \pickclass(\Hp)$ there exists a constant $C(p^{*})$ such that
 		\begin{align*}
 			\left|p^{*} (r)\right| \leq C(p^{*}) \|r\|_{R}
 		\end{align*}
-		for any $r \in R(\Hp)$
+		for any $r \in R(\Hp)$.
 	\end{lem}
 	\begin{proof}
 		Write $r = r_{1} + i r_{2}$ where $r_{1}, r_{2} \in R_{\pm}(\Hp)$. Since clearly
 		\begin{align*}
-			\|r\|_{R} \geq \max(\|r_{1}\|_{R}, \|r_{2}\|_{R})
-		\end{align*} it suffices cook up such estimate for $R_{\pm}(\Hp)$. But such functions satisfy
+			\|r\|_{R} \geq \max(\|r_{1}\|_{R}, \|r_{2}\|_{R}),
+		\end{align*}
+		it suffices cook up such estimate for $R_{\pm}(\Hp)$. But such functions satisfy
 		\begin{align*}
 			-\frac{\|r\|_{R}}{\lambda^2 + 1} \leq r(\lambda) \leq \frac{\|r\|_{R}}{\lambda^2 + 1} 
 		\end{align*}
-		for any $\lambda \in \R$ so $|p^{*}(r)| \leq \Im(\varphi_{p^{*}}(i)) \|r\|_{R}$.
+		for any $\lambda \in \R$, so $|p^{*}(r)| \leq \Im(\varphi_{p^{*}}(i)) \|r\|_{R}$.
 	\end{proof}
-	Now in order to prove the continuity is suffices to check that $\lim_{w \to z} \|r_{z, w}\|_{R} = 0$. But this follows from
+	Now, in order to prove the continuity, is suffices to check that $\lim_{w \to z} \|r_{z, w}\|_{R} = 0$. But this follows from
 	\begin{align*}
 		\|r_{z, w}\|_{R} = & |z - w| \sup_{\lambda \in \R}\left|\frac{\lambda^2 + 1}{(\lambda - z) (\lambda - w)}\right| \\
 		= & |z - w| \sup_{\lambda \in \R}\left|\left(1 + \frac{z - i}{\lambda - z}\right) \left(1 + \frac{w + i}{\lambda - w}\right)\right| \\
@@ -321,13 +445,13 @@ Theorem \ref{pick_weakly_pick} is kind of a result that would definitely benefit
 	\end{align*}
 \end{proof}
 
-It can be easily checked that the estimates in the proof can be generalized and pushed to local setting. We for instance have:
+It can be easily checked that the estimates in the proof can be generalized and pushed to local setting. We for example have:
 \begin{lem}\label{general_pick_norm_estimate}
 	Let $X \subset \Hp$ and $p^{*} \in \pickclass(X)$. Then there exists a constant $C(p^{*})$ such that
 	\begin{align*}
 		\left|p^{*} (r)\right| \leq C(p^{*}) \|r\|_{R}
 	\end{align*}
-	for any $r \in R_{+}(X)$.
+	for any $r \in R(X)$.
 \end{lem}
 \begin{prop}\label{pick_div_dif_estimate}
 	Let $X \subset \Hp$ and $p^{*} \in \pickclass(X)$. Then for every compact $K \subset \Hp$ there exists a constant $C(K, p^{*})$ such that
@@ -339,7 +463,7 @@ It can be easily checked that the estimates in the proof can be generalized and 
 
 \section{Pick-Nevanlinna interpolation theorem}
 
-Note that Proposition \ref{pick_div_dif_estimate} implies that if $X \subset \Hp$, $\varphi \in \pickclass(X)$ and $z_{0}$ is an interior point of $X$, then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, \Im(z_{0}))$. It turns out that this gives an extension for $\varphi$ to $X \cup \D(z_{0}, \Im(z_{0}))$, and this extension is still in $\pickclass(X \cup \D(z_{0}, \Im(z_{0})))$. One may bootstrap this argument to extend $\varphi$ to $\Hp$, to a Pick function. If $X$ doesn't contain interior points, Taylor series trick doesn't work. Nevertheless, there is such extension, albeit non-unique in general. This is the content of Pick--Nevanlinna interpolation theorem.
+Note that Proposition \ref{pick_div_dif_estimate} implies that if $X \subset \Hp$, $\varphi \in \pickclass(X)$ and $z_{0}$ is an interior point of $X$, then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, \Im(z_{0}))$. It turns out that this gives an extension for $\varphi$ to $X \cup \D(z_{0}, \Im(z_{0}))$, and this extension is still in $\pickclass(X \cup \D(z_{0}, \Im(z_{0})))$. One can bootstrap this argument to extend $\varphi$ to $\Hp$, to a Pick function. If $X$ doesn't contain interior points, Taylor series trick doesn't work. Nevertheless, there is such extension, albeit non-unique in general. This is the content of Pick--Nevanlinna interpolation theorem.
 
 \begin{lause}[Pick--Nevanlinna interpolation theorem]\label{pick_interpolation}
 	Let $X \subset \Hp$. Then the restriction map $\pickclass(\Hp) = \pickclass/\R \to \pickclass(X)$ is surjection. In other words: for any $\varphi \in \pickclass(X)$ there exists a Pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{X} = \varphi$.
@@ -392,7 +516,7 @@ Note that Proposition \ref{pick_div_dif_estimate} implies that if $X \subset \Hp
 			\end{align*}
 			Then there exists $u \in V$ such that $\langle v_{i}, u\rangle + c_{i} \geq 0$ for any $1 \leq i \leq m$.
 		\end{lem}
-		Indeed: the inequalities in \ref{pick_extension_ineq} can be interpreted in the sense of Farkas' lemma, where $V = \C$, is two-dimensional inner product space over $\R$ with $\langle z, w \rangle_{\C} = \Re(z \overline{w})$ as the inner product. To check the condition of the lemma, pick any finite set of pairs $(a_{1}, r_{1}), (a_{2}, r_{2}), \ldots, (a_{m}, r_{m}) \in \mathcal{F}$. Take also $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ with $\sum_{i = 1}^{m} t_{i} a_{i} = 0$. Now
+		Indeed: the inequalities in \ref{pick_extension_ineq} can be interpreted in the sense of Farkas' lemma, where $V := \C$ is two-dimensional inner product space over $\R$ with $\langle z, w \rangle_{\C} = \Re(z \overline{w})$ as the inner product. To check the condition of the lemma, pick any finite set of pairs $(a_{1}, r_{1}), (a_{2}, r_{2}), \ldots, (a_{m}, r_{m}) \in \mathcal{F}$. Take also $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ with $\sum_{i = 1}^{m} t_{i} a_{i} = 0$. Now
 		\begin{align*}
 			0 \leq \sum_{i = 1}^{m} t_{i} \left(\Re(a_{i} r_{w}) + r_{i}\right) = \Re\left(\sum_{i = 1}^{m} t_{i} a_{i} r_{w}\right) + \sum_{i = 1}^{m} t_{i} r_{i} = \sum_{i = 1}^{m} t_{i} r_{i}
 		\end{align*}
@@ -409,7 +533,7 @@ For completeness, we also prove Farkas' lemma.
 \begin{proof}[Proof of Lemma \ref{farkas_lemma}]
 	Proof is by induction on $n$.
 
-	Case $n = 1$: We may clearly ignore all the zeros from the $v_{i}$'s. If all $v_{i}$'s are positive or negative, claim is trivial. Assume then that there are both positive and negative $v_{i}$'s. We may scale $v_{i}$'s (with $c_{i}$'s) such that they are all $1$ or $-1$: w.l.o.g. first $k$ $v_{i}$'s are ones. We should prove that one may choose $b$ such that $u + c_{i} \geq 0$ for any $1 \leq i \leq k$ and $-u + c_{j} \geq 0$ for any $k + 1 \leq j \leq m$. This is clearly possible if $c_{i} + c_{j} \geq 0$ for any $1 \leq i \leq k < j \leq m$. But if one sets $t_{i} = 1$ and $t_{j} = 1$ and other $t_{l}$'s to zero in the main condition, this is exactly the inequality one gets.
+	Case $n = 1$: We may clearly ignore all the zeros from the $v_{i}$'s. If all $v_{i}$'s are positive or negative, claim is trivial. Assume then that there are both positive and negative $v_{i}$'s. We may scale $v_{i}$'s (with $c_{i}$'s) such that they are all $1$ or $-1$: w.l.o.g. first $k$ $v_{i}$'s are ones. We should prove that one may choose $u$ such that $u + c_{i} \geq 0$ for any $1 \leq i \leq k$ and $-u + c_{j} \geq 0$ for any $k + 1 \leq j \leq m$. This is clearly possible if $c_{i} + c_{j} \geq 0$ for any $1 \leq i \leq k < j \leq m$. But if one sets $t_{i} = 1$ and $t_{j} = 1$ and other $t_{l}$'s to zero in the main condition, this is exactly the inequality one gets.
 
 	Induction step: We split into two cases.
 	\begin{itemize}
@@ -460,7 +584,7 @@ For completeness, we also prove Farkas' lemma.
 	\begin{lause}\label{pick_taylor_sections}
 		Let $d : \Hp \to \N \cup \{\infty\}$. Then the natural map $\pickclass/\R \to \pickclass(d) =: (R(d))^{*}$ is surjection.
 	\end{lause}
-	What does this result has to do with Taylor sections? Fix any $d : \Hp \to \N \cup \{\infty\}$. Now Theorem \ref{pick_taylor_sections} implies that for any $p^{*} \in \pickclass(d)$, there exists a Pick function $\varphi_{p^{*}}$ for which
+	What does this result have to do with Taylor sections? Fix any $d : \Hp \to \N \cup \{\infty\}$. Now Theorem \ref{pick_taylor_sections} implies that for any $p^{*} \in \pickclass(d)$, there exists a Pick function $\varphi_{p^{*}}$ for which
 	\begin{align*}
 		\frac{\varphi_{p^{*}}^{(m)}(z)}{m!} = p^{*}\left(\frac{1}{(\lambda - z)^{m + 1}}\right)
 	\end{align*}
