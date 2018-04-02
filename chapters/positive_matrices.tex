@@ -74,7 +74,7 @@ Previous arguments carry directly to a much more general setting:
 
 In our case the subset of the linear functionals are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$.
 
-As one would hope, map $v \to \alpha v$, i.e. $\alpha I$ is positive, if and only if $\alpha \geq 0$. In particular, in one-dimensional spaces the notion works as expected. Fortunately there are other examples also. Indeed, any orthogonal projection is positive.
+As one would hope, map $v \mapsto \alpha v$, i.e. $\alpha I$ is positive, if and only if $\alpha \geq 0$. In particular, in one-dimensional spaces the notion works as expected. Fortunately there are other examples also. Indeed, any orthogonal projection is positive.
 
 \begin{prop}
 	If $A \in \L(V)$ is a orthogonal projection, then $A \geq 0$.
@@ -193,11 +193,11 @@ Positive maps have many other desirable properties. First of all, eigenvalues of
 	Let $W \subset V$ and $A \geq 0$. Then also $\arestr{A}{W} \geq 0$. In particular all the eigenvalues of $A$ are non-negative.
 \end{lem}
 \begin{proof}
-	Note that quadratic form gives essentially the one-dimensional compressions. Indeed, if $W = (v)$, then
+	Note that quadratic form gives essentially the one-dimensional compressions. Indeed, if $W = \vspan(v)$, then
 	\begin{align*}
 		\arestr{A}{W} x = \frac{\langle A x, v \rangle}{\langle v, v \rangle} v = \frac{\langle A v, v \rangle}{\langle v, v \rangle} x
 	\end{align*}
-	for any $x \in (v)$. This means that a map is positive, if and only if its compressions to one-dimensional subspaces are.
+	for any $x \in \vspan(v)$. This means that a map is positive, if and only if its compressions to one-dimensional subspaces are.
 
 	Now the trick is that nested compressions work nicely: if $W' \subset W \subset V$ and $A \in \L(V)$, then $\arestr{(\arestr{A}{W})}{W'} = \arestr{A}{W'}$. Consequently, if every one-dimensional compression $A$ is positive, same is true for all of its compressions.
 
@@ -241,7 +241,7 @@ The most important result in the theory of positive and real maps is the spectra
 		If $A \in \H_{+}(V)$ and $\langle A v, v \rangle = 0$ for some $v \in V$, then $A v = 0$ and $A w \perp v$ for any $w \perp v$.
 	\end{lem}
 
-	Before proving the Lemma, we complete the proof given the Lemma.
+	Before proving this lemma, we use it to complete the proof of Theorem \ref{cheapSpectral}.
 
 	Proof is by induction on $n$, the dimension of the space. If $n = 0$, the claim is evident. For induction step assume first that there exists $v \in V$ such that $\langle A v, v \rangle = 0$. Then by the lemma for any $w \in v^{\perp}$ we have $A w \in (v)^{\perp} =: W$. But this means that $A = \arestr{A}{W} \oplus 0$. Now $\arestr{A}{W}$ is also positive, and $\dim(W) < n$, so by the induction assumption we have numbers $\lambda_{i}$ and vectors $v_{i} \in V$ for the map $\arestr{A}{W}$. Such representation for $\arestr{A}{W}$ immediately gives one also for $A$.
 
@@ -296,7 +296,7 @@ Fix $A \in \H(V)$ with eigenbasis $(v_{i})_{i = 1}^{n}$. For any $v \in V$ we ha
 
 \subsection{Functional calculus}
 
-Given the spectral theorem, it is rather clear how one should define general matrix functions. We denote by $\H_{(a, b)}$ elements of $\H$ spectra of which lie in $(a, b)$.
+Given the spectral theorem, it is rather clear how one should define general matrix functions. We denote by $\H_{(a, b)}$ elements of $\H$, the spectra of which lie in $(a, b)$.
 
 \begin{maar}
 	For any $-\infty \leq a < b \leq \infty$ $f : (a, b) \to \R$ the associated matrix function on $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
@@ -315,7 +315,7 @@ Note that as the spectral representation is unique this definition makes sense. 
 		\item $f_{V_{1} \oplus V_{2}} = f_{V_{1}} \oplus f_{V_{2}}$.
 		\item If $g : (a, b) \to \R$ and $f$ and $g$ agree on spectrum of $A$, then $f(A) = g(A)$.
 		\item If $f[(a, b)] \subset (c, d)$ and $g : (c, d) \to \R$ then $(g \circ f)_{V} = g_{V} \circ f_{V}$.
-		\item If $f_{n} : (a, b) \to \R$ converge pointwise to $f$, then the same holds true for $(f_{n})_{V}$'s. In other words, the map $f \mapsto f_{V}$ is continuous.
+		\item If $f_{n} : (a, b) \to \R$ converge pointwise to $f$, then the same holds true for $(f_{n})_{V}$'s.
 	\end{enumerate}
 \end{prop}
 
@@ -332,7 +332,7 @@ Ultimately this is a statement about eigenvalue dynamics: if two real maps are c
 	For any $A, H \in \H$ we have $\spec(A + H) \subset \spec(A) + [-\|H\|, \|H\|]$.
 \end{lem}
 \begin{proof}
-	We prove a claim evidently equivalent: if all eigenvalues of $A$ are greater than $\|H\|$ in absolute value, then $A + H$ is invertible. Note that in this case the eigenvalues of $A^{-1}$ are less than $\|H\|^{-1}$ in absolute value and hence $\|A^{-1} H\| \leq \|A^{-1}\| \|H\| < 1$. This means that all eigenvalues $A^{-1} H$ are less than $1$ in absolute value, so $I + A^{-1} H$ is invertible: hence is also $A (I + A^{-1} H) = A + H$.
+	By a suitable translation the claim is reduced to the following: if all eigenvalues of $A$ are greater than $\|H\|$ in absolute value, then $A + H$ is invertible. Note that in this case the eigenvalues of $A^{-1}$ are less than $\|H\|^{-1}$ in absolute value and hence $\|A^{-1} H\| \leq \|A^{-1}\| \|H\| < 1$. It follows that all the eigenvalues of $A^{-1} H$ are less than $1$ in absolute value, so $I + A^{-1} H$ is invertible: hence is also $A (I + A^{-1} H) = A + H$.
 \end{proof}
 
 Note that the previous lemma implies that $\H_{(a, b)}$ or more generally $\H_{U}$ is an open set (in $\H)$ for any open $U \subset \R$, where $\H_{U}$ is defined as one would expect.
@@ -422,7 +422,7 @@ As normal product doesn't quite work with positivity, next attempt might be symm
 \end{align*}
 (or maybe with normalizing constant $\frac{1}{2}$ in the front), instead of the usual one. It turns out that even this doesn't fix positivity.
 
-For one dimesional projections things go as badly as they possibly can.
+For one dimensional projections things go as badly as they possibly can.
 
 \begin{prop}\label{symmetric_projection}
 	If $v, w \in V \setminus \{0\}$, then

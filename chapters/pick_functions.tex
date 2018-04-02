@@ -149,12 +149,12 @@ We will not prove theorem \ref{pick_nevanlinna_herglotz_representation_theorem},
 
 \subsection{What is happening?}
 
-Let's return to Question \ref{pick_predual}: our goal is to find some set of linear functionals on $\C^{\Hp}$, i.e. a subset of $\subset (\C^{\Hp})^{*}$, such that $\pickclass$ is dual cone of $C^{*}$. Note that most of the cones of past chapters were defined directly via some predual:
+Let's return to Question \ref{pick_predual}: our goal is to find some set of linear functionals on $\C^{\Hp}$, i.e. a subset of $(\C^{\Hp})^{*}$, such that $\pickclass$ is dual cone of $C^{*}$. Recall that most of the cones of past chapters were defined directly via some predual:
 
 \begin{itemize}
 	\item $\H_{+}(V)$, the cone of positive maps, was defined as dual cone of quadratic functionals: maps of the form $A \mapsto \langle A v, v \rangle$ for $v \in V$.
 	\item $P^{(k)}(a, b)$, the cone of $k$-tone functions (on $(a, b)$), was defined as dual cone of order $k$ divided differences: maps of the form $f \mapsto [x_{0}, x_{1}, \ldots, x_{k}]_{f}$, where $a < x_{0}, x_{1}, \ldots, x_{k} < b$ are pairwise distinct.
-	\item $P_{n}(a, b)$, the cone of $n$-monotone functions (on $(a, b)$), was defined as dual cone maps of the form $f \mapsto \langle (f(B) - f(A)) v, v \rangle$, were $v \in V$ and $A, B \in \H_{(a, b)}$ are such that $A \leq B$.
+	\item $P_{n}(a, b)$, the cone of $n$-monotone functions (on $(a, b)$), was defined as dual cone of maps of the form $f \mapsto \langle (f(B) - f(A)) v, v \rangle$, were $v \in V$ and $A, B \in \H_{(a, b)}$ are such that $A \leq B$.
 \end{itemize}
 
 In chapter $5$ we managed to find some kind of answers to Questions \ref{question_1} and \ref{question_2}: we gave simpler preduals for $P_{n}(a, b)$ and $P_{\infty}(a, b)$:
@@ -177,7 +177,7 @@ Now we have an inverse problem: we have set of functions (Pick functions) and wo
 	\begin{align*}
 		p^{*}(\varphi_{\infty}) = \lim_{i \to \infty} p^{*}(\varphi_{i}) \geq 0.
 	\end{align*}
-	But this means that $\varphi$ lies in the dual cone of $C^{*}$, i.e. in $\pickclass$, as desired.
+	But this means that $\varphi_{\infty}$ lies in the dual cone of $C^{*}$, i.e. in $\pickclass$, as desired.
 \end{proof}
 
 Of course, one can show Proposition \ref{pick_convergence} by many other means, but as we will see later on, the predual $C^{*}$ itself is the true reward for our troubles.
@@ -222,15 +222,11 @@ This is where the integral representations of the previous sections come in. If 
 	\sum_{i = 1}^{m} c_{i} \varphi(z_{i}) &= \sum_{i = 1}^{m} c_{i} \left(\alpha z_{i} + \beta + \int_{-\infty}^{\infty} \left(\frac{1}{\lambda - z_{i}} - \frac{\lambda}{\lambda^2 + 1}\right) d \mu(\lambda)\right) \\
 	&= \alpha \sum_{i = 1}^{m} c_{i} z_{i} + \beta \sum_{i = 1}^{m} c_{i} + \int_{-\infty}^{\infty} \left( \sum_{i = 1}^{m}\frac{c_{i}}{\lambda - z_{i}} - \frac{\lambda}{\lambda^2 + 1} \sum_{i = 1}^{m} c_{i} \right) d \mu(\lambda)
 \end{align*}
-Since $\beta$ can be any real, we should have $\sum_{i = 1}^{m} c_{i} = 0$. Setting $\alpha = 0$ we see that the integral
-\begin{align*}
-	 \int_{-\infty}^{\infty} \sum_{i = 1}^{m}\frac{c_{i}}{\lambda - z_{i}} d \mu(\lambda)
-\end{align*}
-should be non-negative real for any Radon measure $\mu$ with $\int_{-\infty}^{\infty} (\lambda^2 + 1)^{-1} d \mu(\lambda) < \infty$. By choosing $\mu = \delta_{\lambda}$ and write $r(\lambda) =  \sum_{i = 1}^{m} c_{i}/(\lambda - z_{i})$ the sum
+Since $\beta$ can be any real, we should have $\sum_{i = 1}^{m} c_{i} = 0$. Choosing $\lambda \in \R$, $\mu = \delta_{\lambda}$, $\alpha = 0$ and writing $r(\lambda) =  \sum_{i = 1}^{m} c_{i}/(\lambda - z_{i})$, we see that
 \begin{align*}
 	r(\lambda) = \sum_{i = 1}^{m}\frac{c_{i}}{\lambda - z_{i}}
 \end{align*}
-should be non-negative for any $\lambda \in \R$. Consequently $r$ is a rational function, real on reals, so its poles have to lie symmetrically with respect to real axis. But since all poles of $r$ lie in $\Hp$, this means that $r$ is zero, and hence all $c_{i}$'s are zeroes.
+should be non-negative for any $\lambda \in \R$. Consequently: $r$ is a rational function, real on reals, so its poles have to lie symmetrically with respect to real axis. But since all poles of $r$ lie in $\Hp$, this means that $r$ is zero, and hence all $c_{i}$'s are zeroes.
 
 So there are no non-trivial $\C$-linear functionals on $\C^{\Hp}$, non-negative on Pick functions.
 
@@ -247,55 +243,75 @@ By setting $\mu = \delta_{\lambda}$ we see that the rational function
 \begin{align*}
 	r(\lambda) := \sum_{i = 1}^{m} \left(\frac{c_{i}}{\lambda - z_{i}} + \frac{\overline{c_{i}}}{\lambda - \overline{z_{i}}}\right)
 \end{align*}
-should be non-negative. We will show in short while that in this case also $\sum_{i = 1}^{m} \left(c_{i} z_{i} + \overline{c_{i}} \overline{z_{i}}\right) \geq 0$.
+should be non-negative.
 
-These considerations suggest that elements of $C^{*}$ should correspond to non-negative rational functions, whereas elements of $(\C^{\Hp})^{*}$ should be rational functions mapping reals to reals. One could work with such functionals, but it is convenient to broaden one's view slightly: we will consider also complex rational functions. We will specifically consider the following family of rational functions.
+These considerations suggest that elements of $C^{*}$ should correspond to non-negative rational functions, whereas elements of $(\C^{\Hp})^{*}$ should be rational functions mapping reals to reals. One could work with such functionals, but it is convenient to broaden one's view slightly: we will also consider complex rational functions. We will specifically study the following family of rational functions.
 
 \begin{maar}
-	We will denote by $R(\Hp)$ the $\C$-vector space of rational functions $r$ such that:
+	Let $X \subset \C$. We will denote by $R(X)$ the $\C$-vector space of rational functions $r$ such that:
 	\begin{itemize}
 		\item $r$ vanishes at infinity.
-		\item All poles of $r$ lie in $\Hp \cup \Hm$.
+		\item All poles of $r$ lie in $X$.
 		\item All poles of $r$ are simple.
 	\end{itemize}
-	We will also write $R_{+}(\Hp)/R_{\pm}(\Hp)$ for the functions in $R(\Hp)$, which are non-negative/real on $\R$.
+	We will also write $R_{+}(X)/R_{\pm}(X)$ for the functions in $R(X)$, which are non-negative/real on $\R$.
 \end{maar}
 
-Let us first make couple of reality checks concering the sets $R(\Hp)$, $R_{\pm}(\Hp)$ and $R_{+}(\Hp)$. For rational function $r$, denote by $r^{*}$ the rational function for which
+Let us first make couple of reality checks concering the sets $R(X)$, $R_{\pm}(X)$ and $R_{+}(X)$. For rational function $r$, denote by $r^{*}$ the rational function for which
 \begin{align*}
 	r^{*}(\lambda) = \overline{r(\overline{\lambda})}
 \end{align*}
-for any $\lambda \in \C$.
+for any $\lambda \in \C$. Denote also
+\begin{align*}
+	X^{*} = \{z \in \C | \overline{z} \in X \}
+\end{align*}
+whenever $X \subset \C$.
 
 \begin{prop}\label{pick_functional_span}
 	\begin{enumerate}[(i)]
 		\item
 		\begin{align*}
-			R(\Hp) = \vspan_{\C} \left\{\frac{1}{\cdot - z} | z \in \Hp \cup \Hm \right\}.
+			R(X) = \vspan_{\C} \left\{\frac{1}{\cdot - z} | z \in X \right\}.
 		\end{align*}
 		\item
 		\begin{align*}
-			R_{\pm}(\Hp) = \vspan_{\R} \left\{\frac{c}{\cdot - z} + \frac{\overline{c}}{\cdot - \overline{z}} | c \in \C, z \in \Hp \right\} = \{r + r^{*} | r \in R(\Hp) \}.
+			R_{\pm}(X) &= \vspan_{\R} \left\{\frac{c}{\cdot - z} + \frac{\overline{c}}{\cdot - \overline{z}} | c \in \C, z \in X \cap X^{*} \right\} \\
+			&= \{r + r^{*} | r \in R(X \cap X^{*}) \} = \{r \in R(X) | r = r^{*}\}.
 		\end{align*}
 		\item
 		\begin{align*}
-			R_{+}(\Hp) = \left\{ r r^{*} | r \in R(\Hp) \right\}.
+			R_{+}(X) = \left\{ N(r) | r \in R(X \cap X^{*} \cap \Hp) \right\}.
 		\end{align*}
 		\item
 		\begin{align*}
-			R(\Hp) = \vspan_{\C} R_{\pm}(\Hp)
+			\vspan_{\C} R_{\pm}(X) = R(X \cap X^{*})
 		\end{align*}
 		\item
 		\begin{align*}
-			R_{\pm}(\Hp) = \vspan_{\R} R_{+}(\Hp) = \{r_{1} - r_{2} | r_{1}, r_{2} \in R_{+}(\Hp)\}
+			\vspan_{\R} R_{+}(X) = \{r \in R_{\pm}(X) | r(\lambda) = O(\lambda^{-2}) \text{ at }\infty\}
+		\end{align*}
+		\item
+		\begin{align*}
+			\vspan_{\C} R_{+}(X) = \{r \in R(X \cap X^{*}) | r(\lambda) = O(\lambda^{-2}) \text{ at }\infty\}
 		\end{align*}
 	\end{enumerate}
 \end{prop}
 \begin{proof}
-	Easy to check.
+	\begin{enumerate}[(i)]
+		\item This is just the partial fraction decomposition.
+		\item Easy to check.
+		\item This follows from \ref{polynomial_lemma}.
+		\item Easy to check.
+		\item It is easy to check that elements of the right-hand side are spanned by the functions of the form
+		\begin{align*}
+			&\frac{c}{(\cdot - z)(\cdot - \overline{w})} + \frac{\overline{c}}{(\cdot - \overline{z})(\cdot - w)} \\
+			=& N\left(\frac{c}{\cdot - z} + \frac{1}{\cdot - w}\right) - |c|^2 N\left(\frac{1}{\cdot - z}\right) - N\left(\frac{1}{\cdot - w}\right) \in \vspan_{\R} R_{+}(X).
+		\end{align*}
+		\item Follows easily from the previous part.
+	\end{enumerate}
 \end{proof}
 
-Notice that the set $R(\Hp)$ generalizes the rational functions in both the complex and real settings. How do they define linear functionals? If we are given any $r \in R(\Hp)$, write $r$ in the form $\sum_{i = 1}^{m} c_{i} (\cdot - z_{i})^{-1}$, where $m \geq 0$, $c_{1}, c_{2}, \ldots, c_{m} \in \C$ and $z_{1}, z_{2}, \ldots, z_{m} \in \Hp \cup \Hm$. Then, if we are given any $\varphi \in \C^{\Hp}$, we set
+We will mostly study the case $X = \Hp \cup \Hm$: notice that $R(\Hp \cup \Hm)$ generalizes the rational functions in both the complex and real settings. How do they define linear functionals? If we are given any $r \in R(\Hp \cup \Hm)$, write $r$ in the form $\sum_{i = 1}^{m} c_{i} (\cdot - z_{i})^{-1}$, where $m \geq 0$, $c_{1}, c_{2}, \ldots, c_{m} \in \C$ and $z_{1}, z_{2}, \ldots, z_{m} \in \Hp \cup \Hm$. Then, if we are given any $\varphi \in \C^{\Hp}$, we set
 \begin{align*}
 	\varphi \mapsto \sum_{i = 1}^{m} c_{i} \varphi(z_{i}).
 \end{align*}
@@ -303,35 +319,35 @@ Except now there's a slight problem: if $z_{i} \in \Hm$, $\varphi(z_{i})$ is not
 \begin{align}\label{abuse}
 	\varphi(\overline{z}) = \overline{\varphi(z)},
 \end{align}
-for any $z \in \Hp$. Instead, we do something else. Note that every function in $\C^{\Hp}$ can be interpreted as a function in $\C^{\Hp \cup \Hm}$, extending with \ref{abuse}. In this way every element of $R(\Hp)$ corresponds to a $\C$-linear functional $\C^{\Hp \cup \Hm} \to \C$. It is easy to see that every such functional also corresponds to an element in $R(\Hp)$. We hence have an dual pairing between $\C^{\Hp \cup \Hm}$ and $R(\Hp)$, $\C$-linear in both arguments, denoted by $\langle \cdot, \cdot \rangle_{L}$.
+for any $z \in \Hp$. Instead, we do something else. Note that every function in $\C^{\Hp}$ can be interpreted as a function in $\C^{\Hp \cup \Hm}$, extending with \ref{abuse}. In this way every element of $R(\Hp \cup \Hm)$ corresponds to a $\C$-linear functional $\C^{\Hp \cup \Hm} \to \C$. It is easy to see that every such functional also corresponds to an element in $R(\Hp \cup \Hm)$. We hence have an dual pairing between $\C^{\Hp \cup \Hm}$ and $R(\Hp \cup \Hm)$, $\C$-linear in both arguments, denoted by $\langle \cdot, \cdot \rangle_{L}$.
 
-To recap $\langle \cdot, \cdot \rangle_{L} : \C^{\Hp \cup \Hm} \times R(\Hp) \to \C$ is the unique $\C$-bilinear mapping for which
+To recap $\langle \cdot, \cdot \rangle_{L} : \C^{\Hp \cup \Hm} \times R(\Hp \cup \Hm) \to \C$ is the unique $\C$-bilinear mapping for which
 \begin{align*}
 	\langle \varphi, (\cdot - z)^{-1}\rangle_{L} = \varphi(z)
 \end{align*}
-for any $\varphi \in \C^{\Hp \cup \Hm}$ and $z \in \Hp \cup \Hm$. Note also that for fixed $r \in R(X)$, the map $\varphi \mapsto \langle \varphi, r\rangle_{L}$ is continuous. This pairing is of course essentially the same pairing we defined in section \ref{dual_pairing_section}.
+for any $\varphi \in \C^{\Hp \cup \Hm}$ and $z \in \Hp \cup \Hm$. Note also that for fixed $r \in R(\Hp \cup \Hm)$, the map $\varphi \mapsto \langle \varphi, r\rangle_{L}$ is continuous. We could of course build similar pairing for any $X \subset \C$. This pairing is essentially the same as the one we defined in section \ref{dual_pairing_section}.
 
-So finally: which elements in $r \in R(\Hp)$ are such that
+So finally: which elements in $r \in R(\Hp \cup \Hm)$ are such that
 \begin{align*}
 	\langle \varphi, r \rangle_{L} \geq 0
 \end{align*}
-for any Pick function $\varphi$? Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} implies that these functionals are exactly the elements of $R_{+}(\Hp)$, but as we haven't proven \ref{pick_nevanlinna_herglotz_representation_theorem}, we will give alternate argument.
+for any Pick function $\varphi$? One could use Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} to prove that these functionals are exactly the elements of $R_{+}(\Hp)$, but as we haven't proven \ref{pick_nevanlinna_herglotz_representation_theorem}, we will give alternate argument.
 
 \begin{lause}\label{pick_functionals}
-	Let $r \in R(\Hp)$. Now
+	Let $r \in R(\Hp \cup \Hm)$. Now
 	\begin{align*}
 		\langle \varphi, r \rangle_{L} \geq 0
 	\end{align*}
-	for any $\varphi \in \pickclass$, if and only if $r \in R_{+}(\Hp)$.
+	for any $\varphi \in \pickclass$, if and only if $r \in R_{+}(\Hp \cup \Hm)$.
 \end{lause}
 \begin{proof}
 	Note that $\varphi_{\lambda} := (\lambda - \cdot)^{-1} \in \pickclass$, and
 	\begin{align*}
 		\langle \varphi_{\lambda}, r \rangle_{L} = r(\lambda)
 	\end{align*}
-	for any $\lambda \in \R$ and $r \in R(\Hp)$. We must hence have $r \in R_{+}(\Hp)$.
+	for any $\lambda \in \R$ and $r \in R(\Hp \cup \Hm)$. We must hence have $r \in R_{+}(\Hp \cup \Hm)$.
 
-	Conversely, fix any $r \in R_{+}(\Hp)$. We already know that $\langle \varphi_{\lambda}, r\rangle \geq 0$ for any $\lambda \in \R$ so by continuity it suffices to prove the following result.
+	Conversely, fix any $r \in R_{+}(\Hp \cup \Hm)$. We already know that $\langle \varphi_{\lambda}, r\rangle \geq 0$ for any $\lambda \in \R$ so by continuity it suffices to prove the following result.
 
 	\begin{lem}\label{pick_dense}
 		Under the topology of pointwise convergence one has
@@ -350,9 +366,9 @@ for any Pick function $\varphi$? Theorem \ref{pick_nevanlinna_herglotz_represent
 	\end{proof}
 \end{proof}
 
-We will call the maps $\varphi \mapsto \langle \varphi, r\rangle_{L}$ for fixed $r \in R_{+}(X)$ \textbf{Pick functionals}.
+We will call the maps $\varphi \mapsto \langle \varphi, r\rangle_{L}$ for fixed $r \in R_{+}(\Hp \cup \Hm)$ \textbf{Pick functionals}.
 
-One can write the Pick functionals also in terms of divided differences. If $r \in R_{+}(\Hp)$, we have
+One can write the Pick functionals also in terms of divided differences. If $r \in R_{+}(\Hp \cup \Hm)$, we have
 \begin{align*}
 	r = \frac{N(q)}{|\cdot - z_{1}|^2 \cdots |\cdot - z_{n}|^2}
 \end{align*}
@@ -363,9 +379,9 @@ for some $n \geq 1$, $q \in \C_{n - 1}[x]$ and pairwise distinct $z_{1}, z_{2}, 
 
 \subsection{Step 2}
 
-Recall that our aim is to prove that $\pickclass \in \C^{\Hp \cup \Hm}$ is dual cone of $R(\Hp)$ in the sense of $\langle \cdot, \cdot \rangle_{L}$. In other words: we should prove that if $\varphi \in \C^{\Hp \cup \Hm}$ is such that
+Recall that our aim is to prove that $\pickclass \in \C^{\Hp \cup \Hm}$ is the dual cone of $R_{+}(\Hp \cup \Hm)$ in the sense of $\langle \cdot, \cdot \rangle_{L}$. In other words: we should prove that if $\varphi \in \C^{\Hp \cup \Hm}$ is such that
 \begin{align}\label{weakly_pick_def}
-	\langle \varphi, r\rangle_{L} \geq 0 \text{ for any  $r \in R_{+}(\Hp)$},
+	\langle \varphi, r\rangle_{L} \geq 0 \text{ for any  $r \in R_{+}(\Hp \cup \Hm)$},
 \end{align}
 then $\varphi \in \pickclass$, i.e.
 \begin{enumerate}[(i)]
@@ -373,20 +389,51 @@ then $\varphi \in \pickclass$, i.e.
 	\item $\Im(\varphi(z)) \geq 0$ for any $z \in \Hp$,
 	\item $\varphi$ is analytic on $\Hp$.
 \end{enumerate}
-Note that if $\varphi$ is analytic on $\Hp$, it is clearly also analytic on $\Hm$.
 
-We will call a function $\varphi \in \C^{\Hp \cup \Hm}$ satisfying \ref{weakly_pick_def} \textbf{weakly Pick functions}, and denote the set of weakly Pick functions by $\pickclass(\Hp)$. It's not very hard to show that any weakly Pick function satisfies $(i)$ and $(ii)$. Indeed, by Proposition \ref{pick_functional_span} $\langle \varphi, r\rangle_{L} \in \R$ for any $\varphi \in \pickclass(\Hp)$ and $r \in R_{\pm}(\Hp)$. In particular
-\begin{align*}
-	c \varphi(z) + \overline{c} \varphi(\overline{z}) = \langle \varphi, c (\cdot - z)^{-1} + \overline{c} (\cdot - \overline{z})^{-1}\rangle_{L} \in \R,
-\end{align*}
-for any $c \in \C$ and $z \in \Hp$, which easily implies $(i)$. Note that the first property implies that any weakly Pick function can be interpreted as a function in $\C^{\Hp}$. For $(ii)$, note that for any $z \in \Hp$ we have $|\cdot - z|^{-2} \in R_{+}(\Hp)$, so
-\begin{align*}
-	0 &\leq \langle \varphi, |\cdot - z|^{-2}\rangle_{L} \\
-	&= \left\langle \varphi, \frac{1}{z - \overline{z}}\frac{1}{\cdot - z} + \frac{1}{\overline{z} - z}\frac{1}{\cdot - \overline{z}}\right\rangle_{L} \\
-	&= \frac{\varphi(z) - \varphi(\overline{z})}{z - \overline{z}} \\
-	&= \frac{\Im(\varphi(z))}{\Im(z)},
-\end{align*}
-as desired.
+Unfortunately this is not quite true. Since $\langle 1, r \rangle_{L} = 0$ for any $r \in R_{+}(\Hp \cup \Hm)$, $\varphi$ is characterized only up to a complex constant. Luckily this is the only problem: we should instead prove that any function satisfying \ref{weakly_pick_def} differs from a Pick function by a constant. We will call a function $\varphi \in \C^{\Hp \cup \Hm}$ satisfying \ref{weakly_pick_def} \textbf{weakly Pick function}, and denote the set of weakly Pick functions by $\pickclass(\Hp \cup \Hm)$.
+
+The proper replacement for (i) is the following lemma.
+
+\begin{lem}\label{pick_predual_1}
+	Let $\varphi \in \pickclass(\Hp \cup \Hm)$. Then for any $z, w \in \Hp$ one has
+	\begin{align*}
+		\varphi(\overline{z}) - \overline{\varphi(z)} = \varphi(\overline{w}) - \overline{\varphi(w)} \in i \R.
+	\end{align*}
+\end{lem}
+\begin{proof}
+	Observe that
+	\begin{align*}
+		\varphi(\overline{z}) - \overline{\varphi(z)} &= \varphi(\overline{z}) - \varphi(z) + \varphi(z) - \overline{\varphi(z)}\\
+		&= \left\langle \varphi, \frac{1}{\cdot - \overline{z}} - \frac{1}{\cdot - z} \right\rangle_{L} + 2 i \Im(\varphi(z)) \\
+		&= - 2 i \Im(z) \left\langle \varphi, \frac{1}{|\cdot - z|^2} \right\rangle_{L} + 2 i \Im(\varphi(z)).
+	\end{align*}
+	As $|\cdot - z|^{-2} \in R_{\pm}(\Hp \cup \Hm)$, at least $\varphi(\overline{z}) - \overline{\varphi(z)} \in i \R$ for any $z \in \Hp$.
+
+	For the first equality the rough idea is the following: for any $c \in \C$ we have
+	\begin{align*}
+		r_{z, c} := \frac{c}{\cdot - z} + \frac{\overline{c}}{\cdot - \overline{z}} \in R_{\pm}(\Hp \cup \Hm).
+	\end{align*}
+	Now if that would imply that $\langle \varphi, r_{z, c} \rangle_{L} \in \R$, we would be done. Indeed, it is easy to see that
+	\begin{align*}
+		\R \ni \langle \varphi, r_{z, c} \rangle_{L} = c \varphi(z) + \overline{c} \varphi(\overline{z})
+	\end{align*}
+	for any $c \in \C$, if and only if $\varphi(\overline{z}) = \overline{\varphi(z)}$.
+
+	This doesn't quite work, since $r_{z, w} \notin \vspan_{\R} R_{+}(\Hp \cup \Hm)$, but if one performs the same trick with
+	\begin{align*}
+		\frac{c}{\cdot - z} + \frac{\overline{c}}{\cdot - \overline{z}} - \frac{c}{\cdot - w} + \frac{\overline{c}}{\cdot - \overline{w}},
+	\end{align*}
+	which lies in $\vspan_{\R}R_{+}(\Hp \cup \Hm)$, one gets the claim.
+\end{proof}
+
+By the previous lemma, any $\varphi \in \pickclass(\Hp \cup \Hm)$ can be translated to satisfy (i). We denote the set of such translates by $\pickclass(\Hp)$.
+
+\begin{lem}
+	Let $\varphi \in \pickclass(\Hp)$. Then $\Im(\varphi(z)) \geq 0$ for any $z \in \Hp$.
+\end{lem}
+\begin{proof}
+	This follows immediately from the first computation of the proof of Lemma \ref{pick_predual_1}.
+\end{proof}
 
 The third property is trickier. Let us first try to prove something somewhat easier.
 
@@ -398,11 +445,17 @@ The third property is trickier. Let us first try to prove something somewhat eas
 	\begin{align*}
 		0 = \lim_{z \to w}\left(\varphi(z) - \varphi(w)\right) = \lim_{z \to w} \left\langle \varphi, \frac{1}{\cdot - z} - \frac{1}{\cdot - w}\right\rangle_{L}.
 	\end{align*}
-	The function $r_{z, w} := (\cdot - z)^{-1} - (\cdot - w)^{-1}$ tends to zero (in some sense) as $z \to w$, so something like this ought to be true: $R(\Hp)$ should have topology for which this convergence happens and the map $r \mapsto \langle \varphi, r\rangle$ is continuous.
+	The function $r_{z, w} := (\cdot - z)^{-1} - (\cdot - w)^{-1}$ tends to zero (in some sense) as $z \to w$, so something like this ought to be true: $R(\Hp \cup \Hm)$ should have topology for which this convergence happens and the map $r \mapsto \langle \varphi, r\rangle$ is continuous.
 
-	And indeed, there is one:
+	And indeed, there is one: one induced by
 	\begin{align*}
 		\|r\|_{R} = \sup_{\lambda \in \R} |r(\lambda)| (\lambda^2 + 1).
+	\end{align*}
+	It should be noted that $\|\cdot\|_{R}$ is not norm, as it is infinite for some elements of $R(\Hp \cup \Hm)$. It will nevertheless define an topology and one straightforwardly checks that
+	\begin{align*}
+		&\{r \in R(\Hp \cup \Hm) | \|r\|_{R} < \infty\} \\
+		=& \{r \in R(\Hp \cup \Hm) | \langle 1, r \rangle_{L} = 0 \} \\
+		=& \vspan_{\C} R_{+}(\Hp \cup \Hm).
 	\end{align*}
 
 	\begin{lem}\label{pick_norm_estimate}
@@ -410,14 +463,14 @@ The third property is trickier. Let us first try to prove something somewhat eas
 		\begin{align*}
 			\left|\langle \varphi, r \rangle_{L}\right| \leq C(\varphi) \|r\|_{R}
 		\end{align*}
-		for any $r \in R(\Hp)$.
+		for any $r \in R(\Hp \cup \Hm)$.
 	\end{lem}
 	\begin{proof}
-		Write $r = r_{1} + i r_{2}$ where $r_{1}, r_{2} \in R_{\pm}(\Hp)$. Since clearly
+		Note that the statement is trivially true if $\|r\|_{R} = \infty$. Write $r = r_{1} + i r_{2}$ where $r_{1}, r_{2} \in R_{\pm}(\Hp \cup \Hm)$. Since clearly
 		\begin{align*}
 			\|r\|_{R} \geq \max(\|r_{1}\|_{R}, \|r_{2}\|_{R}),
 		\end{align*}
-		it suffices cook up such estimate for $R_{\pm}(\Hp)$. But such functions satisfy
+		it suffices cook up such estimate for $R_{\pm}(\Hp \cup \Hm)$. But such functions satisfy
 		\begin{align*}
 			-\frac{\|r\|_{R}}{\lambda^2 + 1} \leq r(\lambda) \leq \frac{\|r\|_{R}}{\lambda^2 + 1} 
 		\end{align*}
@@ -427,21 +480,27 @@ The third property is trickier. Let us first try to prove something somewhat eas
 
 Proving analyticity is not much harder.
 
-\begin{lem}
-	Let $\varphi \in \pickclass(\Hp)$. Then $\varphi$ is analytic.
+\begin{lem}\label{weak_analytic}
+	Let $\varphi \in \pickclass(\Hp)$. Then $\varphi$ is differentiable, and hence analytic.
 \end{lem}
 \begin{proof}
-	Note that if we manage to show that the order $2$ divided differences of $\varphi$ are locally bounded, Theorem \ref{bounded_div} implies the claim. Strictly speaking we only proved Theorem \ref{bounded_div} on real line, but the proof would be almost identical in the complex case. Observe that for any $z_{0}, z_{1}, z_{2} \in \Hp$ we have
+	Note that if we manage to show that the order $2$ divided differences of $\varphi$ are locally bounded, Theorem \ref{bounded_div} implies the claim. Strictly speaking we only proved Theorem \ref{bounded_div} on real line, but the proof would be almost identical in the complex case. Indeed: the essence of the proof was to simply observe that if the order $2$ divided differences are bounded, then the order $1$ divided differences are Lipschitz, and $\varphi$ is hence differentiable.
+
+	Observe that for any $z_{0}, z_{1}, z_{2} \in \Hp$ we have
 	\begin{align*}
-		[z_{0}, z_{1}, z_{2}]_{\varphi} = \left\langle \varphi, \frac{1}{(\lambda - z_{0}) (\lambda - z_{1}) (\lambda - z_{2})}\right\rangle_{L}.
+		[z_{0}, z_{1}, z_{2}]_{\varphi} = \left\langle \varphi, \frac{1}{(\cdot - z_{0}) (\cdot - z_{1}) (\cdot - z_{2})}\right\rangle_{L}.
 	\end{align*}
-	Hence, by Lemma \ref{pick_norm_estimate} we can bound the divided difference just by estimating $\|(\lambda - z_{0})^{-1} (\lambda - z_{1})^{-1} (\lambda - z_{2})^{-1}\|_{R}$. But this is straighforward: one has, for instance,
+	Hence, by Lemma \ref{pick_norm_estimate} we can bound the divided difference just by estimating $\|(\cdot - z_{0})^{-1} (\cdot - z_{1})^{-1} (\cdot - z_{2})^{-1}\|_{R}$. But this is straighforward: one has, for instance,
 	\begin{align*}
-		\left\|\frac{1}{(\lambda - z_{0}) (\lambda - z_{1}) (\lambda - z_{2})}\right\|_{R} \leq \frac{1}{\Im(z_{0})} \left(1 + \frac{|z_{1} - i|}{\Im(z_{1})}\right) \left(1 + \frac{|z_{2} + i|}{\Im(z_{2})}\right).
+		\left\|\frac{1}{(\cdot - z_{0}) (\cdot - z_{1}) (\cdot - z_{2})}\right\|_{R} \leq \frac{1}{\Im(z_{0})} \left(1 + \frac{|z_{1} - i|}{\Im(z_{1})}\right) \left(1 + \frac{|z_{2} + i|}{\Im(z_{2})}\right).
 	\end{align*}
 \end{proof}
 
-In similar vein one could cook up estimates for higher order divided differences.
+\begin{kor}\label{pick_predual_ans}
+	$\pickclass$ is the dual cone of $R_{+}(\Hp \cup \Hm)$ in the sense of $\langle \cdot, \cdot \rangle_{L}$. In other words $\pickclass(\Hp) = \pickclass$.
+\end{kor}
+
+Note that the inequalities of proof of Lemma \ref{weak_analytic} can be easily extended to higher order divided differences.
 
 \begin{prop}\label{pick_div_dif_estimate}
 	Let $\varphi \in \pickclass(\Hp)$. Then for every compact $K \subset \Hp \cup \Hm$ there exists a constant $C(\varphi, K)$ such that
@@ -451,18 +510,144 @@ In similar vein one could cook up estimates for higher order divided differences
 	for any $k \geq 1$ and $z_{0}, z_{1}, \ldots, z_{k} \in K$.
 \end{prop}
 
+\subsection{Functional extensions}
+
+Let us sketch alternate and more conceptual argument for Lemma \ref{weak_analytic}.
+
+Recall that for any $\varphi \in \pickclass(\Hp)$ and $z, w \in \Hp$ we have
+\begin{align*}
+	[z, w]_{\varphi} = \left\langle \varphi, \frac{1}{(\cdot - z) (\cdot - w)} \right\rangle_{L}.
+\end{align*}
+As $z \to w$, by \ref{weak_analytic} the left-hand side converges to $\varphi'(w)$. This motivates us to define
+\begin{align*}
+	\left\langle \varphi, \frac{1}{(\cdot - w)^{2}} \right\rangle_{L} := \varphi'(w).
+\end{align*}
+More generally, it would make sense to set
+\begin{align}\label{extension_formula}
+	\left\langle \varphi, \frac{1}{(\cdot - w)^{k + 1}} \right\rangle_{L} := \frac{\varphi^{(k)}(w)}{k!},
+\end{align}
+for any $k \geq 1$, mimicking the Cauchy's integral formula for derivatives.
+
+\begin{maar}
+	Let $X \subset \C$. We will denote by $R^{\infty}(X)$ the $\C$-vector space of rational functions $r$ such that:
+	\begin{itemize}
+		\item $r$ vanishes at infinity.
+		\item All poles of $r$ lie in $X$.
+	\end{itemize}
+	We will also write $R^{\infty}_{+}(X)/R^{\infty}_{\pm}(X)$ for the functions in $R^{\infty}(X)$, which are non-negative/real on $\R$.
+\end{maar}
+
+Note that we have simply extended a linear functional $\langle \varphi, \cdot\rangle_{L}$ to $R^{\infty}(\Hp \cup \Hm)$. Now: in what way is this extension really natural?
+
+\begin{prop}\label{extension_positivity}
+	Let $\varphi \in \pickclass(\Hp)$. Then
+	\begin{align*}
+		\langle \varphi, r\rangle_{L} \geq 0
+	\end{align*}
+	for any $r \in R_{+}^{\infty}(\Hp \cup \Hm)$.
+\end{prop}
+
+The reason for this is actually rather simple: we may approximate the elements of $R^{\infty}(\Hp \cup \Hm)$ by elements of $R(\Hp \cup \Hm)$.
+
+\begin{lem}\label{rat_multiple_approx}
+	Let $\varphi \in \pickclass(\Hp)$ and $r \in R^{\infty}(\Hp \cup \Hm)/R^{\infty}_{\pm}(\Hp \cup \Hm)/R^{\infty}_{+}(\Hp \cup \Hm)$. Then for any $\varepsilon > 0$ there exists $s \in R(\Hp \cup \Hm)/R_{\pm}(\Hp \cup \Hm)/R_{+}(\Hp \cup \Hm)$ such that
+	\begin{align}\label{rat_approx}
+		\|r - s&\|_{R} < \varepsilon \nonumber\\
+		&\text{and } \\
+		|\langle \varphi, r\rangle_{L} -  &\langle \varphi, s\rangle_{L}| < \varepsilon \nonumber
+	\end{align}
+\end{lem}
+\begin{proof}
+	Let us first take care of the case $r \in R^{\infty}(\Hp \cup \Hm)$. Note that is suffices to verify the claim for the functions of the form $(\cdot - w)^{-k - 1}$, where $w \in \Hp$ and $k \geq 0$. We proceed by induction on $k$.
+
+	The case $k = 0$ is clear, so fix $k > 0$ and $w \in \Hp$. By the definition of the extension of $\langle \varphi, \cdot\rangle_{L}$ we have
+	\begin{align*}
+		\lim_{z \to w}\left(\frac{1}{z - w} \left(\left\langle \varphi, \frac{1}{(\cdot - z)^{k}}\right\rangle_{L} - \left\langle \varphi, \frac{1}{(\cdot - w)^{k}}\right\rangle_{L}\right)\right) = k \left\langle \varphi, \frac{1}{(\cdot - w)^{k + 1}}\right\rangle_{L}.
+	\end{align*}
+	If we manage to prove that
+	\begin{align}\label{derivative_derivative}
+		\lim_{w \to z} \left\| \frac{1}{z - w}\left(\frac{1}{(\cdot - z)^{k}} - \frac{1}{(\cdot - w)^{k}}\right) - \frac{k}{(\cdot - w)^{k + 1}}\right\|_{R} = 0,
+	\end{align}
+	we are done. Indeed: we have then found $(\cdot - w)^{-k - 1}$ an approximation (in the sense of \ref{rat_approx}) by a rational function with poles of lower order, and by induction hypothesis this lower order approximation has approximation with simple poles, as desired.
+
+	For \ref{derivative_derivative} one can simply note that
+	\begin{align*}
+		& \left\| \frac{1}{z - w}\left(\frac{1}{(\cdot - z)^{k}} - \frac{1}{(\cdot - w)^{k}}\right) - \frac{k}{(\cdot - w)^{k + 1}}\right\|_{R} \\
+		\leq & \sum_{i = 1}^{k} \left\|\frac{1}{(\cdot - z)^{i} (\cdot - w)^{k + 1 - i}} - \frac{1}{(\cdot - w)^{k + 1}}\right\|_{R} \\
+		\leq & \sum_{i = 1}^{k} \frac{1}{\Im(w)^{k + 1 - i}}\left\|\frac{1}{(\cdot - z)^{i}} - \frac{1}{(\cdot - w)^{i}}\right\|_{R} \\
+		\leq & |z - w|\sum_{i = 1}^{k} \frac{1}{\Im(w)^{k + 1 - i}} \sum_{j = 1}^{i} \left\|\frac{1}{(\cdot - z)^{j} (\cdot - w)^{i + 1 - j}}\right\| \\
+		\leq & |z - w| \left\|\frac{1}{(\cdot - z)(\cdot - w)}\right\|\sum_{i = 1}^{k} \frac{1}{\Im(w)^{k + 1 - i}} \sum_{j = 1}^{i} \frac{1}{\Im(z)^{j - 1} \Im(w)^{i - j}} \\
+		= & O(|z - w|)
+	\end{align*}
+	for $z, w$ in any compact $K \subset \Hp$.
+
+	If $r \in R^{\infty}_{\pm}(\Hp \cup \Hm)$, then also the approximation we constructed satisfies $s \in R_{\pm}(\Hp \cup \Hm)$.
+
+	Finally, consider the case $r \in R^{\infty}_{+}(\Hp \cup \Hm)$. Choose first $s \in R_{\pm}(\Hp \cup \Hm)$ with \ref{rat_approx}. Note that
+	\begin{align*}
+		s \geq r - \frac{\varepsilon}{(\cdot)^2 + 1} \geq -\frac{\varepsilon}{(\cdot)^2 + 1}
+	\end{align*}
+	so $s + \varepsilon ((\cdot)^2 + 1)^{-1} \in R_{+}(\Hp \cup \Hm)$ satisfies
+	\begin{align*}
+		\|r - s&\|_{R} < 2\varepsilon \nonumber\\
+		&\text{and } \\
+		|\langle \varphi, r\rangle_{L} -  \langle \varphi, s\rangle_{L}|& < \varepsilon (1 + \Im(\varphi(i)))
+	\end{align*}
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{extension_positivity}]
+	t.f.i.f. \ref{rat_approx}.
+\end{proof}
+
+The point of all of this is that these arguments can be ``reversed".
+
+\begin{proof}[Alternate proof for Lemma \ref{weak_analytic}]
+	We are going to extend $\langle \varphi, \cdot\rangle_{L}$ to a positive linear functional on $R^{\infty}(\Hp \cup \Hm)$. To this end fix any $r \in R^{\infty}(\Hp \cup \Hm)/R^{\infty}_{\pm}(\Hp \cup \Hm)/R^{\infty}_{+}(\Hp \cup \Hm)$ and cook up a sequence $(s_{k})_{k = 1}^{\infty}$ of elements in $R(\Hp \cup \Hm)/R_{\pm}(\Hp \cup \Hm)/R_{+}(\Hp \cup \Hm)$ with $\|r - s_{k}\| < \frac{1}{k}$ (with Lemma \ref{rat_multiple_approx}). As $\langle \varphi, \cdot\rangle_{L}$ is Lipschitz by \ref{pick_norm_estimate}, the sequence $(\langle \varphi, s_{k} \rangle_{L})_{k = 1}^{\infty}$ converges, and by setting
+	\begin{align*}
+		\langle \varphi, r\rangle_{L} = \lim_{k \to \infty} \langle \varphi, s_{k}\rangle_{L}
+	\end{align*}
+	we obtain such positive extension. Lemma \ref{pick_norm_estimate} (which definitely holds also for the extension) and \ref{derivative_derivative} imply that $\varphi$ is smooth and satisfies \ref{extension_formula}. Proposition \ref{pick_div_dif_estimate} implies that $\varphi$ satisfies the conditions of Theorem \ref{div_anal}, and is hence analytic.
+\end{proof}
+
 \section{Pick-Nevanlinna interpolation theorem}
 
-Note that Proposition \ref{pick_div_dif_estimate} implies that if $X \subset \Hp$, $\varphi \in \pickclass(X)$ and $z_{0}$ is an interior point of $X$, then the Taylor series of $\varphi$ at $z_{0}$ converges in $\D(z_{0}, \Im(z_{0}))$. It turns out that this gives an extension for $\varphi$ to $X \cup \D(z_{0}, \Im(z_{0}))$, and this extension is still in $\pickclass(X \cup \D(z_{0}, \Im(z_{0})))$. One can bootstrap this argument to extend $\varphi$ to $\Hp$, to a Pick function. If $X$ doesn't contain interior points, Taylor series trick doesn't work. Nevertheless, there is such extension, albeit non-unique in general. This is the content of Pick--Nevanlinna interpolation theorem.
+Corollary \ref{pick_predual_ans} motivates the following definition.
+
+\begin{maar}
+	Let $X \subset \Hp$. We say that $\varphi \in \C^{X \cup X^{*}}$ is \text{weakly Pick} (on $X$) if for any $r \in R_{+}(X \cup X^{*})$ we have
+	\begin{align*}
+		\langle \varphi, r\rangle_{L} \geq 0.
+	\end{align*}
+	We denote the set of weakly pick functions on $X$ by $\pickclass(X \cup X^{*})$.
+\end{maar}
+
+All of the arguments of the section ``step $2$" extend almost verbatim for sets $\pickclass(X \cup X^{*})$:
+\begin{enumerate}[(i)]
+	\item Any weakly Pick function on $X$ has translate that satisfies $\varphi(\overline{z}) = \overline{\varphi(z)}$ for any $z \in X$. We will again denote such translates by $\pickclass(X)$.
+	\item If $\varphi \in \pickclass(X)$, then $\Im(\varphi(z)) \geq 0$ for any $z \in X$.
+	\item If $\varphi \in \pickclass(X)$, then $\varphi$ is locally Lipschitz and analytic on every interior point of $X$.
+\end{enumerate}
+
+There's a slight problem with part (iii) though. We used Lemma \ref{pick_norm_estimate} in its proof. Proof of Lemma \ref{pick_norm_estimate} made use of the inequality
+\begin{align*}
+	\left|\langle \varphi, r \rangle_{L}\right| \leq \Im(\varphi(i)) \|r\|_{R},
+\end{align*}
+which doesn't make sense if $i \notin X$. But this problem is easy to fix: if $z_{0} \in X$, we may instead use
+\begin{align*}
+	\|r\|_{R, z_{0}} = \sup_{\lambda \in \R} |r(\lambda)| |\lambda - z_{0}|^2,
+\end{align*}
+as the  ``norm" and everything works as expected. Also, the ``norms" $\|\cdot\|_{R, z_{0}}$ are all equivalent anyway, as one checks easily enough.
+
+It turns out that all weakly Pick functions arise from Pick functions.
 
 \begin{lause}[Pick--Nevanlinna interpolation theorem]\label{pick_interpolation}
-	Let $X \subset \Hp$. Then the restriction map $\pickclass(\Hp) = \pickclass/\R \to \pickclass(X)$ is surjection. In other words: for any $\varphi \in \pickclass(X)$ there exists a Pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{X} = \varphi$.
+	Let $X \subset \Hp$. Then for any $\varphi \in \pickclass(X)$ there exists a Pick function $\tilde{\varphi}$ such that $\restr{\tilde{\varphi}}{X} = \varphi$.
 \end{lause}
 
 \begin{proof}
-	So we have an element in $p^{*} \in (R(X))^{*}$ such that $p^{*}(r) \geq 0$ for any $r \in R_{+}(X)$ and should prove that there exists $\tilde{p^{*}} \in R(\Hp)^{*}$ such that $\restr{\tilde{p^{*}}}{R(X)} = p^{*}$ and $\tilde{p^{*}}(r) \geq 0$ for any $r \in R_{+}(\Hp)$: we should extend a linear functional preverving its positivity.
+	In terms of linear functionals our task is: given linear functional on $R(X \cup X^{*})$, positive on $R_{+}(X \cup X^{*})$, we should extend the functional to $R(\Hp \cup \Hm)$ such that the extension is positive on $R_{+}(\Hp \cup \Hm)$. By Corollary \ref{pick_predual_ans} the extension is a Pick function.
 
-	As mentioned, such extension is not unique in general. However, if it so happens that $R(X)$ is dense in $R(\Hp)$ with respect to $\|\cdot\|_{L}$, then, as $p^{*}$ is Lipschitz by \ref{pick_norm_estimate}, it has unique extension. Then also $R_{+}(X)$ is dense in $R_{+}(\Hp)$ so the extension is also a Pick function. This already covers large variety of sets $X$.
+	It is easy to see that such extension is not unique in general. However, if it so happens that $R(X \cup X^{*})$ is dense in $R(\Hp \cup \Hm)$ with respect to $\|\cdot\|_{R}$, the argument of the alternate proof for Lemma \ref{weak_analytic} gives unique positive extenion. This already covers large variety of sets $X$.
 	\begin{lem}\label{pick_dual_dense}
 		If $X \subset \Hp$ has an accumulation point in $\Hp$, then $R(X)$ is dense in $R(\Hp)$.
 	\end{lem}
@@ -473,26 +658,25 @@ Note that Proposition \ref{pick_div_dif_estimate} implies that if $X \subset \Hp
 		\end{align*}
 		If $|w - i| < 1$, norm of the error term tends to zero. It follows that $R(X)$ is dense in $R(X \cup \D(i, 1))$. But as $2 i$ is an accumulation point of $X \cup \D(i, 1)$, we may repeat the previous argument: $R(X)$ is dense in $R(X \cup \D(2 i, 2))$. Bootstrapping along the sequence $(2^{n} i)_{n = 1}^{\infty}$ yields the claim.
 	\end{proof}
-	Note that the previous proof is really just the Taylor series (with Newton series, though) extension scheme in disguise.
 
 	For the general case one has to work slighty harder. Observe first that one only needs to prove the following lemma.
 	\begin{lem}\label{pick_one_point_extension}
-		For any $X \in \Hp$ and $w \in \Hp \setminus X$ the restriction map $\pickclass(X \cup \{w\}) \to \pickclass(X)$ is surjective.
+		Fix $X \in \Hp$ and $w \in \Hp \setminus X$. Then any element of $\pickclass(X)$ can be extended to an element of $\pickclass(X \cup \{w\})$.
 	\end{lem}
 	Given this lemma, one can, for instance, use transfinite induction (or Zorn's lemma if one so prefers) to extend any element of $\pickclass(X)$ to $\pickclass(\Hp)$. Or one may inductively extend $X$ by a countable set with an accumulation point, after which there exists a unique extension by the already proven dense case.
 
 	\begin{proof}[Proof of Lemma \ref{pick_one_point_extension}]
-		Fix $z_{0} \in X$. Note that any $r \in R_{+}(X \cup \{w\})$ is of the form
+		Write $r_{w}(\lambda) = (\lambda - w)^{-1}$. By Proposition \ref{pick_functional_span} $r \in R_{+}(X \cup X^{*} \cup \{w, \overline{w}\})$ is of the form
 		\begin{align*}
-		\lambda \mapsto \Re\left(a \left(\frac{1}{\lambda - w} - \frac{1}{\lambda - z_{0}}\right)\right) + r(\lambda),
+			ar_{w} + (ar_{w})^{*} + r,
 		\end{align*}
-		where $a \in \C$ and $r \in R_{\pm}(X)$. Writing $r_{w}(\lambda) = (\lambda - w)^{-1} - (\lambda - z_{0})^{-1}$, the extension should hence satisfy
+		where $a \in \C$ and $r \in R_{\pm}(X \cup X^{*})$: encode such rational functions as a set $\mathcal{F} \subset \C \times R_{\pm}(X \cup X^{*})$. Now, the extension should satisfy
 		\begin{align}\label{pick_extension_ineq}
-			\Re\left(a p^{*}(r_{w})\right) + p^{*}(r) \geq 0
+			\langle \varphi, ar_{w} + (ar_{w})^{*} + r \rangle_{L} = 2 \Re(a \langle \varphi, r_{w} \rangle_{L}) + \langle \varphi, r\rangle_{L} \geq 0
 		\end{align}
-		for some family of $\mathcal{F}$ pairs $(a, r) \in \C \times R_{\pm}(X)$. Note that if we find a value $p^{*}(r_{w})$ which satisfies all such inequalities, it determines an extension for $p^{*}$ to $\pickclass(X \cup \{w\})$.
+		for $(a, r) \in \mathcal{F}$. Note that if we find a value $\langle \varphi, r_{w} \rangle_{L}$ which satisfies all such inequalities, it determines the desired extension.
 
-		Each of the inequalities of the form \ref{pick_extension_ineq} (where $a \neq 0$) force $p^{*}(r_{w})$ in some closed half-space of $\C$. It is easy to check that for any $a \in \C$ there exist $(a, r) \in \mathcal{F}$: $p^{*}(r_{w})$ is constrained by half-spaces of all directions. This implies that set of suitable $p^{*}(r_{w})$'s can be expressed as intersection of compact sets, certain finite intersections of half-spaces in $\mathcal{F}$. We hence just have to verify that all such finite intersections are non-empty.
+		Each of the inequalities of the form \ref{pick_extension_ineq} (where $a \neq 0$) force $\langle \varphi, r_{w} \rangle_{L}$ in some closed half-space of $\C$. It is easy to check that for any $a \in \C$ there exist $(a, r) \in \mathcal{F}$: $\langle \varphi, r_{w} \rangle_{L}$ is constrained by half-spaces of all directions. This implies that set of suitable $\langle \varphi, r_{w} \rangle_{L}$'s can be expressed as intersection of compact sets, certain finite intersections of half-spaces in $\mathcal{F}$. We hence just have to verify that all such finite intersections are non-empty.
 
 		This, finally, follows almost immediately from the Farkas' lemma.
 		\begin{lem}[Farkas' lemma]\label{farkas_lemma}
@@ -508,11 +692,11 @@ Note that Proposition \ref{pick_div_dif_estimate} implies that if $X \subset \Hp
 		\end{lem}
 		Indeed: the inequalities in \ref{pick_extension_ineq} can be interpreted in the sense of Farkas' lemma, where $V := \C$ is two-dimensional inner product space over $\R$ with $\langle z, w \rangle_{\C} = \Re(z \overline{w})$ as the inner product. To check the condition of the lemma, pick any finite set of pairs $(a_{1}, r_{1}), (a_{2}, r_{2}), \ldots, (a_{m}, r_{m}) \in \mathcal{F}$. Take also $t_{1}, t_{2}, \ldots, t_{m} \geq 0$ with $\sum_{i = 1}^{m} t_{i} a_{i} = 0$. Now
 		\begin{align*}
-			0 \leq \sum_{i = 1}^{m} t_{i} \left(\Re(a_{i} r_{w}) + r_{i}\right) = \Re\left(\sum_{i = 1}^{m} t_{i} a_{i} r_{w}\right) + \sum_{i = 1}^{m} t_{i} r_{i} = \sum_{i = 1}^{m} t_{i} r_{i}
+			0 \leq \sum_{i = 1}^{m} t_{i} \left(ar_{w} + (ar_{w})^{*} + r_{i}\right) = \left(\sum_{i = 1}^{m} t_{i} a_{i} r_{w}\right) + \left(\sum_{i = 1}^{m} (t_{i} a_{i} r_{w})^{*}\right) + \sum_{i = 1}^{m} t_{i} r_{i} = \sum_{i = 1}^{m} t_{i} r_{i}
 		\end{align*}
-		pointwise, and hence $\sum_{i = 1}^{m} t_{i} p^{*}(r_{i}) \geq 0$. By Farkas' lemma we can find $p^{*}(r_{w}) \in \C$ such that
+		pointwise, and hence $\sum_{i = 1}^{m} t_{i} \langle \varphi, r_{i} \rangle_{L} \geq 0$. By Farkas' lemma we can find $\langle \varphi, r_{w} \rangle_{L} \in \C$ such that
 		\begin{align*}
-			\Re(a_{i} p^{*}(r_{w})) + p^{*}(r_{i}) \geq 0
+			2 \Re(a_{i} \langle \varphi, r_{w} \rangle_{L}) + \langle \varphi, r_{i} \rangle_{L} \geq 0
 		\end{align*}
 		for any $1 \leq i \leq m$. This is exactly what we wanted.
 	\end{proof}
@@ -563,52 +747,18 @@ For completeness, we also prove Farkas' lemma.
 
 \begin{huom}\label{taylor_section_rem}
 	Pick Nevanlinna interpolation theorem can be extended in many ways. One such extension concerns Taylor sections.
-	\begin{maar}
-		Let $d : \Hp \to \N \cup \{\infty\}$. Extend $d$ to $\C$ with $d(z) = d(\overline{z})$ for any $z \in \Hm$ and $d(\lambda) = 0$ for any $\lambda \in \R$. We denote by $R(d)$ the set of rational functions $r$ with the properties
-		\begin{itemize}
-			\item Pole of $r$ at $z \in \C$ (if any) has order at most $d(z)$.
-			\item $r(\lambda) = O(|\lambda|^{-2})$ at infinity.
-		\end{itemize}
-	\end{maar}
-	Note that $R(X) = R(\chi_{X})$.
 	\begin{lause}\label{pick_taylor_sections}
-		Let $d : \Hp \to \N \cup \{\infty\}$. Then the natural map $\pickclass/\R \to \pickclass(d) =: (R(d))^{*}$ is surjection.
+		Fix $d : \Hp \to \N \cup \{\infty\}$ and numbers $c_{z, k} \in \C$ for any $z \in \Hp$ and $0 \leq k \leq d(z) - 1$. Then there exists Pick function $\varphi$ with
+		\begin{align*}
+			\frac{\varphi^{(k)}(z)}{k!} = c_{z, k},
+		\end{align*}
+		if and only if the functional with
+		\begin{align*}
+			\langle \varphi, (\cdot - z)^{-k - 1}\rangle_{L} = c_{z, k},
+		\end{align*}
+		is positive.
 	\end{lause}
-	What does this result have to do with Taylor sections? Fix any $d : \Hp \to \N \cup \{\infty\}$. Now Theorem \ref{pick_taylor_sections} implies that for any $p^{*} \in \pickclass(d)$, there exists a Pick function $\varphi_{p^{*}}$ for which
-	\begin{align*}
-		\frac{\varphi_{p^{*}}^{(m)}(z)}{m!} = p^{*}\left(\frac{1}{(\lambda - z)^{m + 1}}\right)
-	\end{align*}
-	for any $z \in \Hp$ and $1 \leq m \leq d(z) - 1$.
-
-	Theorem \ref{pick_taylor_sections} could be proved with pretty much same ideas as Theorem \ref{pick_interpolation}; we're not going to do that, however.
-\end{huom}
-
-\begin{huom}
-	Lemma \ref{pick_dual_dense} can be generalized in many ways.
-	\begin{prop}
-		If $X \subset \Hp$ is such that
-		\begin{align*}
-			\sum_{z \in X} \frac{\Im(z)}{|z|^2 + 1} = \infty,
-		\end{align*}
-		then $\pickclass(X)$ is dense in $\pickclass(\Hp)$.
-	\end{prop}
-	\begin{proof}[Proof sketch]
-		Numerate $X = \{z_{0}, z_{1}, \ldots \}$, let $w \in \Hp \setminus X$ and denote
-		\begin{align*}
-			r_{n}(\lambda) = \frac{1}{\lambda - w} \frac{w - z_{0}}{z - z_{0}} \prod_{i = 1}^{n} \frac{w - z_{i}}{z - z_{i}} \frac{z - \overline{z_{i}}}{w - \overline{z_{i}}}.
-		\end{align*}
-		Then $r_{n} \in R(X \cup \{w\})$, residue of $r_{n}$ at $w$ is $1$, and $\|r_{n}\|_{R} \to 0$ as $n \to \infty$.
-	\end{proof}
-	More generally, with the terminology of the remark \ref{taylor_section_rem} one has
-	\begin{prop}
-		Let $d : \Hp \to \N \cup \{\infty\}$ is such that
-		\begin{align*}
-			\sum_{z \in \Hp} d(z) \frac{\Im(z)}{|z|^2 + 1} = \infty,
-		\end{align*}
-		then $\pickclass(d)$ is dense in $\pickclass(\Hp \mapsto \infty)$.
-	\end{prop}
-
-	It can be shown that the conditions of these theorems are also necessary (?) (see TODO).
+	Here the definition of $\langle \varphi, \cdot\rangle_{L}$ is completed exactly how one would expect. Theorem \ref{pick_taylor_sections} could be proved with pretty much same ideas as Theorem \ref{pick_interpolation}; we're not going to do that, however.
 \end{huom}
 
 \section{Notes and references}
@@ -623,6 +773,12 @@ Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_represen
 	\end{bmatrix}.
 \end{align*}
 One may check that quadratic functionals of such matrices are just Pick functionals in disguise. Consequently: $\varphi$ is a Pick function, if and only if all such matrices are positive.
+
+Lemma \ref{pick_dual_dense} is not best possible. It can be shown that for $X \in \Hp$, $R(X)$ is dense in $R(\Hp)$, if and only if
+\begin{align*}
+	\sum_{z \in X} \frac{\Im(z)}{|z|^2 + 1} = \infty.
+\end{align*}
+It can be also shown that if $R(X)$ is not dense in $R(\Hp)$, then there exists weakly Pick function on $X$ with two different Pick extensions.
 
 Approach taken in this text is similar to (?).
 \begin{comment}

@@ -9,7 +9,7 @@ We will denote the space of $n$-monotone functions on open interval $(a, b)$ by 
 	P_{\infty}(a, b) = \bigcap_{n \geq 1} P_{n}(a, b).
 \end{align*}
 
-By \ref{positive_machine} we have
+By Theorem \ref{positive_machine} we have
 
 \begin{prop}
 	The sets $P_{n}(a, b)$ and $P_{\infty}(a, b)$ are closed convex cones.
@@ -41,7 +41,7 @@ Note that in the notation $P_{n}(a, b)$ we don't specify the space $V$; it doesn
 	If $0 \notin (a, b)$, we have $(x \mapsto -x^{-1}) \in P_{n}(a, b)$.
 \end{prop}
 \begin{proof}
-	The result follows immediately from theorem \ref{inverse_decreasing}.
+	The result follows easily from Theorem \ref{inverse_decreasing}.
 \end{proof}
 
 By the previous proposition also $(x \mapsto (\lambda - x)^{-1} \in P_{n}(a, b)$ for any $\lambda \notin (a, b)$, so by the cone property
@@ -190,7 +190,7 @@ Why is this bad? If $f : (a, b) \to \R$ is not too bad (say Lipschitz), for larg
 
 Let $f(x) = \alpha x + x^2$ and take $A, H \geq 0$. As observed earlier, we have
 \begin{align*}
-	\lim_{t \to 0} \frac{f(A + t H) - f(A))}{t} &= \alpha H \\
+	\lim_{t \to 0} \frac{f(A + t H) - f(A)}{t} &= \alpha H \\
 	&+ H A + A H\\
 \end{align*}
 In the real setting we could just increase $\alpha$ to make the previous expression positive. In the matrix setting there is a problem: note that if $H$ is of rank $1$, increasing $\alpha$ means ``increasing the right-hand side only to one direction". Now, if the right-hand side is not positive map in the first place, it might be non-positive in a big subspace, so rank $1$ machinery is not going to save the day. Note also that even if we let $A \to 0$ (look at matrix function at $0$), the situation isn't a priori better.
@@ -216,11 +216,11 @@ Let us try to push the ideas of the previous section further. Take entire $f(x) 
 \end{align*}
 we have
 \begin{align*}
-	\lim_{t \to 0} \frac{f(A + t H) - f(A))}{t} = \sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} A^{j} B A^{i - 1 - j}.
+	\lim_{t \to 0} \frac{f(A + t H) - f(A)}{t} = \sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} A^{j} H A^{i - 1 - j}.
 \end{align*}
 If $f \in P_{\infty}(a, b)$, this expression should be positive for $A \in \H_{(a, b)}$ and $H \geq 0$. Let us denote
 \begin{align*}
-	D f_{A}(H) := \lim_{t \to 0} \frac{f(A + t H) - f(A))}{t},
+	D f_{A}(H) := \lim_{t \to 0} \frac{f(A + t H) - f(A)}{t},
 \end{align*}
 derivative of a matrix function at $A$ in the direction $H$. As the derivative is linear in $H$, it suffices to consider the case $\rank(H) = 1$. Let's say $H = v v^{*}$ for some $v \in V$ and take any $w \in V$. Now we should have
 \begin{align*}
@@ -228,7 +228,7 @@ derivative of a matrix function at $A$ in the direction $H$. As the derivative i
 	&= \sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} \langle  A^{i - 1 - j} w, v \rangle \langle A^{j} v, w \rangle \\
 	&\geq 0
 \end{align*}
-for any $v, w \in V$. Write $c_{j} = \langle A^{j} w, v \rangle$ and observe that $\langle  A^{j} w, v \rangle = \overline{\langle A^{j} w, v \rangle} = \overline{c_{j}}$. It follows that
+for any $v, w \in V$. Write $c_{j} = \langle A^{j} v, w \rangle$ and observe that $\langle  A^{j} w, v \rangle = \overline{\langle A^{j} v, w \rangle} = \overline{c_{j}}$. It follows that
 \begin{align*}
 	\sum_{i = 1}^{\infty} a_{i} \sum_{j = 0}^{i - 1} \overline{c_{i - 1 - j}} c_{j} = \sum_{i, j \geq 0} a_{i + j + 1} c_{i} \overline{c_{j}} \geq 0
 \end{align*}
@@ -314,7 +314,7 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 	\end{align*}
 	for any $k \geq 0$, so we can write
 	\begin{align*}
-		\sum_{1 \leq i, j \leq n} a_{i + j - 1} c_{i} \overline{c_{j}} &= \sum_{1 \leq i, j \leq n} a_{i, j} \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z) d z}{z^{i + j}} \\
+		\sum_{1 \leq i, j \leq n} a_{i + j - 1} c_{i} \overline{c_{j}} &= \sum_{1 \leq i, j \leq n} c_{i} \overline{c_{j}} \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z) d z}{z^{i + j}} \\
 		&= \frac{1}{2 \pi i} \int_{\gamma} \left(\sum_{i = 1}^{n} \frac{c_{i}}{z^{i}} \right) \left(\sum_{i = 1}^{n} \frac{\overline{c_{i}}}{z^{i}} \right)f(z) dz \\
 		&= \frac{1}{2 \pi i} \int_{\gamma}  \frac{q(z) \overline{q(\overline{z})}}{z^{2 n}} f(z) dz,
 	\end{align*}

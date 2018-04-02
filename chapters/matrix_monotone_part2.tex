@@ -4,7 +4,7 @@
 
 \subsection{Main theorem}
 
-Let's come back to theorem \ref{heuristic_loewner} with the $k$-tone language it rewrites to
+Let's come back to Theorem \ref{heuristic_loewner} with the $k$-tone language it rewrites to
 
 \begin{lause}\label{main_theorem}
 	$f \in P_{n}(a, b)$, if and only if $f N(q)$ is $(2 n - 1)$-tone for any $q \in \C_{n - 1}[x]$.
@@ -75,7 +75,7 @@ Before trying to understand the lemma we use it to prove theorem \ref{main_theor
 \begin{proof}
 	``$\Rightarrow$": t.f.i.f lemma \ref{main_lemma}.
 
-	``$\Leftarrow$": Take any $a I < A \leq B < b I$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$. We may hence assume that $(A, B, v)$ projection pair.
+	``$\Leftarrow$": Take any $a I < A \leq B < b I$. Write $B - A = \sum_{i = 1}^{n} c_{i} P_{v_{i}}$ for some $c_{i} \geq 0$. To prove that $f(B) - f(A) \geq 0$ we simply need to prove that $f(A + \sum_{i = 1}^{k} c_{i} P_{v_{i}}) - f(A + \sum_{i = 1}^{k - 1} c_{i} P_{v_{i}}) \geq 0$ for any $1 \leq k \leq n$. We may hence assume that $(A, B, v)$ is a projection pair.
 
 	We may also assume that $(A, B, v)$ is strict. Indeed, if this is not the case, we can decompose $V = (v_{1}) \oplus V'$, where $v_{1}$ is an eigenvector of $A$ orthogonal to $v$, and factorize $A = \arestr{A}{(v_{1})} \oplus \arestr{A}{V'}$ and $B = \arestr{A}{(v_{1})} \oplus \arestr{B}{V'}$. But now $f(B) - f(A) \geq 0$, if and only if $f(\arestr{B}{V'}) - f(\arestr{A}{V'}) \geq 0$, which would follow if we could prove that $f \in P_{n - 1}(a, b)$. So we should just add the sentence ``We induct on $n$." as the first sentence of this proof.
 
@@ -127,7 +127,7 @@ This lemma is based on the following explicit relationship between characteristi
 	\end{align*}
 	where the second equality follows from the Cramer rule.
 
-	Multiplying both sides of the second claim from left by $z I - A$ simplifies to an equivalent claim
+	Multiplying both sides of the second claim from left by $z I - B$ simplifies to an equivalent claim
 	\begin{align*}
 	\det(z I - B) v = \det(z I - A) (1 + \langle (A - z I)^{-1} v, v \rangle) v,
 	\end{align*}
@@ -161,7 +161,7 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 		&= \frac{1}{2 \pi i}\int_{\gamma} \frac{N(q)}{\det(z I - A) \det(z I - B)} f(z) dz \\
 		&= [\lambda_{1}(A), \ldots, \lambda_{n}(A), \lambda_{1}(B), \ldots, \lambda_{n}(B)]_{f N(q)}. \\
 	\end{align*}
-	where Lemma \ref{projection_characteristic_polynomial} was used in the second equality and we write $q(z) = \det(z I - A) \langle (z I - A)^{-1} v, w \rangle$. By \ref{entire_interpolation} or by suitable formal interpretation one sees that this identity holds without any regularity assumptions.
+	where Lemma \ref{projection_characteristic_polynomial} was used in the second equality and we write $q(z) = \det(z I - A) \langle (z I - A)^{-1} v, w \rangle$. By Lemma \ref{entire_interpolation} or by suitable formal interpretation one sees that this identity holds without any regularity assumptions.
 
 	Now when $(A, B, v)$ ranges over all strict projection pairs, the permutations of tuples
 	\begin{align}
@@ -193,7 +193,7 @@ for suitable $\gamma$. One way to interpret this identity is to consider it as a
 \begin{align*}
 	r \mapsto  \frac{1}{2 \pi i} \int_{\gamma} r(z) f(z) dz,
 \end{align*}
-where $r$ is a rational functions with its poles in the domain of $f$. Note that all this makes formally sense for arbitrary $f$ given that the poles of $r$ are simple. This motivates us to define a dual pairing $\langle \cdot, \cdot \rangle_{L}$ (over $\R$) between $\R^{(a, b)}$ and rational functions with simple poles on $(a, b)$, for which
+where $r$ is a rational function with its poles in the domain of $f$. Note that all this makes formally sense for arbitrary $f$ given that the poles of $r$ are simple. This motivates us to define a dual pairing $\langle \cdot, \cdot \rangle_{L}$ (over $\R$) between $\R^{(a, b)}$ and rational functions with simple poles on $(a, b)$, for which
 \begin{align*}
 	\langle f, r \rangle_{L} = \frac{1}{2 \pi i} \int_{\gamma} r(z) f(z) dz,
 \end{align*}
@@ -220,7 +220,7 @@ where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us d
 	as soon as we choose $c, d \in (a, b)$ so that the poles remain simple.
 \end{proof}
 
-\section{Loewner's theorems}
+\section{Loewner's theorems}\label{loewner_first_touch}
 
 Let's move our focus to the classes $P_{\infty}(a, b)$. Using the earlies ideas we can rewrite theorem \ref{heuristic_loewner} in the following form.
 
@@ -236,8 +236,8 @@ First of all, the dual pairing thinking leads to much more satisfactory conclusi
 	We have
 	\begin{align*}
 		&R_{+}(a, b) := \bigcup_{n = 1}^{\infty} R_{+, n}(a, b) = \cone\left( \bigcup_{n = 1}^{\infty} R_{+, n}(a, b)\right) \\
-		= &\{ \text{rational functions with only simple, real poles; non-negative} \\
-		& \text{ on $\R \setminus (c, d)$ for some $a < c < d < b$; and decay $r(z) = O(|z|^{-2})$ at $\infty$} \}.
+		= &\{ \text{rational functions with simple, real poles; non-negative} \\
+		& \text{ on $\R \setminus (c, d)$ for some $a < c < d < b$.} \}.
 	\end{align*}
 \end{lem}
 \begin{proof}
@@ -280,7 +280,7 @@ In fact, also this corollary has a converse.
 	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only there exists a analytic function $\tilde{f}$ on $\Hp \cup \Hm \cup (a, b)$ such that $\restr{\tilde{f}}{(a, b)} = f$ and $\tilde{f}$ maps the upper half-plane to its closure.
 \end{lause}
 
-For last two chapters we are going to focus on this version of Loewner's theorem.
+For the last two chapters we are going to mostly focus on understanding this version of Loewner's theorem.
 
 \section{Notes and references}
 

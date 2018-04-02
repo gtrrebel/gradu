@@ -151,7 +151,7 @@ We call \ref{nesting_rule} the \textit{nesting property} of divided differences.
 The following observation tells us that the divided differences work as $n$'th derivative insomuch that it kills polynomials of degree less than $n$, and works with degree $n$ as expected, up to a constant at least.
 
 \begin{prop}\label{lagrange_divided}
-We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial p of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1}), \ldots, (x_{n}, f(x_{n}))$.
+We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial p of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1})), \ldots, (x_{n}, f(x_{n}))$.
 \end{prop}
 \begin{proof}
 	As the interpolation polynomial of a polynomial of degree at most $n$ on a dataset of $(n + 1)$ pairs is the polynomial itself, the second claim readily implies the first. Recall that the Lagrange form of the interpolation polynomial of a dataset $(x_{0}, y_{0}), (x_{1}, y_{1}), \ldots, (x_{n}, y_{n})$ is given by
@@ -190,7 +190,7 @@ Coming back to the original motivation, divided differences enjoy an integral re
 	\begin{align*}
 		(-1)^{n} w^{(n - 1)}(t) = \sum_{i = 0}^{n} \frac{\chi_{(t, \infty)}(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})}.
 	\end{align*}
-	Note that $w^{(j)}$ is continuous, piecewise $C^{1}$, and compactly supported for every $0 \leq j < n - 1$, so the partial integration is legitimate. The final step is a easy calculation.
+	Note that $w^{(j)}$ is continuous, piecewise $C^{1}$, and compactly supported for every $0 \leq j < n - 1$, so the partial integration is legitimate. The final step is an easy calculation.
 
 	Applying the identity to $x \mapsto x^{n}$ shows the claim on the integral of $w$.
 
@@ -224,7 +224,7 @@ As a very important corollary we get the following.
 	\end{align}
 \end{lause}
 \begin{proof}
-	t.f.i.f. \ref{peano_theorem} and mean value theorem for integrals.
+	t.f.i.f. \ref{peano_theorem} and the mean value theorem for integrals.
 \end{proof}
 \begin{proof}[Alternate proof]
 	By linearity and proposition \ref{lagrange_divided} it suffices to verify the claim in the case where $f(x_{i}) = 0$ for $0 \leq i \leq n$.
@@ -260,7 +260,7 @@ If $\gamma$ is a simple closed counter-clockwise curve enclosing the numbers $x_
 	This is a direct consequence of the Residue theorem.
 \end{proof}
 
-If all the points coincide, we get the familiar formula for the $n$'th derivative. If $f$ is a polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ (at infinity) and the divided differences vanish, as expected. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. This formula is slightly more concisely expressed by writing for a sequence $X = (x_{i})_{i = 0}^{n}$ $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$. Now we have
+If all the points coincide, we get the familiar formula for the $n$'th derivative. If $f$ is a polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ (at infinity) and the divided differences vanish, as expected. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. This formula is slightly more concisely expressed by writing $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$ for a sequence $X = (x_{i})_{i = 0}^{n}$. Now we have
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{p_{X}(z)} dz.
 \end{align*}
@@ -339,12 +339,12 @@ Many of the familiar identities for the derivatives have analogs with divided di
 
 One might ask under what kind of conditions \ref{newton_expansion} leads to Newton series, i.e. we have
 \begin{align}\label{newton_series}
-	f(z) = \sum_{i = 0}^{\infty} [z_{0}, z_{1}, \ldots, z_{i}]_{f} (z - z_{0}) (z - x_{0}) \cdots (z - z_{i - 1}),
+	f(z) = \sum_{i = 0}^{\infty} [z_{0}, z_{1}, \ldots, z_{i}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{i - 1}),
 \end{align}
-for some sequence $x_{0}, x_{1}, \ldots$ and analytic $f$. While Newton series can be globally rather subtle, locally they work almost like Taylor series.
+for some sequence $z_{0}, z_{1}, \ldots$ and analytic $f$. While Newton series can be globally rather subtle, locally they work almost like Taylor series.
 
 \begin{prop}
-	Let $f : \D(z_{\infty}, \rho) \to \C$ be analytic and $z_{0}, z_{1}, \ldots \in \D(z_{\infty}, r)$ sequence converging to $z_{\infty}$. Then \ref{newton_series} holds for any $z \in \D(z_{\infty}, r)$.
+	Let $f : \D(z_{\infty}, \rho) \to \C$ be analytic and $z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho)$ sequence converging to $z_{\infty}$. Then \ref{newton_series} holds for any $z \in \D(z_{\infty}, \rho)$.
 \end{prop}
 \begin{proof}
 	We need to verify that the error term $[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n})$ in Newton expansion tends to zero as $n \to \infty$. But for any $\rho' < \rho$ such that $z, z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho')$ we have
@@ -361,11 +361,11 @@ In similar vein one could prove that if $f$ is entire, its Newton series converg
 \subsection{$k$-tone functions}
 
 \begin{maar}
-	Function $f : (a, b) \to \R$ is called $k$-tone if for any $x_{0}, x_{1}, \ldots, x_{n} \in (a, b)$ of distinct points we have
+	Function $f : (a, b) \to \R$ is called $k$-tone if for any $x_{0}, x_{1}, \ldots, x_{k} \in (a, b)$ of distinct points we have
 	\begin{align*}
-		[x_{0}, x_{1}, \ldots, x_{n}]_{f} \geq 0,
+		[x_{0}, x_{1}, \ldots, x_{k}]_{f} \geq 0,
 	\end{align*}
-	i.e. the $n$'th divided difference is non-negative.
+	i.e. the $k$'th divided difference is non-negative.
 \end{maar}
 
 We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$.
@@ -404,7 +404,7 @@ They key idea in the proof was to split the test functions to two parts, one sup
 	Let $a < c < b < d$ be reals and $w$ a Peano kernel supported on $(a, d)$. Then $w$ can written as a (finite) weighted average of Peano kernels, all of which are supported either on $(a, b)$ or on $(c, d)$.
 \end{lem}
 \begin{proof}
-	Let $n$ be the order of the Peano kernel and let $a < x_{0} < x_{1} < \ldots < x_{n} < d$ be the nodes or $w$.
+	Let $n$ be the order of the Peano kernel and let $a < x_{0} < x_{1} < \ldots < x_{n} < d$ be the nodes of $w$.
 
 	The case $n = 1$ is rather clear: we simply split characteristic function of an interval to characteristic function of two intervals. In terms of the kernels, if $a < x_{0} < c < b < x_{1} < d$, we can pick $c < y_{0} < b$ and write
 	\begin{align*}
@@ -543,7 +543,7 @@ The first step is to connect the divided differences of a function to the divide
 		&= \lim_{h \to 0} \frac{[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f(\cdot + h)} -[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f}}{h} \\
 		&= \lim_{h \to 0} \frac{[x_{0} + h, x_{1} + h, \ldots, x_{n - 1} + h]_{f} -[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f}}{h}.
 	\end{align*}
-	Now the approach is basically the same as with differentiation of multivariate functions: we write the difference as sum of $n$ differences: the difference can be expressed as sum of differences where only one of the entries are changed at a time.
+	Now the approach is basically the same as with differentiation of multivariate functions: we write the difference as sum of $n$ telescoping differences, where only one of the entries is changed at a time.
 	\begin{align*}
 		& \lim_{h \to 0} \frac{[x_{0} + h, x_{1} + h, \ldots, x_{n - 1} + h]_{f} -[x_{0}, x_{1}, \ldots, x_{n - 1}]_{f}}{h} \\
 		=& \lim_{h \to 0} \left(\frac{[x_{0} + h, x_{1} + h, \ldots, x_{n - 1} + h]_{f} - [x_{0} + h, x_{1} + h, \ldots, x_{n - 2} + h,  x_{n - 1}]_{f}}{h} \right. \\
@@ -557,7 +557,7 @@ The first step is to connect the divided differences of a function to the divide
 	First equality of second claim was already essentially proved in the proof of theorem \ref{peano_theorem}; the second is a simple computation.
 \end{proof}
 
-Note that the proof essentially gives also the following identity.
+Analogous telescoping trick gives also the following identity.
 \begin{prop}\label{total_derivative}
 	Let $x_{0}, x_{1}, \ldots, x_{n}$ and $y_{0}, y_{1}, \ldots, y_{n}$ be pairwise distinct points on $(a, b)$. Then for any $f : (a, b) \to \R$ we have
 	\begin{align}
@@ -606,7 +606,7 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 \end{lem}
 
 \begin{proof}
-	``$\Rightarrow$": Let's start by proving that $f$ is continuouly differentiable. Lemma \ref{weaklyCk_basic} easily implies that it is sufficient prove this for the case $k = 1$. But in this case we know that the limits $\lim_{x \to x_{0}} [x, x_{0}]_{f} = [x_{0}, x_{0}]_{f}$ exist and $f$ is hence differentiable with $f'(x) = [x, x]_{f}$. Also, $x \mapsto [x, x]_{f} = f'(x)$ is continuous.
+	``$\Rightarrow$": Let's start by proving that $f$ is continuously differentiable. Lemma \ref{weaklyCk_basic} easily implies that it is sufficient prove this for the case $k = 1$. But in this case we know that the limits $\lim_{x \to x_{0}} [x, x_{0}]_{f} = [x_{0}, x_{0}]_{f}$ exist and $f$ is hence differentiable with $f'(x) = [x, x]_{f}$. Also, $x \mapsto [x, x]_{f} = f'(x)$ is continuous.
 
 	Now the identity \ref{derivative_divdif} easily implies the claim.
 
@@ -679,13 +679,13 @@ Finally, one can carry positivity.
 \section{Analyticity}
 
 \begin{lause}\label{div_anal}
-	Let $f : (a, b) \to \R$. Then $f$ is real analytic, if and only if for every closed subinteval $[c, d]$ of $(a, b)$ there exists constant $c$ such that for any $n \geq 1$
+	Let $f : (a, b) \to \R$. Then $f$ is real analytic, if and only if for every closed subinteval $[c, d]$ of $(a, b)$ there exists constant $C_{c, d}$ such that for any $n \geq 1$
 	\begin{align*}
 		\sup_{a < x_{0} < x_{1} < \ldots < x_{n}< b} |[x_{0}, x_{1}, \ldots, x_{n}]_{f}| \leq C_{c, d}^{n + 1}.
 	\end{align*}
 \end{lause}
 \begin{proof}
-	``$\Leftarrow$": We need to prove that the for any $x_{0} \in (a, b)$ Taylor series at $x_{0}$ converges in some neighbourhood of $x_{0}$. As observed before, the $n$:th error term in Taylor series is given by
+	``$\Leftarrow$": We need to prove that for any $x_{0} \in (a, b)$ the Taylor series at $x_{0}$ converges in some neighbourhood of $x_{0}$. As observed before, the $n$:th error term in Taylor series is given by
 	\begin{align*}
 		[x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n}
 	\end{align*}
@@ -697,7 +697,7 @@ Finally, one can carry positivity.
 	\end{align*}
 	which may be estimated by
 	\begin{align*}
-	 \left|\frac{f^{(k)}(x)}{k!}\right| \leq C_{x_{0}}^{k + 1}\sum_{n = k}^{\infty} \binom{n}{k} C_{x_{0}}^{n - k} (x - x_{0})^{n - k} = \frac{C_{x_{0}}^{k + 1} }{(1 - |x - x_{0}| C_{x_{0}})^{k}},
+	 \left|\frac{f^{(k)}(x)}{k!}\right| \leq C_{x_{0}}^{k + 1}\sum_{n = k}^{\infty} \binom{n}{k} C_{x_{0}}^{n - k} |x - x_{0}|^{n - k} = \frac{C_{x_{0}}^{k + 1} }{(1 - |x - x_{0}| C_{x_{0}})^{k + 1}},
 	\end{align*}
 	whenever $|x - x_{0}| C_{x_{0}} < 1$. By the mean value theorem for divided differences it follows that we get required bound for some neighbourhood of $x_{0}$ and consequently, by compactness for any closed subinteval of $(a, b)$.
 \end{proof}
