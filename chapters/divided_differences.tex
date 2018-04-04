@@ -513,7 +513,7 @@ Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, bu
 The real power of the divided differences comes in when they are used to carry regularity information.
 
 \begin{lause}\label{k-tone_smooth}
-	Let $k \geq 2$. Then $f \in P^{(k)}(a, b)$, if and only if $f \in C^{k - 2}(a, b)$ and $f^{(k - 2)}$ is convex.
+	Let $k \geq 2$. Then $f \in P^{(k)}(a, b)$, if and only if $f \in C^{k - 2}(a, b)$ and $f^{(k - 2)}$ is convex, i.e. $2$-tone.
 \end{lause}
 \begin{proof}[``Proof"]
 	Let $f \in P^{(k)}(a, b)$. Since $f^{(k)}$ is a positive measure, $f^{(k - 1)}$ is increasing and $f^{(k - 2)}$ is convex. As convex functions are continuous, we are done with $\Rightarrow$. Conversely, if $f \in C^{k - 2}(a, b)$ and $f^{(k - 2)}$ is convex, then $f^{(k - 2)}$ has second derivative as a positive measure. But this measure is also the $k$'th derivative of $f$, so $f \in P^{(k)}(a, b)$.

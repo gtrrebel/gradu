@@ -91,7 +91,7 @@ Before trying to understand the lemma we use it to prove theorem \ref{main_theor
 
 \subsection{Main lemma}
 
-It remains to understand what is going on with lemma \ref{main_lemma}. The surprising part about it is the following fact about eigenvalues of real maps.
+It remains to understand what is going on with lemma \ref{main_lemma}. Let us denote the eigenvalues of a real map $A$ by $\lambda_{1}(A) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(A)$. Crux of Lemma \ref{main_lemma} is the following fact.
 
 \begin{lem}\label{projection_eigenvalues}
 	Let $(A, B, v)$ be a projection pair. Then
@@ -121,7 +121,7 @@ This lemma is based on the following explicit relationship between characteristi
 	By the basic properties of the determinant we have
 	\begin{align*}
 		\det(B - z I) =& \det(A - z I) \\
-		&+ \|v\|^2 \det(\arestr{(A - z I)}{(v)^{\perp}}) \\
+		&+ \|v\|^2 \det(\arestr{(A - z I)}{\vspan(v)^{\perp}}) \\
 		=& \det(A - z I) + \|v\|^2 \det(A - z I) \langle (A - zI)^{-1} v, v \rangle/\|v\|^2 \\
 		=&  \det(A - z I) \left(1 + \langle (A - z I)^{-1}v, v\rangle\right),
 	\end{align*}
@@ -179,7 +179,7 @@ Let us then complete the proof of theorem \ref{main_theorem} by proving the lemm
 
 \subsection{Dual pairing}\label{dual_pairing_section}
 
-Proof of theorem \ref{main_theorem} is actually missing one more detail we need in the induction step.
+Proof of Theorem \ref{main_theorem} is actually missing one more detail we need in the induction step.
 
 \begin{lem}\label{k_tone_cor}
 	If $f N(q)$ is $(2 n + 1)$-tone for $q \in \C_{n}[x]$, then $f N(\tilde{q})$ is $(2 n - 1)$-tone for every $\tilde{q} \in \C_{n - 1}[x]$.
@@ -222,13 +222,13 @@ where $a < z_{0} < \ldots < z_{2 n - 1} < b$ and $q \in \C_{n - 1}[x]$. Let us d
 
 \section{Loewner's theorems}\label{loewner_first_touch}
 
-Let's move our focus to the classes $P_{\infty}(a, b)$. Using the earlies ideas we can rewrite theorem \ref{heuristic_loewner} in the following form.
+Let's move our focus to the classes $P_{\infty}(a, b)$. Using the earlier ideas we can rewrite Theorem \ref{heuristic_loewner} in the following form.
 
 \begin{lause}\label{better_loewner}
 	$f \in P_{\infty}(a, b)$, if and only if $f$ is analytic and for every $n \geq 1$ and $q \in \C_{n - 1}[x]$ the function $f N(q)$ is $(2 n - 1)$-tone.
 \end{lause}
 
-Without the analyticity condition this would immediately follow from \ref{main_theorem}, and the statement would also make perfect sense without it. It is nevertheless true that the functions in class $P_{\infty}(a, b)$ are analytic. One could use Bernstein type arguments and tricks (see proof of the theorem \ref{bernstein_theorem}) to convince oneself that this indeed the case, but there's actually a lot more going on.
+Without the analyticity condition this would immediately follow from \ref{main_theorem}, and the statement would also make perfect sense without it. It is nevertheless true that the functions in class $P_{\infty}(a, b)$ are analytic. One could use Bernstein type arguments and tricks (see proof of Theorem \ref{bernstein_theorem}) to convince oneself that this indeed the case, but there's actually a lot more going on.
 
 First of all, the dual pairing thinking leads to much more satisfactory conclusion in the case $n = \infty$.
 
@@ -253,7 +253,7 @@ Now, it might not be too big of a surprise that $\vspan_{\R} R_{+}(a, b)$ is den
 \begin{align*}
 	\langle f, r \rangle_{L} = \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
 \end{align*}
-This is almost true. As the functions $R_{+}(a, b)$ are not compactly supported, there's a problem at infinity.  Nevertheless, the previous holds with slight modification.
+This is almost true. As the functions $R_{+}(a, b)$ are not compactly supported, there's a problem at infinity.  Nevertheless, the previous holds with a slight modification.
 
 \begin{lause}[Loewner's theorem, version $1$]\label{integral_loewner}
 	Let $f \in P_{\infty}(a, b)$. Then there exists a unique Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ and $\alpha \geq 0$ such that for any $r \in R_{+}(a, b)$ we have
@@ -271,17 +271,17 @@ Note that the limit $\left(\lim_{\lambda \to \infty} r(\lambda) \lambda^2 \right
 Although it would not be terribly tricky to fill in the details to the previous argument, we will not prove \ref{integral_loewner}. Instead we look into one of its corollaries:
 
 \begin{kor}
-	Every $f \in P_{\infty}(a, b)$ has an analytic extension $\tilde{f}$ on $\Hp \cup \Hm$. This extension maps (open) upper half-plane $\Hp$ to closed upper half-plane $\overline{\Hp}$.
+	Every $f \in P_{\infty}(a, b)$ has an analytic extension $\tilde{f}$ on $(a, b) \cup \Hp \cup \Hm$. This extension maps (open) upper half-plane $\Hp$ to closed upper half-plane $\overline{\Hp}$.
 \end{kor}
 
 In fact, also this corollary has a converse.
 
 \begin{lause}[Loewner's theorem, version $2$]\label{weak_loewner}
-	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only there exists a analytic function $\tilde{f}$ on $\Hp \cup \Hm \cup (a, b)$ such that $\restr{\tilde{f}}{(a, b)} = f$ and $\tilde{f}$ maps the upper half-plane to its closure.
+	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only there exists a analytic function $\tilde{f}$ on $(a, b) \cup \Hp \cup \Hm$ such that $\restr{\tilde{f}}{(a, b)} = f$ and $\tilde{f}$ maps the upper half-plane to its closure.
 \end{lause}
 
 For the last two chapters we are going to mostly focus on understanding this version of Loewner's theorem.
 
 \section{Notes and references}
 
-This chapter is largely original (?), although heavily inspired by multiple sources. Key ideas are an extension to \cite{Heina}. \ref{main_theorem} is new formulation of \ref{heuristic_main}. Lemma \ref{projection_eigenvalues} (or some variant of it) is present in many discussions of the matrix monotonicity, see for instance \cite{Don}. While \ref{main_lemma} is new (?) it can be seen as a variant of lemma $1$ in \cite{Sparr}. Theorem \ref{weak_loewner} appears in the original paper of Loewner \cite{Low}. \ref{integral_loewner} was first discussed in \cite{Ben}. Sparr in \cite{Sparr} gives proof of \ref{integral_loewner} somewhat similar in nature to our argument sketch (...). Bernstein type arguments for the analyticity are discussed in \cite{Ben}.
+This chapter is largely original (?), although heavily inspired by multiple sources. Key ideas are an extension to \cite{Heina}. Theorem \ref{main_theorem} is new formulation of Theorem \ref{heuristic_main}. Lemma \ref{projection_eigenvalues} (or some variant of it) is present in many discussions of the matrix monotonicity, see for instance \cite{Don}. While Lemma \ref{main_lemma} is new (?) it can be seen as a variant of lemma $1$ in \cite{Sparr}. Theorem \ref{weak_loewner} appears in the original paper of Loewner \cite{Low}. Theorem \ref{integral_loewner} was first discussed in \cite{Ben}. Sparr in \cite{Sparr} gives proof of Theorem \ref{integral_loewner} somewhat similar in nature to our argument sketch (...). Bernstein type arguments for the analyticity are discussed in \cite{Ben}.

@@ -53,7 +53,7 @@ Both of these questions can be certainly answered in many ways, but for both of 
 
 For matrix (bilinear form) ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We say that a form is positive if its diagonal is non-negative. This gives a partial order on the space of all bilinear forms.
 
-For matrix functions, i.e. ``how to apply function to matrix" the idea is to take a real function, $f : \R \to \R$, and interpret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, given the ring structure of linear maps themselves. If the argument (a linear map) is diagonalizable, this extension merely applies the function to the eigenvalues. This motivates us to define $f(A)$ for linear map $A$ to be linear map with same eigenspace structure as $A$ but the eigenvalues changed from $\lambda \to f(\lambda)$, respectively. All this works for diagonalizable maps with real eigenvalues, so the domain isn't quite $\R^{n \times n}$. This extension idea is called \textbf{functional calculus}.
+For matrix functions, i.e. ``how to apply function to matrix" the idea is to take a real function, $f : \R \to \R$, and interpret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, given the ring structure of linear maps themselves. If the argument (a linear map) is diagonalizable, this extension merely applies the function to the eigenvalues. This motivates us to define $f(A)$, for a linear map $A$, to be the linear map with the same eigenspace structure as $A$ but the eigenvalues changed from $\lambda \to f(\lambda)$, respectively. All this works for diagonalizable maps with real eigenvalues, so the domain isn't quite $\R^{n \times n}$, though. This extension idea is called \textbf{functional calculus}.
 
 All this is kind of enough to make sense of matrix monotonicity, but to drastically simplify the setup it is customary to restrict the attention to a special set of diagonalizable matrices, which in this text are called \textbf{real maps}. They are exactly the symmetric matrices and they hold special place amidst the set of all matrices.
 
@@ -62,19 +62,19 @@ All this is kind of enough to make sense of matrix monotonicity, but to drastica
 	\item They correspond to diagonalizable linear maps with real eigenvalues and orthogonal eigenbasis.
 \end{itemize}
 
-In the second point we are thinking about everything in terms of standard inner product of $\R^n$. So the statement should be corrected to
+In the second point we are thinking about everything in terms of the standard inner product of $\R^n$. So the statement should be corrected to
 
 \begin{itemize}
-	\item If considered as matrix of a linear map with respect to the standard orthonormal basis of $\R^n$ (with the standard inner product), then the linear map is diagonalizable with real eigenvalues and has orthogonal eigenbasis.
+	\item If considered as a matrix of a linear map with respect to the standard orthonormal basis of $\R^n$ (with the standard inner product), then the linear map is diagonalizable with real eigenvalues, and has orthogonal eigenbasis.
 \end{itemize}
 
-Real maps are usually called \textbf{Hermitian} or \textbf{self-adjoint matrices} and positive matrices \textbf{positive semidefinite matrices}. Now the definition of matrix monotinicity \ref{main_def} should make sense. We will call positive matrices \textbf{positive maps}.
+Real maps are usually called \textbf{Hermitian} or \textbf{self-adjoint matrices}, whereas positive matrices are called \textbf{positive semidefinite matrices}. Now the definition of matrix monotinicity \ref{main_def} should make sense. We will call positive matrices \textbf{positive maps}.
 
 Whether one should think about real maps as matrices, bilinear forms or linear maps depends on the context. If one does calculations, one might think about matrices. If one thinks about additive structure, bilinear forms are better suited. And of course functional calculus makes only sense with linear maps. We use the (linear) map terminology throughout mainly because it short. Also, it is a constant reminder that there is something tensorial going on.
 
 \section{\ldots And why should we care?}
 
-It's easy to come up with one family of matrix monotone functions: $x \mapsto \alpha x + \beta$ for $\alpha, \beta \in \R$ with $\alpha \geq 0$. It is $n$-monotone for every $n \geq 1$ on $(-\infty, \infty)$. This is the only easy example.
+It's easy to come up with one family of matrix monotone functions: $x \mapsto \alpha x + \beta$ for $\alpha, \beta \in \R$ with $\alpha \geq 0$. Such affine functions are $n$-monotone for every $n \geq 1$ on $(-\infty, \infty)$. They are the only easy examples of matrix monotone functions.
 
 But there are lot more.
 

@@ -17,7 +17,7 @@ Why is this the right definition for positivity? Do we really need an inner prod
 
 While these are both excellent questions (and one should definitely think about them), there is no way to satisfactorily answer them in the scope of this thesis. Instead, this section is an attempt to explain why the definition is pretty damn good.
 
-Note that, contrary to the previous chapter, we snuck in the complex numbers and ``general" vector space to the definition (see ``Notation and conventions" in the previous chapter). It doesn't make much difference whether we talk about real or complex numbers but the author thinks that some of the arguments are more natural in the complex world. Also, having the general vector space $V$ is mostly just a reminder of the fact that there is something tensorial going on.
+Note that, contrary to the previous chapter, we snuck in the complex numbers and ``general" vector space to the definition (see ``Notation and conventions" in the previous chapter). It doesn't make much difference whether we talk about real or complex numbers but the author thinks that some of the arguments are more natural in the complex world. Also, working with a general vector space $V$ is mostly just a reminder of the fact that there is something tensorial going on.
 
 Theorem \ref{dual_cone} immediately implies
 
@@ -45,12 +45,12 @@ Conveniently enough $\H_{+}(V)$ is a salient cone, but this is by no means trivi
 \begin{proof}
 	The idea is that we can recover the inner product from norm. Indeed, if $v, w \in V$, then $\|v + w\|^2 = \|v\|^2 + \|w\|^2 + 2 \Re(\langle v, w \rangle)$, so knowing the norm, we at least know the real part of the inner product. Doing the same trick with $\|v + i w\|^2$ we can figure out the imaginary part.
 
-	How does this help us? By a similar argument $\langle A(v + w), v + w \rangle = \langle A v, v \rangle + \langle A w, w \rangle + \langle A v, w\rangle + \langle A w, v \rangle$, so given that the quadratic form is always zero, we have $\langle A v, w \rangle + \langle A w, v \rangle = 0$ for any $v, w \in V$. Expanding $\langle A (v + i w), v + i w \rangle$ we see that $-i \langle A v, w \rangle + i \langle A v, w \rangle = 0$, which together with the previous observation implies that $\langle A v , w \rangle = 0$ for any $v, w \in V$. Now setting $w = A v$ this implies that $\|A v\|^{2} = 0$ for every $v \in V$ so $A = 0$.
+	How does this help us? By a similar argument $\langle A(v + w), v + w \rangle = \langle A v, v \rangle + \langle A w, w \rangle + \langle A v, w\rangle + \langle A w, v \rangle$, so given that the quadratic form is always zero, we have $\langle A v, w \rangle + \langle A w, v \rangle = 0$ for any $v, w \in V$. Expanding $\langle A (v + i w), v + i w \rangle$ we see that $-i \langle A v, w \rangle + i \langle A v, w \rangle = 0$, which together with the previous observation implies that $\langle A v , w \rangle = 0$ for any $v, w \in V$. By setting $w = A v$, this implies that $\|A v\|^{2} = 0$ for every $v \in V$, so $A = 0$.
 \end{proof}
 
 The idea of recovering the inner product from the norm is called \textbf{polarization}.
 
-As $V$ has a topology, the concept of \textbf{closed convex cone}, which is defined as one would expect, makes sense. As subset of dual lead to convex cones, subsets of continuous dual lead to closed convex cones.
+As $V$ has a topology, the concept of \textbf{closed convex cone}, which is defined as one would expect, makes sense. Just like subsets of the dual lead to a convex cones, subsets of the continuous dual lead to closed convex cones.
 
 A closed convex cone that is also salient is, as is somewhat customary, called \textbf{proper cone}. We have
 
@@ -74,7 +74,7 @@ Previous arguments carry directly to a much more general setting:
 
 In our case the subset of the linear functionals are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$.
 
-As one would hope, map $v \mapsto \alpha v$, i.e. $\alpha I$ is positive, if and only if $\alpha \geq 0$. In particular, in one-dimensional spaces the notion works as expected. Fortunately there are other examples also. Indeed, any orthogonal projection is positive.
+As one would hope, map $v \mapsto \alpha v$, i.e. $\alpha I$ is positive, if and only if $\alpha \geq 0$. In particular in one-dimensional spaces the notion works as expected. Fortunately there are other examples of positive maps: any orthogonal projection is positive.
 
 \begin{prop}
 	If $A \in \L(V)$ is a orthogonal projection, then $A \geq 0$.
@@ -87,7 +87,7 @@ As one would hope, map $v \mapsto \alpha v$, i.e. $\alpha I$ is positive, if and
 	so $A$ is positive.
 \end{proof}
 
-We denote the one-dimensional orthogonal projection to the span of $v \in V \setminus \{0\}$, i.e. the map $ \langle \cdot, v \rangle v/\|v\|^2$ by $P_{v}$. More generally, orthogonal projection to a subspace $W \subset V$ is denoted by $P_{W}$.
+We denote the one-dimensional orthogonal projection to the span of $v \in V \setminus \{0\}$, i.e. the map $ \langle \cdot, v \rangle v/\|v\|^2$, by $P_{v}$. More generally, orthogonal projection to a subspace $W \subset V$ is denoted by $P_{W}$.
 
 Taking positive linear combinations of orhogonal projections leads to large number of examples of positive maps.
 
@@ -119,7 +119,7 @@ Dual cone thinking lets us also lift other important notions.
 	for any $v \in V \setminus \{0\}$.
 \end{maar}
 
-Map is strictly positive, if and only if it is positive and invertible, or equivalently: is real and has positive eigenvalues.
+Map is strictly positive, if and only if it is positive and invertible, or equivalently, if it is real and has positive eigenvalues.
 
 Families of real, imaginary and strictly positive maps are usually called Hermitian and Skew-Hermitian and positive definite. Reals maps will have a special role in our discussion. We write $A > 0$ if $A$ is strictly positive. They form a vector space over $\R$, which is denoted by $\H(V)$. Of course, every imaginary map is just $i$ times real map, and we won't preserve any special notation for such maps. Also, they don't really play any role in this thesis anyway.
 
@@ -152,12 +152,12 @@ In more common terms: a adjoint of linear map $A \in \L(V)$ is the unique map $A
 \end{align}
 for any $v, w \in V$. This fact is easily verified by a polarization argument.
 
-As real maps are their own adjoints, they are often called appropriately \textbf{self-adjoint}.
+As real maps are their own adjoints, they are often appropriately called \textbf{self-adjoint}.
 
 The previous observation makes many of the basic properties of adjoint, which we collect below, evident.
 
 \begin{lause}\label{basic_adjoint}
-	For any linear maps $A$ and $B$, with appropriate domains and codomains, and $\lambda \in \C$ we have
+	For any $A, B \in \L(V)$ and $\lambda \in \C$ we have
 	\begin{enumerate}[i)]
 		\item Matrix of $A^{*}$ with respect to any orthonormal basis is conjugate transpose of matrix of $A$, i.e. $A^{*}_{i, j} = \overline{A_{j, i}}$.
 		\item $(A^{*})^{*} = A$
@@ -201,10 +201,10 @@ Positive maps have many other desirable properties. First of all, eigenvalues of
 
 	Now the trick is that nested compressions work nicely: if $W' \subset W \subset V$ and $A \in \L(V)$, then $\arestr{(\arestr{A}{W})}{W'} = \arestr{A}{W'}$. Consequently, if every one-dimensional compression $A$ is positive, same is true for all of its compressions.
 
-	By compressing to an eigenspace, we see that if $A$ is positive, all its eigenvalues are non-negative.
+	By compressing to eigenspaces, we see that if $A$ is positive, all its eigenvalues are non-negative.
 \end{proof}
 
-In addition, (direct) sum of two positive map is positive.
+In addition, (direct) sum of two positive maps is positive.
 \begin{lem}\label{direct_product}
 	Let $A_{1} \in \L(V_{1})$ and $A_{2} \in \L(V_{2})$. Then $A_{1} \oplus A_{2} \in \H_{+}(V_{1} \oplus V_{2})$, if and only if $A_{1} \in \H_{+}(V_{1})$ and $A_{2} \in \H_{+}(V_{2})$.
 \end{lem}
@@ -221,13 +221,13 @@ In addition, (direct) sum of two positive map is positive.
 The most important result in the theory of positive and real maps is the spectral theorem.
 
 \begin{lause}[Spectral theorem, version $1$]\label{cheapSpectral}
-	$A \in \L(V)$ is real if and only there exists real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and for pairwise orthogonal vectors $v_{1}, v_{2}, \ldots, v_{n} \in V$ such that
+	$A \in \L(V)$ is real, if and only there exists real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{n}$ and pairwise orthogonal vectors $v_{1}, v_{2}, \ldots, v_{n} \in V$ such that
 	\begin{align}\label{spectralrepr}
 		A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}.
 	\end{align}
 \end{lause}
 \begin{proof}
-	We first prove the theorem for the positive maps.
+	We first prove the theorem for positive maps.
 
 	We already proved one direction: every map of the previous form is positive.
 
@@ -243,7 +243,7 @@ The most important result in the theory of positive and real maps is the spectra
 
 	Before proving this lemma, we use it to complete the proof of Theorem \ref{cheapSpectral}.
 
-	Proof is by induction on $n$, the dimension of the space. If $n = 0$, the claim is evident. For induction step assume first that there exists $v \in V$ such that $\langle A v, v \rangle = 0$. Then by the lemma for any $w \in v^{\perp}$ we have $A w \in (v)^{\perp} =: W$. But this means that $A = \arestr{A}{W} \oplus 0$. Now $\arestr{A}{W}$ is also positive, and $\dim(W) < n$, so by the induction assumption we have numbers $\lambda_{i}$ and vectors $v_{i} \in V$ for the map $\arestr{A}{W}$. Such representation for $\arestr{A}{W}$ immediately gives one also for $A$.
+	Proof is by induction on $n$, the dimension of the space. If $n = 0$, the claim is evident. For induction step assume first that there exists $v \in V$ such that $\langle A v, v \rangle = 0$. Then by the lemma for any $w \in \vspan(v)^{\perp}$ we have $A w \in \vspan(v)^{\perp} =: W$. But this means that $A = \arestr{A}{W} \oplus 0$. Now $\arestr{A}{W}$ is also positive, and $\dim(W) < n$, so by the induction assumption we have numbers $\lambda_{i}$ and vectors $v_{i} \in V$ for the map $\arestr{A}{W}$. Such representation for $\arestr{A}{W}$ immediately gives one also for $A$.
 
 	We just have to get rid of the extra assumption on the existence of such $v$. But for this, note that if $\lambda = \inf_{|v| = 1} \langle A v, v \rangle$, one may consider $B = A - \lambda I$. Now $\inf_{|v| = 1} \langle B v, v \rangle = 0$, and $B$ is hence positive. Also, by compactness, the infimum is attained at some point $v$, so $B$ satisfies our assumptions. Representation for $B$ easily gives one for $A$.
 
@@ -258,7 +258,7 @@ The most important result in the theory of positive and real maps is the spectra
 	But this easily implies that $\langle A v, w \rangle = 0 = \langle A w, v \rangle$ for any $w \in V$. The first equality implies that $A v = 0$ and the second that $A w \perp v$ for any $w \in V$.
 \end{proof}
 
-In the representation \ref{spectralrepr} the numbers $\lambda_{i}$ are evidently the eigenvalues of $A$ and vectors $v_{i}$ the corresponding eigenvectors; this is why we call it the \textit{Spectral representation}. While the representation is not unique, there is a way to make it unique. For this we have to change $v_{i}$ to corresponding eigenspaces.
+One may interpret that the spectral theorem is saying that \ref{direct_product} is essentially the only way to build real maps from identity. In the representation \ref{spectralrepr} the numbers $\lambda_{i}$ are evidently the eigenvalues of $A$ and vectors $v_{i}$ the corresponding eigenvectors; this is why we call it the \textbf{Spectral representation}. While the representation is not unique, there is a way to make it unique. For this we have to change $v_{i}$ to corresponding eigenspaces.
 
 \begin{lause}[Spectral theorem, version $2$]
 	Let $A \in \H(V)$. Then there exists unique non-negative integer $m$, distinct real numbers $\lambda_{1}, \lambda_{2}, \ldots, \lambda_{m}$ and (non-trivial) subspaces of $V$, $E_{\lambda_{1}}, E_{\lambda_{2}}, \ldots E_{\lambda_{m}}$ with $V = \bigoplus_{i = 1}^{m} E_{i}$, such that
@@ -268,10 +268,10 @@ In the representation \ref{spectralrepr} the numbers $\lambda_{i}$ are evidently
 	Moreover, this representation is unique.
 \end{lause}
 \begin{proof}
-	Existence of such representation immediately follows from the previous form of Spectral theorem. For uniqueness, note that $\lambda_{i}$'s are necessarily the eigenvalues of $A$ and $E_{\lambda_{i}}$'s the corresponding eigenspaces.
+	Existence of such representation immediately follows from the previous form of spectral theorem. For uniqueness, note that $\lambda_{i}$'s are necessarily the eigenvalues of $A$ and $E_{\lambda_{i}}$'s the corresponding eigenspaces.
 \end{proof}
 
-Although the latter version is definitely of theoretical importance, we will mostly stick the former as it only contains one-dimensional projections. Let's denote the eigenvalues of real map $A$ by $\lambda_{1}(A) \geq \lambda_{2}(A) \geq \ldots \geq \lambda_{n}(A)$. One may interpret that the spectral theorem is saying that \ref{direct_product} is essentially the only way to build real maps from identity.
+Although the latter version is definitely of theoretical importance, we will mostly stick to the former, as it only contains one-dimensional projections and is thus easier to work with.
 
 Spectral representation makes many of the properties of real maps obvious. For instance, any power of a real map is real: indeed, if $A = \sum_{1 \leq i \leq n} \lambda_{i} P_{v_{i}}$, then
 \begin{align*}
@@ -281,7 +281,7 @@ since $P_{v} P_{w} = 0$ for $v \perp w$. By induction one can extend the previou
 \begin{align*}
 	p(A) = c_{k} A^{k} + c_{k - 1} A^{k - 1} + \ldots c_{1} A + c_{0} = \sum_{1 \leq i \leq k} p(\lambda_{i}) P_{v_{i}}.
 \end{align*}
-This implies that if $p$ is the characteristic polynomial of $A$, then $p(A) = 0$: the special case of Cayley Hamilton theorem. Moreover, the minimal polynomial of $A$ is the polynomial with the eigenvalues of $A$ as single roots.
+This implies that if $p$ is the characteristic polynomial of $A$, then $p(A) = 0$: the special case of the Cayley--Hamilton theorem. Moreover, the minimal polynomial of $A$ is the polynomial with the eigenvalues of $A$ as single roots.
 
 But even better, if $p$ is polynomial with all except one, say $\lambda_{i}$, of the eigenvalues of $A$ as roots, then $p(A) = p(\lambda_{i}) P_{E_{\lambda_{i}}}$. In particular, the projections to eigenspaces of $A$ are actually polynomials of $A$.
 
@@ -338,7 +338,7 @@ Ultimately this is a statement about eigenvalue dynamics: if two real maps are c
 Note that the previous lemma implies that $\H_{(a, b)}$ or more generally $\H_{U}$ is an open set (in $\H)$ for any open $U \subset \R$, where $\H_{U}$ is defined as one would expect.
 
 \begin{proof}[Proof of proposition \ref{matrix_continuous}]
-	By lemma \ref{eig_lem1} $f_{V}$ is clearly continuous at $A \in \H_{(a, b)}$ at least if $f(A) = 0$. But if this is not the case, we may interpolate $f_{V}$ by polynomial: find a polynomial $p$ with $p(\lambda) = f(\lambda)$ for $\lambda \in \spec(A)$ and write $f = p + g$. Now $g_{V}$ is continuous at $A$. Also, as
+	By lemma \ref{eig_lem1} $f_{V}$ is clearly continuous at $A \in \H_{(a, b)}$ at least if $f(A) = 0$. But if this is not the case, we may interpolate $f_{V}$ by a polynomial: find a polynomial $p$ with $p(\lambda) = f(\lambda)$ for $\lambda \in \spec(A)$ and write $f = p + g$. Now $g_{V}$ is continuous at $A$. Also, as
 	\begin{align*}
 		(A + H)^{k} = A^{k} + O(\|H\|)
 	\end{align*}
@@ -393,12 +393,12 @@ A similar statement holds for arbitrary families of commuting real maps.
 	\end{align*}
 \end{lause}
 \begin{proof}
-	As with the spectral theorem, the main difficulty is finding the ``eigenspaces" $E_{i}$. Trick is the following: recall that we may find eigenprojections of a real map as certain polynomials of the map itself. This motivates us to investigate all multivariate polynomials of maps in $\mathcal{A}$: these maps should include also the maps $P_{E_{i}}$. So let $\mathcal{A}' \subset \L(V)$ be the smallest (unital) algebra containing $\mathcal{A}$. Note that $\mathcal{A}'$ is commutative and elements of it are real maps. As $\H(V)$ is finite dimensional and closed under taking polynomials, $\mathcal{A}'$ is spanned by projections to a finite set of subspaces of $V$. To find the subspaces $E_{i}$, we should find a spanning set of projections which is minimal in some sense. It turns out one minimizing $\sum \dim(E_{i})$ works. If we manage to prove that in such minimal spanning set the subspaces $E_{i}$ are orthogonal, we are done, as the respective projections also span $I$ and the family $\mathcal{A}$.
+	As with the spectral theorem, the main difficulty is finding the ``eigenspaces" $E_{i}$. Trick is the following: recall that we may find eigenprojections of a real map as certain polynomials of the map itself. This motivates us to investigate all multivariate polynomials of maps in $\mathcal{A}$: these maps should include also the maps $P_{E_{i}}$. So let $\mathcal{A}' \subset \L(V)$ be the smallest (unital) $\R$-algebra containing $\mathcal{A}$. Note that $\mathcal{A}'$ is commutative and elements of it are real maps. As $\H(V)$ is finite dimensional and closed under taking polynomials, $\mathcal{A}'$ is spanned by projections to a finite set of subspaces of $V$. To find the subspaces $E_{i}$, we should find a spanning set of projections which is minimal in some sense. It turns out one minimizing $\sum \dim(E_{i})$ works. If we manage to prove that in such minimal spanning set the subspaces $E_{i}$ are orthogonal, we are done, as the respective projections also span $I$ and the family $\mathcal{A}$.
 
 	Note that for any $1 \leq i < j \leq m$ the map $A := P_{E_{i}} P_{E_{j}}$ is a projection, as it is real ($P_{E_{i}}$ and $P_{E_{j}}$ commute) and $A^{2} = P_{E_{i}} P_{E_{j}} P_{E_{i}} P_{E_{j}} = P_{E_{i}}^2 P_{E_{j}}^2 = P_{E_{i}} P_{E_{j}} = A$. But as $\image(A) \subset E_{i}, E_{j}$, the maps $P_{E_{0}} := A, P_{E_{i}'} := P_{E_{i}} - A$ and $P_{E_{j}'} := P_{E_{j}} - A$, are projections in $\mathcal{A}'$ spanning $P_{E_{i}}$ and $P_{E_{j}}$. Since $\dim(E_{0}) + \dim(E_{i}') + \dim(E_{j}') = \dim(E_{i}) + \dim(E_{j}) - \dim(E_{0})$, by the minimality of $(E_{i})_{i = 1}^{m}$ we must have $\dim(E_{0}) = 0$. Indeed, otherwise we could replace $E_{i}$ and $E_{j}$ by $E_{0}$, $E_{i}'$ and $E_{j}'$. Consequently $P_{E_{i}} P_{E_{j}} = 0$, and hence $E_{i} \perp E_{j}$.
 \end{proof}
 
-It is not very hard to see that decomposition with minimal $m \geq 1$ is unique and attained by the previous construction.
+It is not very hard to see that the decomposition with minimal $m \geq 1$ is unique and attained by the previous construction.
 
 The message is: if one wants products to preserve positivity, everything degenerates to $\R^{m}$, i.e. diagonal maps.
 
@@ -487,7 +487,7 @@ Proposition \ref{basic_positive} tells us that $\leq$, is indeed a partial order
 \end{prop}
 
 \begin{esim}\label{projection_order}
-	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} + W_{3}$ for some $W_{3} \perp W_{1}$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Converse follows as soon as one notes that by \ref{spectral_zero_lemma} for any $W \subset V$ we have
+	If $W_{1}, W_{2} \subset V$ are two subspaces of $V$ we have $P_{W_{1}} \leq P_{W_{2}}$ if and only if $W_{1} \subset W_{2}$. Indeed if $W_{1} \subset W_{2}$ then $W_{2} = W_{1} \oplus W_{3}$ for some $W_{3} \subset V$ and hence $P_{W_{2}} = P_{W_{1}} + P_{W_{3}} \geq P_{W_{1}}$. Converse follows as soon as one notes that by \ref{spectral_zero_lemma} for any $W \subset V$ we have
 	\begin{align*}
 		\{v \in V | \langle P_{W} v, v\rangle = 0\} = W^{\perp}.
 	\end{align*}

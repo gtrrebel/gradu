@@ -2,25 +2,25 @@
 
 \section{Loewner's theorem}
 
-Aim of this chapter is to prove Theorem \ref{weak_loewner}. Before we start with the proof, let us return to section \ref{loewner_first_touch}.
+Aim of this chapter is to prove Theorem \ref{weak_loewner}. Before we start with the proof, let us make brief return to section \ref{loewner_first_touch}.
 
 \begin{maar}
-	We say that $f : (a, b) \to \R$ is weakly Pick on (on $(a, b)$), if for any $r \in R_{+}(a, b)$
+	We say that $f : (a, b) \to \R$ is weakly Pick (on $(a, b)$), if for any $r \in R_{+}(a, b)$
 	\begin{align*}
 		\langle f, r\rangle_{L} \geq 0.
 	\end{align*}
 	We will denote the set of weakly Pick functions on $(a, b)$ by $\pickclass(a, b)$.
 \end{maar}
 
-In section \ref{loewner_first_touch} we observed that the classes $P_{\infty}(a, b)$ and  $\pickclass(a, b)$ coincide: any $\infty$-monotone function corresponds to a linear functional on $R(a, b) = R((a, b))$ positive $R_{+}(a, b)$. Note that we defined $R_{+}(a, b)$ was essentially the set of those $r \in R((a, b))$, which are non-negative outside $(a, b)$, so $R_{+}(a, b) \neq R_{+}((a, b))$.
+In section \ref{loewner_first_touch} we observed that the classes $P_{\infty}(a, b)$ and  $\pickclass(a, b)$ coincide: any $\infty$-monotone function corresponds to a linear functional on $R(a, b) = R((a, b))$, positive on $R_{+}(a, b)$. Note that as we defined $R_{+}(a, b)$ to be the set of those $r \in R((a, b))$, which are non-negative outside $(c, d)$ for some $a < c < d < b$, $R_{+}(a, b) \neq R_{+}((a, b))$.
 
 Let us denote
 \begin{align*}
-	\tilde{\pickclass}(a, b) :=& \{\varphi \in \pickclass | \text{$\varphi$ extends analytically to $\Hp \cup \Hm \cup (a, b)$} \\
+	\tilde{\pickclass}(a, b) :=& \{\varphi \in \pickclass | \text{$\varphi$ extends analytically to $(a, b) \cup \Hp \cup \Hm$} \\
 	&\text{in such a way that $\varphi(z) = \overline{\varphi(\overline{z})}$ for any $z \in \Hp$ and $\varphi[(a, b)] \subset \R.$}\}.
 \end{align*}
 
-Now Theorem \ref{weak_loewner} can be rephrased in the following form.
+Now Theorem \ref{weak_loewner} can be rephrased as follows.
 \begin{lause}\label{better_weak_loewner}
 	Let $f : (a, b) \to \R$. Then $f \in P_{\infty}(a, b)$, if and only for some $f = \restr{\varphi}{(a, b)}$ for some $\varphi \in \tilde{\pickclass}(a, b)$.
 \end{lause}
@@ -49,7 +49,7 @@ For ``$\Rightarrow$" we follow the ideas of proof of Theorem \ref{pick_interpola
 	for any $r \in R(a, b)$.
 \end{lem}
 \begin{proof}
-	Not much changes from the proof of Lemma \ref{pick_norm_estimate}. We can again assume that $r \in R_{\pm}(a, b) := \vspan_{\R}(R_{+}(a, b))$. Fix $a < c < d < b$. It's easy to see that there exists a constant $C_{c, d}$ such that
+	Not much changes from the proof of Lemma \ref{pick_norm_estimate}. We can again assume that $r \in R_{\pm}(a, b)$. Fix $a < c < d < b$. It's easy to see that there exists a constant $C_{c, d}$ such that
 	\begin{align*}
 		-\frac{C_{c, d}\|r\|_{(a, b)}}{(\lambda - c) (\lambda - d)} \leq r(\lambda) \leq \frac{C_{c, d}\|r\|_{(a, b)}}{(\lambda - c) (\lambda - d)}
 	\end{align*}
@@ -57,23 +57,23 @@ For ``$\Rightarrow$" we follow the ideas of proof of Theorem \ref{pick_interpola
 \end{proof}
 
 \begin{lem}\label{pick_dual_dense_2}
-	$\pickclass(a, b)$ is dense in $\pickclass((a, b) \cup \Hp \cup \Hm)$ with respect to $\|\cdot\|_{(a, b)}$.
+	$R(a, b)$ is dense in $R((a, b) \cup \Hp \cup \Hm)$ with respect to $\|\cdot\|_{(a, b)}$.
 \end{lem}
 \begin{proof}
 	Again, not much changes from the proof of Lemma \ref{pick_dual_dense}. We take sequence $x_{0}, x_{1}, \ldots $ converging to $x_{\infty} \in (a, b)$. Note that
 	\begin{align*}
 		\left\|\frac{(w - x_{0}) \cdots (w - x_{n})}{(\lambda - w)(\lambda - x_{0}) \cdots (\lambda - x_{n})}\right\|_{(a, b)}
 	\end{align*}
-	tends to zero as $n \to \infty$ whenever $|w - x_{\infty}| < \min(x_{\infty} - a, b - x_{\infty})$. But this means that $\pickclass(a, b)$ is dense in $\pickclass((a, b) \cup \D(x_{\infty}, \min(x_{\infty} - a, b - x_{\infty})))$, which is dense in $\pickclass((a, b) \cup \Hp \cup \Hm)$ by Lemma \ref{pick_dual_dense} (and the fact that $\|\cdot\|_{(a, b)} \leq \|\cdot\|_{R}$).
+	tends to zero as $n \to \infty$ whenever $|w - x_{\infty}| < \min(x_{\infty} - a, b - x_{\infty})$. But this means that $R(a, b)$ is dense in $R((a, b) \cup \D(x_{\infty}, \min(x_{\infty} - a, b - x_{\infty})))$, which is dense in $R((a, b) \cup \Hp \cup \Hm)$ by Lemma \ref{pick_dual_dense} (and the fact that $\|\cdot\|_{(a, b)} \leq \|\cdot\|_{R}$).
 \end{proof}
 
 \begin{lem}\label{loewner_hard}
 	Let $f \in P_{\infty}(a, b)$. Then there exists $\varphi \in \tilde{\pickclass}(a, b)$ with $\restr{\varphi}{(a, b)} = f$.
 \end{lem}
 \begin{proof}
-	Using Lemmas \ref{pick_norm_estimate_2}, \ref{pick_dual_dense_2}, and the arguments of alternate proof for Lemma \ref{weak_analytic}, one sees that $\langle f, \cdot\rangle_{L}$ can be extended to $R((a, b) \cup \cup \Hm)$. With arguments of the proof of Lemma \ref{rat_multiple_approx} one sees that if $r \in R((a, b) \cup \cup \Hm$ is non-negative on $\R \setminus (c, d)$ for some $a < c < d < b$, then $\langle f, r \rangle_{L} \geq 0$. Consequently also the extension satisfies Lemma \ref{pick_dual_dense_2}.
+	Using Lemmas \ref{pick_norm_estimate_2}, \ref{pick_dual_dense_2}, and the arguments of alternate proof for Lemma \ref{weak_analytic}, one sees that $\langle f, \cdot\rangle_{L}$ can be extended to $R((a, b) \cup \Hp \cup \Hm)$. With arguments of the proof of Lemma \ref{rat_multiple_approx} one sees that if $r \in R((a, b) \cup \Hp \cup \Hm)$ is non-negative on $\R \setminus (c, d)$ for some $a < c < d < b$, then $\langle f, r \rangle_{L} \geq 0$. Consequently also the extension satisfies Lemma \ref{pick_norm_estimate_2}.
 
-	This extension defines a function $\varphi$ on $(a, b) \cup \Hp \cup \Hm$. By the positivity of the extension this function is a Pick function on $\Hp$ and by its very definition, it agrees with $f$ on $(a, b)$. That $\varphi$ is analytic on $(a, b)$, follows from Lemma \ref{div_anal} the following estimate, which can be easily shown.
+	This extension defines a function $\varphi$ on $(a, b) \cup \Hp \cup \Hm$. By the positivity of the extension, this function is a Pick function on $\Hp$ and by its very definition, it agrees with $f$ on $(a, b)$. That $\varphi$ is analytic on $(a, b)$, follows from Lemma \ref{div_anal} and the following estimate, which can be easily shown with Lemma \ref{pick_norm_estimate_2}.
 	\begin{lem}\label{pick_div_dif_estimate_2}
 		For every compact $K \subset (a, b) \cup \Hp \cup \Hm$ and $\varphi \in \pickclass((a, b) \cup \Hp \cup \Hm)$ there exists a constant $C(K, \varphi)$ such that
 		\begin{align*}
@@ -81,6 +81,10 @@ For ``$\Rightarrow$" we follow the ideas of proof of Theorem \ref{pick_interpola
 		\end{align*}
 		for any $k \geq 1$ and $z_{0}, z_{1}, \ldots, z_{k} \in K$.
 	\end{lem}
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{better_weak_loewner}]
+	t.f.i.f. Lemmas \ref{loewner_easy} and \ref{loewner_hard}.
 \end{proof}
 
 Note that by the Schwarz reflection principle the class $\tilde{\pickclass}(a, b)$ coincides with the set of Pick functions that continuously extend to $(a, b)$ in such a way that the extension is real on $(a, b)$.
