@@ -176,6 +176,7 @@ Coming back to the original motivation, divided differences enjoy an integral re
 	\end{align}
 	In addition, $w$ is non-negative, supported on $[\min(x_{i}), \max(x_{i})]$ and integrates to $(n!)^{-1}$.
 \end{lause}
+Definition \ref{peano_weight} should be understood with convention $0^{0} = 1$.
 \begin{proof}
 	Note that the weight is simply the $n$'th divided difference of the map $g_{t, n} : x \mapsto ((x - t)_{+})^{n - 1}/(n - 1)!$. This is not very surprising: one should think that $g_{t, n}$ is the function whose $n$'th derivative is $\delta_{t}$. If we plug in $f = g_{t, n}$, (as in the proof of \ref{2-tone}), we, at least morally, get the claim. While the previous argument could be pushed through, we take safer route. To prove that the formula even makes sense, we should prove the claim on the support. It is clear that $w$ is zero whenever $t \geq \max(x_{i})$. If on the other hand $t \leq \min(x_{i})$, $w(t)$ agrees with the $n$'th divided difference of the map $x \mapsto (x - t)^{n - 1}/(n - 1)!$, which is zero by the proposition \ref{lagrange_divided}.
 
@@ -224,7 +225,7 @@ As a very important corollary we get the following.
 	\end{align}
 \end{lause}
 \begin{proof}
-	t.f.i.f. \ref{peano_theorem} and the mean value theorem for integrals.
+	t.f.i.f. Theorem \ref{peano_theorem} and the mean value theorem for integrals.
 \end{proof}
 \begin{proof}[Alternate proof]
 	By linearity and proposition \ref{lagrange_divided} it suffices to verify the claim in the case where $f(x_{i}) = 0$ for $0 \leq i \leq n$.
@@ -344,7 +345,7 @@ One might ask under what kind of conditions \ref{newton_expansion} leads to Newt
 for some sequence $z_{0}, z_{1}, \ldots$ and analytic $f$. While Newton series can be globally rather subtle, locally they work almost like Taylor series.
 
 \begin{prop}
-	Let $f : \D(z_{\infty}, \rho) \to \C$ be analytic and $z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho)$ sequence converging to $z_{\infty}$. Then \ref{newton_series} holds for any $z \in \D(z_{\infty}, \rho)$.
+	Let $z_{\infty} \in \C$, $\rho > 0$, $f : \D(z_{\infty}, \rho) \to \C$ analytic and $z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho)$ sequence converging to $z_{\infty}$. Then \ref{newton_series} holds for any $z \in \D(z_{\infty}, \rho)$.
 \end{prop}
 \begin{proof}
 	We need to verify that the error term $[z, z_{0}, z_{1}, \ldots, z_{n}]_{f} (z - z_{0}) (z - z_{1}) \cdots (z - z_{n})$ in Newton expansion tends to zero as $n \to \infty$. But for any $\rho' < \rho$ such that $z, z_{0}, z_{1}, \ldots \in \D(z_{\infty}, \rho')$ we have
@@ -473,7 +474,7 @@ While this property is of independent interest, the real use of it is its genera
 	\end{itemize}
 \end{lem}
 \begin{proof}
-	Proof is almost identical to that of the lemma \ref{peano_splitting_theorem}: we more or less just replace the identity \ref{peano_splitting} by
+	Proof is almost identical to that of the Lemma \ref{peano_splitting_theorem}: we more or less just replace the identity \ref{peano_splitting} by
 	\begin{align}\label{divdif_splitting_property}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{y_{0} - x_{0}}{x_{n} - x_{0}} [x_{0}, x_{1}, \ldots, x_{n - 1}, y_{0}]_{f} + \frac{x_{n} - y_{0}}{x_{n} - x_{0}} [x_{1}, \ldots, x_{n}, y_{0}]_{f},
 	\end{align}
@@ -488,10 +489,10 @@ We are now ready to prove the locality property of the $k$-tone functions.
 	$P^{(k)}$ is a local property i.e. $P^{(k)}(a, b) \cap P^{(k)}(c, d) \subset P^{(k)}(a, d)$ for any $-\infty \leq a \leq c < b \leq d \leq \infty$. To be more precise, if $f : (a, d) \to \R$ such that $\restr{f}{(a, b)} \in P^{(k)}(a, b)$ and $\restr{f}{(c, d)} \in P^{(k)}(c, d)$, then $f \in P^{(k)}(a, d)$.
 \end{prop}
 \begin{proof}
-	t.f.i.f. lemma \ref{divdif_splitting_theorem}.
+	t.f.i.f. Lemma \ref{divdif_splitting_theorem}.
 \end{proof}
 
-Note that we could have also used the splitting property \ref{divdif_splitting_property} to slightly simplify the proof of theorem \ref{peano_theorem}. Recall that in the induction step we were to prove that the function $g_{t, n}$ is $n$-tone for any $n \geq 1$. We also observed that by the induction hypothesis
+Note that we could have also used the splitting property \ref{divdif_splitting_property} to slightly simplify the proof of Theorem \ref{peano_theorem}. Recall that in the induction step we were to prove that the function $g_{t, n}$ is $n$-tone for any $n \geq 1$. We also observed that by the induction hypothesis
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n - 1}, t]_{g_{t, n}} = \frac{1}{n - 1}[x_{0}, x_{1}, \ldots, x_{n - 1}]_{g_{t, n - 1}} =  \frac{1}{n - 1} w_{x_{0}, \ldots, x_{n - 1}}(t)\geq 0
 \end{align*}
@@ -554,7 +555,7 @@ The first step is to connect the divided differences of a function to the divide
 	\end{align*}
 	Now assuming the claim on the continuity, the limit is exactly what we wanted.
 
-	First equality of second claim was already essentially proved in the proof of theorem \ref{peano_theorem}; the second is a simple computation.
+	First equality of second claim was already essentially proved in the proof of Theorem \ref{peano_theorem}; the second is a simple computation.
 \end{proof}
 
 Analogous telescoping trick gives also the following identity.
@@ -650,7 +651,7 @@ Just like one can carry regularity information, one can carry boundedness inform
 \begin{proof}
 	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $k$'th divided difference corresponds to $k$'th derivative, if it is bounded, $(k - 1)$'th derivative should be continuous. Thus we should prove that this is indeed the case by proving that $(k - 1)$'th divided differences of $f$ extend continuously to the whole of $(a, b)^{k}$.
 
-	Note that lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions on dense set can be always extended to the whole space (as Lipschitz functions), so we are done by lemma \ref{weaktoreal_lemma}.
+	Note that Lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions on dense set can be always extended to the whole space (as Lipschitz functions), so we are done by Lemma \ref{weaktoreal_lemma}.
 \end{proof}
 
 \begin{lause}\label{bounded_div}
@@ -660,7 +661,7 @@ Just like one can carry regularity information, one can carry boundedness inform
 	\end{align*}
 \end{lause}
 \begin{proof}
-	Again, simply apply lemma \ref{boundtoreal_lemma} inductively.
+	Again, simply apply Lemma \ref{boundtoreal_lemma} inductively.
 \end{proof}
 
 Finally, one can carry positivity.
@@ -673,7 +674,7 @@ Finally, one can carry positivity.
 \end{proof}
 
 \begin{proof}[Proof of the theorem \ref{k-tone_smooth}]
-	Yet again, simply apply lemma \ref{postoreal_lemma} inductively.
+	Yet again, simply apply Lemma \ref{postoreal_lemma} inductively.
 \end{proof}
 
 \section{Analyticity}
@@ -702,13 +703,13 @@ Finally, one can carry positivity.
 	whenever $|x - x_{0}| C_{x_{0}} < 1$. By the mean value theorem for divided differences it follows that we get required bound for some neighbourhood of $x_{0}$ and consequently, by compactness for any closed subinteval of $(a, b)$.
 \end{proof}
 
-The previous result is some kind of relative of \ref{bounded_div}. Also theorem \ref{k-tone_smooth} has rather interesting relative.
+The previous result is some kind of relative of \ref{bounded_div}. Also Theorem \ref{k-tone_smooth} has rather interesting relative.
 
 \begin{lause}[Bernstein's theorem]\label{bernstein_theorem}
 	If $f : (a, b) \to \R$ is $k$-tone for every $k \geq 0$, then $f$ is real-analytic on $(a, b)$.
 \end{lause}
 \begin{proof}
-	We prove that the conditions of the theorem \ref{div_anal} are satisfied. Pick any $a < x_{0} < x < b$. Now for any $n \geq 0$ we have
+	We prove that the conditions of the Theorem \ref{div_anal} are satisfied. Pick any $a < x_{0} < x < b$. Now for any $n \geq 0$ we have
 	\begin{align*}
 		f(x) = \sum_{k = 0}^{n - 1} \frac{f^{(k)}(x_{0})}{k!}(x - x_{0})^{k} + \frac{f^{(n)}(x_{0})}{n!} (x - x_{0})^{n} + [x, x_{0}, x_{0}, \ldots, x_{0}]_{f} (x - x_{0})^{n + 1}.
 	\end{align*}

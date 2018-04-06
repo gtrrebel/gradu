@@ -66,7 +66,7 @@ The first observation might not be very surprising, and it holds for smooth func
 This suggests that we should be able to recognize also Pick functions looking only at their boundary values. Actually even more is true: it suffices to look at the imaginary parts.
 
 \begin{prop}
-	Let $U \supset \overline{\Hp}$ and $\varphi : U \to \C$ analytic, and $\varphi$ is continuous at $\infty$. Then if the imaginary part of $\varphi$ is non-negative on the real axis, $\varphi$ is Pick function.
+	Let $U \supset \overline{\Hp}$, $\varphi : U \to \C$ analytic, and $\varphi$ is continuous at $\infty$. Then if the imaginary part of $\varphi$ is non-negative on the real axis, $\varphi$ is Pick function.
 \end{prop}
 \begin{proof}
 	t.f.i.f the minimum principle applied to the harmonic function $\Im(\varphi)$.
@@ -300,7 +300,7 @@ whenever $X \subset \C$.
 	\begin{enumerate}[(i)]
 		\item This is just the partial fraction decomposition.
 		\item Easy to check.
-		\item This follows from \ref{polynomial_lemma}.
+		\item This follows from Lemma \ref{polynomial_lemma}.
 		\item Easy to check.
 		\item It is easy to check that elements of the right-hand side are spanned by the functions of the form
 		\begin{align*}
@@ -770,7 +770,7 @@ For completeness, we also prove Farkas' lemma.
 
 \section{Notes and references}
 
-Pick functions and representation theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick--Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist, see (?) for a survey. Usually the treatment builds on the notion of Pick matrix: given $\varphi : \Hp \to \C$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ one may define a matrix
+Pick functions and representation Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick--Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist, see (?) for a survey. Usually the treatment builds on the notion of Pick matrix: given $\varphi : \Hp \to \C$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ one may define a matrix
 \begin{align*}
 	\begin{bmatrix}
 		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\

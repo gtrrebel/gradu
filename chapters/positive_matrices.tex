@@ -132,7 +132,7 @@ We can also lift the concept of complex conjugate.
 	\end{align*}
 \end{lause}
 \begin{proof}
-	The uniqueness of adjoint is immediate from the lemma \ref{inj_compr}. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$: the maps of the form $A = (x \mapsto \langle x, v \rangle w)$ for $v, w \in V$ will do.
+	The uniqueness of adjoint is immediate from the Lemma \ref{inj_compr}. The map $(\cdot)^{*} : \L(V) \to \L(V)$ should evidently be conjugate linear, so for existence it suffices to find adjoint for suitable basis elements of $\L(V)$: the maps of the form $A = (x \mapsto \langle x, v \rangle w)$ for $v, w \in V$ will do.
 
 	The quadratic form for such map is given by
 	\begin{align*}
@@ -250,7 +250,7 @@ The most important result in the theory of positive and real maps is the spectra
 	Note that the previous trick also covers the case of a general real map.
 \end{proof}
 
-\begin{proof}[Proof of lemma \ref{spectral_zero_lemma}]
+\begin{proof}[Proof of Lemma \ref{spectral_zero_lemma}]
 	Take any $w \in V$. By assumption for any $c \in \C$ we have
 	\begin{align*}
 		\langle A (c v + w), c v + w \rangle = c \langle A v, w \rangle + \overline{c} \langle A w, v \rangle + \langle A w, w \rangle \geq 0
@@ -296,7 +296,7 @@ Fix $A \in \H(V)$ with eigenbasis $(v_{i})_{i = 1}^{n}$. For any $v \in V$ we ha
 
 \subsection{Functional calculus}
 
-Given the spectral theorem, it is rather clear how one should define general matrix functions. We denote by $\H_{(a, b)}$ elements of $\H$, the spectra of which lie in $(a, b)$.
+Given the spectral theorem, it is rather clear how one should define general matrix functions. We denote by $\H_{(a, b)}$ the elements of $\H$, the spectra of which lie in $(a, b)$.
 
 \begin{maar}
 	For any $-\infty \leq a < b \leq \infty$ $f : (a, b) \to \R$ the associated matrix function on $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
@@ -338,7 +338,7 @@ Ultimately this is a statement about eigenvalue dynamics: if two real maps are c
 Note that the previous lemma implies that $\H_{(a, b)}$ or more generally $\H_{U}$ is an open set (in $\H)$ for any open $U \subset \R$, where $\H_{U}$ is defined as one would expect.
 
 \begin{proof}[Proof of proposition \ref{matrix_continuous}]
-	By lemma \ref{eig_lem1} $f_{V}$ is clearly continuous at $A \in \H_{(a, b)}$ at least if $f(A) = 0$. But if this is not the case, we may interpolate $f_{V}$ by a polynomial: find a polynomial $p$ with $p(\lambda) = f(\lambda)$ for $\lambda \in \spec(A)$ and write $f = p + g$. Now $g_{V}$ is continuous at $A$. Also, as
+	By Lemma \ref{eig_lem1} $f_{V}$ is clearly continuous at $A \in \H_{(a, b)}$ at least if $f(A) = 0$. But if this is not the case, we may interpolate $f_{V}$ by a polynomial: find a polynomial $p$ with $p(\lambda) = f(\lambda)$ for $\lambda \in \spec(A)$ and write $f = p + g$. Now $g_{V}$ is continuous at $A$. Also, as
 	\begin{align*}
 		(A + H)^{k} = A^{k} + O(\|H\|)
 	\end{align*}
@@ -408,7 +408,7 @@ The message is: if one wants products to preserve positivity, everything degener
 
 Conversely, if one wants exciting things to happen, one should make things very non-commutative.
 
-As a corollary to theorem \ref{commuting_real_maps} we have
+As a corollary to Theorem \ref{commuting_real_maps} we have
 
 \begin{kor}
 	If $A, B \geq 0$ and $A$ and $B$ commute, then $AB \geq 0$.
@@ -422,7 +422,7 @@ As normal product doesn't quite work with positivity, next attempt might be symm
 \end{align*}
 (or maybe with normalizing constant $\frac{1}{2}$ in the front), instead of the usual one. It turns out that even this doesn't fix positivity.
 
-For one dimensional projections things go as badly as they possibly can.
+For one-dimensional projections things go as badly as they possibly can.
 
 \begin{prop}\label{symmetric_projection}
 	If $v, w \in V \setminus \{0\}$, then
@@ -432,7 +432,7 @@ For one dimensional projections things go as badly as they possibly can.
 	if and only if $v$ and $w$ are parallel or orthogonal, i.e. if and only if $P_{v}$ and $P_{w}$ commute.
 \end{prop}
 \begin{proof}
-	Since everything is happening in a (at most) two dimensional subspace of $V$, we may assume that $V$ is two dimensional in the first place. Note that
+	Since everything is happening in a (at most) two-dimensional subspace of $V$, we may assume that $V$ is two-dimensional in the first place. Note that
 	\begin{align*}
 		P_{v} P_{w} + P_{w} P_{v} = (P_{v} + P_{w})^2 - P_{v}^2 - P_{w}^2 = (P_{v} + P_{w})^2 - P_{v} - P_{w} = A^2 - A = A (A - I),
 	\end{align*}

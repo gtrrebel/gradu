@@ -44,7 +44,7 @@ Note that in the notation $P_{n}(a, b)$ we don't specify the space $V$; it doesn
 	The result follows easily from Theorem \ref{inverse_decreasing}.
 \end{proof}
 
-By the previous proposition also $(x \mapsto (\lambda - x)^{-1} \in P_{n}(a, b)$ for any $\lambda \notin (a, b)$, so by the cone property
+By the previous proposition also $(x \mapsto (\lambda - x)^{-1}) \in P_{n}(a, b)$ for any $\lambda \notin (a, b)$, so by the cone property
 \begin{align}\label{finite_pick}
 	x \mapsto \alpha x + \beta + \sum_{i = 1}^{m} \frac{t_{i}}{\lambda_{i} - x} \in P_{n}(a, b)
 \end{align}
@@ -72,7 +72,7 @@ Below we collect many natural properties of the cones $P_{n}(a, b)$.
 	$(iii) \Rightarrow (ii)$: All $1 \times 1$ matrices commute.
 	
 
-	$(i) \Rightarrow (iii)$: If $A \leq B$ and $A$ and $B$ commute, by theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} a_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{v_{i}}$ for some $\lambda_{1}, \ldots, \lambda_{n}, \lambda'_{1}, \ldots, \lambda'_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $\lambda_{i} \leq \lambda'_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(\lambda_{i}) P_{v_{i}}$ and $f(B) = \sum_{i = 1}^{n} f(\lambda'_{i}) P_{v_{i}}$ so
+	$(i) \Rightarrow (iii)$: If $A \leq B$ and $A$ and $B$ commute, by Theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} a_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{v_{i}}$ for some $\lambda_{1}, \ldots, \lambda_{n}, \lambda'_{1}, \ldots, \lambda'_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $\lambda_{i} \leq \lambda'_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(\lambda_{i}) P_{v_{i}}$ and $f(B) = \sum_{i = 1}^{n} f(\lambda'_{i}) P_{v_{i}}$ so
 	\begin{align*}
 		f(B) - f(A) = \sum_{i = 1}^{n} (f(\lambda'_{i}) - f(\lambda_{i})) P_{v_{i}}.
 	\end{align*}
@@ -156,7 +156,7 @@ The idea is the following: we are going to take $n = 2$ and construct $A, B \in 
 \end{enumerate}
 If we can do this, $A$ and $B$ work as counterexamples. Indeed then $\chi_{(0, \infty)}(A) = P_{v_{1}}$ and $\chi_{(0, \infty)}(B) = P_{w_{1}}$ where eigenvectors $v_{1}$ and $w_{1}$ are eigenvectors of $A$ and $B$ corresponding to positive eigenvalues. Since $A$ and $B$ don't commute, $v_{1} \neq w_{1}$, and hence $\chi_{(0, \infty)}(A) \not\leq \chi_{(0, \infty)}(B)$ by \ref{projection_order}.
 
-Constructing such pair is very easy: just take $A$ with eigenvalues $-1$ and $1$ and consider $B$ of the form $A + t H$ for some $H \geq 0$, $t > 0$ and such that $A$ and $H$ do not commute. For small enough $H$ all of the conditions are easily satisfied.
+Constructing such pair is very easy: just take $A$ with eigenvalues $-1$ and $1$ and consider $B$ of the form $A + t H$ for some $H \geq 0$, $t > 0$ and such that $A$ and $H$ do not commute. For small enough $t$ all of the conditions are easily satisfied.
 
 As we saw with the square function example, product of two $n$-monotone functions need not be $n$-monotone in general, even if they are both positive functions. Similarly, taking maximums doesn't preserve monotonicity.
 
@@ -301,9 +301,9 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 		&= \frac{1}{2 \pi i}\int_{\gamma} \langle (z I - A)^{-1} v, w \rangle \langle (z I - A)^{-1} w, v \rangle f(z) dz.
 	\end{align*}
 	Note that we can write $\langle (z I - A)^{-1} v, w \rangle = \det(z I - A)^{-1} q(z)$ where $q$ is some polynomial of degree less than $n$. Moreover, if $A$ has $n$ distinct roots and $v$ is not orthogonal to any eigenvector of $A$, varying $w$ gives all such polynomials $q$, so we can rewrite our object as
-	\begin{align*}
+	\begin{align}\label{loewner_integral}
 		\frac{1}{2 \pi i}\int_{\gamma} \det(z I - A)^{-2} q(z) \overline{q(\overline{z})} f(z) dz.
-	\end{align*}
+	\end{align}
 	Taking $A \to 0$ reveals that
 	\begin{align*}
 		\frac{1}{2 \pi i}\int_{\gamma} \frac{q(z) \overline{q(\overline{z})}}{z^{2 n}} f(z) dz.
@@ -326,12 +326,6 @@ Let us try to prove the ``only if" -directions of these results modulo regularit
 \end{proof}
 
 Note that the proof gives also alternate interpretation for the matrix $M$. Positivity of $M$ means simply that for $q \in \C_{n - 1}[x]$ the function $f(x) q(x) \overline{q(\overline{x})} = f(x) |q(x)|^2$ has non-negative $(2 n - 1)$'th derivative.
-
-Given polynomial $q$, we henceforth denote by $q^{*}$ the polynomial with
-\begin{align*}
-	q^{*}(z) = \overline{q(\overline{z})}.
-\end{align*}
-Write further that $N(q) = q q^{*}$.
 
 The main problem of the argument is the regularity. While we assume $f$ to be entire mainly for convenience, we need some kind of regularity to make sense of the definition: it is a priori not even clear that functions in $P_{\infty}(a, b)$ should be continuous. Origin of these regularity properties is the topic of the next chapter.
 
