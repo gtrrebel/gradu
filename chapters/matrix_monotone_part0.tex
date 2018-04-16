@@ -104,14 +104,14 @@ Much more importantly for us, these is no such nice additive structure for $n$-m
 
 All these issues can be, in a way, avoided by change of perspective: instead of trying to characterize matrix monotone functions by expressing them as sums of something simple, we express the definition itself as a sum of somethings simple. In particular we try to understand the ``dual" (or a ``predual" to be exact) of matrix monotone functions.
 
-\section{Dual cones}
+\section{Non-standardly defined dual cones}\label{dual_definitions}
 
 Let in the following $V$ be a vector space over $\R$ and denote its dual by $V^{*}$.
 
 \begin{maar}
 	For a subset $C^{*}$ of $V^{*}$ we define its \textbf{dual cone} to be
 	\begin{align*}
-		C = \{v \in V | w^{*} v \geq 0 \text{ for every $w^{*} \in V^{*}$}\} \subset V.
+		C = \{v \in V | w^{*} v \geq 0 \text{ for every $w^{*} \in C^{*}$}\} \subset V.
 	\end{align*}
 \end{maar}
 
@@ -137,6 +137,18 @@ This set is a convex cone. If one denotes the evaluation functional or measure a
 \end{align*}
 
 I hope the reader agrees that this predual is in many ways much simpler than the set of increasing functions (at least if one looks at objects themselves) and yet it carries the information thereof. As we will see, if chosen suitably, preduals can offer convenient and clean language for talking about the cone itself. And that is what this thesis is really about.
+
+One can also bring the dual language to topological setting. If $V$ is further a topological vector space, denote its continuous dual by $V^{*}$. Now the notions of convex cone, dual cone and predual have natural counterparts in this setting. It also makes sense to talk about \textbf{closed convex cones}. One easily checks the following.
+
+\begin{lause}\label{positive_machine}
+	Let $V$ be a topological vector space and $C^{*}$ a subset of its continuous dual. Then
+	\begin{align*}
+		C := \{v \in V | w^{*}(v) \geq 0 \text{ for every $w^{*} \in C^{*}$}\}
+	\end{align*}
+	is a closed convex cone of $V$.
+\end{lause} 
+
+\textbf{Warning!} The dual and predual terminology above is somewhat non-standard. Often dual cones are subsets of the dual space (with definition as one would expect). Preduals would be defined similarly.
 
 \section{Contents}
 

@@ -245,7 +245,7 @@ As in the case $n = 1$, if for $n > 1$ we can continuously extend divided differ
 \begin{align*}
 	[x_{0}, x_{0}, \ldots, x_{0}]_{f} = \frac{f^{(n)}(x_{0})}{n!},
 \end{align*}
-which together with \ref{divdif_rec} is enough to expand the divided differences with values of the function and its derivative.
+which together with \ref{divdif_rec} is enough to expand the divided differences with values of the function and its derivatives.
 
 \subsection{Cauchy's integral formula}
 
@@ -276,7 +276,7 @@ We may express an interpolation polynomial of an analytic function $f$ and seque
 Indeed: $P_{X, f}(x_{i})$ evaluates to $f(x_{i})$ by Cauchy's integral formula. More generally, if some of the points coincide, we get the Hermite interpolation polynomial, as can be shown with slightly more careful considerations.
 \end{esim}
 
-While the previous argument works stricly speaking only for analytic function (and even then one would have to be careful with domains and $\gamma$), the identity holds more generally. The expression for $P_{X, f}$ can be expanded as some kind polynomial, coefficients of which are linear combinations of evaluations $f(x_{i})$: such expressions make perfect sense irrespective of the regularity of $f$. Same is true for the evaluations of this polynomial at points $x_{i}$, numbers $P_{X, f}(x_{i})$. We know that $P_{X, f}(x_{i}) = f(x_{i})$ holds for all analytic (or at least entire) functions. On the other hand the map $f \mapsto P_{X, f}(x_{i}) - f(x_{i})$ is simply a finite linear combination of point evaluations, so it vanishes for any function if we manage to prove that
+While the previous argument works stricly speaking only for analytic functions (and even then one would have to be careful with domains and $\gamma$), the identity holds more generally. The expression for $P_{X, f}$ can be expanded as some kind polynomial, coefficients of which are linear combinations of evaluations $f(x_{i})$: such expressions make perfect sense irrespective of the regularity of $f$. Same is true for the evaluations of this polynomial at points $x_{i}$, numbers $P_{X, f}(x_{i})$. We know that $P_{X, f}(x_{i}) = f(x_{i})$ holds for all analytic (or at least entire) functions. On the other hand the map $f \mapsto P_{X, f}(x_{i}) - f(x_{i})$ is simply a finite linear combination of point evaluations, so it vanishes for any function if we manage to prove that
 
 \begin{lem}\label{entire_interpolation}
 	For any pairwise distinct $x_{0}, x_{1}, \ldots, x_{n} \in \C$ and $y_{0}, y_{1}, \ldots, y_{n} \in \C$ there exists an entire function $f$ with $f(x_{i}) = y_{i}$.
@@ -613,7 +613,7 @@ Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$
 
 	``$\Leftarrow$": By \ref{integral_divdif} it suffices to prove that the map
 	\begin{align*}
-		(x_{0}, x_{1}, \ldots, x_{k}) \to \int_{0}^{1}[s x_{0} + (1 - s) x_{k}, \ldots, s x_{k - 1} + (1 - s) y_{k}]_{f'} s^{k - 1} d s.
+		(x_{0}, x_{1}, \ldots, x_{k}) \to \int_{0}^{1}[s x_{0} + (1 - s) x_{k}, \ldots, s x_{k - 1} + (1 - s) x_{k}]_{f'} s^{k - 1} d s.
 	\end{align*}
 	is continuous. Since $f' \in C_{w}^{k - 1}(a, b)$, the order $(k - 1)$ divided differences are uniformly continuous on any compact subset of $(a, b)^{k}$. The integrand is consequently continuous with $\sup$-norm and hence the whole map continuous.
 \end{proof}

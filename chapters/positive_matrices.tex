@@ -19,14 +19,14 @@ While these are both excellent questions (and one should definitely think about 
 
 Note that, contrary to the previous chapter, we snuck in the complex numbers and ``general" vector space to the definition (see ``Notation and conventions" in the previous chapter). It doesn't make much difference whether we talk about real or complex numbers but the author thinks that some of the arguments are more natural in the complex world. Also, working with a general vector space $V$ is mostly just a reminder of the fact that there is something tensorial going on.
 
-Theorem \ref{dual_cone} immediately implies
+Theorem \ref{positive_machine} immediately implies
 
 \begin{lause}
 The set
 \begin{align*}
 	\{A \in \L(V) | \text{ $A$ is positive} \}
 \end{align*}
-is a convex cone.
+is a closed convex cone.
 \end{lause}
 
 We denote this cone of positive maps (of $V$) by $\H_{+}(V)$.
@@ -50,26 +50,18 @@ Conveniently enough $\H_{+}(V)$ is a salient cone, but this is by no means trivi
 
 The idea of recovering the inner product from the norm is called \textbf{polarization}.
 
-As $V$ has a topology, the concept of \textbf{closed convex cone}, which is defined as one would expect, makes sense. Just like subsets of the dual lead to a convex cones, subsets of the continuous dual lead to closed convex cones.
-
-A closed convex cone that is also salient is, as is somewhat customary, called \textbf{proper cone}. We have
-
-\begin{lause}\label{basic_positive}
-	$\H_{+}(V)$ is a proper cone (with the usual topology).
-\end{lause}
+\begin{kor}\label{basic_positive}
+	$\H_{+}(V)$ is a salient closed convex cone.
+\end{kor}
 
 Previous arguments carry directly to a much more general setting:
 
-\begin{lause}\label{positive_machine}
+\begin{lause}\label{positive_proper}
 	Let $V$ be a topological vector space (over $\R$ or $\C$) and $C^{*}$ a subset of its continuous dual. Then
+	the dual cone of $C^{*}$ is salient, if and only if
 	\begin{align*}
-		C := \{v \in V | w^{*}(v) \geq 0 \text{ for every $w^{*} \in C^{*}$}\}
+		\{v \in V | w^{*}(v) = 0 \text{ for every $w^{*} \in C^{*}$} \} = \{0\}.
 	\end{align*}
-	is a closed convex cone of $V$. If also
-	\begin{align*}
-		\{v \in V | w^{*}(v) = 0 \text{ for every $w^{*} \in C^{*}$} \} = \{0\},
-	\end{align*}
-	then $C$ is proper.
 \end{lause}
 
 In our case the subset of the linear functionals are the mappings of the form $A \mapsto \langle A v, v \rangle$: they are called \textit{quadratic functionals}. For fixed $A \in \L(V)$ the map $v \mapsto \langle A v, v \rangle$ is the \textit{quadratic form} of $A$.
@@ -357,7 +349,7 @@ power series convergent for any $z \in \C$, we should have
 \begin{align*}
 	f_{V}(A) = \sum_{n = 0}^{\infty} a_{n} A^{n}.
 \end{align*}
-This matrix power series indeed converges as $\|A^{n}\| \leq \|A\|^{n}$. Also, this definition coincides with the spectral one. Indeed, if one writes $f_{n} : z \mapsto  \sum_{k = 0}^{n} a_{n} z^{n}$, we have
+This matrix power series indeed converges as $\|A^{n}\| \leq \|A\|^{n}$. Also, this definition coincides with the spectral one. Indeed, if one writes $f_{n} : z \mapsto  \sum_{k = 0}^{n} a_{k} z^{k}$, we have
 \begin{align*}
 	\sum_{n = 0}^{\infty}a_{n} A^{n} = \lim_{n \to \infty} \left[(f_{n})_{V}(A) \right] = f_{V}(A)
 \end{align*}
@@ -365,7 +357,7 @@ by part (6) of proposition (\ref{basic_matrix}).
 
 Note that the power series definition makes perfect sense even if $a_{n} \notin \R$ or if $A$ is not real.
 
-If $f$ is not entire, the power series might not converge every $A \in \H_{(a, b)}$. Instead, we can use Cauchy's integral formula for matrix functions.
+If $f$ is not entire, the power series might not converge for every $A \in \H_{(a, b)}$. Instead, we can use Cauchy's integral formula for matrix functions.
 \begin{align*}
 	f_{V}(A) = \frac{1}{2 \pi i}\int_{\gamma} (z I - A)^{-1} f(z) dz,
 \end{align*}
@@ -393,7 +385,7 @@ A similar statement holds for arbitrary families of commuting real maps.
 	\end{align*}
 \end{lause}
 \begin{proof}
-	As with the spectral theorem, the main difficulty is finding the ``eigenspaces" $E_{i}$. Trick is the following: recall that we may find eigenprojections of a real map as certain polynomials of the map itself. This motivates us to investigate all multivariate polynomials of maps in $\mathcal{A}$: these maps should include also the maps $P_{E_{i}}$. So let $\mathcal{A}' \subset \L(V)$ be the smallest (unital) $\R$-algebra containing $\mathcal{A}$. Note that $\mathcal{A}'$ is commutative and elements of it are real maps. As $\H(V)$ is finite dimensional and closed under taking polynomials, $\mathcal{A}'$ is spanned by projections to a finite set of subspaces of $V$. To find the subspaces $E_{i}$, we should find a spanning set of projections which is minimal in some sense. It turns out one minimizing $\sum \dim(E_{i})$ works. If we manage to prove that in such minimal spanning set the subspaces $E_{i}$ are orthogonal, we are done, as the respective projections also span $I$ and the family $\mathcal{A}$.
+	As with the spectral theorem, the main difficulty is finding the ``eigenspaces" $E_{i}$. Trick is the following: recall that we may find eigenprojections of a real map as certain polynomials of the map itself. This motivates us to investigate all multivariate polynomials of maps in $\mathcal{A}$: these maps should include also the maps $P_{E_{i}}$. So let $\mathcal{A}' \subset \L(V)$ be the smallest (unital) $\R$-algebra containing $\mathcal{A}$. Note that $\mathcal{A}'$ is commutative and elements of it are real maps. As $\mathcal{A}'$ is finite dimensional and closed under taking polynomials, it is spanned by projections to a finite set of subspaces of $V$. To find the subspaces $E_{i}$, we should find a spanning set of projections which is minimal in some sense. It turns out one minimizing $\sum \dim(E_{i})$ works. If we manage to prove that in such minimal spanning set the subspaces $E_{i}$ are orthogonal, we are done, as the respective projections also span $I$ and the family $\mathcal{A}$.
 
 	Note that for any $1 \leq i < j \leq m$ the map $A := P_{E_{i}} P_{E_{j}}$ is a projection, as it is real ($P_{E_{i}}$ and $P_{E_{j}}$ commute) and $A^{2} = P_{E_{i}} P_{E_{j}} P_{E_{i}} P_{E_{j}} = P_{E_{i}}^2 P_{E_{j}}^2 = P_{E_{i}} P_{E_{j}} = A$. But as $\image(A) \subset E_{i}, E_{j}$, the maps $P_{E_{0}} := A, P_{E_{i}'} := P_{E_{i}} - A$ and $P_{E_{j}'} := P_{E_{j}} - A$, are projections in $\mathcal{A}'$ spanning $P_{E_{i}}$ and $P_{E_{j}}$. Since $\dim(E_{0}) + \dim(E_{i}') + \dim(E_{j}') = \dim(E_{i}) + \dim(E_{j}) - \dim(E_{0})$, by the minimality of $(E_{i})_{i = 1}^{m}$ we must have $\dim(E_{0}) = 0$. Indeed, otherwise we could replace $E_{i}$ and $E_{j}$ by $E_{0}$, $E_{i}'$ and $E_{j}'$. Consequently $P_{E_{i}} P_{E_{j}} = 0$, and hence $E_{i} \perp E_{j}$.
 \end{proof}
