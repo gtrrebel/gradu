@@ -72,7 +72,7 @@ Below we collect many natural properties of the cones $P_{n}(a, b)$.
 	$(iii) \Rightarrow (ii)$: All $1 \times 1$ matrices commute.
 	
 
-	$(i) \Rightarrow (iii)$: If $A \leq B$ and $A$ and $B$ commute, by Theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} a_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} b_{i} P_{v_{i}}$ for some $\lambda_{1}, \ldots, \lambda_{n}, \lambda'_{1}, \ldots, \lambda'_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $\lambda_{i} \leq \lambda'_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(\lambda_{i}) P_{v_{i}}$ and $f(B) = \sum_{i = 1}^{n} f(\lambda'_{i}) P_{v_{i}}$ so
+	$(i) \Rightarrow (iii)$: If $A \leq B$ and $A$ and $B$ commute, by Theorem \ref{commuting_real_maps} we may write $A = \sum_{i = 1}^{n} \lambda_{i} P_{v_{i}}$ and $B = \sum_{i = 1}^{n} \lambda_{i}' P_{v_{i}}$ for some $\lambda_{1}, \ldots, \lambda_{n}, \lambda'_{1}, \ldots, \lambda'_{n} \in \R$ and $v_{1}, v_{2}, \ldots, v_{n}$, orthonormal basis of $V$, with $\lambda_{i} \leq \lambda'_{i}$. But now $f(A) = \sum_{i = 1}^{n} f(\lambda_{i}) P_{v_{i}}$ and $f(B) = \sum_{i = 1}^{n} f(\lambda'_{i}) P_{v_{i}}$ so
 	\begin{align*}
 		f(B) - f(A) = \sum_{i = 1}^{n} (f(\lambda'_{i}) - f(\lambda_{i})) P_{v_{i}}.
 	\end{align*}
@@ -331,7 +331,11 @@ The main problem of the argument is the regularity. While we assume $f$ to be en
 
 \section{Notes and references}
 
-Matrix monotone functions were first introduced by Loewner in \cite{Low}. Basic properties of the $n$-monotone functions are examined in numerous sources; see for instance \cite{Hiai}. Maximum of real maps is discussed in detail in \cite{Ando2}. Loewner characterized the $n$-monotone functions on $(a, b)$ as functions for which the matrix
+Matrix monotone functions were first introduced and discussed by Loewner in \cite{Low}, and since then, basic properties thereof have been examined in numerous sources. While this text doesn't follow any particular text, the book by Donoghue \cite{Don} and lecture notes by Hiai \cite{Hiai} have served as bodies of endless inspiration.
+
+Maximum of real maps is discussed in detail in \cite{Ando2}.
+
+Loewner himself characterized the $n$-monotone functions on $(a, b)$ as functions for which the matrix
 \begin{align*}
 	\begin{bmatrix}
 		f'(\lambda_{1}) & \frac{f(\lambda_{1}) - f(\lambda_{2})}{\lambda_{1} - \lambda_{2}} & \cdots & \frac{f(\lambda_{1}) - f(\lambda_{n})}{\lambda_{1} - \lambda_{n}} \\
@@ -340,7 +344,7 @@ Matrix monotone functions were first introduced by Loewner in \cite{Low}. Basic 
 		\frac{f(\lambda_{n}) - f(\lambda_{1})}{\lambda_{n} - \lambda_{1}} & \frac{f(\lambda_{b}) - f(\lambda_{2})}{\lambda_{n} - \lambda_{2}} & \cdots & f'(\lambda_{n}) 
 	\end{bmatrix},
 \end{align*}
-called Loewner matrix, is positive for any $a < \lambda_{1}, \ldots, \lambda_{n} < b$. \ref{heuristic_main} and \ref{heuristic_loewner} were first observed by Dobsch (a student of Loewner) in \cite{Dob}. Heuristics in this chapter appear essentially in (Where?).
+called Loewner matrix, is positive for any $a < \lambda_{1}, \ldots, \lambda_{n} < b$. It's not hard to show that positivity of \ref{loewner_integral} is essentially a reformulation of this condition. Theorems \ref{heuristic_main} and \ref{heuristic_loewner} were first observed by Dobsch (a student of Loewner) in \cite{Dob}, but they were not rigorously proven until \cite{Don}. Heuristics in this chapter appear essentially in (Where?).
 
 
 

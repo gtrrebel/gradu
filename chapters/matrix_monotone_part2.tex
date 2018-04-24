@@ -47,7 +47,7 @@ To prove \ref{main_theorem} we are going to verify that for any $f : (a, b) \to 
 	&\Leftrightarrow \\
 	[x_{0}, x_{1}, x_{2}, \ldots, x_{2 n - 1}]_{f N(q)} \geq 0 &\text{ for any $q \in \C_{n - 1}[x]$ and $a < x_{0} < \ldots < x_{2 n - 1} < b$}.
 \end{align*}
-Note that the proof of Theorem \ref{heuristic_loewner} (in particular \ref{loewner_integral}) can be interpreted as saying
+Note that the proof of Theorem \ref{heuristic_loewner} (in particular identity \ref{loewner_integral}) can be interpreted as saying
 \begin{align*}
 	D f_{A}(H) \geq 0 &\text{ for any $A \in \H_{(a, b)}$ and $H \geq 0$ with $\rank(H) = 1$} \\
 	&\Leftrightarrow \\
@@ -247,7 +247,7 @@ First of all, the dual pairing thinking leads to much more satisfactory conclusi
 \begin{proof}
 	It is sufficient to prove that if $r$ is a rational function as in the lemma statement, then $r \in R_{+, n}(a, b)$ for some $n \geq 1$. So pick such $r$.
 
-	Note that $r$ changes its sign even number of times, and only on interval $(a, b)$, say at points $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$. Write $p := \prod_{i = 0}^{2 n - 1} (\cdot - x_{i})$. Now $p r$ is a polynomial of degree less than $2 n$ non-negative on $\R$, so it is of the form $N(q)$ for some $q \in \C_{n - 1}[x]$. Hence we have
+	Note that $r$ changes its sign even number of times, and only on interval $(a, b)$, say at $2 n$ points $a < x_{0} < x_{1} < \ldots < x_{2 n - 1} < b$. Write $p := \prod_{i = 0}^{2 n - 1} (\cdot - x_{i})$. Now $pr$ is a rational function non-negative on $\R$, and as all its poles are simple and lie in $\R$, it has to be a polynomial. Since $r(\infty) = 0$, additionally $\deg(p r) < 2 n$. By Lemma \ref{polynomial_lemma} $pr$ is of the from $N(q)$ for some $q \in \C_{n - 1}[x]$ and hence
 	\begin{align*}
 		r = \frac{N(q)}{p} \in R_{+, n}(a, b).
 	\end{align*}

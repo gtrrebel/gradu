@@ -26,7 +26,7 @@ where $N$ is non-negative integer, $\alpha, m_{1}, m_{2}, \ldots, m_{N} \geq 0$,
 There are (luckily) more interesting examples. All the functions of the form $z \mapsto z^{p}$ where $0 < p < 1$ (with natural branch) are Pick functions; similarly for $\log$. Another classic example is $\tan$. Indeed, by the addition formula
 \begin{eqnarray*}
 	\tan(x + i y) &=& \frac{\tan(x) + \tan(i y)}{1 - \tan(x) \tan(i y)} = \frac{\tan(x) + i \tanh(y)}{1 - i \tan(x) \tanh(y)} \\
-	&=& \frac{\tan(x)(1 + \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
+	&=& \frac{\tan(x)(1 - \tanh^2(y))}{1 + \tan^2(x) \tanh^2(y)} + i \frac{(1 + \tan^2(x))\tanh(y)}{1 + \tan^2(x) \tanh^2(y)},
 \end{eqnarray*}
 and $y$ and $\tanh(y)$ have the same sign.
 
@@ -38,7 +38,7 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-This result is far from clear: pointwise limits of analytic functions need not analytic in general (see for instance TODO). We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought as a subset of $\C^{\Hp}$, the definition of the cone doesn't fit the general framework of Theorem \ref{positive_machine}. This suggests that question one should ask is:
+This result is far from clear: pointwise limits of analytic functions need not analytic in general (see for instance TODO). We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of as a subset of $\C^{\Hp}$, the definition of the cone doesn't fit the general framework of Theorem \ref{positive_machine}. This suggests that question one should ask is:
 
 \begin{quest}\label{pick_predual}
 	What is the ``correct" predual for $\pickclass$?
@@ -104,9 +104,9 @@ There's of course nothing really special about the decay assumption $\varphi(z) 
 
 One can guarantee the convergence also by other means. Consider the integral
 \begin{align}\label{easy_pick_repr}
-	\frac{1}{\pi}\int_{\R} \left(\frac{1}{\lambda - z} - \frac{[|\lambda| > 1]}{\lambda} \right) \Im(\varphi)(\lambda)d \lambda.
+	\frac{1}{\pi}\int_{\R} \left(\frac{1}{\lambda - z} - \frac{\chi_{\R \setminus (-1, 1)}(\lambda)}{\lambda} \right) \Im(\varphi)(\lambda)d \lambda.
 \end{align}
-It converges to an analytic function as long as, say, $\Im(\varphi)$ is bounded. As before, its imaginary part coincides with $\varphi$'s so the functions are equal up to a real constant. Now, however, there's no reason for the real constants to match and indeed they need not. Of course there's nothing really special about $[|\lambda| > 1]\lambda^{-1}$: it is just constant in $z$ and has convenient asymptotics at $\infty$.
+It converges to an analytic function as long as, say, $\Im(\varphi)$ is bounded. As before, its imaginary part coincides with $\varphi$'s so the functions are equal up to a real constant. Now, however, there's no reason for the real constants to match and indeed they need not. Of course there's nothing really special about $\chi_{\R \setminus (-1, 1)}(\lambda)\lambda^{-1}$: it is just constant in $z$ and has convenient asymptotics at $\infty$.
 
 Note that the previous idea could be used to construct Pick functions. Everything still makes sense if we replace $\Im(\varphi)$ by some other positive function, as long as the integral converges. Heck, we could replace it by any positive measure for which $\mu((\lambda^2 + 1)^{-1}) < \infty$.
 
@@ -590,7 +590,7 @@ The reason for this is actually rather simple: we may approximate the elements o
 
 	If $r \in R^{\infty}_{\pm}(\Hp \cup \Hm)$, then our approximation satisfies $s \in R_{\pm}(\Hp \cup \Hm)$.
 
-	Finally, consider the case $r \in R^{\infty}_{+}(\Hp \cup \Hm)$. Choose first $s \in R_{\pm}(\Hp \cup \Hm)$ with \ref{rat_approx}. Note that
+	Finally, consider the case $r \in R^{\infty}_{+}(\Hp \cup \Hm)$. Choose first $s \in R_{\pm}(\Hp \cup \Hm)$ satisfying \ref{rat_approx}. Note that
 	\begin{align*}
 		s \geq r - \frac{\varepsilon}{(\cdot)^2 + 1} \geq -\frac{\varepsilon}{(\cdot)^2 + 1}
 	\end{align*}
@@ -673,7 +673,7 @@ It turns out that all weakly Pick functions arise from Pick functions.
 	Given this lemma, one can, for instance, use transfinite induction (or Zorn's lemma if one so prefers) to extend any element of $\pickclass(X)$ to $\pickclass(\Hp)$. Or one may inductively extend $X$ by a countable set with an accumulation point, after which there exists a unique extension by the already proven dense case.
 
 	\begin{proof}[Proof of Lemma \ref{pick_one_point_extension}]
-		Write $r_{w}(\lambda) = (\lambda - w)^{-1}$. By Proposition \ref{pick_functional_span} $r \in R_{+}(X \cup X^{*} \cup \{w, \overline{w}\})$ is of the form
+		Write $r_{w}(\lambda) = (\lambda - w)^{-1}$. By Proposition \ref{pick_functional_span} any $r \in R_{+}(X \cup X^{*} \cup \{w, \overline{w}\})$ is of the form
 		\begin{align*}
 			ar_{w} + (ar_{w})^{*} + r,
 		\end{align*}

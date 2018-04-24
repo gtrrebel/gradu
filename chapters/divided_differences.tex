@@ -25,7 +25,7 @@ We already know the perfect answer for the case $k = 1$: $1$-tone functions shou
 While this proof by the mean value theorem works in more general setting, if $f \in C^{1}$, one has more instructive proof.\footnote{The following argument would also work with slightly weaker assumptions, but that's not important to us.}
 
 \begin{proof}[Alternate proof for the theorem \ref{increasing_1tone} (in the case $f \in C^{1}(a, b)$)]
-	Note that if $f \in C^{1}(a, b)$, we may write
+	If $f \in C^{1}(a, b)$, we may write
 	\begin{align*}
 		\frac{f(y) - f(x)}{y - x} = \frac{1}{y - x}\int_{x}^{y} f'(t) dt = \int_{0}^{1} f'(t x + (1 - t) y) dt.
 	\end{align*}
@@ -176,7 +176,7 @@ Coming back to the original motivation, divided differences enjoy an integral re
 	\end{align}
 	In addition, $w$ is non-negative, supported on $[\min(x_{i}), \max(x_{i})]$ and integrates to $(n!)^{-1}$.
 \end{lause}
-Definition \ref{peano_weight} should be understood with convention $0^{0} = 1$.
+The case $n = 1$ of definition \ref{peano_weight} should be understood with convention $0^{0} = 0$.
 \begin{proof}
 	Note that the weight is simply the $n$'th divided difference of the map $g_{t, n} : x \mapsto ((x - t)_{+})^{n - 1}/(n - 1)!$. This is not very surprising: one should think that $g_{t, n}$ is the function whose $n$'th derivative is $\delta_{t}$. If we plug in $f = g_{t, n}$, (as in the proof of \ref{2-tone}), we, at least morally, get the claim. While the previous argument could be pushed through, we take safer route. To prove that the formula even makes sense, we should prove the claim on the support. It is clear that $w$ is zero whenever $t \geq \max(x_{i})$. If on the other hand $t \leq \min(x_{i})$, $w(t)$ agrees with the $n$'th divided difference of the map $x \mapsto (x - t)^{n - 1}/(n - 1)!$, which is zero by the proposition \ref{lagrange_divided}.
 
@@ -291,7 +291,7 @@ One can also interpret such identities to be strictly formal: Cauchy's integral 
 
 Many of the familiar identities for the derivatives have analogs with divided differences. We won't need these formulas, but it's nevertheless nice to know that there are such. Also, they are not really more complicated than the derivative counterparts. On the contrary; the author honestly thinks that they are in fact easier to remember. One of the downsides of the divided difference identities is however that they are usually not symmetric with respect to the sequence $x_{0}, x_{1}, \ldots, x_{n}$ anymore. That's life.
 
-\begin{prop}
+\begin{prop}\label{div_identities}
 	Let $n$, $k$, $f, g$, $f_{1}, f_{2}, \ldots, f_{k}$ and $x_{0}, x_{1}, \ldots, x_{n}$ be such that the folliowing identities make sense.
 	\begin{enumerate}[(i)]
 		\item (Newton expansion)
@@ -375,7 +375,7 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 	Let $k$ be an non-negative integer. Then $P^{(k)}(a, b) \subset \R^{(a, b)}$ is a closed convex cone.
 \end{lause}
 \begin{proof}
-	t.f.i.f \ref{positive_machine}.
+	t.f.i.f Theorem \ref{positive_machine}.
 \end{proof}
 
 Mean value theorem tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative.
@@ -721,7 +721,9 @@ The previous result is some kind of relative of \ref{bounded_div}. Also Theorem 
 \end{proof}
 
 \section{Notes and references}
-Results of this chapter, with plentiful of illustrations, can be found in \cite{Boor2} (?).
+Most of the results of this chapter (with appropriate references), can be found in \cite{Boo}. Fa\`{a} di Bruno formula for divided differences (\ref{div_identities} (v)) was first observed in \cite{Float}.
+
+See \cite{Boor2} for plentiful of illustrations of Peano Kernels.
 
 \begin{comment}
 
