@@ -253,11 +253,11 @@ First of all, the dual pairing thinking leads to much more satisfactory conclusi
 	\end{align*}
 \end{proof}
 
-Now, it might not be too big of a surprise that $\vspan_{\R} R_{+}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$, compactly supported continuous functions on $\R \setminus (a, b)$ with $\sup$-norm. This should imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{+}(a, b)$
+Now, it might not be too big of a surprise that $\vspan_{\R} R_{+}(a, b)$ is dense in $C_{c}(\R \setminus (a, b))$, compactly supported continuous functions on $\R \setminus (a, b)$ with $\sup$-norm.\footnote{Stricly speaking, the elements of $\vspan_{\R} R_{+}(a, b)$ are not compactly supported (and they would need to be restricted to $\R \setminus (a, b)$). One could look at a bigger space, say (continuous) functions decaying at infinity, but as these arguments are merely for intuition, one shouldn't worry too much.} This should (probably) imply, by the Riesz representation theorem, that for any $f \in P_{\infty}(a, b)$ there exists a Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ such that for any $r \in R_{+}(a, b)$
 \begin{align*}
 	\langle f, r \rangle_{L} = \int_{\R \setminus (a, b)} r(\lambda) d \mu_{f}(\lambda).
 \end{align*}
-This is almost true. As the functions $R_{+}(a, b)$ are not compactly supported, there's a problem at infinity.  Nevertheless, the previous holds with a slight modification.
+This is almost true. As the functions $R_{+}(a, b)$ are not really compactly supported, there's a problem at infinity.  Nevertheless, the previous holds with a slight modification.
 
 \begin{lause}[Loewner's theorem, version $1$]\label{integral_loewner}
 	Let $f \in P_{\infty}(a, b)$. Then there exists a unique Radon measure $\mu_{f}$ on $\R \setminus (a, b)$ with $\mu_{f}((\lambda^2 + 1)^{-1}) < \infty$ and $\alpha \geq 0$ such that for any $r \in R_{+}(a, b)$ we have
@@ -288,4 +288,4 @@ For the last two chapters we are going to mostly focus on understanding this ver
 
 \section{Notes and references}
 
-This chapter is largely original (?), although heavily inspired by multiple sources. Key ideas are an extension to \cite{Heina}. Theorem \ref{main_theorem} is new formulation of Theorem \ref{heuristic_main}. Lemma \ref{projection_eigenvalues} (or some variant of it) is present in many discussions of the matrix monotonicity, see for instance \cite{Don}. While Lemma \ref{main_lemma} is new (?) it can be seen as a variant of lemma $1$ in \cite{Sparr}. Theorem \ref{weak_loewner} appears in the original paper of Loewner \cite{Low}. Theorem \ref{integral_loewner} was first discussed in \cite{Ben}. Sparr in \cite{Sparr} gives proof of Theorem \ref{integral_loewner} somewhat similar in nature to our argument sketch (...). Bernstein type arguments for the analyticity are discussed in \cite{Ben}.
+This chapter is largely original, although heavily inspired by multiple sources. Key ideas are an extension to \cite{Heina}. Theorem \ref{main_theorem} is new formulation of Theorem \ref{heuristic_main}. Lemma \ref{projection_eigenvalues} (or some variant of it) is present in many discussions of the matrix monotonicity, see for instance \cite{Don}. While Lemma \ref{main_lemma} is new (?) it can be seen as a variant of lemma $1$ in \cite{Sparr}. Theorem \ref{weak_loewner} appears in the original paper of Loewner \cite{Low}. Theorem \ref{integral_loewner} was first discussed in \cite{Ben}. Sparr in \cite{Sparr} gives proof of Theorem \ref{integral_loewner} somewhat similar in nature to our argument sketch. Bernstein type arguments for the analyticity are discussed in \cite{Ben}.

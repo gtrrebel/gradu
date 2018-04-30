@@ -183,7 +183,7 @@ The maximum problem is not too bad and maybe it's more of a pleasent surprise an
 	Let $n \geq 2$. Then there exists no $\alpha > 0$, and no open interval $(a, b) \subset \R$ such that $\alpha x + x^{2} \in P_{n}(a, b)$.
 \end{prop}
 \begin{proof}
-	Adding linear term means just translating domain and codomain, which is not going to help: $x^2 + \alpha x = (x + \frac{\alpha}{2})^2 - \frac{\alpha^2}{4}$.
+	Adding linear term just means translating domain and codomain, which is not going to help: $x^2 + \alpha x = (x + \frac{\alpha}{2})^2 - \frac{\alpha^2}{4}$.
 \end{proof}
 
 Why is this bad? If $f : (a, b) \to \R$ is not too bad (say Lipschitz), for large enough $\alpha$ the function defined by $g(x) = f(x) + \alpha x$ is increasing. But we can't necessarily do the same thing in the matrix setting even for smooth or analytic functions. Although this might not be such a big surprise or a bad thing in the first place, it is worthwhile to investigate the underlying reason.
@@ -271,6 +271,8 @@ As one would hope, there's corresponding result for the classes $P_{n}(a, b)$.
 
 Only now there's a problem: it turns out that function in $P_{n}(a, b)$ need not be analytic, or even $(2 n - 1)$ times differentiable, so the condition should be understood in the distributional sense.
 
+Theorem \ref{heuristic_loewner} is an answer question \ref{question_1}, and it is one of the two main theorems of this thesis.
+
 \subsection{Main argument}
 
 Let us try to prove the ``only if" -directions of these results modulo regularity issues.
@@ -331,7 +333,7 @@ The main problem of the argument is the regularity. While we assume $f$ to be en
 
 \section{Notes and references}
 
-Matrix monotone functions were first introduced and discussed by Loewner in \cite{Low}, and since then, basic properties thereof have been examined in numerous sources. While this text doesn't follow any particular text, the book by Donoghue \cite{Don} and lecture notes by Hiai \cite{Hiai} have served as bodies of endless inspiration.
+Matrix monotone functions were first introduced and discussed by Loewner in \cite{Low}, and since then, basic properties thereof have been examined in numerous sources. While this thesis doesn't follow any particular text, the book by Donoghue \cite{Don} and lecture notes by Hiai \cite{Hiai} have served as bodies of endless inspiration.
 
 Maximum of real maps is discussed in detail in \cite{Ando2}.
 
@@ -344,7 +346,7 @@ Loewner himself characterized the $n$-monotone functions on $(a, b)$ as function
 		\frac{f(\lambda_{n}) - f(\lambda_{1})}{\lambda_{n} - \lambda_{1}} & \frac{f(\lambda_{b}) - f(\lambda_{2})}{\lambda_{n} - \lambda_{2}} & \cdots & f'(\lambda_{n}) 
 	\end{bmatrix},
 \end{align*}
-called Loewner matrix, is positive for any $a < \lambda_{1}, \ldots, \lambda_{n} < b$. It's not hard to show that positivity of \ref{loewner_integral} is essentially a reformulation of this condition. Theorems \ref{heuristic_main} and \ref{heuristic_loewner} were first observed by Dobsch (a student of Loewner) in \cite{Dob}, but they were not rigorously proven until \cite{Don}. Heuristics in this chapter appear essentially in (Where?).
+called Loewner matrix, is positive for any $a < \lambda_{1}, \ldots, \lambda_{n} < b$. It's not hard to show that positivity of (\ref{loewner_integral}) is essentially a reformulation of this condition. Theorems \ref{heuristic_main} and \ref{heuristic_loewner} were first observed by Dobsch (a student of Loewner) in \cite{Dob}, but they were not rigorously proven until \cite{Don}.
 
 
 

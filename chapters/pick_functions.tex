@@ -577,7 +577,7 @@ The reason for this is actually rather simple: we may approximate the elements o
 	\end{align}
 	we are done. Indeed: we have then found for $(\cdot - w)^{-k - 1}$ an approximation (in the sense of \ref{rat_approx}) by a rational function with poles of lower order, and by induction hypothesis this lower order approximation has approximation with simple poles, as desired.
 
-	For \ref{derivative_derivative} one can simply note that
+	For (\ref{derivative_derivative}) one can simply note that
 	\begin{align*}
 		& \left\| \frac{1}{z - w}\left(\frac{1}{(\cdot - z)^{k}} - \frac{1}{(\cdot - w)^{k}}\right) - \frac{k}{(\cdot - w)^{k + 1}}\right\|_{R} \\
 		\leq & \sum_{i = 1}^{k} \left\|\frac{1}{(\cdot - z)^{i} (\cdot - w)^{k + 1 - i}} - \frac{1}{(\cdot - w)^{k + 1}}\right\|_{R} \\
@@ -590,7 +590,7 @@ The reason for this is actually rather simple: we may approximate the elements o
 
 	If $r \in R^{\infty}_{\pm}(\Hp \cup \Hm)$, then our approximation satisfies $s \in R_{\pm}(\Hp \cup \Hm)$.
 
-	Finally, consider the case $r \in R^{\infty}_{+}(\Hp \cup \Hm)$. Choose first $s \in R_{\pm}(\Hp \cup \Hm)$ satisfying \ref{rat_approx}. Note that
+	Finally, consider the case $r \in R^{\infty}_{+}(\Hp \cup \Hm)$. Choose first $s \in R_{\pm}(\Hp \cup \Hm)$ satisfying (\ref{rat_approx}). Note that
 	\begin{align*}
 		s \geq r - \frac{\varepsilon}{(\cdot)^2 + 1} \geq -\frac{\varepsilon}{(\cdot)^2 + 1}
 	\end{align*}
@@ -609,11 +609,11 @@ The reason for this is actually rather simple: we may approximate the elements o
 The point of all of this is that these arguments can be in a way ``reversed".
 
 \begin{proof}[Alternate proof for Lemma \ref{weak_analytic}]
-	We are going to extend $\langle \varphi, \cdot\rangle_{L}$ to a positive linear functional on $R^{\infty}(\Hp \cup \Hm)$. To this end fix any $r \in R^{\infty}(\Hp \cup \Hm)/R^{\infty}_{\pm}(\Hp \cup \Hm)/R^{\infty}_{+}(\Hp \cup \Hm)$ and cook up a sequence $(s_{k})_{k = 1}^{\infty}$ of elements in $R(\Hp \cup \Hm)/R_{\pm}(\Hp \cup \Hm)/R_{+}(\Hp \cup \Hm)$ with $\|r - s_{k}\| < \frac{1}{k}$ (with Lemma \ref{rat_multiple_approx}). As $\langle \varphi, \cdot\rangle_{L}$ is Lipschitz by \ref{pick_norm_estimate}, the sequence $(\langle \varphi, s_{k} \rangle_{L})_{k = 1}^{\infty}$ converges, and by setting
+	We are going to extend $\langle \varphi, \cdot\rangle_{L}$ to a positive linear functional on $R^{\infty}(\Hp \cup \Hm)$. To this end fix any $r \in R^{\infty}(\Hp \cup \Hm)/R^{\infty}_{\pm}(\Hp \cup \Hm)/R^{\infty}_{+}(\Hp \cup \Hm)$ and cook up a sequence $(s_{k})_{k = 1}^{\infty}$ of elements in $R(\Hp \cup \Hm)/R_{\pm}(\Hp \cup \Hm)/R_{+}(\Hp \cup \Hm)$ with $\|r - s_{k}\| < \frac{1}{k}$ (with Lemma \ref{rat_multiple_approx}). As $\langle \varphi, \cdot\rangle_{L}$ is Lipschitz by Lemma \ref{pick_norm_estimate}, the sequence $(\langle \varphi, s_{k} \rangle_{L})_{k = 1}^{\infty}$ converges, and by setting
 	\begin{align*}
 		\langle \varphi, r\rangle_{L} = \lim_{k \to \infty} \langle \varphi, s_{k}\rangle_{L}
 	\end{align*}
-	we obtain such positive extension. Lemma \ref{pick_norm_estimate} (which definitely holds also for the extension) and \ref{derivative_derivative} imply that $\varphi$ is smooth and satisfies \ref{extension_formula}. Proposition \ref{pick_div_dif_estimate} implies that $\varphi$ satisfies the conditions of Theorem \ref{div_anal}, and is hence analytic.
+	we obtain such positive extension. Lemma \ref{pick_norm_estimate} (which definitely holds also for the extension) and (\ref{derivative_derivative}) imply that $\varphi$ is smooth and satisfies (\ref{extension_formula}). Proposition \ref{pick_div_dif_estimate} implies that $\varphi$ satisfies the conditions of Theorem \ref{div_anal}, and is hence analytic.
 \end{proof}
 
 \section{Pick-Nevanlinna interpolation theorem}

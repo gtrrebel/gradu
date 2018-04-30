@@ -577,7 +577,9 @@ Note that $D_{n + 1, 2}$ is exactly the set where the divided differences aren't
 	Let $f : (a, b) \to \R$ and $k \geq 0$. We call $f$ \textit{weakly $C^{k}$} (on $(a, b)$), or write $f \in C_{w}^{k}(a, b)$, if its order $k$ divided differences can be continuously extended to $(a, b)^{k + 1}$.
 \end{maar}
 
-Our aim is to prove that function is weakly $C^{k}$, if and only if it's $C^{k}$. Note that this trivially holds for $k = 0$.
+Since $(a, b)^{k + 1} \setminus D_{k + 1, 2}$ in dense in $(a, b)^{k + 1}$, such extension is necessarily unique.
+
+Our aim is to prove that a function is weakly $C^{k}$, if and only if it's $C^{k}$. This trivially holds for $k = 0$.
 
 \begin{lem}\label{weaklyCk_basic}
 	Let $n \geq k$. Then $f \in C_{w}^{k}(a, b)$, if and only if the order $n$ divided differences of $f$ extend continuously to $(a, b)^{n + 1} \setminus D_{n + 1, k + 2}$.
@@ -649,9 +651,9 @@ Just like one can carry regularity information, one can carry boundedness inform
 	\end{align*}
 \end{lem}
 \begin{proof}
-	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $k$'th divided difference corresponds to $k$'th derivative, if it is bounded, $(k - 1)$'th derivative should be continuous. Thus we should prove that this is indeed the case by proving that $(k - 1)$'th divided differences of $f$ extend continuously to the whole of $(a, b)^{k}$.
+	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $k$'th divided difference corresponds to $k$'th derivative, if it is bounded, $(k - 1)$'th derivative should be continuous. Since $k - 1 \geq 1$, in particular $f$ should be $C^{1}$. How to translate this argument to divided differences? Lemma \ref{weaktoreal_lemma} allows us translate the claim ``$f \in C^{k - 1}$" to ``order $k - 1$ divided difference of $f$ can be continuously extended to $(a, b)^{k}$". It is hence sufficient to prove that such extension is possible.
 
-	Note that Lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions on dense set can be always extended to the whole space (as Lipschitz functions), so we are done by Lemma \ref{weaktoreal_lemma}.
+	Lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions on a dense set can be always extended to the whole space (as Lipschitz functions), so indeed, such extension can be done.
 \end{proof}
 
 \begin{lause}\label{bounded_div}
@@ -722,6 +724,8 @@ The previous result is some kind of relative of \ref{bounded_div}. Also Theorem 
 
 \section{Notes and references}
 Most of the results of this chapter (with appropriate references), can be found in \cite{Boo}. Fa\`{a} di Bruno formula for divided differences (\ref{div_identities} (v)) was first observed in \cite{Float}.
+
+$k$-tone functions are examined extensively by Popoviciu in \cite{Popov}. The general philosophy ``positivity of sufficiently many linear functionals leads to regularity" is well studied; see for example \cite{Kemperm}. Theorem \ref{bernstein_theorem} is due to Bernstein in \cite{Bernst}.
 
 See \cite{Boor2} for plentiful of illustrations of Peano Kernels.
 
