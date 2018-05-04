@@ -291,7 +291,7 @@ Fix $A \in \H(V)$ with eigenbasis $(v_{i})_{i = 1}^{n}$. For any $v \in V$ we ha
 Given the spectral theorem, it is rather clear how one should define general matrix functions. We denote by $\H_{(a, b)}$ the elements of $\H$, the spectra of which lie in $(a, b)$.
 
 \begin{maar}
-	For any $-\infty \leq a < b \leq \infty$ $f : (a, b) \to \R$ the associated matrix function on $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
+	For any $f : (a, b) \to \R$ the \textbf{matrix function lift} of $f$ to $V$ is the map $f_{V} : \H_{(a, b)}(V) \to \H(V)$ given by
 	\begin{align*}
 		f_{V}\left(A\right) = \sum_{\lambda \in \spec(A)} f(\lambda) P_{E_{\lambda}}
 	\end{align*}
@@ -311,7 +311,7 @@ Note that as the spectral representation is unique this definition makes sense. 
 	\end{enumerate}
 \end{prop}
 
-These properties make it clear that such definition is natural. We will drop the subscript $V$ and identify $f$ with its matrix function $f_{V}$ if there is no fear of confusion.
+These properties make it clear that such definition is natural. We will drop the subscript $V$ and identify $f$ with its lift $f_{V}$ if there is no fear of confusion.
 
 There is one more property which is not all that trivial.
 
@@ -357,7 +357,7 @@ by part (6) of proposition (\ref{basic_matrix}).
 
 Note that the power series definition makes perfect sense even if $a_{n} \notin \R$ or if $A$ is not real.
 
-If $f$ is not entire, the power series might not converge for every $A \in \H_{(a, b)}$. Instead, we can use Cauchy's integral formula for matrix functions.
+If $f$ is not entire, the power series might not converge for every $A \in \H_{(a, b)}$. Instead, we can use Cauchy's integral formula for matrix functions. One has
 \begin{align*}
 	f_{V}(A) = \frac{1}{2 \pi i}\int_{\gamma} (z I - A)^{-1} f(z) dz,
 \end{align*}
@@ -522,7 +522,7 @@ The map $A^{\frac{1}{2}} (A^{-\frac{1}{2}}B A^{-\frac{1}{2}})^{\frac{1}{2}} A^{\
 
 \section{Notes and references}
 
-All results in this chapter are classic and can be found in numerous books on linear algebra, for instance in \cite{Bhatia} and \cite{Bhatia2}.
+All results in this chapter are classic and can be found in numerous books on linear algebra, for instance in \cite{Bhatia2}, \cite{Bhatia} and \cite{Zhang}.
 
 \begin{comment}
 

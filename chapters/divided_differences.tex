@@ -2,7 +2,7 @@
 
 \section{Motivation}
 
-To understand the regularity properties of the matrix monotone functions we look at a closely related class of $k$-tone functions. $k$-tone functions are more or less functions with non-negative $k$'th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-monotone or $k$-convex.}. What should that mean?
+To understand the regularity properties of the matrix monotone functions we look at a closely related class of $k$-tone functions. $k$-tone functions are more or less functions with non-negative $k$:th derivative\footnote{The terminology is not very established, and such functions are also occasionally called $k$-convex.}. What should that mean?
 
 We already know the perfect answer for the case $k = 1$: $1$-tone functions should be the increasing functions.
 
@@ -102,13 +102,13 @@ one obtains something that naturally generalizes divided differences for higher 
 
 Define $D_{n} = \{x\in \R^{n} | x_{i} = x_{j} \text{ for some $1 \leq i < j \leq n$}\}$.
 \begin{maar}
-Let $n \geq 0$. For any $f : (a, b) \to \R$ we define the corresponding $n$'th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
+Let $n \geq 0$. For any $f : (a, b) \to \R$ we define the corresponding $n$:th divided difference $[\cdots]_{f} : (a, b)^{n + 1} \setminus D_{n + 1}$ by setting
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \sum_{i = 0}^{n} \frac{f(x_{i})}{\prod_{j \neq i} (x_{i} - x_{j})}.
 \end{align*}
 \end{maar}
 
-We will soon prove that divided differences (of order $n$) are simply weighted averages of the $n$'th derivative.
+We will soon prove that divided differences (of order $n$) are simply weighted averages of the $n$:th derivative.
 
 \subsection{Basic properties}
 
@@ -146,9 +146,9 @@ The name ``divided differences" stems from the fact that the higher order divide
 	satisfy \ref{divdif_rec} (as a function of the $y$'s) and they agree when $m = 1$.
 \end{proof}
 
-We call \ref{nesting_rule} the \textit{nesting property} of divided differences. Although the analogy isn't perfect, one could think that this identity says that $m$'th derivative of the $n$'th derivative is the $(m + n)$'th derivative. 
+We call \ref{nesting_rule} the \textit{nesting property} of divided differences. Although the analogy isn't perfect, one could think that this identity says that $m$:th derivative of the $n$:th derivative is the $(m + n)$:th derivative. 
 
-The following observation tells us that the divided differences work as $n$'th derivative insomuch that it kills polynomials of degree less than $n$, and works with degree $n$ as expected, up to a constant at least.
+The following observation tells us that the divided differences work as $n$:th derivative insomuch that it kills polynomials of degree less than $n$, and works with degree $n$ as expected, up to a constant at least.
 
 \begin{prop}\label{lagrange_divided}
 We have $[x_{0}, x_{1}, \ldots, x_{n}]_{(x \mapsto x^{n})} = 1$ and $[x_{0}, x_{1}, \ldots, x_{n}]_{p} = 0$ for any polynomial p of degree at most $n - 1$. In other words, $[x_{0}, x_{1}, \ldots, x_{n}]_{f}$ is the leading coefficient of the interpolation polynomial on pairs $(x_{0}, f(x_{0})), (x_{1}, f(x_{1})), \ldots, (x_{n}, f(x_{n}))$.
@@ -178,7 +178,7 @@ Coming back to the original motivation, divided differences enjoy an integral re
 \end{lause}
 The case $n = 1$ of definition \ref{peano_weight} should be understood with convention $0^{0} = 0$.
 \begin{proof}
-	Note that the weight is simply the $n$'th divided difference of the map $g_{t, n} : x \mapsto ((x - t)_{+})^{n - 1}/(n - 1)!$. This is not very surprising: one should think that $g_{t, n}$ is the function whose $n$'th derivative is $\delta_{t}$. If we plug in $f = g_{t, n}$, (as in the proof of \ref{2-tone}), we, at least morally, get the claim. While the previous argument could be pushed through, we take safer route. To prove that the formula even makes sense, we should prove the claim on the support. It is clear that $w$ is zero whenever $t \geq \max(x_{i})$. If on the other hand $t \leq \min(x_{i})$, $w(t)$ agrees with the $n$'th divided difference of the map $x \mapsto (x - t)^{n - 1}/(n - 1)!$, which is zero by the proposition \ref{lagrange_divided}.
+	Note that the weight is simply the $n$:th divided difference of the map $g_{t, n} : x \mapsto ((x - t)_{+})^{n - 1}/(n - 1)!$. This is not very surprising: one should think that $g_{t, n}$ is the function whose $n$:th derivative is $\delta_{t}$. If we plug in $f = g_{t, n}$, (as in the proof of \ref{2-tone}), we, at least morally, get the claim. While the previous argument could be pushed through, we take safer route. To prove that the formula even makes sense, we should prove the claim on the support. It is clear that $w$ is zero whenever $t \geq \max(x_{i})$. If on the other hand $t \leq \min(x_{i})$, $w(t)$ agrees with the $n$:th divided difference of the map $x \mapsto (x - t)^{n - 1}/(n - 1)!$, which is zero by the proposition \ref{lagrange_divided}.
 
 	We may hence repeatedly partially integrate the right-hand side:
 	\begin{align*}
@@ -195,7 +195,7 @@ The case $n = 1$ of definition \ref{peano_weight} should be understood with conv
 
 	Applying the identity to $x \mapsto x^{n}$ shows the claim on the integral of $w$.
 
-	Only non-negativity remains: we prove it by induction on $n$. The case $n = 1$ is clear. The idea is rather simple: we should prove that the functions $g_{t, n}$ have non-negative divided differences, which should roughly mean it has non-negative $n$'th derivative (being $\delta_{t}$). By the nesting property we have
+	Only non-negativity remains: we prove it by induction on $n$. The case $n = 1$ is clear. The idea is rather simple: we should prove that the functions $g_{t, n}$ have non-negative divided differences, which should roughly mean it has non-negative $n$:th derivative (being $\delta_{t}$). By the nesting property we have
 	\begin{align*}
 		[x_{0}, x_{1}, \ldots, x_{n}]_{g_{t, n}} = [x_{0}, x_{1}, \ldots, x_{n - 1}]_{[\cdot, x_{n}]_{g_{t, n}}}.
 	\end{align*}
@@ -258,10 +258,10 @@ If $\gamma$ is a simple closed counter-clockwise curve enclosing the numbers $x_
 \end{align*}
 \end{lem}
 \begin{proof}
-	This is a direct consequence of the Residue theorem.
+	This is a direct consequence of the residue theorem.
 \end{proof}
 
-If all the points coincide, we get the familiar formula for the $n$'th derivative. If $f$ is a polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ (at infinity) and the divided differences vanish, as expected. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$'th divided difference with a residue at infinity. This formula is slightly more concisely expressed by writing $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$ for a sequence $X = (x_{i})_{i = 0}^{n}$. Now we have
+If all the points coincide, we get the familiar formula for the $n$:th derivative. If $f$ is a polynomial of degree at most $n - 1$, the integrand decays as $|z|^{-2}$ (at infinity) and the divided differences vanish, as expected. Also, for $z \mapsto z^{n}$ one can use the formula to calculate the $n$:th divided difference with a residue at infinity. This formula is slightly more concisely expressed by writing $p_{X}(x) = \prod_{i = 0}^{n} (x - x_{i})$ for a sequence $X = (x_{i})_{i = 0}^{n}$. Now we have
 \begin{align*}
 	[x_{0}, x_{1}, \ldots, x_{n}]_{f} = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(z)}{p_{X}(z)} dz.
 \end{align*}
@@ -366,7 +366,7 @@ In similar vein one could prove that if $f$ is entire, its Newton series converg
 	\begin{align*}
 		[x_{0}, x_{1}, \ldots, x_{k}]_{f} \geq 0,
 	\end{align*}
-	i.e. the $k$'th divided difference is non-negative.
+	i.e. the $k$:th divided difference is non-negative.
 \end{maar}
 
 We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a, b)$.
@@ -378,7 +378,7 @@ We denote the space of $k$-tone functions by on interval $(a, b)$ by $P^{(k)}(a,
 	t.f.i.f Theorem \ref{positive_machine}.
 \end{proof}
 
-Mean value theorem tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$'th derivative.
+Mean value theorem tells us that $C^{k}$ $k$-tone functions are exactly the functions with non-negative $k$:th derivative.
 
 The cones $P^{(k)}(a, b)$ aren't quite salient. Instead we have
 \begin{align*}
@@ -391,7 +391,7 @@ This suggests that a better object of study should be $\R^{(a, b)}$ quotiented b
 
 One of the properties of the divided differences, which might not be clear from the definition, is that they can also be used to model local phenomena. One of the important properties of the $k$-tone functions is that if a function is $k$-tone on two overlapping intervals, then the function is $k$-tone on their union. While this definitely holds for $C^{k}$ functions, it's not really clear how to change the argument for the general case.
 
-If one thinks that $k$-tone functions have $k$'th derivative as a positive measure, the locality property should be thought of a special case of a general property of distributions.
+If one thinks that $k$-tone functions have $k$:th derivative as a positive measure, the locality property should be thought of a special case of a general property of distributions.
 \begin{prop}
 	Let $a < c < b < d$ and $\mu$ distribution on $(a, d)$, restriction of which to $(a, b)$ and $(c, d)$ is a positive measure. Then $\mu$ is a positive measure.
 \end{prop}
@@ -506,7 +506,7 @@ for any $x_{0}, x_{1}, \ldots, x_{n - 1}$. But this readily implies that the div
 Of course, this approach only works if $\min(x_{i}) \leq t \leq \max(x_{i})$, but if this is not the case, the divided differences are zero anyway. The previous identity can be also used to recursively compute Peano kernels.
 
 \begin{huom}
-	The above arguments are a bit awkward and one might be tempted to think that one should instead consider positive linear combinations of Peano kernels, called (positive) splines, to get better analogue for the ``locality of distributions" -proof. For $k \leq 3$ positive splines can be also characterized as suitable non-negative piecewise polynomial functions, but for $k > 3$ there's a problem: positive splines are merely subclass thereof.
+	The above arguments are a bit awkward and one might be tempted to think that one should instead consider positive linear combinations of Peano kernels, called (positive) splines, to get better analogue for the ``locality of distributions" -proof. For $k \leq 3$ positive splines can be also characterized as suitable non-negative piecewise polynomial functions, but for $k > 3$ there's a problem: positive splines are merely subclass thereof. See \cite{deBoor} for details.
 \end{huom}
 
 \section{Regularity}
@@ -517,7 +517,7 @@ The real power of the divided differences comes in when they are used to carry r
 	Let $k \geq 2$. Then $f \in P^{(k)}(a, b)$, if and only if $f \in C^{k - 2}(a, b)$ and $f^{(k - 2)}$ is convex, i.e. $2$-tone.
 \end{lause}
 \begin{proof}[``Proof"]
-	Let $f \in P^{(k)}(a, b)$. Since $f^{(k)}$ is a positive measure, $f^{(k - 1)}$ is increasing and $f^{(k - 2)}$ is convex. As convex functions are continuous, we are done with $\Rightarrow$. Conversely, if $f \in C^{k - 2}(a, b)$ and $f^{(k - 2)}$ is convex, then $f^{(k - 2)}$ has second derivative as a positive measure. But this measure is also the $k$'th derivative of $f$, so $f \in P^{(k)}(a, b)$.
+	Let $f \in P^{(k)}(a, b)$. Since $f^{(k)}$ is a positive measure, $f^{(k - 1)}$ is increasing and $f^{(k - 2)}$ is convex. As convex functions are continuous, we are done with $\Rightarrow$. Conversely, if $f \in C^{k - 2}(a, b)$ and $f^{(k - 2)}$ is convex, then $f^{(k - 2)}$ has second derivative as a positive measure. But this measure is also the $k$:th derivative of $f$, so $f \in P^{(k)}(a, b)$.
 \end{proof}
 
 In this section we will translate the previous argument to the language of the divided differences.
@@ -595,7 +595,7 @@ Our aim is to prove that a function is weakly $C^{k}$, if and only if it's $C^{k
 	\begin{align*}
 		(y_{0}, y_{1}, \ldots, y_{n}) \mapsto \frac{[y_{0}, y_{1}, \ldots, y_{n - 1}]_{f} - [y_{1}, y_{2}, \ldots, y_{n}]_{f}}{y_{0} - y_{n}}
 	\end{align*}
-	extends continuously to some neighbourhood of $x$ (in $(a, b)^{n + 1} \setminus D_{n + 1, k + 2}$), and since this map agrees with the $n$'th order divided differences on $(a, b)^{n + 1} \setminus D_{n + 1, 2}$ by \ref{divdif_rec}, it gives the continuous extension to $x$.
+	extends continuously to some neighbourhood of $x$ (in $(a, b)^{n + 1} \setminus D_{n + 1, k + 2}$), and since this map agrees with the $n$:th order divided differences on $(a, b)^{n + 1} \setminus D_{n + 1, 2}$ by \ref{divdif_rec}, it gives the continuous extension to $x$.
 
 	$\Leftarrow$: Assume then $S(n, k, f)$. Take any $x = (x_{0}, x_{1}, \ldots, x_{n - 1}) \in (a, b)^{n} \setminus D_{n, k + 2}$ and additional point $(z_{0}, z_{1}, \ldots, z_{n - 1})$ with pairwise distinct components and $x_{i} \neq z_{j}$ for $0 \leq i, j \leq n - 1$. Now the map
 	\begin{align*}
@@ -645,15 +645,15 @@ This continuity results implies (among many other things) that mean value theore
 Just like one can carry regularity information, one can carry boundedness information.
 
 \begin{lem}\label{boundtoreal_lemma}
-	Let $f : (a, b) \to \R$ and $k \geq 2$. Then the $k$'th order divided differences of $f$ are bounded, if and only if $f \in C^{1}$ and the order $(k - 1)$ divided differences of $f'$ are bounded. Moreover, the bounds satisfy
+	Let $f : (a, b) \to \R$ and $k \geq 2$. Then the $k$:th order divided differences of $f$ are bounded, if and only if $f \in C^{1}$ and the order $(k - 1)$ divided differences of $f'$ are bounded. Moreover, the bounds satisfy
 	\begin{align*}
 		\sup_{a < x_{0} < x_{1} < \ldots < x_{k - 1} < b} |[x_{0}, x_{1}, \ldots, x_{k - 1}]_{f'}| = k \sup_{a < x_{0} < x_{1} < \ldots < x_{k}< b} |[x_{0}, x_{1}, \ldots, x_{k}]_{f}|
 	\end{align*}
 \end{lem}
 \begin{proof}
-	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $k$'th divided difference corresponds to $k$'th derivative, if it is bounded, $(k - 1)$'th derivative should be continuous. Since $k - 1 \geq 1$, in particular $f$ should be $C^{1}$. How to translate this argument to divided differences? Lemma \ref{weaktoreal_lemma} allows us translate the claim ``$f \in C^{k - 1}$" to ``order $k - 1$ divided difference of $f$ can be continuously extended to $(a, b)^{k}$". It is hence sufficient to prove that such extension is possible.
+	The bounds follow rather immediately from the identities \ref{derivative_divdif} and \ref{integral_divdif}, so it only remains to verify that $f \in C^{1}$ given the conditions. Since the $k$:th divided difference corresponds to $k$:th derivative, if it is bounded, $(k - 1)$:th derivative should be continuous. Since $k - 1 \geq 1$, in particular $f$ should be $C^{1}$. How to translate this argument to divided differences? Lemma \ref{weaktoreal_lemma} allows us translate the claim ``$f \in C^{k - 1}$" to ``order $k - 1$ divided difference of $f$ can be continuously extended to $(a, b)^{k}$". It is hence sufficient to prove that such extension is possible.
 
-	Lemma \ref{total_derivative} immediately implies that $(k - 1)$'th divided difference of $f$ is Lipschitz. But Lipschitz functions on a dense set can be always extended to the whole space (as Lipschitz functions), so indeed, such extension can be done.
+	Lemma \ref{total_derivative} immediately implies that $(k - 1)$:th divided difference of $f$ is Lipschitz. But Lipschitz functions on a dense set can be always extended to the whole space (as Lipschitz functions), so indeed, such extension can be done.
 \end{proof}
 
 \begin{lause}\label{bounded_div}
@@ -672,7 +672,7 @@ Finally, one can carry positivity.
 	Let $f : (a, b) \to \R$ and $k \geq 3$. Then $f$ is $k$-tone, if and only if $f' \in C^{1}(a, b)$ and $f'$ is $(k - 1)$-tone.
 \end{lem}
 \begin{proof}
-	Again, only the claim on the regularity is non-trivial as the $k$-tone claim follows straightforwardly from  \ref{derivative_divdif} and \ref{integral_divdif}. As with the bounded case the idea is that if $f$ is $k$-tone $f^{(k)}$ is positive and hence $f^{(k - 1)}$ is increasing, and consequently locally bounded. We should hence prove that the $(n - 1)$'th divided differences are bounded, as then \ref{boundtoreal_lemma} would imply the claim. But this follow easily from \ref{total_derivative}.
+	Again, only the claim on the regularity is non-trivial as the $k$-tone claim follows straightforwardly from  \ref{derivative_divdif} and \ref{integral_divdif}. As with the bounded case the idea is that if $f$ is $k$-tone $f^{(k)}$ is positive and hence $f^{(k - 1)}$ is increasing, and consequently locally bounded. We should hence prove that the $(n - 1)$:th divided differences are bounded, as then \ref{boundtoreal_lemma} would imply the claim. But this follow easily from \ref{total_derivative}.
 \end{proof}
 
 \begin{proof}[Proof of the theorem \ref{k-tone_smooth}]

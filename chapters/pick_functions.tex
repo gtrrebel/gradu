@@ -38,7 +38,7 @@ So far we have made no mention on the topology, as it's usually taken to be the 
 	If $(\varphi_{i})_{i = 1}^{\infty}$ is a sequence of Pick functions converging pointwise, the limit function is also a Pick function.
 \end{prop}
 
-This result is far from clear: pointwise limits of analytic functions need not analytic in general (see for instance TODO). We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of as a subset of $\C^{\Hp}$, the definition of the cone doesn't fit the general framework of Theorem \ref{positive_machine}. This suggests that question one should ask is:
+This result is far from clear: pointwise limits of analytic functions need not analytic in general (see for instance \cite{Mittag}). We will not prove the result yet, but it strongly suggests that there is something more going on; Pick functions are very rigid. Note also that if Pick functions are thought of as a subset of $\C^{\Hp}$, the definition of the cone doesn't fit the general framework of Theorem \ref{positive_machine}. This suggests that question one should ask is:
 
 \begin{quest}\label{pick_predual}
 	What is the ``correct" predual for $\pickclass$?
@@ -193,7 +193,7 @@ So, how is one to find $C^{*}$? We are going to perform our search via the follo
 	\begin{align*}
 		C^{*} := \{p^{*} \in (\C^{\Hp})^{*} | p^{*}(\varphi) \geq 0 \text{ for every $\varphi \in \pickclass$}\}.
 	\end{align*}
-	Note that this (potential) predual is maximal in some sense: it is a union of all possible preduals for $\pickclass$; so it actually makes sense to talk about \textbf{the} predual.
+	Note that this (potential) predual is maximal in some sense: it is the union of all possible preduals for $\pickclass$; so it actually makes sense to talk about \textbf{the} predual.
 	\item Now that we have found potential predual $C^{*}$, is $\pickclass$ really its dual cone? Note that by the definition of $C^{*}$, all Pick functions are contained in its dual cone. But it might a priori contain more functions! So we should check that every element in $\C^{\Hp}$ which gives non-negative values on every functional on $C^{*}$
 	\begin{enumerate}[(i)]
 		\item maps upper half-plane to its closure and
@@ -202,14 +202,14 @@ So, how is one to find $C^{*}$? We are going to perform our search via the follo
 \end{enumerate}
 
 \begin{comment}
-To further highlight the step $3$, let's return to the realm of $k$-tone functions for a while. Recall that we set out to define $k$-tone functions as a set of functions that are more or less functions with non-negative $k$'th derivative. So, why not just define them as the set of functions with non-negative $k$'th derivative? The problem is that such functions are rather fragile. They are, for instance, not closed under pointwise convergence. Now, one could try to run the above steps for such functions. Let's say we are investigating $k$-tone functions on $(a, b)$. At step $1$ one would observe that one should think about $(\R^{(a, b)})^{*}$ as some kind of piecewise polynomial functions. At step $2$ one could choose non-negative such functions as $C^{*}$. Or some subset of them: we chose Peano kernels. But at step $3$ there's a problem: we get more functions.
+To further highlight the step $3$, let's return to the realm of $k$-tone functions for a while. Recall that we set out to define $k$-tone functions as a set of functions that are more or less functions with non-negative $k$:th derivative. So, why not just define them as the set of functions with non-negative $k$:th derivative? The problem is that such functions are rather fragile. They are, for instance, not closed under pointwise convergence. Now, one could try to run the above steps for such functions. Let's say we are investigating $k$-tone functions on $(a, b)$. At step $1$ one would observe that one should think about $(\R^{(a, b)})^{*}$ as some kind of piecewise polynomial functions. At step $2$ one could choose non-negative such functions as $C^{*}$. Or some subset of them: we chose Peano kernels. But at step $3$ there's a problem: we get more functions.
 \end{comment}
 
 \subsection{Step 1}\label{step_1}
 
 First off: how should one even interpret $(\C^{\Hp})^{*}$? Should $\C^{\Hp}$ be a vector space over $\C$, or maybe over $\R$? The correct answer is neither.
 
-Let us first look at $\C$-linear functionals $\C^{\Hp} \to \C$. It is a general fact that continuous dual of a product consists of functionals of finite support, i.e. it is the direct sum of the duals of the factors (see for instance TODO)\footnote{This fact is not important to us and we could have restricted our attention to finitely supported functionals anyway.}.
+Let us first look at $\C$-linear functionals $\C^{\Hp} \to \C$. It is a general fact that continuous dual of a product consists of functionals of finite support, i.e. it is the direct sum of the duals of the factors (see for instance \cite{Osb})\footnote{This fact is not important to us and we could have restricted our attention to finitely supported functionals anyway.}.
 
 This is all just to say that $\C$-linear functionals on $\C^{\Hp}$ are of the form
 \begin{align*}
@@ -609,7 +609,7 @@ The reason for this is actually rather simple: we may approximate the elements o
 The point of all of this is that these arguments can be in a way ``reversed".
 
 \begin{proof}[Alternate proof for Lemma \ref{weak_analytic}]
-	We are going to extend $\langle \varphi, \cdot\rangle_{L}$ to a positive linear functional on $R^{\infty}(\Hp \cup \Hm)$. To this end fix any $r \in R^{\infty}(\Hp \cup \Hm)/R^{\infty}_{\pm}(\Hp \cup \Hm)/R^{\infty}_{+}(\Hp \cup \Hm)$ and cook up a sequence $(s_{k})_{k = 1}^{\infty}$ of elements in $R(\Hp \cup \Hm)/R_{\pm}(\Hp \cup \Hm)/R_{+}(\Hp \cup \Hm)$ with $\|r - s_{k}\| < \frac{1}{k}$ (with Lemma \ref{rat_multiple_approx}). As $\langle \varphi, \cdot\rangle_{L}$ is Lipschitz by Lemma \ref{pick_norm_estimate}, the sequence $(\langle \varphi, s_{k} \rangle_{L})_{k = 1}^{\infty}$ converges, and by setting
+	We are going to extend $\langle \varphi, \cdot\rangle_{L}$ to a positive linear functional on $R^{\infty}(\Hp \cup \Hm)$. To this end, fix any $r \in R^{\infty}(\Hp \cup \Hm)/R^{\infty}_{\pm}(\Hp \cup \Hm)/R^{\infty}_{+}(\Hp \cup \Hm)$ and, using Lemma \ref{rat_multiple_approx}, cook up a sequence $(s_{k})_{k = 1}^{\infty}$ of elements in $R(\Hp \cup \Hm)/R_{\pm}(\Hp \cup \Hm)/R_{+}(\Hp \cup \Hm)$ with $\|r - s_{k}\| < k^{-1}$. As $\langle \varphi, \cdot\rangle_{L}$ is Lipschitz by Lemma \ref{pick_norm_estimate}, the sequence $(\langle \varphi, s_{k} \rangle_{L})_{k = 1}^{\infty}$ converges, and by setting
 	\begin{align*}
 		\langle \varphi, r\rangle_{L} = \lim_{k \to \infty} \langle \varphi, s_{k}\rangle_{L}
 	\end{align*}
@@ -770,7 +770,7 @@ For completeness, we also prove Farkas' lemma.
 
 \section{Notes and references}
 
-Pick functions and representation Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example (?). Pick--Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Since then, many different approaches exist, see (?) for a survey. Usually the treatment builds on the notion of Pick matrix: given $\varphi : \Hp \to \C$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ one may define a matrix
+Pick functions and representation Theorem \ref{pick_nevanlinna_herglotz_representation_theorem} are discussed in numerous sources; see for example \cite{Don}. Pick--Nevanlinna interpolation theorem \ref{pick_interpolation} was first observed and proved independently by Pick \cite{Pick} and Nevanlinna \cite{Nevan}. Pick and Schur functions share many properties and Pick--Nevanlinna interpolation is often stated in the Schur-setting. Usually a treatment of Pick functions and Pick--Nevanlinna interpolation builds on the notion of Pick matrix: given $\varphi : \Hp \to \C$ and $z_{1}, z_{2}, \ldots, z_{n} \in \Hp$ one defines matrix of the form
 \begin{align*}
 	\begin{bmatrix}
 		[z_{1}, \overline{z_{1}}]_{\varphi} & [z_{1}, \overline{z_{2}}]_{\varphi} & \cdots & [z_{1}, \overline{z_{n}}]_{\varphi} \\
@@ -779,15 +779,15 @@ Pick functions and representation Theorem \ref{pick_nevanlinna_herglotz_represen
 		[z_{n}, \overline{z_{1}}]_{\varphi} & [z_{n}, \overline{z_{2}}]_{\varphi} & \cdots &  [z_{n}, \overline{z_{n}}]_{\varphi}
 	\end{bmatrix}.
 \end{align*}
-One may check that quadratic functionals of such matrices are just Pick functionals in disguise. Consequently: $\varphi$ is a Pick function, if and only if all such matrices are positive.
+One may check that quadratic functionals of such matrices are just Pick functionals in disguise. Consequently: $\varphi$ is a Pick function, if and only if all such matrices are positive. There is a similar matrix condition in the Schur-setting. See \cite{Nicol} for a survey on Pick--Nevanlinna interpolation.
 
-Lemma \ref{pick_dual_dense} is not best possible. It can be shown that for $X \in \Hp$, $R(X)$ is dense in $R(\Hp)$, if and only if
+Theorem \ref{weak_analytic} is essentially due to Hindmarsh \cite{Hind}; Hindmarsh formulated his result in terms of $3 \times 3$ Pick matrices.
+
+Lemma \ref{pick_dual_dense} is not best possible. It can be shown that for $X \subset \Hp$, $R(X)$ is dense in $R(\Hp)$, if and only if
 \begin{align*}
 	\sum_{z \in X} \frac{\Im(z)}{|z|^2 + 1} = \infty.
 \end{align*}
-It can be also shown that if $R(X)$ is not dense in $R(\Hp)$, then there exists weakly Pick function on $X$ with two different Pick extensions.
-
-Approach taken in this text is similar to (?).
+It can be also shown that if $R(X)$ is not dense in $R(\Hp)$, then there exists weakly Pick function on $X$ with two different Pick extensions; see \cite{Walsh}.
 \begin{comment}
 
 TODO:

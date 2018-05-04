@@ -53,9 +53,9 @@ Both of these questions can be certainly answered in many ways, but for both of 
 
 For matrix (bilinear form) ordering we should first understand which matrices are \textit{positive}, which here, a bit confusingly maybe, means ``at least zero". We say that a form is positive if its diagonal is non-negative. This gives a partial order on the space of all bilinear forms.
 
-For matrix functions, i.e. ``how to apply function to matrix" the idea is to take a real function, $f : \R \to \R$, and interpret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, given the ring structure of linear maps themselves. If the argument (a linear map) is diagonalizable, this extension merely applies the function to the eigenvalues. This motivates us to define $f(A)$, for a linear map $A$, to be the linear map with the same eigenspace structure as $A$ but the eigenvalues changed from $\lambda \to f(\lambda)$, respectively. All this works for diagonalizable maps with real eigenvalues, so the domain isn't quite $\R^{n \times n}$, though. This extension idea is called \textbf{functional calculus}.
+For matrix functions, i.e. ``how to apply function to matrix" the idea is to take a real function, $f : \R \to \R$, and interpret it as function $f : \R^{n \times n} \to \R^{n \times n}$, \textit{matrix function}. Polynomials extend rather naturally, given the ring structure of linear maps themselves. If the argument (a linear map) is diagonalizable, this extension merely applies the function to the eigenvalues. This motivates us to define $f(A)$, for a linear map $A$, to be the linear map with the same eigenspace structure as $A$ but the eigenvalues changed from $\lambda$ to $f(\lambda)$. All this works for diagonalizable maps with real eigenvalues, so the domain isn't quite $\R^{n \times n}$, though. This extension idea is called \textbf{functional calculus}.
 
-All this is kind of enough to make sense of matrix monotonicity, but to drastically simplify the setup it is customary to restrict the attention to a special set of diagonalizable matrices, which in this text are called \textbf{real maps}. They are exactly the symmetric matrices and they hold special place amidst the set of all matrices.
+All this is kind of enough to make sense of matrix monotonicity, but to drastically simplify the setup it is customary to restrict one's attention to a special set of diagonalizable matrices, which in this text are called \textbf{real maps}. They are exactly the symmetric matrices and they hold special place amidst the set of all matrices.
 
 \begin{itemize}
 	\item They exactly correspond to symmetric bilinear forms.
@@ -68,7 +68,7 @@ In the second point we are thinking about everything in terms of the standard in
 	\item If considered as a matrix of a linear map with respect to the standard orthonormal basis of $\R^n$ (with the standard inner product), then the linear map is diagonalizable with real eigenvalues, and has orthogonal eigenbasis.
 \end{itemize}
 
-Real maps are usually called \textbf{Hermitian} or \textbf{self-adjoint matrices}, whereas positive matrices are called \textbf{positive semidefinite matrices}. Now the definition of matrix monotinicity \ref{main_def} should make sense. We will call positive matrices \textbf{positive maps}.
+Real maps are often called \textbf{Hermitian} or \textbf{self-adjoint matrices}, whereas positive matrices are called \textbf{positive semidefinite matrices}. Now the definition of matrix monotinicity \ref{main_def} should make sense. We will call positive matrices \textbf{positive maps}.
 
 Whether one should think about real maps as matrices, bilinear forms or linear maps depends on the context. If one does calculations, one might think about matrices. If one thinks about additive structure, bilinear forms are better suited. And of course functional calculus makes only sense with linear maps. We use the (linear) map terminology throughout mainly because it short. Also, it is a constant reminder that there is something tensorial going on.
 
@@ -131,14 +131,14 @@ As an example, for an open interval $(a, b)$ consider the set
 \begin{align*}
 	P_{1}(a, b) := \{\text{Increasing functions $f : (a, b) \to \R$}\}.
 \end{align*}
-This set is a convex cone. If one denotes the evaluation functional or measure at $x$ by $\delta_{x}$, i.e. $\delta_{x}(f) = f(x_{0})$, then one possible predual of $P_{1}(a, b)$ if given by
+This set is a convex cone. If one denotes the evaluation functional or measure at $x$ by $\delta_{x}$, i.e. $\delta_{x}(f) = f(x)$, then one possible predual of $P_{1}(a, b)$ if given by
 \begin{align*}
 	\{\delta_{y} - \delta_{x} | a < x < y < b \}.
 \end{align*}
 
 I hope the reader agrees that this predual is in many ways much simpler than the set of increasing functions (at least if one looks at objects themselves) and yet it carries the information thereof. As we will see, if chosen suitably, preduals can offer convenient and clean language for talking about the cone itself. And that is what this thesis is really about.
 
-One can also bring the dual language to topological setting. If $V$ is further a topological vector space, denote its continuous dual by $V^{*}$. Now the notions of convex cone, dual cone and predual have natural counterparts in this setting. It also makes sense to talk about \textbf{closed convex cones}. One easily checks the following.
+One can also bring the dual language to topological setting: give $V$ a topology and interpret $V^{*}$ as the continuous dual. Notions of convex cone, dual cone and predual have natural counterparts in this setting. It also makes sense to talk about \textbf{closed convex cones}. One easily checks the following.
 
 \begin{lause}\label{positive_machine}
 	Let $V$ be a topological vector space and $C^{*}$ a subset of its continuous dual. Then
@@ -152,31 +152,19 @@ One can also bring the dual language to topological setting. If $V$ is further a
 
 \section{Contents}
 
-There are two goals to this thesis. The first is answering question \ref{question_1} (and really understanding the answer). The second one is answering the obvious follow up:
+There are two practical goals to this thesis. The first is answering Question \ref{question_1} (and really understanding the answer). The second one is answering the obvious follow up:
 
 \begin{quest}\label{question_2}
 	Fix an open interval $(a, b)$. Which functions are $n$-monotone on $(a, b)$ for any $n \geq 1$?
 \end{quest}
 
-This text is written for explorer like the author. This means couple of things.
-\begin{itemize}
-	\item The main results are not explained in the introduction.
-	\item The story aims to be continuous: topics of adjacent chapters, sections and arguments should be close to each other.
-\end{itemize}
-
-Aim of this approach is to encourage readers own exploration. Most of the results of this thesis are nothing but straighforward and not very elegant calculations.
-
-TODO
-
-Arguments of this thesis are largely elementary, requiring only basic calculus, complex analysis, linear algebra and topology. Many of the underlying ideas and heuristics are however inspired by functional analysis and measure theory, so it pays to have a good understanding of them.
-
-\section{Spoilers}
-
-If you're curious, the answers for these questions are given by Theorem \ref{main_theorem} (question \ref{question_1}) and Theorems \ref{integral_loewner} and \ref{weak_loewner} (question \ref{question_2})
+If you're curious, the answers for these questions are given by Theorem \ref{main_theorem} (Question \ref{question_1}) and Theorems \ref{integral_loewner} and \ref{weak_loewner} (Question \ref{question_2}).
 
 Aim of the chapters entitled ``Matrix monotone functions -- part $i$" for $0 \leq i \leq 3$ is to pursue these main goals. Other chapters, ones with even number, offer supplementary information.
 
-The whole theory of matrix monotone functions originates from a 1934 paper by Charles Loewner (then known as Karl Löwner) entitled ``Über monotone Matrixfunktionen" \cite{Low}. In the paper Loewner asked the questions \ref{question_1} and \ref{question_2}, and gave them both answers. Since then the theory has been reworked and expanded by various authors, and many open questions remain. This text is an amalgamation of countless works on the subject. ``Notes and references" -sections at the end of each chapter (except this one) are an attempt to give attribution to these ancestors.
+The whole theory of matrix monotone functions originates from a 1934 paper by Charles Loewner (then known as Karl Löwner) entitled ``Über monotone Matrixfunktionen" \cite{Low}. In the paper Loewner asked the Questions \ref{question_1} and \ref{question_2}, and gave them both answers. Since then the theory has been reworked and expanded by various authors, and many open questions remain. This text is an amalgamation of countless works on the subject. ``Notes and references" -sections at the end of each chapter (except this one) are an attempt to give attribution to these ancestors.
+
+Arguments of this thesis are largely elementary, requiring only basic calculus, complex analysis, linear algebra and topology. Many of the underlying ideas and heuristics are however inspired by functional analysis and measure theory, so it pays to have a good understanding of them.
 
 Also, there are no figures. Apologies.
 
@@ -204,23 +192,19 @@ Also, there are no figures. Apologies.
 	$N(r)$ & $r r^{*}$ \\
 	$C^{k}(a, b)$ & $k$ times continuously differentiable functions on $(a, b)$ \\
 \end{tabular}
-\\
+
+\vspace{1cm}
+
 We also preserve certain letters to have particular meaning.
-\\
+
+\vspace{0.5cm}
+
 \begin{tabular}{r l}
 	$a, b$ & extended reals with $-\infty \leq a < b \leq \infty$ \\ 
 	$n, k$ & positive integers \\
 	$V$ & inner product space over $\C$ (with inner product $\langle \cdot, \cdot \rangle$) of dimension $n$ \\
 \end{tabular}
 
-TODO:
-
-\begin{itemize}
-	\item Main theorem simplification: note that the rational function is non-negative outside $(a, b)$ just by monotonicity of inverse function. What kind of rational functions will there be?
-	\item Use ``To wit".
-\end{itemize}
-
-TODO: check the TODO-lists (in comments).
 
 
 
